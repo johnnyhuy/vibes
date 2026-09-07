@@ -18,6 +18,7 @@ Structured decisions about the monorepo's technical architecture:
 - [ADR-0008: cannon-es Marble Controller](./adr/0008-cannon-es-marble-controller.md) — Nimbus Path contact feels, no physics wrapper
 - [ADR-0009: Procedural Courtyard Without a Blender Pipeline](./adr/0009-procedural-courtyard-without-blender.md) — North Court primitives instead of their GLB
 - [ADR-0010: Procedural Headphone Spin, Mute-Default Web Audio](./adr/0010-procedural-audio-spin-mute-default.md) — Lumen Cuff turntable; mute on by default
+- [ADR-0011: Procedural Grass via Instancing and Shaders](./adr/0011-procedural-grass-instancing.md) — Wind Lea; crossed blades, not a turf GLB
 
 ### Reverse Engineering
 
@@ -33,6 +34,7 @@ Clean-room notes from studying public projects:
 - [Rolling Marble / Ocean of Clouds](./reverse-engineering/ballance-roll-threejs.md) — Built: Haze Walk + wood/stone/metal (`experiments/ballance-roll/`). Ocean/dolphin still parked.
 - [Chinese Courtyard](./reverse-engineering/chinese-courtyard-threejs.md) — Built: four-sided North Court (`experiments/chinese-courtyard/`). Studied Blender→GLB→Three; shipped primitives.
 - [Audio Gadget Product Spin](./reverse-engineering/audio-gadget-product-spin.md) — Built: Lumen Cuff turntable (`experiments/audio-gadget-spin/`)
+- [Procedural Grass Field](./reverse-engineering/procedural-grass-field.md) — Built: Wind Lea meadow (`experiments/procedural-grass-field/`)
 - [NeuralKinetics Video-Shader Hero Pattern](./reverse-engineering/neuralkinetics-video-shader-hero.md) — Poster-first video/shader pipeline, organic motion, reduced-motion handling
 - [Procedural Runtime Geometry Pattern](./reverse-engineering/procedural-runtime-geometry.md) — Steam Atlas mechanical assembly, runtime CSG, parametric parts
 - [Visual Quality Bar](./visual-quality-bar.md) — Cinematic product demo aesthetic (dark UI, frosted glass, studio lighting)
@@ -50,6 +52,7 @@ Things that went sideways and what I learnt:
 - [2026-09-07: Semicircle Viewer Cropped Mega-Arc](./incidents/2026-09-07-semicircle-cropped-mega-arc.md) — Hardcoded camera clipped the 51-laptop 180° array; now bbox-framed
 - [2026-09-08: steam-atlas Production Never Landed](./incidents/2026-09-08-steam-atlas-wrong-root.md) — first production LIVE PASS on `a94b16e` / `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS` (assembled locomotive ~4:37am AEST); earlier 404 / `ignored-build-step`
 - [2026-09-08: Glass Auto-Deployed on the Tower Merge](./incidents/2026-09-08-glass-auto-deploy-on-tower-merge.md) — glass production LIVE on `9328191`; steam / scroll / semicircle / tower did not follow (`ignored-build-step`)
+- [2026-09-07: Audio-gadget linked before quota](./incidents/2026-09-07-audio-gadget-linked-before-quota.md) — `prj_N57mvThg4UcU9XxLK3F5wAICz9PA` created `deploy: false`; Root still dashboard-owned; no production
 
 ### Deployment
 
@@ -60,7 +63,7 @@ Things that went sideways and what I learnt:
 
 - [Preview stills](./visual-qa/README.md) — refresh `docs/previews/<app>.png` on ship / redeploy
 - [2026-09-07: Hill-Climb Visual QA Loop](./visual-qa-2026-09-07.md) — Explode mesh filter hardening, earth/v8 confirmation
-- [2026-09-08: Production visual QA](./visual-qa-2026-09-08-prod.md) — explode / steam / glass / tower LIVE; semicircle still `25587f54`; scroll 404. Audio-gadget added locally; no redeploy.
+- [2026-09-08: Production visual QA](./visual-qa-2026-09-08-prod.md) — explode / steam / glass / tower LIVE; semicircle still `25587f54`; scroll 404. Audio-gadget linked, not live. Wind Lea added locally; no new project.
 
 ## Writing Style
 

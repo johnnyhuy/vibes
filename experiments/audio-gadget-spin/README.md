@@ -36,11 +36,11 @@ npm run build
 
 ## Deploy
 
-No Vercel project. Hobby quota on `johnnyhuy-dev` is still exhausted until **~2026-09-08 12:55 UTC**. Do not create a project or force a deploy on this PR.
+Project `vibes-audio-gadget-spin` (`prj_N57mvThg4UcU9XxLK3F5wAICz9PA`) exists. It was created `deploy: false` before the hobby quota resets (~**2026-09-08 12:55 UTC**). **No production yet.** Do not redeploy it on this PR.
 
-If I add one later: dashboard **Root Directory** must be `experiments/audio-gadget-spin`. `vercel.json` only carries the usual Vite fields plus `ignoreCommand` — it cannot set Root Directory.
+Dashboard **Root Directory** must be `experiments/audio-gadget-spin`. `create_git_project` does not write that field. `vercel.json` only carries the usual Vite fields plus `ignoreCommand`. See [the incident](../../docs/incidents/2026-09-07-audio-gadget-linked-before-quota.md).
 
-Do not create `vibes-ballance-roll` or a courtyard project either.
+Do not create `vibes-ballance-roll`, a courtyard project, or a grass-field project either.
 
 ## Related
 

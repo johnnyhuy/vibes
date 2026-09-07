@@ -177,6 +177,7 @@ With a .glb, each rivet is a separate mesh → more memory overhead.
 | **japanese-tower** | Procedural geometry | Architectural keep; season/weather retints materials (ADR-0007) |
 | **chinese-courtyard** | Procedural geometry | Four-sided siheyuan; season/sun retints materials (ADR-0009). No Blender GLB this pass. |
 | **ballance-roll** | Procedural geometry | Sky-path + marble; contact materials, no course GLB (ADR-0008) |
+| **procedural-grass-field** | Instanced shader blades | Meadow density; no turf GLB (ADR-0011) |
 | **chinese-courtyard** | Procedural geometry | Siheyuan halls + moon gate; no courtyard GLB (ADR-0009) |
 | **audio-gadget-spin** | Procedural geometry | Over-ear cuff + canvas grille; no brand GLB (ADR-0010) |
 
