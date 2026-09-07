@@ -1,17 +1,19 @@
 # explode-assembly
 
-Tesla-style exploded product visualisation. Inspired by that [viral X post](https://x.com/ashebytes/status/1831768826242351397) about pulling apart a Model X into 334 parts.
+**Tesla Model 3 2021 Long Range** — Exploded view recreation. Inspired by that [viral X post](https://x.com/ashebytes/status/1831768826242351397) showing a Model X pulled apart into 334 modeled pieces.
 
-I built this to explore how AI agents could generate interactive product visualisations — the kind where you slide through an exploded view, click parts for specs, and feel like you're in a cinematic product reveal.
+I built this as an educational recreation of the 2021 Model 3 Long Range architecture. This is an **unofficial project** — not affiliated with Tesla, Inc.
 
 ## What I Made
 
-An interactive exploded assembly viewer showing a fictional electric vehicle drivetrain:
+An interactive exploded assembly viewer showing the 2021 Model 3 LR with accurate system groups:
 
-- **Systems sidebar** — Click to highlight chassis, drive unit, battery, cooling, electronics, or exterior
-- **Explode slider** — Smoothly transition from assembled to fully exploded view
-- **Part details** — Click any component to see name, description, and technical specs
-- **Cinematic UI** — Dark, minimal interface inspired by automotive marketing sites
+- **12 system groups** — Body, glass roof, doors, cabin, battery pack (82 kWh structural), dual motors (AWD), thermal (heat pump), suspension, wheels & brakes, charging & HV, computers, lighting
+- **~80 individual parts** — Enough density to feel like a real product explode (not just 5 blobs)
+- **Explode slider** — Smoothly transition from assembled Model 3 to fully exploded
+- **Part details** — Click components to see real 2021 LR specs (kWh, kW, dual motor config, HW3, etc.)
+- **System isolation** — Highlight entire systems (e.g., show only battery pack)
+- **Cinematic UI** — Dark, minimal interface matching Tesla's aesthetic
 
 ## Running It
 
@@ -22,43 +24,78 @@ npm run dev
 
 Open in browser → drag to orbit, slide to explode, click parts for details.
 
+## Disclaimer
+
+This is an **unofficial educational recreation** of the 2021 Tesla Model 3 Long Range architecture using publicly available specifications. Not affiliated with, endorsed by, or connected to Tesla, Inc.
+
+All technical specifications are sourced from:
+- Official Tesla specs (tesla.com archives)
+- EPA filings
+- Teardown reports (Munro Live, etc.)
+- Owner's manual data
+
+No proprietary CAD data, OEM meshes, or Sketchfab assets were used.
+
 ## Why I Built This
 
-After seeing GPT-6 Astra generate that Tesla explode site, I wanted to understand the underlying structure. This is my learning experiment for:
+After seeing that viral Model X explode demo, I wanted to understand the underlying structure. This is my learning experiment for:
 
 1. **Procedural assembly layouts** — How to position components hierarchically
 2. **Explode animations** — Calculating offset vectors for dramatic separation
 3. **Interactive annotation** — Connecting 3D objects to UI panels
 4. **Technical aesthetics** — Making engineering data look elegant
 
-## The Code
+## Technical Details
 
-**Procedural parts**: Each component defined by system, size, position, and explode offset.
+### 2021 Model 3 Long Range Specs
 
-**Smooth transitions**: Explode slider lerps between assembled and offset positions.
+- **Dual Motor AWD**: Front induction + rear permanent magnet (combined 346 hp / 258 kW)
+- **Battery**: Structural pack, ~82 kWh usable, NCA/NMC cells, 4416 cells
+- **Range**: ~353 miles EPA (2021)
+- **Charging**: 250 kW DC peak (CCS), 11.5 kW AC onboard
+- **Thermal**: Heat pump system (2021+ refresh with Octovalve)
+- **Computers**: AMD Ryzen MCU, FSD Computer HW3.0
+- **Suspension**: Double wishbone front, multi-link rear
 
-**System highlighting**: Clicking sidebar filters parts by system ID and boosts emissive glow.
+### The Code
 
-**Raycasting**: Three.js raycaster picks parts on click, triggers detail card.
+**Procedural Model 3 shape**: ~80 boxes positioned to match fastback sedan proportions (~4.7m long, ~1.85m wide, ~2.88m wheelbase scaled to viewport).
+
+**System grouping**: 12 systems with 4-10 parts each for density.
+
+**Explode offsets**: Each part has a vector defining where it moves when exploded.
+
+**Real specs**: Detail cards show actual 2021 LR specifications.
+
+## Using Your Own Model 3 GLB
+
+If you have a licensed Model 3 mesh (from Sketchfab, TurboSquid, or your own work), you can load it:
+
+```
+http://localhost:5173/?model=https://example.com/model3.glb
+```
+
+Or add a file input UI. The code will attempt to map mesh names to systems automatically (looks for keywords like "battery", "motor", "door", etc. in mesh names).
 
 ## How AI Agents Could Generate This
 
-An agent given "explode view of an electric motor" could:
+An agent given "explode view of a 2021 Model 3 Long Range" could:
 
-1. **Generate part manifest** — LLM outputs JSON describing components, hierarchy, spatial relationships
-2. **Calculate explode offsets** — Each part pushed outward along assembly axes
-3. **Create UI annotations** — Part names + specs → detail cards
-4. **Style the scene** — Apply automotive-style materials (metallic, dark background, rim lighting)
+1. **Research architecture** — LLM fetches public specs, EPA data, teardown reports
+2. **Generate part manifest** — Outputs JSON with system groups, part names, positions, specs
+3. **Calculate layout** — Model 3 proportions (fastback sedan, ~2.88m wheelbase) → procedural geometry
+4. **Create explode offsets** — Push parts outward along assembly axes
+5. **Style the scene** — Tesla aesthetic (dark UI, cinematic lighting, clean typography)
 
-I'm not there yet (this is hand-coded), but the structure shows what's possible.
+I hand-coded this, but the structure shows what's automatable.
 
 ## Differences from ai-3d-lanes/web-3d
 
-**This experiment**: Product marketing focus, polished UI, sidebar navigation, spec cards
+**explode-assembly (Model 3)**: Specific product recreation, real specs, automotive marketing aesthetic, density (~80 parts)
 
-**web-3d lane**: Technical explainer, cutaway scene, educational tone
+**web-3d lane**: Generic motor assembly, educational cutaway, fewer parts
 
-Both use Three.js + Vite, but different aesthetics and use cases.
+Both use Three.js + Vite, but this one targets product visualisation fidelity.
 
 ## What's Next
 
@@ -67,4 +104,11 @@ Both use Three.js + Vite, but different aesthetics and use cases.
 - Connect to real product databases
 - Export to video for marketing
 
-This is my kitchen sink. Research and education only — not production code.
+## Sources
+
+- [Tesla Model 3 Specs (2021)](https://www.tesla.com/model3) (archived)
+- EPA certification data
+- [Munro Live teardown reports](https://www.youtube.com/c/MunroLive)
+- Owner's manual technical specifications
+
+This is my kitchen sink. Research and education only — not production code. Not affiliated with Tesla, Inc.
