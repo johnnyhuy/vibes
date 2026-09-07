@@ -24,8 +24,9 @@ Each app is a self-contained Vite experiment under [`experiments/`](./experiment
 | <img src="docs/previews/audio-gadget-spin.gif" width="280" alt="Lumen Cuff headphone spinning on a dark stage"> | [audio-gadget-spin](./experiments/audio-gadget-spin/README.md) | — | Lumen Cuff studio turntable. React + R3F + drei. Mute-default Web Audio. |
 | <img src="docs/previews/procedural-grass-field.png" width="280" alt="Procedural Wind Lea grass meadow (still)"> | [procedural-grass-field](./experiments/procedural-grass-field/README.md) | — | Wind Lea meadow. Instanced blades, wind shader. React + R3F + drei. |
 | <img src="docs/previews/amber-longeron.png" width="280" alt="Amber Longeron wooden biplane in a tan studio (still)"> | [amber-longeron](./experiments/amber-longeron/README.md) | — | Amber Longeron lane-dodge. Toy wood, tan studio, carnelian orbs. React + R3F + drei. |
+| <img src="docs/previews/nacre-loom.png" width="280" alt="Nacre Loom lobed glass vessel (still)"> | [nacre-loom](./experiments/nacre-loom/README.md) | — | Nacre Loom glass vessel. Lobed shell, thin-film weave, copyable snippet. React + R3F + drei. |
 
-Clips are short local loops from each Vite demo. The scroll bottle, Wind Lea, and Amber Longeron are stills until I can loop the glass, the wind, and the flight.
+Clips are short local loops from each Vite demo. The scroll bottle, Wind Lea, Amber Longeron, and Nacre Loom are stills until I can loop the glass, the wind, the flight, and the film.
 
 **Also in the repo:** [ai-3d-lanes](./experiments/ai-3d-lanes/README.md) (web-3d / blender / cad / mesh-gen) · [image-to-3d](./experiments/image-to-3d/README.md) · [ai-image-texture](./experiments/ai-image-texture/README.md) · [llm-openscad](./experiments/llm-openscad/README.md)
 

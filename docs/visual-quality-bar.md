@@ -124,6 +124,13 @@ Across these demos, the quality bar is:
 
 ## My Implementation Status
 
+### nacre-loom ✅ (local)
+- ✅ Dark kiln studio + frosted loom desk (not their preset thumbnail rail)
+- ✅ Lobed icosahedron + transmission glass + invented nacre weaves
+- ✅ Dyes / motion / lobe / IOR knobs and a generated snippet
+- ⚠️ No Vercel project — do not create one until quota is healthy
+- Inspired by [onix_react](https://x.com/onix_react/status/2096978661802975464) (live URL 404; still + copy only)
+
 ### amber-longeron ✅ (local)
 - ✅ Linen-tan studio + soft upper-left key (toy wood reads; not a black canyon)
 - ✅ Composite biplane + low-contrast canvas varnish + carnelian lane orbs
@@ -237,4 +244,4 @@ Then implementing those patterns with:
 
 **Author**: Johnny Huynh  
 **Purpose**: Visual quality reference for vibes experiments  
-**Last Updated**: 2026-09-08 (~2:22am AEST hill-climb: glass merged; steam/scroll still no production; quota wait)
+**Last Updated**: 2026-09-07 (nacre-loom local; still no new Vercel project; quota wait ~2026-09-08 20:39 UTC)
