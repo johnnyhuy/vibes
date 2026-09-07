@@ -7,9 +7,16 @@ interface V8EngineProps {
   setRpm: (rpm: number) => void;
   setStrokeCycle: (cycle: string) => void;
   setPressure: (pressure: string) => void;
+  setFiringIndex: (index: number) => void;
 }
 
-export default function V8Engine({ engineSpeed, setRpm, setStrokeCycle, setPressure }: V8EngineProps) {
+export default function V8Engine({
+  engineSpeed,
+  setRpm,
+  setStrokeCycle,
+  setPressure,
+  setFiringIndex,
+}: V8EngineProps) {
   const crankshaftRef = useRef<THREE.Mesh>(null);
   const pistonsLeftRef = useRef<THREE.Group>(null);
   const pistonsRightRef = useRef<THREE.Group>(null);
@@ -26,12 +33,13 @@ export default function V8Engine({ engineSpeed, setRpm, setStrokeCycle, setPress
   useFrame((state, delta) => {
     crankRotation.current += delta * engineSpeed * 2;
 
-    const rpm = Math.floor(engineSpeed * 200 + 300);
+    const rpm = engineSpeed === 0 ? 0 : Math.floor(engineSpeed * 200 + 300);
     setRpm(rpm);
 
     const cycle = Math.floor((crankRotation.current / (Math.PI * 2)) % 4);
     const cycles = ['INTAKE', 'COMPRESSION', 'POWER', 'EXHAUST'];
     setStrokeCycle(cycles[cycle]);
+    setFiringIndex(Math.floor((crankRotation.current / (Math.PI / 4)) % 8));
 
     const pressure = (1.5 + Math.sin(crankRotation.current) * 0.5).toFixed(1);
     setPressure(pressure);
@@ -58,27 +66,27 @@ export default function V8Engine({ engineSpeed, setRpm, setStrokeCycle, setPress
   });
 
   const blockMaterial = new THREE.MeshStandardMaterial({
-    color: '#10b981',
-    metalness: 0.6,
-    roughness: 0.4,
+    color: '#16181c',
+    metalness: 0.42,
+    roughness: 0.55,
   });
 
   const crankMaterial = new THREE.MeshStandardMaterial({
-    color: '#ef4444',
-    metalness: 0.9,
-    roughness: 0.2,
+    color: '#d4d7dc',
+    metalness: 0.92,
+    roughness: 0.16,
   });
 
   const pistonMaterial = new THREE.MeshStandardMaterial({
-    color: '#3b82f6',
-    metalness: 0.7,
-    roughness: 0.3,
+    color: '#4d6f93',
+    metalness: 0.55,
+    roughness: 0.28,
   });
 
   const valveMaterial = new THREE.MeshStandardMaterial({
     color: '#8b5cf6',
-    metalness: 0.8,
-    roughness: 0.3,
+    metalness: 0.78,
+    roughness: 0.22,
   });
 
   return (

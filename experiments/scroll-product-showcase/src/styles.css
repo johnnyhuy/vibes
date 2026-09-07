@@ -26,6 +26,14 @@ body {
   pointer-events: none;
 }
 
+.frame {
+  position: fixed;
+  inset: 8px;
+  z-index: 40;
+  pointer-events: none;
+  border: 1px solid #c8ff3a;
+}
+
 .topbar {
   position: fixed;
   top: 0;
@@ -34,11 +42,87 @@ body {
   z-index: 20;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 1.35rem 2rem;
   font-size: 0.72rem;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: #c8ff3a;
+}
+
+.topbar nav {
+  display: flex;
+  gap: 1.4rem;
+}
+
+.topbar a {
+  color: rgba(238, 246, 226, 0.72);
+  text-decoration: none;
+  pointer-events: auto;
+}
+
+.topbar a:hover {
+  color: #c8ff3a;
+}
+
+.batch-badge {
+  position: fixed;
+  top: 5.4rem;
+  right: 2rem;
+  z-index: 20;
+  width: 4.4rem;
+  height: 4.4rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  border: 1px solid rgba(200, 255, 58, 0.45);
+  color: #c8ff3a;
+  pointer-events: none;
+}
+
+.batch-badge strong {
+  display: block;
+  font-size: 1.05rem;
+  letter-spacing: 0.08em;
+}
+
+.batch-badge span {
+  display: block;
+  font-size: 0.58rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.hero-ctas {
+  display: flex;
+  justify-content: center;
+  gap: 0.7rem;
+  margin-top: 1.5rem;
+  pointer-events: auto;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.7rem 1.15rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.pill.solid {
+  background: #c8ff3a;
+  color: #0a0c04;
+}
+
+.pill.ghost {
+  border: 1px solid rgba(238, 246, 226, 0.45);
+  color: #eef6e2;
+  background: rgba(8, 10, 8, 0.28);
+  backdrop-filter: blur(14px);
 }
 
 .block {
@@ -157,6 +241,11 @@ footer a:hover {
 }
 
 @media (max-width: 780px) {
+  .topbar nav,
+  .batch-badge {
+    display: none;
+  }
+
   .side-left,
   .side-right {
     justify-content: center;

@@ -69,11 +69,11 @@ body,
 }
 
 .glass-panel {
-  background: rgba(12, 18, 27, 0.83);
-  border: 1px solid rgba(200, 220, 240, 0.09);
-  border-radius: 5px;
-  backdrop-filter: blur(16px) saturate(140%);
-  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  background: rgba(8, 12, 18, 0.52);
+  border: 1px solid rgba(200, 220, 240, 0.12);
+  border-radius: 10px;
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.28);
 }
 
@@ -271,4 +271,60 @@ body,
   border: 2px solid #dceaf4;
   background: #91b0c5;
   cursor: pointer;
+}
+
+.detail-card {
+  position: absolute;
+  right: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 248px;
+  z-index: 5;
+  padding: 16px 16px 14px;
+}
+
+.panel-kicker {
+  font-size: 9px;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: #81909b;
+}
+
+.detail-card h2 {
+  margin: 6px 0 8px;
+  font-size: 18px;
+  font-weight: 450;
+  letter-spacing: 0.2px;
+  color: #e8eef3;
+}
+
+.detail-copy {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #9dabb6;
+}
+
+.detail-card dl {
+  margin: 12px 0 14px;
+  display: grid;
+  gap: 8px;
+}
+
+.detail-card dt {
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #667682;
+}
+
+.detail-card dd {
+  margin-top: 2px;
+  font-size: 12px;
+  color: #d6e3ec;
+}
+
+@media (max-width: 900px) {
+  .detail-card {
+    display: none;
+  }
 }

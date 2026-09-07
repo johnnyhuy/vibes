@@ -1,78 +1,103 @@
 import { useState } from 'react';
 import Scene from './components/Scene';
 
+const FIRING_ORDER = [1, 8, 4, 3, 6, 5, 7, 2];
+
+const CYCLES = [
+  { id: 'INTAKE', label: 'Air & fuel', swatch: '#60a5fa' },
+  { id: 'COMPRESSION', label: 'Compressed', swatch: '#94a3b8' },
+  { id: 'POWER', label: 'Combustion', swatch: '#ef4444' },
+  { id: 'EXHAUST', label: 'Exhaust', swatch: '#c084fc' },
+];
+
 export default function App() {
   const [engineSpeed, setEngineSpeed] = useState(3);
+  const [paused, setPaused] = useState(false);
   const [rpm, setRpm] = useState(700);
   const [strokeCycle, setStrokeCycle] = useState('INTAKE');
   const [pressure, setPressure] = useState('1.5');
+  const [firingIndex, setFiringIndex] = useState(0);
+
+  const speed = paused ? 0 : engineSpeed;
+  const activeCycle = CYCLES.find((cycle) => cycle.id === strokeCycle) ?? CYCLES[0];
 
   return (
     <div className="app">
       <header className="header">
+        <p className="kicker">Study in motion</p>
         <h1>V8 · Four-Stroke</h1>
-        <p className="subtitle">90° V-ANGLE · FIRING ORDER 1-8-4-3-6-5-7-2 · 5.5L DISPLACEMENT</p>
+        <p className="subtitle">90° V-angle · 1-8-4-3-6-5-7-2 · 5.5 L</p>
+        <div className="cycle-legend" aria-hidden>
+          {CYCLES.map((cycle) => (
+            <span
+              key={cycle.id}
+              className={`cycle-chip ${cycle.id === strokeCycle ? 'active' : ''}`}
+            >
+              <i style={{ background: cycle.swatch }} />
+              {cycle.label}
+            </span>
+          ))}
+        </div>
       </header>
 
-      <Scene 
-        engineSpeed={engineSpeed}
+      <Scene
+        engineSpeed={speed}
         setRpm={setRpm}
         setStrokeCycle={setStrokeCycle}
         setPressure={setPressure}
+        setFiringIndex={setFiringIndex}
       />
 
-      <div className="gauges">
+      <aside className="gauges">
         <div className="gauge">
           <div className="gauge-value">{rpm}</div>
-          <div className="gauge-label">REV / MIN</div>
-          <div className="gauge-subtext">Crankshaft</div>
+          <div className="gauge-label">Rev / min</div>
+          <div className="gauge-bar" style={{ width: `${Math.min(100, (rpm / 2300) * 100)}%` }} />
         </div>
-        
         <div className="gauge">
-          <div className="gauge-value">{strokeCycle}</div>
-          <div className="gauge-label">CYCLE</div>
-          <div className="gauge-subtext">4-Stroke</div>
+          <div className="gauge-value cycle">{activeCycle.label}</div>
+          <div className="gauge-label">Cycle</div>
+          <div className="gauge-subtext">{strokeCycle}</div>
         </div>
-        
         <div className="gauge">
           <div className="gauge-value">{pressure}</div>
-          <div className="gauge-label">BAR</div>
-          <div className="gauge-subtext">Chamber Pressure</div>
+          <div className="gauge-label">Bar</div>
+          <div className="gauge-subtext">Chamber pressure</div>
         </div>
+      </aside>
+
+      <div className="firing">
+        <p>Firing order</p>
+        <ol>
+          {FIRING_ORDER.map((cyl, index) => (
+            <li key={cyl} className={index === firingIndex ? 'hot' : ''}>
+              {cyl}
+            </li>
+          ))}
+        </ol>
       </div>
 
-      <div className="controls-panel">
-        <div className="speed-control">
-          <label>ENGINE SPEED</label>
-          <input 
-            type="range" 
-            id="speed-slider" 
-            min="1" 
-            max="10" 
+      <div className="dock">
+        <button
+          type="button"
+          className={`pill ${paused ? '' : 'active'}`}
+          onClick={() => setPaused((value) => !value)}
+        >
+          {paused ? 'Play' : 'Pause'}
+        </button>
+        <label className="speed-control">
+          <span>Engine speed</span>
+          <input
+            type="range"
+            id="speed-slider"
+            min="1"
+            max="10"
             value={engineSpeed}
-            onChange={(e) => setEngineSpeed(parseInt(e.target.value))}
+            onChange={(e) => setEngineSpeed(parseInt(e.target.value, 10))}
           />
-          <div className="speed-value">{engineSpeed}x</div>
-        </div>
-      </div>
-
-      <div className="legend">
-        <div className="legend-item">
-          <span className="legend-color" style={{ background: '#ef4444' }}></span>
-          <span>Crankshaft</span>
-        </div>
-        <div className="legend-item">
-          <span className="legend-color" style={{ background: '#3b82f6' }}></span>
-          <span>Pistons</span>
-        </div>
-        <div className="legend-item">
-          <span className="legend-color" style={{ background: '#8b5cf6' }}></span>
-          <span>Valves</span>
-        </div>
-        <div className="legend-item">
-          <span className="legend-color" style={{ background: '#10b981' }}></span>
-          <span>Block</span>
-        </div>
+          <output>{engineSpeed}×</output>
+        </label>
+        <p className="hint">Drag to orbit · scroll to zoom</p>
       </div>
     </div>
   );

@@ -23,7 +23,7 @@ export default function ProductScene() {
 
     const t = offset.current;
     const spin = reducedMotion ? 0.15 : t * Math.PI * 2;
-    const camZ = reducedMotion ? 6.2 : 6.6 - t * 1.35;
+    const camZ = reducedMotion ? 6.6 : 7.1 - t * 1.2;
     const camY = reducedMotion ? 0.35 : 0.28 + t * 0.35;
 
     roll.current.rotation.x = THREE.MathUtils.damp(roll.current.rotation.x, spin, 3.6, delta);

@@ -10,15 +10,15 @@ let isolationMode = 'all';
 
 function init() {
   scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x0a0a0a);
+  scene.background = new THREE.Color(0x000000);
 
   camera = new THREE.PerspectiveCamera(
-    45,
+    36,
     window.innerWidth / window.innerHeight,
     0.1,
     1000
   );
-  camera.position.set(12, 6, 12);
+  camera.position.set(13.2, 5.6, 13.2);
 
   renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setSize(window.innerWidth, window.innerHeight);
@@ -26,16 +26,17 @@ function init() {
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.2;
+  renderer.toneMappingExposure = 1.55;
 
   document.getElementById('canvas-container').appendChild(renderer.domElement);
 
   controls = new OrbitControls(camera, renderer.domElement);
   controls.enableDamping = true;
   controls.dampingFactor = 0.05;
-  controls.minDistance = 5;
-  controls.maxDistance = 40;
-  controls.maxPolarAngle = Math.PI / 2;
+  controls.minDistance = 8;
+  controls.maxDistance = 42;
+  controls.maxPolarAngle = Math.PI / 2.05;
+  controls.target.set(0, 0.6, 0);
 
   setupLights();
   
@@ -48,10 +49,13 @@ function init() {
 }
 
 function setupLights() {
-  const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
+  const hemi = new THREE.HemisphereLight(0xe8eef6, 0x111318, 0.42);
+  scene.add(hemi);
+
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.32);
   scene.add(ambientLight);
 
-  const keyLight = new THREE.DirectionalLight(0xffffff, 1.2);
+  const keyLight = new THREE.DirectionalLight(0xfff4e6, 2.15);
   keyLight.position.set(10, 15, 10);
   keyLight.castShadow = true;
   keyLight.shadow.camera.left = -20;
@@ -62,16 +66,32 @@ function setupLights() {
   keyLight.shadow.mapSize.height = 2048;
   scene.add(keyLight);
 
-  const fillLight = new THREE.DirectionalLight(0x6495ed, 0.4);
+  const fillLight = new THREE.DirectionalLight(0x8eb6ff, 0.7);
   fillLight.position.set(-8, 5, -5);
   scene.add(fillLight);
 
-  const rimLight = new THREE.DirectionalLight(0xffa500, 0.6);
-  rimLight.position.set(0, 3, -10);
+  const rimLight = new THREE.DirectionalLight(0xffc27a, 1.25);
+  rimLight.position.set(0, 4, -12);
   scene.add(rimLight);
 
-  const groundGeometry = new THREE.PlaneGeometry(100, 100);
-  const groundMaterial = new THREE.ShadowMaterial({ opacity: 0.3 });
+  const bounce = new THREE.DirectionalLight(0xffffff, 0.55);
+  bounce.position.set(-4, 8, 10);
+  scene.add(bounce);
+
+  const ring = new THREE.Mesh(
+    new THREE.RingGeometry(8.2, 8.38, 96),
+    new THREE.MeshBasicMaterial({ color: 0xb7cbe0, transparent: true, opacity: 0.42, side: THREE.DoubleSide })
+  );
+  ring.rotation.x = -Math.PI / 2;
+  ring.position.y = -1.98;
+  scene.add(ring);
+
+  const groundGeometry = new THREE.CircleGeometry(8.2, 64);
+  const groundMaterial = new THREE.MeshStandardMaterial({
+    color: 0x07080a,
+    roughness: 0.92,
+    metalness: 0.08,
+  });
   const ground = new THREE.Mesh(groundGeometry, groundMaterial);
   ground.rotation.x = -Math.PI / 2;
   ground.position.y = -2;

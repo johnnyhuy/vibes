@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react';
 import Scene from './components/Scene';
 import Sidebar from './components/Sidebar';
+import DetailCard from './components/DetailCard';
 import Controls from './components/Controls';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { EMPTY_LAYOUT, type ExplosionLayout } from './utils/explosion';
@@ -47,6 +48,12 @@ export default function App() {
       <Sidebar
         selectedPart={selectedPart}
         onSelectPart={setSelectedPart}
+        isolated={isolated}
+        onToggleIsolate={() => setIsolated(!isolated)}
+      />
+
+      <DetailCard
+        selectedPart={selectedPart}
         isolated={isolated}
         onToggleIsolate={() => setIsolated(!isolated)}
       />

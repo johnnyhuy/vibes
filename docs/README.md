@@ -36,6 +36,7 @@ Clean-room notes from studying public projects:
 - [NeuralKinetics Video-Shader Hero Pattern](./reverse-engineering/neuralkinetics-video-shader-hero.md) — Poster-first video/shader pipeline, organic motion, reduced-motion handling
 - [Procedural Runtime Geometry Pattern](./reverse-engineering/procedural-runtime-geometry.md) — Steam Atlas mechanical assembly, runtime CSG, parametric parts
 - [Visual Quality Bar](./visual-quality-bar.md) — Cinematic product demo aesthetic (dark UI, frosted glass, studio lighting)
+- [2026-09-08 design sweep](./design-sweep-2026-09-08.md) — Frosted HUD / black studio pass vs the X refs (local QA only)
 
 ### Incidents & Lessons
 
