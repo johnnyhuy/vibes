@@ -9,9 +9,9 @@ I'm Johnny Huynh, and this monorepo is where I learn by building. Each experimen
 ### Interactive 3D Demos
 
 #### [explode-assembly](./experiments/explode-assembly/)
-Tesla-style exploded product visualisation. Inspired by [this X post](https://x.com/ashebytes/status/1831768826242351397).
+**Tesla Model 3 2021 Long Range** exploded view recreation. Inspired by [this X post](https://x.com/ashebytes/status/1831768826242351397).
 
-**What it is**: Cinematic assembly viewer with systems sidebar, explode slider, and part detail cards. Dark automotive UI.
+**What it is**: Educational recreation of Model 3 LR architecture. 12 system groups (~80 parts), real 2021 specs (82 kWh battery, dual motor AWD, heat pump), cinematic UI. Unofficial — not affiliated with Tesla.
 
 **Run it**:
 ```bash
