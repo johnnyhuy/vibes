@@ -103,50 +103,34 @@ export default function CarModel({ explode, selectedPart, isolated, onSelectPart
       const explodeRoot = new THREE.Group();
       explodeRoot.name = 'ExplodeRoot';
       
-      // PASS 1: Collect nodes to remove (don't mutate during traverse)
-      const nodesToRemove: THREE.Object3D[] = [];
-      model.traverse((node: any) => {
-        if (!node) return;
-        // Guard: ensure node has name property before accessing
-        if (typeof node.name === 'undefined') return;
-        const name = node.name || '';
-        if (isProp(name) || isContainer(name)) {
-          nodesToRemove.push(node);
-        }
-      });
-      
-      // PASS 2: Remove collected prop nodes
-      for (const node of nodesToRemove) {
-        if (node && node.parent) {
-          node.parent.remove(node);
-        }
-      }
-      
-      console.log(`Removed ${nodesToRemove.length} prop nodes`);
-      
-      // PASS 3: Collect all mesh nodes (after removal)
+      // Collect car meshes only (don't remove containers - they're structural parents!)
+      // Skip prop meshes during collection instead of removing from graph
       const meshes: THREE.Mesh[] = [];
       model.traverse((obj: any) => {
-        if (!obj) return;
-        // Guard: check both isMesh and name existence
-        if (obj.isMesh && typeof obj.name !== 'undefined') {
-          meshes.push(obj as THREE.Mesh);
-        }
+        // Guard: ensure object exists and is a mesh
+        if (!obj?.isMesh) return;
+        
+        const name = obj?.name ?? '';
+        
+        // Skip structural containers (not renderable, just parents)
+        if (isContainer(name)) return;
+        
+        // Skip known prop meshes
+        if (isProp(name)) return;
+        
+        // This is a car mesh - collect it
+        meshes.push(obj as THREE.Mesh);
       });
       
-      console.log(`Found ${meshes.length} meshes for explosion`);
+      console.log(`Collected ${meshes.length} car meshes (skipped props & containers during traversal)`);
       
-      // PASS 4: Attach meshes to explode root (preserves world transform)
+      // Attach car meshes to explode root (preserves world transform)
       const pieces: Piece[] = [];
       for (const mesh of meshes) {
         // Guard: ensure mesh and its required properties exist
-        if (!mesh) continue;
-        if (typeof mesh.name === 'undefined') continue;
-        if (!mesh.position) continue;
+        if (!mesh?.position) continue;
         
-        // Skip if somehow a prop survived
-        const meshName = mesh.name || '';
-        if (isProp(meshName)) continue;
+        const meshName = mesh?.name ?? '';
         
         // CRITICAL: attach() preserves world matrix while reparenting
         explodeRoot.attach(mesh);
@@ -156,38 +140,35 @@ export default function CarModel({ explode, selectedPart, isolated, onSelectPart
         
         const bounds = new THREE.Box3().setFromObject(mesh);
         const center = bounds.getCenter(new THREE.Vector3());
-        const system = detectSystem(meshName || 'unknown');
+        const system = detectSystem(meshName);
         
         // Force materials opaque and enhance
         try {
           mesh.traverse((child: any) => {
-            if (!child) return;
-            if (child.isMesh && child.material) {
-              if (Array.isArray(child.material)) {
-                child.material = child.material.map((mat: any) => {
-                  const m = mat.clone();
-                  m.transparent = false;
-                  m.opacity = 1;
-                  m.metalness = Math.min(m.metalness + 0.2, 0.8);
-                  m.roughness = Math.max(m.roughness - 0.1, 0.3);
-                  m.envMapIntensity = 1.5;
-                  return m;
-                });
-              } else {
-                const mat = child.material.clone();
-                mat.transparent = false;
-                mat.opacity = 1;
-                mat.metalness = Math.min(mat.metalness + 0.2, 0.8);
-                mat.roughness = Math.max(mat.roughness - 0.1, 0.3);
-                mat.envMapIntensity = 1.5;
-                child.material = mat;
-              }
+            if (!child?.isMesh || !child?.material) return;
+            
+            if (Array.isArray(child.material)) {
+              child.material = child.material.map((mat: any) => {
+                const m = mat.clone();
+                m.transparent = false;
+                m.opacity = 1;
+                m.metalness = Math.min(m.metalness + 0.2, 0.8);
+                m.roughness = Math.max(m.roughness - 0.1, 0.3);
+                m.envMapIntensity = 1.5;
+                return m;
+              });
+            } else {
+              const mat = child.material.clone();
+              mat.transparent = false;
+              mat.opacity = 1;
+              mat.metalness = Math.min(mat.metalness + 0.2, 0.8);
+              mat.roughness = Math.max(mat.roughness - 0.1, 0.3);
+              mat.envMapIntensity = 1.5;
+              child.material = mat;
             }
             
-            if (child.isMesh) {
-              child.castShadow = true;
-              child.receiveShadow = true;
-            }
+            child.castShadow = true;
+            child.receiveShadow = true;
           });
         } catch (err) {
           console.error(`Material processing error for ${meshName}:`, err);
@@ -252,42 +233,42 @@ export default function CarModel({ explode, selectedPart, isolated, onSelectPart
       
       // Highlight selected (only when exploding to avoid ghost at 0%)
       piece.node.traverse((child: any) => {
-        if (child.isMesh && child.material) {
-          const isSelected = piece.system === selectedPart;
-          const isOther = selectedPart && piece.system !== selectedPart;
-          
-          if (Array.isArray(child.material)) {
-            child.material.forEach((mat: any) => {
-              if (isSelected) {
-                mat.emissive = new THREE.Color(0x3b82f6);
-                mat.emissiveIntensity = 0.4;
-              } else if (isOther && explosionAmount > 0.05) {
-                mat.emissive = new THREE.Color(0x000000);
-                mat.emissiveIntensity = 0;
-                mat.opacity = 0.3;
-                mat.transparent = true;
-              } else {
-                mat.emissive = new THREE.Color(0x000000);
-                mat.emissiveIntensity = 0;
-                mat.opacity = 1;
-                mat.transparent = false;
-              }
-            });
-          } else {
+        if (!child?.isMesh || !child?.material) return;
+        
+        const isSelected = piece.system === selectedPart;
+        const isOther = selectedPart && piece.system !== selectedPart;
+        
+        if (Array.isArray(child.material)) {
+          child.material.forEach((mat: any) => {
             if (isSelected) {
-              child.material.emissive = new THREE.Color(0x3b82f6);
-              child.material.emissiveIntensity = 0.4;
+              mat.emissive = new THREE.Color(0x3b82f6);
+              mat.emissiveIntensity = 0.4;
             } else if (isOther && explosionAmount > 0.05) {
-              child.material.emissive = new THREE.Color(0x000000);
-              child.material.emissiveIntensity = 0;
-              child.material.opacity = 0.3;
-              child.material.transparent = true;
+              mat.emissive = new THREE.Color(0x000000);
+              mat.emissiveIntensity = 0;
+              mat.opacity = 0.3;
+              mat.transparent = true;
             } else {
-              child.material.emissive = new THREE.Color(0x000000);
-              child.material.emissiveIntensity = 0;
-              child.material.opacity = 1;
-              child.material.transparent = false;
+              mat.emissive = new THREE.Color(0x000000);
+              mat.emissiveIntensity = 0;
+              mat.opacity = 1;
+              mat.transparent = false;
             }
+          });
+        } else {
+          if (isSelected) {
+            child.material.emissive = new THREE.Color(0x3b82f6);
+            child.material.emissiveIntensity = 0.4;
+          } else if (isOther && explosionAmount > 0.05) {
+            child.material.emissive = new THREE.Color(0x000000);
+            child.material.emissiveIntensity = 0;
+            child.material.opacity = 0.3;
+            child.material.transparent = true;
+          } else {
+            child.material.emissive = new THREE.Color(0x000000);
+            child.material.emissiveIntensity = 0;
+            child.material.opacity = 1;
+            child.material.transparent = false;
           }
         }
       });

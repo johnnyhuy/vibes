@@ -1,4 +1,4 @@
-# 2026-09-07: Undefined `.name` Property Crash
+# 2026-09-07: Undefined `.name` Property Crash + Container Removal Pitfall
 
 ## Incident
 
@@ -8,46 +8,98 @@ PR #6 preview crashed with blank black canvas + ErrorBoundary showing:
 Error: Could not load /models/model3.glb: Cannot read properties of undefined (reading 'name')
 ```
 
-## Root Cause
+## Root Causes
 
-The attach() pattern rewrite in `CarModel.tsx` was traversing the cloned GLB scene graph and accessing `node.name` without sufficient guards for nodes that might have `undefined` as their `name` property (rather than an empty string or null).
+### 1. Removing Structural Containers (PRIMARY)
 
-While most Three.js objects have a `name` property (defaulting to `''`), certain edge cases in the scene graph—particularly after cloning and during removal operations—can result in nodes where `typeof node.name === 'undefined'`.
+The code was removing nodes identified by `isContainer()` (e.g., `sketchfab_model`, `tesla model 3.fbx`, `rootnode`) using `node.parent.remove(node)`. These are **structural parent nodes** that contain the entire car hierarchy as children.
+
+**Result**: Removing these containers deleted the entire car subgraph, leaving either:
+- Zero meshes collected (blank canvas)
+- Dangling references to removed nodes (undefined `.name` crashes)
+- Corrupted scene graph with half-removed nodes
+
+**Critical lesson**: In Three.js scene graphs, container/root nodes are **structural parents**, not props. Removing them destroys everything underneath.
+
+### 2. Insufficient `.name` Guards (SECONDARY)
+
+Even with containers kept, some nodes in cloned GLB scene graphs can have `undefined` as their `name` property (not `''` or `null`), particularly after graph manipulations.
 
 ## Affected Code
 
-**Before:**
+**Before (BROKEN):**
 ```typescript
+// PASS 1: Collect nodes to remove
 model.traverse((node: any) => {
   if (!node) return;
-  const name = node.name || '';  // ❌ Still crashes if node.name is undefined
-  if (isProp(name) || isContainer(name)) {
+  const name = node.name || '';  // ❌ Crashes if node.name is undefined
+  if (isProp(name) || isContainer(name)) {  // ❌ Removes structural parents!
     nodesToRemove.push(node);
   }
+});
+
+// PASS 2: Remove collected nodes
+for (const node of nodesToRemove) {
+  node.parent.remove(node);  // ❌ Deletes entire car hierarchy when node is a container
+}
+
+// PASS 3: Collect meshes
+model.traverse((obj: any) => {
+  if (obj.isMesh) meshes.push(obj);  // ⚠️ Nothing left - containers were removed
 });
 ```
 
-**After:**
+**After (FIXED):**
 ```typescript
-model.traverse((node: any) => {
-  if (!node) return;
-  if (typeof node.name === 'undefined') return;  // ✅ Guard
-  const name = node.name || '';
-  if (isProp(name) || isContainer(name)) {
-    nodesToRemove.push(node);
-  }
+// Single pass: collect car meshes only (don't remove anything from graph)
+model.traverse((obj: any) => {
+  if (!obj?.isMesh) return;  // ✅ Safe guard
+  
+  const name = obj?.name ?? '';  // ✅ Null-safe
+  
+  if (isContainer(name)) return;  // ✅ SKIP containers (don't remove!)
+  if (isProp(name)) return;       // ✅ SKIP props
+  
+  meshes.push(obj);  // ✅ Collect car meshes only
 });
+// Containers stay in graph as structural parents - we just don't render them
 ```
 
 ## Fix
 
-1. Added explicit `typeof node.name === 'undefined'` guards in all traverse loops
-2. Updated `isProp()`, `isContainer()`, and `detectSystem()` to accept `string | undefined` and return early for non-string values
-3. Added guard to ensure `scene` is loaded before cloning in useMemo
-4. Added `mesh.position` existence check before attaching meshes
+1. **DON'T REMOVE CONTAINERS** - Changed from "collect & remove" to "skip during collection"
+   - `isContainer()` now used to SKIP nodes, not remove them
+   - Structural parents (`sketchfab_model`, `tesla model 3.fbx`, etc.) stay in graph
+   - Only skip prop meshes and containers during mesh collection
+
+2. **Use `?.` and `??` null-safe operators** for all `.name` accesses
+   - `obj?.name ?? ''` instead of `obj.name || ''`
+   - `if (!obj?.isMesh) return;` instead of separate checks
+
+3. **Single-pass collection** instead of multi-pass remove-then-collect
+   - Simpler logic, fewer chances for graph corruption
+   - Matches ashemag pattern more closely
+
+4. **Type signatures** updated to accept `string | undefined`
 
 ## Prevention
 
-- Always use `typeof obj.name === 'undefined'` checks before accessing `.name` on Three.js objects in traverse loops
-- Type helper functions to accept `string | undefined` for names
-- Add null/undefined guards at the top of processing loops, not just in string operations
+### DON'T Remove Structural Nodes
+- In Three.js GLB/GLTF scenes, nodes like `sketchfab_model`, `RootNode`, `scene`, `*.fbx` are **structural parents**
+- Removing them destroys the entire subgraph
+- **Skip them during collection**, don't remove from graph
+
+### Safe `.name` Access Pattern
+```typescript
+// ✅ GOOD: Null-safe
+const name = obj?.name ?? '';
+if (isContainer(name)) return;  // Skip, don't remove
+
+// ❌ BAD: Can crash
+const name = obj.name || '';
+if (isContainer(name)) obj.parent.remove(obj);  // Deletes children!
+```
+
+### Container vs Prop Distinction
+- **Containers**: Structural parents (keep in graph, skip during collection)
+- **Props**: Renderable clutter (skip during collection, or remove if safe)
