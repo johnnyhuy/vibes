@@ -44,9 +44,8 @@ Do not create `vibes-ballance-roll` or a courtyard project either.
 
 ## Related
 
-- [docs/reverse-engineering/audio-gadget-spin.md](../../docs/reverse-engineering/audio-gadget-spin.md)
+- [docs/reverse-engineering/audio-gadget-product-spin.md](../../docs/reverse-engineering/audio-gadget-product-spin.md)
 - [docs/adr/0010-procedural-audio-spin-mute-default.md](../../docs/adr/0010-procedural-audio-spin-mute-default.md)
-- Earlier parking note: [audio-gadget-product-spin.md](../../docs/reverse-engineering/audio-gadget-product-spin.md)
 
 ---
 

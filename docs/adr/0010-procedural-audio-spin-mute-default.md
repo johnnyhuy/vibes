@@ -3,7 +3,7 @@
 **Date**: 2026-09-08  
 **Status**: Accepted  
 **Context**: [vibes](../../) monorepo  
-**Related**: [audio-gadget-spin.md](../reverse-engineering/audio-gadget-spin.md), [audio-gadget-spin](../../experiments/audio-gadget-spin/), [ADR-0004](./0004-procedural-geometry-over-assets.md)
+**Related**: [audio-gadget-product-spin.md](../reverse-engineering/audio-gadget-product-spin.md), [audio-gadget-spin](../../experiments/audio-gadget-spin/), [ADR-0004](./0004-procedural-geometry-over-assets.md)
 
 ## Context
 
