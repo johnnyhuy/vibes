@@ -36,6 +36,8 @@ Output in `dist/`
 
 This lane is configured for automatic Vercel preview deployments.
 
+**Project**: `vibes` (prj_4b6cXKJVxCYNTn6WuofofmkBZPX6) is linked and ready for preview deploys.
+
 ### Setup (one-time)
 
 1. **Import the repository** in Vercel:
