@@ -27,7 +27,8 @@ const SYSTEM_KEYWORDS: Record<string, string[]> = {
   lights: ['light', 'lamp', 'headlight', 'taillight', 'fog', 'phare', 'led'],
 };
 
-function detectSystem(name: string): string {
+function detectSystem(name: string | undefined): string {
+  if (!name || typeof name !== 'string') return 'body';
   const lowerName = name.toLowerCase();
   for (const [system, keywords] of Object.entries(SYSTEM_KEYWORDS)) {
     if (keywords.some(kw => lowerName.includes(kw))) {
@@ -38,8 +39,8 @@ function detectSystem(name: string): string {
 }
 
 // Check if mesh is a known prop (not car part)
-function isProp(name: string): boolean {
-  if (!name) return false;
+function isProp(name: string | undefined): boolean {
+  if (!name || typeof name !== 'string') return false;
   const lower = name.toLowerCase();
   
   const PROP_KEYWORDS = [
@@ -53,8 +54,8 @@ function isProp(name: string): boolean {
 }
 
 // Check if node is a container (not renderable)
-function isContainer(name: string): boolean {
-  if (!name) return false;
+function isContainer(name: string | undefined): boolean {
+  if (!name || typeof name !== 'string') return false;
   const lower = name.toLowerCase();
   
   const CONTAINERS = [
@@ -84,107 +85,143 @@ export default function CarModel({ explode, selectedPart, isolated, onSelectPart
   const { explodeRoot, pieces } = useMemo(() => {
     console.log('=== SETTING UP EXPLODE STRUCTURE (ATTACH PATTERN) ===');
     
-    // Clone the entire scene once
-    const model = scene.clone(true);
-    model.updateMatrixWorld(true);
-    
-    // Remove known prop nodes from the cloned graph
-    const propsRemoved: string[] = [];
-    model.traverse((node: any) => {
-      if (isProp(node.name) || isContainer(node.name)) {
-        if (node.parent && node.name) {
-          propsRemoved.push(node.name);
+    try {
+      // Guard: ensure scene is loaded
+      if (!scene) {
+        console.error('Scene not loaded yet');
+        return {
+          explodeRoot: new THREE.Group(),
+          pieces: [],
+        };
+      }
+      
+      // Clone the entire scene once
+      const model = scene.clone(true);
+      model.updateMatrixWorld(true);
+      
+      // Create explode root group
+      const explodeRoot = new THREE.Group();
+      explodeRoot.name = 'ExplodeRoot';
+      
+      // PASS 1: Collect nodes to remove (don't mutate during traverse)
+      const nodesToRemove: THREE.Object3D[] = [];
+      model.traverse((node: any) => {
+        if (!node) return;
+        // Guard: ensure node has name property before accessing
+        if (typeof node.name === 'undefined') return;
+        const name = node.name || '';
+        if (isProp(name) || isContainer(name)) {
+          nodesToRemove.push(node);
+        }
+      });
+      
+      // PASS 2: Remove collected prop nodes
+      for (const node of nodesToRemove) {
+        if (node && node.parent) {
           node.parent.remove(node);
         }
       }
-    });
-    
-    // Create explode root group
-    const explodeRoot = new THREE.Group();
-    explodeRoot.name = 'ExplodeRoot';
-    
-    // Collect all mesh nodes
-    const meshes: THREE.Mesh[] = [];
-    model.traverse((obj: any) => {
-      if (obj.isMesh) {
-        meshes.push(obj as THREE.Mesh);
-      }
-    });
-    
-    console.log(`Found ${meshes.length} meshes after removing ${propsRemoved.length} props`);
-    
-    // Attach meshes to explode root (preserves world transform)
-    const pieces: Piece[] = [];
-    for (const mesh of meshes) {
-      // Skip if somehow a prop survived
-      if (isProp(mesh.name)) continue;
       
-      // CRITICAL: attach() preserves world matrix while reparenting
-      explodeRoot.attach(mesh);
+      console.log(`Removed ${nodesToRemove.length} prop nodes`);
       
-      // Now mesh.position is local to explodeRoot, with world transform preserved
-      const home = mesh.position.clone();
+      // PASS 3: Collect all mesh nodes (after removal)
+      const meshes: THREE.Mesh[] = [];
+      model.traverse((obj: any) => {
+        if (!obj) return;
+        // Guard: check both isMesh and name existence
+        if (obj.isMesh && typeof obj.name !== 'undefined') {
+          meshes.push(obj as THREE.Mesh);
+        }
+      });
       
-      const bounds = new THREE.Box3().setFromObject(mesh);
-      const center = bounds.getCenter(new THREE.Vector3());
-      const system = detectSystem(mesh.name || 'unknown');
+      console.log(`Found ${meshes.length} meshes for explosion`);
       
-      // Force materials opaque and enhance
-      mesh.traverse((child: any) => {
-        if (child.isMesh && child.material) {
-          try {
-            if (Array.isArray(child.material)) {
-              child.material = child.material.map((mat: any) => {
-                const m = mat.clone();
-                m.transparent = false;
-                m.opacity = 1;
-                m.metalness = Math.min(m.metalness + 0.2, 0.8);
-                m.roughness = Math.max(m.roughness - 0.1, 0.3);
-                m.envMapIntensity = 1.5;
-                return m;
-              });
-            } else {
-              const mat = child.material.clone();
-              mat.transparent = false;
-              mat.opacity = 1;
-              mat.metalness = Math.min(mat.metalness + 0.2, 0.8);
-              mat.roughness = Math.max(mat.roughness - 0.1, 0.3);
-              mat.envMapIntensity = 1.5;
-              child.material = mat;
+      // PASS 4: Attach meshes to explode root (preserves world transform)
+      const pieces: Piece[] = [];
+      for (const mesh of meshes) {
+        // Guard: ensure mesh and its required properties exist
+        if (!mesh) continue;
+        if (typeof mesh.name === 'undefined') continue;
+        if (!mesh.position) continue;
+        
+        // Skip if somehow a prop survived
+        const meshName = mesh.name || '';
+        if (isProp(meshName)) continue;
+        
+        // CRITICAL: attach() preserves world matrix while reparenting
+        explodeRoot.attach(mesh);
+        
+        // Now mesh.position is local to explodeRoot, with world transform preserved
+        const home = mesh.position.clone();
+        
+        const bounds = new THREE.Box3().setFromObject(mesh);
+        const center = bounds.getCenter(new THREE.Vector3());
+        const system = detectSystem(meshName || 'unknown');
+        
+        // Force materials opaque and enhance
+        try {
+          mesh.traverse((child: any) => {
+            if (!child) return;
+            if (child.isMesh && child.material) {
+              if (Array.isArray(child.material)) {
+                child.material = child.material.map((mat: any) => {
+                  const m = mat.clone();
+                  m.transparent = false;
+                  m.opacity = 1;
+                  m.metalness = Math.min(m.metalness + 0.2, 0.8);
+                  m.roughness = Math.max(m.roughness - 0.1, 0.3);
+                  m.envMapIntensity = 1.5;
+                  return m;
+                });
+              } else {
+                const mat = child.material.clone();
+                mat.transparent = false;
+                mat.opacity = 1;
+                mat.metalness = Math.min(mat.metalness + 0.2, 0.8);
+                mat.roughness = Math.max(mat.roughness - 0.1, 0.3);
+                mat.envMapIntensity = 1.5;
+                child.material = mat;
+              }
             }
-          } catch (err) {
-            console.error(`Material clone error for ${mesh.name}:`, err);
-          }
+            
+            if (child.isMesh) {
+              child.castShadow = true;
+              child.receiveShadow = true;
+            }
+          });
+        } catch (err) {
+          console.error(`Material processing error for ${meshName}:`, err);
         }
         
-        if (child.isMesh) {
-          child.castShadow = true;
-          child.receiveShadow = true;
-        }
-      });
+        pieces.push({
+          node: mesh,
+          home,
+          bounds,
+          center,
+          system,
+          id: `${system}-${pieces.length}`,
+        });
+      }
       
-      pieces.push({
-        node: mesh,
-        home,
-        bounds,
-        center,
-        system,
-        id: `${system}-${pieces.length}`,
-      });
+      console.log(`Extracted ${pieces.length} pieces for explosion`);
+      console.log('Sample pieces:', pieces.slice(0, 5).map(p => ({
+        name: p.node.name,
+        system: p.system,
+        home: p.home.toArray().map(v => v.toFixed(2)),
+      })));
+      
+      if (pieces.length === 0) {
+        console.error('⚠️ WARNING: Zero pieces extracted!');
+      }
+      
+      return { explodeRoot, pieces };
+    } catch (err) {
+      console.error('SETUP ERROR:', err);
+      return {
+        explodeRoot: new THREE.Group(),
+        pieces: [],
+      };
     }
-    
-    console.log(`Extracted ${pieces.length} pieces for explosion`);
-    console.log('Sample pieces:', pieces.slice(0, 5).map(p => ({
-      name: p.node.name,
-      system: p.system,
-      home: p.home.toArray().map(v => v.toFixed(2)),
-    })));
-    
-    if (pieces.length === 0) {
-      console.error('⚠️ WARNING: Zero pieces extracted!');
-    }
-    
-    return { explodeRoot, pieces };
   }, [scene]);
   
   // Calculate explosion layout
