@@ -64,6 +64,14 @@ export default function NacreVessel({
 
   return (
     <group position={position} scale={scale}>
+      <pointLight color={loom.filmA} intensity={6.2} distance={4.6} decay={2} />
+      <pointLight
+        color={loom.filmB}
+        intensity={3.4}
+        distance={3.8}
+        decay={2}
+        position={[0.18, 0.08, -0.12]}
+      />
       <mesh>
         <icosahedronGeometry args={[1.02, 5]} />
         <meshPhysicalMaterial
@@ -78,13 +86,27 @@ export default function NacreVessel({
           clearcoat={loom.clearcoat}
           clearcoatRoughness={0.18}
           transparent
+          opacity={0.78}
+          emissive={loom.filmA}
+          emissiveIntensity={0.2}
           envMapIntensity={1.1}
           onBeforeCompile={(shader) => injectLobe(shader, lobe)}
           customProgramCacheKey={() => 'nacre-glass-lobe'}
         />
       </mesh>
       <mesh>
-        <icosahedronGeometry args={[0.74, 4]} />
+        <icosahedronGeometry args={[0.98, 4]} />
+        <meshBasicMaterial
+          color={loom.filmA}
+          transparent
+          opacity={0.16}
+          depthWrite={false}
+          onBeforeCompile={(shader) => injectLobe(shader, lobe)}
+          customProgramCacheKey={() => 'nacre-wash-lobe'}
+        />
+      </mesh>
+      <mesh>
+        <icosahedronGeometry args={[0.88, 4]} />
         <shaderMaterial
           uniforms={filmUniforms}
           vertexShader={nacreVertex}
@@ -92,6 +114,7 @@ export default function NacreVessel({
           transparent
           depthWrite={false}
           blending={AdditiveBlending}
+          toneMapped={false}
         />
       </mesh>
     </group>

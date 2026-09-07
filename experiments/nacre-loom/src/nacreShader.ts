@@ -84,8 +84,9 @@ export const nacreFragment = /* glsl */ `
   varying vec3 vView;
 
   float belt(vec3 p, float t) {
-    float wave = 0.1 * sin(p.x * 7.2 + t * 1.4) + 0.06 * sin(p.z * 5.1 - t);
-    return 1.0 - smoothstep(0.07, 0.38 * uAmp + 0.12, abs(p.y - wave));
+    float wave = 0.12 * sin(p.x * 6.4 + t * 1.4) + 0.08 * sin(p.z * 4.6 - t);
+    float band = 1.0 - smoothstep(0.05, 0.32 * uAmp + 0.16, abs(p.y - wave));
+    return band * band;
   }
 
   float coil(vec3 p, float t) {
@@ -135,7 +136,7 @@ export const nacreFragment = /* glsl */ `
     float mask = weaveMask(vPos, clock);
     vec3 film = mix(uFilmA, uFilmB, 0.5 + 0.5 * sin(vPos.y * 8.4 + clock + fres * 3.2));
     film = mix(film, uFilmC, fres);
-    float glow = mask * (0.42 + 0.7 * fres) + fres * 0.18;
-    gl_FragColor = vec4(film * glow * 1.85, clamp(glow, 0.04, 0.92));
+    float glow = mask * (0.85 + 1.1 * fres) + fres * 0.32;
+    gl_FragColor = vec4(film * glow * 2.6, clamp(glow, 0.1, 1.0));
   }
 `;
