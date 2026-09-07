@@ -32,6 +32,34 @@ npm run build
 
 Output in `dist/`
 
+## Deploy to Vercel
+
+This lane is configured for automatic Vercel preview deployments.
+
+### Setup (one-time)
+
+1. **Import the repository** in Vercel:
+   - Visit [vercel.com/new](https://vercel.com/new)
+   - Import `johnnyhuy/vibes`
+
+2. **Configure Root Directory**:
+   - In Project Settings → Build & Development Settings
+   - Set **Root Directory** to `experiments/ai-3d-lanes/web-3d`
+   - Enable "Include source files outside of the Root Directory"
+
+3. **Verify Framework Detection**:
+   - Framework Preset: **Vite**
+   - Build Command: `npm run build`
+   - Output Directory: `dist`
+   - Install Command: `npm install`
+
+### Automatic Previews
+
+Once configured:
+- ✅ **Production**: Deploys from `main` branch automatically
+- ✅ **PR Previews**: Every PR gets a unique preview URL
+- ✅ **Comments**: Vercel bot comments on PRs with preview links
+
 ## Tech Stack
 
 - **Three.js** — 3D rendering

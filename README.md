@@ -39,6 +39,19 @@ See the [experiment README](./experiments/ai-3d-lanes/README.md) for details.
 
 Keep it simple. Document what you learned. Ship working code over perfect code.
 
+## Deployment
+
+### web-3d Preview Deploys
+
+The `web-3d` lane is configured for automatic Vercel preview deployments on every PR.
+
+**Setup**:
+1. Import `johnnyhuy/vibes` in Vercel
+2. Set Project Settings → Root Directory to `experiments/ai-3d-lanes/web-3d`
+3. Vercel auto-detects Vite framework and build settings
+
+See [web-3d/README.md](./experiments/ai-3d-lanes/web-3d/README.md#deploy-to-vercel) for detailed instructions.
+
 ## Licence
 
 MIT — see [LICENSE](./LICENSE)
