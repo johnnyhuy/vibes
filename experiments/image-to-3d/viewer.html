@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Image/Texture Viewer</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+      background: #0a0a0a;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    
+    header {
+      background: rgba(20, 20, 20, 0.95);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 20px 30px;
+      backdrop-filter: blur(10px);
+    }
+    
+    h1 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    
+    .subtitle {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 14px;
+    }
+    
+    .container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+    
+    .canvas-wrapper {
+      max-width: 800px;
+      width: 100%;
+    }
+    
+    canvas {
+      width: 100%;
+      height: 600px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      background: #1a1a1a;
+    }
+    
+    .info-panel {
+      margin-top: 30px;
+      background: rgba(20, 20, 20, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 20px;
+    }
+    
+    h2 {
+      font-size: 18px;
+      margin-bottom: 15px;
+      color: #3b82f6;
+    }
+    
+    p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 12px;
+    }
+    
+    .providers {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 15px;
+    }
+    
+    .provider-badge {
+      padding: 6px 12px;
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      border-radius: 16px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+    
+    .code-snippet {
+      background: rgba(10, 10, 10, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      padding: 15px;
+      margin-top: 15px;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      line-height: 1.5;
+      color: #60a5fa;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>AI Image & Texture Viewer</h1>
+    <div class="subtitle">Placeholder for AI-generated imagery</div>
+  </header>
+  
+  <div class="container">
+    <div class="canvas-wrapper">
+      <canvas id="canvas"></canvas>
+      
+      <div class="info-panel">
+        <h2>Procedural Texture Placeholder</h2>
+        <p>
+          This canvas displays a procedural noise pattern as a stand-in for AI-generated textures.
+          In a real implementation, this would show images from Flux, DALL·E, Midjourney, or 
+          PBR texture sets from Meshy/Polycam.
+        </p>
+        
+        <p>
+          <strong>Supported Providers:</strong>
+        </p>
+        <div class="providers">
+          <div class="provider-badge">Flux</div>
+          <div class="provider-badge">DALL·E 3</div>
+          <div class="provider-badge">Midjourney</div>
+          <div class="provider-badge">Stable Diffusion</div>
+          <div class="provider-badge">Ideogram</div>
+          <div class="provider-badge">Meshy Texture</div>
+          <div class="provider-badge">Polycam</div>
+          <div class="provider-badge">Firefly</div>
+        </div>
+        
+        <div class="code-snippet">
+# Generate and view texture<br>
+python image_client.py<br>
+<br>
+# Or with real API:<br>
+export FLUX_API_KEY='your_key'<br>
+python image_client.py
+        </div>
+        
+        <p style="margin-top: 15px;">
+          See <code>providers.md</code> for detailed comparison of all providers, 
+          pricing, and integration patterns with Blender/Three.js workflows.
+        </p>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    
+    function resizeCanvas() {
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width * window.devicePixelRatio;
+      canvas.height = rect.height * window.devicePixelRatio;
+      ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+    }
+    
+    function generateProceduralTexture() {
+      resizeCanvas();
+      
+      const width = canvas.width;
+      const height = canvas.height;
+      const imageData = ctx.createImageData(width, height);
+      const data = imageData.data;
+      
+      // Simple Perlin-like noise approximation
+      for (let y = 0; y < height; y++) {
+        for (let x = 0; x < width; x++) {
+          const index = (y * width + x) * 4;
+          
+          // Multi-octave noise
+          const nx = x / width;
+          const ny = y / height;
+          
+          let value = 0;
+          let amplitude = 1;
+          let frequency = 2;
+          
+          for (let i = 0; i < 4; i++) {
+            value += amplitude * (Math.sin(nx * frequency * Math.PI * 8) * 
+                                 Math.cos(ny * frequency * Math.PI * 8) + 1) / 2;
+            amplitude *= 0.5;
+            frequency *= 2;
+          }
+          
+          // Normalize
+          value = Math.floor(value * 255 / 2);
+          
+          // Blue-ish tint
+          data[index] = value * 0.3;
+          data[index + 1] = value * 0.5;
+          data[index + 2] = value * 0.8;
+          data[index + 3] = 255;
+        }
+      }
+      
+      ctx.putImageData(imageData, 0, 0);
+      
+      // Add text overlay
+      ctx.font = '16px monospace';
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+      ctx.fillText('Stand-in: Procedural noise pattern', 20, 40);
+      ctx.font = '12px monospace';
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+      ctx.fillText('Real implementation: AI-generated texture from provider API', 20, 60);
+    }
+    
+    window.addEventListener('resize', generateProceduralTexture);
+    generateProceduralTexture();
+  </script>
+</body>
+</html>

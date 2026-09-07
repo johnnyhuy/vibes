@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Earth Timeline</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div id="app">
+    <header class="header">
+      <h1>earth.</h1>
+      <p class="tagline">4.5 billion years in the making</p>
+    </header>
+    
+    <div id="canvas-container"></div>
+    
+    <div class="timeline-control">
+      <div class="timeline-header">
+        <h2 id="era-title">Present Day</h2>
+        <span id="era-time">Now</span>
+      </div>
+      <input type="range" id="timeline-slider" min="0" max="100" value="100">
+      <div class="timeline-labels">
+        <span>4.5 Ga</span>
+        <span>2.5 Ga</span>
+        <span>500 Ma</span>
+        <span>Now</span>
+      </div>
+      <button id="play-btn" class="play-btn">▶ Play the story</button>
+    </div>
+    
+    <div id="info-card" class="info-card">
+      <p id="info-text"></p>
+    </div>
+  </div>
+  
+  <script type="module" src="/main.js"></script>
+</body>
+</html>

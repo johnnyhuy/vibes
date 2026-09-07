@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Assembly Explorer</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div id="app">
+    <nav class="tabs">
+      <button class="tab active" data-scene="assembly">Assembly</button>
+      <button class="tab" data-scene="cutaway">Cutaway</button>
+    </nav>
+    
+    <div id="canvas-container"></div>
+    
+    <div class="controls">
+      <div class="control-group">
+        <label for="explode-slider">Explode</label>
+        <input type="range" id="explode-slider" min="0" max="100" value="0">
+      </div>
+    </div>
+    
+    <div id="info-panel" class="info-panel hidden">
+      <h3 id="part-name"></h3>
+      <p id="part-description"></p>
+    </div>
+  </div>
+  
+  <script type="module" src="/main.js"></script>
+</body>
+</html>

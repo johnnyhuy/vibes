@@ -1,0 +1,40 @@
+name: web-3d CI
+
+on:
+  pull_request:
+    paths:
+      - 'experiments/ai-3d-lanes/web-3d/**'
+      - '.github/workflows/web-3d-preview.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: experiments/ai-3d-lanes/web-3d/package-lock.json
+      
+      - name: Install dependencies
+        working-directory: experiments/ai-3d-lanes/web-3d
+        run: npm ci
+      
+      - name: Build
+        working-directory: experiments/ai-3d-lanes/web-3d
+        run: npm run build
+      
+      - name: Verify build output
+        working-directory: experiments/ai-3d-lanes/web-3d
+        run: |
+          if [ ! -d "dist" ]; then
+            echo "❌ Build failed: dist/ directory not created"
+            exit 1
+          fi
+          echo "✅ Build successful: dist/ directory exists"
+          ls -lh dist/
