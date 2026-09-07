@@ -27,8 +27,7 @@ export default function Scene({ explode, selectedPart, isolated, onSelectPart }:
         target={[0, 0.5, 0]}
       />
       
-      {/* Studio environment */}
-      <Environment preset="studio" />
+      {/* No environment map - pure black studio with lights only */}
       
       {/* Key light - main illumination */}
       <directionalLight 
