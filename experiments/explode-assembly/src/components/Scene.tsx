@@ -12,26 +12,34 @@ interface SceneProps {
 export default function Scene({ explode, selectedPart, isolated, onSelectPart }: SceneProps) {
   return (
     <Canvas shadows className="canvas">
-      <PerspectiveCamera makeDefault position={[-6, 3, 8]} fov={40} />
+      <color attach="background" args={['#0a0c0e']} />
+      <fog attach="fog" args={['#0a0c0e', 20, 60]} />
+      
+      <PerspectiveCamera makeDefault position={[-5, 3, 7]} fov={45} />
       <OrbitControls 
         enableDamping 
         dampingFactor={0.05}
-        minDistance={8}
-        maxDistance={50}
+        minDistance={5}
+        maxDistance={40}
         maxPolarAngle={Math.PI * 0.48}
-        target={[0, 1, 0]}
+        target={[0, 0.5, 0]}
       />
       
-      <Environment preset="city" />
+      <Environment preset="night" />
       
-      <ambientLight intensity={0.4} />
+      <ambientLight intensity={0.3} />
       <directionalLight 
-        position={[-5, 8, 5]} 
-        intensity={2.5} 
+        position={[-8, 12, 8]} 
+        intensity={3} 
         castShadow
         shadow-mapSize={[2048, 2048]}
+        shadow-camera-left={-10}
+        shadow-camera-right={10}
+        shadow-camera-top={10}
+        shadow-camera-bottom={-10}
       />
-      <directionalLight position={[5, 5, -8]} intensity={1.2} />
+      <directionalLight position={[6, 6, -10]} intensity={1.5} color="#6b9bd1" />
+      <spotLight position={[0, 8, 0]} intensity={0.8} angle={0.6} penumbra={1} />
       
       <CarModel 
         explode={explode}
@@ -40,14 +48,23 @@ export default function Scene({ explode, selectedPart, isolated, onSelectPart }:
         onSelectPart={onSelectPart}
       />
       
+      {/* Studio ground */}
       <mesh 
         rotation={[-Math.PI / 2, 0, 0]} 
-        position={[0, -2, 0]} 
+        position={[0, -0.5, 0]} 
         receiveShadow
       >
         <planeGeometry args={[100, 100]} />
-        <shadowMaterial opacity={0.3} />
+        <meshStandardMaterial 
+          color="#1a1d23" 
+          metalness={0.1} 
+          roughness={0.9}
+          envMapIntensity={0.5}
+        />
       </mesh>
+      
+      {/* Grid helper for studio feel */}
+      <gridHelper args={[50, 50, '#2a3038', '#1e2228']} position={[0, -0.49, 0]} />
     </Canvas>
   );
 }

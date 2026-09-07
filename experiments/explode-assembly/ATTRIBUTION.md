@@ -22,9 +22,18 @@ This implementation follows those patterns while using different models and styl
 
 ## 3D Model Sources
 
-### Current Demo
-- **Procedural geometry** — Fallback demo car built from code (no external assets)
-- Used when `/models/car.glb` is not present
+### Current Demo: Kenney Car Kit
+- **Model**: Sedan + wheels from [Kenney Car Kit](https://kenney.nl/assets/car-kit)
+- **License**: CC0 1.0 Universal (Public Domain)
+- **Source**: https://kenney.nl/assets/car-kit
+- **Creator**: Kenney (kenney.nl)
+- **Format**: GLB (glTF Binary)
+- **Attribution**: Not required by license, but appreciated (credit "Kenney.nl" or "www.kenney.nl")
+
+The Car Kit includes 40+ low-poly vehicle models with separate wheels and debris parts. This demo uses:
+- `sedan.glb` — Main car body
+- `wheel-default.glb` × 4 — Individual wheels positioned programmatically
+- All models are optimized for real-time rendering and work in game engines (Unity, Unreal, Godot, etc.)
 
 ### Recommended CC-BY Sources
 

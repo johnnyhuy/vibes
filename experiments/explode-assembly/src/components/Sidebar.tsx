@@ -19,8 +19,8 @@ export default function Sidebar({ selectedPart, onSelectPart, isolated, onToggle
   return (
     <aside className="sidebar">
       <div className="sidebar-header">
-        <h1>CAR</h1>
-        <p className="subtitle">Exploded View Demo</p>
+        <h1>SEDAN</h1>
+        <p className="subtitle">Kenney Car Kit — CC0</p>
       </div>
       
       <div className="parts-list">
@@ -46,8 +46,10 @@ export default function Sidebar({ selectedPart, onSelectPart, isolated, onToggle
         </button>
         
         <p className="disclaimer">
-          Demo using procedural geometry.<br />
-          Load your own GLB at <code>/models/car.glb</code>
+          Car model: Kenney Car Kit (CC0)<br />
+          <a href="https://kenney.nl/assets/car-kit" target="_blank" rel="noopener" style={{ color: '#3b82f6', textDecoration: 'none' }}>
+            kenney.nl/assets/car-kit
+          </a>
         </p>
       </div>
     </aside>

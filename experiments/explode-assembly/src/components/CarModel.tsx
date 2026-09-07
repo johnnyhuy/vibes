@@ -1,5 +1,5 @@
 import { useRef, useEffect, useMemo } from 'react';
-import { useGLTF } from '@react-three/drei';
+import { useGLTF, Html } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { calculateExplosionLayout } from '../utils/explosion';
@@ -11,139 +11,174 @@ interface CarModelProps {
   onSelectPart: (part: string | null) => void;
 }
 
+// Kenney Car Kit - CC0 - Multiple GLB files assembled into car
+const CAR_PARTS = [
+  { file: '/models/sedan.glb', part: 'body', position: [0, 0, 0], scale: 1 },
+  { file: '/models/wheel-default.glb', part: 'wheels', position: [-0.6, -0.3, 0.8], scale: 0.35 },
+  { file: '/models/wheel-default.glb', part: 'wheels', position: [0.6, -0.3, 0.8], scale: 0.35 },
+  { file: '/models/wheel-default.glb', part: 'wheels', position: [-0.6, -0.3, -0.8], scale: 0.35 },
+  { file: '/models/wheel-default.glb', part: 'wheels', position: [0.6, -0.3, -0.8], scale: 0.35 },
+];
+
 export default function CarModel({ explode, selectedPart, isolated, onSelectPart }: CarModelProps) {
   const groupRef = useRef<THREE.Group>(null);
+  const piecesRef = useRef<any[]>([]);
   
-  // Try to load a GLB - will fallback to demo cubes if no model exists
-  let gltf: any = null;
-  let loadError = false;
-  
-  try {
-    gltf = useGLTF('/models/car.glb');
-  } catch (e) {
-    loadError = true;
-  }
-  
-  // Extract pieces from GLB or create demo pieces
-  const pieces = useMemo(() => {
-    if (loadError || !gltf) {
-      // Create demo car from primitives (like the original)
-      return createDemoCar();
-    }
+  // Load all car part GLBs
+  const loadedParts = useMemo(() => {
+    const parts: any[] = [];
     
-    // Extract meshes from GLB
-    const meshPieces: any[] = [];
-    gltf.scene.traverse((node: any) => {
-      if (node.isMesh) {
-        const bounds = new THREE.Box3().setFromObject(node);
+    CAR_PARTS.forEach((partDef, i) => {
+      try {
+        const gltf = useGLTF(partDef.file);
+        const clone = gltf.scene.clone();
+        
+        // Position and scale
+        clone.position.set(...(partDef.position as [number, number, number]));
+        clone.scale.setScalar(partDef.scale);
+        
+        // Calculate bounds
+        const bounds = new THREE.Box3().setFromObject(clone);
         const center = bounds.getCenter(new THREE.Vector3());
-        meshPieces.push({
-          mesh: node,
+        
+        // Add metadata
+        clone.userData.part = partDef.part;
+        clone.userData.originalPosition = clone.position.clone();
+        clone.userData.bounds = bounds;
+        clone.userData.center = center;
+        clone.userData.id = `${partDef.part}-${i}`;
+        
+        // Make all meshes selectable
+        clone.traverse((node: any) => {
+          if (node.isMesh) {
+            node.castShadow = true;
+            node.receiveShadow = true;
+            node.userData.part = partDef.part;
+            node.userData.pieceId = clone.userData.id;
+            
+            // Improve materials
+            if (node.material) {
+              const mat = node.material.clone();
+              mat.metalness = 0.3;
+              mat.roughness = 0.7;
+              mat.envMapIntensity = 1.2;
+              node.material = mat;
+            }
+          }
+        });
+        
+        parts.push({
+          object: clone,
+          part: partDef.part,
+          id: clone.userData.id,
+          originalPosition: clone.position.clone(),
           bounds,
           center,
-          id: node.name || `piece-${meshPieces.length}`,
-          part: node.userData.part || 'body',
         });
+      } catch (e) {
+        console.warn(`Failed to load ${partDef.file}:`, e);
       }
     });
     
-    return meshPieces;
-  }, [gltf, loadError]);
+    return parts;
+  }, []);
   
   // Calculate explosion layout
   const layout = useMemo(() => {
-    return calculateExplosionLayout(pieces);
-  }, [pieces]);
+    if (!loadedParts.length) return [];
+    return calculateExplosionLayout(loadedParts);
+  }, [loadedParts]);
   
-  // Animate pieces
+  // Store pieces ref
+  useEffect(() => {
+    piecesRef.current = loadedParts;
+  }, [loadedParts]);
+  
+  // Animate explosion
   useFrame(() => {
-    if (!groupRef.current) return;
+    if (!groupRef.current || !piecesRef.current.length) return;
     
     const explosionAmount = explode / 100;
+    const smoothAmount = THREE.MathUtils.lerp(
+      piecesRef.current[0]?._lastAmount || 0,
+      explosionAmount,
+      0.1
+    );
     
-    pieces.forEach((piece, i) => {
-      if (!piece.mesh) return;
+    piecesRef.current.forEach((piece, i) => {
+      const offset = layout[i] || new THREE.Vector3();
+      const targetPos = piece.originalPosition.clone().add(
+        offset.clone().multiplyScalar(smoothAmount * 3)
+      );
       
-      const offset = layout[i];
-      const targetPos = piece.center.clone().add(offset.clone().multiplyScalar(explosionAmount * 5));
-      
-      piece.mesh.position.lerp(targetPos, 0.15);
+      piece.object.position.lerp(targetPos, 0.15);
+      piece._lastAmount = smoothAmount;
       
       // Visibility based on selection/isolation
       if (isolated && selectedPart) {
-        piece.mesh.visible = piece.part === selectedPart;
+        piece.object.visible = piece.part === selectedPart;
       } else {
-        piece.mesh.visible = true;
+        piece.object.visible = true;
       }
       
       // Highlight selected
-      if (piece.part === selectedPart) {
-        piece.mesh.material.emissiveIntensity = 0.3;
-      } else {
-        piece.mesh.material.emissiveIntensity = 0;
-      }
+      piece.object.traverse((node: any) => {
+        if (node.isMesh && node.material) {
+          if (piece.part === selectedPart) {
+            node.material.emissive = new THREE.Color(0x3b82f6);
+            node.material.emissiveIntensity = 0.3;
+          } else if (selectedPart && piece.part !== selectedPart) {
+            node.material.emissive = new THREE.Color(0x000000);
+            node.material.emissiveIntensity = 0;
+            node.material.opacity = 0.4;
+            node.material.transparent = true;
+          } else {
+            node.material.emissive = new THREE.Color(0x000000);
+            node.material.emissiveIntensity = 0;
+            node.material.opacity = 1;
+            node.material.transparent = false;
+          }
+        }
+      });
     });
   });
   
-  if (loadError || !gltf) {
+  // Handle clicks
+  const handleClick = (event: any) => {
+    event.stopPropagation();
+    const pieceId = event.object.userData.pieceId;
+    const part = event.object.userData.part;
+    if (part) {
+      onSelectPart(part === selectedPart ? null : part);
+    }
+  };
+  
+  if (!loadedParts.length) {
     return (
-      <group ref={groupRef}>
-        {pieces.map((piece, i) => (
-          <mesh
-            key={i}
-            geometry={piece.geometry}
-            position={piece.center}
-            castShadow
-            receiveShadow
-            onClick={() => onSelectPart(piece.part)}
-          >
-            <meshStandardMaterial 
-              color={piece.color} 
-              metalness={0.7} 
-              roughness={0.3}
-              emissive={piece.color}
-            />
-          </mesh>
-        ))}
+      <group>
+        <mesh position={[0, 0, 0]}>
+          <boxGeometry args={[2, 1, 4]} />
+          <meshStandardMaterial color="#ff0000" />
+        </mesh>
+        <Html center>
+          <div style={{ background: 'rgba(0,0,0,0.8)', padding: '20px', borderRadius: '8px', color: 'white' }}>
+            Loading car model...
+          </div>
+        </Html>
       </group>
     );
   }
   
   return (
-    <group ref={groupRef}>
-      <primitive object={gltf.scene} />
+    <group ref={groupRef} onClick={handleClick}>
+      {loadedParts.map((piece, i) => (
+        <primitive key={i} object={piece.object} />
+      ))}
     </group>
   );
 }
 
-// Demo car builder (fallback when no GLB is loaded)
-function createDemoCar() {
-  const scale = 0.3;
-  const pieces: any[] = [];
-  
-  const parts = [
-    { part: 'body', color: '#4a4a4a', size: [14*scale, 0.4*scale, 5.5*scale], pos: [0, 1*scale, 0] },
-    { part: 'glass', color: '#87ceeb', size: [8*scale, 0.1*scale, 4.8*scale], pos: [0, 2.8*scale, 0] },
-    { part: 'doors', color: '#3a3a3a', size: [3*scale, 1.2*scale, 0.15*scale], pos: [-5.8*scale, 1.5*scale, 1.5*scale] },
-    { part: 'wheels', color: '#2a2a2a', size: [0.8*scale, 1.9*scale, 1.9*scale], pos: [-5.5*scale, 0.6*scale, 3*scale] },
-  ];
-  
-  parts.forEach((part, i) => {
-    const geometry = new THREE.BoxGeometry(...part.size);
-    const bounds = new THREE.Box3().setFromBufferAttribute(
-      geometry.attributes.position as THREE.BufferAttribute
-    );
-    const center = new THREE.Vector3(...part.pos);
-    
-    pieces.push({
-      geometry,
-      bounds,
-      center,
-      id: `${part.part}-${i}`,
-      part: part.part,
-      color: part.color,
-    });
-  });
-  
-  return pieces;
-}
+// Preload all models
+CAR_PARTS.forEach(part => {
+  useGLTF.preload(part.file);
+});

@@ -24,7 +24,7 @@ npm run dev
 
 Open http://localhost:5173
 
-**Note**: The default demo uses procedural geometry (colored boxes) as a fallback. To see a real car explode, add a multi-part GLB at `public/models/car.glb` — see [ATTRIBUTION.md](./ATTRIBUTION.md) for CC-BY sources.
+**Model**: Uses **Kenney Car Kit** (CC0) — sedan body + individual wheels assembled programmatically. See [ATTRIBUTION.md](./ATTRIBUTION.md) for details.
 
 ## How ashemag Did It
 
@@ -33,14 +33,18 @@ After studying their code, here's the pattern:
 ### 1. Multi-Mesh GLB (The Key Trick)
 
 **NOT** a single merged car mesh. Instead:
-- 100s of separate mesh islands in one GLB file
+- **100s of separate mesh islands in one GLB file**
 - Each mesh is a selectable "piece" (door panel, headlight, wheel bolt, etc.)
-- ashemag's Model X has **334 pieces**
+- ashemag's Model X has **334 pieces** — that's why the explode looks so impressive
 
-You can create this by:
-- Finding a car model with separated parts (WolfGames36 on Sketchfab)
-- OR manually splitting a model in Blender (select faces → Separate → By Loose Parts)
-- OR using BlendKit Royalty Free models (like cgi Moon's Model X used by ashemag)
+**This demo**: Uses 5 separate GLB files (sedan body + 4 wheels) loaded and positioned programmatically. Demonstrates the algorithm with a simpler asset.
+
+**ashemag's approach**: One GLB with 334 meshes inside. More impressive visually, but requires custom asset prep.
+
+You can create 334-piece style by:
+- Finding a car with separated parts (WolfGames36 on Sketchfab)
+- OR manually splitting in Blender (select faces → Separate → By Loose Parts)
+- OR using BlendKit models (like cgi Moon's Model X used by ashemag)
 
 ### 2. Explosion Layout Algorithm
 
@@ -80,33 +84,37 @@ Stack:
 
 ashemag uses this same stack + shadcn for UI components + Vinext/Vercel for deployment.
 
-## Getting a Multi-Part Car GLB
+## Current Model: Kenney Car Kit
 
-### Option A: WolfGames36 on Sketchfab (CC-BY, Free)
+This demo uses the **Kenney Car Kit** (CC0 Public Domain):
+- **Sedan body** (`sedan.glb`) — Main car model
+- **Wheels** (`wheel-default.glb` × 4) — Positioned programmatically
+- **Source**: https://kenney.nl/assets/car-kit
+- **License**: CC0 — free for any use, no attribution required (but appreciated!)
 
-1. Go to [CHRYSLER C300 IMPROVED](https://sketchfab.com/3d-models/chrysler-c300-improved-bd1143b6e5f34f419c636c05fdaa6664) (or [Ford Mustang](https://sketchfab.com/3d-models/ford-mustang--improved-88775b874f094f9eb946d198cf851786), [Challenger](https://sketchfab.com/3d-models/challenger-srt-36e48dc32e6442f3bd2885801070557d))
-2. Click "Download 3D Model" → select GLB format
-3. Save to `public/models/car.glb`
-4. Add attribution in your docs (see [ATTRIBUTION.md](./ATTRIBUTION.md))
+The Car Kit includes 40+ low-poly vehicles (sedans, trucks, ambulances, etc.) + separate wheels + debris parts. All optimized for real-time rendering.
 
-These models have separated meshes (windows, doors, hood, wheels, lights, etc.) — perfect for exploded views.
+### Why Kenney vs. ashemag's 334-piece Model X?
 
-### Option B: BlendKit Royalty Free (Paid/Free, Commercial OK)
+ashemag's [viral Model X demo](https://x.com/ashebytes/status/1831768826242351397) uses a custom multi-mesh GLB with 334 separate pieces — each door panel, headlight, bolt, etc. is a distinct mesh island. That level of granularity requires:
+1. A pre-split model from BlendKit/Sketchfab (often paywalled or requires manual download)
+2. OR manually splitting a car mesh in Blender (tedious for 100+ parts)
 
-1. Create account at [blendkit.com](https://www.blendkit.com/)
-2. Download [Model X by cgi Moon](https://www.blendkit.com/asset-gallery-detail/983e8f94-5a56-44a4-94d9-eed5e4cdcd6c/) (same one ashemag used)
-3. Export as GLB from Blender
-4. Save to `public/models/car.glb`
-5. Add BlendKit attribution
+For an open-source demo with **no download barriers**, Kenney's CC0 kit is ideal:
+- Direct download, no auth required
+- Clean low-poly meshes
+- Separate wheels that can be positioned/exploded independently
+- 5 pieces (body + 4 wheels) → enough to demonstrate the explosion algorithm
 
-### Option C: Split Your Own Model
+### Getting a 334-piece style exploded view
 
-If you have a single-mesh car:
+If you want the full ashemag experience:
+1. Download [WolfGames36's separated cars](https://sketchfab.com/3d-models/chrysler-c300-improved-bd1143b6e5f34f419c636c05fdaa6664) (CC-BY, Sketchfab account required)
+2. OR get [BlendKit Model X](https://www.blendkit.com/asset-gallery-detail/983e8f94-5a56-44a4-94d9-eed5e4cdcd6c/) (Royalty Free, account required)
+3. Replace `public/models/sedan.glb` with your multi-mesh car
+4. Update `CarModel.tsx` to enumerate all mesh children instead of loading separate GLB files
 
-1. Open in Blender
-2. Select all faces → Mesh → Separate → By Loose Parts
-3. Or manually select regions → P → Separate Selection
-4. File → Export → glTF 2.0 (.glb)
+See [ATTRIBUTION.md](./ATTRIBUTION.md) for full details on sourcing multi-part cars.
 
 ## Code Structure
 
