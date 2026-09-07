@@ -47,8 +47,8 @@ The `web-3d` lane is configured for automatic Vercel preview deployments on ever
 
 **Setup**:
 1. Import `johnnyhuy/vibes` in Vercel
-2. Set Project Settings → Root Directory to `experiments/ai-3d-lanes/web-3d`
-3. Vercel auto-detects Vite framework and build settings
+2. In Project Settings → Root Directory, set to `experiments/ai-3d-lanes/web-3d` (dashboard only; not in vercel.json)
+3. Framework settings auto-detected from `experiments/ai-3d-lanes/web-3d/vercel.json`
 
 See [web-3d/README.md](./experiments/ai-3d-lanes/web-3d/README.md#deploy-to-vercel) for detailed instructions.
 

@@ -3,6 +3,5 @@
   "framework": "vite",
   "installCommand": "npm install",
   "buildCommand": "npm run build",
-  "outputDirectory": "dist",
-  "rootDirectory": "experiments/ai-3d-lanes/web-3d"
+  "outputDirectory": "dist"
 }

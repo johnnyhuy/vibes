@@ -44,13 +44,14 @@ This lane is configured for automatic Vercel preview deployments.
    - Visit [vercel.com/new](https://vercel.com/new)
    - Import `johnnyhuy/vibes`
 
-2. **Configure Root Directory**:
-   - In Project Settings → Build & Development Settings
-   - Set **Root Directory** to `experiments/ai-3d-lanes/web-3d`
+2. **Configure Root Directory** (dashboard only):
+   - In Project Settings → Build & Development Settings → Root Directory
+   - Set to `experiments/ai-3d-lanes/web-3d`
    - Enable "Include source files outside of the Root Directory"
+   - **Note**: `rootDirectory` is NOT a valid `vercel.json` property; it must be set in project settings
 
 3. **Verify Framework Detection**:
-   - Framework Preset: **Vite**
+   - Framework Preset: **Vite** (auto-detected from local `vercel.json`)
    - Build Command: `npm run build`
    - Output Directory: `dist`
    - Install Command: `npm install`
