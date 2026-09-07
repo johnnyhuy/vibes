@@ -6,7 +6,7 @@ import { useFlightInput, usePrefersReducedMotion } from './hooks';
 import type { PlayState } from './types';
 
 export default function App() {
-  const [state, setState] = useState<PlayState>('ready');
+  const [state, setState] = useState<PlayState>('flying');
   const [resetToken, setResetToken] = useState(0);
   const [distance, setDistance] = useState(0);
   const [rings, setRings] = useState(0);
@@ -15,10 +15,10 @@ export default function App() {
   const { nudgeLane, consumeLane, consumeStart } = useFlightInput();
 
   const reset = useCallback(() => {
-    setState('ready');
     setDistance(0);
     setRings(0);
     setResetToken((value) => value + 1);
+    setState('flying');
   }, []);
 
   useEffect(() => {
@@ -36,10 +36,7 @@ export default function App() {
   }, []);
 
   const onCrash = useCallback(() => {
-    setState((current) => {
-      if (current !== 'flying') return current;
-      return 'crashed';
-    });
+    setState((current) => (current === 'flying' ? 'crashed' : current));
   }, []);
 
   const onHud = useCallback((nextDistance: number, nextRings: number) => {
@@ -72,18 +69,7 @@ export default function App() {
           onCrash={onCrash}
           onHud={onHud}
         />
-        <Hud hud={hud} onReset={reset} onNudge={nudgeLane} onStart={onStart} />
-        {state !== 'flying' && (
-          <p className="hint">
-            A / D or swipe
-            <span className="sep">·</span>
-            Space takes off
-            <span className="sep">·</span>
-            R resets
-            <span className="sep">·</span>
-            {reducedMotion ? 'camera snaps (reduced motion)' : 'camera rides the spar'}
-          </p>
-        )}
+        <Hud hud={hud} onReset={reset} />
       </div>
     </ErrorBoundary>
   );

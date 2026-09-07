@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { ACESFilmicToneMapping, PCFSoftShadowMap } from 'three';
+import { ACESFilmicToneMapping } from 'three';
 import type { PlayState } from '../types';
 import FlightWorld from './FlightWorld';
 
@@ -31,16 +31,12 @@ export default function Scene({
 
   return (
     <Canvas
-      camera={{ position: [0, 2.15, -5.1], fov: 40, near: 0.1, far: 80 }}
+      camera={{ position: [0, 1.55, -3.45], fov: 38, near: 0.1, far: 60 }}
       dpr={[1, 1.75]}
-      shadows
       gl={{
         antialias: true,
         toneMapping: ACESFilmicToneMapping,
-        toneMappingExposure: 1.12
-      }}
-      onCreated={({ gl }) => {
-        gl.shadowMap.type = PCFSoftShadowMap;
+        toneMappingExposure: 1.05
       }}
       onPointerDown={(event) => {
         pointer.current = { id: event.pointerId, x: event.clientX, acc: 0 };

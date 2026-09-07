@@ -97,6 +97,8 @@ This pass adds Wind Lea locally. **No new Vercel project. No redeploy.** Quota s
 
 This pass adds Amber Longeron locally. **No new Vercel project. No redeploy.** Quota still 0 until ~2026-09-08 20:39 UTC. Post-quota order: semicircle framing → scroll-product READY → audio-gadget first production → then grass / ballance / courtyard. If `vibes-procedural-grass-field` already exists `deploy: false`, leave it. Do not create `vibes-amber-longeron`.
 
+Git-main semicircle *preview* PASS; production still FAIL on stale `25587f54`. `vibes-scroll-product` still 404. Unchanged backlog.
+
 ---
 
 **Author**: Johnny Huynh  

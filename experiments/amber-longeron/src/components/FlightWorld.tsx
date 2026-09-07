@@ -63,7 +63,6 @@ export default function FlightWorld({
   const rings = useRef(0);
   const hudClock = useRef(0);
   const [items, setItems] = useState<Hazard[]>([]);
-  const [travelZ, setTravelZ] = useState(0);
   const { camera } = useThree();
 
   useEffect(() => {
@@ -81,9 +80,8 @@ export default function FlightWorld({
       nextSpawn.current += nextGap(seed.current, 0);
     }
     setItems(bag.current.map((item) => ({ ...item })));
-    setTravelZ(0);
-    camera.position.set(0, 2.15, -5.1);
-    camera.lookAt(0, 0.85, 5);
+    camera.position.set(0, 1.55, -3.45);
+    camera.lookAt(0, 0.72, 4.2);
     onHud(0, 0, 0);
   }, [camera, onHud, resetToken]);
 
@@ -137,17 +135,16 @@ export default function FlightWorld({
       plane.current.rotation.set(ship.pitch, ship.bank * 0.22, ship.bank);
     }
 
-    const boom = reducedMotion ? 1 : 0.16;
-    camera.position.x += (ship.x * 0.28 - camera.position.x) * boom;
-    camera.position.y += (2.15 + ship.y * 0.08 - camera.position.y) * boom;
-    camera.position.z += (ship.z - 5.15 - camera.position.z) * boom;
-    camera.lookAt(ship.x * 0.12, 0.88, ship.z + 6);
+    const boom = reducedMotion ? 1 : 0.18;
+    camera.position.x += (ship.x * 0.18 - camera.position.x) * boom;
+    camera.position.y += (1.55 + ship.y * 0.06 - camera.position.y) * boom;
+    camera.position.z += (ship.z - 3.45 - camera.position.z) * boom;
+    camera.lookAt(ship.x * 0.08, 0.72, ship.z + 4.2);
 
     hudClock.current += dt;
     if (hudClock.current > 0.07) {
       hudClock.current = 0;
       setItems(bag.current.map((item) => ({ ...item })));
-      setTravelZ(ship.z);
       onHud(ship.z, rings.current, ship.z);
     }
   });
@@ -159,20 +156,6 @@ export default function FlightWorld({
         <Biplane crashed={state === 'crashed'} reducedMotion={reducedMotion} />
       </group>
       <Hazards items={items} />
-      <LaneGuides travelZ={travelZ} />
     </>
-  );
-}
-
-function LaneGuides({ travelZ }: { travelZ: number }) {
-  return (
-    <group>
-      {[-2.2, 0, 2.2].map((x) => (
-        <mesh key={x} rotation={[-Math.PI / 2, 0, 0]} position={[x, 0.01, travelZ + 14]}>
-          <planeGeometry args={[0.045, 46]} />
-          <meshBasicMaterial color="#8a6a48" transparent opacity={0.2} />
-        </mesh>
-      ))}
-    </group>
   );
 }

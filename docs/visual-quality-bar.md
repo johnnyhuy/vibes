@@ -127,7 +127,7 @@ Across these demos, the quality bar is:
 ### amber-longeron ✅ (local)
 - ✅ Linen-tan studio + soft upper-left key (toy wood reads; not a black canyon)
 - ✅ Composite biplane + low-contrast canvas varnish + carnelian lane orbs
-- ✅ Flight HUD is a distance chip only; ready / crash keep a small frosted card
+- ✅ Auto-starts; flight HUD is a faint distance chip; crash keeps a small card
 - ⚠️ No Vercel project — do not create one until quota is healthy
 - Inspired by [heymichu25](https://x.com/heymichu25/status/2097062564299759855)
 

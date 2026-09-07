@@ -34,7 +34,7 @@ A biplane GLB (theirs or a marketplace “Jenny”) would look borrowed. Hobby V
 
 ### 3. Thin frosted HUD, not zero chrome
 
-**Chosen**: Distance chip in flight. Editorial + Take off on ready. A crash card so restart is obvious.
+**Chosen**: Auto-start. Faint distance chip in flight. A crash card so restart is obvious. No ready chrome.
 
 **Rejected**: Literally zero DOM (their pitch) and a full marketing dock.
 

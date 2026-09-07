@@ -11,7 +11,7 @@ export const HIT_DEPTH = 0.78;
 export const RING_DEPTH = 0.74;
 export const SPAWN_AHEAD = 48;
 export const DESPAWN_BEHIND = 12;
-export const FIRST_SPAWN = 18;
+export const FIRST_SPAWN = 10;
 
 export function laneX(lane: Lane): number {
   return LANES[lane];

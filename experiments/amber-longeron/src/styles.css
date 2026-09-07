@@ -40,11 +40,7 @@ body {
   touch-action: none;
 }
 
-.topbar,
-.editorial,
 .meter,
-.hint,
-.pad,
 .score {
   z-index: 4;
 }
@@ -91,12 +87,20 @@ body {
 
 .score {
   position: absolute;
-  top: 1.1rem;
+  top: 1.05rem;
   left: 50%;
   transform: translateX(-50%);
   color: var(--ink);
-  opacity: 0.72;
+  opacity: 0.38;
   pointer-events: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
 }
 
 .editorial {

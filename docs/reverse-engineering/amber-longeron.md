@@ -5,11 +5,12 @@
 - Live demo they linked: `https://vintage-biplane-experience.ai.studio/` (page title *Vintage Biplane Experience*)
 - Video thumb: `https://pbs.twimg.com/amplify_video_thumb/2097062514253316096/img/3CLbMDrQeeVG0Vpw.jpg` (672×1280 portrait still from the attached video)
 - Local still (if present): `hill-climb/refs/biplane-heymichu-thumb.jpg`
+- Headed live still (2026-09-08 ~07:38): `hill-climb/refs/biplane-live-20260908-0738.png` — canvas-only tan void, red orbs, no HUD
 
 **Study date**: 2026-09-07  
 **Purpose**: Clean-room notes. Built as `experiments/amber-longeron/`.
 
-**Disclaimer**: I studied the public post, the attached video thumb, and the public page *title*. No code, no assets, no branding copied. I did **not** scrape their ai.studio bundle or clone a biplane GLB. This demo is first-person Johnny Huynh / vibes — it is **not** Vintage Biplane Experience. I do **not** use their product chrome or waitlist.
+**Disclaimer**: I studied the public post, the video thumb, the public page *title*, and a headed screenshot of the live canvas. No code, no assets, no branding copied. I did **not** scrape their ai.studio bundle or clone a biplane GLB. This demo is first-person Johnny Huynh / vibes — it is **not** Vintage Biplane Experience. I do **not** use their product chrome or waitlist.
 
 ---
 
@@ -74,11 +75,7 @@ Warm linen background `#e6d4b8`, a sand floor, linear fog. Soft key from upper l
 
 ### 5. Almost-zero chrome
 
-They pitched zero UI. In flight I keep a distance chip only. Ready / crash still have a small frosted card so restart is findable:
-
-- Ready: **桁** (spar) + Amber Longeron + Take off
-- Flight: centred metres
-- Crash: a centred card, not their domain overlay
+The live still is canvas-only. I start the run on load so the first frame is the spar and the orbs. A faint metre chip stays in flight. Crash still gets a small card so restart is findable. Controls are a screen-reader line, A / D / swipe, and `R`.
 
 I did **not** copy a waitlist, a wordmark, or a cinematic title card.
 
