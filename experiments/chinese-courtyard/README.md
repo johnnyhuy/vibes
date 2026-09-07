@@ -41,7 +41,7 @@ Do not create `vibes-ballance-roll` either. That marble demo stays local.
 - [docs/reverse-engineering/chinese-courtyard-threejs.md](../../docs/reverse-engineering/chinese-courtyard-threejs.md)
 - [docs/adr/0009-procedural-courtyard-without-blender.md](../../docs/adr/0009-procedural-courtyard-without-blender.md)
 - Atmosphere sibling: [japanese-tower](../japanese-tower/)
-- Still parked: [audio gadget product spin](../../docs/reverse-engineering/audio-gadget-product-spin.md)
+- Built next: [Lumen Cuff](../audio-gadget-spin/)
 
 ---
 

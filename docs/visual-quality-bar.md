@@ -124,11 +124,18 @@ Across these demos, the quality bar is:
 
 ## My Implementation Status
 
-### japanese-tower ✅ (local)
+### audio-gadget-spin ✅ (local)
+- ✅ Dark studio + frosted marketing chrome
+- ✅ Procedural over-ear (tube + squircle cups + glass window)
+- ✅ Slow auto-orbit, drag override, three finishes, mute-default Web Audio
+- ⚠️ No Vercel project — do not create one until quota is healthy
+- Inspired by [Xr0ud](https://x.com/Xr0ud/status/2096982574132297791), [mrblackstudio](https://x.com/mrblackstudio/status/2096893411395600782), [Gilbert93533589](https://x.com/Gilbert93533589/status/2096920288319435154)
+
+### japanese-tower ✅
 - ✅ Pale glass chrome (not their product frame)
 - ✅ Procedural keep + lift (scaffold → storeys → tiles)
 - ✅ Season / day-night / weather / haze actually change the look
-- ⚠️ No Vercel project — do not create one until quota resets
+- ✅ LIVE at [vibes-japanese-tower.vercel.app](https://vibes-japanese-tower.vercel.app) (Ridge Pagoda, `dpl_Gap9BAXosU4jMEsQsR8c2nKyEPjg`). Skip after quota unless visual QA fails
 - Inspired by [bharatmodi2014](https://x.com/bharatmodi2014/status/2096974996455444494)
 
 ### scroll-product-showcase ✅ (local)
