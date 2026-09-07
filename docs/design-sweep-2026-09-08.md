@@ -51,9 +51,10 @@ Headed preview on `127.0.0.1:4173–4178` (2026-09-08):
 | earth-timeline | PASS | Timeline, play, go-back, back-to-today. Globe right of centre on starfield. |
 | v8-cutaway | PASS | Speed / pause / play. Ring platform, firing-order dots. |
 | scroll-product-showcase | PASS | Scroll rolls the bottle; nav jumps. Lime frame strengthened after the first pass (was too faint). |
-| procedural-steam-atlas | PASS | Bottom dock explode + isolation. Ring platform. |
-| blender-semicircle-viewer | PASS | Full 180° readable. Laptops look small on purpose (bbox pad). |
+| procedural-steam-atlas | PASS | Bottom dock explode + isolation. Ring platform. Follow-up: boiler silhouette reads (not black-into-black). |
+| blender-semicircle-viewer | PASS | Horizontal XZ horseshoe, both ends visible (not the cropped XY sliver). |
 | explode-assembly | PASS | Battery card, explode slider, isolate / show everything. |
+| web-physics | PASS | Bodies pop; floor separates from the void. Click / Space spawn. |
 
 No Vercel redeploy.
 
