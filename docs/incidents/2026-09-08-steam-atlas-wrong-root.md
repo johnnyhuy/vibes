@@ -2,7 +2,7 @@
 
 **Date**: 2026-09-07 → 2026-09-08  
 **Component**: Vercel project `vibes-steam-atlas` (`prj_7D08PT8sdUjhigCEuz83oltZrDMv`)  
-**Severity**: Medium (no production URL; previews exist; quota burned)  
+**Severity**: Medium (resolved for the 404; production now LIVE PASS)  
 **Status**: First production **LIVE** on `main` `a94b16e` / `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS` after the ballance-roll merge touched this Root. Alias serves the locomotive UI. Do not retry-spam. Do not create extra projects.
 
 I verified this against the Vercel API on 2026-09-08 (~14:10 UTC). I did **not** create or redeploy anything.
@@ -13,7 +13,7 @@ I verified this against the Vercel API on 2026-09-08 (~14:10 UTC). I did **not**
 
 Dashboard noise looks like “Root Directory is missing, so every monorepo PR built the wrong experiment.” Commit messages on steam-atlas deployments are scroll-product, explode, semicircle. One production ERROR, later READY previews, `live: false`.
 
-That hunch is **half right**. The project *does* eat every monorepo PR. A later `create_git_project` **reuse** of `vibes-steam-atlas` with `deploy: false` did **not** write or fix Root Directory. There is still **no live production**. Treat Root as **misconfigured until I set it in the dashboard** — do not trust MCP create/reuse to persist it.
+That hunch is **half right**. The project *does* eat every monorepo PR. A later `create_git_project` **reuse** of `vibes-steam-atlas` with `deploy: false` did **not** write or fix Root Directory. Treat MCP create/reuse as **not** a settings write. Production later landed on `a94b16e` when a merge actually touched this Root — see Status.
 
 ---
 
@@ -91,22 +91,13 @@ I did not add a monorepo-root `vercel.json`. That would fight the other seven pr
 
 ## After Quota Resets (~2026-09-08 12:55 UTC)
 
-One production deploy from **`main`** after a commit that **touches** `experiments/procedural-steam-atlas` (this hill-climb’s README sentence is that touch). A `main` tip that only changed another experiment will CANCELED/`ignored-build-step` again.
+**Skip this project.** Production is already LIVE PASS ~4:37am AEST on `a94b16e` / `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS` (assembled locomotive). Do not spend a slot unless a later visual QA fails.
 
-**Before any deploy**, dashboard → `vibes-steam-atlas` → Settings → Root Directory = **`experiments/procedural-steam-atlas`**. MCP reuse did not do this. Then:
+A `main` tip that only changed another experiment will still CANCELED/`ignored-build-step` here. That is fine now. The alias already points at a good deploy.
 
-1. Deploy `main` **once** (or dashboard Redeploy that bypasses ignore)
-2. Stop. Do not retry on preview aliases. Do not call pause (400 on hobby). Do not `create_git_project` again from the agent.
+Keep dashboard Root Directory = **`experiments/procedural-steam-atlas`**. Do not call pause (400 on hobby). Do not `create_git_project` again from the agent.
 
-**Visual QA 2026-09-08 ~12:29 AEST** (`hill-climb/prod-steam-atlas-20260908-0007.png`): production alias is a Vercel error page —
-
-```
-404: NOT_FOUND
-Code: 'DEPLOYMENT_NOT_FOUND'
-ID: 'cle1::9v97r-1788791283597-26c58b48753f'
-```
-
-That is the user-facing version of `live: false`. Do not retry now. After quota reset: **set dashboard Root = `experiments/procedural-steam-atlas`**, then one `main` deploy. If it 404s again, Root is still wrong — set it and allow **one** retry.
+**Visual QA 2026-09-08 ~12:29 AEST** (`hill-climb/prod-steam-atlas-20260908-0007.png`): production alias was a Vercel error page (`404 DEPLOYMENT_NOT_FOUND`). **Superseded ~4:37am AEST** — assembled locomotive on the same alias.
 
 ---
 
@@ -119,4 +110,4 @@ That is the user-facing version of `live: false`. Do not retry now. After quota 
 ---
 
 **Incident owner**: Johnny Huynh  
-**Resolution**: Ballance merge (`a94b16e`) touched this Root and wrote READY production `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS`. Confirm Root before any extra deploy. HTML looks right; canvas QA still open.
+**Resolution**: Ballance merge (`a94b16e`) touched this Root and wrote LIVE production `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS`. Skip after quota unless a later visual QA fails.
