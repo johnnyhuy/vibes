@@ -2,41 +2,27 @@
 
 Kitchen-sink **AI 3D experiments** — interactive WebGL demos, procedural geometry, and clean-room studies of public patterns. Research and education only. Not production software.
 
-Each app is a self-contained Vite experiment under [`experiments/`](./experiments/).
+Each app is a self-contained Vite experiment under [`experiments/`](./experiments/). The clips below were captured locally from those demos.
 
-**Contents:** [Apps](#apps) · [Quick start](#quick-start) · [Deployment](#deployment) · [Docs](#docs) · [Disclaimer](#disclaimer) · [Licence](#licence)
+**Contents:** [Apps](#apps) · [Quick start](#quick-start) · [Docs](#docs) · [Disclaimer](#disclaimer) · [Licence](#licence)
 
 ## Apps
 
-Preview stills live in [`docs/previews/`](./docs/previews/). Hill-climb / visual QA should refresh `docs/previews/<app>.png` when an app ships or redeploys — see [preview refresh](./docs/visual-qa/README.md). Semicircle has no hero shot: production is still the cropped mega-arc.
+| Demo | App | Live | What it is |
+| :---: | --- | --- | --- |
+| <img src="docs/previews/explode-assembly.gif" width="280" alt="Tesla Model 3 exploding into parts"> | [explode-assembly](./experiments/explode-assembly/README.md) | [live](https://vibes-explode.vercel.app) | Tesla Model 3 explode / isolate. React + R3F + Three.js. |
+| <img src="docs/previews/procedural-steam-atlas.gif" width="280" alt="Procedural steam locomotive exploding"> | [procedural-steam-atlas](./experiments/procedural-steam-atlas/README.md) | [live](https://vibes-steam-atlas.vercel.app) | Runtime locomotive from primitives. Vanilla Three.js. No `.glb`. |
+| <img src="docs/previews/glass-capability-brain.gif" width="280" alt="Frosted glass capability map"> | [glass-capability-brain](./experiments/glass-capability-brain/README.md) | [live](https://vibes-glass-capability-brain.vercel.app) | Frosted capability map with orbiting nodes. React + R3F + drei. |
+| <img src="docs/previews/earth-timeline.gif" width="280" alt="Earth evolving across geologic time"> | [earth-timeline](./experiments/earth-timeline/README.md) | [live](https://vibes-earth.vercel.app) | 4.5 billion years on a scrubbable globe. React + R3F + drei. |
+| <img src="docs/previews/v8-cutaway.gif" width="280" alt="Animated V8 engine cutaway"> | [v8-cutaway](./experiments/v8-cutaway/README.md) | [live](https://vibes-v8.vercel.app) | 90° V8, pistons, live gauges. React + R3F + drei. |
+| <img src="docs/previews/web-physics.gif" width="280" alt="Rigid-body physics playground"> | [web-physics](./experiments/web-physics/README.md) | [live](https://vibes-physics.vercel.app) | Rigid-body playground. Three.js + cannon-es. |
+| <img src="docs/previews/japanese-tower.gif" width="280" alt="Ridge Pagoda lifting from stone to crown"> | [japanese-tower](./experiments/japanese-tower/README.md) | [live](https://vibes-japanese-tower.vercel.app) | Procedural Ridge Pagoda with lift + season. React + R3F + drei. |
+| <img src="docs/previews/scroll-product-showcase.png" width="280" alt="Aether glass bottle (still)"> | [scroll-product-showcase](./experiments/scroll-product-showcase/README.md) | — | Scroll-driven glass bottle hero. React + R3F + drei. |
+| <img src="docs/previews/blender-semicircle.gif" width="280" alt="Semicircle of procedural laptops"> | [blender-semicircle-viewer](./experiments/blender-semicircle-viewer/README.md) | [live](https://vibes-blender-semicircle.vercel.app) | 51 procedural laptops in a 180° arc. Vanilla Three.js. |
+| <img src="docs/previews/ballance-roll.gif" width="280" alt="Marble rolling above a sea of clouds"> | [ballance-roll](./experiments/ballance-roll/README.md) | — | Nimbus Path marble above clouds. React + R3F + cannon-es. |
+| <img src="docs/previews/chinese-courtyard.gif" width="280" alt="Siheyuan courtyard shifting with season"> | [chinese-courtyard](./experiments/chinese-courtyard/README.md) | — | North Court siheyuan, season and sun. React + R3F + drei. |
 
-| Preview | App | README | Live | Status | Run |
-| :---: | --- | --- | --- | --- | --- |
-| <img src="docs/previews/explode-assembly.png" width="220" alt="Tesla Model 3 assembled"> | [explode-assembly](./experiments/explode-assembly/README.md) | [README](./experiments/explode-assembly/README.md) | [live](https://vibes-explode.vercel.app) | **PASS** | `cd experiments/explode-assembly && npm i && npm run dev` |
-| <img src="docs/previews/procedural-steam-atlas.png" width="220" alt="Procedural steam locomotive"> | [procedural-steam-atlas](./experiments/procedural-steam-atlas/README.md) | [README](./experiments/procedural-steam-atlas/README.md) | [live](https://vibes-steam-atlas.vercel.app) | **PASS** | `cd experiments/procedural-steam-atlas && npm i && npm run dev` |
-| <img src="docs/previews/glass-capability-brain.png" width="220" alt="Glass capability map"> | [glass-capability-brain](./experiments/glass-capability-brain/README.md) | [README](./experiments/glass-capability-brain/README.md) | [live](https://vibes-glass-capability-brain.vercel.app) | **PASS** | `cd experiments/glass-capability-brain && npm i && npm run dev` |
-| <img src="docs/previews/earth-timeline.png" width="220" alt="Earth history timeline"> | [earth-timeline](./experiments/earth-timeline/README.md) | [README](./experiments/earth-timeline/README.md) | [live](https://vibes-earth.vercel.app) | **PASS** | `cd experiments/earth-timeline && npm i && npm run dev` |
-| <img src="docs/previews/v8-cutaway.png" width="220" alt="V8 engine cutaway"> | [v8-cutaway](./experiments/v8-cutaway/README.md) | [README](./experiments/v8-cutaway/README.md) | [live](https://vibes-v8.vercel.app) | **PASS** | `cd experiments/v8-cutaway && npm i && npm run dev` |
-| <img src="docs/previews/web-physics.png" width="220" alt="Physics playground"> | [web-physics](./experiments/web-physics/README.md) | [README](./experiments/web-physics/README.md) | [live](https://vibes-physics.vercel.app) | **PASS** | `cd experiments/web-physics && npm i && npm run dev` |
-| <img src="docs/previews/japanese-tower.png" width="220" alt="Ridge Pagoda"> | [japanese-tower](./experiments/japanese-tower/README.md) | [README](./experiments/japanese-tower/README.md) | [live](https://vibes-japanese-tower.vercel.app) | **PASS** | `cd experiments/japanese-tower && npm i && npm run dev` |
-| <img src="docs/previews/scroll-product-showcase.png" width="220" alt="Aether glass bottle (local)"> | [scroll-product-showcase](./experiments/scroll-product-showcase/README.md) | [README](./experiments/scroll-product-showcase/README.md) | — | **404** (local shot) | `cd experiments/scroll-product-showcase && npm i && npm run dev` |
-| — | [blender-semicircle-viewer](./experiments/blender-semicircle-viewer/README.md) | [README](./experiments/blender-semicircle-viewer/README.md) | [live](https://vibes-blender-semicircle.vercel.app) | **FAIL** (stale prod, cropped) | `cd experiments/blender-semicircle-viewer && npm i && npm run dev` |
-| <img src="docs/previews/ballance-roll.png" width="220" alt="Nimbus Path marble (local)"> | [ballance-roll](./experiments/ballance-roll/README.md) | [README](./experiments/ballance-roll/README.md) | — | **local-only** | `cd experiments/ballance-roll && npm i && npm run dev` |
-| <img src="docs/previews/chinese-courtyard.png" width="220" alt="North Court siheyuan (local)"> | [chinese-courtyard](./experiments/chinese-courtyard/README.md) | [README](./experiments/chinese-courtyard/README.md) | — | **local-only** | `cd experiments/chinese-courtyard && npm i && npm run dev` |
-
-**One-liners**
-
-- **explode-assembly** — Tesla Model 3 explode / isolate (David_Holiday CC-BY-4.0). [Ordered gallery](./docs/previews/explode-assembly-gallery.png) at 100%.
-- **procedural-steam-atlas** — Runtime locomotive. No `.glb` / `.obj` / images.
-- **glass-capability-brain** — Frosted capability map; hover a node, `1`–`6` to jump.
-- **earth-timeline** — 4.5 billion years on a scrubbable globe.
-- **v8-cutaway** — 90° V8, pistons, live gauges.
-- **web-physics** — cannon-es playground (click / space / `R`).
-- **japanese-tower** — Procedural Ridge Pagoda with lift + season / weather.
-- **scroll-product-showcase** — Scroll-driven glass bottle. Project linked; no READY production.
-- **blender-semicircle-viewer** — 51 procedural laptops. Code is bbox-framed; production is still `25587f54`.
-- **ballance-roll** — Nimbus Path marble above a sea of clouds. No Vercel project.
-- **chinese-courtyard** — North Court siheyuan. No Vercel project.
+Clips are short local loops from each Vite demo. The scroll bottle is a still until a GIF can capture the glass.
 
 **Also in the repo:** [ai-3d-lanes](./experiments/ai-3d-lanes/README.md) (web-3d / blender / cad / mesh-gen) · [image-to-3d](./experiments/image-to-3d/README.md) · [ai-image-texture](./experiments/ai-image-texture/README.md) · [llm-openscad](./experiments/llm-openscad/README.md)
 
@@ -53,34 +39,10 @@ npm run dev
 
 Open the Vite URL (usually `http://localhost:5173`). Same `npm install && npm run dev` pattern in every experiment folder.
 
-## Deployment
-
-One Vercel project per browser demo. **Root Directory** is a dashboard field — see [the checklist](./docs/deployment/vercel-root-directories.md). Sibling-folder commits skip via `ignored-build-step` and do **not** refresh production aliases.
-
-Hobby quota on `johnnyhuy-dev` resets ~**2026-09-08 12:55 UTC**. Do not retry-spam deploys. After reset, one each: **semicircle** (replace `25587f54`) → **scroll-product** (first READY) → skip explode / steam / glass / tower unless a later visual QA fails. Do not create projects for ballance-roll or chinese-courtyard.
-
-| App | Project | Root | Production | Status |
-| --- | --- | --- | --- | --- |
-| explode-assembly | `vibes-explode` | `experiments/explode-assembly` | [vibes-explode.vercel.app](https://vibes-explode.vercel.app) | PASS (`dpl_ELE1f1XhqGQ7hciZSjkPVLMPmUh8` / `de25d60`) |
-| procedural-steam-atlas | `vibes-steam-atlas` | `experiments/procedural-steam-atlas` | [vibes-steam-atlas.vercel.app](https://vibes-steam-atlas.vercel.app) | PASS (`dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS` / `a94b16e`) |
-| glass-capability-brain | `vibes-glass-capability-brain` | `experiments/glass-capability-brain` | [vibes-glass-capability-brain.vercel.app](https://vibes-glass-capability-brain.vercel.app) | PASS (`dpl_3CE9Dd7X7og5MuSLpcGgyxboacgz` / `9328191`) |
-| earth-timeline | `vibes-earth` | `experiments/earth-timeline` | [vibes-earth.vercel.app](https://vibes-earth.vercel.app) | PASS |
-| v8-cutaway | `vibes-v8` | `experiments/v8-cutaway` | [vibes-v8.vercel.app](https://vibes-v8.vercel.app) | PASS |
-| web-physics | `vibes-physics` | `experiments/web-physics` | [vibes-physics.vercel.app](https://vibes-physics.vercel.app) | PASS |
-| japanese-tower | `vibes-japanese-tower` | `experiments/japanese-tower` | [vibes-japanese-tower.vercel.app](https://vibes-japanese-tower.vercel.app) | PASS (READY; was often 404) |
-| blender-semicircle-viewer | `vibes-blender-semicircle` | `experiments/blender-semicircle-viewer` | [vibes-blender-semicircle.vercel.app](https://vibes-blender-semicircle.vercel.app) | FAIL — stale `25587f54`, cropped |
-| scroll-product-showcase | `vibes-scroll-product` | `experiments/scroll-product-showcase` | — | 404 / no READY production |
-| web-3d | `vibes` | `experiments/ai-3d-lanes/web-3d` | — | TBD |
-| ballance-roll | — | `experiments/ballance-roll` | — | no project |
-| chinese-courtyard | — | `experiments/chinese-courtyard` | — | no project |
-
-PR previews appear as Vercel bot comments when quota allows.
-
 ## Docs
 
 - [docs/](./docs/) — ADRs, reverse-engineering notes, incidents
-- [Deployment / Root Directory](./docs/deployment/vercel-root-directories.md)
-- [Visual QA + preview stills](./docs/visual-qa/README.md)
+- [Deployment notes](./docs/deployment/) — Vercel projects and Root Directory
 - [Visual quality bar](./docs/visual-quality-bar.md)
 
 ## Disclaimer
