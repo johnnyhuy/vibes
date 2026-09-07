@@ -103,3 +103,22 @@ if (isContainer(name)) obj.parent.remove(obj);  // Deletes children!
 ### Container vs Prop Distinction
 - **Containers**: Structural parents (keep in graph, skip during collection)
 - **Props**: Renderable clutter (skip during collection, or remove if safe)
+
+---
+
+## Visual QA Status
+
+**BLOCKED**: Vercel hobby exhausted `api-deployments-free-per-day` quota (10:40 AM UTC).
+
+- Preview URL serves OLD build (10:19 UTC) with stripped 216KB GLB
+- Current branch has VALID restored 289KB GLB (295,892 bytes)
+- Build passes locally (3.11s, 340 KB gzipped)
+- **Visual QA pending**: Quota resets ~24h, then preview will rebuild with fixes
+
+**Verification in branch:**
+```bash
+$ git show HEAD:experiments/explode-assembly/public/models/model3.glb | wc -c
+295892  # ✅ Valid 289KB original (not 216KB stripped)
+```
+
+PR #6 ready for merge after visual QA confirms assembled car at explode=0%.
