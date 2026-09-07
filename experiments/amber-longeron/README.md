@@ -1,0 +1,49 @@
+# Amber Longeron — wooden biplane lanes
+
+I built this after reading [@heymichu25](https://x.com/heymichu25/status/2097062564299759855). The post is a cinematic vintage wooden biplane web mini-game — Pure WebGL, procedural wooden textures, snappy lane-dodging, almost no HUD. I studied the public post, the video thumb, and the live *read*. I did **not** copy their meshes, grain, waitlist, chrome, or branding. This is my educational demo — **vibes · amber longeron**. The ship is invented: **Amber Longeron / 桁**.
+
+## What I built
+
+- **A composite biplane** — cylinders, boxes, a cone nose, cabane struts, a spinning prop. No .glb. A longeron is a fuselage spar; you can read every part in `Biplane.tsx`.
+- **Canvas wood grain** — amber and walnut maps painted at runtime (rings, warp, pores, one knot). `MeshStandardMaterial` uses them as `map` + `roughnessMap`. See [ADR-0012](../../docs/adr/0012-procedural-wood-biplane.md).
+- **Kiln Run** — three lanes. Extruded rocks and dusty cloud puffs are solid. Bronze rings are a count I invented. Not their red spheres.
+- **Snappy steer** — A / D, arrows, swipe, or the pad. Space / click / ↑ takes off. `R` resets. The camera rides behind the spar.
+- **Dusk corridor** — amber horizon, umber fog, looping mesas. Immersive in flight; a thin frosted strip keeps score and restart honest.
+
+You start on the centre line. Take off. Stay in the empty lane.
+
+## Stack
+
+Vite + React 19 + R3F + drei + three `~0.170`.
+
+## Run
+
+```bash
+npm install
+npm run dev
+```
+
+[http://localhost:5173](http://localhost:5173)
+
+```bash
+npm run build
+```
+
+## Deploy
+
+**No Vercel project.** Do not create one on this PR. Hobby quota on `johnnyhuy-dev` stays exhausted until **~2026-09-08 20:39 UTC**. I am not burning a slot on a new app.
+
+`vercel.json` only carries the usual Vite fields plus `ignoreCommand`. It cannot set Root Directory. If I add a project later: dashboard **Root Directory** must be `experiments/amber-longeron`.
+
+Post-quota order stays: (1) promote `vibes-blender-semicircle` from the git-main framing fix (2) `vibes-scroll-product` first READY (3) `vibes-audio-gadget-spin` first production (4) then grass / ballance / courtyard. If `vibes-procedural-grass-field` already exists `deploy: false`, leave it idle. Do not create a project for this folder.
+
+## Related
+
+- [docs/reverse-engineering/amber-longeron.md](../../docs/reverse-engineering/amber-longeron.md)
+- [docs/adr/0012-procedural-wood-biplane.md](../../docs/adr/0012-procedural-wood-biplane.md)
+
+---
+
+**Status**: Local build is the QA until a project exists  
+**Last updated**: 2026-09-07  
+**Built by**: Johnny Huynh

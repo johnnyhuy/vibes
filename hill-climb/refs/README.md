@@ -8,6 +8,7 @@ Thumbs attached on the 2026-09-08 agent pass (not copied from the source demos' 
 - Audio gadget spin lives on [Xr0ud](https://x.com/Xr0ud/status/2096982574132297791), [mrblackstudio](https://x.com/mrblackstudio/status/2096893411395600782), [Gilbert93533589](https://x.com/Gilbert93533589/status/2096920288319435154). Built: `experiments/audio-gadget-spin/`. Notes: `docs/reverse-engineering/audio-gadget-product-spin.md`.
 - `ballance-fayaz-thumb.jpg` — [fayazara](https://x.com/fayazara/status/2096997505397584041) (video thumb `…/2096997028723404800/…`). Elevated stone path, gold marble, ocean of clouds. Built: `experiments/ballance-roll/`. Notes: `docs/reverse-engineering/ballance-roll-threejs.md`. Do not copy their course or HUD.
 - Chinese courtyard still lives on [MrLarus](https://x.com/MrLarus/status/2096971051334857181). Built: `experiments/chinese-courtyard/`. Notes: `docs/reverse-engineering/chinese-courtyard-threejs.md`. Vibe only — do not copy their L-plan, chrome, or mesh.
+- `biplane-heymichu-thumb.jpg` — [heymichu25](https://x.com/heymichu25/status/2097062564299759855) (video thumb `…/2097062514253316096/…`). Built: `experiments/amber-longeron/`. Notes: `docs/reverse-engineering/amber-longeron.md`. Feel only — do not copy their beige void, red spheres, or domain chrome.
 
 If a checkout is missing the binaries, the same stills live on those posts.
 

@@ -124,6 +124,13 @@ Across these demos, the quality bar is:
 
 ## My Implementation Status
 
+### amber-longeron ✅ (local)
+- ✅ Dusk corridor (not their beige void, not a black car studio)
+- ✅ Composite biplane + canvas wood grain + extruded rocks / cloud puffs
+- ✅ Thin frosted strip for distance / rings / reset; editorial fades in flight
+- ⚠️ No Vercel project — do not create one until quota is healthy
+- Inspired by [heymichu25](https://x.com/heymichu25/status/2097062564299759855)
+
 ### procedural-grass-field ✅ (local)
 - ✅ Outdoor meadow (not a black car studio)
 - ✅ Instanced crossed blades + tip-weighted wind + pointer gust

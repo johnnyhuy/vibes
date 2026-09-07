@@ -14,7 +14,7 @@ docs/previews/<app>.gif
 
 - Capture locally (`npm run build` + `npm run preview`, or `npm run dev`) with a few seconds of meaningful motion (slider, explode, orbit, scroll).
 - Aim for ~2–4s, ~640px wide, optimised (`ffmpeg` + `gifsicle` when available).
-- A still (`docs/previews/<app>.png`) is a temporary fallback if a GIF is impractical — do not leave a 404 page as the hero. `scroll-product-showcase` currently uses a still (`MeshPhysicalMaterial` transmission did not composite in the capture environment). `procedural-grass-field` starts as a still until I loop the wind sway.
+- A still (`docs/previews/<app>.png`) is a temporary fallback if a GIF is impractical — do not leave a 404 page as the hero. `scroll-product-showcase` currently uses a still (`MeshPhysicalMaterial` transmission did not composite in the capture environment). `procedural-grass-field` and `amber-longeron` start as stills until I loop the wind sway and the flight.
 - Extra angles (explode ordered gallery, etc.) can sit beside the hero as `docs/previews/<app>-gallery.png`.
 
 The apps table in the [root README](../../README.md) embeds the GIFs. Ops status lives in [deployment notes](../deployment/), not in the showcase table.
