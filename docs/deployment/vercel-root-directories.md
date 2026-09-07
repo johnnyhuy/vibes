@@ -27,11 +27,12 @@ See [the incident](../incidents/2026-09-08-steam-atlas-wrong-root.md).
 | `vibes-v8` | `prj_7Em98GNdH9nceT1LonpntoCgNgRY` | `experiments/v8-cutaway` |
 | `vibes-physics` | `prj_Ilh5mBV0g7m7btvnxnhZuFY5ZjiH` | `experiments/web-physics` |
 | `vibes-blender-semicircle` | `prj_PLhnoCVRKmpHc8SxyLRmcp3MFZMC` | `experiments/blender-semicircle-viewer` — production alias still on `25587f54` |
-| `vibes-steam-atlas` | `prj_7D08PT8sdUjhigCEuz83oltZrDMv` | **MUST set `experiments/procedural-steam-atlas` in the dashboard before any post-quota deploy.** Reuse/MCP did not persist it. 0 production READY |
-| `vibes-scroll-product` | `prj_XLBiIlbjweejp9himT53bolPEMUW` | **`experiments/scroll-product-showcase`** (set; 0 deployments) |
+| `vibes-steam-atlas` | `prj_7D08PT8sdUjhigCEuz83oltZrDMv` | `experiments/procedural-steam-atlas` — production READY [vibes-steam-atlas.vercel.app](https://vibes-steam-atlas.vercel.app) (`dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS` on `a94b16e`). HTML is the locomotive. Confirm Root before any extra deploy. |
+| `vibes-scroll-product` | `prj_XLBiIlbjweejp9himT53bolPEMUW` | **`experiments/scroll-product-showcase`** (set; no READY production — one CANCELED) |
 | `vibes-glass-capability-brain` | `prj_yJbQTsiB138V5jh92cwSWd8rZmij` | `experiments/glass-capability-brain` — production READY [vibes-glass-capability-brain.vercel.app](https://vibes-glass-capability-brain.vercel.app/) (`dpl_3CE9Dd7X7og5MuSLpcGgyxboacgz` on `9328191`). SSO off. |
 | `vibes-japanese-tower` | `prj_T1KL4cJSMuY0Z6oKGnNtv8zVP0Js` | `experiments/japanese-tower` — created `deploy: false`; **0 production** until post-quota |
 | — | — | `experiments/ballance-roll` — **no project**. Do not create one on this PR. |
+| — | — | `experiments/chinese-courtyard` — **no project**. Do not create one on this PR. |
 
 In-repo `vercel.json` lives *inside* those folders (`framework: vite`, `outputDirectory: dist`, `ignoreCommand` where I have added it).
 
@@ -47,16 +48,18 @@ One deploy per project. Stop. Updated 2026-09-08 (ballance-roll hill-climb).
 
 1. **Skip** `vibes-explode` — PASS at 2:22am on `dpl_ELE1f1XhqGQ7hciZSjkPVLMPmUh8` / `main` `de25d60`. Redeploy only if a later check goes stale.
 2. `vibes-blender-semicircle` — production still `25587f54` (cropped mega-arc / thin blue curve). One `main` redeploy for bbox framing.
-3. `vibes-steam-atlas` — `404 DEPLOYMENT_NOT_FOUND`. Last `main` redeploy **CANCELED** `ignored-build-step`. **Confirm** dashboard Root = `experiments/procedural-steam-atlas`, then one `main` production deploy from a commit that touches this folder (or dashboard Redeploy).
-4. `vibes-scroll-product` — first production from `main` (Root already `experiments/scroll-product-showcase`).
-5. `vibes-japanese-tower` — created `deploy: false`, Root `experiments/japanese-tower`, **0 production**. First production after quota. Glass is already live — do not spend a slot on it.
-6. Do **not** create `vibes-ballance-roll` until quota is healthy.
+3. `vibes-steam-atlas` — production READY on `a94b16e` / `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS`. **Confirm** dashboard Root = `experiments/procedural-steam-atlas` and that the alias still reads as the locomotive before spending a slot. Skip if it does.
+4. `vibes-scroll-product` — first production from `main` (Root already `experiments/scroll-product-showcase`). Still no READY production.
+5. `vibes-japanese-tower` — created `deploy: false`, Root `experiments/japanese-tower`, **0 deployments**. First production after quota. Glass is already live — do not spend a slot on it.
+6. Do **not** create `vibes-ballance-roll` or a courtyard project until quota is healthy.
 
 `experiments/glass-capability-brain/` has `vercel.json`. Project `vibes-glass-capability-brain` (`prj_yJbQTsiB138V5jh92cwSWd8rZmij`) has production READY at [vibes-glass-capability-brain.vercel.app](https://vibes-glass-capability-brain.vercel.app/) (SSO off). It shipped for free on the japanese-tower `main` merge (`9328191` / `dpl_3CE9Dd7X7og5MuSLpcGgyxboacgz`). See [the incident](../incidents/2026-09-08-glass-auto-deploy-on-tower-merge.md).
 
 `experiments/japanese-tower/` has `vercel.json` (`ignoreCommand`). Project `vibes-japanese-tower` (`prj_T1KL4cJSMuY0Z6oKGnNtv8zVP0Js`) exists with Root `experiments/japanese-tower`, created `deploy: false`. **0 production** until ~2026-09-08 12:55 UTC.
 
-`experiments/ballance-roll/` is a new Vite app with its own `vercel.json` (`ignoreCommand`). **No Vercel project.** Do not create one on this PR. When I do: dashboard Root Directory = `experiments/ballance-roll`.
+`experiments/ballance-roll/` has `vercel.json` (`ignoreCommand`). **No Vercel project.** Do not create one on this PR. When I do: dashboard Root Directory = `experiments/ballance-roll`.
+
+`experiments/chinese-courtyard/` is a new Vite app with its own `vercel.json` (`ignoreCommand`). **No Vercel project.** Do not create one on this PR. When I do: dashboard Root Directory = `experiments/chinese-courtyard`.
 
 This does not change the steam-atlas rule — that project still needs Root = `experiments/procedural-steam-atlas` before any post-quota deploy.
 
@@ -64,7 +67,11 @@ Do not create extra Vercel projects. Do not force production redeploys while the
 
 ### Hill-climb — 2026-09-08 (ballance-roll)
 
-Explode production still **PASS** on `de25d60`. Semicircle still FAIL on `25587f54`. steam-atlas + scroll-product still `DEPLOYMENT_NOT_FOUND` — steam-atlas `main` redeploy **CANCELED** `ignored-build-step` (tip only touched japanese-tower). Glass production LIVE on the tower merge (`9328191` / `dpl_3CE9Dd7X7og5MuSLpcGgyxboacgz`). Tower project exists, 0 production. This pass is the marble experiment plus README touches so those Roots are in the merge diff. No deploys from the agent. Do not assume every project auto-redeployed — [glass incident](../incidents/2026-09-08-glass-auto-deploy-on-tower-merge.md), [steam-atlas incident](../incidents/2026-09-08-steam-atlas-wrong-root.md).
+Explode production still **PASS** on `de25d60`. Semicircle still FAIL on `25587f54`. steam-atlas + scroll-product still `DEPLOYMENT_NOT_FOUND` at that hour — steam-atlas `main` redeploy **CANCELED** `ignored-build-step` (tip only touched japanese-tower). Glass production LIVE on the tower merge (`9328191` / `dpl_3CE9Dd7X7og5MuSLpcGgyxboacgz`). Tower project exists, 0 production. That pass was the marble experiment plus README touches.
+
+### Hill-climb — 2026-09-08 (chinese-courtyard)
+
+steam-atlas production **READY** on the ballance merge: `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS` / `main` `a94b16e`. HTML is Procedural Steam Atlas. I did not screenshot the WebGL canvas. Semicircle production still `25587f54`. scroll-product still no READY production. japanese-tower still 0 deployments. This pass is the courtyard experiment plus README touches so pending Roots stay in the merge diff. No new Vercel projects. No forced production redeploys.
 
 ---
 

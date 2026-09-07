@@ -19,7 +19,7 @@ cd experiments/procedural-steam-atlas
 npm install && npm run dev
 ```
 
-**Live**: TBD — `vibes-steam-atlas` (`prj_7D08PT8sdUjhigCEuz83oltZrDMv`) is linked. Root **must** stay `experiments/procedural-steam-atlas`. No successful **production** deploy yet (one ERROR on a PR branch that lacked the folder; later previews built the right app; a `main` redeploy **CANCELED** `ignored-build-step` because that tip only touched japanese-tower). See [incident](./docs/incidents/2026-09-08-steam-atlas-wrong-root.md).
+**Live**: [vibes-steam-atlas.vercel.app](https://vibes-steam-atlas.vercel.app) — production READY `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS` on `main` `a94b16e` (ballance-roll merge touched this Root). HTML is the locomotive app. I have not screenshot the WebGL canvas on this pass. Root **must** stay `experiments/procedural-steam-atlas`. See [incident](./docs/incidents/2026-09-08-steam-atlas-wrong-root.md).
 
 ---
 
@@ -110,7 +110,7 @@ cd experiments/scroll-product-showcase
 npm install && npm run dev
 ```
 
-**Live**: TBD — `vibes-scroll-product` (`prj_XLBiIlbjweejp9himT53bolPEMUW`) is linked with Root `experiments/scroll-product-showcase`. **Zero deployments** as of 2026-09-08. Sibling-folder commits skip this Root (`ignored-build-step`). First production after quota needs a commit that touches this folder.
+**Live**: TBD — `vibes-scroll-product` (`prj_XLBiIlbjweejp9himT53bolPEMUW`) is linked with Root `experiments/scroll-product-showcase`. **No READY production** (one CANCELED hook only). Sibling-folder commits skip this Root (`ignored-build-step`). First production after quota needs a commit that touches this folder.
 
 ---
 
@@ -159,6 +159,21 @@ npm install && npm run dev
 
 ---
 
+#### [chinese-courtyard](./experiments/chinese-courtyard/)
+Procedural four-sided siheyuan (北庭 / North Court) with season and day-night that retint lights, fog, and materials. Clean-room take on [@MrLarus](https://x.com/MrLarus/status/2096971051334857181). I studied their Blender → GLB → Three.js workflow and built primitives instead. Branding is mine (`vibes · siheyuan`); I did not copy their L-plan, chrome, or mesh.
+
+**Stack**: React + R3F + drei. No .glb.
+
+**Run it**:
+```bash
+cd experiments/chinese-courtyard
+npm install && npm run dev
+```
+
+**Live**: TBD — **no Vercel project**. Do not create one on this PR.
+
+---
+
 ### Image, texture & CAD
 
 - [image-to-3d](./experiments/image-to-3d/) — image→mesh stubs
@@ -171,9 +186,9 @@ Each browser demo has its own Vercel project on this repo (Root Directory set in
 
 > ⚠️ **Hobby quota exhausted** (`api-deployments-free-per-day` = **0 remaining**). Reset **~2026-09-08 12:55 UTC** (~10:55pm AEST). **Do not retry-spam deploys.** See [quota incident](./docs/incidents/2026-09-07-vercel-deploy-quota.md) and [Root Directory checklist](./docs/deployment/vercel-root-directories.md).
 >
-> **Redeploy order after reset** (one each): **skip explode** (fresh on `de25d60` / `dpl_ELE1f1XhqGQ7hciZSjkPVLMPmUh8`) → semicircle → steam-atlas (**confirm** Root Directory = `experiments/procedural-steam-atlas`) → scroll-product → japanese-tower. **Glass is already live** — skip it. Do not create `vibes-ballance-roll`.
+> **Redeploy order after reset** (one each): **skip explode** (fresh on `de25d60` / `dpl_ELE1f1XhqGQ7hciZSjkPVLMPmUh8`) → semicircle → steam-atlas (**confirm** Root Directory = `experiments/procedural-steam-atlas`; production READY on `a94b16e` / `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS` — skip if the alias still reads as the locomotive) → scroll-product → japanese-tower. **Glass is already live** — skip it. Do not create `vibes-ballance-roll` or a courtyard project.
 >
-> Production visual QA 2026-09-08 ~2:22–2:33am AEST: explode **PASS** @0% and @~76%; semicircle still FAIL on commit `25587f54`; steam-atlas + scroll-product `404 DEPLOYMENT_NOT_FOUND`. A later steam-atlas `main` redeploy **CANCELED** (`ignored-build-step`) — sibling-folder commits do not refresh production aliases. Glass is LIVE at [vibes-glass-capability-brain.vercel.app](https://vibes-glass-capability-brain.vercel.app/) (`9328191` / `dpl_3CE9Dd7X7og5MuSLpcGgyxboacgz`, SSO off). Evidence in [docs/visual-qa-2026-09-08-prod.md](./docs/visual-qa-2026-09-08-prod.md), [glass incident](./docs/incidents/2026-09-08-glass-auto-deploy-on-tower-merge.md), [steam-atlas incident](./docs/incidents/2026-09-08-steam-atlas-wrong-root.md). **Do not redeploy on this PR. Do not create a ballance-roll Vercel project.**
+> Production visual QA 2026-09-08: explode **PASS** @0% and @~76%; semicircle still FAIL on commit `25587f54`; steam-atlas HTML **READY** on `a94b16e` / `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS` (locomotive title; canvas not screenshot this pass); scroll-product still no READY production (one CANCELED). Glass is LIVE at [vibes-glass-capability-brain.vercel.app](https://vibes-glass-capability-brain.vercel.app/) (`9328191` / `dpl_3CE9Dd7X7og5MuSLpcGgyxboacgz`, SSO off). japanese-tower project exists, **0 deployments**. Evidence in [docs/visual-qa-2026-09-08-prod.md](./docs/visual-qa-2026-09-08-prod.md). **Do not redeploy on this PR. Do not create a ballance-roll or courtyard Vercel project.**
 
 | App | Vercel project | Root Directory | Production URL | Status |
 | --- | --- | --- | --- | --- |
@@ -183,11 +198,12 @@ Each browser demo has its own Vercel project on this repo (Root Directory set in
 | v8-cutaway | `vibes-v8` | `experiments/v8-cutaway` | [vibes-v8.vercel.app](https://vibes-v8.vercel.app) | ✅ |
 | web-physics | `vibes-physics` | `experiments/web-physics` | [vibes-physics.vercel.app](https://vibes-physics.vercel.app) | ✅ |
 | blender-semicircle-viewer | `vibes-blender-semicircle` (`prj_PLhnoCVRKmpHc8SxyLRmcp3MFZMC`) | `experiments/blender-semicircle-viewer` | [vibes-blender-semicircle.vercel.app](https://vibes-blender-semicircle.vercel.app) | ⚠️ FAIL 2:33am: cropped mega-arc. Production still `25587f54`. **#1** after quota: one `main` redeploy |
-| procedural-steam-atlas | `vibes-steam-atlas` (`prj_7D08PT8sdUjhigCEuz83oltZrDMv`) | **`experiments/procedural-steam-atlas` (confirm in the dashboard before any deploy)** | `404 DEPLOYMENT_NOT_FOUND` | ⚠️ Last `main` redeploy **CANCELED** `ignored-build-step`. **#2** after quota: confirm Root, then one `main` deploy from a commit that touches this folder |
-| scroll-product-showcase | `vibes-scroll-product` (`prj_XLBiIlbjweejp9himT53bolPEMUW`) | `experiments/scroll-product-showcase` | none | Linked, **0 deployments**. Sibling commits skip (`ignored-build-step`). **#3** first production after a Root-touching merge |
+| procedural-steam-atlas | `vibes-steam-atlas` (`prj_7D08PT8sdUjhigCEuz83oltZrDMv`) | **`experiments/procedural-steam-atlas` (confirm in the dashboard)** | [vibes-steam-atlas.vercel.app](https://vibes-steam-atlas.vercel.app) | ✅ READY `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS` on `a94b16e`. HTML is the locomotive. Canvas not screenshot this pass. **#2** after quota only if that alias goes stale |
+| scroll-product-showcase | `vibes-scroll-product` (`prj_XLBiIlbjweejp9himT53bolPEMUW`) | `experiments/scroll-product-showcase` | none | Linked, **no READY production** (one CANCELED). Sibling commits skip (`ignored-build-step`). **#3** first production after a Root-touching merge |
 | glass-capability-brain | `vibes-glass-capability-brain` (`prj_yJbQTsiB138V5jh92cwSWd8rZmij`) | `experiments/glass-capability-brain` | [vibes-glass-capability-brain.vercel.app](https://vibes-glass-capability-brain.vercel.app/) | ✅ **LIVE** `dpl_3CE9Dd7X7og5MuSLpcGgyxboacgz` on `9328191`. SSO off. Skip after quota. |
-| japanese-tower | `vibes-japanese-tower` (`prj_T1KL4cJSMuY0Z6oKGnNtv8zVP0Js`) | `experiments/japanese-tower` | none | Created `deploy: false`. **0 production**. **#4** after quota (glass already live). |
+| japanese-tower | `vibes-japanese-tower` (`prj_T1KL4cJSMuY0Z6oKGnNtv8zVP0Js`) | `experiments/japanese-tower` | none | Created `deploy: false`. **0 deployments**. **#4** after quota (glass already live). |
 | ballance-roll | — | `experiments/ballance-roll` (when a project exists) | none | **No Vercel project.** Local build only. Do not create one on this PR. |
+| chinese-courtyard | — | `experiments/chinese-courtyard` (when a project exists) | none | **No Vercel project.** Local build only. Do not create one on this PR. |
 
 PR previews show up as Vercel bot comments on each pull request (when quota available).
 

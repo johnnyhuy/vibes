@@ -97,10 +97,8 @@ Parked on purpose. Pattern notes only.
 ### Chinese courtyard — Blender → GLB → Three.js
 
 - [MrLarus](https://x.com/MrLarus/status/2096971051334857181) (verified 2026-09-07, id `2096971051334857181`)
-- Copy: a few chats with GPT-6 Astra → interactive 3D Chinese courtyard. Workflow: Astra writes Python / builds in Blender → export GLB → Three.js.
-- Thumb: `https://pbs.twimg.com/amplify_video_thumb/2096970685797064704/img/dAcdmy3AhVAffWX4.jpg`
-- Why I parked it: I already have a Blender-MCP lane (`blender-semicircle-viewer`, ADR-0003) and a keep (`japanese-tower`). A courtyard GLB would be a third architecture hero and would want an asset I do not own.
-- If I build later: invent the court in primitives or a CC0 GLB I can attribute. Do not copy their layout or furniture.
+- **Built** this hill-climb as `experiments/chinese-courtyard/` — procedural four-sided court, no GLB. Notes: [chinese-courtyard-threejs.md](./chinese-courtyard-threejs.md), [ADR-0009](../adr/0009-procedural-courtyard-without-blender.md).
+- I studied their Blender → GLB → Three.js workflow and chose primitives instead.
 
 ### Explorable Three.js ocean / dolphin
 

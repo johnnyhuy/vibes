@@ -5,7 +5,7 @@
 - Video thumb: `https://pbs.twimg.com/amplify_video_thumb/2095956042580733952/img/KV9CA6IUTR5W73wG.jpg` (576×1024)
 
 **Study date**: 2026-09-08  
-**Status**: **NEXT candidate — not built this PR.** Ridge Pagoda was the primary build.
+**Status**: **NEXT candidate — not built this PR.** Parked again. North Court / `experiments/chinese-courtyard/` was the primary build. Still citing [Xr0ud](https://x.com/Xr0ud/status/2096982574132297791).
 
 **Disclaimer**: Clean-room notes only. I have not copied their code, product shots, or branding.
 
@@ -21,7 +21,7 @@ The public copy is about **input data → a spin experience**, not about a Japan
 
 ## Why I Parked It
 
-I already have a scroll-driven product hero (`scroll-product-showcase`) and a studio explode. A headphone/speaker spin would be a third product-hero, and the tower’s atmosphere-state work was the new lesson.
+I already have a scroll-driven product hero (`scroll-product-showcase`) and a studio explode. A headphone/speaker spin would be a third product-hero. This pass spent the new lesson on a procedural courtyard, not another marketing spin.
 
 Build this later if I want:
 

@@ -3,7 +3,7 @@
 **Date**: 2026-09-07 → 2026-09-08  
 **Component**: Vercel project `vibes-steam-atlas` (`prj_7D08PT8sdUjhigCEuz83oltZrDMv`)  
 **Severity**: Medium (no production URL; previews exist; quota burned)  
-**Status**: Waiting for hobby quota reset (~2026-09-08 12:55 UTC). Do not retry-spam. A later `create_git_project` redeploy of `main` was **CANCELED** (`ignored-build-step`) — still no production alias.
+**Status**: First production **READY** on `main` `a94b16e` / `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS` after the ballance-roll merge touched this Root. HTML is Procedural Steam Atlas (200). I did not screenshot the WebGL canvas. Do not retry-spam. Do not create extra projects.
 
 I verified this against the Vercel API on 2026-09-08 (~14:10 UTC). I did **not** create or redeploy anything.
 
@@ -25,7 +25,7 @@ That hunch is **half right**. The project *does* eat every monorepo PR. A later 
 - Id: `prj_7D08PT8sdUjhigCEuz83oltZrDMv`
 - `framework`: null
 - `live`: **false**
-- Production domain: none that I can treat as a successful ship
+- Production domain: [vibes-steam-atlas.vercel.app](https://vibes-steam-atlas.vercel.app) now aliases `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS` (`a94b16e`). `get_project.live` still read `false` while the alias served 200 — do not trust `live` alone.
 - `get_project` does **not** return the Root Directory field — so the dashboard can look empty even when a root is set
 
 ### Production (the only `target: "production"` row)
@@ -119,4 +119,4 @@ That is the user-facing version of `live: false`. Do not retry now. After quota 
 ---
 
 **Incident owner**: Johnny Huynh  
-**Resolution**: Confirm Root + one `main` production deploy after reset
+**Resolution**: Ballance merge (`a94b16e`) touched this Root and wrote READY production `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS`. Confirm Root before any extra deploy. HTML looks right; canvas QA still open.

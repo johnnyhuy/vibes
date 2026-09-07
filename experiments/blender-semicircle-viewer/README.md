@@ -57,7 +57,7 @@ This experiment is configured for Vercel deployment alongside the other vibes pr
 
 ### Deploy status (2026-09-08)
 
-Project `vibes-blender-semicircle` (`prj_PLhnoCVRKmpHc8SxyLRmcp3MFZMC`) is live but **stale**: production is still commit `25587f54` (cropped mega-arc). Sibling-folder commits do **not** refresh this alias — `ignoreCommand` exits 0 and Vercel CANCELs with `ignored-build-step`. This README touch is so the next post-quota `main` merge actually rebuilds this Root (or use a dashboard Redeploy that bypasses ignore). Do not force a redeploy from the agent.
+Project `vibes-blender-semicircle` (`prj_PLhnoCVRKmpHc8SxyLRmcp3MFZMC`) is live but **stale**: production is still commit `25587f54` (cropped mega-arc). Sibling-folder commits do **not** refresh this alias — `ignoreCommand` exits 0 and Vercel CANCELs with `ignored-build-step`. This courtyard-pass README touch is so the next post-quota `main` merge actually rebuilds this Root (or use a dashboard Redeploy that bypasses ignore). Do not force a redeploy from the agent.
 
 ## Tech Stack
 
