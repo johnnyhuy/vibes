@@ -24,10 +24,16 @@ These posts were from early 2026 (or earlier) and have since been deleted or the
 
 ## Current State
 
-### Fresh Reference (Still Live)
+### Fresh References (Verified Live, September 2026)
 - [@ashebytes Model X explode](https://x.com/ashebytes/status/2096009146248122416)  
-  **Context**: Model X exploded into 334 pieces via GPT-6 Astra (September 2026)
-- **Repo**: [github.com/ashemag/model-x-studio](https://github.com/ashemag/model-x-studio)
+  **Context**: Model X exploded into 334 pieces via GPT-6 Astra  
+  **Repo**: [github.com/ashemag/model-x-studio](https://github.com/ashemag/model-x-studio)
+  
+- [@DilumSanjaya V8 cutaway](https://x.com/DilumSanjaya/status/2096280244663775423)  
+  **Context**: Interactive V8 engine with animated pistons/valves, rotatable view, isolate cylinder, four-stroke cycle, RPM, firing order, chamber pressure
+  
+- [@alwayspriyesh Earth timeline](https://x.com/alwayspriyesh/status/2096819464688005440)  
+  **Context**: Interactive Earth history over billions of years, built with GPT-6 Astra in ~30 minutes
 
 ### What I'm Doing
 

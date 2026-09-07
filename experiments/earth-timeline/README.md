@@ -2,7 +2,7 @@
 
 Interactive Earth history visualisation exploring 4.5 billion years from planetary formation to present day.
 
-I wanted to make geologic time tangible — something you can scroll through, watch evolve, and experience viscerally, not just read about in a textbook.
+I wanted to make geologic time tangible — something you can scroll through, watch evolve, and experience viscerally, not just read about in a textbook. Inspired by [@alwayspriyesh's Earth timeline demo](https://x.com/alwayspriyesh/status/2096819464688005440) (GPT-6 Astra in ~30 minutes) — I'm exploring how to build similar interactive timeline experiences with clean-room patterns.
 
 ## What I Built
 

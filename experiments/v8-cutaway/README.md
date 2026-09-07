@@ -2,7 +2,7 @@
 
 Technical V8 engine cutaway visualisation with real-time gauges and animated internals.
 
-I built this to learn how to visualise mechanical systems with synchronised motion and technical overlays — the kind of engineering diagrams that make complex machinery understandable and beautiful.
+I built this to learn how to visualise mechanical systems with synchronised motion and technical overlays — the kind of engineering diagrams that make complex machinery understandable and beautiful. Inspired by [@DilumSanjaya's interactive V8](https://x.com/DilumSanjaya/status/2096280244663775423) with animated pistons/valves, rotatable view, and live gauges (RPM, firing order, chamber pressure).
 
 ## What I Built
 

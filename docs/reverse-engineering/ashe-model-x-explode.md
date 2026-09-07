@@ -1,9 +1,11 @@
 # Reverse Engineering: ashemag's Model X Explode Demo
 
 **Source**: [github.com/ashemag/model-x-studio](https://github.com/ashemag/model-x-studio)  
-**X Post**: [@ashebytes viral demo](https://x.com/ashebytes/status/2096009146248122416) — Model X exploded into 334 pieces via GPT-6 Astra  
+**X Post**: [@ashebytes Model X explode](https://x.com/ashebytes/status/2096009146248122416) — Model X exploded into 334 pieces via GPT-6 Astra  
 **Study Date**: 2026-09-07  
 **Purpose**: Clean-room notes on the technical pattern, not code copying
+
+**Visual reference**: Cinematic product presentation — dark background, studio lighting, frosted glass UI panels, smooth explosion animation, technical aesthetic. See attached `hill-climb/refs/ashe-modelx.jpg` for quality bar.
 
 ## What Made It Viral
 
@@ -231,7 +233,9 @@ I'm **not copying ashemag's code** — I'm learning the **pattern** and implemen
 ## References
 
 - [ashemag/model-x-studio](https://github.com/ashemag/model-x-studio) — Original source for pattern study
-- [ashebytes X post](https://x.com/ashebytes/status/2096009146248122416) — Viral demo
+- [@ashebytes Model X explode](https://x.com/ashebytes/status/2096009146248122416) — Viral demo (GPT-6 Astra, 334 pieces)
+- [@DilumSanjaya V8 cutaway](https://x.com/DilumSanjaya/status/2096280244663775423) — Technical engine visualisation inspiration
+- [@alwayspriyesh Earth timeline](https://x.com/alwayspriyesh/status/2096819464688005440) — Interactive timeline pattern (GPT-6 Astra)
 - [React Three Fiber docs](https://docs.pmnd.rs/react-three-fiber) — R3F patterns
 - [David_Holiday's Tesla Model 3](https://sketchfab.com/3d-models/tesla-model-3-123c10f376ec4f18b93c73afc382808b) — CC-BY-4.0 GLB I'm using
 
