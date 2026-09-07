@@ -13,6 +13,7 @@ Structured decisions about the monorepo's technical architecture:
 - [ADR-0003: Blender MCP Lane (Scripts-First, MCP-Ready)](./adr/0003-blender-mcp-lane.md)
 - [ADR-0004: Procedural Geometry Over Asset Loading for Mechanical Demos](./adr/0004-procedural-geometry-over-assets.md)
 - [ADR-0005: Scroll-Driven Product Hero Pattern](./adr/0005-scroll-driven-product-hero.md) — Amended 2026-09-08: lathe bottle + native window scroll
+- [ADR-0006: Glass Capability Map](./adr/0006-glass-capability-map.md) — Light clinical stage + live pixel-QA node
 
 ### Reverse Engineering
 
@@ -23,7 +24,7 @@ Clean-room notes from studying public projects:
 - [Blender MCP → MacBook Semicircle → Web](./reverse-engineering/blender-mcp-macbook-semicircle.md) — Agent-driven workflow (GPT Astra + Blender MCP), semicircle array math, clean-room with procedural geometry
 - [Blender MCP → Product Keyboard Workflow](./reverse-engineering/blender-mcp-product-keyboard.md) — Offline rendering pipeline (scripts → render → web), product photography techniques
 - [WebGL Scroll Product Visualisation](./reverse-engineering/webgl-scroll-product.md) — Scroll-driven 3D (glass bottle refraction, photoreal materials, R3F patterns)
-- [Glass Capability Brain](./reverse-engineering/glass-capability-brain.md) — Future experiment notes (orbiting capability nodes + self screenshot QA)
+- [Glass Capability Brain](./reverse-engineering/glass-capability-brain.md) — Built: orbiting capability nodes + live canvas pixel QA (`experiments/glass-capability-brain/`)
 - [NeuralKinetics Video-Shader Hero Pattern](./reverse-engineering/neuralkinetics-video-shader-hero.md) — Poster-first video/shader pipeline, organic motion, reduced-motion handling
 - [Procedural Runtime Geometry Pattern](./reverse-engineering/procedural-runtime-geometry.md) — Steam Atlas mechanical assembly, runtime CSG, parametric parts
 - [Visual Quality Bar](./visual-quality-bar.md) — Cinematic product demo aesthetic (dark UI, frosted glass, studio lighting)

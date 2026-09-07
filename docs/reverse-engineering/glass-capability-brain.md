@@ -5,9 +5,9 @@
 - Visual: `hill-climb/refs/glass-brain-thumb.jpg` (agent-thread thumb, 2026-09-08)
 
 **Study date**: 2026-09-08  
-**Purpose**: Clean-room notes for a **future** experiment. I am not building the brain app in this PR.
+**Purpose**: Clean-room notes. Built as `experiments/glass-capability-brain/`.
 
-**Disclaimer**: I studied the public post and the attached thumb. No code, no assets copied.
+**Disclaimer**: I studied the public post and the attached thumb. No code, no assets copied. This demo is first-person Johnny Huynh / vibes — it is **not** Claude Fable.
 
 ---
 
@@ -75,46 +75,75 @@ idle 8s → tour
 
 The dock for **Reason** is a real search through the wolf/goat/cabbage state graph. “Writes and runs code” is a tiny sandbox. “Reads its own pixels” is `readPixels` / `toDataURL`. “Replays driving a Mac” is a recorded input stream.
 
-For a kitchen-sink experiment I would stub most of them and **actually implement pixel-read QA**.
+For a kitchen-sink experiment I stubbed most of them and **actually implemented pixel-read QA**.
 
 ### 4. Self screenshot QA at 60 fps
 
 The HUD already prints `60 fps`. Inferred loop: downscaled readback every N frames, heuristic or reference compare, badge. Honour `prefers-reduced-motion`.
 
-## What I Would Build (Later)
+## What landed
 
-`experiments/glass-capability-brain/` — **not this PR**.
+`experiments/glass-capability-brain/` — Vite + React 19 + R3F + drei + three `~0.170`.
 
-| Piece | Do | Don't |
+| Piece | Landed | Notes |
 | --- | --- | --- |
-| Self | Glass sphere + inner graph | Medical dataset, copied demo |
-| Orbit | Six nodes, drawn paths, 1–6 / Esc / idle tour | A whole OS |
-| Live demo | One real pixel-read QA node | Eval user JS in the page |
-| UI | Light clinical + translucent dock | Dark product-hero chrome (that's Aether) |
-| Stack | Vite + React + R3F + drei | New framework |
+| Self | Yes | Glass sphere, IOR 1.45, frost/transmission. Procedural inner points + lines. No medical dataset. |
+| Stage | Yes | Light clinical `#e6edf5`. Not Aether’s dark hero. |
+| Orbit | Yes | Six coloured `TubeGeometry` paths. `1`–`6` / `Esc` / idle 8s tour. `prefers-reduced-motion` parks travel + tour. |
+| Live demo | Yes | **See** — `readPixels` + `toDataURL`, luma/empty heuristic, pass/fail + thumb. No user JS eval. |
+| UI | Yes | HTML overlay: header, frosted dock, controls, HUD (`fps · tris · draws · three r…`). |
+| Branding | Yes | “Capability Map” / `vibes · glass brain`. First-person me. Not Claude Fable. |
+| `vercel.json` | Yes | In the experiment folder only (`framework: vite`, `outputDirectory: dist`, `ignoreCommand`). No monorepo-root file. |
+| Vercel project | No | Not created. Quota still 0 until ~2026-09-08 12:55 UTC. Do not deploy. |
 
-Success: orbit a glass sphere, click a node, see a live “I read my own pixels” pass/fail.
+### Node names I invented
 
-## What I'm Not Doing In This PR
+The thumb only labels **Remember** and **Reason**. My other four, so the map still has six keys:
 
-- No `experiments/glass-capability-brain/`
-- No reconstruction of their node list beyond what the thumb labels (Remember, Reason)
-- Aether already spends the glass-material budget
+| Key | Name | Kind |
+| --- | --- | --- |
+| 1 | Remember | Stub — orange inner blob |
+| 2 | Reason | Stub — I am not shipping their river-crossing solver |
+| 3 | Code | Stub — write the experiment; no in-page eval |
+| 4 | See | **Live** pixel QA |
+| 5 | Drive | Stub — the camera tour is the whole joke |
+| 6 | Puzzle | Stub — graph-search placeholder |
 
-## Open Questions
+Documented again in [ADR-0006](../adr/0006-glass-capability-map.md).
 
-1. Labels of nodes 3–6?
-2. Is the inner graph instanced lines or a texture?
-3. Does the 60 fps QA compare images or just print the rAF counter?
-4. How do they sandbox “writes and runs code”?
+## Checklist
+
+- [x] Light clinical backdrop
+- [x] Frosted glass sphere + procedural neural graph
+- [x] Six moons, drawn orbits, Remember + Reason labels
+- [x] Keyboard 1–6 / Esc / idle tour / reduced motion
+- [x] Frosted HTML dock with first-person copy
+- [x] One real live demo (See / pixel QA)
+- [x] Bottom-left controls + bottom-right honest-ish HUD
+- [x] Experiment `vercel.json`
+- [x] ADR-0006
+- [ ] Vercel project + production URL — **after quota reset**, and only if I decide this demo needs a public URL
+- [ ] Visual QA against the thumb on a real GPU (local + preview)
+
+## Later candidate (not this experiment)
+
+[bharatmodi2014](https://x.com/bharatmodi2014/status/2096974996455444494) — interactive Japanese pagoda / tower in Three.js. Fresh public ref. **Future kitchen-sink candidate only.** I am not building the tower in this PR.
+
+## Open questions (still)
+
+1. Is their inner graph instanced lines or a texture? I used a seeded point/line graph.
+2. Does their 60 fps QA compare images or just print the rAF counter? I grade luma.
+3. How do they sandbox “writes and runs code”? I will not eval user JS.
 
 ## Related
 
 - [webgl-scroll-product.md](./webgl-scroll-product.md) — transmission notes (dark product hero, different stage)
-- `experiments/scroll-product-showcase/` — current glass work (bottle, not brain)
+- `experiments/scroll-product-showcase/` — Aether bottle
+- `experiments/glass-capability-brain/` — this map
+- [ADR-0006](../adr/0006-glass-capability-map.md)
 
 ---
 
 **Last updated**: 2026-09-08  
-**Status**: Notes only. Future experiment.  
+**Status**: Built. Local `npm run build` is the gate. Not deployed.  
 **Author**: Johnny Huynh
