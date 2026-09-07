@@ -55,8 +55,9 @@ Things that went sideways and what I learnt:
 
 ### Visual QA
 
+- [Preview stills](./visual-qa/README.md) — refresh `docs/previews/<app>.png` on ship / redeploy
 - [2026-09-07: Hill-Climb Visual QA Loop](./visual-qa-2026-09-07.md) — Explode mesh filter hardening, earth/v8 confirmation
-- [2026-09-08: Production visual QA](./visual-qa-2026-09-08-prod.md) — ~4:37am: explode PASS; steam PASS; glass PASS; semicircle still `25587f54`; scroll and tower 404
+- [2026-09-08: Production visual QA](./visual-qa-2026-09-08-prod.md) — explode / steam / glass PASS; semicircle still `25587f54`; scroll 404; tower later READY
 
 ## Writing Style
 

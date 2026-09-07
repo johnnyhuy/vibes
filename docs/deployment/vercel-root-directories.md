@@ -65,6 +65,10 @@ steam-atlas Root must stay `experiments/procedural-steam-atlas`. It already has 
 
 Do not create extra Vercel projects. Do not force production redeploys while the quota is 0.
 
+## README preview stills
+
+Hill-climb / visual QA should refresh `docs/previews/<app>.png` when an app ships or redeploys (LIVE PASS frames only — 404 and cropped FAIL shots stay in Status, not the hero column). See [docs/visual-qa/README.md](../visual-qa/README.md).
+
 ### Hill-climb — 2026-09-08 (ballance-roll)
 
 Explode production still **PASS** on `de25d60`. Semicircle still FAIL on `25587f54`. steam-atlas + scroll-product still `DEPLOYMENT_NOT_FOUND` at that hour — steam-atlas `main` redeploy **CANCELED** `ignored-build-step` (tip only touched japanese-tower). Glass production LIVE on the tower merge (`9328191` / `dpl_3CE9Dd7X7og5MuSLpcGgyxboacgz`). Tower project exists, 0 production. That pass was the marble experiment plus README touches.
