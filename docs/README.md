@@ -11,6 +11,7 @@ Structured decisions about the monorepo's technical architecture:
 - [ADR-0001: Monorepo Structure and Vercel Per-App Deployment](./adr/0001-monorepo-and-vercel-per-app.md)
 - [ADR-0002: React + R3F with Real GLB over Procedural Geometry](./adr/0002-explode-r3f-and-real-glb.md)
 - [ADR-0003: Blender MCP Lane (Scripts-First, MCP-Ready)](./adr/0003-blender-mcp-lane.md)
+- [ADR-0004: Procedural Geometry Over Asset Loading for Mechanical Demos](./adr/0004-procedural-geometry-over-assets.md)
 
 ### Reverse Engineering
 
@@ -20,6 +21,8 @@ Clean-room notes from studying public projects:
 - [ashemag's Anatomy Explode](./reverse-engineering/ashe-anatomy-explode.md) — 2,234-piece human anatomy, same architecture, potential next experiment
 - [Blender MCP → MacBook Semicircle → Web](./reverse-engineering/blender-mcp-macbook-semicircle.md) — Agent-driven workflow (GPT Astra + Blender MCP), semicircle array math, clean-room with procedural geometry
 - [WebGL Scroll Product Visualisation](./reverse-engineering/webgl-scroll-product.md) — Scroll-driven 3D (glass bottle refraction, photoreal materials, R3F patterns)
+- [NeuralKinetics Video-Shader Hero Pattern](./reverse-engineering/neuralkinetics-video-shader-hero.md) — Poster-first video/shader pipeline, organic motion, reduced-motion handling
+- [Procedural Runtime Geometry Pattern](./reverse-engineering/procedural-runtime-geometry.md) — Steam Atlas mechanical assembly, runtime CSG, parametric parts
 - [Visual Quality Bar](./visual-quality-bar.md) — Cinematic product demo aesthetic (dark UI, frosted glass, studio lighting)
 
 ### Incidents & Lessons
