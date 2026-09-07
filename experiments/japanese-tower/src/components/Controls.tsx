@@ -117,7 +117,7 @@ export default function Controls({
         <p className="panel-kicker">{build.stageLabel}</p>
         <p className="percent">{percent}%</p>
         <p className="panel-copy">
-          {build.stage === 'podium' && 'Stone terraces first. The hill gets a plinth.'}
+          {build.stage === 'podium' && 'Battered stone first. Heaps on the court, then a plinth.'}
           {build.stage === 'frame' && 'Scaffold and a timber yard. Nothing tiled yet.'}
           {build.stage === 'storeys' && 'Plaster boxes stack. Each floor is a smaller square.'}
           {build.stage === 'tiles' && 'Hip roofs land. Eaves first, then the upturned corners.'}

@@ -51,7 +51,7 @@ Things that went sideways and what I learnt:
 ### Visual QA
 
 - [2026-09-07: Hill-Climb Visual QA Loop](./visual-qa-2026-09-07.md) — Explode mesh filter hardening, earth/v8 confirmation
-- [2026-09-08: Stale production visual QA](./visual-qa-2026-09-08-prod.md) — explode / semicircle / steam-atlas all FAIL; ~2:22am AEST hill-climb note (glass merged, still waiting on quota)
+- [2026-09-08: Production visual QA](./visual-qa-2026-09-08-prod.md) — 2:22am: explode PASS; semicircle still `25587f54`; steam/scroll 404; glass `deploy: false`
 
 ## Writing Style
 

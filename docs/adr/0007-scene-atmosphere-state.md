@@ -72,7 +72,7 @@ React owns `AtmosphereState`. R3F only reads `ResolvedLook`.
 
 ### 5. Growth is a second resolver, not a second scene
 
-**Chosen**: `resolveBuild(growth)` reveals podium / scaffold / storeys / roofs / finial. Same graph, different amounts.
+**Chosen**: `resolveBuild(growth)` reveals podium / stone heaps / scaffold / storeys / roofs / finial. Same graph, different amounts.
 
 **Rejected**: Swapping a “construction GLB” for a “finished GLB”.
 

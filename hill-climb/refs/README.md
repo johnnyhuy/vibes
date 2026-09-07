@@ -9,7 +9,7 @@ Thumbs attached on the 2026-09-08 agent pass (not copied from the source demos' 
 
 If a checkout is missing the binaries, the same stills live on those posts.
 
-Production QA stills (2026-09-08 ~12:07–12:29 AEST) — see [docs/visual-qa-2026-09-08-prod.md](../../docs/visual-qa-2026-09-08-prod.md):
+Production QA stills — see [docs/visual-qa-2026-09-08-prod.md](../../docs/visual-qa-2026-09-08-prod.md). Morning FAIL set (~12:07 AEST) and 2:22am explode PASS set (`prod-explode-0/80-20260908-0222.png`):
 
 - `../prod-explode-0-20260908-0007.png`
 - `../prod-explode-80-20260908-0007.png`

@@ -110,6 +110,12 @@ function Storey({
             <meshStandardMaterial color={look.woodColor} roughness={0.68} metalness={0.05} />
           </mesh>
         ))}
+        {[-0.2, 0.2].map((z) => (
+          <mesh key={`bay-${z}`} position={[0, height * 0.52, body / 2 + 0.03]}>
+            <boxGeometry args={[body * 0.2, height * 0.32, 0.05]} />
+            <meshStandardMaterial color={look.woodColor} roughness={0.52} metalness={0.03} />
+          </mesh>
+        ))}
       </Reveal>
       <Reveal amount={roofAmount}>
         <group position={[0, height, 0]}>
@@ -154,6 +160,43 @@ function Scaffold({ amount, wood }: { amount: number; wood: string }) {
   );
 }
 
+function StoneHeaps({ amount, stone }: { amount: number; stone: string }) {
+  const piles = useMemo(
+    () => [
+      { x: -4.8, z: 2.4, n: 5, seed: 1.1 },
+      { x: 5.1, z: 1.8, n: 4, seed: 2.4 },
+      { x: -3.2, z: -3.6, n: 5, seed: 3.7 },
+      { x: 4.4, z: -2.8, n: 4, seed: 4.2 },
+    ],
+    []
+  );
+  if (amount <= 0.02) return null;
+  return (
+    <group>
+      {piles.map((pile) =>
+        Array.from({ length: pile.n }, (_, i) => {
+          const a = pile.seed + i * 0.9;
+          return (
+            <mesh
+              key={`${pile.x}-${i}`}
+              position={[
+                pile.x + Math.cos(a) * 0.35,
+                0.16 * amount + (i % 2) * 0.12,
+                pile.z + Math.sin(a) * 0.28,
+              ]}
+              rotation={[0.15, a, 0.1]}
+              castShadow
+            >
+              <boxGeometry args={[0.42, 0.22, 0.3]} />
+              <meshStandardMaterial color={stone} roughness={0.95} />
+            </mesh>
+          );
+        })
+      )}
+    </group>
+  );
+}
+
 function TimberYard({ amount, wood }: { amount: number; wood: string }) {
   if (amount <= 0.02) return null;
   return (
@@ -191,15 +234,20 @@ export default function Tower({ look, build }: Props) {
 
   return (
     <group>
-      {[0, 1, 2].map((step) => (
-        <Reveal key={step} amount={Math.min(1, Math.max(0, build.podium * 3 - step))}>
-          <mesh position={[0, step * 0.42 + 0.21, 0]} castShadow receiveShadow>
-            <cylinderGeometry args={[(8.4 - step * 0.85) / 2 - 0.35, (8.4 - step * 0.85) / 2, 0.42, 8]} />
-            <meshStandardMaterial color={look.stoneColor} roughness={0.9} metalness={0.04} />
-          </mesh>
-        </Reveal>
-      ))}
-      <group position={[0, 1.32, 0]}>{storeyNodes}</group>
+      {[0, 1, 2, 3].map((step) => {
+        const outer = 9.1 - step * 0.72;
+        const inner = outer - 0.55;
+        return (
+          <Reveal key={step} amount={Math.min(1, Math.max(0, build.podium * 4 - step))}>
+            <mesh position={[0, step * 0.38 + 0.19, 0]} castShadow receiveShadow>
+              <cylinderGeometry args={[inner / 2, outer / 2, 0.38, 8]} />
+              <meshStandardMaterial color={look.stoneColor} roughness={0.92} metalness={0.03} />
+            </mesh>
+          </Reveal>
+        );
+      })}
+      <StoneHeaps amount={build.heaps} stone={look.stoneColor} />
+      <group position={[0, 1.58, 0]}>{storeyNodes}</group>
       <Reveal amount={build.finial}>
         <mesh position={[0, y + 1.55, 0]} castShadow>
           <cylinderGeometry args={[0.07, 0.09, 1.7, 10]} />

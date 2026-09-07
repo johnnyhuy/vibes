@@ -34,7 +34,7 @@ cd experiments/explode-assembly
 npm install && npm run dev
 ```
 
-**Live**: [vibes-explode.vercel.app](https://vibes-explode.vercel.app)
+**Live**: [vibes-explode.vercel.app](https://vibes-explode.vercel.app) — PASS 2026-09-08 ~2:22am AEST (`dpl_ELE1f1XhqGQ7hciZSjkPVLMPmUh8` on `de25d60`). Skip the post-quota explode redeploy unless this goes stale again.
 
 ---
 
@@ -156,21 +156,21 @@ Each browser demo has its own Vercel project on this repo (Root Directory set in
 
 > ⚠️ **Hobby quota exhausted** (`api-deployments-free-per-day` = **0 remaining**). Reset **~2026-09-08 12:55 UTC** (~10:55pm AEST). **Do not retry-spam deploys.** See [quota incident](./docs/incidents/2026-09-07-vercel-deploy-quota.md) and [Root Directory checklist](./docs/deployment/vercel-root-directories.md).
 >
-> **Redeploy order after reset** (one each): explode → semicircle → steam-atlas (**after** Root Directory = `experiments/procedural-steam-atlas`) → scroll-product → optionally glass-capability-brain.
+> **Redeploy order after reset** (one each): **skip explode** (fresh on `de25d60` / `dpl_ELE1f1XhqGQ7hciZSjkPVLMPmUh8`) → semicircle → steam-atlas (**confirm** Root Directory = `experiments/procedural-steam-atlas`) → scroll-product → glass-capability-brain.
 >
-> Production visual QA 2026-09-08 ~12:07–12:29 AEST: explode 0%/80% FAIL, semicircle FAIL, steam-atlas `404 DEPLOYMENT_NOT_FOUND`. Hill-climb 2026-09-08 ~2:22am AEST: glass PR merged; steam + scroll still no production; quota still 0. Evidence in [docs/visual-qa-2026-09-08-prod.md](./docs/visual-qa-2026-09-08-prod.md). **Do not redeploy on this PR. Do not create a japanese-tower Vercel project.**
+> Production visual QA 2026-09-08 ~2:22–2:33am AEST: explode **PASS** @0% and @~76%; semicircle still FAIL on commit `25587f54`; steam-atlas + scroll-product `404 DEPLOYMENT_NOT_FOUND`. Glass project exists (`deploy: false`, SSO off, 0 production). Evidence in [docs/visual-qa-2026-09-08-prod.md](./docs/visual-qa-2026-09-08-prod.md). **Do not redeploy on this PR. Do not create a japanese-tower Vercel project.**
 
 | App | Vercel project | Root Directory | Production URL | Status |
 | --- | --- | --- | --- | --- |
 | web-3d | `vibes` | `experiments/ai-3d-lanes/web-3d` | TBD | - |
-| explode-assembly | `vibes-explode` (`prj_bkyEqYqsAhAk0ZrVnhXi9Him98Fb`) | `experiments/explode-assembly` | [vibes-explode.vercel.app](https://vibes-explode.vercel.app) | ⚠️ QA FAIL 2026-09-08: grey room, 0% not assembled, 80% clipped. **#1** after reset: one `main` redeploy for #12 |
+| explode-assembly | `vibes-explode` (`prj_bkyEqYqsAhAk0ZrVnhXi9Him98Fb`) | `experiments/explode-assembly` | [vibes-explode.vercel.app](https://vibes-explode.vercel.app) | ✅ PASS 2026-09-08 ~2:22am AEST (`dpl_ELE1f1XhqGQ7hciZSjkPVLMPmUh8` on `de25d60`). Skip after quota unless stale again. |
 | earth-timeline | `vibes-earth` | `experiments/earth-timeline` | [vibes-earth.vercel.app](https://vibes-earth.vercel.app) | ✅ |
 | v8-cutaway | `vibes-v8` | `experiments/v8-cutaway` | [vibes-v8.vercel.app](https://vibes-v8.vercel.app) | ✅ |
 | web-physics | `vibes-physics` | `experiments/web-physics` | [vibes-physics.vercel.app](https://vibes-physics.vercel.app) | ✅ |
-| blender-semicircle-viewer | `vibes-blender-semicircle` (`prj_PLhnoCVRKmpHc8SxyLRmcp3MFZMC`) | `experiments/blender-semicircle-viewer` | [vibes-blender-semicircle.vercel.app](https://vibes-blender-semicircle.vercel.app) | ⚠️ Production alias still on old commit `25587f54` (pre bbox-framing). **#2** after reset: one `main` redeploy |
-| procedural-steam-atlas | `vibes-steam-atlas` (`prj_7D08PT8sdUjhigCEuz83oltZrDMv`) | **`experiments/procedural-steam-atlas` (set this in the dashboard before any deploy)** | `404 DEPLOYMENT_NOT_FOUND` | ⚠️ QA FAIL 2026-09-08. **#3** after reset: set Root, then one `main` production deploy |
-| scroll-product-showcase | `vibes-scroll-product` (`prj_XLBiIlbjweejp9himT53bolPEMUW`) | `experiments/scroll-product-showcase` | none | Linked, **0 deployments**. Build ✅ locally. **#4** first production |
-| glass-capability-brain | `vibes-glass-capability-brain` (`prj_yJbQTsiB138V5jh92cwSWd8rZmij`) | `experiments/glass-capability-brain` | none | Created `deploy: false`. **0 production**. Optional **#5** after quota. Do not spam. |
+| blender-semicircle-viewer | `vibes-blender-semicircle` (`prj_PLhnoCVRKmpHc8SxyLRmcp3MFZMC`) | `experiments/blender-semicircle-viewer` | [vibes-blender-semicircle.vercel.app](https://vibes-blender-semicircle.vercel.app) | ⚠️ FAIL 2:33am: cropped mega-arc. Production still `25587f54`. **#1** after quota: one `main` redeploy |
+| procedural-steam-atlas | `vibes-steam-atlas` (`prj_7D08PT8sdUjhigCEuz83oltZrDMv`) | **`experiments/procedural-steam-atlas` (confirm in the dashboard before any deploy)** | `404 DEPLOYMENT_NOT_FOUND` | ⚠️ FAIL 2:33am. **#2** after quota: confirm Root, then one `main` production deploy |
+| scroll-product-showcase | `vibes-scroll-product` (`prj_XLBiIlbjweejp9himT53bolPEMUW`) | `experiments/scroll-product-showcase` | none | Linked, **0 deployments**. **#3** first production |
+| glass-capability-brain | `vibes-glass-capability-brain` (`prj_yJbQTsiB138V5jh92cwSWd8rZmij`) | `experiments/glass-capability-brain` | none | Created `deploy: false`, SSO off. **0 production**. **#4** after quota. Do not spam. |
 | japanese-tower | — | `experiments/japanese-tower` (when a project exists) | none | **No Vercel project.** Local build only. Do not create one while quota is 0. |
 
 PR previews show up as Vercel bot comments on each pull request (when quota available).

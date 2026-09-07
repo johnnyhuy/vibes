@@ -145,7 +145,7 @@ Across these demos, the quality bar is:
 - ✅ React + R3F + drei
 - ✅ Orbital camera
 - ✅ Explosion slider
-- ⚠️ UI could be more frosted-glass (currently plain CSS)
+- ✅ Frosted MODEL 3 UI on production `de25d60` (PASS 2026-09-08 ~2:22am AEST)
 - ⚠️ Lighting could be more studio-like
 
 ### earth-timeline ✅

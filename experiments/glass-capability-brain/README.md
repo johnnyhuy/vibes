@@ -43,7 +43,7 @@ npm run build
 
 ## Deploy
 
-Project `vibes-glass-capability-brain` (`prj_yJbQTsiB138V5jh92cwSWd8rZmij`) was created with Root `experiments/glass-capability-brain` and `deploy: false`. **0 production**. Hobby quota is exhausted until **~2026-09-08 12:55 UTC**. Do not force a deploy on a hill-climb PR.
+Project `vibes-glass-capability-brain` (`prj_yJbQTsiB138V5jh92cwSWd8rZmij`) was created with Root `experiments/glass-capability-brain` and `deploy: false`. SSO off. **0 production**. Hobby quota is exhausted until **~2026-09-08 12:55 UTC**. Do not force a deploy on a hill-climb PR. #4 after quota (explode is already fresh).
 
 Dashboard **Root Directory** must stay `experiments/glass-capability-brain`. `vercel.json` cannot set that field.
 

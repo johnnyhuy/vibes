@@ -38,15 +38,15 @@ In-repo `vercel.json` lives *inside* those folders (`framework: vite`, `outputDi
 
 ## Post-quota redeploy order
 
-One deploy per project. Stop.
+One deploy per project. Stop. Updated 2026-09-08 ~2:33am AEST.
 
-1. `vibes-explode` — QA FAIL 2026-09-08 (grey room, 0% fragmented, 80% clipped). One `main` redeploy for #12.
-2. `vibes-blender-semicircle` — production still on `25587f54` (cropped mega-arc). One `main` redeploy for bbox framing.
-3. `vibes-steam-atlas` — QA FAIL `404 DEPLOYMENT_NOT_FOUND`. **Set dashboard Root = `experiments/procedural-steam-atlas`**, then one `main` production deploy.
-4. `vibes-scroll-product` — first production from `main` after #16 (Root already `experiments/scroll-product-showcase`).
-5. Optionally `vibes-glass-capability-brain` — 0 deployments; Root `experiments/glass-capability-brain`. Do **not** create `japanese-tower` until quota is healthy.
+1. **Skip** `vibes-explode` — PASS at 2:22am on `dpl_ELE1f1XhqGQ7hciZSjkPVLMPmUh8` / `main` `de25d60`. Redeploy only if a later check goes stale.
+2. `vibes-blender-semicircle` — production still `25587f54` (cropped mega-arc / thin blue curve). One `main` redeploy for bbox framing.
+3. `vibes-steam-atlas` — `404 DEPLOYMENT_NOT_FOUND`. **Confirm** dashboard Root = `experiments/procedural-steam-atlas`, then one `main` production deploy.
+4. `vibes-scroll-product` — first production from `main` (Root already `experiments/scroll-product-showcase`).
+5. `vibes-glass-capability-brain` — created `deploy: false`, SSO off, Root `experiments/glass-capability-brain`. First production. Do **not** create `japanese-tower` until quota is healthy.
 
-`experiments/glass-capability-brain/` has `vercel.json`. Project `vibes-glass-capability-brain` (`prj_yJbQTsiB138V5jh92cwSWd8rZmij`) was created with Root `experiments/glass-capability-brain` and `deploy: false`. **0 production**. Optional #5 after quota.
+`experiments/glass-capability-brain/` has `vercel.json`. Project `vibes-glass-capability-brain` (`prj_yJbQTsiB138V5jh92cwSWd8rZmij`) was created with Root `experiments/glass-capability-brain` and `deploy: false`. SSO off. **0 production**. #5 after quota.
 
 `experiments/japanese-tower/` is a new Vite app with its own `vercel.json` (`ignoreCommand` only). **No Vercel project.** Do not create one while quota is 0. When I do: dashboard Root Directory = `experiments/japanese-tower`.
 
@@ -54,9 +54,9 @@ This does not change the steam-atlas rule — that project still needs Root = `e
 
 Do not create extra Vercel projects. Do not force production redeploys while the quota is 0.
 
-### Hill-climb — 2026-09-08 ~2:22am AEST
+### Hill-climb — 2026-09-08 ~2:22–2:33am AEST
 
-Glass PR is on `main` (`de25d60`). steam-atlas + scroll-product still have no good production. Quota still blocks until ~12:55 UTC. This pass is docs + a local tower experiment only.
+Explode production **PASS** (assembled @0%, ordered gallery @~76%). Semicircle still FAIL on `25587f54`. steam-atlas + scroll-product still `DEPLOYMENT_NOT_FOUND`. Glass project exists (`deploy: false`, SSO off). Quota still blocks until ~12:55 UTC. This pass is docs + a local tower experiment only. No deploys.
 
 ---
 

@@ -130,6 +130,10 @@ export default function Landscape({ look }: Props) {
         <circleGeometry args={[34, 48]} />
         <meshStandardMaterial color={look.groundColor} roughness={0.95} metalness={0.02} />
       </mesh>
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.03, 0]} receiveShadow>
+        <ringGeometry args={[6.6, 7.05, 48]} />
+        <meshStandardMaterial color="#b7b0a4" roughness={0.94} />
+      </mesh>
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.02, 6.4]} receiveShadow>
         <planeGeometry args={[3.2, 9.2]} />
         <meshStandardMaterial color="#9a9284" roughness={0.92} />

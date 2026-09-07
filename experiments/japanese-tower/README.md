@@ -4,7 +4,7 @@ I built this after reading [@bharatmodi2014's Japanese tower post](https://x.com
 
 ## What I built
 
-- **Procedural keep** — stone podium, timber yard, scaffold, five plaster storeys, hip roofs, bronze finial. All primitives. No .glb.
+- **Procedural keep** — battered stone terraces, loose heaps on the court, timber yard, scaffold, five plaster storeys, hip roofs, bronze finial. All primitives. No .glb.
 - **Lift axis** — you scrub 0–100% (Podium → Frame → Storeys → Tiles → Crown). *Raise again* dumps it back to dirt. Scaffold comes down at the end.
 - **Atmosphere state** — season, day/night, weather, and haze still resolve into one `ResolvedLook`. See [ADR-0007](../../docs/adr/0007-scene-atmosphere-state.md).
 - **Pale glass chrome** — frosted white cards, my own layout. Header chips are season / weather / time / haze — not their toggle row. Left editorial uses **尾根** (ridge), a word I chose. I did not use their product name or their Japanese poster lines.

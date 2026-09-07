@@ -62,12 +62,13 @@ Hypothesis: **stacked hip roofs + scaffold + shader fog + particle rain/snow** i
 
 My keep (original proportions, not a named castle):
 
-- Battered stone podium (three terraces)
-- Timber yard piles while the lift is early
-- A post-and-ledger scaffold that fades at the crown
-- Five square storeys, plaster + timber posts
+- Battered stone podium (four octagonal terraces — my ishigaki *read*, not a named castle)
+- Loose stone heaps on the court while the lift is early
+- Timber yard piles + a post-and-ledger scaffold that fades at the crown
+- Five square storeys, plaster + timber posts + a couple of bay frames
 - Four-sided hip roofs with eave plates and corner upturns
 - A short bronze finial
+- A gravel court ring — mine, not their radar overlay
 
 Growth stages I named: **Podium → Frame → Storeys → Tiles → Crown**.
 
