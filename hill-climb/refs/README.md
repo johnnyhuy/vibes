@@ -6,6 +6,7 @@ Thumbs attached on the 2026-09-08 agent pass (not copied from the source demos' 
 - `glass-brain-thumb.jpg` — [viewsfrom02108](https://x.com/viewsfrom02108/status/2094853472864682360). Light clinical glass sphere + orbiting nodes. Built: `experiments/glass-capability-brain/`. Notes: `docs/reverse-engineering/glass-capability-brain.md`.
 - Japanese tower still lives on [bharatmodi2014](https://x.com/bharatmodi2014/status/2096974996455444494) (video thumb `…/2096972351984295936/…`). Built: `experiments/japanese-tower/`. Notes: `docs/reverse-engineering/japanese-tower-threejs.md`.
 - Audio gadget spin (NEXT, not built) lives on [Xr0ud](https://x.com/Xr0ud/status/2096982574132297791). Notes: `docs/reverse-engineering/audio-gadget-product-spin.md`.
+- `ballance-fayaz-thumb.jpg` — [fayazara](https://x.com/fayazara/status/2096997505397584041) (video thumb `…/2096997028723404800/…`). Elevated stone path, gold marble, ocean of clouds. Built: `experiments/ballance-roll/`. Notes: `docs/reverse-engineering/ballance-roll-threejs.md`. Do not copy their course or HUD.
 
 If a checkout is missing the binaries, the same stills live on those posts.
 

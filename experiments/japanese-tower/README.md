@@ -30,20 +30,21 @@ npm run build
 
 ## Deploy
 
-No Vercel project yet. Hobby quota on `johnnyhuy-dev` is still exhausted until **~2026-09-08 12:55 UTC**. Do not create a project or force a deploy on this PR.
+Project `vibes-japanese-tower` (`prj_T1KL4cJSMuY0Z6oKGnNtv8zVP0Js`) exists with Root Directory `experiments/japanese-tower`. Created `deploy: false`. **0 production** — still waiting for the first production after quota (~**2026-09-08 12:55 UTC**). Do not force a deploy on a hill-climb PR.
 
-If I add one later: dashboard **Root Directory** must be `experiments/japanese-tower`. `vercel.json` only carries `ignoreCommand` — it cannot set Root Directory.
+Dashboard **Root Directory** must stay `experiments/japanese-tower`. `vercel.json` only carries the usual Vite fields plus `ignoreCommand` — it cannot set Root Directory.
 
-`vibes-glass-capability-brain` (`prj_yJbQTsiB138V5jh92cwSWd8rZmij`) already exists with Root `experiments/glass-capability-brain` and was created `deploy: false`. It still has **0 production**. That does not change this folder.
+`vibes-glass-capability-brain` (`prj_yJbQTsiB138V5jh92cwSWd8rZmij`) now has production READY at [vibes-glass-capability-brain.vercel.app](https://vibes-glass-capability-brain.vercel.app/) (SSO off). It shipped on the Ridge Pagoda `main` merge; this folder did not.
 
 ## Related
 
 - [docs/reverse-engineering/japanese-tower-threejs.md](../../docs/reverse-engineering/japanese-tower-threejs.md)
 - [docs/adr/0007-scene-atmosphere-state.md](../../docs/adr/0007-scene-atmosphere-state.md)
-- Next candidate (not built; thumb treated cautiously): [audio gadget product spin](../../docs/reverse-engineering/audio-gadget-product-spin.md)
+- Built next: [Nimbus Path](../ballance-roll/)
+- Still parked: [audio gadget product spin](../../docs/reverse-engineering/audio-gadget-product-spin.md)
 
 ---
 
-**Status**: Local build is the QA until a project exists  
+**Status**: Local build is the QA until the first production  
 **Last updated**: 2026-09-08  
 **Built by**: Johnny Huynh

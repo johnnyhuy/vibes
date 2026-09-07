@@ -43,9 +43,9 @@ npm run build
 
 ## Deploy
 
-Project `vibes-glass-capability-brain` (`prj_yJbQTsiB138V5jh92cwSWd8rZmij`) was created with Root `experiments/glass-capability-brain` and `deploy: false`. SSO off. **0 production**. Hobby quota is exhausted until **~2026-09-08 12:55 UTC**. Do not force a deploy on a hill-climb PR. #4 after quota (explode is already fresh).
+Project `vibes-glass-capability-brain` (`prj_yJbQTsiB138V5jh92cwSWd8rZmij`) has production READY at [vibes-glass-capability-brain.vercel.app](https://vibes-glass-capability-brain.vercel.app/). SSO off. It shipped on the japanese-tower `main` merge (`9328191` / `dpl_3CE9Dd7X7og5MuSLpcGgyxboacgz`) — do not assume steam / scroll / semicircle moved with it. See [the incident](../../docs/incidents/2026-09-08-glass-auto-deploy-on-tower-merge.md).
 
-Dashboard **Root Directory** must stay `experiments/glass-capability-brain`. `vercel.json` cannot set that field.
+Dashboard **Root Directory** must stay `experiments/glass-capability-brain`. `vercel.json` cannot set that field. Do not force another production deploy on a hill-climb PR.
 
 ## Related
 
@@ -54,6 +54,6 @@ Dashboard **Root Directory** must stay `experiments/glass-capability-brain`. `ve
 
 ---
 
-**Status**: Local build is the QA until a project exists  
+**Status**: Production READY; skip post-quota  
 **Last updated**: 2026-09-08  
 **Built by**: Johnny Huynh

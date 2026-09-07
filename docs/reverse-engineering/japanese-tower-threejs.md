@@ -133,7 +133,8 @@ I did **not** copy their toggle labels, their poster Japanese, or their single f
 ## Related / next
 
 - Built: `experiments/japanese-tower/`
-- Next X candidate (not built; thumb treated cautiously): [Audio gadget product spin](./audio-gadget-product-spin.md)
+- Built next: [Rolling marble / ocean of clouds](./ballance-roll-threejs.md)
+- Still parked (not built; thumb treated cautiously): [Audio gadget product spin](./audio-gadget-product-spin.md)
 
 ## Attribution & Ethics
 
