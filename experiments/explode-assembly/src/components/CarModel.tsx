@@ -36,16 +36,17 @@ function shouldIncludeMesh(name: string): boolean {
   
   const lowerName = name.toLowerCase();
   
-  // Explicitly exclude known props/scene objects first
-  // (catches "traffic_light" before "light" keyword matches it to lights system)
+  // Explicitly exclude known props/scene objects that survived GLB stripping
+  // Note: 'object_' removed - after GLB strip, many car parts are named Object_*
   const EXCLUDE_KEYWORDS = [
-    'traffic', 'light_pole', 'pole', 'sign', 'cone', 'barrier',
-    'speaker', 'table', 'chair', 'cactus', 'kayak', 'train',
-    'floor', 'wall', 'ceiling', 'room', 'ground_plane', 'plane',
-    'picnic', 'bench', 'prop', 'decoration', 'fence', 
+    'cylinder012', // traffic light stand (in case strip didn't run)
+    'debris_tires', 'debris_tire', // piled wheels
+    'walldeskse', 'speaker', // studio speakers  
+    'traffic', 'light_pole', 'sign', 'cone', 'barrier',
+    'table', 'chair', 'cactus', 'kayak', 'train',
+    'floor', 'wall', 'ceiling', 'room', 'ground_plane',
+    'picnic', 'bench', 'decoration', 'fence', 
     'tire_stack', 'tire_prop', 'background', 'environment',
-    'light_001', 'light_002', 'light_003', // scene lights
-    'object_', // Generic Blender export names for props
   ];
   
   if (EXCLUDE_KEYWORDS.some(kw => lowerName.includes(kw))) {
@@ -124,11 +125,22 @@ export default function CarModel({ explode, selectedPart, isolated, onSelectPart
             child.userData.pieceId = clone.userData.id;
             
             if (child.material) {
-              const mat = child.material.clone();
-              mat.metalness = Math.min(mat.metalness + 0.2, 0.8);
-              mat.roughness = Math.max(mat.roughness - 0.1, 0.3);
-              mat.envMapIntensity = 1.5;
-              child.material = mat;
+              // Handle both single material and material arrays (multi-material meshes)
+              if (Array.isArray(child.material)) {
+                child.material = child.material.map((mat: any) => {
+                  const cloned = mat.clone();
+                  cloned.metalness = Math.min(cloned.metalness + 0.2, 0.8);
+                  cloned.roughness = Math.max(cloned.roughness - 0.1, 0.3);
+                  cloned.envMapIntensity = 1.5;
+                  return cloned;
+                });
+              } else {
+                const mat = child.material.clone();
+                mat.metalness = Math.min(mat.metalness + 0.2, 0.8);
+                mat.roughness = Math.max(mat.roughness - 0.1, 0.3);
+                mat.envMapIntensity = 1.5;
+                child.material = mat;
+              }
             }
           }
         });
