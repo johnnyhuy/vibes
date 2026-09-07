@@ -43,9 +43,9 @@ npm run build
 
 ## Deploy
 
-No Vercel project yet. Hobby quota is exhausted until **~2026-09-08 12:55 UTC**. Do not create a project or force a deploy on this PR.
+Project `vibes-glass-capability-brain` (`prj_yJbQTsiB138V5jh92cwSWd8rZmij`) exists with **0 deployments**. Hobby quota is exhausted until **~2026-09-08 12:55 UTC**. Do not force a deploy on a hill-climb PR.
 
-If I add one later: dashboard **Root Directory** must be `experiments/glass-capability-brain`. `vercel.json` cannot set that field.
+Dashboard **Root Directory** must stay `experiments/glass-capability-brain`. `vercel.json` cannot set that field.
 
 ## Related
 

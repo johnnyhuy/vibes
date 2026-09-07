@@ -125,7 +125,22 @@ cd experiments/glass-capability-brain
 npm install && npm run dev
 ```
 
-**Live**: TBD — **no Vercel project yet**. Do not create one or deploy until the hobby quota resets (~**2026-09-08 12:55 UTC**).
+**Live**: TBD — project `vibes-glass-capability-brain` (`prj_yJbQTsiB138V5jh92cwSWd8rZmij`) exists with **0 deployments**. Do not deploy until the hobby quota resets (~**2026-09-08 12:55 UTC**).
+
+---
+
+#### [japanese-tower](./experiments/japanese-tower/)
+Procedural Ridge Pagoda. Season, day/night, weather, and haze are one state object that retints lights, fog, materials, and particles. Clean-room take on [@bharatmodi2014](https://x.com/bharatmodi2014/status/2096974996455444494). Branding is mine (`vibes · japanese tower`); I did not copy their mesh or chrome.
+
+**Stack**: React + R3F + drei. No .glb.
+
+**Run it**:
+```bash
+cd experiments/japanese-tower
+npm install && npm run dev
+```
+
+**Live**: TBD — **no Vercel project**. Do not create one or deploy until the hobby quota resets (~**2026-09-08 12:55 UTC**).
 
 ---
 
@@ -141,9 +156,9 @@ Each browser demo has its own Vercel project on this repo (Root Directory set in
 
 > ⚠️ **Hobby quota exhausted** (`api-deployments-free-per-day` = **0 remaining**). Reset **~2026-09-08 12:55 UTC** (~10:55pm AEST). **Do not retry-spam deploys.** See [quota incident](./docs/incidents/2026-09-07-vercel-deploy-quota.md) and [Root Directory checklist](./docs/deployment/vercel-root-directories.md).
 >
-> **Redeploy order after reset** (one each): explode → semicircle → steam-atlas (**after** Root Directory = `experiments/procedural-steam-atlas`) → scroll-product.
+> **Redeploy order after reset** (one each): explode → semicircle → steam-atlas (**after** Root Directory = `experiments/procedural-steam-atlas`) → scroll-product → optionally glass-capability-brain.
 >
-> Production visual QA 2026-09-08 ~12:07–12:29 AEST: explode 0%/80% FAIL, semicircle FAIL, steam-atlas `404 DEPLOYMENT_NOT_FOUND`. Evidence in [docs/visual-qa-2026-09-08-prod.md](./docs/visual-qa-2026-09-08-prod.md). **Do not redeploy on this PR.**
+> Production visual QA 2026-09-08 ~12:07–12:29 AEST: explode 0%/80% FAIL, semicircle FAIL, steam-atlas `404 DEPLOYMENT_NOT_FOUND`. Hill-climb 2026-09-08 ~2:22am AEST: glass PR merged; steam + scroll still no production; quota still 0. Evidence in [docs/visual-qa-2026-09-08-prod.md](./docs/visual-qa-2026-09-08-prod.md). **Do not redeploy on this PR. Do not create a japanese-tower Vercel project.**
 
 | App | Vercel project | Root Directory | Production URL | Status |
 | --- | --- | --- | --- | --- |
@@ -155,7 +170,8 @@ Each browser demo has its own Vercel project on this repo (Root Directory set in
 | blender-semicircle-viewer | `vibes-blender-semicircle` (`prj_PLhnoCVRKmpHc8SxyLRmcp3MFZMC`) | `experiments/blender-semicircle-viewer` | [vibes-blender-semicircle.vercel.app](https://vibes-blender-semicircle.vercel.app) | ⚠️ QA FAIL 2026-09-08: cropped mega-arc, nearly black. **#2** after reset: one `main` redeploy |
 | procedural-steam-atlas | `vibes-steam-atlas` (`prj_7D08PT8sdUjhigCEuz83oltZrDMv`) | **`experiments/procedural-steam-atlas` (set this in the dashboard before any deploy)** | `404 DEPLOYMENT_NOT_FOUND` | ⚠️ QA FAIL 2026-09-08. **#3** after reset: set Root, then one `main` production deploy |
 | scroll-product-showcase | `vibes-scroll-product` (`prj_XLBiIlbjweejp9himT53bolPEMUW`) | `experiments/scroll-product-showcase` | none | Linked, **0 deployments**. Build ✅ locally. **#4** first production |
-| glass-capability-brain | — | `experiments/glass-capability-brain` (when a project exists) | none | **No Vercel project.** Local build only. Do not deploy / do not spam Vercel. |
+| glass-capability-brain | `vibes-glass-capability-brain` (`prj_yJbQTsiB138V5jh92cwSWd8rZmij`) | `experiments/glass-capability-brain` | none | Linked, **0 deployments**. Optional **#5** after quota. Do not spam. |
+| japanese-tower | — | `experiments/japanese-tower` (when a project exists) | none | **No Vercel project.** Local build only. Do not create one while quota is 0. |
 
 PR previews show up as Vercel bot comments on each pull request (when quota available).
 

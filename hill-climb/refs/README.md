@@ -4,6 +4,8 @@ Thumbs attached on the 2026-09-08 agent pass (not copied from the source demos' 
 
 - `himanshu-glass-bottle-thumb.jpg` — [himanshubuildss](https://x.com/himanshubuildss/status/2096243989439713677). Horizontal dark glass, lime type through the bottle, “scroll — it rolls.” Target for `experiments/scroll-product-showcase`. Clean-room: match the *read*, not TEPHRA/CALDERA.
 - `glass-brain-thumb.jpg` — [viewsfrom02108](https://x.com/viewsfrom02108/status/2094853472864682360). Light clinical glass sphere + orbiting nodes. Built: `experiments/glass-capability-brain/`. Notes: `docs/reverse-engineering/glass-capability-brain.md`.
+- Japanese tower still lives on [bharatmodi2014](https://x.com/bharatmodi2014/status/2096974996455444494) (video thumb `…/2096972351984295936/…`). Built: `experiments/japanese-tower/`. Notes: `docs/reverse-engineering/japanese-tower-threejs.md`.
+- Audio gadget spin (NEXT, not built) lives on [Xr0ud](https://x.com/Xr0ud/status/2096982574132297791). Notes: `docs/reverse-engineering/audio-gadget-product-spin.md`.
 
 If a checkout is missing the binaries, the same stills live on those posts.
 

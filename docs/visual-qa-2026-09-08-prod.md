@@ -92,6 +92,26 @@ One each. Stop.
 
 ---
 
+## Hill-climb note — 2026-09-08 ~2:22am AEST
+
+I am not redeploying. Quota is still 0 until ~**2026-09-08 12:55 UTC**.
+
+Verified just now (read-only Vercel + git):
+
+- `main` is `de25d60` — **glass-capability-brain (#17) is merged**
+- No open PRs
+- `vibes-explode` latest production deploy is READY — may finally be on current `main`; still needs a human framing pass after quota if the 12:07 AEST stills were stale
+- `vibes-blender-semicircle` still needs the bbox-framing production QA
+- `vibes-steam-atlas` `live: false`, last deploy CANCELED, production alias still no good HTML (`DEPLOYMENT_NOT_FOUND` class)
+- `vibes-scroll-product` `live: false`, last production-targeted deploy CANCELED — still no good production
+- `vibes-glass-capability-brain` exists (`prj_yJbQTsiB138V5jh92cwSWd8rZmij`) with **0 deployments** — optional #5 after the four above
+- **japanese-tower** is local-only on this hill-climb. I am **not** creating a Vercel project
+
+Redeploy order after reset is unchanged: explode → semicircle → steam-atlas (Root **must** be `experiments/procedural-steam-atlas`) → scroll-product → optionally glass.
+
+---
+
 **Captured**: 2026-09-08 ~12:07–12:29 AEST  
+**Hill-climb addendum**: 2026-09-08 ~2:22am AEST  
 **Author**: Johnny Huynh  
 **Action**: Wait for quota. Then the four deploys above. No more.

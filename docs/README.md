@@ -14,6 +14,7 @@ Structured decisions about the monorepo's technical architecture:
 - [ADR-0004: Procedural Geometry Over Asset Loading for Mechanical Demos](./adr/0004-procedural-geometry-over-assets.md)
 - [ADR-0005: Scroll-Driven Product Hero Pattern](./adr/0005-scroll-driven-product-hero.md) — Amended 2026-09-08: lathe bottle + native window scroll
 - [ADR-0006: Glass Capability Map](./adr/0006-glass-capability-map.md) — Light clinical stage + live pixel-QA node
+- [ADR-0007: Season / Weather as First-Class Scene State](./adr/0007-scene-atmosphere-state.md) — Ridge Pagoda atmosphere uniforms
 
 ### Reverse Engineering
 
@@ -25,6 +26,8 @@ Clean-room notes from studying public projects:
 - [Blender MCP → Product Keyboard Workflow](./reverse-engineering/blender-mcp-product-keyboard.md) — Offline rendering pipeline (scripts → render → web), product photography techniques
 - [WebGL Scroll Product Visualisation](./reverse-engineering/webgl-scroll-product.md) — Scroll-driven 3D (glass bottle refraction, photoreal materials, R3F patterns)
 - [Glass Capability Brain](./reverse-engineering/glass-capability-brain.md) — Built: orbiting capability nodes + live canvas pixel QA (`experiments/glass-capability-brain/`)
+- [Japanese Tower / Seasonal Atmosphere](./reverse-engineering/japanese-tower-threejs.md) — Built: procedural pagoda + season / day / weather / haze (`experiments/japanese-tower/`)
+- [Audio Gadget Product Spin](./reverse-engineering/audio-gadget-product-spin.md) — NEXT candidate (not built): Claude + Three.js headphone/speaker marketing spin
 - [NeuralKinetics Video-Shader Hero Pattern](./reverse-engineering/neuralkinetics-video-shader-hero.md) — Poster-first video/shader pipeline, organic motion, reduced-motion handling
 - [Procedural Runtime Geometry Pattern](./reverse-engineering/procedural-runtime-geometry.md) — Steam Atlas mechanical assembly, runtime CSG, parametric parts
 - [Visual Quality Bar](./visual-quality-bar.md) — Cinematic product demo aesthetic (dark UI, frosted glass, studio lighting)
@@ -48,7 +51,7 @@ Things that went sideways and what I learnt:
 ### Visual QA
 
 - [2026-09-07: Hill-Climb Visual QA Loop](./visual-qa-2026-09-07.md) — Explode mesh filter hardening, earth/v8 confirmation
-- [2026-09-08: Stale production visual QA](./visual-qa-2026-09-08-prod.md) — explode / semicircle / steam-atlas all FAIL; do not redeploy until quota reset
+- [2026-09-08: Stale production visual QA](./visual-qa-2026-09-08-prod.md) — explode / semicircle / steam-atlas all FAIL; ~2:22am AEST hill-climb note (glass merged, still waiting on quota)
 
 ## Writing Style
 
