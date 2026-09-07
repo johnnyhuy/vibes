@@ -19,7 +19,7 @@ cd experiments/procedural-steam-atlas
 npm install && npm run dev
 ```
 
-**Live**: TBD (pending Vercel setup)
+**Live**: TBD — Vercel project `vibes-steam-atlas` exists; Root Directory must be `experiments/procedural-steam-atlas`. First deploy was blocked by the hobby quota (see incident).
 
 ---
 
@@ -87,13 +87,15 @@ npm install && npm run dev
 Four parallel approaches: **web-3d**, **blender** (MCP vs computer-use), **cad** (CadQuery), **mesh-gen** (docs + stubs).
 
 #### [blender-semicircle-viewer](./experiments/blender-semicircle-viewer/)
-Semicircular array of 51 laptop-like objects — demonstrates Blender MCP → Three.js workflow. Inspired by [Legendaryy's Blender MCP demo](https://x.com/Legendaryy/status/2096510965789422001).
+Semicircular array of 51 laptop-like objects — demonstrates Blender MCP → Three.js workflow. Inspired by [Legendaryy's Blender MCP demo](https://x.com/Legendaryy/status/2096510965789422001). Camera is framed to the arc bounds so the full 180° reads as a visible semicircle (not a cropped mega-arc).
 
 **Run it**:
 ```bash
 cd experiments/blender-semicircle-viewer
 npm install && npm run dev
 ```
+
+**Live**: [vibes-blender-semicircle.vercel.app](https://vibes-blender-semicircle.vercel.app)
 
 ---
 
@@ -108,6 +110,8 @@ cd experiments/scroll-product-showcase
 npm install && npm run dev
 ```
 
+**Live**: TBD — Vercel project `vibes-scroll-product` (`prj_XLBiIlbjweejp9himT53bolPEMUW`) is created with Root Directory `experiments/scroll-product-showcase`. First deploy blocked by hobby quota.
+
 ---
 
 ### Image, texture & CAD
@@ -120,18 +124,18 @@ npm install && npm run dev
 
 Each browser demo has its own Vercel project on this repo (Root Directory set in the dashboard). All demos are live on `main`.
 
-> ⚠️ **2026-09-07 Deployment Quota Incident**: Vercel free tier hit 100/day deployment limit. Some URLs serve stale commits until quota resets (~24h). See [incident doc](./docs/incidents/2026-09-07-vercel-deploy-quota.md) for details.
+> ⚠️ **Hobby quota exhausted** (`api-deployments-free-per-day` = **0 remaining**). Reset **~2026-09-08 12:55 UTC** (~10:55pm AEST). **Do not retry-spam deploys.** See [incident](./docs/incidents/2026-09-07-vercel-deploy-quota.md).
 
 | App | Vercel project | Root Directory | Production URL | Status |
 | --- | --- | --- | --- | --- |
 | web-3d | `vibes` | `experiments/ai-3d-lanes/web-3d` | TBD | - |
-| explode-assembly | `vibes-explode` | `experiments/explode-assembly` | [vibes-explode.vercel.app](https://vibes-explode.vercel.app) | ⚠️ Serves commit `6923cd2` (pre-#6) |
+| explode-assembly | `vibes-explode` | `experiments/explode-assembly` | [vibes-explode.vercel.app](https://vibes-explode.vercel.app) | ⚠️ Stale — HTML last-modified ~2026-09-07 08:58 UTC, grey studio UI (not #12 black/frosted gallery). One redeploy after ~12:55 UTC 8 Sep |
 | earth-timeline | `vibes-earth` | `experiments/earth-timeline` | [vibes-earth.vercel.app](https://vibes-earth.vercel.app) | ✅ |
 | v8-cutaway | `vibes-v8` | `experiments/v8-cutaway` | [vibes-v8.vercel.app](https://vibes-v8.vercel.app) | ✅ |
 | web-physics | `vibes-physics` | `experiments/web-physics` | [vibes-physics.vercel.app](https://vibes-physics.vercel.app) | ✅ |
-| blender-semicircle-viewer | `vibes-blender-semicircle` | `experiments/blender-semicircle-viewer` | [vibes-blender-semicircle.vercel.app](https://vibes-blender-semicircle.vercel.app) | ✅ |
-| procedural-steam-atlas | `vibes-steam-atlas` | `experiments/procedural-steam-atlas` | ⚠️ Zero deployments (quota hit) | Need Root Dir + redeploy |
-| scroll-product-showcase | `vibes-scroll-product` (to create) | `experiments/scroll-product-showcase` | TBD (awaiting project creation) | Build ✅ locally |
+| blender-semicircle-viewer | `vibes-blender-semicircle` | `experiments/blender-semicircle-viewer` | [vibes-blender-semicircle.vercel.app](https://vibes-blender-semicircle.vercel.app) | Linked; prod still pre-`5941e259` framing. One redeploy after reset |
+| procedural-steam-atlas | `vibes-steam-atlas` | `experiments/procedural-steam-atlas` | ⚠️ Linked, **0 READY** deploys | Keep Root Dir. One first deploy after reset |
+| scroll-product-showcase | `vibes-scroll-product` (`prj_XLBiIlbjweejp9himT53bolPEMUW`) | `experiments/scroll-product-showcase` | TBD — linked, undeployed (quota) | Build ✅ locally. One first deploy after reset |
 
 PR previews show up as Vercel bot comments on each pull request (when quota available).
 

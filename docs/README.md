@@ -36,6 +36,7 @@ Things that went sideways and what I learnt:
 - [2026-09-07: Vercel SSO Blocks Preview QA](./incidents/vercel-sso-blocks-preview-qa.md)
 - [2026-09-07: Vercel Deployment Quota Exhausted](./incidents/2026-09-07-vercel-deploy-quota.md) — Free tier 100/day limit hit, production URLs serve stale commits
 - [2026-09-07: Attach Preview Name-Crash](./incidents/2026-09-07-attach-preview-name-crash.md) — Material `??` defaults + unsafe `node.name` log; code landed via #12
+- [2026-09-07: Semicircle Viewer Cropped Mega-Arc](./incidents/2026-09-07-semicircle-cropped-mega-arc.md) — Hardcoded camera clipped the 51-laptop 180° array; now bbox-framed
 
 ### Visual QA
 

@@ -2,9 +2,9 @@
 
 **Reference**: [Gilbert93533589's Work Louder × Figma keyboard](https://x.com/Gilbert93533589/status/2096920288319435154)  
 **Date observed**: 2026-09-07  
-**Status**: Documented (not yet implemented)
+**Status**: Clean-room notes complete (no experiment yet — and I am not building a Work Louder / Figma clone)
 
-This is my clean-room analysis of using Blender MCP to create product renders for web display — specifically the workflow for mechanical keyboard visualisations.
+This is my first-person, clean-room analysis of the *offline render → web* pattern I saw in Gilbert's public post. I studied the visible workflow only: Blender MCP writes a script, Blender renders a product still, a web page shows the image. No proprietary keycap CAD, no Work Louder assets, no Figma plugin code.
 
 ## The Pattern
 
@@ -286,7 +286,7 @@ If I build this in `vibes`:
 
 ---
 
-**Status**: Documented, not yet implemented  
-**Priority**: Low (scroll-product-showcase is higher value)  
+**Status**: Notes complete from the #10 docs pass. No keyboard experiment until someone asks — scroll-product and semicircle framing come first.  
+**Priority**: Low  
 **Last updated**: 2026-09-07  
-**Next**: Wait for user request or spare capacity
+**Next**: Optional `experiments/blender-keyboard-render/` with generic procedural keycaps only (never Work Louder / Figma assets)

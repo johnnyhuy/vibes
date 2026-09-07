@@ -23,6 +23,13 @@ npm run dev
 
 Open http://localhost:5173 → drag to orbit, scroll to zoom, use controls to explode/isolate.
 
+## Deploy
+
+Vercel project: **`vibes-steam-atlas`**  
+Root Directory: **`experiments/procedural-steam-atlas`** (required — do not use the repo root)
+
+First production deploy was blocked by the 2026-09-07 hobby quota. After reset, trigger one deploy from the dashboard. Don't spam retries.
+
 ## Why I Made This
 
 I wanted to understand **procedural mechanical modeling** — the pattern where complex objects are built from geometric primitives at runtime instead of loading pre-made meshes.

@@ -82,7 +82,8 @@ interface Piece {
 
 const ZERO = new THREE.Vector3();
 
-function polishMaterial(source: THREE.Material): THREE.Material {
+function polishMaterial(source: THREE.Material | null | undefined): THREE.Material | null | undefined {
+  if (!source) return source;
   const mat = source.clone() as THREE.MeshStandardMaterial;
   mat.transparent = false;
   mat.opacity = 1;
@@ -180,13 +181,31 @@ export default function CarModel({ explode, selectedPart, isolated, onSelectPart
         const meshName = mesh?.name ?? '';
         
         // CRITICAL: attach() preserves world matrix while reparenting
-        explodeRoot.attach(mesh);
+        try {
+          explodeRoot.attach(mesh);
+        } catch (err) {
+          console.error(`Failed to attach mesh "${meshName}":`, err);
+          continue;
+        }
+
+        if (!mesh.position) {
+          console.warn(`Mesh "${meshName}" has no position after attach, skipping`);
+          continue;
+        }
         
         // Now mesh.position is local to explodeRoot, with world transform preserved
         const home = mesh.position.clone();
         
-        const bounds = new THREE.Box3().setFromObject(mesh);
-        const center = bounds.getCenter(new THREE.Vector3());
+        let bounds: THREE.Box3;
+        let center: THREE.Vector3;
+        try {
+          bounds = new THREE.Box3().setFromObject(mesh);
+          center = bounds.getCenter(new THREE.Vector3());
+        } catch (err) {
+          console.warn(`Failed to compute bounds for "${meshName}", using fallback`, err);
+          bounds = new THREE.Box3(new THREE.Vector3(-1, -1, -1), new THREE.Vector3(1, 1, 1));
+          center = new THREE.Vector3();
+        }
         const system = detectSystem(meshName);
         
         // Force materials opaque and enhance
@@ -195,9 +214,9 @@ export default function CarModel({ explode, selectedPart, isolated, onSelectPart
             if (!child?.isMesh || !child?.material) return;
             
             if (Array.isArray(child.material)) {
-              child.material = child.material.map((mat: any) => polishMaterial(mat));
+              child.material = child.material.map((mat: any) => polishMaterial(mat) ?? mat);
             } else {
-              child.material = polishMaterial(child.material);
+              child.material = polishMaterial(child.material) ?? child.material;
             }
             
             child.castShadow = true;
@@ -225,7 +244,7 @@ export default function CarModel({ explode, selectedPart, isolated, onSelectPart
       
       console.log(`Extracted ${pieces.length} pieces for explosion`);
       console.log('Sample pieces:', pieces.slice(0, 5).map(p => ({
-        name: p.node.name,
+        name: p.node?.name ?? 'unnamed',
         system: p.system,
         home: p.home.toArray().map(v => v.toFixed(2)),
       })));

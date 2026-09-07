@@ -1,18 +1,18 @@
 # Incident: Vercel Deployment Quota Exhausted
 
 **Date**: 2026-09-07  
-**Time**: ~21:25 AEST (11:25 UTC)  
-**Duration**: ~24 hours (until quota resets)  
+**Time**: quota hit earlier in the day; **0 remaining** as of 2026-09-07 ~13:20 UTC  
+**Reset**: **~2026-09-08 12:55 UTC** (~10:55pm AEST)  
 **Severity**: Medium (blocks production deploys, not runtime)  
-**Status**: Waiting for quota reset
+**Status**: Waiting for quota reset — do not retry-spam deploys
 
 ---
 
 ## Summary
 
-Vercel hobby team `johnnyhuy-dev` hit the free tier deployment quota limit (`api-deployments-free-per-day`: 100/100 deployments). This blocks all new production and preview deployments until the quota resets (~24 hours from limit trigger).
+Vercel hobby team `johnnyhuy-dev` hit the free tier deployment quota (`api-deployments-free-per-day` = **0 remaining**). This blocks all new production and preview deployments until **~2026-09-08 12:55 UTC** (~10:55pm AEST).
 
-**Impact**: Recent PR merges (#6, #8) did not get production deployments. Existing production URLs serve stale commits.
+**Impact**: Recent PR merges (#6, #8, #10, #12, #13) did not get fresh production deployments. Existing production URLs serve stale HTML.
 
 ---
 
@@ -39,36 +39,35 @@ Vercel hobby team `johnnyhuy-dev` hit the free tier deployment quota limit (`api
 
 ### 1. `vibes-explode` (vibes-explode.vercel.app)
 
-**Expected**: PR #6 attach() rewrite (commit `34023708`) should be live  
-**Actual**: Production serves older whitelist commit `6923cd2`  
-**Root cause**: Main branch deploy post-merge failed due to quota
+**Expected**: Ordered-gallery explode (#12) + attach rewrite (#6) live  
+**Actual**: Production HTML last-modified **~2026-09-07 08:58 UTC** — grey studio UI, not the #12 black / frosted gallery  
+**Root cause**: Main-branch deploys after that timestamp failed or never ran because the quota was already gone
 
 **Impact**: 
-- Users see pre-#6 explode demo (older explosion algorithm)
-- QA of attach() rewrite not possible on production URL
-- SSO correctly disabled (that worked before quota hit)
+- Users see the old grey-studio explode, not the ordered black/frosted gallery
+- QA of attach() / gallery work is local-only until one redeploy after reset
 
 ### 2. `vibes-steam-atlas` (no live URL yet)
 
 **Expected**: First production deploy after PR #8 merge  
-**Actual**: Zero READY deployments (project exists but empty)  
-**Root cause**: `create_git_project` MCP call returned `402 payment_required`
+**Actual**: Zero READY deployments (or stale empty project); production HTML if any is from the same ~08:58 UTC window  
+**Root cause**: First deploy returned `402` (`api-deployments-free-per-day`)
 
 **Impact**:
 - No live URL exists yet
-- Root Directory not set (was going to be configured during first deploy)
+- Root Directory **must** stay `experiments/procedural-steam-atlas` (do not point the project at the repo root)
 - Experiment merged but not publicly visible
 
-### 3. `vibes-scroll-product` (PR #10, not yet merged)
+### 3. `vibes-scroll-product` (`prj_XLBiIlbjweejp9himT53bolPEMUW`)
 
-**Expected**: Preview deployment comments on PR  
-**Actual**: All Vercel preview checks show `FAILURE` with rate limit URL  
-**Root cause**: Preview builds blocked by quota
+**Expected**: Production + preview deploys after PR #10 merge  
+**Actual**: Project created with Root Directory `experiments/scroll-product-showcase`; first deploy quota-blocked  
+**Root cause**: Preview/production builds blocked by quota
 
 **Impact**:
-- Can't preview scroll-product demo before merge
-- Local testing only (`npm run dev` works fine)
-- Build itself is green (tested locally)
+- Can't preview or ship the live URL yet
+- Local testing only (`npm run build` is green)
+- Do **not** retry-spam deploys until the hobby quota resets
 
 ### 4. Other Projects (vibes, vibes-earth, vibes-v8, vibes-physics, vibes-blender-semicircle)
 
@@ -133,7 +132,7 @@ npm run build
 1. **Wait ~24h** for quota to reset, then:
    - Trigger manual redeploy for `vibes-explode` (via Vercel dashboard "Redeploy")
    - Set Root Directory for `vibes-steam-atlas` → auto-deploys
-   - Merge PR #10 → auto-deploys `vibes-scroll-product` (if created)
+   - One deploy of `vibes-scroll-product` (project already created; #10 is on `main`)
 
 2. **Run `vercel dev` locally** to simulate production environment:
    ```bash
@@ -151,32 +150,16 @@ npm run build
 
 ## Recovery Steps
 
-### When Quota Resets (~24h)
+### When Quota Resets (~2026-09-08 12:55 UTC / ~10:55pm AEST)
+
+Trigger **one** deploy per project. Do not retry-spam.
 
 **Priority 1: Fix Production URLs**
 
-1. **Redeploy `vibes-explode`**:
-   - Vercel dashboard → `vibes-explode` project
-   - Deployments → Latest (commit `34023708`)
-   - Click "Redeploy"
-   - Verify attach() rewrite is live
-
-2. **Configure `vibes-steam-atlas`**:
-   - Vercel dashboard → `vibes-steam-atlas` project
-   - Settings → Root Directory → `experiments/procedural-steam-atlas`
-   - Save (triggers automatic deploy from main)
-   - Verify live URL appears
-
-**Priority 2: Merge PR #10**
-
-3. **Merge scroll-product PR**:
-   - Locally verified build passes ✓
-   - Documentation complete ✓
-   - Wait for quota reset
-   - Merge to main
-   - Create `vibes-scroll-product` project manually
-   - Set Root Directory → `experiments/scroll-product-showcase`
-   - Auto-deploys on next push
+1. **Redeploy `vibes-explode` once** — should pick up #6 + #12 (ordered gallery), replacing the ~08:58 UTC HTML
+2. **`vibes-steam-atlas`**: confirm Root Directory is `experiments/procedural-steam-atlas`, then one deploy from `main`
+3. **`vibes-scroll-product`** (`prj_XLBiIlbjweejp9himT53bolPEMUW`): project already exists with Root Directory `experiments/scroll-product-showcase` — one first production deploy (PR #10 is already on `main`)
+4. **`vibes-blender-semicircle`**: one deploy after #15 merges so bbox framing is live
 
 ---
 
@@ -248,8 +231,9 @@ npm run build
 ## Status Updates
 
 **2026-09-07 21:31 AEST** — Incident documented, recovery steps planned  
-**2026-09-08 ~21:25 AEST** (estimated) — Quota resets, deployments resume  
-**TBD** — Post-recovery verification (all production URLs updated)
+**2026-09-07 ~23:20 AEST** — PR #10 merged; `vibes-scroll-product` created; quota still **0 remaining**  
+**2026-09-08 ~12:55 UTC / ~10:55pm AEST** (estimated reset) — One deploy each for explode, steam-atlas, scroll-product  
+**TBD** — Post-recovery verification (production HTML newer than 08:58 UTC)
 
 ---
 

@@ -423,9 +423,9 @@ const content = [
 ### Goals
 
 1. ✅ **Document the pattern** (this file)
-2. 🚧 **Minimal scroll product demo** (extend `web-3d` or new experiment)
+2. ✅ **Minimal scroll product demo** (`experiments/scroll-product-showcase/`)
    - Generic product (not glass bottle — avoid "me too" replication)
-   - Procedural geometry (box, cylinder, torus — interesting enough to showcase)
+   - Procedural geometry (torus knot + sphere + cylinder)
    - Dark cinematic UI
    - Scroll-driven rotation + camera
 3. 🚧 **Reusable component library** (optional)
@@ -465,7 +465,7 @@ const content = [
 - [x] Add scroll product demo to `experiments/` → [scroll-product-showcase](../../experiments/scroll-product-showcase/)
 - [x] Test with procedural geometry (torus knot + sphere/cylinder composition)
 - [x] Dark cinematic UI with scroll hints
-- [x] Vercel deployment ready
+- [x] Vercel project `vibes-scroll-product` (`prj_XLBiIlbjweejp9himT53bolPEMUW`) created — Root Directory `experiments/scroll-product-showcase` (first deploy blocked by hobby quota)
 
 ---
 
@@ -481,12 +481,13 @@ const content = [
 
 ## Related Files
 
-- `experiments/ai-3d-lanes/web-3d/` — Could extend with scroll controls
-- `docs/visual-quality-bar.md` (to be created) — Reference for UI aesthetic
-- `docs/adrs/ADR-0002-scroll-driven-3d.md` (optional) — Pattern decision doc
+- `experiments/scroll-product-showcase/` — Clean-room rebuild (procedural torus knot + glass, not a bottle)
+- `docs/adr/0005-scroll-driven-product-hero.md` — Why scroll-as-controller + R3F
+- `docs/visual-quality-bar.md` — Cinematic product-demo aesthetic
+- `docs/incidents/2026-09-07-vercel-deploy-quota.md` — `vibes-scroll-product` first deploy blocked until ~2026-09-08 12:55 UTC
 
 ---
 
 **Last updated**: 2026-09-07  
-**Status**: Documentation complete, implementation pending  
-**Next**: Build minimal scroll product showcase with procedural geometry
+**Status**: Documentation + experiment complete (`scroll-product-showcase`)  
+**Next**: One deploy of `vibes-scroll-product` after quota reset (~2026-09-08 12:55 UTC / ~10:55pm AEST). Do not retry-spam.
