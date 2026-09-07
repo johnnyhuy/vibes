@@ -15,14 +15,14 @@ const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x0a0a0a);
 scene.fog = new THREE.Fog(0x0a0a0a, 20, 50);
 
-// Camera
+// Camera — wider FOV + farther back so the full 51-laptop arc is in frame
 const camera = new THREE.PerspectiveCamera(
-  50,
+  60,
   window.innerWidth / window.innerHeight,
   0.1,
   1000
 );
-camera.position.set(0, -SEMICIRCLE_RADIUS * 1.5, SEMICIRCLE_RADIUS * 0.8);
+camera.position.set(0, -SEMICIRCLE_RADIUS * 1.8, SEMICIRCLE_RADIUS * 1.2);
 camera.lookAt(0, 0, 0);
 
 // Renderer
@@ -160,7 +160,7 @@ btnRotate.addEventListener('click', () => {
 });
 
 btnReset.addEventListener('click', () => {
-  camera.position.set(0, -SEMICIRCLE_RADIUS * 1.5, SEMICIRCLE_RADIUS * 0.8);
+  camera.position.set(0, -SEMICIRCLE_RADIUS * 1.8, SEMICIRCLE_RADIUS * 1.2);
   camera.lookAt(0, 0, 0);
   controls.reset();
   controls.autoRotate = true;
