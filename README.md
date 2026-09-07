@@ -129,13 +129,13 @@ Each browser demo has its own Vercel project on this repo (Root Directory set in
 | App | Vercel project | Root Directory | Production URL | Status |
 | --- | --- | --- | --- | --- |
 | web-3d | `vibes` | `experiments/ai-3d-lanes/web-3d` | TBD | - |
-| explode-assembly | `vibes-explode` | `experiments/explode-assembly` | [vibes-explode.vercel.app](https://vibes-explode.vercel.app) | ⚠️ Production HTML still from ~2026-09-07 08:58 UTC (pre-#6/#12). Redeploy once after reset |
+| explode-assembly | `vibes-explode` | `experiments/explode-assembly` | [vibes-explode.vercel.app](https://vibes-explode.vercel.app) | ⚠️ Stale — HTML last-modified ~2026-09-07 08:58 UTC, grey studio UI (not #12 black/frosted gallery). One redeploy after ~12:55 UTC 8 Sep |
 | earth-timeline | `vibes-earth` | `experiments/earth-timeline` | [vibes-earth.vercel.app](https://vibes-earth.vercel.app) | ✅ |
 | v8-cutaway | `vibes-v8` | `experiments/v8-cutaway` | [vibes-v8.vercel.app](https://vibes-v8.vercel.app) | ✅ |
 | web-physics | `vibes-physics` | `experiments/web-physics` | [vibes-physics.vercel.app](https://vibes-physics.vercel.app) | ✅ |
-| blender-semicircle-viewer | `vibes-blender-semicircle` | `experiments/blender-semicircle-viewer` | [vibes-blender-semicircle.vercel.app](https://vibes-blender-semicircle.vercel.app) | Live; production still the older camera seat until one post-reset deploy |
-| procedural-steam-atlas | `vibes-steam-atlas` | `experiments/procedural-steam-atlas` | ⚠️ No READY deploy / stale | Keep Root Dir. One deploy after reset |
-| scroll-product-showcase | `vibes-scroll-product` (`prj_XLBiIlbjweejp9himT53bolPEMUW`) | `experiments/scroll-product-showcase` | TBD — project exists, first deploy blocked | Build ✅ locally. One deploy after reset |
+| blender-semicircle-viewer | `vibes-blender-semicircle` | `experiments/blender-semicircle-viewer` | [vibes-blender-semicircle.vercel.app](https://vibes-blender-semicircle.vercel.app) | Linked; prod still pre-`5941e259` framing. One redeploy after reset |
+| procedural-steam-atlas | `vibes-steam-atlas` | `experiments/procedural-steam-atlas` | ⚠️ Linked, **0 READY** deploys | Keep Root Dir. One first deploy after reset |
+| scroll-product-showcase | `vibes-scroll-product` (`prj_XLBiIlbjweejp9himT53bolPEMUW`) | `experiments/scroll-product-showcase` | TBD — linked, undeployed (quota) | Build ✅ locally. One first deploy after reset |
 
 PR previews show up as Vercel bot comments on each pull request (when quota available).
 

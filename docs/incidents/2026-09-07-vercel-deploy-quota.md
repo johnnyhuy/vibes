@@ -40,11 +40,11 @@ Vercel hobby team `johnnyhuy-dev` hit the free tier deployment quota (`api-deplo
 ### 1. `vibes-explode` (vibes-explode.vercel.app)
 
 **Expected**: Ordered-gallery explode (#12) + attach rewrite (#6) live  
-**Actual**: Production HTML is still from **~2026-09-07 08:58 UTC** (pre-#6 / pre-#12)  
+**Actual**: Production HTML last-modified **~2026-09-07 08:58 UTC** — grey studio UI, not the #12 black / frosted gallery  
 **Root cause**: Main-branch deploys after that timestamp failed or never ran because the quota was already gone
 
 **Impact**: 
-- Users see the old explode demo, not the ordered gallery
+- Users see the old grey-studio explode, not the ordered black/frosted gallery
 - QA of attach() / gallery work is local-only until one redeploy after reset
 
 ### 2. `vibes-steam-atlas` (no live URL yet)
