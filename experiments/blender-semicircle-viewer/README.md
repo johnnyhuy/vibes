@@ -10,10 +10,11 @@ Interactive Three.js viewer displaying 51 procedural laptop-like objects arrange
 
 - **51 laptop-like objects** — Procedurally generated (not real MacBooks)
 - **Semicircle layout** — 180° arc with outward-facing rotation
+- **Bounds-fit camera** — Frames the laptop group so the full arc stays on screen (not a cropped mega-arc)
 - **Dark cinematic UI** — Matching the vibes quality bar
 - **Studio lighting** — Three-point setup (key, fill, rim)
 - **Interactive camera** — OrbitControls with auto-rotate
-- **Responsive** — Works on desktop and mobile
+- **Responsive** — Re-frames on resize; works on desktop and mobile
 
 ## Run Locally
 
@@ -146,6 +147,7 @@ This viewer demonstrates the **end result** of an agent-driven 3D workflow:
 - [ ] Add click interactions (select individual laptops)
 - [ ] Animate laptop screen content (fake display textures)
 - [ ] Add particle effects (subtle dust/light rays)
+- [x] Frame the full 51-laptop arc from world bounds (not a hardcoded origin seat)
 - [ ] Post-processing (bloom, depth of field)
 
 ## Notes

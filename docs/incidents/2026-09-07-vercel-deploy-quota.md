@@ -56,19 +56,19 @@ Vercel hobby team `johnnyhuy-dev` hit the free tier deployment quota limit (`api
 
 **Impact**:
 - No live URL exists yet
-- Root Directory not set (was going to be configured during first deploy)
+- Root Directory **must** stay `experiments/procedural-steam-atlas` (do not point the project at the repo root)
 - Experiment merged but not publicly visible
 
-### 3. `vibes-scroll-product` (PR #10, not yet merged)
+### 3. `vibes-scroll-product` (`prj_XLBiIlbjweejp9himT53bolPEMUW`)
 
-**Expected**: Preview deployment comments on PR  
-**Actual**: All Vercel preview checks show `FAILURE` with rate limit URL  
-**Root cause**: Preview builds blocked by quota
+**Expected**: Production + preview deploys after PR #10 merge  
+**Actual**: Project created with Root Directory `experiments/scroll-product-showcase`; first deploy quota-blocked  
+**Root cause**: Preview/production builds blocked by quota
 
 **Impact**:
-- Can't preview scroll-product demo before merge
-- Local testing only (`npm run dev` works fine)
-- Build itself is green (tested locally)
+- Can't preview or ship the live URL yet
+- Local testing only (`npm run build` is green)
+- Do **not** retry-spam deploys until the hobby quota resets
 
 ### 4. Other Projects (vibes, vibes-earth, vibes-v8, vibes-physics, vibes-blender-semicircle)
 

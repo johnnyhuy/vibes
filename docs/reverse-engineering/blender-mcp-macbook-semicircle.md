@@ -180,6 +180,8 @@ animate();
 - Optional: Click individual laptops for interaction
 - Deploy-ready with `vercel.json`
 
+**Framing lesson** (hit this on the first viewer): a hardcoded camera looking at the origin clips a radius-12, 51-laptop arc into a mega-crop. Fit the camera to the group's world bounds and look at the bbox centre. See `docs/incidents/2026-09-07-semicircle-cropped-mega-arc.md`.
+
 ---
 
 ## Workflow Advantages (MCP vs Computer Use)
@@ -207,10 +209,11 @@ animate();
    - README with setup instructions
    - Script to generate semicircle laptop array
    - MCP tool wrappers (already started in `mcp_tools.py`)
-3. 🚧 **Web viewer** (`experiments/blender-mcp-viewer/` or extend `web-3d`)
-   - Load procedural semicircle GLB
+3. ✅ **Web viewer** (`experiments/blender-semicircle-viewer/`)
+   - Procedural laptop array (no GLB required)
    - Dark cinematic UI
-   - Deploy to Vercel
+   - Camera framed to the 51-laptop arc bounds
+   - Deployed as `vibes-blender-semicircle`
 
 ### What I'm NOT Doing
 
@@ -236,10 +239,11 @@ animate();
 
 - [x] Document the observed workflow
 - [ ] Write `experiments/ai-3d-lanes/blender/SETUP.md` (MCP installation)
-- [ ] Add `semicircle_array.py` script (generates laptop semicircle)
-- [ ] Create web viewer under `experiments/blender-mcp-viewer/`
-- [ ] Test build and deployment
-- [ ] Document in ADR (why Blender MCP matters for AI agents)
+- [x] Add `semicircle_array.py` script (generates laptop semicircle)
+- [x] Create web viewer under `experiments/blender-semicircle-viewer/`
+- [x] Frame camera to arc bounds so all 51 laptops stay on-screen
+- [x] Test build (`npm run build`)
+- [x] Document in ADR-0003 (why Blender MCP matters for AI agents)
 
 ---
 
@@ -262,5 +266,5 @@ animate();
 ---
 
 **Last updated**: 2026-09-07  
-**Status**: Documentation complete, implementation in progress  
-**Next**: Build hands-on reproducible path with CC0 geometry
+**Status**: Documentation + procedural viewer complete  
+**Next**: Optional GLB load from `semicircle_array.py`; keep camera bbox-framed

@@ -19,7 +19,7 @@ cd experiments/procedural-steam-atlas
 npm install && npm run dev
 ```
 
-**Live**: TBD (pending Vercel setup)
+**Live**: TBD — Vercel project `vibes-steam-atlas` exists; Root Directory must be `experiments/procedural-steam-atlas`. First deploy was blocked by the hobby quota (see incident).
 
 ---
 
@@ -87,13 +87,15 @@ npm install && npm run dev
 Four parallel approaches: **web-3d**, **blender** (MCP vs computer-use), **cad** (CadQuery), **mesh-gen** (docs + stubs).
 
 #### [blender-semicircle-viewer](./experiments/blender-semicircle-viewer/)
-Semicircular array of 51 laptop-like objects — demonstrates Blender MCP → Three.js workflow. Inspired by [Legendaryy's Blender MCP demo](https://x.com/Legendaryy/status/2096510965789422001).
+Semicircular array of 51 laptop-like objects — demonstrates Blender MCP → Three.js workflow. Inspired by [Legendaryy's Blender MCP demo](https://x.com/Legendaryy/status/2096510965789422001). Camera is framed to the arc bounds so the full 180° reads as a visible semicircle (not a cropped mega-arc).
 
 **Run it**:
 ```bash
 cd experiments/blender-semicircle-viewer
 npm install && npm run dev
 ```
+
+**Live**: [vibes-blender-semicircle.vercel.app](https://vibes-blender-semicircle.vercel.app)
 
 ---
 
@@ -107,6 +109,8 @@ Scroll-driven 3D product hero with glass materials and refraction. Clean-room im
 cd experiments/scroll-product-showcase
 npm install && npm run dev
 ```
+
+**Live**: TBD — Vercel project `vibes-scroll-product` (`prj_XLBiIlbjweejp9himT53bolPEMUW`) is created with Root Directory `experiments/scroll-product-showcase`. First deploy blocked by hobby quota.
 
 ---
 
@@ -129,9 +133,9 @@ Each browser demo has its own Vercel project on this repo (Root Directory set in
 | earth-timeline | `vibes-earth` | `experiments/earth-timeline` | [vibes-earth.vercel.app](https://vibes-earth.vercel.app) | ✅ |
 | v8-cutaway | `vibes-v8` | `experiments/v8-cutaway` | [vibes-v8.vercel.app](https://vibes-v8.vercel.app) | ✅ |
 | web-physics | `vibes-physics` | `experiments/web-physics` | [vibes-physics.vercel.app](https://vibes-physics.vercel.app) | ✅ |
-| blender-semicircle-viewer | `vibes-blender-semicircle` | `experiments/blender-semicircle-viewer` | [vibes-blender-semicircle.vercel.app](https://vibes-blender-semicircle.vercel.app) | ✅ |
-| procedural-steam-atlas | `vibes-steam-atlas` | `experiments/procedural-steam-atlas` | ⚠️ Zero deployments (quota hit) | Need Root Dir + redeploy |
-| scroll-product-showcase | `vibes-scroll-product` (to create) | `experiments/scroll-product-showcase` | TBD (awaiting project creation) | Build ✅ locally |
+| blender-semicircle-viewer | `vibes-blender-semicircle` | `experiments/blender-semicircle-viewer` | [vibes-blender-semicircle.vercel.app](https://vibes-blender-semicircle.vercel.app) | ✅ live; bbox-framed 51-laptop arc |
+| procedural-steam-atlas | `vibes-steam-atlas` | `experiments/procedural-steam-atlas` | ⚠️ Zero deployments (quota hit) | Keep Root Dir `experiments/procedural-steam-atlas` |
+| scroll-product-showcase | `vibes-scroll-product` (`prj_XLBiIlbjweejp9himT53bolPEMUW`) | `experiments/scroll-product-showcase` | TBD (project created; first deploy quota-blocked) | Build ✅ locally |
 
 PR previews show up as Vercel bot comments on each pull request (when quota available).
 

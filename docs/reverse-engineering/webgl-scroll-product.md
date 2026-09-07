@@ -423,9 +423,9 @@ const content = [
 ### Goals
 
 1. ✅ **Document the pattern** (this file)
-2. 🚧 **Minimal scroll product demo** (extend `web-3d` or new experiment)
+2. ✅ **Minimal scroll product demo** (`experiments/scroll-product-showcase/`)
    - Generic product (not glass bottle — avoid "me too" replication)
-   - Procedural geometry (box, cylinder, torus — interesting enough to showcase)
+   - Procedural geometry (torus knot + sphere + cylinder)
    - Dark cinematic UI
    - Scroll-driven rotation + camera
 3. 🚧 **Reusable component library** (optional)
@@ -465,7 +465,7 @@ const content = [
 - [x] Add scroll product demo to `experiments/` → [scroll-product-showcase](../../experiments/scroll-product-showcase/)
 - [x] Test with procedural geometry (torus knot + sphere/cylinder composition)
 - [x] Dark cinematic UI with scroll hints
-- [x] Vercel deployment ready
+- [x] Vercel project `vibes-scroll-product` (`prj_XLBiIlbjweejp9himT53bolPEMUW`) created — Root Directory `experiments/scroll-product-showcase` (first deploy blocked by hobby quota)
 
 ---
 
@@ -488,5 +488,5 @@ const content = [
 ---
 
 **Last updated**: 2026-09-07  
-**Status**: Documentation complete, implementation pending  
-**Next**: Build minimal scroll product showcase with procedural geometry
+**Status**: Documentation + experiment complete (`scroll-product-showcase`)  
+**Next**: Redeploy `vibes-scroll-product` after the hobby quota resets
