@@ -2,7 +2,7 @@
 
 **Date**: 2026-09-07  
 **Time**: quota hit earlier in the day; **0 remaining** as of 2026-09-07 ~13:20 UTC  
-**Reset**: **~2026-09-08 12:55 UTC** (~10:55pm AEST)  
+**Reset**: **~2026-09-08 20:39 UTC** (API; earlier notes said 12:55 UTC)  
 **Severity**: Medium (blocks production deploys, not runtime)  
 **Status**: Waiting for quota reset — do not retry-spam deploys
 
@@ -10,7 +10,7 @@
 
 ## Summary
 
-Vercel hobby team `johnnyhuy-dev` hit the free tier deployment quota (`api-deployments-free-per-day` = **0 remaining**). This blocks all new production and preview deployments until **~2026-09-08 12:55 UTC** (~10:55pm AEST).
+Vercel hobby team `johnnyhuy-dev` hit the free tier deployment quota (`api-deployments-free-per-day` = **0 remaining**). This blocks all new production and preview deployments until **~2026-09-08 20:39 UTC**.
 
 **Impact**: Recent PR merges (#6, #8, #10, #12, #13) did not get fresh production deployments. Existing production URLs serve stale HTML.
 
@@ -244,7 +244,8 @@ Trigger **one** deploy per project, in this order. Do not retry-spam. Do not cre
 **2026-09-08 ~14:10 UTC** — API re-check (read-only): steam-atlas `live: false`; production ERROR was missing-folder-on-branch, not a blank Root. scroll-product still 0 deployments.  
 **2026-09-08 ~12:07–12:29 AEST** — Production visual QA. explode 0% + 80% FAIL (grey / not assembled / not ordered). semicircle FAIL (cropped black arc). steam-atlas FAIL (`404 DEPLOYMENT_NOT_FOUND`). See [visual QA](../visual-qa-2026-09-08-prod.md). **Do not redeploy.**  
 **2026-09-08 ~2:22–2:33am AEST** — Re-QA. explode **PASS** @0% and @~76% (`dpl_ELE1f1XhqGQ7hciZSjkPVLMPmUh8` on `de25d60`). semicircle still FAIL on `25587f54`. steam-atlas + scroll-product still `DEPLOYMENT_NOT_FOUND`. glass project exists (`deploy: false`, SSO off). **Skip explode after quota.** Order: semicircle → steam-atlas (confirm Root) → scroll-product → glass.  
-**2026-09-08 ~12:55 UTC / ~10:55pm AEST** (estimated reset) — One deploy each per the 2:33am order. Do not redeploy explode unless it goes stale.  
+**2026-09-07 ~21:05 UTC** — Reset revised from API: **~2026-09-08 20:39 UTC** (not 12:55). Still 0 remaining. Do not retry-spam.  
+**2026-09-08 ~12:55 UTC / ~10:55pm AEST** (old estimate) — superseded by 20:39 UTC.  
 **TBD** — Post-recovery: semicircle shows 51 laptops; steam-atlas is not a 404; scroll-product is the horizontal Aether bottle; glass has a first production
 
 ---

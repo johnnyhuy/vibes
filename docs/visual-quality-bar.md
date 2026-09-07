@@ -124,11 +124,18 @@ Across these demos, the quality bar is:
 
 ## My Implementation Status
 
+### procedural-grass-field ✅ (local)
+- ✅ Outdoor meadow (not a black car studio)
+- ✅ Instanced crossed blades + tip-weighted wind + pointer gust
+- ✅ Species / look / density chips, pale glass HUD
+- ⚠️ No Vercel project — do not create one until quota is healthy
+- Inspired by [Bilal Khan / Grassworks](https://x.com/Bk23544/status/2096928659785626028)
+
 ### audio-gadget-spin ✅ (local)
 - ✅ Dark studio + frosted marketing chrome
 - ✅ Procedural over-ear (tube + squircle cups + glass window)
 - ✅ Slow auto-orbit, drag override, three finishes, mute-default Web Audio
-- ⚠️ No Vercel project — do not create one until quota is healthy
+- ⚠️ Project `vibes-audio-gadget-spin` (`prj_N57mvThg4UcU9XxLK3F5wAICz9PA`) exists `deploy: false`, SSO off — **no production**. Do not redeploy until after quota (~2026-09-08 20:39 UTC)
 - Inspired by [Xr0ud](https://x.com/Xr0ud/status/2096982574132297791), [mrblackstudio](https://x.com/mrblackstudio/status/2096893411395600782), [Gilbert93533589](https://x.com/Gilbert93533589/status/2096920288319435154)
 
 ### japanese-tower ✅
