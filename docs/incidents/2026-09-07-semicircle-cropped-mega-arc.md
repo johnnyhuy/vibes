@@ -26,11 +26,12 @@ An earlier stale branch (`cursor/fix-semicircle-framing-60d6`) only bumped FOV 5
 Frame from the **world bounds of the laptop group**, not from magic multipliers:
 
 1. Parent the 51 laptops in one `THREE.Group`
-2. `Box3.setFromObject(root)` → size + centre
-3. Distance = max(fit-height, fit-width) × 1.22 padding
-4. Sit the camera on a slight below-front hero vector and `lookAt(centre)`
-5. Stretch fog and OrbitControls min/max to that distance
-6. Reset button restores the framed pose; resize re-frames
+2. `Box3.setFromObject(root)` → AABB + bounding sphere
+3. Wide viewports: AABB fit × 1.32 padding (hero fill, full 180° readable)
+4. Narrow viewports: lerp AABB toward the sphere so auto-rotate doesn’t clip, without turning the array into a hairline
+5. Sit the camera on a slight below-front hero vector and `lookAt(centre)`
+6. Fog starts *behind* the subject; key light sits in the same quarter as the camera
+7. Reset restores the framed pose; resize re-frames
 
 FOV stays moderate (42°) so the arc doesn’t fish-eye. Distance does the work.
 
