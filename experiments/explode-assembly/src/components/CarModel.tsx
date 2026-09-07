@@ -1,14 +1,20 @@
-import { useRef, useMemo } from 'react';
+import { useRef, useMemo, useEffect } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
-import { calculateExplosionLayout } from '../utils/explosion';
+import {
+  calculateExplosionLayout,
+  EMPTY_LAYOUT,
+  systemSpread,
+  type ExplosionLayout,
+} from '../utils/explosion';
 
 interface CarModelProps {
   explode: number;
   selectedPart: string | null;
   isolated: boolean;
   onSelectPart: (part: string | null) => void;
+  onLayoutReady?: (layout: ExplosionLayout) => void;
 }
 
 // System mapping with French Sketchfab names
@@ -75,7 +81,26 @@ interface Piece {
   id: string;
 }
 
-export default function CarModel({ explode, selectedPart, isolated, onSelectPart }: CarModelProps) {
+const ZERO = new THREE.Vector3();
+
+function polishMaterial(source: THREE.Material): THREE.Material {
+  const mat = source.clone() as THREE.MeshStandardMaterial;
+  mat.transparent = false;
+  mat.opacity = 1;
+  // No HDRI sky — keep paint readable instead of chrome-hollow.
+  if ('metalness' in mat) {
+    mat.metalness = THREE.MathUtils.clamp((mat.metalness ?? 0.3) + 0.05, 0.15, 0.55);
+  }
+  if ('roughness' in mat) {
+    mat.roughness = THREE.MathUtils.clamp((mat.roughness ?? 0.5) - 0.05, 0.28, 0.7);
+  }
+  if ('envMapIntensity' in mat) {
+    mat.envMapIntensity = 0.35;
+  }
+  return mat;
+}
+
+export default function CarModel({ explode, selectedPart, isolated, onSelectPart, onLayoutReady }: CarModelProps) {
   const explodeRootRef = useRef<THREE.Group>(null);
   
   // Load Model 3 GLB
@@ -148,23 +173,9 @@ export default function CarModel({ explode, selectedPart, isolated, onSelectPart
             if (!child?.isMesh || !child?.material) return;
             
             if (Array.isArray(child.material)) {
-              child.material = child.material.map((mat: any) => {
-                const m = mat.clone();
-                m.transparent = false;
-                m.opacity = 1;
-                m.metalness = Math.min(m.metalness + 0.2, 0.8);
-                m.roughness = Math.max(m.roughness - 0.1, 0.3);
-                m.envMapIntensity = 1.5;
-                return m;
-              });
+              child.material = child.material.map((mat: any) => polishMaterial(mat));
             } else {
-              const mat = child.material.clone();
-              mat.transparent = false;
-              mat.opacity = 1;
-              mat.metalness = Math.min(mat.metalness + 0.2, 0.8);
-              mat.roughness = Math.max(mat.roughness - 0.1, 0.3);
-              mat.envMapIntensity = 1.5;
-              child.material = mat;
+              child.material = polishMaterial(child.material);
             }
             
             child.castShadow = true;
@@ -205,25 +216,41 @@ export default function CarModel({ explode, selectedPart, isolated, onSelectPart
     }
   }, [scene]);
   
-  // Calculate explosion layout (Map keyed by piece ID)
   const layout = useMemo(() => {
-    if (!pieces.length) return new Map();
+    if (!pieces.length) return EMPTY_LAYOUT;
+    explodeRoot.updateMatrixWorld(true);
     return calculateExplosionLayout(pieces);
+  }, [pieces, explodeRoot]);
+
+  const spreads = useMemo(() => {
+    const map = new Map<string, THREE.Vector3>();
+    for (const piece of pieces) {
+      if (!map.has(piece.system)) map.set(piece.system, systemSpread(piece.system));
+    }
+    return map;
   }, [pieces]);
+
+  useEffect(() => {
+    onLayoutReady?.(layout);
+  }, [layout, onLayoutReady]);
   
   // Animate explosion (mutate live nodes, don't clone)
   useFrame(() => {
-    if (!explodeRootRef.current || !pieces.length || !layout.size) return;
+    if (!explodeRootRef.current || !pieces.length || !layout.pieces.size) return;
     
     const explosionAmount = explode / 100;
+    // Gallery rearrange takes over in the upper half of the slider.
+    const individual = THREE.MathUtils.smoothstep(explosionAmount, 0.18, 0.72);
     
     pieces.forEach((piece) => {
-      // Look up offset by piece ID (not array index) to fix mismatch
-      const offset = layout.get(piece.id) || new THREE.Vector3();
+      const slot = layout.pieces.get(piece.id);
+      const fullSpread = slot?.translation ?? ZERO;
+      const early = spreads.get(piece.system) ?? ZERO;
       
-      // Mutate the live node's position (ashemag pattern)
-      // position = home + (offset * explosionAmount * multiplier)
-      piece.node.position.copy(piece.home).addScaledVector(offset, explosionAmount * 2.5);
+      piece.node.position
+        .copy(piece.home)
+        .addScaledVector(early, explosionAmount * (1 - individual))
+        .addScaledVector(fullSpread, individual);
       
       // Visibility based on selection/isolation
       if (isolated && selectedPart) {

@@ -1,15 +1,25 @@
 import * as THREE from 'three';
 
 /**
- * Calculate explosion layout for pieces
- * Based on ashemag's model-x-studio explosion-layout.ts
- * Projects pieces onto a 2D grid and calculates translation vectors
- * 
- * Returns a Map keyed by piece ID to avoid index mismatch
+ * Ordered explode layout — clean-room take on the public ashemag pattern:
+ * project piece bounds onto the overview camera plane, bin-pack into a
+ * gallery grid, return translations keyed by piece id.
+ *
+ * I sort by sidebar system order first so the rearrange reads as rows of
+ * systems (body, glass, doors, …) rather than a random cloud.
  */
 
-// System order matching sidebar (intentional layout order)
-const SYSTEM_ORDER = [
+export const OVERVIEW_DIRECTION = new THREE.Vector3(-5.7, 2.1, 6.3).normalize();
+export const LAYOUT_CENTER = new THREE.Vector3(0, 3, 0);
+
+const VIEW_RIGHT = new THREE.Vector3()
+  .crossVectors(new THREE.Vector3(0, 1, 0), OVERVIEW_DIRECTION)
+  .normalize();
+const VIEW_UP = new THREE.Vector3()
+  .crossVectors(OVERVIEW_DIRECTION, VIEW_RIGHT)
+  .normalize();
+
+export const SYSTEM_ORDER = [
   'body',
   'glass',
   'doors',
@@ -22,28 +32,46 @@ const SYSTEM_ORDER = [
   'charging',
   'electronics',
   'lights',
-];
+] as const;
 
-export function calculateExplosionLayout(pieces: any[]): Map<string, THREE.Vector3> {
-  if (!pieces.length) return new Map();
-  
-  // Viewing direction for projection
-  const overviewDirection = new THREE.Vector3(-5.7, 2.1, 6.3).normalize();
-  const right = new THREE.Vector3().crossVectors(new THREE.Vector3(0, 1, 0), overviewDirection).normalize();
-  const up = new THREE.Vector3().crossVectors(overviewDirection, right).normalize();
-  
-  // Calculate 2D projected bounds for each piece
-  const cards = pieces.map(piece => {
+export type ExplosionSlot = {
+  translation: THREE.Vector3;
+};
+
+export type ExplosionLayout = {
+  pieces: Map<string, ExplosionSlot>;
+  width: number;
+  height: number;
+};
+
+export const EMPTY_LAYOUT: ExplosionLayout = {
+  pieces: new Map(),
+  width: 12,
+  height: 8,
+};
+
+type LayoutPiece = {
+  id: string;
+  system?: string;
+  bounds: THREE.Box3;
+};
+
+export function calculateExplosionLayout(pieces: LayoutPiece[]): ExplosionLayout {
+  if (!pieces.length) return EMPTY_LAYOUT;
+
+  const cards = pieces.map((piece) => {
     const { min, max } = piece.bounds;
-    let left = Infinity, bottom = Infinity, rightEdge = -Infinity, top = -Infinity;
-    
-    // Project all 8 corners of the bounding box
+    let left = Infinity;
+    let bottom = Infinity;
+    let rightEdge = -Infinity;
+    let top = -Infinity;
+
     for (const x of [min.x, max.x]) {
       for (const y of [min.y, max.y]) {
         for (const z of [min.z, max.z]) {
           const corner = new THREE.Vector3(x, y, z);
-          const u = corner.dot(right);
-          const v = corner.dot(up);
+          const u = corner.dot(VIEW_RIGHT);
+          const v = corner.dot(VIEW_UP);
           left = Math.min(left, u);
           rightEdge = Math.max(rightEdge, u);
           bottom = Math.min(bottom, v);
@@ -51,61 +79,70 @@ export function calculateExplosionLayout(pieces: any[]): Map<string, THREE.Vecto
         }
       }
     }
-    
+
     return {
-      ...piece,
-      width: Math.max(0.36, rightEdge - left) + 0.22,
-      height: Math.max(0.3, top - bottom) + 0.22,
+      id: piece.id,
+      system: piece.system ?? 'body',
+      width: Math.max(0.36, rightEdge - left) + 0.28,
+      height: Math.max(0.3, top - bottom) + 0.28,
+      center: piece.bounds.getCenter(new THREE.Vector3()),
     };
   });
-  
-  // Sort by system order first (sidebar order), then by size within system
-  // This creates the intentional "rearrange" pattern like ashe's demo
+
   cards.sort((a, b) => {
-    const systemA = SYSTEM_ORDER.indexOf(a.system);
-    const systemB = SYSTEM_ORDER.indexOf(b.system);
-    
-    // If different systems, sort by system order
-    if (systemA !== systemB) {
-      return systemA - systemB;
-    }
-    
-    // Within same system, sort by size (height)
-    return b.height - a.height;
+    const systemA = SYSTEM_ORDER.indexOf(a.system as (typeof SYSTEM_ORDER)[number]);
+    const systemB = SYSTEM_ORDER.indexOf(b.system as (typeof SYSTEM_ORDER)[number]);
+    const orderA = systemA === -1 ? SYSTEM_ORDER.length : systemA;
+    const orderB = systemB === -1 ? SYSTEM_ORDER.length : systemB;
+    if (orderA !== orderB) return orderA - orderB;
+    return b.height - a.height || a.id.localeCompare(b.id);
   });
-  
-  // Pack into grid
-  const totalArea = cards.reduce((sum, c) => sum + c.width * c.height, 0);
-  const gridWidth = Math.max(12, Math.sqrt(totalArea * 1.6));
-  
-  let x = 0, y = 0, rowHeight = 0;
-  const slots = cards.map(card => {
-    if (x && x + card.width > gridWidth) {
+
+  const area = cards.reduce((sum, card) => sum + card.width * card.height, 0);
+  const width = Math.max(12, Math.sqrt(area * 1.6));
+
+  let x = 0;
+  let y = 0;
+  let rowHeight = 0;
+  const slots = cards.map((card) => {
+    if (x && x + card.width > width) {
       x = 0;
       y += rowHeight;
       rowHeight = 0;
     }
-    const slot = { ...card, x: x + card.width / 2, y: y + card.height / 2 };
+    const slot = {
+      ...card,
+      u: x + card.width / 2,
+      v: y + card.height / 2,
+    };
     x += card.width;
     rowHeight = Math.max(rowHeight, card.height);
     return slot;
   });
-  
-  const gridHeight = y + rowHeight;
-  const layoutCenter = new THREE.Vector3(0, 3, 0);
-  
-  // Calculate translation vectors from center to grid slot
-  // Return Map keyed by piece ID to avoid index mismatch
-  const layoutMap = new Map<string, THREE.Vector3>();
-  
-  slots.forEach(slot => {
-    const gridPos = layoutCenter.clone()
-      .addScaledVector(right, slot.x - gridWidth / 2)
-      .addScaledVector(up, gridHeight / 2 - slot.y);
-    
-    const offset = gridPos.sub(slot.center);
-    layoutMap.set(slot.id, offset);
-  });
-  
-  return layoutMap;
+
+  const height = y + rowHeight;
+  const piecesMap = new Map<string, ExplosionSlot>();
+
+  for (const slot of slots) {
+    const slotCenter = LAYOUT_CENTER.clone()
+      .addScaledVector(VIEW_RIGHT, slot.u - width / 2)
+      .addScaledVector(VIEW_UP, height / 2 - slot.v);
+
+    piecesMap.set(slot.id, {
+      translation: slotCenter.sub(slot.center),
+    });
+  }
+
+  return { pieces: piecesMap, width, height };
+}
+
+/** Modest system-row nudge used before the gallery rearrange takes over. */
+export function systemSpread(system: string): THREE.Vector3 {
+  const index = SYSTEM_ORDER.indexOf(system as (typeof SYSTEM_ORDER)[number]);
+  const i = index === -1 ? 0 : index;
+  const col = (i % 4) - 1.5;
+  const row = Math.floor(i / 4);
+  return new THREE.Vector3()
+    .addScaledVector(VIEW_RIGHT, col * 1.35)
+    .addScaledVector(VIEW_UP, row * 1.1);
 }
