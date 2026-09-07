@@ -51,6 +51,7 @@ Things that went sideways and what I learnt:
 
 ### Deployment
 
+- [Deployment notes](./deployment/) — Production aliases, quota, redeploy order
 - [Vercel Root Directory hints](./deployment/vercel-root-directories.md) — Dashboard field per app; `vercel.json` cannot pin Root Directory; `ignored-build-step` skips sibling-folder commits
 
 ### Visual QA

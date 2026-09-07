@@ -65,9 +65,9 @@ steam-atlas Root must stay `experiments/procedural-steam-atlas`. It already has 
 
 Do not create extra Vercel projects. Do not force production redeploys while the quota is 0.
 
-## README preview stills
+## README showcase previews
 
-Hill-climb / visual QA should refresh `docs/previews/<app>.png` when an app ships or redeploys (LIVE PASS frames only — 404 and cropped FAIL shots stay in Status, not the hero column). See [docs/visual-qa/README.md](../visual-qa/README.md).
+The root README is a visual showcase (GIFs, not an ops table). Refresh `docs/previews/<app>.gif` when an app ships or the motion clip goes stale. Stills are a fallback only. Ops status lives in [deployment notes](./). See [docs/visual-qa/README.md](../visual-qa/README.md).
 
 ### Hill-climb — 2026-09-08 (ballance-roll)
 
