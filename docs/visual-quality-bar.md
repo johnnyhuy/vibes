@@ -124,6 +124,13 @@ Across these demos, the quality bar is:
 
 ## My Implementation Status
 
+### heartwood-warden ✅ (local)
+- ✅ Dark moonlit woodland (teal-navy, not grey) + frosted pale-glass HUD
+- ✅ Procedural shrine guardian, sine gait, ten invented casts, lantern spirits
+- ✅ Optional generated ward snippet (our code shape)
+- ⚠️ No Vercel project — do not create one until quota is healthy
+- Inspired by [NickDevFE](https://x.com/NickDevFE/status/2096946586781692297) (OG lockup + X woodland thumb studied; no source scraped)
+
 ### nacre-loom ✅ (local)
 - ✅ Dark kiln studio + frosted loom desk (not their preset thumbnail rail)
 - ✅ Lobed icosahedron + transmission glass + invented nacre weaves
@@ -244,4 +251,4 @@ Then implementing those patterns with:
 
 **Author**: Johnny Huynh  
 **Purpose**: Visual quality reference for vibes experiments  
-**Last Updated**: 2026-09-07 (nacre-loom local; still no new Vercel project; quota wait ~2026-09-08 20:39 UTC)
+**Last Updated**: 2026-09-07 (heartwood-warden local; still no new Vercel project; quota wait ~2026-09-08 20:39 UTC)

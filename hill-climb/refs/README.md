@@ -11,6 +11,8 @@ Thumbs attached on the 2026-09-08 agent pass (not copied from the source demos' 
 - `biplane-heymichu-thumb.jpg` — [heymichu25](https://x.com/heymichu25/status/2097062564299759855) (video thumb `…/2097062514253316096/…`). Built: `experiments/amber-longeron/`. Notes: `docs/reverse-engineering/amber-longeron.md`. Feel only.
 - `biplane-live-20260908-0738.png` — headed still of their public live canvas (tan void, red orbs, no HUD). Same feel-only rule. Do not copy assets or chrome.
 - `orb-onix-fresh.jpg` — [onix_react](https://x.com/onix_react/status/2096978661802975464) promo still (glass orb, preset rail, copy-code). Built: `experiments/nacre-loom/`. Notes: `docs/reverse-engineering/nacre-loom.md`. Feel only. The Pages URL 404s — do not scrape it.
+- `img2threejs-monster-tree-og.jpg` — [NickDevFE](https://x.com/NickDevFE/status/2096946586781692297) video thumb (moonlit woodland, rear-three-quarter, glowing path). Pattern only for `experiments/heartwood-warden`. Do not recreate Groot or copy their HUD.
+- `img2threejs-og-cover.png` — site OG at `https://img2threejs.io/og-cover.png` (“One photo in. A procedural model out.” / AWP | Medusa). Composition and lighting lockup only. Do not copy the wordmark, orange “procedural”, cube logo, or footer specs.
 
 If a checkout is missing the binaries, the same stills live on those posts.
 
