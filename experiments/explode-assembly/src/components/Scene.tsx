@@ -1,5 +1,5 @@
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Environment, PerspectiveCamera } from '@react-three/drei';
+import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
 import CarModel from './CarModel';
 
 interface SceneProps {
@@ -26,9 +26,6 @@ export default function Scene({ explode, selectedPart, isolated, onSelectPart }:
         maxPolarAngle={Math.PI * 0.48}
         target={[0, 0.5, 0]}
       />
-      
-      {/* Studio environment */}
-      <Environment preset="studio" />
       
       {/* Key light - main illumination */}
       <directionalLight 
