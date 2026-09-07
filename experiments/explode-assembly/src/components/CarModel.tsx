@@ -151,7 +151,10 @@ export default function CarModel({ explode, selectedPart, isolated, onSelectPart
         const worldBox = new THREE.Box3().setFromObject(obj);
         const worldSize = worldBox.getSize(new THREE.Vector3());
         const worldCenter = worldBox.getCenter(new THREE.Vector3());
-        if (worldCenter.y < 0.08 && worldSize.y < 0.35 && worldSize.x > 5 && worldSize.z > 5) {
+        if (
+          (worldBox.max.y < 0.22 && worldSize.x > 2.4 && worldSize.z > 2.4) ||
+          (worldCenter.y < 0.2 && worldSize.y < 0.55 && worldSize.x > 2.8 && worldSize.z > 2.8)
+        ) {
           return;
         }
         if (obj.geometry) {

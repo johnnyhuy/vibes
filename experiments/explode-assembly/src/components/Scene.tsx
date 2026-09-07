@@ -88,8 +88,11 @@ export default function Scene({
       gl={{
         antialias: true,
         toneMapping: THREE.ACESFilmicToneMapping,
-        toneMappingExposure: 1.15,
+        toneMappingExposure: 1.05,
         alpha: false,
+      }}
+      onCreated={({ gl }) => {
+        gl.setClearColor('#000000', 1);
       }}
     >
       <color attach="background" args={['#000000']} />
@@ -108,7 +111,7 @@ export default function Scene({
       <CameraRig explode={explode} layout={layout.width ? layout : EMPTY_LAYOUT} />
 
       {/* Lights only — no Environment, no grey floor, no HDRI sky. */}
-      <hemisphereLight args={['#e8eef5', '#000000', 0.85]} />
+      <hemisphereLight args={['#d7e2ee', '#000000', 0.28]} />
       <directionalLight position={[-7, 11, 5]} intensity={4.6} />
       <directionalLight position={[8, 6, 4]} intensity={3.2} color="#ffffff" />
       <directionalLight position={[7, 5, -7]} intensity={2.8} color="#b9d0ea" />
