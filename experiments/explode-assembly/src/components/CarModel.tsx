@@ -52,7 +52,7 @@ function shouldIncludeMesh(name: string): boolean {
     return false;
   }
   
-  // Exclude known props (safety net in case GLB strip didn't run)
+  // Exclude known props + environment meshes (safety net in case GLB strip didn't run)
   const PROP_KEYWORDS = [
     'cylinder012',      // traffic light stand
     'debris_tires',     // piled wheels
@@ -61,6 +61,13 @@ function shouldIncludeMesh(name: string): boolean {
     'speaker',
     'traffic',
     'light_pole',
+    'plane',            // room floor/wall planes
+    'floor',
+    'wall',
+    'room',
+    'ground',
+    'background',
+    'environment',
   ];
   
   if (PROP_KEYWORDS.some(kw => lowerName.includes(kw))) {
@@ -113,9 +120,27 @@ export default function CarModel({ explode, selectedPart, isolated, onSelectPart
       const center = bounds.getCenter(new THREE.Vector3());
       const system = detectSystem(node.name || 'unknown');
       
-      // Clone the node to avoid modifying the original
+      // Preserve world transforms BEFORE cloning
+      // This ensures assembled car stays assembled at explode=0
+      const worldPosition = new THREE.Vector3();
+      const worldQuaternion = new THREE.Quaternion();
+      const worldScale = new THREE.Vector3();
+      node.getWorldPosition(worldPosition);
+      node.getWorldQuaternion(worldQuaternion);
+      node.getWorldScale(worldScale);
+      
+      // Clone the node
       const clone = node.clone();
-      clone.userData.originalPosition = clone.position.clone();
+      
+      // Apply world transforms to clone (detached from hierarchy)
+      clone.position.copy(worldPosition);
+      clone.quaternion.copy(worldQuaternion);
+      clone.scale.copy(worldScale);
+      
+      // Store for explosion animation
+      clone.userData.originalPosition = worldPosition.clone();
+      clone.userData.originalQuaternion = worldQuaternion.clone();
+      clone.userData.originalScale = worldScale.clone();
       clone.userData.originalParent = node.parent;
       clone.userData.system = system;
       clone.userData.id = `${system}-${extracted.length}`;
@@ -160,7 +185,7 @@ export default function CarModel({ explode, selectedPart, isolated, onSelectPart
         object: clone,
         system,
         id: clone.userData.id,
-        originalPosition: clone.position.clone(),
+        originalPosition: worldPosition.clone(),  // Use world position
         bounds,
         center,
       });
