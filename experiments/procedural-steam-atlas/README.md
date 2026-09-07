@@ -25,10 +25,14 @@ Open http://localhost:5173 → drag to orbit, scroll to zoom, use controls to ex
 
 ## Deploy
 
-Vercel project: **`vibes-steam-atlas`**  
-Root Directory: **`experiments/procedural-steam-atlas`** (required — do not use the repo root)
+Vercel project: **`vibes-steam-atlas`** (`prj_7D08PT8sdUjhigCEuz83oltZrDMv`)  
+Root Directory: **`experiments/procedural-steam-atlas`** — **set this in the dashboard before any post-quota deploy.** Do not use the repo root.
 
-First production deploy was blocked by the 2026-09-07 hobby quota. After reset, trigger one deploy from the dashboard. Don't spam retries.
+`vercel.json` here sets Vite + `ignoreCommand`. It cannot set Root Directory. `create_git_project` reuse (`deploy: false`) also **does not write Root**. Pause API returned **400** on hobby — I cannot pause this project to stop fan-out.
+
+No successful **production** deploy yet. After quota reset (~2026-09-08 12:55 UTC): set Root in the dashboard, one deploy from `main`. Don't spam retries.
+
+See [docs/incidents/2026-09-08-steam-atlas-wrong-root.md](../../docs/incidents/2026-09-08-steam-atlas-wrong-root.md).
 
 ## Why I Made This
 

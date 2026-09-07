@@ -1,65 +1,121 @@
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { ScrollControls, Scroll } from '@react-three/drei';
+import { ACESFilmicToneMapping } from 'three';
 import ProductScene from './components/ProductScene';
+
+function Reveal({
+  children,
+  className,
+  side = 'center',
+}: {
+  children: ReactNode;
+  className?: string;
+  side?: 'left' | 'right' | 'center';
+}) {
+  const ref = useRef<HTMLElement>(null);
+  const [on, setOn] = useState(false);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+    const io = new IntersectionObserver(
+      ([entry]) => setOn(entry.isIntersecting),
+      { threshold: 0.38, rootMargin: '0px 0px -8% 0px' },
+    );
+    io.observe(node);
+    return () => io.disconnect();
+  }, []);
+
+  return (
+    <section ref={ref} className={`block side-${side} ${className ?? ''} ${on ? 'in' : ''}`}>
+      {children}
+    </section>
+  );
+}
 
 export default function App() {
   return (
     <>
       <Canvas
-        camera={{ position: [0, 0, 8], fov: 45 }}
-        style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh' }}
+        camera={{ position: [0, 0.28, 6.6], fov: 30 }}
+        dpr={[1, 2]}
+        gl={{ antialias: true, alpha: false, toneMapping: ACESFilmicToneMapping, toneMappingExposure: 1.12 }}
+        style={{ position: 'fixed', inset: 0, width: '100vw', height: '100vh', pointerEvents: 'none' }}
       >
-        <ScrollControls pages={3} damping={0.1}>
-          <ProductScene />
-        </ScrollControls>
+        <ProductScene />
       </Canvas>
 
-      <div className="content">
-        <section className="hero">
-          <h1>Aether</h1>
-          <p className="subtitle">The perfume atomiser reimagined</p>
-          <div className="scroll-hint">Scroll to explore</div>
-        </section>
+      <div className="page">
+        <header className="topbar">
+          <span>Aether</span>
+          <span>Batch 04</span>
+        </header>
 
-        <section className="feature">
-          <div className="feature-content">
-            <h2>Precision Engineering</h2>
+        <Reveal className="hero" side="center">
+          <p className="lede">
+            I rebuilt the viral glass-bottle scrollytelling pattern without
+            borrowing a mesh. Dark green glass, liquid volume, type sitting
+            <em> behind</em> the bottle so transmission has something to bend.
+          </p>
+          <div className="scroll-hint">Scroll — it rolls</div>
+        </Reveal>
+
+        <Reveal className="feature" side="left">
+          <div className="card">
+            <p className="kicker">01 — Silhouette</p>
+            <h2>On its side</h2>
             <p>
-              I designed Aether to merge form and function. The glass capsule sits within 
-              a machined aluminium shell, creating visual tension between transparency and 
-              opacity. Every angle reveals a new interplay of light and shadow.
+              The himanshubuildss thumb is a wide apothecary cylinder, short neck,
+              black cap, lying down. I lathed that profile. A standing perfume
+              carafe with a brass stopper was the wrong read.
             </p>
           </div>
-        </section>
+        </Reveal>
 
-        <section className="feature">
-          <div className="feature-content">
-            <h2>Light & Refraction</h2>
+        <Reveal className="feature" side="right">
+          <div className="card">
+            <p className="kicker">02 — Transmission</p>
+            <h2>Type through glass</h2>
             <p>
-              Watch how the glass bends light as you scroll. This isn't just rendering — 
-              it's physics-based simulation using real-world material properties. 
-              The inner liquid reacts differently to light than the outer shell.
+              Outer shell: IOR 1.48, transmission 1, short green attenuation.
+              Inner volume: darker, IOR 1.39. The lime “AETHER” is a drei Text
+              in the scene, not a DOM headline — otherwise the bottle has
+              nothing to refract.
             </p>
           </div>
-        </section>
+        </Reveal>
 
-        <section className="feature">
-          <div className="feature-content">
-            <h2>Sustainable Luxury</h2>
+        <Reveal className="feature" side="left">
+          <div className="card">
+            <p className="kicker">03 — Roll</p>
+            <h2>Scroll is the long axis</h2>
             <p>
-              Made from recycled borosilicate glass and anodised aluminium. Refillable by 
-              design. I believe luxury should be timeless, not disposable.
+              “Scroll — it rolls.” Progress maps to rotation around the
+              bottle’s length, damped in useFrame. Strip Lightformers give the
+              long speculars. Bidirectional. Native window scroll.
             </p>
           </div>
-        </section>
+        </Reveal>
+
+        <Reveal className="feature" side="right">
+          <div className="card">
+            <p className="kicker">04 — Clean-room</p>
+            <h2>Pattern, not the brand</h2>
+            <p>
+              I studied the Caldera-class hero (chartreuse, black, horizontal
+              glass). I did not copy TEPHRA, the rocks, or the mesh. Aether is
+              a fictional batch. Educational only.
+            </p>
+          </div>
+        </Reveal>
 
         <footer>
           <p>
-            A clean-room scroll-driven 3D pattern exploration • Inspired by{' '}
+            Clean-room scroll hero · Inspired by{' '}
             <a href="https://x.com/himanshubuildss/status/2096243989439713677" target="_blank" rel="noopener noreferrer">
               himanshubuildss
             </a>
-            {' '}• Built with React Three Fiber
+            {' '}· React Three Fiber · Johnny Huynh
           </p>
         </footer>
       </div>

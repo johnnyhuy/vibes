@@ -423,11 +423,10 @@ const content = [
 ### Goals
 
 1. ✅ **Document the pattern** (this file)
-2. ✅ **Minimal scroll product demo** (`experiments/scroll-product-showcase/`)
-   - Generic product (not glass bottle — avoid "me too" replication)
-   - Procedural geometry (torus knot + sphere + cylinder)
-   - Dark cinematic UI
-   - Scroll-driven rotation + camera
+2. ✅ **Scroll product demo** (`experiments/scroll-product-showcase/`)
+   - Procedural **horizontal dark-green lathe + liquid** (2026-09-08, after the himanshubuildss thumb). Earlier that day: upright amber carafe (wrong silhouette). Before that: torus knot. Still clean-room. Type lives in the 3D scene so transmission can bend it.
+   - Dark cinematic interlocking cards
+   - Native window scroll → damped rotation + camera (dropped drei `ScrollControls` overlay)
 3. 🚧 **Reusable component library** (optional)
    - `<ScrollScene>` wrapper
    - `<ScrollObject>` with rotation/scale/position props
@@ -435,9 +434,9 @@ const content = [
 
 ### What I'm NOT Doing
 
-- ❌ Exact glass bottle recreation (that's himanshubuildss' demo, not mine)
-- ❌ Complex product CAD (focus on the *scroll pattern*, not the asset)
-- ❌ Text-heavy marketing page (just the 3D interaction showcase)
+- ❌ Exact glass bottle recreation (that's himanshubuildss' demo, not mine — my lathe is a different silhouette)
+- ❌ Complex product CAD / GLB import
+- ❌ Shipping the [glass capability brain](./glass-capability-brain.md) in the same PR
 
 ---
 
@@ -463,9 +462,9 @@ const content = [
 
 - [x] Document scroll-driven 3D pattern
 - [x] Add scroll product demo to `experiments/` → [scroll-product-showcase](../../experiments/scroll-product-showcase/)
-- [x] Test with procedural geometry (torus knot + sphere/cylinder composition)
-- [x] Dark cinematic UI with scroll hints
-- [x] Vercel project `vibes-scroll-product` (`prj_XLBiIlbjweejp9himT53bolPEMUW`) created — Root Directory `experiments/scroll-product-showcase` (first deploy blocked by hobby quota)
+- [x] Test with procedural geometry (torus knot first; lathe bottle + liquid 2026-09-08)
+- [x] Dark cinematic UI with interlocking cards
+- [x] Vercel project `vibes-scroll-product` (`prj_XLBiIlbjweejp9himT53bolPEMUW`) created — Root Directory `experiments/scroll-product-showcase` (still **0 deployments**, quota)
 
 ---
 
@@ -481,13 +480,13 @@ const content = [
 
 ## Related Files
 
-- `experiments/scroll-product-showcase/` — Clean-room rebuild (procedural torus knot + glass, not a bottle)
+- `experiments/scroll-product-showcase/` — Clean-room rebuild (procedural lathe bottle + liquid)
 - `docs/adr/0005-scroll-driven-product-hero.md` — Why scroll-as-controller + R3F
 - `docs/visual-quality-bar.md` — Cinematic product-demo aesthetic
 - `docs/incidents/2026-09-07-vercel-deploy-quota.md` — `vibes-scroll-product` first deploy blocked until ~2026-09-08 12:55 UTC
 
 ---
 
-**Last updated**: 2026-09-07  
-**Status**: Documentation + experiment complete (`scroll-product-showcase`)  
-**Next**: One deploy of `vibes-scroll-product` after quota reset (~2026-09-08 12:55 UTC / ~10:55pm AEST). Do not retry-spam.
+**Last updated**: 2026-09-08  
+**Status**: Documentation + experiment (lathe bottle). First production still queued.  
+**Next**: After quota reset, redeploy explode → semicircle → steam-atlas first prod → **then** `vibes-scroll-product`. Do not retry-spam.

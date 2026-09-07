@@ -1,103 +1,69 @@
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { useScroll, Environment } from '@react-three/drei';
+import { ContactShadows, Environment, Lightformer, Text } from '@react-three/drei';
 import * as THREE from 'three';
+import GlassBottle from './GlassBottle';
+import { useWindowScroll } from '../hooks/useWindowScroll';
 
+const reducedMotion =
+  typeof window !== 'undefined' &&
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/**
+ * Bottle lies on its long axis. Scroll rolls it (Caldera-class “it rolls”).
+ * Lime 3D type sits behind the glass so transmission actually has something
+ * to bend — HTML overlays cannot do that.
+ */
 export default function ProductScene() {
-  const productRef = useRef<THREE.Group>(null);
-  const cameraRef = useRef<THREE.PerspectiveCamera>(null);
-  const scroll = useScroll();
+  const roll = useRef<THREE.Group>(null);
+  const offset = useWindowScroll();
 
-  useFrame((state) => {
-    if (!productRef.current) return;
+  useFrame((state, delta) => {
+    if (!roll.current) return;
 
-    const offset = scroll.offset;
-    
-    productRef.current.rotation.y = offset * Math.PI * 2;
-    productRef.current.rotation.x = Math.sin(offset * Math.PI) * 0.15;
-    
-    state.camera.position.z = 8 - offset * 3;
-    state.camera.position.y = offset * 1.5;
-    state.camera.lookAt(0, 0, 0);
+    const t = offset.current;
+    const spin = reducedMotion ? 0.15 : t * Math.PI * 2;
+    const camZ = reducedMotion ? 6.2 : 6.6 - t * 1.35;
+    const camY = reducedMotion ? 0.35 : 0.28 + t * 0.35;
+
+    roll.current.rotation.x = THREE.MathUtils.damp(roll.current.rotation.x, spin, 3.6, delta);
+
+    state.camera.position.x = THREE.MathUtils.damp(state.camera.position.x, 0, 3, delta);
+    state.camera.position.y = THREE.MathUtils.damp(state.camera.position.y, camY, 3, delta);
+    state.camera.position.z = THREE.MathUtils.damp(state.camera.position.z, camZ, 3, delta);
+    state.camera.lookAt(0, 0.05, 0);
   });
 
   return (
     <>
-      <ambientLight intensity={0.4} />
-      <directionalLight position={[5, 5, 5]} intensity={1.2} castShadow />
-      <directionalLight position={[-3, 2, -5]} intensity={0.6} color="#88ccff" />
-      <spotLight position={[0, 10, 0]} angle={0.3} penumbra={1} intensity={0.8} castShadow />
+      <color attach="background" args={['#030303']} />
+      <ambientLight intensity={0.08} />
 
-      <group ref={productRef}>
-        <mesh position={[0, 0, 0]}>
-          <torusKnotGeometry args={[1, 0.3, 128, 32, 2, 3]} />
-          <meshPhysicalMaterial
-            color="#ffffff"
-            metalness={0.1}
-            roughness={0.05}
-            transmission={0.95}
-            thickness={0.8}
-            ior={1.5}
-            envMapIntensity={1.2}
-            clearcoat={1.0}
-            clearcoatRoughness={0.1}
-          />
-        </mesh>
+      <Text
+        position={[0, 0.08, -2.15]}
+        fontSize={1.72}
+        letterSpacing={-0.07}
+        color="#c8ff3a"
+        anchorX="center"
+        anchorY="middle"
+      >
+        AETHER
+      </Text>
 
-        <mesh position={[0, 0, 0]} scale={0.85}>
-          <torusKnotGeometry args={[1, 0.3, 128, 32, 2, 3]} />
-          <meshPhysicalMaterial
-            color="#4488ff"
-            metalness={0.0}
-            roughness={0.15}
-            transmission={0.85}
-            thickness={0.4}
-            ior={1.33}
-            envMapIntensity={0.8}
-          />
-        </mesh>
-
-        <mesh position={[2.5, 0, 0]}>
-          <cylinderGeometry args={[0.4, 0.4, 2.5, 32]} />
-          <meshPhysicalMaterial
-            color="#ffffff"
-            metalness={0.9}
-            roughness={0.15}
-            clearcoat={0.8}
-            clearcoatRoughness={0.2}
-            envMapIntensity={1.0}
-          />
-        </mesh>
-
-        <mesh position={[2.5, 1.5, 0]}>
-          <sphereGeometry args={[0.5, 32, 32]} />
-          <meshPhysicalMaterial
-            color="#ffffff"
-            metalness={0.0}
-            roughness={0.02}
-            transmission={0.98}
-            thickness={0.5}
-            ior={1.5}
-            envMapIntensity={1.5}
-            clearcoat={1.0}
-            clearcoatRoughness={0.05}
-          />
-        </mesh>
-
-        <mesh position={[2.5, 1.5, 0]} scale={0.85}>
-          <sphereGeometry args={[0.5, 32, 32]} />
-          <meshPhysicalMaterial
-            color="#ff88cc"
-            metalness={0.0}
-            roughness={0.1}
-            transmission={0.7}
-            thickness={0.3}
-            ior={1.33}
-          />
-        </mesh>
+      <group ref={roll}>
+        <group rotation={[0, 0, Math.PI / 2]}>
+          <GlassBottle />
+        </group>
       </group>
 
-      <Environment preset="studio" />
+      <ContactShadows position={[0, -1.15, 0]} opacity={0.55} scale={14} blur={2.8} far={6} />
+
+      <Environment resolution={256} frames={1} environmentIntensity={0.55}>
+        <Lightformer intensity={12} position={[0, 4.2, 1.4]} scale={[12, 0.28, 1]} />
+        <Lightformer intensity={8} position={[0, -3.2, 1.2]} scale={[12, 0.22, 1]} />
+        <Lightformer intensity={4} position={[5, 1, 3]} scale={[1.2, 5, 1]} />
+        <Lightformer intensity={2.4} position={[-4, 2, -3]} scale={[3, 3, 1]} color="#c8ff3a" />
+      </Environment>
     </>
   );
 }

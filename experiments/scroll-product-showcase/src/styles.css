@@ -4,104 +4,134 @@
   box-sizing: border-box;
 }
 
+html {
+  background: #030303;
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  background: #0a0a0a;
-  color: #ffffff;
+  background: #030303;
+  color: #eef6e2;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 #root {
   position: relative;
 }
 
-.content {
+.page {
   position: relative;
   z-index: 10;
   pointer-events: none;
 }
 
-section {
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  padding: 1.35rem 2rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #c8ff3a;
+}
+
+.block {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  pointer-events: none;
+  padding: 4rem 8vw;
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
-.hero {
+.block.in {
+  opacity: 1;
+  transform: none;
+}
+
+.side-center {
   flex-direction: column;
+  justify-content: flex-end;
   text-align: center;
+  padding-bottom: 10vh;
 }
 
-.hero h1 {
-  font-size: clamp(4rem, 12vw, 8rem);
-  font-weight: 700;
-  letter-spacing: -0.05em;
-  margin-bottom: 1rem;
-  background: linear-gradient(135deg, #ffffff 0%, #888888 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.side-left {
+  justify-content: flex-start;
 }
 
-.subtitle {
-  font-size: clamp(1.2rem, 3vw, 1.8rem);
+.side-right {
+  justify-content: flex-end;
+}
+
+.lede {
+  max-width: 32rem;
+  font-size: 1.02rem;
+  line-height: 1.65;
+  color: #b7c4a8;
   font-weight: 300;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #aaaaaa;
-  margin-bottom: 3rem;
+}
+
+.lede em {
+  font-style: italic;
+  color: #c8ff3a;
 }
 
 .scroll-hint {
-  font-size: 0.9rem;
+  margin-top: 1.8rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.34em;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: #666666;
-  animation: pulse 2s ease-in-out infinite;
+  color: #c8ff3a;
+  animation: pulse 2.4s ease-in-out infinite;
 }
 
 @keyframes pulse {
-  0%, 100% {
-    opacity: 0.4;
-  }
-  50% {
-    opacity: 1;
-  }
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 1; }
 }
 
-.feature {
-  padding: 4rem 2rem;
+.kicker {
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #c8ff3a;
 }
 
-.feature-content {
-  max-width: 600px;
-  padding: 3rem;
-  background: rgba(20, 20, 20, 0.6);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 1rem;
+.card {
+  max-width: 28rem;
+  padding: 2.4rem 2.2rem;
+  background: rgba(8, 10, 8, 0.62);
+  backdrop-filter: blur(22px);
+  border: 1px solid rgba(200, 255, 58, 0.16);
+  border-radius: 1.15rem;
   pointer-events: auto;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.4);
 }
 
-.feature-content h2 {
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 600;
-  margin-bottom: 1.5rem;
-  letter-spacing: -0.03em;
+.card h2 {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 560;
+  letter-spacing: -0.035em;
+  margin: 0.55rem 0 1rem;
 }
 
-.feature-content p {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  color: #cccccc;
+.card p:last-child {
+  font-size: 1.02rem;
+  line-height: 1.75;
+  color: #c5d0b8;
   font-weight: 300;
 }
 
 footer {
-  min-height: 40vh;
+  min-height: 36vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -110,33 +140,46 @@ footer {
 }
 
 footer p {
-  font-size: 0.9rem;
-  color: #666666;
-  line-height: 1.6;
-  max-width: 600px;
+  font-size: 0.86rem;
+  color: #6d7a62;
+  line-height: 1.65;
+  max-width: 34rem;
   pointer-events: auto;
 }
 
 footer a {
-  color: #88aaff;
+  color: #c8ff3a;
   text-decoration: none;
-  transition: color 0.2s ease;
 }
 
 footer a:hover {
-  color: #aaccff;
+  color: #e6ff9a;
 }
 
-@media (max-width: 768px) {
-  .feature-content {
-    padding: 2rem;
+@media (max-width: 780px) {
+  .side-left,
+  .side-right {
+    justify-content: center;
   }
-  
-  .feature-content h2 {
-    margin-bottom: 1rem;
+
+  .card {
+    padding: 1.6rem;
   }
-  
-  .feature-content p {
-    font-size: 1rem;
+
+  .hero {
+    padding-bottom: 8vh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .block,
+  .block.in {
+    transition: none;
+    transform: none;
+    opacity: 1;
+  }
+
+  .scroll-hint {
+    animation: none;
   }
 }

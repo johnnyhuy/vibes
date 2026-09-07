@@ -80,6 +80,8 @@ Each experiment must:
 
 Vercel projects are manually created in the dashboard with Root Directory set.
 
+**2026-09-08**: Root Directory is dashboard-only. `vercel.json` inside an experiment can set Vite + `ignoreCommand`; it cannot pin Root. Do not add a monorepo-root `vercel.json`. If Root is empty, Vercel builds `.` and dies. If Root is set but the *git ref* lacks that folder, you get `NOW_SANDBOX_WORKER_ROOTDIR_NOT_EXIST` (steam-atlas production ERROR on PR #10). Checklist: [docs/deployment/vercel-root-directories.md](../deployment/vercel-root-directories.md).
+
 ## References
 
 - [Vercel Monorepo Setup Guide](https://vercel.com/docs/monorepos)
