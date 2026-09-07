@@ -69,9 +69,42 @@ if (child.material) {
 
 Multi-material meshes have `child.material` as `Material[]`, not a single `Material`. Calling `.clone()` on an array throws.
 
-## Fixes Applied
+## Fixes Applied (v2 - French Names)
 
-### 1. Removed `'object_'` from EXCLUDE_KEYWORDS
+### Additional Context (9:30 AM UTC)
+
+Inspecting the cleaned PR6 GLB revealed **French Sketchfab mesh names**:
+- 65 nodes / 39 meshes (props removed)
+- Names: `Capot*` (hood), `cal*` (calipers), `int` (interior), `wheel*`, `phare` (headlight)
+- Roots: `RootNode`, `Tesla Model 3.fbx`, `Sketchfab_model`
+
+**Second issue**: English-only keywords (`hood`, `body`, `wheel`) didn't match French names (`Capot`, `cal`, `int`). Most body meshes excluded → still causing render failures.
+
+**Third issue**: Container nodes like `Tesla Model 3.fbx` treated as explodable pieces → clone/reparent crashes.
+
+### Final Fix: Include-By-Default
+
+**Switched from whitelist to exclude-list** after GLB stripping:
+
+1. **Skip container nodes** (not renderable):
+   - `RootNode`, `Tesla Model 3.fbx`, `Sketchfab_model`, `scene`, `root`
+
+2. **Exclude known props** (safety net):
+   - `cylinder012`, `debris_tires`, `speaker`, `traffic`, `light_pole`
+
+3. **Include everything else by default**:
+   - Trusts cleaned GLB contains only car parts
+   - Catches French names (`Capot`, `cal`, `int`, `phare`)
+   - Handles generic `Object_*` car parts
+
+4. **Added French keywords to system detection**:
+   - `capot` (hood), `cal` (caliper), `phare` (headlight), `int` (interior)
+   - `paint`, `plastic`, `chrome` (material names)
+   - Improves part categorization sidebar
+
+### Original Fix v1 (9:26 AM)
+
+### 1. Removed `'object_'` from EXCLUDE_KEYWORDS (incomplete)
 
 **Before:**
 ```typescript
