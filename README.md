@@ -21,6 +21,7 @@ Each app is a self-contained Vite experiment under [`experiments/`](./experiment
 | <img src="docs/previews/blender-semicircle.gif" width="280" alt="Semicircle of procedural laptops"> | [blender-semicircle-viewer](./experiments/blender-semicircle-viewer/README.md) | [live](https://vibes-blender-semicircle.vercel.app) | 51 procedural laptops in a 180° arc. Vanilla Three.js. |
 | <img src="docs/previews/ballance-roll.gif" width="280" alt="Marble rolling above a sea of clouds"> | [ballance-roll](./experiments/ballance-roll/README.md) | — | Nimbus Path marble above clouds. React + R3F + cannon-es. |
 | <img src="docs/previews/chinese-courtyard.gif" width="280" alt="Siheyuan courtyard shifting with season"> | [chinese-courtyard](./experiments/chinese-courtyard/README.md) | — | North Court siheyuan, season and sun. React + R3F + drei. |
+| <img src="docs/previews/audio-gadget-spin.gif" width="280" alt="Lumen Cuff headphone spinning on a dark stage"> | [audio-gadget-spin](./experiments/audio-gadget-spin/README.md) | — | Lumen Cuff studio turntable. React + R3F + drei. Mute-default Web Audio. |
 
 Clips are short local loops from each Vite demo. The scroll bottle is a still until a GIF can capture the glass.
 

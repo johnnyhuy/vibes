@@ -5,7 +5,7 @@
 - Video thumb: `https://pbs.twimg.com/amplify_video_thumb/2095956042580733952/img/KV9CA6IUTR5W73wG.jpg` (576×1024)
 
 **Study date**: 2026-09-08  
-**Status**: **NEXT candidate — not built this PR.** Parked again. North Court / `experiments/chinese-courtyard/` was the primary build. Still citing [Xr0ud](https://x.com/Xr0ud/status/2096982574132297791).
+**Status**: **Built** on the next hill-climb as `experiments/audio-gadget-spin/` (Lumen Cuff). This file is the parking note. The live write-up is [audio-gadget-spin.md](./audio-gadget-spin.md).
 
 **Disclaimer**: Clean-room notes only. I have not copied their code, product shots, or branding.
 

@@ -17,6 +17,7 @@ Structured decisions about the monorepo's technical architecture:
 - [ADR-0007: Season / Weather as First-Class Scene State](./adr/0007-scene-atmosphere-state.md) — Ridge Pagoda atmosphere uniforms
 - [ADR-0008: cannon-es Marble Controller](./adr/0008-cannon-es-marble-controller.md) — Nimbus Path contact feels, no physics wrapper
 - [ADR-0009: Procedural Courtyard Without a Blender Pipeline](./adr/0009-procedural-courtyard-without-blender.md) — North Court primitives instead of their GLB
+- [ADR-0010: Procedural Headphone Spin, Mute-Default Web Audio](./adr/0010-procedural-audio-spin-mute-default.md) — Lumen Cuff turntable; mute on by default
 
 ### Reverse Engineering
 
@@ -31,7 +32,7 @@ Clean-room notes from studying public projects:
 - [Japanese Tower / Seasonal Atmosphere](./reverse-engineering/japanese-tower-threejs.md) — Built: procedural pagoda + season / day / weather / haze (`experiments/japanese-tower/`)
 - [Rolling Marble / Ocean of Clouds](./reverse-engineering/ballance-roll-threejs.md) — Built: Haze Walk + wood/stone/metal (`experiments/ballance-roll/`). Ocean/dolphin still parked.
 - [Chinese Courtyard](./reverse-engineering/chinese-courtyard-threejs.md) — Built: four-sided North Court (`experiments/chinese-courtyard/`). Studied Blender→GLB→Three; shipped primitives.
-- [Audio Gadget Product Spin](./reverse-engineering/audio-gadget-product-spin.md) — NEXT candidate (not built; parked again): Claude + Three.js headphone/speaker marketing spin
+- [Audio Gadget Product Spin](./reverse-engineering/audio-gadget-product-spin.md) — Built: Lumen Cuff turntable (`experiments/audio-gadget-spin/`)
 - [NeuralKinetics Video-Shader Hero Pattern](./reverse-engineering/neuralkinetics-video-shader-hero.md) — Poster-first video/shader pipeline, organic motion, reduced-motion handling
 - [Procedural Runtime Geometry Pattern](./reverse-engineering/procedural-runtime-geometry.md) — Steam Atlas mechanical assembly, runtime CSG, parametric parts
 - [Visual Quality Bar](./visual-quality-bar.md) — Cinematic product demo aesthetic (dark UI, frosted glass, studio lighting)
@@ -58,7 +59,7 @@ Things that went sideways and what I learnt:
 
 - [Preview stills](./visual-qa/README.md) — refresh `docs/previews/<app>.png` on ship / redeploy
 - [2026-09-07: Hill-Climb Visual QA Loop](./visual-qa-2026-09-07.md) — Explode mesh filter hardening, earth/v8 confirmation
-- [2026-09-08: Production visual QA](./visual-qa-2026-09-08-prod.md) — explode / steam / glass PASS; semicircle still `25587f54`; scroll 404; tower later READY
+- [2026-09-08: Production visual QA](./visual-qa-2026-09-08-prod.md) — explode / steam / glass / tower LIVE; semicircle still `25587f54`; scroll 404. Audio-gadget added locally; no redeploy.
 
 ## Writing Style
 

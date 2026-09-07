@@ -6,7 +6,11 @@ README hero stills now live in [`docs/previews/`](./previews/). Refresh `docs/pr
 
 ## Later check — tower alias serving
 
-[vibes-japanese-tower.vercel.app](https://vibes-japanese-tower.vercel.app) now returns Ridge Pagoda HTML (`READY`). Scroll is still `DEPLOYMENT_NOT_FOUND`. Semicircle is still the cropped stale prod. Do not treat a 404 page as a README preview.
+[vibes-japanese-tower.vercel.app](https://vibes-japanese-tower.vercel.app) now returns Ridge Pagoda HTML (`READY`, `dpl_Gap9BAXosU4jMEsQsR8c2nKyEPjg`). Scroll is still `DEPLOYMENT_NOT_FOUND`. Semicircle is still the cropped stale prod. Do not treat a 404 page as a README preview.
+
+## Hill-climb note — audio-gadget-spin (local only)
+
+This pass added `experiments/audio-gadget-spin/` (Lumen Cuff) on disk. **I did not redeploy anything.** No new Vercel project. Reverse-eng notes stay in `docs/reverse-engineering/audio-gadget-product-spin.md`.
 
 ## Latest — ~4:37am AEST headed production QA
 
@@ -19,8 +23,8 @@ Stills named `hill-climb/prod-*-20260908-0425.png` (I did not open those binarie
 | [vibes-glass-capability-brain.vercel.app](https://vibes-glass-capability-brain.vercel.app/) | **PASS** | Capability Map live. Skip. |
 | [vibes-explode.vercel.app](https://vibes-explode.vercel.app) @ 0% | **PASS** | Assembled Model 3, frosted UI. Skip. |
 | [vibes-scroll-product.vercel.app](https://vibes-scroll-product.vercel.app) | **404** | No READY production. |
-| [vibes-japanese-tower.vercel.app](https://vibes-japanese-tower.vercel.app) | **404** | Project exists, 0 deployments. |
-| ballance-roll / chinese-courtyard | **none** | No Vercel projects. Local only. |
+| [vibes-japanese-tower.vercel.app](https://vibes-japanese-tower.vercel.app) | **READY** (later check) | Courtyard PR production `dpl_Gap9BAXosU4jMEsQsR8c2nKyEPjg` on `7d1be7c`. Not redeployed on the audio-gadget pass. |
+| ballance-roll / chinese-courtyard / audio-gadget-spin | **none** | No Vercel projects. Local only. |
 
 ### Redeploy order after ~12:55 UTC
 
@@ -30,8 +34,8 @@ One each. Stop.
 2. **Skip** `vibes-steam-atlas` — LIVE PASS on `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS` unless a later check goes stale
 3. `vibes-blender-semicircle` — one `main` redeploy (replace `25587f54`)
 4. `vibes-scroll-product` — first READY production
-5. `vibes-japanese-tower` — first production
-6. Glass — **already live**. Do not create `vibes-ballance-roll` or a courtyard project.
+5. `vibes-japanese-tower` — already READY from courtyard PR `dpl_Gap9BAXosU4jMEsQsR8c2nKyEPjg` / `7d1be7c`; later `main` refresh only if the keep drifts
+6. Glass — **already live**. Do not create `vibes-ballance-roll`, a courtyard project, or an audio-gadget project.
 
 ## Earlier — ~2:22–2:33am AEST (supersedes the morning explode FAIL)
 
@@ -49,7 +53,7 @@ Stills: `prod-explode-0-20260908-0222.png`, `prod-explode-80-20260908-0222.png`.
 
 **glass**: [vibes-glass-capability-brain.vercel.app](https://vibes-glass-capability-brain.vercel.app/) production READY `dpl_3CE9Dd7X7og5MuSLpcGgyxboacgz` on `9328191`. SSO off. Shipped on the tower merge — [incident](./incidents/2026-09-08-glass-auto-deploy-on-tower-merge.md).
 
-**japanese-tower**: project `vibes-japanese-tower` (`prj_T1KL4cJSMuY0Z6oKGnNtv8zVP0Js`) exists, Root set, **0 production**.
+**japanese-tower**: project `vibes-japanese-tower` (`prj_T1KL4cJSMuY0Z6oKGnNtv8zVP0Js`) exists, Root set. Production READY from courtyard PR `dpl_Gap9BAXosU4jMEsQsR8c2nKyEPjg` on `7d1be7c`.
 
 ### Redeploy order after ~12:55 UTC
 
@@ -59,8 +63,8 @@ One each. Stop.
 2. **Skip** `vibes-steam-atlas` — LIVE PASS ~4:37am
 3. `vibes-blender-semicircle` — one `main` redeploy (replace `25587f54`)
 4. `vibes-scroll-product` — first READY production
-5. `vibes-japanese-tower` — first production (project exists; `deploy: false`; 0 deployments)
-6. Glass — **already live**. Do not spend a slot. Do not create `vibes-ballance-roll` or a courtyard project.
+5. `vibes-japanese-tower` — already READY from courtyard PR; later `main` refresh only if needed
+6. Glass — **already live**. Do not spend a slot. Do not create `vibes-ballance-roll`, a courtyard project, or an audio-gadget project.
 
 Do not spam deploys.
 

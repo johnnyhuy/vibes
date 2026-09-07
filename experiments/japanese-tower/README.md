@@ -30,7 +30,7 @@ npm run build
 
 ## Deploy
 
-Project `vibes-japanese-tower` (`prj_T1KL4cJSMuY0Z6oKGnNtv8zVP0Js`) exists with Root Directory `experiments/japanese-tower`. Created `deploy: false`. **Still 0 deployments** — a project row is not an alias. `ignoreCommand` will skip sibling-folder commits (`ignored-build-step`); this courtyard-pass README touch is so the next post-quota `main` merge actually builds this Root. Wait until ~**2026-09-08 12:55 UTC**. Do not force a deploy on a hill-climb PR.
+Project `vibes-japanese-tower` (`prj_T1KL4cJSMuY0Z6oKGnNtv8zVP0Js`) exists with Root Directory `experiments/japanese-tower`. Created `deploy: false`. A courtyard-PR production READY already landed: `dpl_Gap9BAXosU4jMEsQsR8c2nKyEPjg` on `7d1be7c` (alias [vibes-japanese-tower.vercel.app](https://vibes-japanese-tower.vercel.app)). That build is the PR-branch tree, not necessarily latest `main`. Refresh from `main` later only if the keep drifts. Do not force a deploy on this hill-climb.
 
 Dashboard **Root Directory** must stay `experiments/japanese-tower`. `vercel.json` only carries the usual Vite fields plus `ignoreCommand` — it cannot set Root Directory.
 
@@ -40,11 +40,10 @@ Glass is already LIVE at [vibes-glass-capability-brain.vercel.app](https://vibes
 
 - [docs/reverse-engineering/japanese-tower-threejs.md](../../docs/reverse-engineering/japanese-tower-threejs.md)
 - [docs/adr/0007-scene-atmosphere-state.md](../../docs/adr/0007-scene-atmosphere-state.md)
-- Built next: [Nimbus Path](../ballance-roll/), [North Court](../chinese-courtyard/)
-- Still parked: [audio gadget product spin](../../docs/reverse-engineering/audio-gadget-product-spin.md)
+- Built next: [Nimbus Path](../ballance-roll/), [North Court](../chinese-courtyard/), [Lumen Cuff](../audio-gadget-spin/)
 
 ---
 
-**Status**: Project exists (`prj_T1KL4cJSMuY0Z6oKGnNtv8zVP0Js`); **0 production** until a Root-touching merge after quota  
+**Status**: Project exists; production READY from courtyard PR (`dpl_Gap9BAXosU4jMEsQsR8c2nKyEPjg` / `7d1be7c`). Main refresh only if content drifts.  
 **Last updated**: 2026-09-08  
 **Built by**: Johnny Huynh
