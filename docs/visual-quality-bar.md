@@ -52,9 +52,50 @@ This document captures the visual quality bar I'm aiming for in the vibes experi
 
 ---
 
+### 4. [@Legendaryy Blender MCP Semicircle](https://x.com/Legendaryy/status/2096510965789422001)
+**What it is**: GPT Astra installed Blender MCP, rendered 51 MacBook Airs in a semicircle, then built an interactive 3D website
+
+**Visual qualities**:
+- **Agent-driven workflow** — MCP installation → scene construction → GLB export → web viewer
+- **Procedural array layout** — 51 instances in 180° semicircular arc
+- **Parametric generation** — Clean code-driven approach, not manual placement
+- **Dark cinematic framing** — Camera positioned to showcase the full semicircle
+- **End-to-end automation** — From Blender script to deployed website
+
+**Reference doc**: `docs/reverse-engineering/blender-mcp-macbook-semicircle.md`
+
+---
+
+###5. [@himanshubuildss Glass Bottle Scroll](https://x.com/himanshubuildss/status/2096243989439713677)
+**What it is**: Photoreal glass bottle with refraction, liquid, scroll-driven rotation
+
+**Visual qualities**:
+- **Photoreal materials** — Glass transmission, refraction, clearcoat
+- **HDRI lighting** — Environment map for realistic reflections
+- **Scroll interaction** — User scroll controls 3D rotation (not auto-animation)
+- **Liquid simulation** — Inner liquid volume with separate material
+- **Fixed canvas** — 3D scene stays in place while page scrolls
+
+**Reference doc**: `docs/reverse-engineering/webgl-scroll-product.md`
+
+---
+
+### 6. [@viktoroddy One-Shot Three.js Site](https://x.com/viktoroddy/status/2096556452999741555)
+**What it is**: AI-generated 3D website from prompt, live at https://hand-touch-omega.vercel.app/
+
+**Visual qualities**:
+- **Fast iteration** — Prompt to deployed site in hours
+- **Simple geometry** — Clean, not overcomplex
+- **Good lighting** — Proves lighting matters more than model complexity
+- **Immediate deployment** — Vercel integration, live URL
+
+**Reference doc**: `docs/reverse-engineering/webgl-scroll-product.md`
+
+---
+
 ## Common Patterns
 
-Across all three demos, the quality bar is:
+Across all six demos, the quality bar is:
 
 1. **Dark UI** — Black backgrounds, not grey (#000 or #0a0a0a)
 2. **Frosted glass panels** — `backdrop-filter: blur(20px)`, rgba backgrounds

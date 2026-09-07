@@ -71,6 +71,15 @@ npm install && npm run dev
 #### [ai-3d-lanes](./experiments/ai-3d-lanes/)
 Four parallel approaches: **web-3d**, **blender** (MCP vs computer-use), **cad** (CadQuery), **mesh-gen** (docs + stubs).
 
+#### [blender-semicircle-viewer](./experiments/blender-semicircle-viewer/)
+Semicircular array of 51 laptop-like objects — demonstrates Blender MCP → Three.js workflow. Inspired by [Legendaryy's Blender MCP demo](https://x.com/Legendaryy/status/2096510965789422001).
+
+**Run it**:
+```bash
+cd experiments/blender-semicircle-viewer
+npm install && npm run dev
+```
+
 ---
 
 ### Image, texture & CAD
@@ -90,6 +99,7 @@ Each browser demo has its own Vercel project on this repo (Root Directory set in
 | earth-timeline | `vibes-earth` | `experiments/earth-timeline` | vibes-earth.vercel.app |
 | v8-cutaway | `vibes-v8` | `experiments/v8-cutaway` | vibes-v8.vercel.app |
 | web-physics | `vibes-physics` | `experiments/web-physics` | vibes-physics.vercel.app |
+| blender-semicircle-viewer | (not yet linked) | `experiments/blender-semicircle-viewer` | TBD |
 
 PR previews show up as Vercel bot comments on each pull request.
 
