@@ -40,7 +40,20 @@ Highest-gap first:
 
 ## Local QA
 
-See the follow-up note in this file after preview, or `docs/visual-qa/` if stills are refreshed later.
+`npm run build` passed for earth, v8, scroll-product, steam-atlas, semicircle, explode.
+
+Headed preview on `127.0.0.1:4173–4178` (2026-09-08):
+
+| App | Verdict | Notes |
+| --- | --- | --- |
+| earth-timeline | PASS | Timeline, play, go-back, back-to-today. Globe right of centre on starfield. |
+| v8-cutaway | PASS | Speed / pause / play. Ring platform, firing-order dots. |
+| scroll-product-showcase | PASS | Scroll rolls the bottle; nav jumps. Lime frame strengthened after the first pass (was too faint). |
+| procedural-steam-atlas | PASS | Bottom dock explode + isolation. Ring platform. |
+| blender-semicircle-viewer | PASS | Full 180° readable. Laptops look small on purpose (bbox pad). |
+| explode-assembly | PASS | Battery card, explode slider, isolate / show everything. |
+
+No Vercel redeploy.
 
 **Author:** Johnny Huynh (via cloud agent)  
 **Date:** 2026-09-08

@@ -47,9 +47,9 @@ export default function App() {
         <ProductScene />
       </Canvas>
 
-      <div className="page">
-        <div className="frame" aria-hidden />
+      <div className="frame" aria-hidden="true" />
 
+      <div className="page">
         <header className="topbar">
           <span>Aether</span>
           <nav>
