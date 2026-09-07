@@ -1,11 +1,13 @@
 # Heartwood Warden — living-wood glade
 
-I built this after reading [@NickDevFE](https://x.com/NickDevFE/status/2096946586781692297). The post is a commercially pitched workflow: Image → Hyper3D → img2threejs → GPT-6 Astra → interactive Three.js. The live marketing URL is [img2threejs.io/#/x/monster-tree](https://img2threejs.io/#/x/monster-tree). Their exhibit is titled “Groot — Heart of the Forest.” I studied the public post, the thread, and that marketing title only. I did **not** scrape, clone, or paste their factory, skins, or chrome. This is my educational demo — **vibes · heartwood warden**. The character is invented: **Heartwood Warden / 心木守**.
+I built this after reading [@NickDevFE](https://x.com/NickDevFE/status/2096946586781692297). The full workflow quote: **Image → Hyper3D → img2threejs → GPT-6 Astra → Interactive Three.js**. The lesson I kept: 3D generation is the beginning, not the end — you still build a game / product / experience around the asset, with editable code.
+
+The live marketing URL is [img2threejs.io/#/x/monster-tree](https://img2threejs.io/#/x/monster-tree). Their exhibit is titled “Groot — Heart of the Forest.” I studied the public post, the thread, the site OG lockup, and the X video thumb. I did **not** scrape, clone, or paste their factory, skins, or chrome. This is my educational demo — **vibes · heartwood warden**. The character is invented: **Heartwood Warden / 心木守**.
 
 ## What I built
 
 - **A moss-bound shrine guardian** — bark plates, a hollow chest with an amber resin heart, a carved mask, a crescent of bare twigs. Not a Marvel tree-person. Composite primitives. No character GLB.
-- **A moonlit woodland glade** — gnarled trees, a stone ring, fog, a large moon, faint shafts. Dark teal woodland, not a grey void.
+- **A moonlit woodland glade** — tall trunk silhouettes, a stone ring, thick night fog, a moon-dew rill I invented, faint shafts. Dark woodland, not a grey void. Rear-three-quarter follow.
 - **Lantern spirits** — seven drifting orbs. Three carry lights. They keep the path and hurry in on lantern call.
 - **Walk and sprint** — WASD or arrows. Shift runs. Simple gait: idle sway, walk plant, run lean.
 - **Ten casts I named** — vine lash, spore bloom, root pulse, amber heart, moss veil, canopy bind, lantern call, night dew, heartwood choir, moon graft. Keys `1`–`0`.
@@ -40,11 +42,12 @@ Post-quota order stays: (1) promote `vibes-blender-semicircle` production from t
 
 Headed preview on `127.0.0.1:4173` after `npm run build`:
 
-- Canvas painted a dark teal-navy glade, not a grey void. Guardian, trees, and lanterns readable.
+- Canvas painted a dark woodland night: fog, trunk silhouettes, moon-dew rill. Not a grey void.
+- Rear-three-quarter follow; guardian (mask, amber well, crescent twigs) readable in the lower third.
 - WASD walked; Shift+W sprinted; topbar stance flipped idle → walk → sprint.
 - Casts `1` `2` `3` `4` `7` `0` each changed the desk title and showed distinct VFX.
 - Ward snippet panel opened with generated JSON + helper.
-- Console: no fatal errors. Only a missing-favicon 404 on the first pass (now an inline SVG icon) and benign WebGL `ReadPixels` notes.
+- Console: no fatal errors. Inline favicon; benign WebGL `ReadPixels` notes.
 
 No Vercel project. No production URL.
 

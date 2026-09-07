@@ -7,7 +7,7 @@
 
 ## Context
 
-@NickDevFE posted a monster-tree showcase: Image → Hyper3D → img2threejs → GPT-6 Astra → interactive Three.js. The live route markets “Groot — Heart of the Forest.” The public lesson is that img2threejs emits **editable procedural Three.js**, not a GLB dump.
+@NickDevFE posted a monster-tree showcase. Full workflow quote: **Image → Hyper3D → img2threejs → GPT-6 Astra → Interactive Three.js**. The live route markets “Groot — Heart of the Forest.” The public lesson is larger than a mesh dump: 3D generation is the **beginning**, not the end. You still build a game / product / experience around the asset, and you keep the Three.js editable.
 
 I already have `experiments/image-to-3d/` as a mesh-provider notebook (Meshy / Tripo / Rodin). Cloning that folder into another client would teach the wrong thing. Cloning Groot or pasting their factory would fail the clean-room rule. Hobby Vercel quota is still 0 until ~2026-09-08 20:39 UTC, so the experiment stays local.
 

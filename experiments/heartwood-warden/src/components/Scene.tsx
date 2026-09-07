@@ -18,13 +18,13 @@ interface Props {
 export default function Scene({ player, input, casts, reducedMotion }: Props) {
   return (
     <Canvas
-      camera={{ position: [0, 4.1, 8.4], fov: 38, near: 0.1, far: 120 }}
+      camera={{ position: [2.2, 2.45, 7.6], fov: 36, near: 0.1, far: 120 }}
       dpr={[1, 1.6]}
       shadows
       gl={{
         antialias: true,
         toneMapping: ACESFilmicToneMapping,
-        toneMappingExposure: 1.02,
+        toneMappingExposure: 0.94,
       }}
       onCreated={({ gl }) => {
         gl.shadowMap.type = PCFSoftShadowMap;
@@ -37,9 +37,9 @@ export default function Scene({ player, input, casts, reducedMotion }: Props) {
       <FollowCamera player={player} />
       <EffectComposer disableNormalPass>
         <Bloom
-          luminanceThreshold={0.42}
-          luminanceSmoothing={0.34}
-          intensity={reducedMotion ? 0.28 : 0.62}
+          luminanceThreshold={0.36}
+          luminanceSmoothing={0.32}
+          intensity={reducedMotion ? 0.24 : 0.72}
           mipmapBlur
         />
       </EffectComposer>

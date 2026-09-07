@@ -12,21 +12,24 @@ interface Props {
 
 export default function FollowCamera({ player }: Props) {
   const { camera } = useThree();
-  const smoothing = useRef(new Vector3(0, 4.1, 8.4));
+  const smoothing = useRef(new Vector3(2.2, 2.45, 7.6));
 
   useFrame((_, delta) => {
     const ease = 1 - Math.pow(0.08, delta);
     const body = player.current;
-    const back = 6.4;
-    const height = 3.35;
+    const back = 5.6;
+    const side = 2.15;
+    const height = 2.45;
+    const sin = Math.sin(body.yaw);
+    const cos = Math.cos(body.yaw);
     offset.set(
-      body.x - Math.sin(body.yaw) * back,
+      body.x - sin * back + cos * side,
       height,
-      body.z + Math.cos(body.yaw) * back
+      body.z + cos * back + sin * side
     );
     smoothing.current.lerp(offset, ease);
     camera.position.copy(smoothing.current);
-    look.set(body.x, 1.35, body.z);
+    look.set(body.x, 1.05, body.z);
     camera.lookAt(look);
   });
 

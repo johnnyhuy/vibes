@@ -129,7 +129,7 @@ Across these demos, the quality bar is:
 - ✅ Procedural shrine guardian, sine gait, ten invented casts, lantern spirits
 - ✅ Optional generated ward snippet (our code shape)
 - ⚠️ No Vercel project — do not create one until quota is healthy
-- Inspired by [NickDevFE](https://x.com/NickDevFE/status/2096946586781692297) (monster-tree marketing URL studied; no source scraped)
+- Inspired by [NickDevFE](https://x.com/NickDevFE/status/2096946586781692297) (OG lockup + X woodland thumb studied; no source scraped)
 
 ### nacre-loom ✅ (local)
 - ✅ Dark kiln studio + frosted loom desk (not their preset thumbnail rail)

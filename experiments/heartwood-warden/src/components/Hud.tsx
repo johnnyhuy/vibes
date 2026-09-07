@@ -73,8 +73,8 @@ export default function Hud({
         <h1>Heartwood Warden</h1>
         <p className="lede">
           I raised a moss-bound shrine guardian from primitives — bark plates,
-          a resin heart, lantern spirits. No borrowed character, no scraped
-          factory. The glade is mine. Walk it. Cast.
+          a resin heart, lantern spirits. A mesh is only the start; the glade
+          is the experience. Walk it. Cast.
         </p>
       </header>
 

@@ -28,7 +28,8 @@ export function buildWardSnippet(state: WardSnippetState): string {
       : null,
   };
 
-  const helper = `// Heartwood Warden — invented for vibes, not a third-party factory
+  const helper = `// Heartwood Warden — invented for vibes.
+// A generated mesh is the start; the walkable glade is the rebuild.
 function rootPulse(origin, t) {
   const radius = 0.4 + t * 4.8;
   const fade = Math.max(0, 1 - t / 1.6);
