@@ -7,7 +7,7 @@
 :root {
   --ink: #1b2430;
   --muted: #5c6774;
-  --panel: rgba(255, 255, 255, 0.62);
+  --panel: rgba(255, 255, 255, 0.42);
   --line: rgba(27, 36, 48, 0.1);
   --accent: #9a3b32;
 }

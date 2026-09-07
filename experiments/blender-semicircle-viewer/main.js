@@ -13,8 +13,8 @@ const SCREEN_TILT = THREE.MathUtils.degToRad(20);
 
 // Scene setup
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x0a0a0a);
-scene.fog = new THREE.Fog(0x0a0a0a, 80, 160);
+scene.background = new THREE.Color(0x000000);
+scene.fog = new THREE.Fog(0x000000, 80, 160);
 
 // Camera — FOV stays moderate; distance comes from the 3D bounds.
 const CAMERA_FOV = 40;
@@ -113,7 +113,7 @@ function frameCameraToArc(root) {
   const aspect = Math.max(camera.aspect, 0.01);
   const vFov = THREE.MathUtils.degToRad(camera.fov);
   const hFov = 2 * Math.atan(Math.tan(vFov * 0.5) * aspect);
-  const distance = distanceToFitCorners(center, corners, HERO_DIRECTION, vFov, hFov, 1.08);
+  const distance = distanceToFitCorners(center, corners, HERO_DIRECTION, vFov, hFov, 1.14);
 
   const target = center.clone();
   target.y += SCREEN_HEIGHT * 0.28;
@@ -280,9 +280,9 @@ function createGround() {
   const ground = new THREE.Mesh(
     new THREE.CircleGeometry(28, 64),
     new THREE.MeshStandardMaterial({
-      color: 0x16181c,
-      roughness: 0.78,
-      metalness: 0.22,
+      color: 0x0b0c10,
+      roughness: 0.88,
+      metalness: 0.12,
     })
   );
   ground.rotation.x = -Math.PI / 2;

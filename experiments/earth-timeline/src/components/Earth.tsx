@@ -75,7 +75,7 @@ export default function Earth({ currentEra }: EarthProps) {
       earthRef.current.material.color.set(currentEra.color);
     }
     if (cloudsRef.current) {
-      (cloudsRef.current.material as THREE.MeshPhongMaterial).opacity = currentEra.cloudOpacity;
+      (cloudsRef.current.material as THREE.MeshStandardMaterial).opacity = currentEra.cloudOpacity;
     }
     if (atmosphereRef.current) {
       (atmosphereRef.current.material as THREE.MeshBasicMaterial).opacity = currentEra.atmosphereOpacity;
@@ -90,31 +90,33 @@ export default function Earth({ currentEra }: EarthProps) {
   return (
     <group>
       <mesh ref={earthRef}>
-        <sphereGeometry args={[1, 64, 64]} />
-        <meshPhongMaterial
+        <sphereGeometry args={[1, 72, 72]} />
+        <meshStandardMaterial
           map={earthTexture}
-          bumpScale={0.05}
-          shininess={10}
+          roughness={0.62}
+          metalness={0.04}
           color={currentEra.color}
         />
       </mesh>
 
       <mesh ref={cloudsRef}>
-        <sphereGeometry args={[1.01, 32, 32]} />
-        <meshPhongMaterial
+        <sphereGeometry args={[1.015, 48, 48]} />
+        <meshStandardMaterial
           map={cloudTexture}
           transparent
           opacity={currentEra.cloudOpacity}
           depthWrite={false}
+          roughness={1}
+          metalness={0}
         />
       </mesh>
 
       <mesh ref={atmosphereRef}>
-        <sphereGeometry args={[1.15, 32, 32]} />
+        <sphereGeometry args={[1.18, 48, 48]} />
         <meshBasicMaterial
-          color="#3b82f6"
+          color="#6ea8ff"
           transparent
-          opacity={currentEra.atmosphereOpacity}
+          opacity={Math.max(0.06, currentEra.atmosphereOpacity)}
           side={THREE.BackSide}
         />
       </mesh>

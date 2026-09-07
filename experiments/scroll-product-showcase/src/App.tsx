@@ -7,10 +7,12 @@ function Reveal({
   children,
   className,
   side = 'center',
+  id,
 }: {
   children: ReactNode;
   className?: string;
   side?: 'left' | 'right' | 'center';
+  id?: string;
 }) {
   const ref = useRef<HTMLElement>(null);
   const [on, setOn] = useState(false);
@@ -27,7 +29,7 @@ function Reveal({
   }, []);
 
   return (
-    <section ref={ref} className={`block side-${side} ${className ?? ''} ${on ? 'in' : ''}`}>
+    <section id={id} ref={ref} className={`block side-${side} ${className ?? ''} ${on ? 'in' : ''}`}>
       {children}
     </section>
   );
@@ -37,7 +39,7 @@ export default function App() {
   return (
     <>
       <Canvas
-        camera={{ position: [0, 0.28, 6.6], fov: 30 }}
+        camera={{ position: [0, 0.28, 7.1], fov: 28 }}
         dpr={[1, 2]}
         gl={{ antialias: true, alpha: false, toneMapping: ACESFilmicToneMapping, toneMappingExposure: 1.12 }}
         style={{ position: 'fixed', inset: 0, width: '100vw', height: '100vh', pointerEvents: 'none' }}
@@ -46,10 +48,23 @@ export default function App() {
       </Canvas>
 
       <div className="page">
+        <div className="frame" aria-hidden />
+
         <header className="topbar">
           <span>Aether</span>
+          <nav>
+            <a href="#silhouette">The drink</a>
+            <a href="#transmission">The glass</a>
+            <a href="#roll">The roll</a>
+            <a href="#clean-room">The notes</a>
+          </nav>
           <span>Batch 04</span>
         </header>
+
+        <div className="batch-badge" aria-hidden>
+          <strong>04</strong>
+          <span>3,000</span>
+        </div>
 
         <Reveal className="hero" side="center">
           <p className="lede">
@@ -58,9 +73,13 @@ export default function App() {
             <em> behind</em> the bottle so transmission has something to bend.
           </p>
           <div className="scroll-hint">Scroll — it rolls</div>
+          <div className="hero-ctas">
+            <a className="pill solid" href="#clean-room">Read the batch notes</a>
+            <a className="pill ghost" href="#roll">How it rolls</a>
+          </div>
         </Reveal>
 
-        <Reveal className="feature" side="left">
+        <Reveal id="silhouette" className="feature" side="left">
           <div className="card">
             <p className="kicker">01 — Silhouette</p>
             <h2>On its side</h2>
@@ -72,7 +91,7 @@ export default function App() {
           </div>
         </Reveal>
 
-        <Reveal className="feature" side="right">
+        <Reveal id="transmission" className="feature" side="right">
           <div className="card">
             <p className="kicker">02 — Transmission</p>
             <h2>Type through glass</h2>
@@ -85,7 +104,7 @@ export default function App() {
           </div>
         </Reveal>
 
-        <Reveal className="feature" side="left">
+        <Reveal id="roll" className="feature" side="left">
           <div className="card">
             <p className="kicker">03 — Roll</p>
             <h2>Scroll is the long axis</h2>
@@ -97,7 +116,7 @@ export default function App() {
           </div>
         </Reveal>
 
-        <Reveal className="feature" side="right">
+        <Reveal id="clean-room" className="feature" side="right">
           <div className="card">
             <p className="kicker">04 — Clean-room</p>
             <h2>Pattern, not the brand</h2>

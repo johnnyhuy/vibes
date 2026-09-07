@@ -8,20 +8,19 @@ interface SceneProps {
   currentEra: TimelineData;
   isPlaying: boolean;
   timelineValue: number;
-  setTimelineValue: (value: number) => void;
+  setTimelineValue: (value: number | ((prev: number) => number)) => void;
   setIsPlaying: (playing: boolean) => void;
 }
 
-export default function Scene({ 
-  currentEra, 
-  isPlaying, 
-  timelineValue, 
+export default function Scene({
+  currentEra,
+  isPlaying,
   setTimelineValue,
-  setIsPlaying 
+  setIsPlaying,
 }: SceneProps) {
   useEffect(() => {
     if (!isPlaying) return;
-    
+
     const interval = setInterval(() => {
       setTimelineValue((prev) => {
         if (prev >= 100) {
@@ -30,41 +29,47 @@ export default function Scene({
         }
         return prev + 1;
       });
-    }, 100);
+    }, 110);
 
     return () => clearInterval(interval);
   }, [isPlaying, setTimelineValue, setIsPlaying]);
 
   return (
     <Canvas
-      camera={{ position: [0, 0, 3], fov: 45 }}
+      camera={{ position: [1.35, 0.18, 4.35], fov: 38 }}
       style={{ width: '100vw', height: '100vh' }}
+      gl={{ antialias: true }}
     >
       <color attach="background" args={['#000000']} />
-      
-      <ambientLight intensity={0.3} />
-      <directionalLight position={[5, 3, 5]} intensity={2} />
-      <pointLight position={[-5, -5, -5]} intensity={0.5} color="#4169e1" />
 
-      <Earth currentEra={currentEra} />
-      
-      <Stars 
-        radius={100} 
-        depth={50} 
-        count={3000} 
-        factor={4} 
-        saturation={0.2} 
-        fade 
-        speed={0.5}
+      <ambientLight intensity={0.12} />
+      <directionalLight position={[6, 1.4, 3.2]} intensity={2.4} color="#fff4e6" />
+      <directionalLight position={[-4, 0.4, -3]} intensity={0.55} color="#6ea8ff" />
+      <pointLight position={[-2, -1, 2]} intensity={0.35} color="#3b82f6" />
+
+      <group position={[0.55, -0.08, 0]}>
+        <Earth currentEra={currentEra} />
+      </group>
+
+      <Stars
+        radius={140}
+        depth={60}
+        count={4200}
+        factor={3.2}
+        saturation={0}
+        fade
+        speed={0.35}
       />
 
-      <OrbitControls 
-        enableZoom={true}
+      <OrbitControls
+        enableZoom
         enablePan={false}
-        minDistance={2}
+        enableDamping
+        dampingFactor={0.06}
+        minDistance={2.6}
         maxDistance={8}
-        autoRotate={false}
-        rotateSpeed={0.5}
+        rotateSpeed={0.45}
+        target={[0.45, 0, 0]}
       />
     </Canvas>
   );

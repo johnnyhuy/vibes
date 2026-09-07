@@ -146,6 +146,7 @@ Across these demos, the quality bar is:
 - ✅ Orbital camera
 - ✅ Explosion slider
 - ✅ Frosted MODEL 3 UI on production `de25d60` (PASS 2026-09-08 ~2:22am AEST)
+- ✅ 2026-09-08 sweep: clearer glass + selected-part overview card
 - ⚠️ Lighting could be more studio-like
 
 ### earth-timeline ✅
@@ -153,7 +154,7 @@ Across these demos, the quality bar is:
 - ✅ React + R3F + drei
 - ✅ Orbital camera
 - ✅ Timeline scrubber with era markers
-- ✅ Frosted glass panels
+- ✅ 2026-09-08 sweep: Astra-class editorial + thin timeline (not a bulky card)
 - ⚠️ Earth textures are procedural (could use NASA Blue Marble)
 - ⚠️ Atmosphere is simple glow (could use Rayleigh scattering)
 
@@ -161,11 +162,10 @@ Across these demos, the quality bar is:
 - ✅ Dark background
 - ✅ React + R3F + drei
 - ✅ Orbital camera
-- ✅ Monospace typography
 - ✅ Live gauges (RPM, stroke cycle, pressure)
+- ✅ 2026-09-08 sweep: firing-order dots, glass dock, ring platform
 - ⚠️ Geometry is simplified (no camshafts, connecting rods)
 - ⚠️ Could add cutaway shader for progressive reveal
-- ⚠️ Could add firing order visualization (numbered cylinders)
 
 ---
 
