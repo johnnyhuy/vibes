@@ -5,7 +5,6 @@ import * as THREE from 'three';
 import {
   calculateExplosionLayout,
   EMPTY_LAYOUT,
-  systemSpread,
   type ExplosionLayout,
 } from '../utils/explosion';
 
@@ -89,13 +88,18 @@ function polishMaterial(source: THREE.Material): THREE.Material {
   mat.opacity = 1;
   // No HDRI sky — keep paint readable instead of chrome-hollow.
   if ('metalness' in mat) {
-    mat.metalness = THREE.MathUtils.clamp((mat.metalness ?? 0.3) + 0.05, 0.15, 0.55);
+    mat.metalness = THREE.MathUtils.clamp((mat.metalness ?? 0.25), 0.08, 0.4);
   }
   if ('roughness' in mat) {
-    mat.roughness = THREE.MathUtils.clamp((mat.roughness ?? 0.5) - 0.05, 0.28, 0.7);
+    mat.roughness = THREE.MathUtils.clamp((mat.roughness ?? 0.55), 0.35, 0.75);
   }
   if ('envMapIntensity' in mat) {
-    mat.envMapIntensity = 0.35;
+    mat.envMapIntensity = 0.15;
+  }
+  if ('emissive' in mat && 'emissiveIntensity' in mat) {
+    const color = mat.color ? mat.color.clone() : new THREE.Color(0x888888);
+    mat.emissive = color.multiplyScalar(0.12);
+    mat.emissiveIntensity = 0.18;
   }
   return mat;
 }
@@ -142,8 +146,23 @@ export default function CarModel({ explode, selectedPart, isolated, onSelectPart
         
         // Skip known prop meshes
         if (isProp(name)) return;
+
+        // Skip huge flat studio floors that sneak in as unnamed planes
+        const worldBox = new THREE.Box3().setFromObject(obj);
+        const worldSize = worldBox.getSize(new THREE.Vector3());
+        const worldCenter = worldBox.getCenter(new THREE.Vector3());
+        if (worldCenter.y < 0.08 && worldSize.y < 0.35 && worldSize.x > 5 && worldSize.z > 5) {
+          return;
+        }
+        if (obj.geometry) {
+          obj.geometry.computeBoundingBox();
+          const bb = obj.geometry.boundingBox;
+          if (bb) {
+            const size = bb.getSize(new THREE.Vector3());
+            if (size.y < 0.12 && size.x * size.z > 40) return;
+          }
+        }
         
-        // This is a car mesh - collect it
         meshes.push(obj as THREE.Mesh);
       });
       
@@ -194,6 +213,12 @@ export default function CarModel({ explode, selectedPart, isolated, onSelectPart
           id: `${system}-${pieces.length}`,
         });
       }
+
+      explodeRoot.updateMatrixWorld(true);
+      for (const piece of pieces) {
+        piece.bounds = new THREE.Box3().setFromObject(piece.node);
+        piece.center = piece.bounds.getCenter(new THREE.Vector3());
+      }
       
       console.log(`Extracted ${pieces.length} pieces for explosion`);
       console.log('Sample pieces:', pieces.slice(0, 5).map(p => ({
@@ -222,14 +247,6 @@ export default function CarModel({ explode, selectedPart, isolated, onSelectPart
     return calculateExplosionLayout(pieces);
   }, [pieces, explodeRoot]);
 
-  const spreads = useMemo(() => {
-    const map = new Map<string, THREE.Vector3>();
-    for (const piece of pieces) {
-      if (!map.has(piece.system)) map.set(piece.system, systemSpread(piece.system));
-    }
-    return map;
-  }, [pieces]);
-
   useEffect(() => {
     onLayoutReady?.(layout);
   }, [layout, onLayoutReady]);
@@ -239,18 +256,14 @@ export default function CarModel({ explode, selectedPart, isolated, onSelectPart
     if (!explodeRootRef.current || !pieces.length || !layout.pieces.size) return;
     
     const explosionAmount = explode / 100;
-    // Gallery rearrange takes over in the upper half of the slider.
-    const individual = THREE.MathUtils.smoothstep(explosionAmount, 0.18, 0.72);
+    // Full gallery slots by ~70% so 80% reads as an ordered wall of parts.
+    const individual = THREE.MathUtils.smoothstep(explosionAmount, 0.08, 0.7);
     
     pieces.forEach((piece) => {
       const slot = layout.pieces.get(piece.id);
       const fullSpread = slot?.translation ?? ZERO;
-      const early = spreads.get(piece.system) ?? ZERO;
       
-      piece.node.position
-        .copy(piece.home)
-        .addScaledVector(early, explosionAmount * (1 - individual))
-        .addScaledVector(fullSpread, individual);
+      piece.node.position.copy(piece.home).addScaledVector(fullSpread, individual);
       
       // Visibility based on selection/isolation
       if (isolated && selectedPart) {
@@ -277,8 +290,8 @@ export default function CarModel({ explode, selectedPart, isolated, onSelectPart
               mat.opacity = 0.3;
               mat.transparent = true;
             } else {
-              mat.emissive = new THREE.Color(0x000000);
-              mat.emissiveIntensity = 0;
+              mat.emissive = new THREE.Color(0x1c1c1c);
+              mat.emissiveIntensity = 0.22;
               mat.opacity = 1;
               mat.transparent = false;
             }
@@ -293,8 +306,8 @@ export default function CarModel({ explode, selectedPart, isolated, onSelectPart
             child.material.opacity = 0.3;
             child.material.transparent = true;
           } else {
-            child.material.emissive = new THREE.Color(0x000000);
-            child.material.emissiveIntensity = 0;
+            child.material.emissive = new THREE.Color(0x1c1c1c);
+            child.material.emissiveIntensity = 0.22;
             child.material.opacity = 1;
             child.material.transparent = false;
           }
