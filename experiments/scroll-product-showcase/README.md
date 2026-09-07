@@ -1,154 +1,81 @@
 # Scroll Product Showcase
 
-A clean-room implementation of the scroll-driven 3D product visualisation pattern — inspired by viral WebGL product heroes like [himanshubuildss' glass bottle](https://x.com/himanshubuildss/status/2096243989439713677).
+A clean-room scroll-driven glass bottle — my take on the viral WebGL product hero, not a copy of anyone's mesh.
 
-## What This Is
+Inspired by [himanshubuildss' photoreal bottle](https://x.com/himanshubuildss/status/2096243989439713677) (verified 2026-09-07): refractive liquid, dynamic scroll rotation, interlocking marketing UI. I studied the pattern and rebuilt it with procedural geometry.
 
-I built this to understand how scroll position drives 3D scene parameters. Instead of timed animation, the user's scroll becomes the controller — rotating the product, moving the camera, and revealing content sections.
+## What I Built
 
-The product itself is procedural geometry (a torus knot + cylinder + sphere composition) with glass-like materials. No CAD model, no GLB import — just Three.js primitives and MeshPhysicalMaterial with transmission properties.
+The first pass used a torus knot. It proved transmission works and looked like homework. This iteration is a **lathed perfume carafe** I called Aether:
 
-## The Pattern
+- **Outer glass** — `LatheGeometry` profile (punt, body, shoulder, neck, lip). `MeshPhysicalMaterial` with `transmission: 1`, `ior: 1.5`, thickness + teal attenuation.
+- **Inner liquid** — A second lathe, filled to a meniscus disk. Amber, `ior: 1.4`, shorter attenuation path.
+- **Brass collar + stopper** — The only opaque metal, so the glass has something to refract against.
+- **Scroll is the controller** — Native window scroll (0→1) damps yaw, pitch, and a camera arc in `useFrame`. Bidirectional.
+- **Interlocking copy** — Frosted cards fade in left/right as you pass them. Canvas is `position: fixed` with `pointer-events: none`.
+
+No GLB. No HDRI file. drei `Environment` preset `city` plus three-point lights.
+
+## Why I Dropped ScrollControls
+
+drei `ScrollControls` paints its own overlay on the canvas. I also had a tall HTML page. Two scrollers, one wheel — the marketing sections and the 3D rotation drifted apart.
+
+Native `window` scroll + lerp is the Apple/Stripe version of this pattern. `ScrollControls` is still the right tool when the HTML lives inside `<Scroll html>`. I wanted real document flow and pointer-events on the cards.
+
+## The Mapping
 
 ```
-User scrolls down
-  ↓
-Scroll progress (0.0 → 1.0)
-  ↓
-Product rotates (0° → 360°)
-Camera dollies in (z: 8 → 5)
-Camera rises (y: 0 → 1.5)
+scroll offset 0 → 1
+  bottle yaw     0 → ~370°
+  bottle pitch   sin-wave tilt
+  camera         3/4 view → closer, higher, a little orbit
 ```
 
-Direct 1:1 mapping. No easing in the scroll handler — that's handled by `ScrollControls` damping and the render loop.
+`prefers-reduced-motion` parks the spin and keeps a readable 3/4 seat.
 
 ## Stack
 
-- **Vite** — Fast dev server and build
-- **React** — Component structure
-- **React Three Fiber** — React renderer for Three.js
-- **@react-three/drei** — `ScrollControls`, `useScroll`, `Environment`
-- **Three.js** — 3D engine
+- Vite + React 19
+- React Three Fiber + drei (`Environment`, `ContactShadows`)
+- Three.js `LatheGeometry` + `MeshPhysicalMaterial`
 
-## Key Techniques
-
-### 1. Fixed Canvas + Scroll Container
-
-The canvas is `position: fixed` so it doesn't scroll. Content sections are in a tall `div` that creates the scroll area. As the user scrolls the content, the canvas reacts.
-
-### 2. Scroll Progress Mapping
-
-```tsx
-const scroll = useScroll();
-
-useFrame((state) => {
-  const offset = scroll.offset; // 0.0 to 1.0
-  
-  // Rotate product
-  productRef.current.rotation.y = offset * Math.PI * 2;
-  
-  // Move camera
-  state.camera.position.z = 8 - offset * 3;
-});
-```
-
-`scroll.offset` gives us a normalised progress value (0 at top, 1 at bottom). We map that to rotation angles, camera positions, etc.
-
-### 3. Glass Materials
-
-```tsx
-<meshPhysicalMaterial
-  transmission={0.95}      // High transparency
-  thickness={0.8}          // Glass thickness for refraction
-  ior={1.5}                // Index of refraction (glass)
-  roughness={0.05}         // Near-mirror finish
-  clearcoat={1.0}          // Glossy outer layer
-  envMapIntensity={1.2}    // Boost environment reflections
-/>
-```
-
-`transmission` makes the material transparent with proper refraction. `ior` (index of refraction) controls how light bends — 1.5 is glass, 1.33 is water.
-
-### 4. Inner Liquid
-
-The product has two meshes:
-- **Outer shell**: High transmission, low roughness (clear glass)
-- **Inner liquid**: Lower transmission, coloured, different IOR (water-like)
-
-This creates a realistic refraction effect where light bends differently through the liquid than through the glass.
-
-### 5. Environment Lighting
-
-```tsx
-<Environment preset="studio" />
-```
-
-This adds an HDRI environment map that provides realistic reflections and refractions. Without this, glass materials look flat.
-
-## Running Locally
+## Run
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open [http://localhost:5173](http://localhost:5173)
-
-## Building for Production
+[http://localhost:5173](http://localhost:5173)
 
 ```bash
 npm run build
 ```
 
-Output goes to `dist/`. Ready for Vercel deployment (set Root Directory to `experiments/scroll-product-showcase`).
+## Deploy
 
-## Design Decisions
+Vercel project: **`vibes-scroll-product`** (`prj_XLBiIlbjweejp9himT53bolPEMUW`)  
+Dashboard **Root Directory** (required): **`experiments/scroll-product-showcase`**
 
-I chose a torus knot + sphere composition instead of a realistic product because:
-1. **Educational focus** — This is about the *scroll pattern*, not the asset
-2. **Clean-room** — Avoids "me too" clones of existing demos
-3. **Procedural** — No external models, everything is code
-4. **Interesting geometry** — Torus knots show refraction well (lots of surface angles)
+`vercel.json` here sets Vite build output. It cannot set Root Directory — that is a dashboard field. If Root is empty, this project will try to build the monorepo root and fail.
 
-The marketing copy is first-person because this is my learning project. I'm not pretending to be a brand — I'm showing how the pattern works in a realistic context.
+First production deploy is still queued behind the 2026-09-07 hobby quota (reset **~2026-09-08 12:55 UTC**). After reset, one deploy from `main`. Do not retry-spam.
 
-## Performance Notes
+## What I Learnt
 
-- Fixed canvas prevents re-rendering on scroll
-- `useFrame` syncs updates to 60fps render loop (not scroll events)
-- `ScrollControls` damping (0.1) adds smoothness without performance cost
+1. **A bottle reads as a product. A torus knot reads as a shaderball.** Same materials, different silhouette.
+2. **Two IORs beat one glass mesh.** Liquid is a volume, not a tint on the shell.
+3. **Fixed canvas + document scroll** is the marketing-page version. Don't fight it with an overlay scroller.
+4. **City HDRI > studio** for glass. You need high-contrast highlights or transmission looks like plastic.
 
-## Related Documentation
+## Related
 
-- [docs/reverse-engineering/webgl-scroll-product.md](../../docs/reverse-engineering/webgl-scroll-product.md) — Full pattern breakdown
-- [docs/adr/0005-scroll-driven-product-hero.md](../../docs/adr/0005-scroll-driven-product-hero.md) — Why scroll-as-controller
-
-## Inspiration & Attribution
-
-This is a clean-room implementation inspired by:
-- [himanshubuildss' glass bottle](https://x.com/himanshubuildss/status/2096243989439713677) — The viral scroll-driven glass product hero that sparked my interest
-- Apple product pages — The original scroll-driven 3D pattern
-- Stripe marketing pages — Scroll-driven visual storytelling
-
-I didn't copy code or assets — I studied the pattern and built my own version to learn how it works.
-
-## What I Learned
-
-1. **Scroll is powerful UI** — Direct manipulation feels more engaging than timed animation
-2. **Materials matter** — Transmission + HDRI = instant realism
-3. **Procedural can be interesting** — Don't need CAD models to showcase the pattern
-4. **Performance is easy** — React Three Fiber handles the optimisation
-
-## Next Steps
-
-If I expand this:
-- Add more complex scroll choreography (multi-stage camera paths)
-- Implement section-based fade-in animations for text
-- Add touch/drag to manually rotate product
-- Experiment with different procedural geometries
+- [docs/reverse-engineering/webgl-scroll-product.md](../../docs/reverse-engineering/webgl-scroll-product.md)
+- [docs/adr/0005-scroll-driven-product-hero.md](../../docs/adr/0005-scroll-driven-product-hero.md)
+- [docs/incidents/2026-09-07-vercel-deploy-quota.md](../../docs/incidents/2026-09-07-vercel-deploy-quota.md)
 
 ---
 
-**Status**: Complete and deployed  
-**Last updated**: 2026-09-07  
+**Status**: Local build is the QA until quota resets  
+**Last updated**: 2026-09-08  
 **Built by**: Johnny Huynh

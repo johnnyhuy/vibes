@@ -111,6 +111,15 @@ Across all six demos, the quality bar is:
 
 ## My Implementation Status
 
+### scroll-product-showcase ✅ (local)
+- ✅ Dark background (`#050505`)
+- ✅ React + R3F + drei
+- ✅ Procedural glass bottle + liquid (not a torus knot)
+- ✅ Scroll-driven rotation + camera damp
+- ✅ Frosted interlocking cards
+- ⚠️ No live URL until quota reset + **#4** first production
+- ⚠️ City HDRI preset, not a custom studio EXR
+
 ### explode-assembly ✅
 - ✅ Dark background
 - ✅ React + R3F + drei

@@ -47,16 +47,16 @@ Vercel hobby team `johnnyhuy-dev` hit the free tier deployment quota (`api-deplo
 - Users see the old grey-studio explode, not the ordered black/frosted gallery
 - QA of attach() / gallery work is local-only until one redeploy after reset
 
-### 2. `vibes-steam-atlas` (no live URL yet)
+### 2. `vibes-steam-atlas` (no production URL)
 
 **Expected**: First production deploy after PR #8 merge  
-**Actual**: Zero READY deployments (or stale empty project); production HTML if any is from the same ~08:58 UTC window  
-**Root cause**: First deploy returned `402` (`api-deployments-free-per-day`)
+**Actual** (verified API 2026-09-08): `live: false`. One **ERROR** production (`dpl_8aug69952Cii9bHQwz54nHwZgq2K`, `NOW_SANDBOX_WORKER_ROOTDIR_NOT_EXIST`) on PR #10's branch — that ref did not contain `experiments/procedural-steam-atlas`. Later *preview* READY deploys from explode/semicircle PRs **did** build steam-atlas (commit message ≠ app).  
+**Root cause**: Git-linked project fires on every monorepo PR. Root Directory **is** set to `experiments/procedural-steam-atlas` (the ERROR quotes it). Do not blank it. See [steam-atlas incident](./2026-09-08-steam-atlas-wrong-root.md).
 
 **Impact**:
-- No live URL exists yet
-- Root Directory **must** stay `experiments/procedural-steam-atlas` (do not point the project at the repo root)
-- Experiment merged but not publicly visible
+- No successful production deploy
+- Every PR still burns a steam-atlas deployment slot
+- After reset: confirm Root, one `main` production deploy
 
 ### 3. `vibes-scroll-product` (`prj_XLBiIlbjweejp9himT53bolPEMUW`)
 
@@ -152,14 +152,12 @@ npm run build
 
 ### When Quota Resets (~2026-09-08 12:55 UTC / ~10:55pm AEST)
 
-Trigger **one** deploy per project. Do not retry-spam.
+Trigger **one** deploy per project, in this order. Do not retry-spam. Do not create projects.
 
-**Priority 1: Fix Production URLs**
-
-1. **Redeploy `vibes-explode` once** — should pick up #6 + #12 (ordered gallery), replacing the ~08:58 UTC HTML
-2. **`vibes-steam-atlas`**: confirm Root Directory is `experiments/procedural-steam-atlas`, then one deploy from `main`
-3. **`vibes-scroll-product`** (`prj_XLBiIlbjweejp9himT53bolPEMUW`): project already exists with Root Directory `experiments/scroll-product-showcase` — one first production deploy (PR #10 is already on `main`)
-4. **`vibes-blender-semicircle`**: one deploy after #15 merges so bbox framing is live
+1. **`vibes-explode`** — production still grey studio / old UI. One redeploy of `main` for #12 black studio + ordered gallery
+2. **`vibes-blender-semicircle`** — production still pre-`5941e259` / pre-`03bbe0c` FOV+bbox framing
+3. **`vibes-steam-atlas`** — first production. Confirm Root Directory is `experiments/procedural-steam-atlas` (it is set; do not clear it), then one deploy from `main`
+4. **`vibes-scroll-product`** (`prj_XLBiIlbjweejp9himT53bolPEMUW`) — first production. Root already `experiments/scroll-product-showcase`. Zero deployments as of 2026-09-08.
 
 ---
 
@@ -223,7 +221,9 @@ Trigger **one** deploy per project. Do not retry-spam.
 ## Related Documentation
 
 - [Vercel Free Tier Limits](https://vercel.com/docs/limits/overview) — Official limits
-- [experiments/scroll-product-showcase](../../experiments/scroll-product-showcase/) — Blocked experiment (PR #10)
+- [experiments/scroll-product-showcase](../../experiments/scroll-product-showcase/) — Linked, undeployed (`prj_XLBiIlbjweejp9himT53bolPEMUW`)
+- [2026-09-08 steam-atlas root/fan-out](./2026-09-08-steam-atlas-wrong-root.md)
+- [docs/deployment/vercel-root-directories.md](../deployment/vercel-root-directories.md)
 - [ADR-0005](../adr/0005-scroll-driven-product-hero.md) — Scroll product pattern (unaffected by incident)
 
 ---
@@ -232,8 +232,10 @@ Trigger **one** deploy per project. Do not retry-spam.
 
 **2026-09-07 21:31 AEST** — Incident documented, recovery steps planned  
 **2026-09-07 ~23:20 AEST** — PR #10 merged; `vibes-scroll-product` created; quota still **0 remaining**  
-**2026-09-08 ~12:55 UTC / ~10:55pm AEST** (estimated reset) — One deploy each for explode, steam-atlas, scroll-product  
-**TBD** — Post-recovery verification (production HTML newer than 08:58 UTC)
+**2026-09-08 ~00:07 AEST** — #15 on `main` (`03bbe0c`). Quota still 0. Redeploy order: explode → semicircle → steam-atlas first prod → scroll-product first prod  
+**2026-09-08 ~14:10 UTC** — API re-check (read-only): steam-atlas `live: false`; production ERROR was missing-folder-on-branch, not a blank Root. scroll-product still 0 deployments.  
+**2026-09-08 ~12:55 UTC / ~10:55pm AEST** (estimated reset) — One deploy each, order above  
+**TBD** — Post-recovery verification (explode HTML newer than 08:58 UTC; steam-atlas + scroll-product have production URLs)
 
 ---
 

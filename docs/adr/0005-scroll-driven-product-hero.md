@@ -22,9 +22,9 @@ Key architectural choices:
 **Chosen**: `scrollProgress = scrollTop / scrollHeight` maps directly to rotation, camera position, etc.
 
 ```tsx
-const offset = scroll.offset; // 0.0 to 1.0
-product.rotation.y = offset * Math.PI * 2; // 0° to 360°
-camera.position.z = 8 - offset * 3;        // z: 8 → 5
+const offset = window.scrollY / (scrollHeight - innerHeight); // 0 → 1
+product.rotation.y = damp(product.rotation.y, offset * Math.PI * 2, 4, dt);
+camera.position.z = damp(camera.position.z, 6.4 - offset * 2.35, 3.2, dt);
 ```
 
 **Rejected**: `requestAnimationFrame` loop with easing toward target state.
@@ -48,33 +48,44 @@ camera.position.z = 8 - offset * 3;        // z: 8 → 5
 
 ### 3. Procedural Geometry (Not GLB Import)
 
-**Chosen**: Torus knot + cylinder + sphere composition using Three.js primitives.
+**Chosen (2026-09-08)**: A lathed perfume bottle + inner liquid, still 100% Three.js primitives.
 
 ```tsx
-<torusKnotGeometry args={[1, 0.3, 128, 32, 2, 3]} />
-<cylinderGeometry args={[0.4, 0.4, 2.5, 32]} />
-<sphereGeometry args={[0.5, 32, 32]} />
+<latheGeometry args={[outerProfile, 64]} />   // glass shell
+<latheGeometry args={[liquidProfile, 48]} />  // amber volume
 ```
 
-**Rejected**: Importing realistic product GLB (bottle, phone, etc).
+**Earlier (2026-09-07)**: Torus knot + cylinder + sphere. Same materials, weaker product read.
+
+**Rejected**: Importing a realistic product GLB (bottle, phone, etc).
 
 **Why**:
-- **Educational focus** — This is about the *scroll pattern*, not asset creation
-- **Clean-room** — Avoids cloning existing viral demos
-- **Self-contained** — No external files or licensing concerns
-- **Demonstrates material complexity** — Torus knots show refraction well (lots of surface angles)
+- **Educational focus** — The scroll pattern still matters more than an asset pipeline
+- **Clean-room** — Avoids cloning himanshubuildss' mesh; I drew my own 2D lathe profile
+- **Self-contained** — No external files or licensing
+- **Product silhouette** — A carafe sells the viral pattern. A torus knot sells a shaderball.
 
-### 4. React Three Fiber (Not Vanilla Three.js)
+### 4. React Three Fiber + Native Window Scroll
 
-**Chosen**: `@react-three/fiber` + `@react-three/drei` for `ScrollControls` and `useScroll`.
+**Chosen (2026-09-08)**: R3F + drei for the scene (`Environment`, `ContactShadows`). Scroll progress comes from `window` + `useFrame` damping — not drei `ScrollControls`.
 
-**Rejected**: Vanilla Three.js with manual scroll event listeners.
+**Earlier (2026-09-07)**: `ScrollControls` + `useScroll` *and* a tall HTML page. Two scrollers. The overlay stole the wheel; marketing sections and the 3D rotation drifted.
+
+**Rejected**: Vanilla Three.js with a raw scroll listener driving React state.
 
 **Why**:
-- `ScrollControls` provides built-in damping and normalised progress
-- `useScroll` hook integrates cleanly with React render loop
-- `useFrame` syncs updates to 60fps (not scroll event frequency)
-- Consistent with other experiments in this repo
+- Native document scroll is the Apple/Stripe marketing-page version of this pattern
+- Cards need real pointer-events; canvas is `pointer-events: none`
+- `useFrame` + `MathUtils.damp` still syncs to the render loop
+- `ScrollControls` remains correct **if** HTML lives inside `<Scroll html>`
+
+## Amendment (2026-09-08)
+
+I kept every decision above except the torus knot and the drei overlay scroller.
+
+The viral reference is still [himanshubuildss](https://x.com/himanshubuildss/status/2096243989439713677) — photoreal glass, refractive liquid, scroll rotation, interlocking UI. I am not copying the asset. I am matching the *pattern* with a lathe I wrote.
+
+`ignoreCommand` in this experiment's `vercel.json` skips Vite when `experiments/scroll-product-showcase/` did not change. It does **not** set Root Directory. That stays a dashboard field (`experiments/scroll-product-showcase`).
 
 ## Consequences
 
@@ -93,7 +104,7 @@ camera.position.z = 8 - offset * 3;        // z: 8 → 5
 
 ### Neutral
 
-1. **Procedural geometry** — Not as visually striking as photorealistic products, but serves educational purpose
+1. **Procedural geometry** — A lathe bottle is still not a scanned carafe. Close enough to teach the pattern.
 2. **No analytics** — Can't track how far users scroll through the experience (not a concern for this learning project)
 
 ## Alternatives Considered
@@ -137,8 +148,10 @@ Import a CAD model or photogrammetry scan of a real product.
 See [experiments/scroll-product-showcase](../../experiments/scroll-product-showcase/) for the full implementation.
 
 Key files:
-- `src/components/ProductScene.tsx` — Scroll mapping logic
-- `src/App.tsx` — Fixed canvas + scrollable content
+- `src/components/GlassBottle.tsx` — Lathe profiles + glass/liquid materials
+- `src/components/ProductScene.tsx` — Damped scroll → rotation/camera
+- `src/hooks/useWindowScroll.ts` — Native 0→1 offset
+- `src/App.tsx` — Fixed canvas + interlocking sections
 - `src/styles.css` — Dark cinematic UI
 
 ## Validation

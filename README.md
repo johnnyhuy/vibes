@@ -19,7 +19,7 @@ cd experiments/procedural-steam-atlas
 npm install && npm run dev
 ```
 
-**Live**: TBD — Vercel project `vibes-steam-atlas` exists; Root Directory must be `experiments/procedural-steam-atlas`. First deploy was blocked by the hobby quota (see incident).
+**Live**: TBD — `vibes-steam-atlas` (`prj_7D08PT8sdUjhigCEuz83oltZrDMv`) is linked. Root **must** stay `experiments/procedural-steam-atlas`. No successful **production** deploy yet (one ERROR on a PR branch that lacked the folder; later previews built the right app). See [incident](./docs/incidents/2026-09-08-steam-atlas-wrong-root.md).
 
 ---
 
@@ -100,9 +100,9 @@ npm install && npm run dev
 ---
 
 #### [scroll-product-showcase](./experiments/scroll-product-showcase/)
-Scroll-driven 3D product hero with glass materials and refraction. Clean-room implementation of the pattern popularised by Apple and recent viral WebGL demos (like [himanshubuildss' glass bottle](https://x.com/himanshubuildss/status/2096243989439713677)).
+Scroll-driven glass bottle hero. Clean-room take on the pattern in [himanshubuildss' carafe](https://x.com/himanshubuildss/status/2096243989439713677) — refractive liquid, scroll rotation, interlocking copy. My mesh is a lathe I drew, not theirs.
 
-**What it is**: React + R3F + drei. Fixed canvas with tall scroll container. Scroll progress drives product rotation and camera movement. Procedural torus knot + sphere geometry with MeshPhysicalMaterial transmission for glass effect. Dark cinematic UI.
+**What it is**: React + R3F + drei. Fixed canvas, native window scroll. Procedural `LatheGeometry` bottle + amber liquid (`MeshPhysicalMaterial` transmission / IOR / thickness). Camera and yaw damp in `useFrame`. Dark cinematic cards.
 
 **Run it**:
 ```bash
@@ -110,7 +110,7 @@ cd experiments/scroll-product-showcase
 npm install && npm run dev
 ```
 
-**Live**: TBD — Vercel project `vibes-scroll-product` (`prj_XLBiIlbjweejp9himT53bolPEMUW`) is created with Root Directory `experiments/scroll-product-showcase`. First deploy blocked by hobby quota.
+**Live**: TBD — `vibes-scroll-product` (`prj_XLBiIlbjweejp9himT53bolPEMUW`) is linked with Root `experiments/scroll-product-showcase`. **Zero deployments** as of 2026-09-08. First production is last in the post-quota queue.
 
 ---
 
@@ -124,18 +124,20 @@ npm install && npm run dev
 
 Each browser demo has its own Vercel project on this repo (Root Directory set in the dashboard). All demos are live on `main`.
 
-> ⚠️ **Hobby quota exhausted** (`api-deployments-free-per-day` = **0 remaining**). Reset **~2026-09-08 12:55 UTC** (~10:55pm AEST). **Do not retry-spam deploys.** See [incident](./docs/incidents/2026-09-07-vercel-deploy-quota.md).
+> ⚠️ **Hobby quota exhausted** (`api-deployments-free-per-day` = **0 remaining**). Reset **~2026-09-08 12:55 UTC** (~10:55pm AEST). **Do not retry-spam deploys.** See [quota incident](./docs/incidents/2026-09-07-vercel-deploy-quota.md) and [Root Directory checklist](./docs/deployment/vercel-root-directories.md).
+>
+> **Redeploy order after reset** (one each): explode → semicircle → steam-atlas first production → scroll-product first production.
 
 | App | Vercel project | Root Directory | Production URL | Status |
 | --- | --- | --- | --- | --- |
 | web-3d | `vibes` | `experiments/ai-3d-lanes/web-3d` | TBD | - |
-| explode-assembly | `vibes-explode` | `experiments/explode-assembly` | [vibes-explode.vercel.app](https://vibes-explode.vercel.app) | ⚠️ Stale — HTML last-modified ~2026-09-07 08:58 UTC, grey studio UI (not #12 black/frosted gallery). One redeploy after ~12:55 UTC 8 Sep |
+| explode-assembly | `vibes-explode` (`prj_bkyEqYqsAhAk0ZrVnhXi9Him98Fb`) | `experiments/explode-assembly` | [vibes-explode.vercel.app](https://vibes-explode.vercel.app) | ⚠️ Stale grey studio / old UI. **#1** after reset: one `main` redeploy for #12 black studio + ordered gallery |
 | earth-timeline | `vibes-earth` | `experiments/earth-timeline` | [vibes-earth.vercel.app](https://vibes-earth.vercel.app) | ✅ |
 | v8-cutaway | `vibes-v8` | `experiments/v8-cutaway` | [vibes-v8.vercel.app](https://vibes-v8.vercel.app) | ✅ |
 | web-physics | `vibes-physics` | `experiments/web-physics` | [vibes-physics.vercel.app](https://vibes-physics.vercel.app) | ✅ |
-| blender-semicircle-viewer | `vibes-blender-semicircle` | `experiments/blender-semicircle-viewer` | [vibes-blender-semicircle.vercel.app](https://vibes-blender-semicircle.vercel.app) | Linked; prod still pre-`5941e259` framing. One redeploy after reset |
-| procedural-steam-atlas | `vibes-steam-atlas` | `experiments/procedural-steam-atlas` | ⚠️ Linked, **0 READY** deploys | Keep Root Dir. One first deploy after reset |
-| scroll-product-showcase | `vibes-scroll-product` (`prj_XLBiIlbjweejp9himT53bolPEMUW`) | `experiments/scroll-product-showcase` | TBD — linked, undeployed (quota) | Build ✅ locally. One first deploy after reset |
+| blender-semicircle-viewer | `vibes-blender-semicircle` (`prj_PLhnoCVRKmpHc8SxyLRmcp3MFZMC`) | `experiments/blender-semicircle-viewer` | [vibes-blender-semicircle.vercel.app](https://vibes-blender-semicircle.vercel.app) | ⚠️ Prod still pre-`5941e259` / pre-`03bbe0c` FOV+bbox. **#2** after reset |
+| procedural-steam-atlas | `vibes-steam-atlas` (`prj_7D08PT8sdUjhigCEuz83oltZrDMv`) | `experiments/procedural-steam-atlas` | none (`live: false`) | ⚠️ **0 production READY**. Root is set — do not blank it. **#3** first production from `main` |
+| scroll-product-showcase | `vibes-scroll-product` (`prj_XLBiIlbjweejp9himT53bolPEMUW`) | `experiments/scroll-product-showcase` | none | Linked, **0 deployments**. Build ✅ locally. **#4** first production |
 
 PR previews show up as Vercel bot comments on each pull request (when quota available).
 

@@ -4,104 +4,136 @@
   box-sizing: border-box;
 }
 
+html {
+  background: #050505;
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  background: #0a0a0a;
-  color: #ffffff;
+  background: #050505;
+  color: #f4f1ea;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 #root {
   position: relative;
 }
 
-.content {
+.page {
   position: relative;
   z-index: 10;
   pointer-events: none;
 }
 
-section {
+.block {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  pointer-events: none;
+  padding: 4rem 8vw;
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
-.hero {
+.block.in {
+  opacity: 1;
+  transform: none;
+}
+
+.side-center {
   flex-direction: column;
+  justify-content: flex-end;
   text-align: center;
+  padding-bottom: 12vh;
+}
+
+.side-left {
+  justify-content: flex-start;
+}
+
+.side-right {
+  justify-content: flex-end;
 }
 
 .hero h1 {
-  font-size: clamp(4rem, 12vw, 8rem);
-  font-weight: 700;
-  letter-spacing: -0.05em;
-  margin-bottom: 1rem;
-  background: linear-gradient(135deg, #ffffff 0%, #888888 100%);
+  font-size: clamp(4.2rem, 14vw, 9rem);
+  font-weight: 620;
+  letter-spacing: -0.065em;
+  line-height: 0.88;
+  margin: 0.15em 0 0.35em;
+  background: linear-gradient(160deg, #fff 10%, #c8b48a 80%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-.subtitle {
-  font-size: clamp(1.2rem, 3vw, 1.8rem);
-  font-weight: 300;
-  letter-spacing: 0.1em;
+.eyebrow,
+.kicker {
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: #aaaaaa;
-  margin-bottom: 3rem;
+  color: #a89468;
+}
+
+.subtitle {
+  font-size: clamp(1rem, 2.4vw, 1.35rem);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #b9b3a6;
+  margin-bottom: 1.1rem;
+}
+
+.lede {
+  max-width: 34rem;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: #9c968c;
+  font-weight: 300;
 }
 
 .scroll-hint {
-  font-size: 0.9rem;
+  margin-top: 2.4rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.32em;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: #666666;
-  animation: pulse 2s ease-in-out infinite;
+  color: #6a655c;
+  animation: pulse 2.4s ease-in-out infinite;
 }
 
 @keyframes pulse {
-  0%, 100% {
-    opacity: 0.4;
-  }
-  50% {
-    opacity: 1;
-  }
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 1; }
 }
 
-.feature {
-  padding: 4rem 2rem;
-}
-
-.feature-content {
-  max-width: 600px;
-  padding: 3rem;
-  background: rgba(20, 20, 20, 0.6);
-  backdrop-filter: blur(20px);
+.card {
+  max-width: 28rem;
+  padding: 2.4rem 2.2rem;
+  background: rgba(12, 12, 14, 0.58);
+  backdrop-filter: blur(22px);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 1rem;
+  border-radius: 1.15rem;
   pointer-events: auto;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
 }
 
-.feature-content h2 {
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 600;
-  margin-bottom: 1.5rem;
-  letter-spacing: -0.03em;
+.card h2 {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 560;
+  letter-spacing: -0.035em;
+  margin: 0.55rem 0 1rem;
 }
 
-.feature-content p {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  color: #cccccc;
+.card p:last-child {
+  font-size: 1.02rem;
+  line-height: 1.75;
+  color: #c4bfb4;
   font-weight: 300;
 }
 
 footer {
-  min-height: 40vh;
+  min-height: 36vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -110,33 +142,46 @@ footer {
 }
 
 footer p {
-  font-size: 0.9rem;
-  color: #666666;
-  line-height: 1.6;
-  max-width: 600px;
+  font-size: 0.86rem;
+  color: #6d685f;
+  line-height: 1.65;
+  max-width: 34rem;
   pointer-events: auto;
 }
 
 footer a {
-  color: #88aaff;
+  color: #c4a15a;
   text-decoration: none;
-  transition: color 0.2s ease;
 }
 
 footer a:hover {
-  color: #aaccff;
+  color: #e4c98a;
 }
 
-@media (max-width: 768px) {
-  .feature-content {
-    padding: 2rem;
+@media (max-width: 780px) {
+  .side-left,
+  .side-right {
+    justify-content: center;
   }
-  
-  .feature-content h2 {
-    margin-bottom: 1rem;
+
+  .card {
+    padding: 1.6rem;
   }
-  
-  .feature-content p {
-    font-size: 1rem;
+
+  .hero {
+    padding-bottom: 8vh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .block,
+  .block.in {
+    transition: none;
+    transform: none;
+    opacity: 1;
+  }
+
+  .scroll-hint {
+    animation: none;
   }
 }
