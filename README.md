@@ -114,6 +114,21 @@ npm install && npm run dev
 
 ---
 
+#### [glass-capability-brain](./experiments/glass-capability-brain/)
+Interactive capability map: frosted glass sphere, six orbiting nodes, HTML dock, live canvas pixel QA. Clean-room take on [@viewsfrom02108](https://x.com/viewsfrom02108/status/2094853472864682360). Light clinical stage — not Aether’s dark hero. Branding is mine (`Capability Map` / vibes); I am not Claude Fable.
+
+**Stack**: React + R3F + drei. `MeshPhysicalMaterial` transmission. Keyboard `1`–`6` / Esc / idle tour.
+
+**Run it**:
+```bash
+cd experiments/glass-capability-brain
+npm install && npm run dev
+```
+
+**Live**: TBD — **no Vercel project yet**. Do not create one or deploy until the hobby quota resets (~**2026-09-08 12:55 UTC**).
+
+---
+
 ### Image, texture & CAD
 
 - [image-to-3d](./experiments/image-to-3d/) — image→mesh stubs
@@ -140,6 +155,7 @@ Each browser demo has its own Vercel project on this repo (Root Directory set in
 | blender-semicircle-viewer | `vibes-blender-semicircle` (`prj_PLhnoCVRKmpHc8SxyLRmcp3MFZMC`) | `experiments/blender-semicircle-viewer` | [vibes-blender-semicircle.vercel.app](https://vibes-blender-semicircle.vercel.app) | ⚠️ QA FAIL 2026-09-08: cropped mega-arc, nearly black. **#2** after reset: one `main` redeploy |
 | procedural-steam-atlas | `vibes-steam-atlas` (`prj_7D08PT8sdUjhigCEuz83oltZrDMv`) | **`experiments/procedural-steam-atlas` (set this in the dashboard before any deploy)** | `404 DEPLOYMENT_NOT_FOUND` | ⚠️ QA FAIL 2026-09-08. **#3** after reset: set Root, then one `main` production deploy |
 | scroll-product-showcase | `vibes-scroll-product` (`prj_XLBiIlbjweejp9himT53bolPEMUW`) | `experiments/scroll-product-showcase` | none | Linked, **0 deployments**. Build ✅ locally. **#4** first production |
+| glass-capability-brain | — | `experiments/glass-capability-brain` (when a project exists) | none | **No Vercel project.** Local build only. Do not deploy / do not spam Vercel. |
 
 PR previews show up as Vercel bot comments on each pull request (when quota available).
 

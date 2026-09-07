@@ -43,6 +43,8 @@ One deploy per project. Stop.
 3. `vibes-steam-atlas` — QA FAIL `404 DEPLOYMENT_NOT_FOUND`. **Set dashboard Root = `experiments/procedural-steam-atlas`**, then one `main` production deploy.
 4. `vibes-scroll-product` — first production from `main` after #16 (Root already `experiments/scroll-product-showcase`).
 
+`experiments/glass-capability-brain/` is a new Vite app with its own `vercel.json`. **No Vercel project yet.** Do not create one while quota is 0. When I do: dashboard Root Directory = `experiments/glass-capability-brain`. This does not change the steam-atlas rule — that project still needs Root = `experiments/procedural-steam-atlas` before any post-quota deploy.
+
 Do not create extra Vercel projects. Do not force production redeploys while the quota is 0.
 
 ---
