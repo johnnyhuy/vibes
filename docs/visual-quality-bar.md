@@ -124,6 +124,13 @@ Across these demos, the quality bar is:
 
 ## My Implementation Status
 
+### amber-longeron ✅ (local)
+- ✅ Linen-tan studio + soft upper-left key (toy wood reads; not a black canyon)
+- ✅ Composite biplane + low-contrast canvas varnish + carnelian lane orbs
+- ✅ Auto-starts; flight HUD is a faint distance chip; crash keeps a small card
+- ⚠️ No Vercel project — do not create one until quota is healthy
+- Inspired by [heymichu25](https://x.com/heymichu25/status/2097062564299759855)
+
 ### procedural-grass-field ✅ (local)
 - ✅ Outdoor meadow (not a black car studio)
 - ✅ Instanced crossed blades + tip-weighted wind + pointer gust
