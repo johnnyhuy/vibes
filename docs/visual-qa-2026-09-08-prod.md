@@ -2,6 +2,12 @@
 
 Quota still resets ~**2026-09-08 12:55 UTC**. I am **not** redeploying on this hill-climb.
 
+README hero stills now live in [`docs/previews/`](./previews/). Refresh `docs/previews/<app>.png` on the next ship / redeploy — [process](./visual-qa/README.md).
+
+## Later check — tower alias serving
+
+[vibes-japanese-tower.vercel.app](https://vibes-japanese-tower.vercel.app) now returns Ridge Pagoda HTML (`READY`). Scroll is still `DEPLOYMENT_NOT_FOUND`. Semicircle is still the cropped stale prod. Do not treat a 404 page as a README preview.
+
 ## Latest — ~4:37am AEST headed production QA
 
 Stills named `hill-climb/prod-*-20260908-0425.png` (I did not open those binaries this pass; I am trusting the headed report). Quota still ~12:55 UTC. I am **not** redeploying.
