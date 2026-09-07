@@ -95,30 +95,35 @@ export default function CarModel({ explode, selectedPart, isolated, onSelectPart
     const excluded: string[] = [];
     
     scene.traverse((node: any) => {
+      // Only process actual Mesh nodes (not Groups or Object3D containers)
+      // Groups can cause clone/reparent issues
+      if (!node.isMesh) {
+        return;
+      }
+      
       // Filter out non-car meshes (props, scene objects)
       if (!shouldIncludeMesh(node.name || '')) {
         if (node.name) excluded.push(node.name);
         return;
       }
       
-      // Split by individual meshes or groups with meshes
-      if (node.isMesh || (node.isGroup && node.children.some((c: any) => c.isMesh))) {
-        const bounds = new THREE.Box3().setFromObject(node);
-        if (bounds.isEmpty()) return; // Skip empty bounds
-        
-        const center = bounds.getCenter(new THREE.Vector3());
-        const system = detectSystem(node.name || 'unknown');
-        
-        // Clone the node to avoid modifying the original
-        const clone = node.clone();
-        clone.userData.originalPosition = clone.position.clone();
-        clone.userData.originalParent = node.parent;
-        clone.userData.system = system;
-        clone.userData.id = `${system}-${extracted.length}`;
-        clone.userData.bounds = bounds;
-        clone.userData.center = center;
-        
-        // Enhance materials
+      const bounds = new THREE.Box3().setFromObject(node);
+      if (bounds.isEmpty()) return; // Skip empty bounds
+      
+      const center = bounds.getCenter(new THREE.Vector3());
+      const system = detectSystem(node.name || 'unknown');
+      
+      // Clone the node to avoid modifying the original
+      const clone = node.clone();
+      clone.userData.originalPosition = clone.position.clone();
+      clone.userData.originalParent = node.parent;
+      clone.userData.system = system;
+      clone.userData.id = `${system}-${extracted.length}`;
+      clone.userData.bounds = bounds;
+      clone.userData.center = center;
+      
+      // Enhance materials (with error handling)
+      try {
         clone.traverse((child: any) => {
           if (child.isMesh) {
             child.castShadow = true;
@@ -146,20 +151,36 @@ export default function CarModel({ explode, selectedPart, isolated, onSelectPart
             }
           }
         });
-        
-        extracted.push({
-          object: clone,
-          system,
-          id: clone.userData.id,
-          originalPosition: clone.position.clone(),
-          bounds,
-          center,
-        });
+      } catch (err) {
+        console.error(`Failed to enhance materials for ${node.name}:`, err);
+        // Continue without material enhancement if it fails
       }
-    });
+      
+      extracted.push({
+        object: clone,
+        system,
+        id: clone.userData.id,
+        originalPosition: clone.position.clone(),
+        bounds,
+        center,
+      });
+    });  // end of scene.traverse
     
-    console.log(`Extracted ${extracted.length} explodable pieces from Model 3`);
-    console.log(`Excluded ${excluded.length} non-car meshes:`, excluded.slice(0, 10));
+    console.log('=== MODEL 3 EXTRACTION SUMMARY ===');
+    console.log(`Extracted: ${extracted.length} pieces`);
+    console.log(`Excluded: ${excluded.length} meshes`);
+    if (extracted.length > 0) {
+      console.log('Sample extracted:', extracted.slice(0, 5).map(p => p.id));
+    }
+    if (excluded.length > 0) {
+      console.log('Sample excluded:', excluded.slice(0, 10));
+    }
+    
+    if (extracted.length === 0) {
+      console.error('⚠️ WARNING: Zero pieces extracted! This will cause blank canvas.');
+      console.error('Check that model3.glb contains meshes and filter logic is correct.');
+    }
+    
     return extracted;
   }, [scene]);
   
@@ -238,13 +259,39 @@ export default function CarModel({ explode, selectedPart, isolated, onSelectPart
     return (
       <Html center>
         <div style={{ 
-          background: 'rgba(0,0,0,0.9)', 
-          padding: '20px', 
+          background: 'rgba(40,0,0,0.95)', 
+          padding: '30px', 
           borderRadius: '8px', 
-          color: 'white',
-          fontFamily: 'system-ui'
+          color: '#ffaaaa',
+          fontFamily: 'monospace',
+          fontSize: '14px',
+          maxWidth: '500px',
+          border: '2px solid #ff4444',
         }}>
-          Loading Tesla Model 3...
+          <div style={{ fontSize: '20px', marginBottom: '15px', color: '#ff6666' }}>
+            ⚠️ Zero Pieces Extracted
+          </div>
+          <div style={{ marginBottom: '10px' }}>
+            The filter excluded all meshes from model3.glb.
+          </div>
+          <div style={{ fontSize: '12px', color: '#aaa' }}>
+            Check browser console for extraction details.
+          </div>
+          <button
+            onClick={() => window.location.reload()}
+            style={{
+              marginTop: '15px',
+              padding: '10px 20px',
+              background: '#ff4444',
+              color: '#fff',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              fontFamily: 'monospace',
+            }}
+          >
+            Reload
+          </button>
         </div>
       </Html>
     );
