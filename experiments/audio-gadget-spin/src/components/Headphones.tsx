@@ -101,9 +101,13 @@ function Cup({
       </RoundedBox>
 
       {open ? (
-        <group position={[0, 0, 0.17]}>
+        <group position={[0, 0, 0.205]}>
+          <mesh rotation={[Math.PI / 2, 0, 0]} position={[0, 0, -0.02]}>
+            <cylinderGeometry args={[0.29, 0.29, 0.05, 48]} />
+            <meshPhysicalMaterial color="#14161a" roughness={0.7} metalness={0.2} />
+          </mesh>
           <mesh rotation={[Math.PI / 2, 0, 0]}>
-            <cylinderGeometry args={[0.3, 0.3, 0.035, 48]} />
+            <cylinderGeometry args={[0.27, 0.27, 0.03, 48]} />
             <meshPhysicalMaterial
               color={finish.metal}
               metalness={1}
@@ -111,37 +115,38 @@ function Cup({
               {...glow(highlight === 'driver', finish.accent)}
             />
           </mesh>
-          <mesh position={[0, 0, 0.01]} rotation={[Math.PI / 2, 0, 0]}>
-            <circleGeometry args={[0.255, 48]} />
+          <mesh position={[0, 0, 0.018]}>
+            <circleGeometry args={[0.235, 48]} />
             <meshPhysicalMaterial
               color={finish.driver}
               map={grille}
-              roughness={0.42}
-              metalness={0.12}
-              {...glow(highlight === 'driver', finish.accent)}
+              roughness={0.38}
+              metalness={0.18}
+              emissive={finish.driver}
+              emissiveIntensity={highlight === 'driver' ? 0.45 : 0.16}
             />
           </mesh>
-          <RoundedBox args={[0.86, 0.98, 0.1]} radius={0.16} smoothness={6} position={[0, 0, 0.08]}>
+          <mesh position={[0, 0, 0.046]}>
             <meshPhysicalMaterial
               color={finish.glass}
               transmission={1}
-              thickness={0.32}
-              roughness={0.04}
-              ior={1.5}
+              thickness={0.08}
+              roughness={0.02}
+              ior={1.48}
               metalness={0}
               clearcoat={1}
-              clearcoatRoughness={0.05}
+              clearcoatRoughness={0.04}
               transparent
-              opacity={0.92}
-              attenuationColor={finish.glass}
-              attenuationDistance={1.6}
-              envMapIntensity={1.4}
+              opacity={0.55}
+              attenuationColor="#fff7ee"
+              attenuationDistance={2.4}
+              envMapIntensity={1.15}
             />
-          </RoundedBox>
+          </mesh>
         </group>
       ) : (
         <group position={[0, 0, 0.21]}>
-          <mesh rotation={[Math.PI / 2, 0, 0]}>
+          <mesh>
             <torusGeometry args={[0.11, 0.016, 16, 40]} />
             <meshPhysicalMaterial color={finish.metal} metalness={1} roughness={0.2} />
           </mesh>
