@@ -45,10 +45,12 @@ So the 5:45am preview FAIL is the expected render of that geometry, not a stale 
 
 ## What actually fixed it
 
-1. **Horizontal XZ semicircle** — `x = R·sin θ`, `z = −R·cos θ`, θ ∈ [−90°, +90°]. Diameter on X, bulge at −Z, open side toward +Z / the camera.
+1. **Horizontal XZ semicircle** — `x = R·sin θ`, `z = −R·cos θ`, θ ∈ [−90°, +90°]. Diameter on X, bulge at −Z, open side toward +Z / the camera. Radius 14 so 51 lids have a visible gap instead of melting into one ribbon.
 2. **Y-up laptops** — base on XZ, screen standing in Y, hinge at −Z. Each instance yaws `−θ` so lids face inward (readable product array).
-3. **Above-front camera** — hero vector `(0, 0.56, 0.83)`. Polar clamp stays above the ground so auto-rotate cannot graze the arc.
-4. **Corner-fit distance** — project all eight AABB corners into the hero camera basis; `d` is the max of `along + |x|/tan(hFov/2)` and `along + |y|/tan(vFov/2)`, then ×1.16 margin. Reset Camera restores that pose; resize re-frames.
+3. **Above-front camera** — hero vector `(0, 0.72, 0.69)` (~46° elevation) so the bowl reads as a horseshoe. A shallow angle foreshortens the same XZ array back into a wire. Polar clamp stays above the ground so auto-rotate cannot graze the arc.
+4. **Corner-fit distance** — project all eight AABB corners into the hero camera basis; `d` is the max of `along + |x|/tan(hFov/2)` and `along + |y|/tan(vFov/2)`, then ×1.08 margin. Look target is a little above the decks. Reset Camera restores that pose; resize re-frames.
+
+Local headed/headless QA after this change: 51 separate screen+base blobs, arc ~84% of viewport width — not a right-edge hairline.
 
 Procedural geometry only. No Apple assets.
 

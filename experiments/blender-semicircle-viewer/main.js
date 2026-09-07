@@ -3,13 +3,13 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 // Configuration
 const LAPTOP_COUNT = 51;
-const SEMICIRCLE_RADIUS = 12.0;
+const SEMICIRCLE_RADIUS = 14.0;
 const ARC_ANGLE = 180.0;
-const LAPTOP_WIDTH = 0.78;
-const LAPTOP_DEPTH = 0.56;
-const LAPTOP_THICKNESS = 0.045;
-const SCREEN_HEIGHT = 0.52;
-const SCREEN_TILT = THREE.MathUtils.degToRad(16);
+const LAPTOP_WIDTH = 0.68;
+const LAPTOP_DEPTH = 0.58;
+const LAPTOP_THICKNESS = 0.05;
+const SCREEN_HEIGHT = 0.78;
+const SCREEN_TILT = THREE.MathUtils.degToRad(20);
 
 // Scene setup
 const scene = new THREE.Scene();
@@ -37,8 +37,8 @@ document.getElementById('canvas-container').appendChild(renderer.domElement);
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 controls.dampingFactor = 0.05;
-controls.minPolarAngle = 0.22;
-controls.maxPolarAngle = Math.PI * 0.48;
+controls.minPolarAngle = 0.28;
+controls.maxPolarAngle = Math.PI * 0.44;
 controls.autoRotate = true;
 controls.autoRotateSpeed = 0.25;
 
@@ -47,7 +47,8 @@ const framedPose = {
   target: new THREE.Vector3(),
 };
 
-const HERO_DIRECTION = new THREE.Vector3(0, 0.56, 0.83).normalize();
+// ~46° elevation: the XZ bowl reads as a horseshoe, not a foreshortened wire.
+const HERO_DIRECTION = new THREE.Vector3(0, 0.72, 0.69).normalize();
 const WORLD_UP = new THREE.Vector3(0, 1, 0);
 
 function collectBoxCorners(box, target = []) {
@@ -112,21 +113,24 @@ function frameCameraToArc(root) {
   const aspect = Math.max(camera.aspect, 0.01);
   const vFov = THREE.MathUtils.degToRad(camera.fov);
   const hFov = 2 * Math.atan(Math.tan(vFov * 0.5) * aspect);
-  const distance = distanceToFitCorners(center, corners, HERO_DIRECTION, vFov, hFov, 1.16);
+  const distance = distanceToFitCorners(center, corners, HERO_DIRECTION, vFov, hFov, 1.08);
+
+  const target = center.clone();
+  target.y += SCREEN_HEIGHT * 0.28;
 
   camera.near = Math.max(0.1, distance / 80);
   camera.far = Math.max(200, distance * 8);
   camera.updateProjectionMatrix();
-  camera.position.copy(center).addScaledVector(HERO_DIRECTION, distance);
-  camera.lookAt(center);
+  camera.position.copy(target).addScaledVector(HERO_DIRECTION, distance);
+  camera.lookAt(target);
 
-  controls.target.copy(center);
+  controls.target.copy(target);
   controls.minDistance = distance * 0.4;
   controls.maxDistance = distance * 2.6;
   controls.update();
 
   framedPose.position.copy(camera.position);
-  framedPose.target.copy(center);
+  framedPose.target.copy(target);
 
   if (scene.fog) {
     scene.fog.near = distance * 1.55;
@@ -153,24 +157,24 @@ const shared = {
   displays: [
     new THREE.MeshStandardMaterial({
       color: 0x10161c,
-      emissive: 0x3a6d8c,
-      emissiveIntensity: 0.55,
-      roughness: 0.22,
-      metalness: 0.05,
+      emissive: 0x4a90b8,
+      emissiveIntensity: 0.85,
+      roughness: 0.2,
+      metalness: 0.04,
     }),
     new THREE.MeshStandardMaterial({
       color: 0x0e141a,
-      emissive: 0x2a5080,
-      emissiveIntensity: 0.48,
-      roughness: 0.22,
-      metalness: 0.05,
+      emissive: 0x3a6ea4,
+      emissiveIntensity: 0.75,
+      roughness: 0.2,
+      metalness: 0.04,
     }),
     new THREE.MeshStandardMaterial({
       color: 0x121820,
-      emissive: 0x4a7094,
-      emissiveIntensity: 0.5,
-      roughness: 0.22,
-      metalness: 0.05,
+      emissive: 0x5a88b0,
+      emissiveIntensity: 0.8,
+      roughness: 0.2,
+      metalness: 0.04,
     }),
   ],
 };
@@ -276,9 +280,9 @@ function createGround() {
   const ground = new THREE.Mesh(
     new THREE.CircleGeometry(28, 64),
     new THREE.MeshStandardMaterial({
-      color: 0x0f0f0f,
-      roughness: 0.82,
-      metalness: 0.18,
+      color: 0x16181c,
+      roughness: 0.78,
+      metalness: 0.22,
     })
   );
   ground.rotation.x = -Math.PI / 2;
