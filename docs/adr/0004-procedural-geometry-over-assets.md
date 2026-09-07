@@ -1,4 +1,4 @@
-# ADR-0003: Procedural Geometry Over Asset Loading for Mechanical Demos
+# ADR-0004: Procedural Geometry Over Asset Loading for Mechanical Demos
 
 **Status**: Accepted  
 **Date**: 2026-09-07  
