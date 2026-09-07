@@ -24,17 +24,17 @@ A biplane GLB (theirs or a marketplace “Jenny”) would look borrowed. Hobby V
 
 **Why**: ADR-0004 already prefers primitives when the code *is* the lesson. Canvas grain is the wood-shaped version of the Lumen Cuff grille. You can read `wood.ts` and see why a ring darkens.
 
-### 2. Extruded rocks and cloud puffs, not red spheres
+### 2. Procedural orbs as the lane beat
 
-**Chosen**: `ExtrudeGeometry` from a seeded polygon for rocks. Clustered spheres for clouds. A bronze torus for a count I invented.
+**Chosen**: `SphereGeometry` + `MeshPhysicalMaterial` in carnelian `#c43a2a`. Occasional bronze torus as a count I invented.
 
-**Rejected**: Their receding red-sphere diagonal. A physics engine. A GLB boulder pack.
+**Rejected**: Scraping their orb mesh. A physics engine. A GLB boulder pack. A dusk canyon of grey boxes (first local pass — it hid the wood).
 
-**Why**: The public thumb reads as lane-dodge with collectible-or-obstacle orbs. I kept the *mechanic* and changed the props so the corridor is mine. Extrude is the teaching artifact.
+**Why**: Headed visual QA of the public still confirmed the *read* is toy wood + tan studio + red lane orbs. I kept that mechanic with my own material so the lesson is still inspectable.
 
 ### 3. Thin frosted HUD, not zero chrome
 
-**Chosen**: A top strip for distance / rings / Reset. Editorial fades once you fly. A crash card so restart is obvious.
+**Chosen**: Distance chip in flight. Editorial + Take off on ready. A crash card so restart is obvious.
 
 **Rejected**: Literally zero DOM (their pitch) and a full marketing dock.
 

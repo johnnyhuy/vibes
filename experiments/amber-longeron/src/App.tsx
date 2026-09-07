@@ -73,15 +73,17 @@ export default function App() {
           onHud={onHud}
         />
         <Hud hud={hud} onReset={reset} onNudge={nudgeLane} onStart={onStart} />
-        <p className="hint">
-          A / D or swipe
-          <span className="sep">·</span>
-          Space takes off
-          <span className="sep">·</span>
-          R resets
-          <span className="sep">·</span>
-          {reducedMotion ? 'camera snaps (reduced motion)' : 'camera rides the spar'}
-        </p>
+        {state !== 'flying' && (
+          <p className="hint">
+            A / D or swipe
+            <span className="sep">·</span>
+            Space takes off
+            <span className="sep">·</span>
+            R resets
+            <span className="sep">·</span>
+            {reducedMotion ? 'camera snaps (reduced motion)' : 'camera rides the spar'}
+          </p>
+        )}
       </div>
     </ErrorBoundary>
   );

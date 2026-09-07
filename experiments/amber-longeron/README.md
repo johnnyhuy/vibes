@@ -4,11 +4,11 @@ I built this after reading [@heymichu25](https://x.com/heymichu25/status/2097062
 
 ## What I built
 
-- **A composite biplane** — cylinders, boxes, a cone nose, cabane struts, a spinning prop. No .glb. A longeron is a fuselage spar; you can read every part in `Biplane.tsx`.
-- **Canvas wood grain** — amber and walnut maps painted at runtime (rings, warp, pores, one knot). `MeshStandardMaterial` uses them as `map` + `roughnessMap`. See [ADR-0012](../../docs/adr/0012-procedural-wood-biplane.md).
-- **Kiln Run** — three lanes. Extruded rocks and dusty cloud puffs are solid. Bronze rings are a count I invented. Not their red spheres.
-- **Snappy steer** — A / D, arrows, swipe, or the pad. Space / click / ↑ takes off. `R` resets. The camera rides behind the spar.
-- **Dusk corridor** — amber horizon, umber fog, looping mesas. Immersive in flight; a thin frosted strip keeps score and restart honest.
+- **A composite biplane** — cylinder fuselage, plank wings, two cabane struts, a dark hub, a spinning prop. No .glb. A longeron is a fuselage spar; you can read every part in `Biplane.tsx`.
+- **Toy canvas wood** — low-contrast amber / walnut maps. Soft upper-left key so the grain reads as varnish, not zebra stripes. See [ADR-0012](../../docs/adr/0012-procedural-wood-biplane.md).
+- **Kiln Run** — three lanes on a linen-tan studio floor. Carnelian orbs are solid (the public *lane-orb* mechanic, my material). Bronze rings are a count I invented.
+- **Snappy steer** — A / D, arrows, swipe, or the pad. Space / click / ↑ takes off. `R` resets. Follow-cam sits close behind the spar.
+- **Immersive chrome** — in flight I keep a distance chip only. Ready / crash still have a small frosted card so restart is findable.
 
 You start on the centre line. Take off. Stay in the empty lane.
 

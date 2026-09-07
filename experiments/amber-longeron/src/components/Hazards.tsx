@@ -1,68 +1,33 @@
-import { useMemo } from 'react';
-import { ExtrudeGeometry, Shape } from 'three';
 import { hash, laneX } from '../flight';
 import type { Hazard } from '../types';
 
-function rockGeometry(seed: number) {
-  const shape = new Shape();
-  const sides = 5 + Math.floor(hash(seed, 2) * 3);
-  for (let i = 0; i < sides; i += 1) {
-    const angle = (i / sides) * Math.PI * 2 - Math.PI / 2;
-    const radius = 0.42 + hash(seed, i + 4) * 0.38;
-    const x = Math.cos(angle) * radius;
-    const y = Math.sin(angle) * radius;
-    if (i === 0) shape.moveTo(x, y);
-    else shape.lineTo(x, y);
-  }
-  shape.closePath();
-  return new ExtrudeGeometry(shape, {
-    depth: 0.55 + hash(seed, 9) * 0.5,
-    bevelEnabled: true,
-    bevelThickness: 0.08,
-    bevelSize: 0.06,
-    bevelSegments: 1
-  });
-}
-
-function Rock({ seed }: { seed: number }) {
-  const geometry = useMemo(() => rockGeometry(seed), [seed]);
-  const tilt = hash(seed, 12) * 0.6 - 0.3;
+function Orb({ seed }: { seed: number }) {
+  const scale = 0.78 + hash(seed, 2) * 0.18;
   return (
-    <mesh geometry={geometry} castShadow receiveShadow rotation={[-Math.PI / 2, 0, tilt]} position={[0, 0.02, 0]}>
-      <meshStandardMaterial color="#8a6a52" roughness={0.9} metalness={0.04} />
+    <mesh castShadow receiveShadow scale={scale}>
+      <sphereGeometry args={[0.62, 24, 18]} />
+      <meshPhysicalMaterial
+        color="#c43a2a"
+        roughness={0.28}
+        metalness={0.08}
+        clearcoat={0.55}
+        clearcoatRoughness={0.22}
+      />
     </mesh>
-  );
-}
-
-function Cloud({ seed }: { seed: number }) {
-  const puffs = useMemo(
-    () =>
-      [0, 1, 2, 3].map((i) => ({
-        x: (hash(seed, i) - 0.5) * 0.9,
-        y: 0.15 + hash(seed, i + 3) * 0.35,
-        z: (hash(seed, i + 6) - 0.5) * 0.5,
-        s: 0.42 + hash(seed, i + 9) * 0.28
-      })),
-    [seed]
-  );
-
-  return (
-    <group>
-      {puffs.map((puff, i) => (
-        <mesh key={i} position={[puff.x, puff.y, puff.z]} scale={puff.s}>
-          <sphereGeometry args={[1, 12, 10]} />
-          <meshStandardMaterial color="#efe0d0" roughness={1} transparent opacity={0.78} depthWrite={false} />
-        </mesh>
-      ))}
-    </group>
   );
 }
 
 function Ring() {
   return (
     <mesh rotation={[0, Math.PI / 2, 0]}>
-      <torusGeometry args={[0.72, 0.045, 10, 28]} />
-      <meshStandardMaterial color="#d7a15a" emissive="#8a5a22" emissiveIntensity={0.35} metalness={0.55} roughness={0.28} />
+      <torusGeometry args={[0.7, 0.04, 10, 28]} />
+      <meshStandardMaterial
+        color="#c48a3a"
+        emissive="#8a5a18"
+        emissiveIntensity={0.22}
+        metalness={0.45}
+        roughness={0.32}
+      />
     </mesh>
   );
 }
@@ -73,9 +38,8 @@ export default function Hazards({ items }: { items: Hazard[] }) {
       {items.map((item) => {
         if (item.taken) return null;
         return (
-          <group key={item.id} position={[laneX(item.lane), 0.85, item.z]}>
-            {item.kind === 'rock' && <Rock seed={item.seed} />}
-            {item.kind === 'cloud' && <Cloud seed={item.seed} />}
+          <group key={item.id} position={[laneX(item.lane), 0.92, item.z]}>
+            {item.kind === 'orb' && <Orb seed={item.seed} />}
             {item.kind === 'ring' && <Ring />}
           </group>
         );

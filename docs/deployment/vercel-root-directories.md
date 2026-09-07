@@ -49,7 +49,7 @@ It will not save you if Root Directory is blank — that `vercel.json` is never 
 
 One deploy per project. Stop. Updated 2026-09-07 (amber-longeron hill-climb). Hobby quota is still **0** until **~2026-09-08 20:39 UTC**.
 
-1. `vibes-blender-semicircle` — production still `25587f54` (cropped mega-arc / thin vertical ring). One `main` redeploy for the git-main XZ + bbox framing fix.
+1. `vibes-blender-semicircle` — git-main *preview* PASS; production still FAIL on stale `25587f54` (cropped mega-arc). One `main` production redeploy for the framing fix.
 2. `vibes-scroll-product` — first READY production from `main` (Root already `experiments/scroll-product-showcase`).
 3. `vibes-audio-gadget-spin` (`prj_N57mvThg4UcU9XxLK3F5wAICz9PA`) — first production after dashboard Root is confirmed as `experiments/audio-gadget-spin`. Linked `deploy: false`. **Do not redeploy on this PR.**
 4. Then grass / ballance / courtyard projects. If `vibes-procedural-grass-field` already exists `deploy: false`, leave it idle until that slot. Do **not** create `vibes-ballance-roll`, a courtyard project, or `vibes-amber-longeron` until quota is healthy.

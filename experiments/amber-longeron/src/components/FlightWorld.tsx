@@ -73,10 +73,17 @@ export default function FlightWorld({
     nextSpawn.current = FIRST_SPAWN;
     seed.current = 1 + resetToken * 97;
     rings.current = 0;
-    setItems([]);
+    while (nextSpawn.current < SPAWN_AHEAD) {
+      seed.current += 1;
+      const spawned = spawnBeat(nextId.current, nextSpawn.current, seed.current, 0);
+      nextId.current = spawned.nextId;
+      bag.current.push(...spawned.hazards);
+      nextSpawn.current += nextGap(seed.current, 0);
+    }
+    setItems(bag.current.map((item) => ({ ...item })));
     setTravelZ(0);
-    camera.position.set(0, 3.1, -7.4);
-    camera.lookAt(0, 1.1, 6);
+    camera.position.set(0, 2.15, -5.1);
+    camera.lookAt(0, 0.85, 5);
     onHud(0, 0, 0);
   }, [camera, onHud, resetToken]);
 
@@ -130,11 +137,11 @@ export default function FlightWorld({
       plane.current.rotation.set(ship.pitch, ship.bank * 0.22, ship.bank);
     }
 
-    const boom = reducedMotion ? 1 : 0.14;
-    camera.position.x += (ship.x * 0.42 - camera.position.x) * boom;
-    camera.position.y += (3.05 + ship.y * 0.1 - camera.position.y) * boom;
-    camera.position.z += (ship.z - 7.35 - camera.position.z) * boom;
-    camera.lookAt(ship.x * 0.2, 1.15, ship.z + 7);
+    const boom = reducedMotion ? 1 : 0.16;
+    camera.position.x += (ship.x * 0.28 - camera.position.x) * boom;
+    camera.position.y += (2.15 + ship.y * 0.08 - camera.position.y) * boom;
+    camera.position.z += (ship.z - 5.15 - camera.position.z) * boom;
+    camera.lookAt(ship.x * 0.12, 0.88, ship.z + 6);
 
     hudClock.current += dt;
     if (hudClock.current > 0.07) {
@@ -147,9 +154,8 @@ export default function FlightWorld({
 
   return (
     <>
-      <SkyRig travelZ={travelZ} reducedMotion={reducedMotion} />
+      <SkyRig />
       <group ref={plane} position={[0, PLANE_Y, 0]}>
-        <pointLight position={[0.8, 1.6, -1.4]} intensity={1.55} color="#ffd2a8" distance={14} />
         <Biplane crashed={state === 'crashed'} reducedMotion={reducedMotion} />
       </group>
       <Hazards items={items} />
@@ -161,10 +167,10 @@ export default function FlightWorld({
 function LaneGuides({ travelZ }: { travelZ: number }) {
   return (
     <group>
-      {[-2.55, 0, 2.55].map((x) => (
-        <mesh key={x} rotation={[-Math.PI / 2, 0, 0]} position={[x, 0.02, travelZ + 16]}>
-          <planeGeometry args={[0.08, 54]} />
-          <meshBasicMaterial color="#d7a15a" transparent opacity={0.16} />
+      {[-2.2, 0, 2.2].map((x) => (
+        <mesh key={x} rotation={[-Math.PI / 2, 0, 0]} position={[x, 0.01, travelZ + 14]}>
+          <planeGeometry args={[0.045, 46]} />
+          <meshBasicMaterial color="#8a6a48" transparent opacity={0.2} />
         </mesh>
       ))}
     </group>

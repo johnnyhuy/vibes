@@ -1,6 +1,5 @@
-import { useMemo } from 'react';
+import { useMemo, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { useRef } from 'react';
 import type { Group } from 'three';
 import { createWoodMaps } from '../wood';
 
@@ -16,68 +15,58 @@ export default function Biplane({ crashed, reducedMotion }: Props) {
 
   useFrame((_, delta) => {
     if (!prop.current || reducedMotion) return;
-    prop.current.rotation.z += (crashed ? 4 : 28) * delta;
+    prop.current.rotation.z += (crashed ? 3 : 26) * delta;
   });
 
   return (
     <group>
-      <mesh castShadow receiveShadow rotation={[Math.PI / 2, 0, 0]} position={[0, 0.02, 0.05]}>
-        <cylinderGeometry args={[0.22, 0.26, 1.85, 18]} />
-        <meshStandardMaterial map={wood.map} roughnessMap={wood.roughnessMap} roughness={0.78} metalness={0.04} />
+      <mesh castShadow receiveShadow rotation={[Math.PI / 2, 0, 0]} position={[0, 0.02, 0.08]}>
+        <cylinderGeometry args={[0.2, 0.2, 1.72, 22]} />
+        <meshStandardMaterial map={wood.map} roughnessMap={wood.roughnessMap} roughness={0.74} metalness={0.02} />
       </mesh>
-      <mesh castShadow rotation={[Math.PI / 2, 0, 0]} position={[0, 0.04, 1.08]}>
-        <coneGeometry args={[0.22, 0.42, 16]} />
-        <meshStandardMaterial map={wood.map} roughnessMap={wood.roughnessMap} roughness={0.7} metalness={0.05} />
+      <mesh rotation={[Math.PI / 2, 0, 0]} position={[0, 0.02, -0.78]}>
+        <cylinderGeometry args={[0.2, 0.2, 0.04, 22]} />
+        <meshStandardMaterial map={wood.map} roughnessMap={wood.roughnessMap} roughness={0.76} />
       </mesh>
-      <mesh position={[0, 0.2, 0.05]}>
-        <boxGeometry args={[0.28, 0.16, 0.42]} />
-        <meshStandardMaterial color="#3a2418" roughness={0.9} />
+      <mesh castShadow receiveShadow position={[0, 0.62, 0.12]}>
+        <boxGeometry args={[2.48, 0.05, 0.4]} />
+        <meshStandardMaterial map={wood.map} roughnessMap={wood.roughnessMap} roughness={0.76} metalness={0.02} />
       </mesh>
-      <mesh castShadow receiveShadow position={[0, 0.58, 0.08]}>
-        <boxGeometry args={[2.55, 0.045, 0.42]} />
-        <meshStandardMaterial map={wood.map} roughnessMap={wood.roughnessMap} roughness={0.8} metalness={0.03} />
-      </mesh>
-      <mesh castShadow receiveShadow position={[0, -0.08, 0.16]}>
-        <boxGeometry args={[2.15, 0.04, 0.38]} />
-        <meshStandardMaterial map={wood.map} roughnessMap={wood.roughnessMap} roughness={0.8} metalness={0.03} />
-      </mesh>
-      {[-0.72, 0.72].map((x) =>
-        [-0.22, 0.22].map((z) => (
-          <mesh key={`${x}-${z}`} position={[x, 0.25, z]} castShadow>
-            <cylinderGeometry args={[0.018, 0.018, 0.66, 8]} />
-            <meshStandardMaterial color="#1a1410" metalness={0.55} roughness={0.35} />
-          </mesh>
-        ))
-      )}
-      <mesh castShadow position={[0, 0.28, -0.92]}>
-        <boxGeometry args={[0.72, 0.035, 0.28]} />
-        <meshStandardMaterial map={wood.map} roughnessMap={wood.roughnessMap} roughness={0.78} />
-      </mesh>
-      <mesh castShadow position={[0, 0.38, -0.98]} rotation={[0.12, 0, 0]}>
-        <boxGeometry args={[0.04, 0.34, 0.22]} />
-        <meshStandardMaterial map={wood.map} roughnessMap={wood.roughnessMap} roughness={0.78} />
-      </mesh>
-      <group ref={prop} position={[0, 0.04, 1.32]}>
-        <mesh>
-          <cylinderGeometry args={[0.08, 0.08, 0.1, 12]} />
-          <meshStandardMaterial color="#2a2118" metalness={0.65} roughness={0.3} />
+      {[-0.72, 0.72].map((x) => (
+        <mesh key={`lower-${x}`} castShadow receiveShadow position={[x, -0.06, 0.18]}>
+          <boxGeometry args={[0.92, 0.045, 0.36]} />
+          <meshStandardMaterial map={wood.map} roughnessMap={wood.roughnessMap} roughness={0.76} metalness={0.02} />
         </mesh>
-        <mesh rotation={[0, 0, 0.15]}>
-          <boxGeometry args={[0.1, 0.92, 0.03]} />
-          <meshStandardMaterial map={dark.map} roughnessMap={dark.roughnessMap} roughness={0.62} />
+      ))}
+      {[-0.78, 0.78].map((x) => (
+        <mesh key={`strut-${x}`} position={[x, 0.28, 0.16]} castShadow>
+          <cylinderGeometry args={[0.016, 0.016, 0.68, 8]} />
+          <meshStandardMaterial color="#1c1612" metalness={0.35} roughness={0.42} />
+        </mesh>
+      ))}
+      <mesh castShadow position={[0, 0.24, -0.86]}>
+        <boxGeometry args={[0.68, 0.035, 0.26]} />
+        <meshStandardMaterial map={wood.map} roughnessMap={wood.roughnessMap} roughness={0.76} />
+      </mesh>
+      <mesh castShadow position={[0, 0.34, -0.9]} rotation={[0.08, 0, 0]}>
+        <boxGeometry args={[0.04, 0.3, 0.2]} />
+        <meshStandardMaterial map={wood.map} roughnessMap={wood.roughnessMap} roughness={0.76} />
+      </mesh>
+      <group ref={prop} position={[0, 0.02, 1.02]}>
+        <mesh>
+          <cylinderGeometry args={[0.1, 0.1, 0.12, 16]} />
+          <meshStandardMaterial color="#2a2118" metalness={0.45} roughness={0.38} />
+        </mesh>
+        <mesh rotation={[0, 0, 0.2]}>
+          <boxGeometry args={[0.09, 0.86, 0.028]} />
+          <meshStandardMaterial map={dark.map} roughnessMap={dark.roughnessMap} roughness={0.6} />
         </mesh>
       </group>
-      {[-0.28, 0.28].map((x) => (
-        <group key={x}>
-          <mesh position={[x, -0.28, 0.42]} rotation={[0.35, 0, 0]}>
-            <cylinderGeometry args={[0.016, 0.016, 0.34, 8]} />
-            <meshStandardMaterial color="#1a1410" metalness={0.5} roughness={0.4} />
-          </mesh>
-          <mesh position={[x, -0.42, 0.5]} rotation={[0, 0, Math.PI / 2]}>
-            <cylinderGeometry args={[0.07, 0.07, 0.06, 12]} />
-            <meshStandardMaterial color="#1f1a16" roughness={0.55} />
-          </mesh>
-        </group>
+      {[-0.26, 0.26].map((x) => (
+        <mesh key={`gear-${x}`} position={[x, -0.28, 0.28]}>
+          <boxGeometry args={[0.1, 0.1, 0.14]} />
+          <meshStandardMaterial color="#2a2118" roughness={0.55} />
+        </mesh>
       ))}
     </group>
   );

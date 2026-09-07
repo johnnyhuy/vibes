@@ -31,7 +31,7 @@ Observed *read* (pattern only — I am not restating their HUD copy or domain ch
 
 So the viral object is **a wooden spar you steer between orbs**, not a studio turntable.
 
-I will not reuse their beige void, their red-sphere diagonal, their exact wing proportions, or the *Vintage Biplane Experience* wordmark. The pattern I wanted is: *procedural wood you can read* **and** *lanes that snap*.
+I will not reuse their exact wing loft, their domain chrome, or the *Vintage Biplane Experience* wordmark. After a headed look at the public still (tan studio, red lane orbs, no HUD) I adopted that *mechanic and lighting read* with my own linen, carnelian, and score chip. The pattern is: *toy wood you can read* **and** *lanes that snap*.
 
 ## Why This Pattern Exists
 
@@ -39,9 +39,9 @@ A static biplane is a postcard. Lanes plus grain is a demo:
 
 ```
 lane ∈ {left, centre, right}     →  x targets, bank from vx
-wood  = canvas rings + pores     →  map + roughnessMap
-beat  = rock | cloud | ring      →  overlap on z, never all three lanes
-camera = follow boom             →  the corridor reads as a place
+wood  = soft canvas varnish      →  map + roughnessMap
+beat  = orb | ring               →  overlap on z, never all three lanes
+camera = close follow boom       →  the studio reads as a place
 ```
 
 `ballance-roll` already teaches contact on a path. This experiment makes the *vehicle* the lesson.
@@ -54,32 +54,31 @@ Hypothesis: **cylinder fuselage + box wings + strut cylinders + a spinning prop*
 
 My ship (original silhouette, not theirs):
 
-- Longer upper wing, shorter lower wing
-- Four cabane posts
-- Cone nose, box cockpit recess
-- Twin gear legs and a walnut prop
+- One long upper plank, split lower stubs
+- Two cabane posts
+- Flat rear cap, dark hub, walnut prop
+- Block gear, no scraped loft
 - Name from the part: a **longeron** is a fuselage spar
 
 ### 2. Canvas wood, not a crate texture
 
-See [ADR-0012](../adr/0012-procedural-wood-biplane.md). Amber and walnut maps are painted at runtime. I did **not** lift a photo from their site.
+See [ADR-0012](../adr/0012-procedural-wood-biplane.md). Amber and walnut maps are painted at runtime with *low* contrast so they read as toy varnish. I did **not** lift a photo from their site.
 
-### 3. Rocks and clouds, not red spheres
+### 3. Carnelian orbs, my material
 
-Extruded seeded polygons for rocks. Soft sphere clusters for clouds. Bronze torii for a count that is mine. The public thumb’s orbs taught me *lanes*; they did not teach me the prop.
+The public still uses red spheres as the lane beat. I kept that *mechanic* — a `SphereGeometry` + `MeshPhysicalMaterial` in oxide red I mixed (`#c43a2a`). I did not scrape their mesh or arrange their exact diagonal. Bronze rings stay as a count that is mine.
 
-### 4. Dusk instead of a beige void
+### 4. Linen studio, not their void hex
 
-Amber horizon, umber `FogExp2`, looping box mesas, a faint lane tick. Their still is a clean-room void. Mine is a corridor at last light so it does not screenshot as a clone.
+Warm linen background `#e6d4b8`, a sand floor, linear fog. Soft key from upper left, the same *lighting read* as the thumb. I am not matching their exact beige or dropping a horizon-less clone of their page.
 
-### 5. My chrome, not zero
+### 5. Almost-zero chrome
 
-They pitched zero UI. I still need score and restart in a kitchen sink:
+They pitched zero UI. In flight I keep a distance chip only. Ready / crash still have a small frosted card so restart is findable:
 
-- Top strip: `vibes · amber longeron` + distance + rings + **Reset**
-- Ready: **桁** (spar) + Amber Longeron + first-person lede
+- Ready: **桁** (spar) + Amber Longeron + Take off
+- Flight: centred metres
 - Crash: a centred card, not their domain overlay
-- Bottom-right: a tiny lane pad
 
 I did **not** copy a waitlist, a wordmark, or a cinematic title card.
 
@@ -88,7 +87,7 @@ I did **not** copy a waitlist, a wordmark, or a cinematic title card.
 | I did | I did not |
 | --- | --- |
 | Read the public X post + video thumb + public page title | Download or decompile their ai.studio / WebGL assets |
-| Invent Amber Longeron from primitives | Copy their biplane, grain, or red spheres |
+| Invent Amber Longeron from primitives | Copy their biplane loft, grain maps, or orb mesh |
 | Write original React / R3F / CSS | Copy their JS, fonts, or component tree |
 | Brand as vibes · amber longeron / 桁 | Use *Vintage Biplane Experience* or their HUD |
 | Cite the post as inspiration | Claim I created the original viral clip |
@@ -111,8 +110,9 @@ I did **not** copy a waitlist, a wordmark, or a cinematic title card.
 1. A follow-cam behind a cylinder already reads as “flight”
 2. Bank from lateral velocity sells the snap more than a tweened yaw
 3. Never block all three lanes or the run is a coin-flip
-4. Canvas wood needs warp *and* pores or it looks like stripes
-5. Do not name the HUD after someone else’s domain
+4. High-contrast canvas rings look like zebra; toy varnish wants a narrow tone range
+5. A dark canyon hid the wood — the public still is a lit studio for a reason
+6. Do not name the HUD after someone else’s domain
 
 ## Related
 

@@ -125,9 +125,9 @@ Across these demos, the quality bar is:
 ## My Implementation Status
 
 ### amber-longeron ✅ (local)
-- ✅ Dusk corridor (not their beige void, not a black car studio)
-- ✅ Composite biplane + canvas wood grain + extruded rocks / cloud puffs
-- ✅ Thin frosted strip for distance / rings / reset; editorial fades in flight
+- ✅ Linen-tan studio + soft upper-left key (toy wood reads; not a black canyon)
+- ✅ Composite biplane + low-contrast canvas varnish + carnelian lane orbs
+- ✅ Flight HUD is a distance chip only; ready / crash keep a small frosted card
 - ⚠️ No Vercel project — do not create one until quota is healthy
 - Inspired by [heymichu25](https://x.com/heymichu25/status/2097062564299759855)
 

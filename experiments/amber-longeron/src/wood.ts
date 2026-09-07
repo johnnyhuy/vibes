@@ -48,28 +48,29 @@ function paintWood(kind: 'amber' | 'walnut'): { albedo: HTMLCanvasElement; rough
   const pixels = color.createImageData(size, size);
   const rPixels = rough.createImageData(size, size);
 
-  const light = kind === 'amber' ? [176, 118, 62] : [92, 62, 40];
-  const mid = kind === 'amber' ? [138, 86, 42] : [64, 42, 28];
-  const dark = kind === 'amber' ? [86, 48, 24] : [36, 24, 16];
+  const light = kind === 'amber' ? [168, 118, 72] : [86, 58, 40];
+  const mid = kind === 'amber' ? [148, 100, 60] : [70, 48, 34];
+  const dark = kind === 'amber' ? [126, 84, 50] : [52, 36, 26];
 
   for (let y = 0; y < size; y += 1) {
     for (let x = 0; x < size; x += 1) {
       const u = x / size;
       const v = y / size;
-      const warp = fbm(u * 3.2, v * 0.7) * 0.55;
-      const rings = Math.sin((u + warp) * 42 + fbm(u * 1.4, v * 0.4) * 6.5);
-      const grain = fbm(u * 18, v * 1.1);
-      const pore = smoothNoise(u * 90, v * 14);
-      const knot = Math.exp(-((u - 0.62) ** 2 + (v - 0.28) ** 2) * 90) * 0.55;
-      const tone = mix(0.15, 0.92, rings * 0.5 + 0.5) * 0.72 + grain * 0.22 - pore * 0.08 + knot * 0.2;
+      const warp = fbm(u * 1.6, v * 0.35) * 0.22;
+      const rings = Math.sin((u + warp) * 18 + fbm(u * 0.8, v * 0.25) * 2.4);
+      const grain = fbm(u * 10, v * 0.7);
+      const tone = 0.52 + rings * 0.08 + grain * 0.1;
       const t = Math.min(1, Math.max(0, tone));
-      const shade = t < 0.5 ? [mix(dark[0], mid[0], t * 2), mix(dark[1], mid[1], t * 2), mix(dark[2], mid[2], t * 2)] : [mix(mid[0], light[0], (t - 0.5) * 2), mix(mid[1], light[1], (t - 0.5) * 2), mix(mid[2], light[2], (t - 0.5) * 2)];
+      const shade =
+        t < 0.5
+          ? [mix(dark[0], mid[0], t * 2), mix(dark[1], mid[1], t * 2), mix(dark[2], mid[2], t * 2)]
+          : [mix(mid[0], light[0], (t - 0.5) * 2), mix(mid[1], light[1], (t - 0.5) * 2), mix(mid[2], light[2], (t - 0.5) * 2)];
       const i = (y * size + x) * 4;
       pixels.data[i] = shade[0];
       pixels.data[i + 1] = shade[1];
       pixels.data[i + 2] = shade[2];
       pixels.data[i + 3] = 255;
-      const r = Math.floor(mix(70, 210, 1 - t + pore * 0.2));
+      const r = Math.floor(mix(150, 200, t));
       rPixels.data[i] = r;
       rPixels.data[i + 1] = r;
       rPixels.data[i + 2] = r;
@@ -88,7 +89,7 @@ function canvasTexture(canvas: HTMLCanvasElement, colourSpace: boolean): CanvasT
   texture.wrapS = RepeatWrapping;
   texture.wrapT = RepeatWrapping;
   texture.anisotropy = 8;
-  texture.repeat.set(2, 1);
+  texture.repeat.set(1.4, 1);
   return texture;
 }
 

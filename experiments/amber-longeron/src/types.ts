@@ -1,6 +1,6 @@
 export type PlayState = 'ready' | 'flying' | 'crashed';
 
-export type HazardKind = 'rock' | 'cloud' | 'ring';
+export type HazardKind = 'orb' | 'ring';
 
 export type Lane = 0 | 1 | 2;
 
@@ -18,10 +18,4 @@ export interface HudSnapshot {
   rings: number;
   best: number;
   state: PlayState;
-}
-
-export interface FlightInput {
-  laneDelta: number;
-  start: boolean;
-  restart: boolean;
 }
