@@ -36,7 +36,7 @@ npm run build
 
 ## Deploy
 
-Project `vibes-audio-gadget-spin` (`prj_N57mvThg4UcU9XxLK3F5wAICz9PA`) exists. It was created `deploy: false` before the hobby quota resets (~**2026-09-08 12:55 UTC**). **No production yet.** Do not redeploy it on this PR.
+Project `vibes-audio-gadget-spin` (`prj_N57mvThg4UcU9XxLK3F5wAICz9PA`) exists. It was created `deploy: false` before the hobby quota resets (~**2026-09-08 20:39 UTC**). SSO off. **No production yet.** Do not redeploy it on this PR.
 
 Dashboard **Root Directory** must be `experiments/audio-gadget-spin`. `create_git_project` does not write that field. `vercel.json` only carries the usual Vite fields plus `ignoreCommand`. See [the incident](../../docs/incidents/2026-09-07-audio-gadget-linked-before-quota.md).
 

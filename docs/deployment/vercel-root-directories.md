@@ -3,7 +3,7 @@
 I'm writing this down because Root Directory lives in the **Vercel dashboard**, not in git. `vercel.json` inside an experiment can set framework / build / `ignoreCommand`. It cannot set Root Directory. A monorepo-root `vercel.json` would fight every other project. I am not adding one.
 
 Team: `johnnyhuy-dev` (`team_qBCPdqU9J1cQDL4rkrFsjNoa`)  
-Hobby quota: 100 deploys/day. Reset after the 2026-09-07 burn: **~2026-09-08 12:55 UTC**. Do not retry-spam.
+Hobby quota: 100 deploys/day. Reset after the 2026-09-07 burn: **~2026-09-08 20:39 UTC** (API; earlier notes said 12:55 UTC). Do not retry-spam.
 
 ## Dashboard field (required)
 
@@ -33,20 +33,20 @@ See [the incident](../incidents/2026-09-08-steam-atlas-wrong-root.md).
 | `vibes-japanese-tower` | `prj_T1KL4cJSMuY0Z6oKGnNtv8zVP0Js` | `experiments/japanese-tower` — **LIVE** Ridge Pagoda at [vibes-japanese-tower.vercel.app](https://vibes-japanese-tower.vercel.app) (`dpl_Gap9BAXosU4jMEsQsR8c2nKyEPjg` from courtyard PR). Skip after quota unless visual QA fails. |
 | — | — | `experiments/ballance-roll` — **no project**. Do not create one on this PR. |
 | — | — | `experiments/chinese-courtyard` — **no project**. Do not create one on this PR. |
-| `vibes-audio-gadget-spin` | `prj_N57mvThg4UcU9XxLK3F5wAICz9PA` | **`experiments/audio-gadget-spin`** — created `deploy: false` this hour. Root is dashboard-owned. **0 production** until post-quota. Do not redeploy on this PR. |
+| `vibes-audio-gadget-spin` | `prj_N57mvThg4UcU9XxLK3F5wAICz9PA` | **`experiments/audio-gadget-spin`** — created `deploy: false` this hour. SSO off. Root is dashboard-owned. **0 production** until post-quota. Do not redeploy on this PR. |
 | — | — | `experiments/procedural-grass-field` — **no project**. Do not create one on this PR. |
 
 In-repo `vercel.json` lives *inside* those folders (`framework: vite`, `outputDirectory: dist`, `ignoreCommand` where I have added it).
 
 `ignoreCommand: git diff --quiet HEAD^ HEAD ./` skips the Vite build when that folder did not change. Vercel records that skip as **CANCELED** with `errorLink` **`ignored-build-step`**. It may still count as a hobby deployment. It does **not** write or refresh a production alias — that is why steam-atlas stayed `DEPLOYMENT_NOT_FOUND` after a `create_git_project` redeploy of `main` (the tip only touched `japanese-tower`).
 
-Pending apps (scroll-product, semicircle) need a commit that **touches their Root Directory** or a **dashboard Redeploy** that bypasses ignore, after quota ~2026-09-08 12:55 UTC. steam-atlas and japanese-tower already have LIVE production. A sibling-folder merge will skip the pending ones again.
+Pending apps (scroll-product, semicircle) need a commit that **touches their Root Directory** or a **dashboard Redeploy** that bypasses ignore, after quota ~2026-09-08 20:39 UTC. steam-atlas and japanese-tower already have LIVE production. A sibling-folder merge will skip the pending ones again.
 
 It will not save you if Root Directory is blank — that `vercel.json` is never read.
 
 ## Post-quota redeploy order
 
-One deploy per project. Stop. Updated 2026-09-07 (procedural-grass-field hill-climb). Hobby quota is still **0** until **~2026-09-08 12:55 UTC**.
+One deploy per project. Stop. Updated 2026-09-07 (procedural-grass-field hill-climb). Hobby quota is still **0** until **~2026-09-08 20:39 UTC**.
 
 1. `vibes-blender-semicircle` — production still `25587f54` (cropped mega-arc / thin vertical ring). One `main` redeploy for XZ + bbox framing.
 2. `vibes-scroll-product` — first READY production from `main` (Root already `experiments/scroll-product-showcase`).
@@ -62,7 +62,7 @@ One deploy per project. Stop. Updated 2026-09-07 (procedural-grass-field hill-cl
 
 `experiments/chinese-courtyard/` has `vercel.json` (`ignoreCommand`). **No Vercel project.** Do not create one on this PR. When I do: dashboard Root Directory = `experiments/chinese-courtyard`.
 
-`experiments/audio-gadget-spin/` has `vercel.json` (`ignoreCommand`). Project `vibes-audio-gadget-spin` (`prj_N57mvThg4UcU9XxLK3F5wAICz9PA`) exists, created `deploy: false`. Intended Root: `experiments/audio-gadget-spin`. Root Directory is still dashboard-owned. **0 production** — do not redeploy until after quota, and only after semicircle then scroll. See [the incident](../incidents/2026-09-07-audio-gadget-linked-before-quota.md).
+`experiments/audio-gadget-spin/` has `vercel.json` (`ignoreCommand`). Project `vibes-audio-gadget-spin` (`prj_N57mvThg4UcU9XxLK3F5wAICz9PA`) exists, created `deploy: false`. SSO off. Intended Root: `experiments/audio-gadget-spin`. Root Directory is still dashboard-owned. **0 production** — do not redeploy until after quota, and only after semicircle then scroll. See [the incident](../incidents/2026-09-07-audio-gadget-linked-before-quota.md).
 
 `experiments/procedural-grass-field/` is a new Vite app with its own `vercel.json` (`ignoreCommand`). **No Vercel project.** Do not create one on this PR. When I do: dashboard Root Directory = `experiments/procedural-grass-field`.
 
@@ -88,7 +88,7 @@ That pass added Lumen Cuff locally. The project was created later the same day: 
 
 ### Hill-climb — 2026-09-07 (procedural-grass-field)
 
-This pass adds Wind Lea locally. **No new Vercel project. No redeploy.** Quota still 0 until ~2026-09-08 12:55 UTC. Post-quota jobs remain semicircle then scroll. Audio-gadget stays linked-not-live. Skip explode, steam, tower, glass unless they break. Still no ballance-roll or courtyard project.
+This pass adds Wind Lea locally. **No new Vercel project. No redeploy.** Quota still 0 until ~2026-09-08 20:39 UTC. Post-quota jobs remain semicircle then scroll. Audio-gadget stays linked-not-live (SSO off). Skip explode, steam, tower, glass unless they break. Still no ballance-roll or courtyard project.
 
 ---
 

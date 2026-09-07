@@ -4,7 +4,7 @@ Each browser demo is its own Vercel project on this repo. **Root Directory** is 
 
 Sibling-folder commits skip via `ignored-build-step` and do **not** refresh production aliases.
 
-Hobby quota on `johnnyhuy-dev` resets after the 2026-09-07 burn (~**2026-09-08 12:55 UTC**). Do not retry-spam deploys. After reset, one each: **semicircle** (replace `25587f54`) → **scroll-product** (first READY) → skip explode / steam / glass / tower unless a later visual QA fails. Do not create projects for ballance-roll or chinese-courtyard.
+Hobby quota on `johnnyhuy-dev` resets after the 2026-09-07 burn (~**2026-09-08 20:39 UTC**; earlier notes said 12:55). Do not retry-spam deploys. After reset, one each: **semicircle** (replace `25587f54`) → **scroll-product** (first READY) → skip explode / steam / glass / tower unless a later visual QA fails. `vibes-audio-gadget-spin` (`prj_N57mvThg4UcU9XxLK3F5wAICz9PA`) is linked `deploy: false`, SSO off, Root `experiments/audio-gadget-spin` — no production, do not redeploy yet. Do not create projects for ballance-roll, chinese-courtyard, or procedural-grass-field.
 
 ## Production aliases
 
@@ -22,6 +22,8 @@ Hobby quota on `johnnyhuy-dev` resets after the 2026-09-07 burn (~**2026-09-08 1
 | web-3d | `vibes` | `experiments/ai-3d-lanes/web-3d` | — | TBD |
 | ballance-roll | — | `experiments/ballance-roll` | — | no project |
 | chinese-courtyard | — | `experiments/chinese-courtyard` | — | no project |
+| audio-gadget-spin | `vibes-audio-gadget-spin` (`prj_N57mvThg4UcU9XxLK3F5wAICz9PA`) | `experiments/audio-gadget-spin` | — | linked `deploy: false`, SSO off, 0 production |
+| procedural-grass-field | — | `experiments/procedural-grass-field` | — | no project |
 
 PR previews appear as Vercel bot comments when quota allows.
 
@@ -29,6 +31,7 @@ PR previews appear as Vercel bot comments when quota allows.
 
 - [Root Directory checklist](./vercel-root-directories.md)
 - [Quota incident](../incidents/2026-09-07-vercel-deploy-quota.md)
+- [Audio-gadget linked before quota](../incidents/2026-09-07-audio-gadget-linked-before-quota.md)
 - [steam-atlas wrong Root](../incidents/2026-09-08-steam-atlas-wrong-root.md)
 - [glass auto-deploy on tower merge](../incidents/2026-09-08-glass-auto-deploy-on-tower-merge.md)
 - [Visual QA](../visual-qa/README.md)

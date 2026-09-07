@@ -83,7 +83,7 @@ export const LOOKS: Look[] = [
     skyZenith: '#6eafdc',
     skyHorizon: '#d5e6c4',
     fogColor: '#c8d8b8',
-    fogDensity: 0.016,
+    fogDensity: 0.009,
     sunColor: '#fff3d2',
     sunIntensity: 2.05,
     sunElevation: 0.74,

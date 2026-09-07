@@ -1,7 +1,7 @@
 # Incident: Audio-gadget project linked before quota reset
 
 **Date**: 2026-09-07  
-**Time**: project created this hour; hobby quota still **0 remaining** until ~2026-09-08 12:55 UTC  
+**Time**: project created this hour; hobby quota still **0 remaining** until ~2026-09-08 20:39 UTC  
 **Severity**: Low (docs / ops, not runtime)  
 **Status**: Linked, no production — do not redeploy until after quota
 
@@ -9,7 +9,7 @@
 
 ## Summary
 
-`vibes-audio-gadget-spin` (`prj_N57mvThg4UcU9XxLK3F5wAICz9PA`) was created with `deploy: false` while `johnnyhuy-dev` still has **0** `api-deployments-free-per-day`. That is the right kind of create — it does **not** burn a production slot — but it also does **not** ship Lumen Cuff.
+`vibes-audio-gadget-spin` (`prj_N57mvThg4UcU9XxLK3F5wAICz9PA`) was created with `deploy: false` while `johnnyhuy-dev` still has **0** `api-deployments-free-per-day`. SSO is off. That is the right kind of create — it does **not** burn a production slot — but it also does **not** ship Lumen Cuff. API reset is **~2026-09-08 20:39 UTC** (earlier notes said 12:55 UTC).
 
 Root Directory is still **dashboard-owned**. `create_git_project` does not write it. `vercel.json` inside `experiments/audio-gadget-spin/` cannot write it either. If Root is blank, the first real deploy builds the repo root and fails.
 
@@ -19,7 +19,7 @@ Root Directory is still **dashboard-owned**. `create_git_project` does not write
 - Left production alone. No dashboard Redeploy. No CLI `--prod`
 - Did **not** create projects for `procedural-grass-field`, `ballance-roll`, or `chinese-courtyard`
 
-## What I will do after ~2026-09-08 12:55 UTC
+## What I will do after ~2026-09-08 20:39 UTC
 
 1. Confirm dashboard Root Directory is `experiments/audio-gadget-spin`
 2. Then, and only then, consider a first production — **after** the ordered jobs: `vibes-blender-semicircle` (still `25587f54`) then `vibes-scroll-product` first READY

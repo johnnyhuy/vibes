@@ -9,7 +9,7 @@
 
 Bilal Khan’s Grassworks post is a dense, interactive Three.js meadow. I wanted that *lesson* — thousands of blades, wind at the tip, species as state — without shipping a turf pack or cloning their product.
 
-A grass GLB (one sculpted blade, instanced or not) would look “bought.” A unique mesh per blade would die on the CPU. Hobby Vercel quota is still 0 until ~2026-09-08 12:55 UTC, so the experiment stays local.
+A grass GLB (one sculpted blade, instanced or not) would look “bought.” A unique mesh per blade would die on the CPU. Hobby Vercel quota is still 0 until ~2026-09-08 20:39 UTC, so the experiment stays local.
 
 ## Decision
 
@@ -77,7 +77,7 @@ cd experiments/procedural-grass-field
 npm install && npm run build
 ```
 
-Do **not** create a Vercel project or deploy until quota resets (~2026-09-08 12:55 UTC). If I add one later: Root Directory = `experiments/procedural-grass-field`.
+Do **not** create a Vercel project or deploy until quota resets (~2026-09-08 20:39 UTC). If I add one later: Root Directory = `experiments/procedural-grass-field`.
 
 ## References
 

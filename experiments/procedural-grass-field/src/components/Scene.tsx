@@ -41,7 +41,7 @@ export default function Scene({
 
   return (
     <Canvas
-      camera={{ position: [7.4, 4.6, 10.8], fov: 38, near: 0.1, far: 140 }}
+      camera={{ position: [8.6, 5.8, 12.4], fov: 36, near: 0.1, far: 140 }}
       dpr={[1, 1.6]}
       shadows
       gl={{
