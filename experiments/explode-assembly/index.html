@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exploded Product Assembly</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div id="app">
+    <aside class="sidebar">
+      <div class="logo">ASSEMBLY</div>
+      
+      <div class="systems-list">
+        <div class="system-item active" data-system="chassis">
+          <div class="indicator"></div>
+          <span>Chassis & Structure</span>
+        </div>
+        <div class="system-item" data-system="drive">
+          <div class="indicator"></div>
+          <span>Drive System</span>
+        </div>
+        <div class="system-item" data-system="power">
+          <div class="indicator"></div>
+          <span>Power Unit</span>
+        </div>
+        <div class="system-item" data-system="cooling">
+          <div class="indicator"></div>
+          <span>Cooling System</span>
+        </div>
+        <div class="system-item" data-system="electronics">
+          <div class="indicator"></div>
+          <span>Electronics</span>
+        </div>
+        <div class="system-item" data-system="exterior">
+          <div class="indicator"></div>
+          <span>Exterior Panels</span>
+        </div>
+      </div>
+    </aside>
+    
+    <main class="viewport">
+      <div id="canvas-container"></div>
+      
+      <div class="controls-bottom">
+        <div class="explode-control">
+          <label>EXPLODE VIEW</label>
+          <input type="range" id="explode-slider" min="0" max="100" value="0">
+          <div class="slider-labels">
+            <span>Assembled</span>
+            <span>Exploded</span>
+          </div>
+        </div>
+      </div>
+      
+      <div id="detail-card" class="detail-card hidden">
+        <h3 id="card-title"></h3>
+        <p id="card-description"></p>
+        <div class="card-specs" id="card-specs"></div>
+      </div>
+    </main>
+  </div>
+  
+  <script type="module" src="/main.js"></script>
+</body>
+</html>
