@@ -3,69 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>V8 Engine Cutaway</title>
-  <link rel="stylesheet" href="/style.css">
+  <title>V8 Engine Cutaway — Technical Visualisation</title>
+  <meta name="description" content="Interactive V8 engine cutaway with live gauges and animated internals">
 </head>
 <body>
-  <div id="app">
-    <header class="header">
-      <h1>V8 · Four-Stroke</h1>
-      <p class="subtitle">8-CYLINDER INLINE · PISTON ORDER 1-8-4-3-6-5-7-2 · 5.5L</p>
-    </header>
-    
-    <div id="canvas-container"></div>
-    
-    <div class="gauges">
-      <div class="gauge">
-        <div class="gauge-value" id="rpm-value">700</div>
-        <div class="gauge-label">REV / MIN</div>
-        <div class="gauge-subtext">Crankshaft</div>
-      </div>
-      
-      <div class="gauge">
-        <div class="gauge-value" id="stroke-indicator">INTAKE</div>
-        <div class="gauge-label">CYCLE</div>
-        <div class="gauge-subtext">4-Stroke</div>
-      </div>
-      
-      <div class="gauge">
-        <div class="gauge-value" id="cylinder-pressure">1.5</div>
-        <div class="gauge-label">BAR</div>
-        <div class="gauge-subtext">Chamber Pressure</div>
-      </div>
-    </div>
-    
-    <div class="controls-panel">
-      <button class="control-btn active" data-view="section">SECTION</button>
-      <button class="control-btn" data-view="explode">EXPLODE</button>
-      <button class="control-btn" data-view="color">COLOR</button>
-      
-      <div class="speed-control">
-        <label>+/- SPEED</label>
-        <input type="range" id="speed-slider" min="1" max="10" value="3">
-      </div>
-    </div>
-    
-    <div class="legend">
-      <div class="legend-item">
-        <span class="legend-color" style="background: #ef4444"></span>
-        <span>Crankshaft</span>
-      </div>
-      <div class="legend-item">
-        <span class="legend-color" style="background: #3b82f6"></span>
-        <span>Pistons</span>
-      </div>
-      <div class="legend-item">
-        <span class="legend-color" style="background: #8b5cf6"></span>
-        <span>Valves</span>
-      </div>
-      <div class="legend-item">
-        <span class="legend-color" style="background: #10b981"></span>
-        <span>Block</span>
-      </div>
-    </div>
-  </div>
-  
-  <script type="module" src="/main.js"></script>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
 </body>
 </html>

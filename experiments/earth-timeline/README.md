@@ -1,18 +1,19 @@
 # earth-timeline
 
-Interactive Earth history visualisation. Inspired by [this X post](https://x.com/akshdeeps/status/1832134890432381354) showing an Earth timeline site that lets you scrub through 4.5 billion years.
+Interactive Earth history visualisation exploring 4.5 billion years from planetary formation to present day.
 
-I wanted to explore how to make geologic time tangible — something you can scroll through, not just read about.
+I wanted to make geologic time tangible — something you can scroll through, watch evolve, and experience viscerally, not just read about in a textbook.
 
 ## What I Built
 
-A procedural Earth globe with a timeline slider spanning from planetary formation to present day:
+A cinematic Earth visualisation with a timeline spanning 4.5 billion years:
 
-- **Timeline scrub** — Slide through 9 major eras from Hadean to Anthropocene
-- **Visual evolution** — Earth color shifts from molten brown → ocean blue → green with life
-- **Atmosphere appearance** — Clouds and atmosphere fade in as conditions allow
-- **Era descriptions** — Info card explains what's happening at each stage
-- **Auto-play** — "Play the story" button to watch evolution unfold
+- **Timeline scrub** — Drag through 9 major eras from Hadean to Anthropocene
+- **Visual evolution** — Earth transforms from molten brown → deep ocean blue → vibrant green as life emerges
+- **Atmosphere appearance** — Clouds and atmosphere fade in as the planet stabilises
+- **Era descriptions** — Info card provides context for each geological period
+- **Auto-play** — Watch 4.5 billion years unfold in 10 seconds
+- **Orbit controls** — Rotate and zoom to explore the planet up close
 
 ## Running It
 
@@ -21,54 +22,62 @@ npm install
 npm run dev
 ```
 
-Open in browser → drag timeline to explore Earth's history.
+Open http://localhost:5173 → drag timeline slider, click play, orbit the planet.
 
 ## Why I Made This
 
-After seeing GPT-6 Astra build that Earth civilisation site in 30 minutes, I wanted to understand the mechanics of interactive timeline visualisation.
+I wanted to understand how to build **interactive timeline visualisations** that make abstract concepts (like geologic time) viscerally understandable.
 
 This is my learning experiment for:
-- **Temporal mapping** — Converting billions of years to 0-100 slider
-- **State transitions** — Switching visual appearance based on timeline position
-- **Procedural textures** — Generating Earth-like surfaces from noise
-- **Narrative pacing** — Making geological eons feel engaging
+- **Temporal mapping** — Compressing 4.5 billion years into a 0-100 slider
+- **Visual storytelling** — Using colour transitions and atmospheric effects to convey planetary evolution
+- **React + R3F architecture** — Managing 3D state declaratively
+- **Cinematic presentation** — Dark UI, smooth animations, orbital camera
 
 ## The Approach
 
-**Procedural planet**: Canvas-generated texture with oceans + continents, no image assets.
+**React + R3F stack**: React for UI state, React Three Fiber for declarative 3D, drei for helpers (OrbitControls, Stars).
 
-**Timeline keyframes**: Array of eras with time/color/description. Slider finds nearest keyframe.
+**Procedural textures**: Canvas-generated Earth surface with continents and oceans. No external image assets.
 
-**Visual evolution**: Material color interpolates. Clouds/atmosphere opacity tied to timeline position.
+**Timeline keyframes**: Array of 9 eras with timestamp, colour, cloud/atmosphere opacity. App finds current era based on slider position.
 
-**Auto-play**: setInterval increments slider value, creates animation loop.
+**Visual transitions**: Earth material colour interpolates between eras. Clouds and atmosphere fade in as the planet cools and life emerges.
+
+**Auto-play**: useEffect with setInterval increments slider value every 100ms.
 
 ## Simplifications
 
-This is a learning experiment, so I simplified:
-- **No real Earth map** — procedural noise instead of actual geography
-- **No tectonic drift** — continents don't move (that would require animated textures)
-- **Simplified timeline** — 9 keyframes instead of full geological scale
-- **Basic atmosphere** — glow shell instead of proper Rayleigh scattering
+This is an educational prototype, so I simplified:
+- **Procedural textures** — No real Earth map or satellite imagery
+- **Static continents** — No tectonic drift or plate movement
+- **9 eras** — Condensed from hundreds of geological periods
+- **Basic atmosphere** — Glow shell, not Rayleigh scattering physics
+- **Uniform rotation** — Earth spins at constant speed (reality: days lengthen over time)
 
-For a production version, you'd want real topography data, tectonic animation, and atmospheric physics.
+A production version would use NASA Blue Marble textures, tectonic animations, and proper atmospheric rendering.
 
-## How AI Could Generate This
+## Stack
 
-An agent given "build an Earth history timeline" could:
-1. **Generate timeline data** — LLM outputs era names, dates, descriptions
-2. **Create procedural planet** — Generate texture from Perlin noise
-3. **Map time to visual states** — Calculate color transitions between eras
-4. **Build UI controls** — Slider + play button + info cards
+- **React** — UI state management
+- **@react-three/fiber** — Declarative Three.js in React
+- **@react-three/drei** — OrbitControls, Stars, helpers
+- **Three.js** — 3D rendering engine
+- **Vite** — Fast dev server + build tool
 
-I hand-coded this, but the structure shows what's automatable.
+This is the same stack as `explode-assembly` — I'm converging on React + R3F for interactive 3D demos because it makes state management and UI integration trivial.
 
 ## What's Next
 
-- Add tectonic plate animation
-- Show asteroid impacts / major events
-- Temperature / atmospheric composition charts
-- Zoom into specific eras (Cambrian explosion detail view)
-- Export as video for education
+If I return to this, I'd add:
+- **Tectonic plate animation** — Watch Pangaea form and break apart
+- **Event markers** — Asteroid impacts, mass extinctions, ice ages
+- **Atmospheric composition charts** — Track O₂, CO₂, temperature over time
+- **Era deep-dives** — Zoom into the Cambrian explosion, show life emergence
+- **NASA textures** — Replace procedural with Blue Marble imagery
 
-This is my kitchen sink. Research and education only.
+For now, this proves the pattern: timeline scrubbing + visual evolution + cinematic presentation.
+
+---
+
+Built by Johnny Huynh • This is my kitchen sink • Research and education only — not production code
