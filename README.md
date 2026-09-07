@@ -97,6 +97,19 @@ npm install && npm run dev
 
 ---
 
+#### [scroll-product-showcase](./experiments/scroll-product-showcase/)
+Scroll-driven 3D product hero with glass materials and refraction. Clean-room implementation of the pattern popularised by Apple and recent viral WebGL demos (like [himanshubuildss' glass bottle](https://x.com/himanshubuildss/status/2096243989439713677)).
+
+**What it is**: React + R3F + drei. Fixed canvas with tall scroll container. Scroll progress drives product rotation and camera movement. Procedural torus knot + sphere geometry with MeshPhysicalMaterial transmission for glass effect. Dark cinematic UI.
+
+**Run it**:
+```bash
+cd experiments/scroll-product-showcase
+npm install && npm run dev
+```
+
+---
+
 ### Image, texture & CAD
 
 - [image-to-3d](./experiments/image-to-3d/) — image→mesh stubs
@@ -107,17 +120,20 @@ npm install && npm run dev
 
 Each browser demo has its own Vercel project on this repo (Root Directory set in the dashboard). All demos are live on `main`.
 
-| App | Vercel project | Root Directory | Production URL |
-| --- | --- | --- | --- |
-| web-3d | `vibes` | `experiments/ai-3d-lanes/web-3d` | TBD |
-| procedural-steam-atlas | TBD | `experiments/procedural-steam-atlas` | TBD |
-| explode-assembly | `vibes-explode` | `experiments/explode-assembly` | vibes-explode.vercel.app |
-| earth-timeline | `vibes-earth` | `experiments/earth-timeline` | vibes-earth.vercel.app |
-| v8-cutaway | `vibes-v8` | `experiments/v8-cutaway` | vibes-v8.vercel.app |
-| web-physics | `vibes-physics` | `experiments/web-physics` | vibes-physics.vercel.app |
-| blender-semicircle-viewer | (not yet linked) | `experiments/blender-semicircle-viewer` | TBD |
+> ⚠️ **2026-09-07 Deployment Quota Incident**: Vercel free tier hit 100/day deployment limit. Some URLs serve stale commits until quota resets (~24h). See [incident doc](./docs/incidents/2026-09-07-vercel-deploy-quota.md) for details.
 
-PR previews show up as Vercel bot comments on each pull request.
+| App | Vercel project | Root Directory | Production URL | Status |
+| --- | --- | --- | --- | --- |
+| web-3d | `vibes` | `experiments/ai-3d-lanes/web-3d` | TBD | - |
+| explode-assembly | `vibes-explode` | `experiments/explode-assembly` | [vibes-explode.vercel.app](https://vibes-explode.vercel.app) | ⚠️ Serves commit `6923cd2` (pre-#6) |
+| earth-timeline | `vibes-earth` | `experiments/earth-timeline` | [vibes-earth.vercel.app](https://vibes-earth.vercel.app) | ✅ |
+| v8-cutaway | `vibes-v8` | `experiments/v8-cutaway` | [vibes-v8.vercel.app](https://vibes-v8.vercel.app) | ✅ |
+| web-physics | `vibes-physics` | `experiments/web-physics` | [vibes-physics.vercel.app](https://vibes-physics.vercel.app) | ✅ |
+| blender-semicircle-viewer | `vibes-blender-semicircle` | `experiments/blender-semicircle-viewer` | [vibes-blender-semicircle.vercel.app](https://vibes-blender-semicircle.vercel.app) | ✅ |
+| procedural-steam-atlas | `vibes-steam-atlas` | `experiments/procedural-steam-atlas` | ⚠️ Zero deployments (quota hit) | Need Root Dir + redeploy |
+| scroll-product-showcase | `vibes-scroll-product` (to create) | `experiments/scroll-product-showcase` | TBD (awaiting project creation) | Build ✅ locally |
+
+PR previews show up as Vercel bot comments on each pull request (when quota available).
 
 ## Documentation
 
