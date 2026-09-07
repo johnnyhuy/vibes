@@ -62,13 +62,13 @@ export default function NeuralGraph() {
         <bufferGeometry>
           <bufferAttribute attach="attributes-position" args={[segments, 3]} />
         </bufferGeometry>
-        <lineBasicMaterial color="#9bb8d6" transparent opacity={0.38} />
+        <lineBasicMaterial color="#8aaac8" transparent opacity={0.52} />
       </lineSegments>
       <points>
         <bufferGeometry>
           <bufferAttribute attach="attributes-position" args={[positions, 3]} />
         </bufferGeometry>
-        <pointsMaterial color="#c5d7ea" size={0.035} sizeAttenuation transparent opacity={0.85} />
+        <pointsMaterial color="#b7cce0" size={0.042} sizeAttenuation transparent opacity={0.95} />
       </points>
     </group>
   );

@@ -17,6 +17,9 @@ export function orbitPoint(
   scratch.set(Math.cos(t) * node.radiusX, 0, Math.sin(t) * node.radiusZ);
   euler.set(node.tiltX, 0, node.tiltZ);
   scratch.applyEuler(euler);
+  scratch.x += node.centerX ?? 0;
+  scratch.y += node.centerY ?? 0;
+  scratch.z += node.centerZ ?? 0;
   return target.copy(scratch);
 }
 
@@ -26,6 +29,9 @@ export function buildOrbitCurve(node: Capability, segments = 160): THREE.Catmull
     const t = (i / segments) * Math.PI * 2;
     const p = new THREE.Vector3(Math.cos(t) * node.radiusX, 0, Math.sin(t) * node.radiusZ);
     p.applyEuler(new THREE.Euler(node.tiltX, 0, node.tiltZ));
+    p.x += node.centerX ?? 0;
+    p.y += node.centerY ?? 0;
+    p.z += node.centerZ ?? 0;
     pts.push(p);
   }
   return new THREE.CatmullRomCurve3(pts, true, 'catmullrom', 0.05);

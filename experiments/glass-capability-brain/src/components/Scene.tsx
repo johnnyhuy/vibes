@@ -62,7 +62,7 @@ export default function Scene({
         color="#8aa0b5"
       />
 
-      <Environment resolution={256} environmentIntensity={0.42}>
+      <Environment frames={1} resolution={256} environmentIntensity={0.42}>
         <Lightformer intensity={1.6} position={[0, 5, 2]} scale={[8, 1.2, 1]} color="#ffffff" />
         <Lightformer intensity={0.7} position={[-4, 2, -2]} scale={4} color="#d7e6f5" />
         <Lightformer intensity={0.55} position={[4, 1, 3]} scale={3} color="#f3e8ff" />

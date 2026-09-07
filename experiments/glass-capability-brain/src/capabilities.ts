@@ -20,6 +20,9 @@ export interface Capability {
   /** Ellipse radii and Euler tilt for the drawn orbit. */
   radiusX: number;
   radiusZ: number;
+  centerX?: number;
+  centerY?: number;
+  centerZ?: number;
   tiltX: number;
   tiltZ: number;
   phase: number;
@@ -46,12 +49,15 @@ export const CAPABILITIES: Capability[] = [
     stubNote: 'Stub. The live work is on See: I read the canvas, not a memory store.',
     color: '#f59e0b',
     halo: 'rgba(245, 158, 11, 0.28)',
-    radiusX: 1.05,
-    radiusZ: 0.82,
+    radiusX: 0.38,
+    radiusZ: 0.3,
+    centerX: 0.82,
+    centerY: 0.18,
+    centerZ: 0.22,
     tiltX: 0.18,
     tiltZ: -0.22,
     phase: 0.35,
-    speed: 0.12,
+    speed: 0.08,
     size: 0.2,
     kind: 'stub',
     inner: true,
