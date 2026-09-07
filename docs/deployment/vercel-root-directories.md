@@ -44,7 +44,7 @@ It will not save you if Root Directory is blank — that `vercel.json` is never 
 
 ## Post-quota redeploy order
 
-One deploy per project. Stop. Updated 2026-09-08 (ballance-roll hill-climb).
+One deploy per project. Stop. Updated 2026-09-08 ~4:37am AEST (courtyard hill-climb).
 
 1. **Skip** `vibes-explode` — PASS at 2:22am and again ~4:37am. Redeploy only if a later check goes stale.
 2. **Skip** `vibes-steam-atlas` — LIVE PASS ~4:37am on `a94b16e` / `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS` (assembled locomotive). Redeploy only if a later visual QA fails.
