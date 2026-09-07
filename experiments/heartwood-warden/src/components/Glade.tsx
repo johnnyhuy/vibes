@@ -141,9 +141,9 @@ export default function Glade() {
   const { scene } = useThree();
 
   useLayoutEffect(() => {
-    const fog = scene.fog instanceof FogExp2 ? scene.fog : new FogExp2('#0a1410', 0.038);
-    fog.color.set('#0a1410');
-    fog.density = 0.038;
+    const fog = scene.fog instanceof FogExp2 ? scene.fog : new FogExp2('#0a1412', 0.052);
+    fog.color.set('#0a1412');
+    fog.density = 0.052;
     scene.fog = fog;
     scene.background = new Color('#070b0a');
   }, [scene]);
@@ -181,16 +181,17 @@ export default function Glade() {
         <meshBasicMaterial color="#e8eef8" fog={false} />
       </mesh>
       {[
-        [4.2, 10, -7.5, 0.18],
-        [-2.6, 11, -6.2, -0.12],
-        [1.1, 12, -8.8, 0.08],
+        [6.2, 11, -8.4, 0.22],
+        [3.4, 12, -7.1, 0.1],
+        [8.1, 10.4, -6.6, 0.28],
+        [1.6, 12.4, -9.2, 0.04],
       ].map(([x, y, z, tilt], index) => (
-        <mesh key={index} position={[x, y, z]} rotation={[0.72 + tilt, 0.18, tilt]}>
-          <coneGeometry args={[1.15, 18, 10, 1, true]} />
+        <mesh key={index} position={[x, y, z]} rotation={[0.78 + tilt, 0.32, tilt]}>
+          <coneGeometry args={[1.35, 20, 10, 1, true]} />
           <meshBasicMaterial
-            color="#9eb6d4"
+            color="#b7cce4"
             transparent
-            opacity={0.07}
+            opacity={0.12}
             side={DoubleSide}
             depthWrite={false}
             fog={false}

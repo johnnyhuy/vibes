@@ -45,7 +45,8 @@ Headed preview on `127.0.0.1:4173` after `npm run build`:
 - Canvas painted a dark woodland night: fog, trunk silhouettes, moon-dew rill. Not a grey void.
 - Rear-three-quarter follow; guardian (mask, amber well, crescent twigs) readable in the lower third.
 - WASD walked; Shift+W sprinted; topbar stance flipped idle → walk → sprint.
-- Casts `1` `2` `3` `4` `7` `0` each changed the desk title and showed distinct VFX.
+- Casts `1` `2` `3` `4` `7` `0` each changed the desk title and the bottom strip.
+- Later polish: denser fog, clearer moon shafts, brighter lanterns, first-class 1–0 strip, `kbd` WASD.
 - Ward snippet panel opened with generated JSON + helper.
 - Console: no fatal errors. Inline favicon; benign WebGL `ReadPixels` notes.
 

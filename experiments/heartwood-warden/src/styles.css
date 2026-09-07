@@ -44,7 +44,8 @@ body {
 .editorial,
 .desk,
 .hint,
-.pad {
+.pad,
+.cast-strip {
   z-index: 4;
 }
 
@@ -154,10 +155,58 @@ body {
   margin-bottom: 0.75rem;
 }
 
-.chips {
+.cast-strip {
+  position: absolute;
+  left: 50%;
+  bottom: 1.1rem;
+  transform: translateX(-50%);
   display: flex;
-  flex-wrap: wrap;
+  list-style: none;
   gap: 0.28rem;
+  margin: 0;
+  padding: 0.38rem 0.42rem;
+  background: var(--panel);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--line);
+  border-radius: 0.85rem;
+}
+
+.cast-strip button {
+  appearance: none;
+  width: 4.55rem;
+  min-height: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.2rem;
+  padding: 0.32rem 0.38rem;
+  border: 1px solid var(--line);
+  border-radius: 0.55rem;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.62rem;
+  line-height: 1.2;
+  text-align: left;
+  cursor: pointer;
+}
+
+.cast-strip .key {
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+
+.cast-strip button.active {
+  background: var(--ink);
+  color: #111318;
+  border-color: var(--ink);
+}
+
+.cast-strip button.active .key {
+  color: #3a3420;
 }
 
 .chips button,
@@ -217,11 +266,30 @@ body {
 .hint {
   position: absolute;
   left: 1.2rem;
-  bottom: 1.25rem;
+  bottom: 4.7rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.22rem;
   font-size: 0.72rem;
   color: var(--muted);
   pointer-events: none;
-  max-width: 24rem;
+  max-width: 22rem;
+}
+
+.hint kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.15rem;
+  height: 1.15rem;
+  padding: 0 0.22rem;
+  border: 1px solid var(--line);
+  border-radius: 0.28rem;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.62rem;
 }
 
 .hint .sep {
@@ -297,11 +365,19 @@ body {
 
   .desk {
     top: auto;
-    bottom: 7.4rem;
+    bottom: 7.8rem;
     left: 0.75rem;
     right: 0.75rem;
     width: auto;
-    max-height: 36vh;
+    max-height: 28vh;
+  }
+
+  .cast-strip {
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: 4.2rem;
+    transform: none;
+    overflow-x: auto;
   }
 
   .hint {

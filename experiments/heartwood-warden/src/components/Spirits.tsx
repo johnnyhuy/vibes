@@ -57,17 +57,17 @@ export default function Spirits({ player, reducedMotion }: Props) {
       {anchors.map((spirit, index) => (
         <group key={index} position={[Math.cos(spirit.orbit) * spirit.radius, spirit.height, Math.sin(spirit.orbit) * spirit.radius]}>
           <mesh>
-            <sphereGeometry args={[0.08, 10, 8]} />
+            <sphereGeometry args={[0.1, 10, 8]} />
             <meshStandardMaterial
-              color="#ffd89a"
+              color="#ffe4b0"
               emissive="#ffb45a"
-              emissiveIntensity={1.8}
-              roughness={0.22}
+              emissiveIntensity={2.2}
+              roughness={0.2}
             />
           </mesh>
           <mesh>
-            <sphereGeometry args={[0.16, 10, 8]} />
-            <meshBasicMaterial color="#ffc878" transparent opacity={0.16} depthWrite={false} />
+            <sphereGeometry args={[0.26, 10, 8]} />
+            <meshBasicMaterial color="#ffd08a" transparent opacity={0.22} depthWrite={false} />
           </mesh>
           {spirit.lit && (
             <pointLight color="#ffb45a" intensity={1.15} distance={5.5} decay={2} />

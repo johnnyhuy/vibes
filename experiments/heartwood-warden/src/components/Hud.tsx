@@ -82,20 +82,8 @@ export default function Hud({
         <p className="panel-kicker">Cast</p>
         <p className="panel-title">{active?.label ?? 'Still wood'}</p>
         <p className="panel-copy">
-          {active?.copy ?? 'Number keys layer a ward I invented. The snippet is generated from this stance, not imported.'}
+          {active?.copy ?? 'The strip below is the ward I invented. Number keys fire it. The snippet is generated from this stance, not imported.'}
         </p>
-        <div className="chips" role="group" aria-label="Casts">
-          {CASTS.map((cast) => (
-            <button
-              key={cast.id}
-              type="button"
-              className={cast.id === lastCast ? 'active' : undefined}
-              onClick={() => onCast(cast.id)}
-            >
-              {cast.key} {cast.label}
-            </button>
-          ))}
-        </div>
         {sourceOpen && (
           <>
             <pre className="snippet">{buildWardSnippet({ stance, lastCast })}</pre>
@@ -106,10 +94,29 @@ export default function Hud({
         )}
       </aside>
 
+      <ol className="cast-strip" aria-label="Casts 1 to 0">
+        {CASTS.map((cast) => (
+          <li key={cast.id}>
+            <button
+              type="button"
+              className={cast.id === lastCast ? 'active' : undefined}
+              onClick={() => onCast(cast.id)}
+            >
+              <span className="key">{cast.key}</span>
+              <span className="label">{cast.label}</span>
+            </button>
+          </li>
+        ))}
+      </ol>
+
       <p className="hint">
-        WASD or arrows walk
+        <kbd>W</kbd>
+        <kbd>A</kbd>
+        <kbd>S</kbd>
+        <kbd>D</kbd>
+        walk
         <span className="sep">·</span>
-        Shift sprints
+        <kbd>⇧</kbd> sprint
         <span className="sep">·</span>
         1–0 cast
       </p>
