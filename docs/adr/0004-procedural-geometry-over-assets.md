@@ -179,6 +179,8 @@ With a .glb, each rivet is a separate mesh → more memory overhead.
 | **ballance-roll** | Procedural geometry | Sky-path + marble; contact materials, no course GLB (ADR-0008) |
 | **procedural-grass-field** | Instanced shader blades | Meadow density; no turf GLB (ADR-0011) |
 | **amber-longeron** | Procedural geometry | Composite biplane + canvas wood; no Jenny GLB (ADR-0012) |
+| **nacre-loom** | Procedural geometry | Lobed icosahedron + film weaves; no orb GLB (ADR-0013) |
+| **heartwood-warden** | Procedural geometry | Shrine guardian + glade + casts; no character GLB (ADR-0014) |
 | **chinese-courtyard** | Procedural geometry | Siheyuan halls + moon gate; no courtyard GLB (ADR-0009) |
 | **audio-gadget-spin** | Procedural geometry | Over-ear cuff + canvas grille; no brand GLB (ADR-0010) |
 

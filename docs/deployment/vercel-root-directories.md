@@ -37,6 +37,7 @@ See [the incident](../incidents/2026-09-08-steam-atlas-wrong-root.md).
 | — | — | `experiments/procedural-grass-field` — **no project** on this pass. If `vibes-procedural-grass-field` already exists `deploy: false`, leave it idle. Do not create or redeploy on this PR. |
 | — | — | `experiments/amber-longeron` — **no project**. Do not create one on this PR. |
 | — | — | `experiments/nacre-loom` — **no project**. Do not create one on this PR. |
+| — | — | `experiments/heartwood-warden` — **no project**. Do not create one on this PR. |
 
 In-repo `vercel.json` lives *inside* those folders (`framework: vite`, `outputDirectory: dist`, `ignoreCommand` where I have added it).
 
@@ -48,13 +49,13 @@ It will not save you if Root Directory is blank — that `vercel.json` is never 
 
 ## Post-quota redeploy order
 
-One deploy per project. Stop. Updated 2026-09-07 (nacre-loom hill-climb). Hobby quota is still **0** until **~2026-09-08 20:39 UTC**.
+One deploy per project. Stop. Updated 2026-09-07 (heartwood-warden hill-climb). Hobby quota is still **0** until **~2026-09-08 20:39 UTC**.
 
 1. `vibes-blender-semicircle` — git-main *preview* PASS; production still FAIL on stale `25587f54` (cropped mega-arc). One `main` production redeploy for the framing fix.
 2. `vibes-scroll-product` — first READY production from `main` (Root already `experiments/scroll-product-showcase`).
 3. `vibes-audio-gadget-spin` (`prj_N57mvThg4UcU9XxLK3F5wAICz9PA`) — first production after dashboard Root is confirmed as `experiments/audio-gadget-spin`. Linked `deploy: false`. **Do not redeploy on this PR.**
 4. `vibes-procedural-grass-field` — first production (or create-then-promote only in this slot). If it already exists `deploy: false`, leave it idle until this slot.
-5. Only then ballance / courtyard / amber-longeron / nacre-loom. Do **not** create `vibes-ballance-roll`, a courtyard project, `vibes-amber-longeron`, or `vibes-nacre-loom` until quota is healthy.
+5. Only then ballance / courtyard / amber-longeron / nacre-loom / heartwood-warden. Do **not** create `vibes-ballance-roll`, a courtyard project, `vibes-amber-longeron`, `vibes-nacre-loom`, or `vibes-heartwood-warden` until quota is healthy.
 6. **Skip** explode / steam-atlas / japanese-tower / glass unless a later visual QA says they broke.
 
 `experiments/glass-capability-brain/` has `vercel.json`. Project `vibes-glass-capability-brain` (`prj_yJbQTsiB138V5jh92cwSWd8rZmij`) has production READY at [vibes-glass-capability-brain.vercel.app](https://vibes-glass-capability-brain.vercel.app/) (SSO off). It shipped for free on the japanese-tower `main` merge (`9328191` / `dpl_3CE9Dd7X7og5MuSLpcGgyxboacgz`). See [the incident](../incidents/2026-09-08-glass-auto-deploy-on-tower-merge.md).
@@ -72,6 +73,8 @@ One deploy per project. Stop. Updated 2026-09-07 (nacre-loom hill-climb). Hobby 
 `experiments/amber-longeron/` is a new Vite app with its own `vercel.json` (`ignoreCommand`). **No Vercel project.** Do not create one on this PR. When I do: dashboard Root Directory = `experiments/amber-longeron`.
 
 `experiments/nacre-loom/` is a new Vite app with its own `vercel.json` (`ignoreCommand`). **No Vercel project.** Do not create one on this PR. When I do: dashboard Root Directory = `experiments/nacre-loom`.
+
+`experiments/heartwood-warden/` is a new Vite app with its own `vercel.json` (`ignoreCommand`). **No Vercel project.** Do not create one on this PR. When I do: dashboard Root Directory = `experiments/heartwood-warden`.
 
 steam-atlas Root must stay `experiments/procedural-steam-atlas`. It already has LIVE production. Do not spend a post-quota slot on it unless a later visual QA fails.
 
@@ -109,7 +112,13 @@ This pass adds Nacre Loom locally. **No new Vercel project. No redeploy.** Quota
 
 Git-main semicircle *preview* PASS; production still FAIL on stale `25587f54`. `vibes-scroll-product` still 404. Unchanged backlog.
 
+### Hill-climb — 2026-09-07 (heartwood-warden)
+
+This pass adds Heartwood Warden locally. **No new Vercel project. No redeploy.** Quota still 0 until ~2026-09-08 20:39 UTC. Post-quota order: (1) semicircle production from the framing-fix git-main preview (2) scroll-product first READY (3) audio-gadget first production (4) grass (5) only then ballance / courtyard / amber-longeron / nacre-loom / this glade. Do not create `vibes-heartwood-warden`.
+
+Git-main semicircle *preview* PASS; production still FAIL on stale `25587f54`. `vibes-scroll-product` still 404. Unchanged backlog.
+
 ---
 
 **Author**: Johnny Huynh  
-**Last updated**: 2026-09-07 (nacre-loom)
+**Last updated**: 2026-09-07 (heartwood-warden)
