@@ -9,8 +9,8 @@ Interactive Three.js viewer displaying 51 procedural laptop-like objects arrange
 ## Features
 
 - **51 laptop-like objects** — Procedurally generated (not real MacBooks)
-- **Semicircle layout** — 180° arc with outward-facing rotation
-- **Bounds-fit camera** — Frames the laptop group so the full arc stays on screen (not a cropped mega-arc)
+- **Semicircle layout** — Horizontal XZ 180° arc (Three.js Y-up), lids facing inward
+- **Corner-fit camera** — Above-front pose from the group's 3D bounds so the array reads as a product semicircle, not a vertical hairline
 - **Dark cinematic UI** — Matching the vibes quality bar
 - **Studio lighting** — Three-point setup (key, fill, rim)
 - **Interactive camera** — OrbitControls with auto-rotate
@@ -57,7 +57,7 @@ This experiment is configured for Vercel deployment alongside the other vibes pr
 
 ### Deploy status (2026-09-08)
 
-Project `vibes-blender-semicircle` (`prj_PLhnoCVRKmpHc8SxyLRmcp3MFZMC`) is live but **stale**: production is still commit `25587f54` (cropped mega-arc). Sibling-folder commits do **not** refresh this alias — `ignoreCommand` exits 0 and Vercel CANCELs with `ignored-build-step`. This courtyard-pass README touch is so the next post-quota `main` merge actually rebuilds this Root (or use a dashboard Redeploy that bypasses ignore). Do not force a redeploy from the agent.
+Project `vibes-blender-semicircle` (`prj_PLhnoCVRKmpHc8SxyLRmcp3MFZMC`) is live but **stale**: production is still commit `25587f54` (cropped mega-arc). Preview QA on 2026-09-08 showed bbox-only `frameCameraToArc` still FAIL — the arc was a vertical XY arch. This Root now lays the array on XZ and corner-fits from above-front. Sibling-folder commits skip via `ignored-build-step`. Do not force a production redeploy from the agent (hobby quota until ~2026-09-08 12:55 UTC). Preview deploys from a PR that touches this folder are fine.
 
 ## Tech Stack
 
@@ -144,7 +144,7 @@ This viewer demonstrates the **end result** of an agent-driven 3D workflow:
 - [ ] Add click interactions (select individual laptops)
 - [ ] Animate laptop screen content (fake display textures)
 - [ ] Add particle effects (subtle dust/light rays)
-- [x] Frame the full 51-laptop arc from world bounds (not a hardcoded origin seat)
+- [x] Horizontal XZ semicircle + above-front corner-fit framing (bbox-only on a vertical XY arch still FAIL)
 - [ ] Post-processing (bloom, depth of field)
 
 ## Notes
