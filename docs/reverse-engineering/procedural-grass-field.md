@@ -15,17 +15,25 @@
 
 ## What The Post And Demo Show
 
-Bilal’s public copy: a high-performance procedural grass system for Three.js, “dense, dynamic, interactive,” shipping with presets inspired by real-world species plus stylised looks. The demo page (controls I could read without lifting source) exposes:
+Bilal’s public copy: a high-performance procedural grass system for Three.js, “dense, dynamic, interactive,” shipping with presets inspired by real-world species plus stylised looks. I treated that as a *feel* brief. I did not open their JS bundles or copy materials.
 
-- **Looks**: Sunny, Golden Hour, Rain, Wind, Calm, Bowed, Moon Light
-- **Grass type**: Blade / Billboard
-- **Quality**: Performance / Balanced / High / Ultra
-- **Sliders**: wind strength, grass height, simulation speed, pixel ratio
-- **Foot interaction**, FPS / TRI counters
-- **WASD walk**, mouse look, Shift run
-- A waitlist CTA and an “Initializing…” loader
+### Observed demo chrome (inspiration only)
 
-The video is a first-person walk through a thick meadow. I treated that as a *feel* brief: density, wind, species as first-class state. I did not open their JS bundles or copy materials.
+Public HUD at [grassworks.techredux.co/demo](https://grassworks.techredux.co/demo), read without lifting source:
+
+| Control | What I saw |
+| --- | --- |
+| Preset | Sunny / Golden Hour / Rain / Wind Calm / Bowed / Moon Light |
+| Grass type | Blade / Billboard |
+| Quality | Performance / Balanced / High / Ultra |
+| Sliders | Wind Strength, Grass Height, Simulation Speed, Pixel Ratio |
+| Toggle | Foot Interaction |
+| Meters | FPS, TRIS |
+| Move | WASD walk, mouse look, Shift run |
+| Boot | “Initializing…” overlay, then **Start** |
+| CTA | Join Waitlist |
+
+I did **not** rebuild that product sheet. An educational subset is enough: a few invented looks, wind + height, frosted HUD, orbit (or a gentle walk). GPU instancing / shader blades, procedural only.
 
 **Stack guess**: Three.js, custom grass vertex displacement, instancing or compute, a first-person controller. I did not inspect their source.
 
@@ -34,13 +42,13 @@ The video is a first-person walk through a thick meadow. I treated that as a *fe
 | Their pattern | What I shipped |
 | --- | --- |
 | Dense interactive meadow | Instanced crossed blades + wind shader (`Wind Lea / 青原`) |
-| Species + stylised presets | Rye / Fescue / Reed / Ink — names and palettes I invented |
-| Sunny / golden hour / night | Noon / Amber / Overcast / Night (sky + fog + sun + grass shift) |
-| Quality steps | Spare / Full / Dense instance counts |
-| Wind + height sliders | Same idea, my uniforms |
-| Foot / walk interaction | Pointer gust that parts blades. Orbit camera, not WASD |
-| Grassworks / Techredux chrome | `vibes · grass field` pale glass HUD |
-| Blade vs billboard types | One crossed-plane blade. No billboard path this pass |
+| Seven named presets | Four invented looks (Noon / Amber / Overcast / Night) plus four species chips. Smaller than their sheet; still educational |
+| Blade / Billboard | One crossed-plane blade. No billboard path this pass |
+| Performance → Ultra | Spare / Full / Dense instance counts |
+| Wind Strength + Grass Height | Same idea, my uniforms |
+| Simulation Speed, Pixel Ratio, FPS, TRIS | Skipped. Not the lesson |
+| Foot Interaction + WASD / Shift | Pointer gust that parts blades. Orbit camera, not a walker |
+| Initializing… / Start / Waitlist | None. App just starts. Branding is `vibes · grass field` |
 
 ## What I did NOT copy
 

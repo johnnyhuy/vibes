@@ -70,7 +70,7 @@ cd experiments/audio-gadget-spin
 npm install && npm run build
 ```
 
-Do **not** create a Vercel project or deploy until quota resets (~2026-09-08 12:55 UTC). If I add one later: Root Directory = `experiments/audio-gadget-spin`.
+**Amendment 2026-09-07:** Project `vibes-audio-gadget-spin` (`prj_N57mvThg4UcU9XxLK3F5wAICz9PA`) now exists, created `deploy: false`. SSO off. Intended Root: `experiments/audio-gadget-spin`. **No production.** Do not redeploy until after quota (~**2026-09-08 20:39 UTC**), and only after semicircle then scroll. See [the incident](../incidents/2026-09-07-audio-gadget-linked-before-quota.md).
 
 ## References
 
