@@ -4,10 +4,28 @@ import * as THREE from 'three';
  * Calculate explosion layout for pieces
  * Based on ashemag's model-x-studio explosion-layout.ts
  * Projects pieces onto a 2D grid and calculates translation vectors
+ * 
+ * Returns a Map keyed by piece ID to avoid index mismatch
  */
 
-export function calculateExplosionLayout(pieces: any[]): THREE.Vector3[] {
-  if (!pieces.length) return [];
+// System order matching sidebar (intentional layout order)
+const SYSTEM_ORDER = [
+  'body',
+  'glass',
+  'doors',
+  'interior',
+  'battery',
+  'motors',
+  'thermal',
+  'suspension',
+  'wheels',
+  'charging',
+  'electronics',
+  'lights',
+];
+
+export function calculateExplosionLayout(pieces: any[]): Map<string, THREE.Vector3> {
+  if (!pieces.length) return new Map();
   
   // Viewing direction for projection
   const overviewDirection = new THREE.Vector3(-5.7, 2.1, 6.3).normalize();
@@ -41,8 +59,20 @@ export function calculateExplosionLayout(pieces: any[]): THREE.Vector3[] {
     };
   });
   
-  // Sort by size for better packing
-  cards.sort((a, b) => b.height - a.height);
+  // Sort by system order first (sidebar order), then by size within system
+  // This creates the intentional "rearrange" pattern like ashe's demo
+  cards.sort((a, b) => {
+    const systemA = SYSTEM_ORDER.indexOf(a.system);
+    const systemB = SYSTEM_ORDER.indexOf(b.system);
+    
+    // If different systems, sort by system order
+    if (systemA !== systemB) {
+      return systemA - systemB;
+    }
+    
+    // Within same system, sort by size (height)
+    return b.height - a.height;
+  });
   
   // Pack into grid
   const totalArea = cards.reduce((sum, c) => sum + c.width * c.height, 0);
@@ -65,11 +95,17 @@ export function calculateExplosionLayout(pieces: any[]): THREE.Vector3[] {
   const layoutCenter = new THREE.Vector3(0, 3, 0);
   
   // Calculate translation vectors from center to grid slot
-  return slots.map(slot => {
+  // Return Map keyed by piece ID to avoid index mismatch
+  const layoutMap = new Map<string, THREE.Vector3>();
+  
+  slots.forEach(slot => {
     const gridPos = layoutCenter.clone()
       .addScaledVector(right, slot.x - gridWidth / 2)
       .addScaledVector(up, gridHeight / 2 - slot.y);
     
-    return gridPos.sub(slot.center);
+    const offset = gridPos.sub(slot.center);
+    layoutMap.set(slot.id, offset);
   });
+  
+  return layoutMap;
 }

@@ -27,10 +27,10 @@ export default function Scene({ explode, selectedPart, isolated, onSelectPart }:
         target={[0, 0.5, 0]}
       />
       
-      {/* Key light - main illumination */}
+      {/* Key light - main illumination (brighter for 70% readability) */}
       <directionalLight 
         position={[-10, 12, 8]} 
-        intensity={2.5} 
+        intensity={4.5} 
         castShadow
         shadow-mapSize={[2048, 2048]}
         shadow-camera-left={-15}
@@ -39,17 +39,17 @@ export default function Scene({ explode, selectedPart, isolated, onSelectPart }:
         shadow-camera-bottom={-15}
       />
       
-      {/* Fill light - soften shadows */}
-      <directionalLight position={[8, 8, -10]} intensity={1.2} color="#8ba6d1" />
+      {/* Fill light - soften shadows (increased) */}
+      <directionalLight position={[8, 8, -10]} intensity={2.5} color="#8ba6d1" />
       
-      {/* Rim light - edge definition */}
-      <directionalLight position={[-5, 4, -8]} intensity={0.8} color="#ffffff" />
+      {/* Rim light - edge definition (increased) */}
+      <directionalLight position={[-5, 4, -8]} intensity={1.5} color="#ffffff" />
       
-      {/* Top accent */}
-      <spotLight position={[0, 12, 0]} intensity={0.6} angle={0.5} penumbra={1} />
+      {/* Top accent (increased) */}
+      <spotLight position={[0, 12, 0]} intensity={1.2} angle={0.5} penumbra={1} />
       
-      {/* Ambient for soft global fill */}
-      <ambientLight intensity={0.25} />
+      {/* Ambient for soft global fill (increased) */}
+      <ambientLight intensity={0.5} />
       
       <CarModel 
         explode={explode}

@@ -205,20 +205,21 @@ export default function CarModel({ explode, selectedPart, isolated, onSelectPart
     }
   }, [scene]);
   
-  // Calculate explosion layout
+  // Calculate explosion layout (Map keyed by piece ID)
   const layout = useMemo(() => {
-    if (!pieces.length) return [];
+    if (!pieces.length) return new Map();
     return calculateExplosionLayout(pieces);
   }, [pieces]);
   
   // Animate explosion (mutate live nodes, don't clone)
   useFrame(() => {
-    if (!explodeRootRef.current || !pieces.length) return;
+    if (!explodeRootRef.current || !pieces.length || !layout.size) return;
     
     const explosionAmount = explode / 100;
     
-    pieces.forEach((piece, i) => {
-      const offset = layout[i] || new THREE.Vector3();
+    pieces.forEach((piece) => {
+      // Look up offset by piece ID (not array index) to fix mismatch
+      const offset = layout.get(piece.id) || new THREE.Vector3();
       
       // Mutate the live node's position (ashemag pattern)
       // position = home + (offset * explosionAmount * multiplier)

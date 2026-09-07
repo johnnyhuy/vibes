@@ -17,133 +17,152 @@ body {
   height: 100vh;
 }
 
-/* Sidebar */
+/* Sidebar - Frosted Glass Panel */
 .sidebar {
-  width: 280px;
-  background: linear-gradient(180deg, #0a0c0e 0%, #13181d 100%);
-  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  width: 300px;
+  background: rgba(10, 12, 14, 0.75);
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
   display: flex;
   flex-direction: column;
   z-index: 10;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
 .sidebar-header {
-  padding: 30px 24px 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 40px 28px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .sidebar-header h1 {
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 700;
-  letter-spacing: 2px;
-  margin-bottom: 6px;
-  color: rgba(255, 255, 255, 0.95);
+  letter-spacing: 3px;
+  margin-bottom: 8px;
+  color: rgba(255, 255, 255, 0.98);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .subtitle {
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 1px;
-  color: rgba(255, 255, 255, 0.4);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1.2px;
+  color: rgba(255, 255, 255, 0.45);
   text-transform: uppercase;
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
 }
 
 .parts-list {
   flex: 1;
   overflow-y: auto;
-  padding: 20px 0;
+  padding: 24px 0;
 }
 
 .parts-list h2 {
   font-size: 10px;
   font-weight: 600;
-  letter-spacing: 1.5px;
+  letter-spacing: 1.8px;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.4);
-  padding: 0 24px 12px;
+  color: rgba(255, 255, 255, 0.45);
+  padding: 0 28px 14px;
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
 }
 
 .part-item {
   width: 100%;
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px 24px;
+  gap: 14px;
+  padding: 14px 28px;
   background: none;
   border: none;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.75);
   font-size: 14px;
   font-weight: 400;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   text-align: left;
+  border-left: 2px solid transparent;
 }
 
 .part-item:hover {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.05);
   color: rgba(255, 255, 255, 0.95);
+  border-left-color: rgba(59, 130, 246, 0.3);
 }
 
 .part-item.active {
-  background: rgba(59, 130, 246, 0.15);
+  background: rgba(59, 130, 246, 0.12);
   color: rgba(255, 255, 255, 1);
+  border-left-color: rgba(59, 130, 246, 0.8);
+  box-shadow: inset 0 0 20px rgba(59, 130, 246, 0.08);
 }
 
 .part-item .indicator {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
-  transition: all 0.2s;
+  background: rgba(255, 255, 255, 0.35);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.2);
 }
 
 .part-item.active .indicator {
   background: #3b82f6;
-  box-shadow: 0 0 8px rgba(59, 130, 246, 0.6);
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.8), 0 0 24px rgba(59, 130, 246, 0.4);
 }
 
 .sidebar-footer {
-  padding: 20px 24px;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 24px 28px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .isolate-btn {
   width: 100%;
-  padding: 10px 16px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 6px;
-  color: rgba(255, 255, 255, 0.8);
+  padding: 12px 18px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.85);
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s;
-  margin-bottom: 16px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-bottom: 18px;
+  letter-spacing: 0.3px;
 }
 
 .isolate-btn:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.24);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .isolate-btn.active {
   background: rgba(59, 130, 246, 0.2);
-  border-color: rgba(59, 130, 246, 0.4);
-  color: #3b82f6;
+  border-color: rgba(59, 130, 246, 0.5);
+  color: #60a5fa;
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
 }
 
 .disclaimer {
   font-size: 10px;
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.3);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.35);
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
 }
 
 .disclaimer code {
-  background: rgba(255, 255, 255, 0.05);
-  padding: 2px 6px;
-  border-radius: 3px;
-  font-family: 'SF Mono', Monaco, monospace;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 3px 7px;
+  border-radius: 4px;
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
   font-size: 9px;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 /* Viewport */
@@ -158,84 +177,100 @@ body {
   height: 100%;
 }
 
-/* Controls */
+/* Controls - Floating Frosted Glass Pill */
 .controls {
   position: absolute;
-  bottom: 40px;
+  bottom: 48px;
   left: 50%;
   transform: translateX(-50%);
   background: rgba(10, 12, 14, 0.85);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  padding: 20px 40px;
-  min-width: 400px;
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 24px 48px;
+  min-width: 440px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6),
+              0 0 80px rgba(59, 130, 246, 0.1),
+              inset 0 1px 1px rgba(255, 255, 255, 0.1);
 }
 
 .explode-control label {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   font-size: 11px;
   font-weight: 600;
-  letter-spacing: 1px;
+  letter-spacing: 1.4px;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.65);
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
 }
 
 .explode-control .value {
-  color: #3b82f6;
+  color: #60a5fa;
   font-weight: 700;
+  font-size: 12px;
+  text-shadow: 0 0 12px rgba(96, 165, 250, 0.5);
 }
 
 .explode-slider {
   width: 100%;
-  height: 4px;
+  height: 5px;
   -webkit-appearance: none;
   appearance: none;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 3px;
   outline: none;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 .explode-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
-  background: #3b82f6;
+  background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
   cursor: pointer;
-  box-shadow: 0 0 12px rgba(59, 130, 246, 0.5);
-  transition: all 0.2s;
+  box-shadow: 0 0 16px rgba(59, 130, 246, 0.6),
+              0 2px 8px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .explode-slider::-webkit-slider-thumb:hover {
-  background: #60a5fa;
-  box-shadow: 0 0 16px rgba(59, 130, 246, 0.8);
+  background: linear-gradient(135deg, #93c5fd 0%, #60a5fa 100%);
+  box-shadow: 0 0 24px rgba(59, 130, 246, 0.9),
+              0 4px 12px rgba(0, 0, 0, 0.4);
+  transform: scale(1.1);
 }
 
 .explode-slider::-moz-range-thumb {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
-  background: #3b82f6;
+  background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
   border: none;
   cursor: pointer;
-  box-shadow: 0 0 12px rgba(59, 130, 246, 0.5);
-  transition: all 0.2s;
+  box-shadow: 0 0 16px rgba(59, 130, 246, 0.6),
+              0 2px 8px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .explode-slider::-moz-range-thumb:hover {
-  background: #60a5fa;
-  box-shadow: 0 0 16px rgba(59, 130, 246, 0.8);
+  background: linear-gradient(135deg, #93c5fd 0%, #60a5fa 100%);
+  box-shadow: 0 0 24px rgba(59, 130, 246, 0.9),
+              0 4px 12px rgba(0, 0, 0, 0.4);
+  transform: scale(1.1);
 }
 
 .labels {
   display: flex;
   justify-content: space-between;
   font-size: 10px;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.45);
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+  letter-spacing: 0.5px;
 }
