@@ -126,17 +126,19 @@ Each browser demo has its own Vercel project on this repo (Root Directory set in
 
 > ⚠️ **Hobby quota exhausted** (`api-deployments-free-per-day` = **0 remaining**). Reset **~2026-09-08 12:55 UTC** (~10:55pm AEST). **Do not retry-spam deploys.** See [quota incident](./docs/incidents/2026-09-07-vercel-deploy-quota.md) and [Root Directory checklist](./docs/deployment/vercel-root-directories.md).
 >
-> **Redeploy order after reset** (one each): explode → semicircle → steam-atlas first production → scroll-product first production.
+> **Redeploy order after reset** (one each): explode → semicircle → steam-atlas (**after** Root Directory = `experiments/procedural-steam-atlas`) → scroll-product.
+>
+> Production visual QA 2026-09-08 ~12:07–12:29 AEST: explode 0%/80% FAIL, semicircle FAIL, steam-atlas `404 DEPLOYMENT_NOT_FOUND`. Evidence in [docs/visual-qa-2026-09-08-prod.md](./docs/visual-qa-2026-09-08-prod.md). **Do not redeploy on this PR.**
 
 | App | Vercel project | Root Directory | Production URL | Status |
 | --- | --- | --- | --- | --- |
 | web-3d | `vibes` | `experiments/ai-3d-lanes/web-3d` | TBD | - |
-| explode-assembly | `vibes-explode` (`prj_bkyEqYqsAhAk0ZrVnhXi9Him98Fb`) | `experiments/explode-assembly` | [vibes-explode.vercel.app](https://vibes-explode.vercel.app) | ⚠️ Stale grey studio / old UI. **#1** after reset: one `main` redeploy for #12 black studio + ordered gallery |
+| explode-assembly | `vibes-explode` (`prj_bkyEqYqsAhAk0ZrVnhXi9Him98Fb`) | `experiments/explode-assembly` | [vibes-explode.vercel.app](https://vibes-explode.vercel.app) | ⚠️ QA FAIL 2026-09-08: grey room, 0% not assembled, 80% clipped. **#1** after reset: one `main` redeploy for #12 |
 | earth-timeline | `vibes-earth` | `experiments/earth-timeline` | [vibes-earth.vercel.app](https://vibes-earth.vercel.app) | ✅ |
 | v8-cutaway | `vibes-v8` | `experiments/v8-cutaway` | [vibes-v8.vercel.app](https://vibes-v8.vercel.app) | ✅ |
 | web-physics | `vibes-physics` | `experiments/web-physics` | [vibes-physics.vercel.app](https://vibes-physics.vercel.app) | ✅ |
-| blender-semicircle-viewer | `vibes-blender-semicircle` (`prj_PLhnoCVRKmpHc8SxyLRmcp3MFZMC`) | `experiments/blender-semicircle-viewer` | [vibes-blender-semicircle.vercel.app](https://vibes-blender-semicircle.vercel.app) | ⚠️ Prod still pre-`5941e259` / pre-`03bbe0c` FOV+bbox. **#2** after reset |
-| procedural-steam-atlas | `vibes-steam-atlas` (`prj_7D08PT8sdUjhigCEuz83oltZrDMv`) | **`experiments/procedural-steam-atlas` (set this in the dashboard before any deploy)** | none (`live: false`) | ⚠️ **0 production READY**. `create_git_project` reuse did **not** write Root. Pause API **400** on hobby. **#3** first production from `main` after Root is set |
+| blender-semicircle-viewer | `vibes-blender-semicircle` (`prj_PLhnoCVRKmpHc8SxyLRmcp3MFZMC`) | `experiments/blender-semicircle-viewer` | [vibes-blender-semicircle.vercel.app](https://vibes-blender-semicircle.vercel.app) | ⚠️ QA FAIL 2026-09-08: cropped mega-arc, nearly black. **#2** after reset: one `main` redeploy |
+| procedural-steam-atlas | `vibes-steam-atlas` (`prj_7D08PT8sdUjhigCEuz83oltZrDMv`) | **`experiments/procedural-steam-atlas` (set this in the dashboard before any deploy)** | `404 DEPLOYMENT_NOT_FOUND` | ⚠️ QA FAIL 2026-09-08. **#3** after reset: set Root, then one `main` production deploy |
 | scroll-product-showcase | `vibes-scroll-product` (`prj_XLBiIlbjweejp9himT53bolPEMUW`) | `experiments/scroll-product-showcase` | none | Linked, **0 deployments**. Build ✅ locally. **#4** first production |
 
 PR previews show up as Vercel bot comments on each pull request (when quota available).

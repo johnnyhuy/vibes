@@ -38,10 +38,10 @@ In-repo `vercel.json` lives *inside* those folders (`framework: vite`, `outputDi
 
 One deploy per project. Stop.
 
-1. `vibes-explode` — production is stale grey studio; need `main` for #12 black studio + ordered gallery
-2. `vibes-blender-semicircle` — production is pre-`5941e259` / pre-`03bbe0c` FOV+bbox framing
-3. `vibes-steam-atlas` — **first production** from `main` only after the dashboard Root is `experiments/procedural-steam-atlas`
-4. `vibes-scroll-product` — **first production** from `main` (Root already `experiments/scroll-product-showcase`)
+1. `vibes-explode` — QA FAIL 2026-09-08 (grey room, 0% fragmented, 80% clipped). One `main` redeploy for #12.
+2. `vibes-blender-semicircle` — QA FAIL 2026-09-08 (cropped black mega-arc). One `main` redeploy for bbox framing.
+3. `vibes-steam-atlas` — QA FAIL `404 DEPLOYMENT_NOT_FOUND`. **Set dashboard Root = `experiments/procedural-steam-atlas`**, then one `main` production deploy.
+4. `vibes-scroll-product` — first production from `main` after #16 (Root already `experiments/scroll-product-showcase`).
 
 Do not create extra Vercel projects. Do not force production redeploys while the quota is 0.
 

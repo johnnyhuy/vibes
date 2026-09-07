@@ -79,7 +79,15 @@ One production deploy from **`main`** (the folder exists there — `03bbe0c` and
 1. Deploy `main` **once**
 2. Stop. Do not retry on preview aliases. Do not call pause (400 on hobby).
 
-If production 404s, Root is still wrong. Set it in the dashboard and deploy once more. That's the only retry that is allowed.
+**Visual QA 2026-09-08 ~12:29 AEST** (`hill-climb/prod-steam-atlas-20260908-0007.png`): production alias is a Vercel error page —
+
+```
+404: NOT_FOUND
+Code: 'DEPLOYMENT_NOT_FOUND'
+ID: 'cle1::9v97r-1788791283597-26c58b48753f'
+```
+
+That is the user-facing version of `live: false`. Do not retry now. After quota reset: **set dashboard Root = `experiments/procedural-steam-atlas`**, then one `main` deploy. If it 404s again, Root is still wrong — set it and allow **one** retry.
 
 ---
 

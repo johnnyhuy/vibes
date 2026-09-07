@@ -38,7 +38,7 @@ Things that went sideways and what I learnt:
 - [2026-09-07: Vercel Deployment Quota Exhausted](./incidents/2026-09-07-vercel-deploy-quota.md) — Free tier 100/day limit hit, production URLs serve stale commits
 - [2026-09-07: Attach Preview Name-Crash](./incidents/2026-09-07-attach-preview-name-crash.md) — Material `??` defaults + unsafe `node.name` log; code landed via #12
 - [2026-09-07: Semicircle Viewer Cropped Mega-Arc](./incidents/2026-09-07-semicircle-cropped-mega-arc.md) — Hardcoded camera clipped the 51-laptop 180° array; now bbox-framed
-- [2026-09-08: steam-atlas Production Never Landed](./incidents/2026-09-08-steam-atlas-wrong-root.md) — Root *is* set; ERROR was missing folder on a PR branch; every monorepo PR still fires the project
+- [2026-09-08: steam-atlas Production Never Landed](./incidents/2026-09-08-steam-atlas-wrong-root.md) — no production (`404 DEPLOYMENT_NOT_FOUND`); set dashboard Root before the first deploy; MCP reuse does not write it
 
 ### Deployment
 
@@ -47,6 +47,7 @@ Things that went sideways and what I learnt:
 ### Visual QA
 
 - [2026-09-07: Hill-Climb Visual QA Loop](./visual-qa-2026-09-07.md) — Explode mesh filter hardening, earth/v8 confirmation
+- [2026-09-08: Stale production visual QA](./visual-qa-2026-09-08-prod.md) — explode / semicircle / steam-atlas all FAIL; do not redeploy until quota reset
 
 ## Writing Style
 

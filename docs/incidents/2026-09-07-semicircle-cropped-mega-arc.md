@@ -1,7 +1,6 @@
 # 2026-09-07: Semicircle Viewer Cropped Mega-Arc
 
-**Status**: Fixed  
-**Severity**: Medium (demo readable but the hero composition was wrong)  
+**Status**: Fixed **in git** (`main` `03bbe0c`). **Production still FAIL** as of 2026-09-08 ~12:20 AEST (`hill-climb/prod-semicircle-20260908-0007.png`) — faint vertical curve on a black stage. Do not redeploy until quota resets.  
 **Affected**: `experiments/blender-semicircle-viewer` / `vibes-blender-semicircle`  
 **Root cause**: Hardcoded camera looked at the origin with a tight FOV, so a radius-12, 51-laptop 180° arc read as a cropped mega-arc
 

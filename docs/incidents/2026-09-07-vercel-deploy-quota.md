@@ -40,12 +40,17 @@ Vercel hobby team `johnnyhuy-dev` hit the free tier deployment quota (`api-deplo
 ### 1. `vibes-explode` (vibes-explode.vercel.app)
 
 **Expected**: Ordered-gallery explode (#12) + attach rewrite (#6) live  
-**Actual**: Production HTML last-modified **~2026-09-07 08:58 UTC** — grey studio UI, not the #12 black / frosted gallery  
-**Root cause**: Main-branch deploys after that timestamp failed or never ran because the quota was already gone
+**Actual** (visual QA 2026-09-08 ~12:07 AEST — `hill-climb/prod-explode-0-20260908-0007.png`, `prod-explode-80-20260908-0007.png`):
+
+- Grey room, opaque old UI (not black / frosted)
+- **0% / Assembled** still shows **fragmented white shells** — Model 3 is not assembled
+- **~81%** viewport is empty / clipped — **not** the ordered gallery
+
+**Root cause**: Production is still a pre-#12 commit. Quota blocked the `main` redeploy.
 
 **Impact**: 
-- Users see the old grey-studio explode, not the ordered black/frosted gallery
-- QA of attach() / gallery work is local-only until one redeploy after reset
+- Live URL lies about 0% and about the explode layout
+- Do **not** redeploy until quota resets. One `main` deploy is enough for both stills.
 
 ### 2. `vibes-steam-atlas` (no production URL)
 
@@ -54,9 +59,9 @@ Vercel hobby team `johnnyhuy-dev` hit the free tier deployment quota (`api-deplo
 **Root cause**: Git-linked project fires on every monorepo PR. Root Directory **is** set to `experiments/procedural-steam-atlas` (the ERROR quotes it). Do not blank it. See [steam-atlas incident](./2026-09-08-steam-atlas-wrong-root.md).
 
 **Impact**:
-- No successful production deploy
+- No successful production deploy — visual QA 2026-09-08 is `404 DEPLOYMENT_NOT_FOUND` (`cle1::9v97r-1788791283597-26c58b48753f`)
 - Every PR still burns a steam-atlas deployment slot
-- After reset: confirm Root, one `main` production deploy
+- After reset: **set** dashboard Root to `experiments/procedural-steam-atlas`, then one `main` production deploy
 
 ### 3. `vibes-scroll-product` (`prj_XLBiIlbjweejp9himT53bolPEMUW`)
 
@@ -73,7 +78,9 @@ Vercel hobby team `johnnyhuy-dev` hit the free tier deployment quota (`api-deplo
 
 **Expected**: Preview builds for any PR changes  
 **Actual**: Blocked by quota  
-**Impact**: Preview deploys fail, but production URLs still serve existing commits (not affected if no main merge happened)
+**Impact**: Preview deploys fail. Production URLs that *did* get an older HTML keep serving it.
+
+**`vibes-blender-semicircle` visual QA** (2026-09-08, `hill-climb/prod-semicircle-20260908-0007.png`): **FAIL** — nearly black, arc cropped to a faint vertical curve. Pre-`5941e259` / pre-`03bbe0c` FOV+bbox. Code is on `main`; prod is not.
 
 ---
 
@@ -224,6 +231,7 @@ Trigger **one** deploy per project, in this order. Do not retry-spam. Do not cre
 - [experiments/scroll-product-showcase](../../experiments/scroll-product-showcase/) — Linked, undeployed (`prj_XLBiIlbjweejp9himT53bolPEMUW`)
 - [2026-09-08 steam-atlas root/fan-out](./2026-09-08-steam-atlas-wrong-root.md)
 - [docs/deployment/vercel-root-directories.md](../deployment/vercel-root-directories.md)
+- [2026-09-08 production visual QA](../visual-qa-2026-09-08-prod.md)
 - [ADR-0005](../adr/0005-scroll-driven-product-hero.md) — Scroll product pattern (unaffected by incident)
 
 ---
@@ -234,8 +242,9 @@ Trigger **one** deploy per project, in this order. Do not retry-spam. Do not cre
 **2026-09-07 ~23:20 AEST** — PR #10 merged; `vibes-scroll-product` created; quota still **0 remaining**  
 **2026-09-08 ~00:07 AEST** — #15 on `main` (`03bbe0c`). Quota still 0. Redeploy order: explode → semicircle → steam-atlas first prod → scroll-product first prod  
 **2026-09-08 ~14:10 UTC** — API re-check (read-only): steam-atlas `live: false`; production ERROR was missing-folder-on-branch, not a blank Root. scroll-product still 0 deployments.  
-**2026-09-08 ~12:55 UTC / ~10:55pm AEST** (estimated reset) — One deploy each, order above  
-**TBD** — Post-recovery verification (explode HTML newer than 08:58 UTC; steam-atlas + scroll-product have production URLs)
+**2026-09-08 ~12:07–12:29 AEST** — Production visual QA. explode 0% + 80% FAIL (grey / not assembled / not ordered). semicircle FAIL (cropped black arc). steam-atlas FAIL (`404 DEPLOYMENT_NOT_FOUND`). See [visual QA](../visual-qa-2026-09-08-prod.md). **Do not redeploy.**  
+**2026-09-08 ~12:55 UTC / ~10:55pm AEST** (estimated reset) — One deploy each: explode → semicircle → steam-atlas (Root first) → scroll-product  
+**TBD** — Post-recovery: explode 0% is a whole car on black; 80% is an ordered grid; semicircle shows 51 laptops; steam-atlas is not a 404; scroll-product is the horizontal Aether bottle
 
 ---
 
