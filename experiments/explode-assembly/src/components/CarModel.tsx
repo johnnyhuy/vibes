@@ -130,16 +130,43 @@ export default function CarModel({ explode, selectedPart, isolated, onSelectPart
         // Guard: ensure mesh and its required properties exist
         if (!mesh?.position) continue;
         
+        // Guard: ensure mesh is a valid object before proceeding
+        if (!mesh || typeof mesh !== 'object') {
+          console.warn('Invalid mesh in collection, skipping');
+          continue;
+        }
+        
         const meshName = mesh?.name ?? '';
         
         // CRITICAL: attach() preserves world matrix while reparenting
-        explodeRoot.attach(mesh);
+        try {
+          explodeRoot.attach(mesh);
+        } catch (err) {
+          console.error(`Failed to attach mesh "${meshName}":`, err);
+          continue;
+        }
         
         // Now mesh.position is local to explodeRoot, with world transform preserved
+        // Guard: verify mesh.position is still valid after attach
+        if (!mesh.position) {
+          console.warn(`Mesh "${meshName}" has no position after attach, skipping`);
+          continue;
+        }
+        
         const home = mesh.position.clone();
         
-        const bounds = new THREE.Box3().setFromObject(mesh);
-        const center = bounds.getCenter(new THREE.Vector3());
+        // Guard: safely compute bounds
+        let bounds: THREE.Box3;
+        let center: THREE.Vector3;
+        try {
+          bounds = new THREE.Box3().setFromObject(mesh);
+          center = bounds.getCenter(new THREE.Vector3());
+        } catch (err) {
+          console.warn(`Failed to compute bounds for "${meshName}", using fallback`);
+          bounds = new THREE.Box3(new THREE.Vector3(-1, -1, -1), new THREE.Vector3(1, 1, 1));
+          center = new THREE.Vector3(0, 0, 0);
+        }
+        
         const system = detectSystem(meshName);
         
         // Force materials opaque and enhance
@@ -149,21 +176,22 @@ export default function CarModel({ explode, selectedPart, isolated, onSelectPart
             
             if (Array.isArray(child.material)) {
               child.material = child.material.map((mat: any) => {
+                if (!mat) return mat;  // Guard: skip null/undefined materials
                 const m = mat.clone();
                 m.transparent = false;
                 m.opacity = 1;
-                m.metalness = Math.min(m.metalness + 0.2, 0.8);
-                m.roughness = Math.max(m.roughness - 0.1, 0.3);
-                m.envMapIntensity = 1.5;
+                m.metalness = Math.min((m.metalness ?? 0) + 0.2, 0.8);
+                m.roughness = Math.max((m.roughness ?? 1) - 0.1, 0.3);
+                m.envMapIntensity = m.envMapIntensity ?? 1.5;
                 return m;
               });
             } else {
               const mat = child.material.clone();
               mat.transparent = false;
               mat.opacity = 1;
-              mat.metalness = Math.min(mat.metalness + 0.2, 0.8);
-              mat.roughness = Math.max(mat.roughness - 0.1, 0.3);
-              mat.envMapIntensity = 1.5;
+              mat.metalness = Math.min((mat.metalness ?? 0) + 0.2, 0.8);
+              mat.roughness = Math.max((mat.roughness ?? 1) - 0.1, 0.3);
+              mat.envMapIntensity = mat.envMapIntensity ?? 1.5;
               child.material = mat;
             }
             
@@ -186,7 +214,7 @@ export default function CarModel({ explode, selectedPart, isolated, onSelectPart
       
       console.log(`Extracted ${pieces.length} pieces for explosion`);
       console.log('Sample pieces:', pieces.slice(0, 5).map(p => ({
-        name: p.node.name,
+        name: p.node?.name ?? 'unnamed',
         system: p.system,
         home: p.home.toArray().map(v => v.toFixed(2)),
       })));
