@@ -69,15 +69,12 @@ export default function Scene({ explode, selectedPart, isolated, onSelectPart }:
       >
         <planeGeometry args={[100, 100]} />
         <meshStandardMaterial 
-          color="#0a0a0a" 
-          metalness={0.3} 
-          roughness={0.7}
-          envMapIntensity={0.8}
+          color="#000000" 
+          metalness={0.05} 
+          roughness={0.95}
+          envMapIntensity={0.3}
         />
       </mesh>
-      
-      {/* Subtle grid for studio context */}
-      <gridHelper args={[50, 50, '#1a1a1a', '#0f0f0f']} position={[0, -0.49, 0]} />
     </Canvas>
   );
 }

@@ -174,7 +174,7 @@ export default function CarModel({ explode, selectedPart, isolated, onSelectPart
     piecesRef.current.forEach((piece, i) => {
       const offset = layout[i] || new THREE.Vector3();
       const targetPos = piece.originalPosition.clone().add(
-        offset.clone().multiplyScalar(smoothAmount * 4)
+        offset.clone().multiplyScalar(smoothAmount * 2.5)
       );
       
       piece.object.position.lerp(targetPos, 0.15);
@@ -193,7 +193,9 @@ export default function CarModel({ explode, selectedPart, isolated, onSelectPart
           if (piece.system === selectedPart) {
             node.material.emissive = new THREE.Color(0x3b82f6);
             node.material.emissiveIntensity = 0.4;
-          } else if (selectedPart && piece.system !== selectedPart) {
+            node.material.opacity = 1;
+            node.material.transparent = false;
+          } else if (selectedPart && piece.system !== selectedPart && explosionAmount > 0.05) {
             node.material.emissive = new THREE.Color(0x000000);
             node.material.emissiveIntensity = 0;
             node.material.opacity = 0.3;
