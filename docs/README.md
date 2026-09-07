@@ -16,6 +16,7 @@ Structured decisions about the monorepo's technical architecture:
 Clean-room notes from studying public projects:
 
 - [ashemag's Model X Explode Pattern](./reverse-engineering/ashe-model-x-explode.md) — Multi-mesh GLB, 2D packing, lerp slider, product UI
+- [ashemag's Anatomy Explode](./reverse-engineering/ashe-anatomy-explode.md) — 2,234-piece human anatomy, same architecture, potential next experiment
 - [Visual Quality Bar](./visual-quality-bar.md) — Cinematic product demo aesthetic (dark UI, frosted glass, studio lighting)
 
 ### Incidents & Lessons
@@ -24,6 +25,11 @@ Things that went sideways and what I learnt:
 
 - [2026-09-07: Kenney to Model 3 and Missing GLB](./incidents/2026-09-07-kenney-to-model3-and-missing-glb.md)
 - [2026-09-07: Stale X Post References](./incidents/2026-09-07-stale-x-post-ids.md)
+- [2026-09-07: Vercel SSO Blocks Preview QA](./incidents/vercel-sso-blocks-preview-qa.md)
+
+### Visual QA
+
+- [2026-09-07: Hill-Climb Visual QA Loop](./visual-qa-2026-09-07.md) — Explode mesh filter hardening, earth/v8 confirmation
 
 ## Writing Style
 
