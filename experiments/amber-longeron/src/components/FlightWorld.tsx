@@ -106,7 +106,7 @@ export default function FlightWorld({
     if (flying) {
       while (nextSpawn.current < ship.z + SPAWN_AHEAD) {
         seed.current += 1;
-        const spawned = spawnBeat(nextId.current, nextSpawn.current, seed.current);
+        const spawned = spawnBeat(nextId.current, nextSpawn.current, seed.current, ship.z);
         nextId.current = spawned.nextId;
         bag.current.push(...spawned.hazards);
         nextSpawn.current += nextGap(seed.current, ship.z);
@@ -149,6 +149,7 @@ export default function FlightWorld({
     <>
       <SkyRig travelZ={travelZ} reducedMotion={reducedMotion} />
       <group ref={plane} position={[0, PLANE_Y, 0]}>
+        <pointLight position={[0.8, 1.6, -1.4]} intensity={1.55} color="#ffd2a8" distance={14} />
         <Biplane crashed={state === 'crashed'} reducedMotion={reducedMotion} />
       </group>
       <Hazards items={items} />

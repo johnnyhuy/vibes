@@ -31,7 +31,7 @@ export default function Hud({ hud, onReset, onNudge, onStart }: Props) {
         </div>
       </nav>
 
-      {hud.state !== 'flying' && (
+      {hud.state === 'ready' && (
         <section className="editorial">
           <p className="kicker">桁</p>
           <h1>Amber Longeron</h1>

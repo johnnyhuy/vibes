@@ -28,8 +28,8 @@ function Rock({ seed }: { seed: number }) {
   const geometry = useMemo(() => rockGeometry(seed), [seed]);
   const tilt = hash(seed, 12) * 0.6 - 0.3;
   return (
-    <mesh geometry={geometry} castShadow receiveShadow rotation={[0.2, tilt, 0.1]} position={[0, 0.15, 0]}>
-      <meshStandardMaterial color="#6b5344" roughness={0.92} metalness={0.02} />
+    <mesh geometry={geometry} castShadow receiveShadow rotation={[-Math.PI / 2, 0, tilt]} position={[0, 0.02, 0]}>
+      <meshStandardMaterial color="#8a6a52" roughness={0.9} metalness={0.04} />
     </mesh>
   );
 }

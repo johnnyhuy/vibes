@@ -21,11 +21,11 @@ export default function Biplane({ crashed, reducedMotion }: Props) {
 
   return (
     <group>
-      <mesh castShadow receiveShadow rotation={[0, 0, Math.PI / 2]} position={[0, 0.02, 0.05]}>
+      <mesh castShadow receiveShadow rotation={[Math.PI / 2, 0, 0]} position={[0, 0.02, 0.05]}>
         <cylinderGeometry args={[0.22, 0.26, 1.85, 18]} />
         <meshStandardMaterial map={wood.map} roughnessMap={wood.roughnessMap} roughness={0.78} metalness={0.04} />
       </mesh>
-      <mesh castShadow rotation={[0, 0, Math.PI / 2]} position={[0, 0.04, 1.08]}>
+      <mesh castShadow rotation={[Math.PI / 2, 0, 0]} position={[0, 0.04, 1.08]}>
         <coneGeometry args={[0.22, 0.42, 16]} />
         <meshStandardMaterial map={wood.map} roughnessMap={wood.roughnessMap} roughness={0.7} metalness={0.05} />
       </mesh>

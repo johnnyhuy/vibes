@@ -7,11 +7,11 @@ export const MAX_SPEED = 28;
 export const LANE_LERP = 11;
 export const BANK_GAIN = 0.42;
 export const PLANE_Y = 1.05;
-export const HIT_DEPTH = 1.15;
-export const RING_DEPTH = 0.85;
-export const SPAWN_AHEAD = 46;
+export const HIT_DEPTH = 0.82;
+export const RING_DEPTH = 0.78;
+export const SPAWN_AHEAD = 52;
 export const DESPAWN_BEHIND = 14;
-export const FIRST_SPAWN = 22;
+export const FIRST_SPAWN = 32;
 
 export function laneX(lane: Lane): number {
   return LANES[lane];
@@ -41,13 +41,17 @@ interface Beat {
   lane: Lane;
 }
 
-export function planBeat(seed: number): Beat[] {
+export function planBeat(seed: number, distance = 0): Beat[] {
   const roll = hash(seed, 1);
-  if (roll < 0.12) {
-    const lane = pickLane(seed);
-    return [{ kind: 'ring', lane }];
+  if (distance < 45) {
+    if (roll < 0.28) return [{ kind: 'ring', lane: pickLane(seed) }];
+    if (roll < 0.58) return [{ kind: 'cloud', lane: pickLane(seed) }];
+    return [{ kind: 'rock', lane: pickLane(seed) }];
   }
-  if (roll < 0.3) {
+  if (roll < 0.14) {
+    return [{ kind: 'ring', lane: pickLane(seed) }];
+  }
+  if (roll < 0.32) {
     const cloudLane = pickLane(seed);
     const ringLane = pickLane(seed + 11, [cloudLane]);
     return [
@@ -55,7 +59,7 @@ export function planBeat(seed: number): Beat[] {
       { kind: 'ring', lane: ringLane }
     ];
   }
-  if (roll < 0.58) {
+  if (roll < 0.5) {
     const first = pickLane(seed);
     const second = pickLane(seed + 7, [first]);
     return [
@@ -63,14 +67,14 @@ export function planBeat(seed: number): Beat[] {
       { kind: 'rock', lane: second }
     ];
   }
-  if (roll < 0.78) {
+  if (roll < 0.74) {
     return [{ kind: 'cloud', lane: pickLane(seed) }];
   }
   return [{ kind: 'rock', lane: pickLane(seed) }];
 }
 
-export function spawnBeat(nextId: number, z: number, seed: number): { hazards: Hazard[]; nextId: number } {
-  const beats = planBeat(seed);
+export function spawnBeat(nextId: number, z: number, seed: number, distance = 0): { hazards: Hazard[]; nextId: number } {
+  const beats = planBeat(seed, distance);
   const hazards = beats.map((beat, index) => ({
     id: nextId + index,
     kind: beat.kind,
@@ -84,7 +88,7 @@ export function spawnBeat(nextId: number, z: number, seed: number): { hazards: H
 
 export function nextGap(seed: number, distance: number): number {
   const squeeze = Math.min(4.5, distance * 0.008);
-  return 9.5 + hash(seed, 5) * 5.5 - squeeze;
+  return 12.5 + hash(seed, 5) * 6.5 - squeeze;
 }
 
 export function collide(kind: HazardKind, planeZ: number, hazardZ: number): boolean {
