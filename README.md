@@ -8,6 +8,21 @@ I'm Johnny Huynh, and this monorepo is where I learn by building. Each experimen
 
 ### Interactive 3D Demos
 
+#### [procedural-steam-atlas](./experiments/procedural-steam-atlas/)
+Stylized locomotive built entirely from runtime TypeScript geometry functions — no .glb, .obj, or image assets required.
+
+**What it is**: Vanilla Three.js + procedural geometry. Mechanical assembly (wheels, boiler, chassis, rivets) generated from primitives (cylinders, spheres, boxes) at runtime. Exploded view, part isolation, dark cinematic studio lighting. Inspired by [@Karthikvarmamkv's Steam Atlas](https://x.com/Karthikvarmamkv/status/2096904712511488420) and [@Craft3dApp](https://x.com/Craft3dApp/status/2096892270851346904).
+
+**Run it**:
+```bash
+cd experiments/procedural-steam-atlas
+npm install && npm run dev
+```
+
+**Live**: TBD (pending Vercel setup)
+
+---
+
 #### [explode-assembly](./experiments/explode-assembly/)
 Interactive Tesla Model 3 exploded view demo — inspired by [@ashebytes' viral Model X explode](https://x.com/ashebytes/status/2096009146248122416) (334 pieces via GPT-6 Astra).
 
@@ -95,6 +110,7 @@ Each browser demo has its own Vercel project on this repo (Root Directory set in
 | App | Vercel project | Root Directory | Production URL |
 | --- | --- | --- | --- |
 | web-3d | `vibes` | `experiments/ai-3d-lanes/web-3d` | TBD |
+| procedural-steam-atlas | TBD | `experiments/procedural-steam-atlas` | TBD |
 | explode-assembly | `vibes-explode` | `experiments/explode-assembly` | vibes-explode.vercel.app |
 | earth-timeline | `vibes-earth` | `experiments/earth-timeline` | vibes-earth.vercel.app |
 | v8-cutaway | `vibes-v8` | `experiments/v8-cutaway` | vibes-v8.vercel.app |
