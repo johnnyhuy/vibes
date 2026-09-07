@@ -43,9 +43,11 @@ npm run build
 
 ## Deploy
 
-Project `vibes-glass-capability-brain` (`prj_yJbQTsiB138V5jh92cwSWd8rZmij`) has production READY at [vibes-glass-capability-brain.vercel.app](https://vibes-glass-capability-brain.vercel.app/). SSO off. It shipped on the japanese-tower `main` merge (`9328191` / `dpl_3CE9Dd7X7og5MuSLpcGgyxboacgz`) — do not assume steam / scroll / semicircle moved with it. See [the incident](../../docs/incidents/2026-09-08-glass-auto-deploy-on-tower-merge.md).
+Production is **LIVE** at [https://vibes-glass-capability-brain.vercel.app/](https://vibes-glass-capability-brain.vercel.app/) (`dpl_3CE9Dd7X7og5MuSLpcGgyxboacgz` on `9328191`). SSO off. Project `vibes-glass-capability-brain` (`prj_yJbQTsiB138V5jh92cwSWd8rZmij`), Root `experiments/glass-capability-brain`.
 
-Dashboard **Root Directory** must stay `experiments/glass-capability-brain`. `vercel.json` cannot set that field. Do not force another production deploy on a hill-climb PR.
+It shipped on the japanese-tower `main` merge — do not assume steam / scroll / semicircle / tower moved with it. Their later `main` hooks CANCELED with `ignored-build-step` because those Roots did not change. See [the incident](../../docs/incidents/2026-09-08-glass-auto-deploy-on-tower-merge.md).
+
+Dashboard **Root Directory** must stay `experiments/glass-capability-brain`. `vercel.json` cannot set that field. Do not force another production deploy on a hill-climb PR. This folder does not need a post-quota slot.
 
 ## Related
 
@@ -54,6 +56,6 @@ Dashboard **Root Directory** must stay `experiments/glass-capability-brain`. `ve
 
 ---
 
-**Status**: Production READY; skip post-quota  
+**Status**: Production LIVE at https://vibes-glass-capability-brain.vercel.app/ (SSO off); skip post-quota  
 **Last updated**: 2026-09-08  
 **Built by**: Johnny Huynh

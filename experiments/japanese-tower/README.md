@@ -30,11 +30,11 @@ npm run build
 
 ## Deploy
 
-Project `vibes-japanese-tower` (`prj_T1KL4cJSMuY0Z6oKGnNtv8zVP0Js`) exists with Root Directory `experiments/japanese-tower`. Created `deploy: false`. **0 production** — still waiting for the first production after quota (~**2026-09-08 12:55 UTC**). Do not force a deploy on a hill-climb PR.
+Project `vibes-japanese-tower` (`prj_T1KL4cJSMuY0Z6oKGnNtv8zVP0Js`) exists with Root Directory `experiments/japanese-tower`. Created `deploy: false`. **Still 0 production** — a project row is not an alias. `ignoreCommand` will skip sibling-folder commits (`ignored-build-step`); this README touch is so the next post-quota `main` merge actually builds this Root. Wait until ~**2026-09-08 12:55 UTC**. Do not force a deploy on a hill-climb PR.
 
 Dashboard **Root Directory** must stay `experiments/japanese-tower`. `vercel.json` only carries the usual Vite fields plus `ignoreCommand` — it cannot set Root Directory.
 
-`vibes-glass-capability-brain` (`prj_yJbQTsiB138V5jh92cwSWd8rZmij`) now has production READY at [vibes-glass-capability-brain.vercel.app](https://vibes-glass-capability-brain.vercel.app/) (SSO off). It shipped on the Ridge Pagoda `main` merge; this folder did not.
+Glass is already LIVE at [vibes-glass-capability-brain.vercel.app](https://vibes-glass-capability-brain.vercel.app/) (SSO off). It shipped on the Ridge Pagoda `main` merge; this folder did not.
 
 ## Related
 
@@ -45,6 +45,6 @@ Dashboard **Root Directory** must stay `experiments/japanese-tower`. `vercel.jso
 
 ---
 
-**Status**: Local build is the QA until the first production  
+**Status**: Project exists (`prj_T1KL4cJSMuY0Z6oKGnNtv8zVP0Js`); **0 production** until a Root-touching merge after quota  
 **Last updated**: 2026-09-08  
 **Built by**: Johnny Huynh

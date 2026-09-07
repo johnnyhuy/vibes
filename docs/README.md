@@ -44,12 +44,12 @@ Things that went sideways and what I learnt:
 - [2026-09-07: Vercel Deployment Quota Exhausted](./incidents/2026-09-07-vercel-deploy-quota.md) — Free tier 100/day limit hit, production URLs serve stale commits
 - [2026-09-07: Attach Preview Name-Crash](./incidents/2026-09-07-attach-preview-name-crash.md) — Material `??` defaults + unsafe `node.name` log; code landed via #12
 - [2026-09-07: Semicircle Viewer Cropped Mega-Arc](./incidents/2026-09-07-semicircle-cropped-mega-arc.md) — Hardcoded camera clipped the 51-laptop 180° array; now bbox-framed
-- [2026-09-08: steam-atlas Production Never Landed](./incidents/2026-09-08-steam-atlas-wrong-root.md) — no production (`404 DEPLOYMENT_NOT_FOUND`); set dashboard Root before the first deploy; MCP reuse does not write it
-- [2026-09-08: Glass Auto-Deployed on the Tower Merge](./incidents/2026-09-08-glass-auto-deploy-on-tower-merge.md) — glass production READY on `9328191`; steam / scroll / semicircle / tower did not follow
+- [2026-09-08: steam-atlas Production Never Landed](./incidents/2026-09-08-steam-atlas-wrong-root.md) — no production (`404 DEPLOYMENT_NOT_FOUND`); later `main` redeploy **CANCELED** `ignored-build-step`; set dashboard Root; sibling commits do not refresh the alias
+- [2026-09-08: Glass Auto-Deployed on the Tower Merge](./incidents/2026-09-08-glass-auto-deploy-on-tower-merge.md) — glass production LIVE on `9328191`; steam / scroll / semicircle / tower did not follow (`ignored-build-step`)
 
 ### Deployment
 
-- [Vercel Root Directory hints](./deployment/vercel-root-directories.md) — Dashboard field per app; `vercel.json` cannot pin Root Directory
+- [Vercel Root Directory hints](./deployment/vercel-root-directories.md) — Dashboard field per app; `vercel.json` cannot pin Root Directory; `ignored-build-step` skips sibling-folder commits
 
 ### Visual QA
 
