@@ -148,11 +148,22 @@ export default function Landscape({ look }: Props) {
         [-16, -2, 1.8, 9],
         [18, -4, 2.2, 11],
         [-6, -18, 1.4, 14],
+        [12, -22, 3.2, 16],
+        [-22, -16, 2.6, 13],
       ].map(([x, z, y, s], i) => (
-        <mesh key={i} position={[x, y, z]} scale={[s, 2.4, s * 0.7]}>
-          <sphereGeometry args={[1, 16, 12]} />
-          <meshStandardMaterial color={look.groundColor} roughness={0.96} />
-        </mesh>
+        <group key={i} position={[x, 0, z]}>
+          <mesh position={[0, y, 0]} scale={[s, 2.4, s * 0.7]}>
+            <sphereGeometry args={[1, 16, 12]} />
+            <meshStandardMaterial color={look.groundColor} roughness={0.96} />
+          </mesh>
+          <mesh position={[0, y + 1.6, 0]} scale={[s * 0.38, 1.1, s * 0.28]}>
+            <sphereGeometry args={[1, 12, 8]} />
+            <meshStandardMaterial
+              color={look.blossomColor === '#ffffff' || look.groundColor.startsWith('#d') ? '#f6f8fb' : look.groundColor}
+              roughness={0.92}
+            />
+          </mesh>
+        </group>
       ))}
       {trees.map((tree, i) =>
         tree.kind === 'pine' ? (

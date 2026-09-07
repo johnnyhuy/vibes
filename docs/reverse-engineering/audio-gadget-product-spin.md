@@ -17,6 +17,8 @@
 
 The public copy is about **input data → a spin experience**, not about a Japanese tower. Different pattern.
 
+**Treat the attached thumb cautiously.** The 576×1024 still I pulled looks like a **loft / architecture scroll hero** (misty house, “scroll to explore”) more than a headphone turntable. It may be a compilation frame, a mismatched poster, or a different demo entirely. I am **not** using that still as a build spec. This note stays docs-only until I can see a gadget-spin frame that matches the tweet text.
+
 ## Why I Parked It
 
 I already have a scroll-driven product hero (`scroll-product-showcase`) and a studio explode. A headphone/speaker spin would be a third product-hero, and the tower’s atmosphere-state work was the new lesson.

@@ -7,7 +7,7 @@
 **Study date**: 2026-09-08  
 **Purpose**: Clean-room notes. Built as `experiments/japanese-tower/`.
 
-**Disclaimer**: I studied the public post and the attached video thumb. No code, no assets, no branding copied. This demo is first-person Johnny Huynh / vibes — it is **not** their site.
+**Disclaimer**: I studied the public post and the attached video thumb. No code, no assets, no branding copied. This demo is first-person Johnny Huynh / vibes — it is **not** their site. I do **not** use their product name.
 
 ---
 
@@ -25,84 +25,96 @@ Copy: *“The whole scene changes as you play with the controls. Three.js + AI i
 
 The t.co in the post expands to the **video attachment**, not a live product URL I could open. I treated the post text + thumb as the spec and invented the rest.
 
-X bookmarks on this account were empty when I checked the hill-climb brief, so this post is a direct citation, not a bookmark replay.
+## What The Thumb Actually Shows
 
-## What I Observed (thumb + copy)
+A second pass on the 1920×906 still (2026-09-08). It is **not** a dark studio turntable.
 
-From the 1920×906 video still and the written list:
+Observed *read* (pattern only — I am not restating their wordmark or poster lines):
 
-- A **cinematic landscape** with a Japanese keep / tower as the hero, not a studio turntable
-- **Seasonal and weather chrome** in the overlay (the post names summer / clear / noon-class toggles)
-- A **glassmorphism** control layer sitting on the 3D view
-- The interesting claim is not the mesh: it is that **one set of controls retints the entire world**
+- **Minimal glassmorphic product UI** over a 3D seasonal landscape
+- **Header toggles** for style / season / weather / time / sound, plus a rebuild action
+- **Left editorial** with bilingual labels
+- **Centre 3D focus**: construction / growth of a Japanese castle keep (tenshu), stonework, timber scaffolding
+- **Right progress %**
+- **Bottom timeline scrubber**
+- **Low-poly hills / mountains**, pale sky, cinematic but **calm**
 
-I am not restating their product title, Japanese marketing lines, or construction-progress UI. Those belong to them. The pattern I wanted is: *atmosphere as state*.
+So the viral object is a **keep being raised in weather**, not an already-finished pagoda on black.
+
+I will not reuse their product name, their Japanese poster pair, or their exact chrome grid. The pattern I wanted is: *atmosphere as state* **and** *growth as a second axis*.
 
 ## Why This Pattern Exists
 
-A static pagoda is a postcard. The viral move is a **small state vector** that fans out:
+A static pagoda is a postcard. Two sliders make it a demo:
 
 ```
-season × dayNight × weather × haze
-        ↓
-lights, fog, sky, materials, particles
+season × dayNight × weather × haze     →  lights, fog, sky, materials, particles
+growth ∈ [0, 1]                        →  podium, scaffold, storeys, roofs, finial
 ```
 
-That is the same idea as earth-timeline’s era slider, pointed at weather instead of geology.
+earth-timeline already does the first shape for geology. This experiment adds a lift.
 
 ## Pattern Breakdown
 
-### 1. Procedural stacked roofs (no GLB)
+### 1. Procedural stacked roofs + lift (no GLB)
 
-Hypothesis I ran with: **stacked hip roofs + shader fog + particle rain/snow** is enough. I did not import a temple mesh.
+Hypothesis: **stacked hip roofs + scaffold + shader fog + particle rain/snow** is enough.
 
-My keep:
+My keep (original proportions, not a named castle):
 
-- Battered stone podium (tapered 8-sided cylinders)
-- Five square storeys, each a plaster box + timber posts
-- Four-sided cones for tile roofs, plus a thin eave plate and corner upturns
+- Battered stone podium (three terraces)
+- Timber yard piles while the lift is early
+- A post-and-ledger scaffold that fades at the crown
+- Five square storeys, plaster + timber posts
+- Four-sided hip roofs with eave plates and corner upturns
 - A short bronze finial
 
-Original proportions. Not a named castle.
+Growth stages I named: **Podium → Frame → Storeys → Tiles → Crown**.
 
 ### 2. Season / weather as first-class uniforms
 
-See [ADR-0007](../adr/0007-scene-atmosphere-state.md). One `resolveLook(state)` returns colours, fog density, sun elevation, particle kind. The React UI writes the state. The R3F tree only consumes the look.
+See [ADR-0007](../adr/0007-scene-atmosphere-state.md). One `resolveLook(state)` returns colours, fog, sun, particles. `resolveBuild(growth)` is the sibling for mesh reveal.
 
 ### 3. Day / night is a sun, not a theme toggle
 
-`dayNight ∈ [0, 1]` maps to a 24-hour azimuth. Elevation is `sin((t - 0.25) · 2π)`. Dawn and dusk borrow a warm horizon. Night raises lantern gain and stars.
+`dayNight ∈ [0, 1]` maps to a 24-hour azimuth. Elevation is `sin((t - 0.25) · 2π)`.
 
-### 4. Weather is particles + fog, not a decal
+Default first frame is **summer noon, pale sky, mid-lift** so the thumb’s calm valley *read* lands without a click. Night is still on the slider.
+
+### 4. Weather is particles + fog
 
 - Clear — optional spring blossom drift
-- Rain — fast downward points, greyer sky, extra fog
-- Snow — slow points, cooler sky, frosted ground
-- Mist — large soft points, heavy `FogExp2`
+- Rain — fast downward points, greyer sky
+- Snow — slow points, frosted ground
+- Mist — large soft points, heavier `FogExp2`
 
-Haze is a separate slider so you can have a clear noon that is still thick with air.
+### 5. My chrome, not theirs
 
-### 5. Dark cinematic chrome (my bar, not theirs)
+Frosted **white** cards (pale product glass), my own layout:
 
-`docs/visual-quality-bar.md` wants black stages and frosted panels. My header is **vibes · japanese tower**. Title is **Ridge Pagoda**. I did not reuse their overlay copy.
+- Top strip: `vibes · japanese tower` + season / weather / time / haze + **Raise again**
+- Left: **尾根** (ridge — my kicker) + Ridge Pagoda + first-person lede
+- Right: stage name + %
+- Bottom: **Lift the keep** scrubber
+
+I did **not** copy their toggle labels, their poster Japanese, or their single framed-glass stage.
 
 ## Clean-room checklist
 
 | I did | I did not |
 | --- | --- |
 | Read the public X post + video thumb | Open or scrape a linked marketing site |
-| Invent Ridge Pagoda geometry from primitives | Copy their tower mesh, textures, or scaffolding animation |
+| Invent Ridge Pagoda geometry + scaffold from primitives | Copy their keep mesh, textures, or animation curves |
 | Write original React / R3F / CSS | Copy their JS, fonts, or component tree |
-| Brand as vibes · japanese tower | Use their product name, Japanese wordmark, or “growth study” framing |
+| Brand as vibes · japanese tower / 尾根 | Use their product name or their Japanese poster lines |
 | Cite the post as inspiration | Claim I created the original viral clip |
 
 ## When To Use This Pattern
 
 ### Good for
 
-- Outdoor architectural demos where time-of-day is the product
-- Educational scenes where the **state → look** function is the lesson
-- Kitchen-sink experiments that should stay off the asset pipeline
+- Outdoor architectural demos where time-of-day **and** assembly are the product
+- Educational scenes where two resolvers (`look`, `build`) are the lesson
 
 ### Bad for
 
@@ -112,19 +124,19 @@ Haze is a separate slider so you can have a clear noon that is still thick with 
 ## What I Learnt
 
 1. Fog colour must track the horizon or the pagoda “cuts out” of the sky
-2. Season-only palettes look fake until day/night also remaps sun intensity
-3. Rain that does not also grey the hemisphere reads as a particle bug
-4. Four-sided cones are enough for a pagoda *read* if the eave plate is wide
-5. One resolver function is easier to document than four ad-hoc `useEffect`s
+2. A finished keep at dusk hid the thumb’s actual hook (growth)
+3. Scaffold that does not recede at 100% still looks like a construction site
+4. Pale glass chrome reads on a pale noon *and* on a night sky
+5. One resolver each for air and lift beats a pile of `useEffect`s
 
 ## Related / next
 
 - Built: `experiments/japanese-tower/`
-- Next X candidate (not built this pass): [Audio gadget product spin](./audio-gadget-product-spin.md)
+- Next X candidate (not built; thumb treated cautiously): [Audio gadget product spin](./audio-gadget-product-spin.md)
 
 ## Attribution & Ethics
 
-- @bharatmodi2014 inspired the study
+- @bharatmodi2014 inspired this study
 - I am **not** redistributing their code, video, or assets
 - Geometry, materials, and UI are original
 - Research and education only

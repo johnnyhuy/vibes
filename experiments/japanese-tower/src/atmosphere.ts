@@ -70,9 +70,9 @@ const SEASON_PALETTE: Record<
     water: '#3d6d78',
   },
   summer: {
-    ground: '#2f5c32',
-    foliage: '#2a6b30',
-    pine: '#1f4a2c',
+    ground: '#4f8a4a',
+    foliage: '#3f8a44',
+    pine: '#2f6a3c',
     blossom: null,
     roof: '#5a2224',
     wood: '#7a4e30',
@@ -131,24 +131,27 @@ export function resolveLook(state: AtmosphereState): ResolvedLook {
   const nightFactor = 1 - clamp01((elevation + 0.15) / 1.15);
   const twilight = clamp01(1 - Math.abs(elevation) * 2.2);
 
-  let zenithDay = '#3e6fa8';
-  let horizonDay = '#c5d8e6';
+  let zenithDay = '#8eb8d8';
+  let horizonDay = '#e7f1f6';
   let zenithNight = '#050814';
   let horizonNight = '#10182c';
   let twilightHorizon = '#e07a42';
 
   if (state.season === 'autumn') {
-    zenithDay = '#4a6d96';
-    horizonDay = '#e2c8a4';
+    zenithDay = '#7fa0be';
+    horizonDay = '#eedcc4';
     twilightHorizon = '#d45a28';
   } else if (state.season === 'winter') {
-    zenithDay = '#6a86a4';
-    horizonDay = '#d7e4ee';
+    zenithDay = '#a8c0d4';
+    horizonDay = '#eef4f8';
     twilightHorizon = '#c4786a';
   } else if (state.season === 'spring') {
-    zenithDay = '#4f7fb0';
-    horizonDay = '#d4e8ef';
+    zenithDay = '#9bc4de';
+    horizonDay = '#eef6f4';
     twilightHorizon = '#f0a070';
+  } else {
+    zenithDay = '#8eb8d8';
+    horizonDay = '#e7f1f6';
   }
 
   let fogBoost = 0;
@@ -194,7 +197,7 @@ export function resolveLook(state: AtmosphereState): ResolvedLook {
   );
 
   const fogColor = mixHex(skyHorizon, '#0a0d14', nightFactor * 0.35);
-  const fogDensity = 0.012 + haze * 0.046 + fogBoost + nightFactor * 0.008;
+  const fogDensity = 0.007 + haze * 0.04 + fogBoost + nightFactor * 0.01;
 
   const sunColor = mixHex('#f4e6c4', twilightHorizon, twilight * 0.7);
   const ground = state.weather === 'snow' || state.season === 'winter'

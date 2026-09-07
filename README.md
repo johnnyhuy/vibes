@@ -125,12 +125,12 @@ cd experiments/glass-capability-brain
 npm install && npm run dev
 ```
 
-**Live**: TBD — project `vibes-glass-capability-brain` (`prj_yJbQTsiB138V5jh92cwSWd8rZmij`) exists with **0 deployments**. Do not deploy until the hobby quota resets (~**2026-09-08 12:55 UTC**).
+**Live**: TBD — project `vibes-glass-capability-brain` (`prj_yJbQTsiB138V5jh92cwSWd8rZmij`) was created with Root `experiments/glass-capability-brain` and `deploy: false`. **0 production**. Do not deploy until the hobby quota resets (~**2026-09-08 12:55 UTC**).
 
 ---
 
 #### [japanese-tower](./experiments/japanese-tower/)
-Procedural Ridge Pagoda. Season, day/night, weather, and haze are one state object that retints lights, fog, materials, and particles. Clean-room take on [@bharatmodi2014](https://x.com/bharatmodi2014/status/2096974996455444494). Branding is mine (`vibes · japanese tower`); I did not copy their mesh or chrome.
+Procedural Ridge Pagoda with a **lift** (podium → scaffold → storeys → tiles → crown) plus season / day-night / weather / haze. Clean-room take on [@bharatmodi2014](https://x.com/bharatmodi2014/status/2096974996455444494). Branding is mine (`vibes · japanese tower` / 尾根); I did not copy their mesh, product name, or chrome.
 
 **Stack**: React + R3F + drei. No .glb.
 
@@ -167,10 +167,10 @@ Each browser demo has its own Vercel project on this repo (Root Directory set in
 | earth-timeline | `vibes-earth` | `experiments/earth-timeline` | [vibes-earth.vercel.app](https://vibes-earth.vercel.app) | ✅ |
 | v8-cutaway | `vibes-v8` | `experiments/v8-cutaway` | [vibes-v8.vercel.app](https://vibes-v8.vercel.app) | ✅ |
 | web-physics | `vibes-physics` | `experiments/web-physics` | [vibes-physics.vercel.app](https://vibes-physics.vercel.app) | ✅ |
-| blender-semicircle-viewer | `vibes-blender-semicircle` (`prj_PLhnoCVRKmpHc8SxyLRmcp3MFZMC`) | `experiments/blender-semicircle-viewer` | [vibes-blender-semicircle.vercel.app](https://vibes-blender-semicircle.vercel.app) | ⚠️ QA FAIL 2026-09-08: cropped mega-arc, nearly black. **#2** after reset: one `main` redeploy |
+| blender-semicircle-viewer | `vibes-blender-semicircle` (`prj_PLhnoCVRKmpHc8SxyLRmcp3MFZMC`) | `experiments/blender-semicircle-viewer` | [vibes-blender-semicircle.vercel.app](https://vibes-blender-semicircle.vercel.app) | ⚠️ Production alias still on old commit `25587f54` (pre bbox-framing). **#2** after reset: one `main` redeploy |
 | procedural-steam-atlas | `vibes-steam-atlas` (`prj_7D08PT8sdUjhigCEuz83oltZrDMv`) | **`experiments/procedural-steam-atlas` (set this in the dashboard before any deploy)** | `404 DEPLOYMENT_NOT_FOUND` | ⚠️ QA FAIL 2026-09-08. **#3** after reset: set Root, then one `main` production deploy |
 | scroll-product-showcase | `vibes-scroll-product` (`prj_XLBiIlbjweejp9himT53bolPEMUW`) | `experiments/scroll-product-showcase` | none | Linked, **0 deployments**. Build ✅ locally. **#4** first production |
-| glass-capability-brain | `vibes-glass-capability-brain` (`prj_yJbQTsiB138V5jh92cwSWd8rZmij`) | `experiments/glass-capability-brain` | none | Linked, **0 deployments**. Optional **#5** after quota. Do not spam. |
+| glass-capability-brain | `vibes-glass-capability-brain` (`prj_yJbQTsiB138V5jh92cwSWd8rZmij`) | `experiments/glass-capability-brain` | none | Created `deploy: false`. **0 production**. Optional **#5** after quota. Do not spam. |
 | japanese-tower | — | `experiments/japanese-tower` (when a project exists) | none | **No Vercel project.** Local build only. Do not create one while quota is 0. |
 
 PR previews show up as Vercel bot comments on each pull request (when quota available).

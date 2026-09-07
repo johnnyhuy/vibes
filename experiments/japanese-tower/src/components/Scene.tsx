@@ -1,6 +1,7 @@
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import { ACESFilmicToneMapping, PCFSoftShadowMap } from 'three';
+import type { BuildLook } from '../growth';
 import type { ResolvedLook } from '../atmosphere';
 import Landscape from './Landscape';
 import SkyRig from './SkyRig';
@@ -9,13 +10,14 @@ import WeatherField from './WeatherField';
 
 interface Props {
   look: ResolvedLook;
+  build: BuildLook;
   reducedMotion: boolean;
 }
 
-export default function Scene({ look, reducedMotion }: Props) {
+export default function Scene({ look, build, reducedMotion }: Props) {
   return (
     <Canvas
-      camera={{ position: [13.5, 7.2, 15.5], fov: 40, near: 0.1, far: 140 }}
+      camera={{ position: [15.8, 6.4, 17.2], fov: 38, near: 0.1, far: 140 }}
       dpr={[1, 1.75]}
       shadows
       gl={{
@@ -28,7 +30,7 @@ export default function Scene({ look, reducedMotion }: Props) {
       }}
     >
       <SkyRig look={look} />
-      <Tower look={look} />
+      <Tower look={look} build={build} />
       <Landscape look={look} />
       <WeatherField look={look} />
       <OrbitControls
@@ -40,9 +42,9 @@ export default function Scene({ look, reducedMotion }: Props) {
         maxDistance={32}
         minPolarAngle={0.35}
         maxPolarAngle={Math.PI / 2.15}
-        target={[0, 3.4, 0]}
+        target={[0, 2.6, 0]}
         autoRotate={!reducedMotion}
-        autoRotateSpeed={0.28}
+        autoRotateSpeed={0.16}
       />
     </Canvas>
   );

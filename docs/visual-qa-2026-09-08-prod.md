@@ -79,7 +79,7 @@ No locomotive. No production HTML. Matches `live: false` on `prj_7D08PT8sdUjhigC
 One each. Stop.
 
 1. `vibes-explode` — `main` (#12 black studio + ordered gallery). Pass when 0% is a whole car on black, 80% is a readable ordered grid.
-2. `vibes-blender-semicircle` — `main` bbox framing. Pass when all 51 laptops read as a 180° arc.
+2. `vibes-blender-semicircle` — production alias still serves old commit `25587f54`. One `main` redeploy for bbox framing. Pass when all 51 laptops read as a 180° arc.
 3. `vibes-steam-atlas` — **set Root first**, then `main`. Pass when the locomotive page loads (not `DEPLOYMENT_NOT_FOUND`).
 4. `vibes-scroll-product` — first production after #16 merges. Pass when Aether is the horizontal dark-green bottle, not a torus knot.
 
@@ -101,13 +101,17 @@ Verified just now (read-only Vercel + git):
 - `main` is `de25d60` — **glass-capability-brain (#17) is merged**
 - No open PRs
 - `vibes-explode` latest production deploy is READY — may finally be on current `main`; still needs a human framing pass after quota if the 12:07 AEST stills were stale
-- `vibes-blender-semicircle` still needs the bbox-framing production QA
+- `vibes-blender-semicircle` production alias still on old commit **`25587f54`** until a post-quota `main` redeploy
 - `vibes-steam-atlas` `live: false`, last deploy CANCELED, production alias still no good HTML (`DEPLOYMENT_NOT_FOUND` class)
 - `vibes-scroll-product` `live: false`, last production-targeted deploy CANCELED — still no good production
-- `vibes-glass-capability-brain` exists (`prj_yJbQTsiB138V5jh92cwSWd8rZmij`) with **0 deployments** — optional #5 after the four above
+- `vibes-glass-capability-brain` (`prj_yJbQTsiB138V5jh92cwSWd8rZmij`) created with Root `experiments/glass-capability-brain` and `deploy: false` — **0 production**. Optional #5 after the four above
 - **japanese-tower** is local-only on this hill-climb. I am **not** creating a Vercel project
 
 Redeploy order after reset is unchanged: explode → semicircle → steam-atlas (Root **must** be `experiments/procedural-steam-atlas`) → scroll-product → optionally glass.
+
+### Later the same night
+
+I added a lift axis (scaffold / storeys / roofs) so the tower matches the thumb’s growth *read*. Still no deploys.
 
 ---
 

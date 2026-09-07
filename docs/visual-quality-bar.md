@@ -99,8 +99,8 @@ This document captures the visual quality bar I'm aiming for in the vibes experi
 **Visual qualities** (from the public post + video thumb; I did not copy their chrome):
 - **Outdoor cinematic valley** — not a studio turntable
 - **Controls retint the world** — lighting, fog, particles, materials
-- **Glass overlay** — season / weather / time as first-class state
-- **Architectural hero** — stacked roofs read as a pagoda even at low poly
+- **Glass overlay** — season / weather / time as first-class state; thumb also shows a keep *being raised*
+- **Architectural hero** — stacked roofs + scaffold read as a tenshu even at low poly
 
 **Reference doc**: `docs/reverse-engineering/japanese-tower-threejs.md`
 
@@ -125,8 +125,8 @@ Across these demos, the quality bar is:
 ## My Implementation Status
 
 ### japanese-tower ✅ (local)
-- ✅ Black stage + frosted glass dock
-- ✅ Procedural five-storey pagoda (no GLB)
+- ✅ Pale glass chrome (not their product frame)
+- ✅ Procedural keep + lift (scaffold → storeys → tiles)
 - ✅ Season / day-night / weather / haze actually change the look
 - ⚠️ No Vercel project — do not create one until quota resets
 - Inspired by [bharatmodi2014](https://x.com/bharatmodi2014/status/2096974996455444494)

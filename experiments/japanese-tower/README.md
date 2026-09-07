@@ -1,15 +1,15 @@
 # Ridge Pagoda — japanese tower
 
-I built this after reading [@bharatmodi2014's Japanese tower post](https://x.com/bharatmodi2014/status/2096974996455444494). The public clip is an interactive Three.js keep: seasons, day / night, weather, and atmosphere. I studied the post and the video thumb. I did **not** copy their geometry, UI chrome, or branding. This is my educational demo — **vibes · japanese tower**.
+I built this after reading [@bharatmodi2014's Japanese tower post](https://x.com/bharatmodi2014/status/2096974996455444494). The public clip is a Three.js keep whose seasons, day / night, weather, and atmosphere retint the valley — and the video thumb is a **calm glass overlay over a keep being raised**. I studied that pattern. I did **not** copy their geometry, chrome, or branding. This is my educational demo — **vibes · japanese tower**.
 
 ## What I built
 
-- **Procedural pagoda** — five stacked timber-and-tile storeys, battered stone podium, bronze finial. All Three.js primitives. No .glb.
-- **First-class atmosphere state** — season, day/night, weather, and haze resolve into one `ResolvedLook` (lights, fog, sky, materials, particles). See [ADR-0007](../../docs/adr/0007-scene-atmosphere-state.md).
-- **Controls that actually change the valley** — spring blossom, summer green, autumn maple, winter frost; a sun that walks the sky; rain / snow / mist particles; haze that thickens exponential fog.
-- **Dark cinematic chrome** — black stage, frosted glass panel, `vibes · japanese tower` header. Not their product names.
+- **Procedural keep** — stone podium, timber yard, scaffold, five plaster storeys, hip roofs, bronze finial. All primitives. No .glb.
+- **Lift axis** — you scrub 0–100% (Podium → Frame → Storeys → Tiles → Crown). *Raise again* dumps it back to dirt. Scaffold comes down at the end.
+- **Atmosphere state** — season, day/night, weather, and haze still resolve into one `ResolvedLook`. See [ADR-0007](../../docs/adr/0007-scene-atmosphere-state.md).
+- **Pale glass chrome** — frosted white cards, my own layout. Header chips are season / weather / time / haze — not their toggle row. Left editorial uses **尾根** (ridge), a word I chose. I did not use their product name or their Japanese poster lines.
 
-You drag to orbit. Then you push the sliders until the lighting and weather disagree with the default dusk.
+You start at a mid-lift summer noon so the scaffold reads. Drag to orbit. Then finish the keep, or change the air.
 
 ## Stack
 
@@ -34,11 +34,13 @@ No Vercel project yet. Hobby quota on `johnnyhuy-dev` is still exhausted until *
 
 If I add one later: dashboard **Root Directory** must be `experiments/japanese-tower`. `vercel.json` only carries `ignoreCommand` — it cannot set Root Directory.
 
+`vibes-glass-capability-brain` (`prj_yJbQTsiB138V5jh92cwSWd8rZmij`) already exists with Root `experiments/glass-capability-brain` and was created `deploy: false`. It still has **0 production**. That does not change this folder.
+
 ## Related
 
 - [docs/reverse-engineering/japanese-tower-threejs.md](../../docs/reverse-engineering/japanese-tower-threejs.md)
 - [docs/adr/0007-scene-atmosphere-state.md](../../docs/adr/0007-scene-atmosphere-state.md)
-- Next candidate (not built): [audio gadget product spin](../../docs/reverse-engineering/audio-gadget-product-spin.md)
+- Next candidate (not built; thumb treated cautiously): [audio gadget product spin](../../docs/reverse-engineering/audio-gadget-product-spin.md)
 
 ---
 

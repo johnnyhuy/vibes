@@ -3,61 +3,82 @@ import { resolveLook, type Season, type Weather } from './atmosphere';
 import Controls from './components/Controls';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import Scene from './components/Scene';
+import { resolveBuild } from './growth';
 import { usePrefersReducedMotion } from './hooks';
 
 export default function App() {
-  const [season, setSeason] = useState<Season>('autumn');
-  const [dayNight, setDayNight] = useState(0.72);
+  const [season, setSeason] = useState<Season>('summer');
+  const [dayNight, setDayNight] = useState(0.46);
   const [weather, setWeather] = useState<Weather>('clear');
-  const [haze, setHaze] = useState(0.32);
-  const [playing, setPlaying] = useState(false);
+  const [haze, setHaze] = useState(0.14);
+  const [growth, setGrowth] = useState(0.26);
+  const [raising, setRaising] = useState(false);
+  const [playingDay, setPlayingDay] = useState(false);
   const reducedMotion = usePrefersReducedMotion();
   const look = useMemo(
     () => resolveLook({ season, dayNight, weather, haze }),
     [dayNight, haze, season, weather]
   );
+  const build = useMemo(() => resolveBuild(growth), [growth]);
 
   useEffect(() => {
-    if (!playing || reducedMotion) return undefined;
+    if (!playingDay || reducedMotion) return undefined;
     const id = window.setInterval(() => {
       setDayNight((value) => (value + 0.003) % 1);
     }, 32);
     return () => window.clearInterval(id);
-  }, [playing, reducedMotion]);
+  }, [playingDay, reducedMotion]);
+
+  useEffect(() => {
+    if (!raising || reducedMotion) return undefined;
+    const id = window.setInterval(() => {
+      setGrowth((value) => {
+        if (value >= 1) {
+          setRaising(false);
+          return 1;
+        }
+        return Math.min(1, value + 0.006);
+      });
+    }, 32);
+    return () => window.clearInterval(id);
+  }, [raising, reducedMotion]);
+
+  const raiseAgain = () => {
+    setGrowth(0);
+    if (!reducedMotion) setRaising(true);
+  };
 
   return (
     <ErrorBoundary>
       <div className="app">
-        <header className="header">
-          <p className="brand">vibes · japanese tower</p>
-          <h1>Ridge Pagoda</h1>
-          <p className="lede">
-            I stacked this keep from primitives — no temple GLB, no borrowed
-            brand. Drag to orbit. Then push season, day, weather, and haze until
-            the valley actually changes.
-          </p>
-        </header>
-
-        <Scene look={look} reducedMotion={reducedMotion} />
+        <Scene look={look} build={build} reducedMotion={reducedMotion} />
         <Controls
           season={season}
           dayNight={dayNight}
           weather={weather}
           haze={haze}
-          playing={playing && !reducedMotion}
+          growth={growth}
+          build={build}
+          raising={raising && !reducedMotion}
+          playingDay={playingDay && !reducedMotion}
           onSeason={setSeason}
           onDayNight={setDayNight}
           onWeather={setWeather}
           onHaze={setHaze}
-          onPlaying={setPlaying}
+          onGrowth={(value) => {
+            setRaising(false);
+            setGrowth(value);
+          }}
+          onRaising={setRaising}
+          onPlayingDay={setPlayingDay}
+          onRaiseAgain={raiseAgain}
         />
-
         <p className="hint">
           Drag to orbit
           <span className="sep">·</span>
-          sliders are live uniforms
+          lift is a second axis
           <span className="sep">·</span>
-          {reducedMotion ? 'day cycle paused (reduced motion)' : 'play the day to walk the sun'}
+          {reducedMotion ? 'motion paused' : 'play lift or walk the sun'}
         </p>
       </div>
     </ErrorBoundary>

@@ -61,7 +61,7 @@ React owns `AtmosphereState`. R3F only reads `ResolvedLook`.
 ### Positive
 
 1. Season × weather × time is one function you can read in `atmosphere.ts`
-2. Dark cinematic UI can change without touching lights
+2. Pale glass chrome can change without touching lights
 3. Easy to add a fifth weather later
 
 ### Negative
@@ -70,9 +70,17 @@ React owns `AtmosphereState`. R3F only reads `ResolvedLook`.
 2. Shader sky uniforms need an explicit sync (`useLayoutEffect`) or they freeze on the first colour
 3. No Vercel project — local only until quota resets
 
+### 5. Growth is a second resolver, not a second scene
+
+**Chosen**: `resolveBuild(growth)` reveals podium / scaffold / storeys / roofs / finial. Same graph, different amounts.
+
+**Rejected**: Swapping a “construction GLB” for a “finished GLB”.
+
+**Why**: The thumb’s hook is a keep being *raised*. One mesh tree with reveal amounts stays clean-room.
+
 ### Neutral
 
-I default the page to **autumn dusk** so the first frame matches the visual quality bar without a click.
+I default the page to **summer noon, pale sky, mid-lift** so the first frame matches the thumb’s calm valley *read*. Night and a finished keep are still one slider away.
 
 ## Alternatives considered
 

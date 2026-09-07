@@ -26,10 +26,10 @@ See [the incident](../incidents/2026-09-08-steam-atlas-wrong-root.md).
 | `vibes-earth` | `prj_SiIJCJMag4TvYUYp8qjzuZ5EIRLe` | `experiments/earth-timeline` |
 | `vibes-v8` | `prj_7Em98GNdH9nceT1LonpntoCgNgRY` | `experiments/v8-cutaway` |
 | `vibes-physics` | `prj_Ilh5mBV0g7m7btvnxnhZuFY5ZjiH` | `experiments/web-physics` |
-| `vibes-blender-semicircle` | `prj_PLhnoCVRKmpHc8SxyLRmcp3MFZMC` | `experiments/blender-semicircle-viewer` |
+| `vibes-blender-semicircle` | `prj_PLhnoCVRKmpHc8SxyLRmcp3MFZMC` | `experiments/blender-semicircle-viewer` — production alias still on `25587f54` |
 | `vibes-steam-atlas` | `prj_7D08PT8sdUjhigCEuz83oltZrDMv` | **MUST set `experiments/procedural-steam-atlas` in the dashboard before any post-quota deploy.** Reuse/MCP did not persist it. 0 production READY |
 | `vibes-scroll-product` | `prj_XLBiIlbjweejp9himT53bolPEMUW` | **`experiments/scroll-product-showcase`** (set; 0 deployments) |
-| `vibes-glass-capability-brain` | `prj_yJbQTsiB138V5jh92cwSWd8rZmij` | `experiments/glass-capability-brain` (0 deployments) |
+| `vibes-glass-capability-brain` | `prj_yJbQTsiB138V5jh92cwSWd8rZmij` | `experiments/glass-capability-brain` — created `deploy: false`; 0 production |
 | — | — | `experiments/japanese-tower` — **no project**. Do not create one while quota is 0. |
 
 In-repo `vercel.json` lives *inside* those folders (`framework: vite`, `outputDirectory: dist`, `ignoreCommand` where I have added it).
@@ -41,12 +41,12 @@ In-repo `vercel.json` lives *inside* those folders (`framework: vite`, `outputDi
 One deploy per project. Stop.
 
 1. `vibes-explode` — QA FAIL 2026-09-08 (grey room, 0% fragmented, 80% clipped). One `main` redeploy for #12.
-2. `vibes-blender-semicircle` — QA FAIL 2026-09-08 (cropped black mega-arc). One `main` redeploy for bbox framing.
+2. `vibes-blender-semicircle` — production still on `25587f54` (cropped mega-arc). One `main` redeploy for bbox framing.
 3. `vibes-steam-atlas` — QA FAIL `404 DEPLOYMENT_NOT_FOUND`. **Set dashboard Root = `experiments/procedural-steam-atlas`**, then one `main` production deploy.
 4. `vibes-scroll-product` — first production from `main` after #16 (Root already `experiments/scroll-product-showcase`).
 5. Optionally `vibes-glass-capability-brain` — 0 deployments; Root `experiments/glass-capability-brain`. Do **not** create `japanese-tower` until quota is healthy.
 
-`experiments/glass-capability-brain/` has `vercel.json`. Project `vibes-glass-capability-brain` (`prj_yJbQTsiB138V5jh92cwSWd8rZmij`) exists with **0 deployments**. Optional #5 after quota. Dashboard Root Directory must stay `experiments/glass-capability-brain`.
+`experiments/glass-capability-brain/` has `vercel.json`. Project `vibes-glass-capability-brain` (`prj_yJbQTsiB138V5jh92cwSWd8rZmij`) was created with Root `experiments/glass-capability-brain` and `deploy: false`. **0 production**. Optional #5 after quota.
 
 `experiments/japanese-tower/` is a new Vite app with its own `vercel.json` (`ignoreCommand` only). **No Vercel project.** Do not create one while quota is 0. When I do: dashboard Root Directory = `experiments/japanese-tower`.
 
