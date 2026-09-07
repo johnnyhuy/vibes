@@ -27,36 +27,46 @@ const SYSTEM_KEYWORDS: Record<string, string[]> = {
   lights: ['light', 'lamp', 'headlight', 'taillight', 'fog'],
 };
 
-// Props/scene objects to exclude (not part of the car)
-const EXCLUDE_KEYWORDS = [
-  'traffic', 'light_pole', 'pole', 'sign', 'cone', 'barrier',
-  'speaker', 'table', 'chair', 'cactus', 'kayak', 'train',
-  'floor', 'wall', 'ceiling', 'room', 'ground_plane', 'plane',
-  'picnic', 'bench', 'prop', 'decoration', 'fence', 
-  'tire_stack', 'tire_prop', 'background', 'environment',
-  'light_001', 'light_002', 'light_003', // scene lights
-];
-
+// Whitelist-only approach: include ONLY meshes that match car system keywords
+// or are named car roots. Everything else is excluded by default (props, unnamed Object_*, etc.)
 function shouldIncludeMesh(name: string): boolean {
+  if (!name || name.length === 0) {
+    return false; // Skip unnamed meshes
+  }
+  
   const lowerName = name.toLowerCase();
   
-  // Exclude known props/scene objects
+  // Explicitly exclude known props/scene objects first
+  // (catches "traffic_light" before "light" keyword matches it to lights system)
+  const EXCLUDE_KEYWORDS = [
+    'traffic', 'light_pole', 'pole', 'sign', 'cone', 'barrier',
+    'speaker', 'table', 'chair', 'cactus', 'kayak', 'train',
+    'floor', 'wall', 'ceiling', 'room', 'ground_plane', 'plane',
+    'picnic', 'bench', 'prop', 'decoration', 'fence', 
+    'tire_stack', 'tire_prop', 'background', 'environment',
+    'light_001', 'light_002', 'light_003', // scene lights
+    'object_', // Generic Blender export names for props
+  ];
+  
   if (EXCLUDE_KEYWORDS.some(kw => lowerName.includes(kw))) {
     return false;
   }
   
-  // Include if it matches car systems
+  // Whitelist: ONLY include if matches car system keywords
   for (const keywords of Object.values(SYSTEM_KEYWORDS)) {
     if (keywords.some(kw => lowerName.includes(kw))) {
       return true;
     }
   }
   
-  // Include generic mesh names (likely part of car)
-  // but exclude if name contains excluded keywords
-  return !lowerName.includes('scene') && 
-         !lowerName.includes('root') &&
-         lowerName.length > 0;
+  // Whitelist: Known car root names
+  const CAR_ROOT_KEYWORDS = ['model3', 'tesla', 'car', 'vehicle'];
+  if (CAR_ROOT_KEYWORDS.some(kw => lowerName.includes(kw))) {
+    return true;
+  }
+  
+  // Default: EXCLUDE everything else (props, unnamed objects, scene nodes)
+  return false;
 }
 
 function detectSystem(name: string): string {

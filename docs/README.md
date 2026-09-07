@@ -16,6 +16,7 @@ Structured decisions about the monorepo's technical architecture:
 Clean-room notes from studying public projects:
 
 - [ashemag's Model X Explode Pattern](./reverse-engineering/ashe-model-x-explode.md) — Multi-mesh GLB, 2D packing, lerp slider, product UI
+- [ashemag's Anatomy Explode](./reverse-engineering/ashe-anatomy-explode.md) — 2,234-piece human anatomy, same architecture, potential next experiment
 - [Visual Quality Bar](./visual-quality-bar.md) — Cinematic product demo aesthetic (dark UI, frosted glass, studio lighting)
 
 ### Incidents & Lessons
