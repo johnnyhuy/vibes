@@ -11,88 +11,104 @@ interface CarModelProps {
   onSelectPart: (part: string | null) => void;
 }
 
-// Kenney Car Kit - CC0 - Multiple GLB files assembled into car
-const CAR_PARTS = [
-  { file: '/models/sedan.glb', part: 'body', position: [0, 0, 0], scale: 1 },
-  { file: '/models/wheel-default.glb', part: 'wheels', position: [-0.6, -0.3, 0.8], scale: 0.35 },
-  { file: '/models/wheel-default.glb', part: 'wheels', position: [0.6, -0.3, 0.8], scale: 0.35 },
-  { file: '/models/wheel-default.glb', part: 'wheels', position: [-0.6, -0.3, -0.8], scale: 0.35 },
-  { file: '/models/wheel-default.glb', part: 'wheels', position: [0.6, -0.3, -0.8], scale: 0.35 },
-];
+// System mapping for Tesla Model 3 2021 Long Range
+const SYSTEM_KEYWORDS: Record<string, string[]> = {
+  body: ['body', 'chassis', 'frame', 'structure', 'hood', 'trunk', 'fender', 'bumper', 'panel'],
+  glass: ['glass', 'window', 'windshield', 'roof'],
+  doors: ['door', 'handle'],
+  interior: ['seat', 'dashboard', 'console', 'interior', 'steering'],
+  battery: ['battery', 'pack', 'cell'],
+  motors: ['motor', 'drive', 'powertrain'],
+  thermal: ['radiator', 'cooler', 'hvac', 'condenser'],
+  suspension: ['suspension', 'spring', 'shock', 'strut', 'arm'],
+  wheels: ['wheel', 'tire', 'brake', 'rotor', 'caliper'],
+  charging: ['charger', 'port', 'cable', 'connector'],
+  electronics: ['computer', 'ecu', 'battery_12v', 'wiring'],
+  lights: ['light', 'lamp', 'headlight', 'taillight', 'fog'],
+};
+
+function detectSystem(name: string): string {
+  const lowerName = name.toLowerCase();
+  for (const [system, keywords] of Object.entries(SYSTEM_KEYWORDS)) {
+    if (keywords.some(kw => lowerName.includes(kw))) {
+      return system;
+    }
+  }
+  return 'body';
+}
 
 export default function CarModel({ explode, selectedPart, isolated, onSelectPart }: CarModelProps) {
   const groupRef = useRef<THREE.Group>(null);
   const piecesRef = useRef<any[]>([]);
   
-  // Load all car part GLBs
-  const loadedParts = useMemo(() => {
-    const parts: any[] = [];
+  // Load Model 3 GLB
+  const { scene } = useGLTF('/models/model3.glb');
+  
+  // Extract and organize all meshes/groups into explodable pieces
+  const pieces = useMemo(() => {
+    const extracted: any[] = [];
     
-    CAR_PARTS.forEach((partDef, i) => {
-      try {
-        const gltf = useGLTF(partDef.file);
-        const clone = gltf.scene.clone();
+    scene.traverse((node: any) => {
+      // Split by individual meshes or groups with meshes
+      if (node.isMesh || (node.isGroup && node.children.some((c: any) => c.isMesh))) {
+        const bounds = new THREE.Box3().setFromObject(node);
+        if (bounds.isEmpty()) return; // Skip empty bounds
         
-        // Position and scale
-        clone.position.set(...(partDef.position as [number, number, number]));
-        clone.scale.setScalar(partDef.scale);
-        
-        // Calculate bounds
-        const bounds = new THREE.Box3().setFromObject(clone);
         const center = bounds.getCenter(new THREE.Vector3());
+        const system = detectSystem(node.name || 'unknown');
         
-        // Add metadata
-        clone.userData.part = partDef.part;
+        // Clone the node to avoid modifying the original
+        const clone = node.clone();
         clone.userData.originalPosition = clone.position.clone();
+        clone.userData.originalParent = node.parent;
+        clone.userData.system = system;
+        clone.userData.id = `${system}-${extracted.length}`;
         clone.userData.bounds = bounds;
         clone.userData.center = center;
-        clone.userData.id = `${partDef.part}-${i}`;
         
-        // Make all meshes selectable
-        clone.traverse((node: any) => {
-          if (node.isMesh) {
-            node.castShadow = true;
-            node.receiveShadow = true;
-            node.userData.part = partDef.part;
-            node.userData.pieceId = clone.userData.id;
+        // Enhance materials
+        clone.traverse((child: any) => {
+          if (child.isMesh) {
+            child.castShadow = true;
+            child.receiveShadow = true;
+            child.userData.system = system;
+            child.userData.pieceId = clone.userData.id;
             
-            // Improve materials
-            if (node.material) {
-              const mat = node.material.clone();
-              mat.metalness = 0.3;
-              mat.roughness = 0.7;
-              mat.envMapIntensity = 1.2;
-              node.material = mat;
+            if (child.material) {
+              const mat = child.material.clone();
+              mat.metalness = Math.min(mat.metalness + 0.2, 0.8);
+              mat.roughness = Math.max(mat.roughness - 0.1, 0.3);
+              mat.envMapIntensity = 1.5;
+              child.material = mat;
             }
           }
         });
         
-        parts.push({
+        extracted.push({
           object: clone,
-          part: partDef.part,
+          system,
           id: clone.userData.id,
           originalPosition: clone.position.clone(),
           bounds,
           center,
         });
-      } catch (e) {
-        console.warn(`Failed to load ${partDef.file}:`, e);
       }
     });
     
-    return parts;
-  }, []);
+    console.log(`Extracted ${extracted.length} explodable pieces from Model 3`);
+    return extracted;
+  }, [scene]);
   
   // Calculate explosion layout
   const layout = useMemo(() => {
-    if (!loadedParts.length) return [];
-    return calculateExplosionLayout(loadedParts);
-  }, [loadedParts]);
+    if (!pieces.length) return [];
+    return calculateExplosionLayout(pieces);
+  }, [pieces]);
   
   // Store pieces ref
   useEffect(() => {
-    piecesRef.current = loadedParts;
-  }, [loadedParts]);
+    piecesRef.current = pieces;
+  }, [pieces]);
   
   // Animate explosion
   useFrame(() => {
@@ -108,7 +124,7 @@ export default function CarModel({ explode, selectedPart, isolated, onSelectPart
     piecesRef.current.forEach((piece, i) => {
       const offset = layout[i] || new THREE.Vector3();
       const targetPos = piece.originalPosition.clone().add(
-        offset.clone().multiplyScalar(smoothAmount * 3)
+        offset.clone().multiplyScalar(smoothAmount * 4)
       );
       
       piece.object.position.lerp(targetPos, 0.15);
@@ -116,7 +132,7 @@ export default function CarModel({ explode, selectedPart, isolated, onSelectPart
       
       // Visibility based on selection/isolation
       if (isolated && selectedPart) {
-        piece.object.visible = piece.part === selectedPart;
+        piece.object.visible = piece.system === selectedPart;
       } else {
         piece.object.visible = true;
       }
@@ -124,13 +140,13 @@ export default function CarModel({ explode, selectedPart, isolated, onSelectPart
       // Highlight selected
       piece.object.traverse((node: any) => {
         if (node.isMesh && node.material) {
-          if (piece.part === selectedPart) {
+          if (piece.system === selectedPart) {
             node.material.emissive = new THREE.Color(0x3b82f6);
-            node.material.emissiveIntensity = 0.3;
-          } else if (selectedPart && piece.part !== selectedPart) {
+            node.material.emissiveIntensity = 0.4;
+          } else if (selectedPart && piece.system !== selectedPart) {
             node.material.emissive = new THREE.Color(0x000000);
             node.material.emissiveIntensity = 0;
-            node.material.opacity = 0.4;
+            node.material.opacity = 0.3;
             node.material.transparent = true;
           } else {
             node.material.emissive = new THREE.Color(0x000000);
@@ -146,39 +162,36 @@ export default function CarModel({ explode, selectedPart, isolated, onSelectPart
   // Handle clicks
   const handleClick = (event: any) => {
     event.stopPropagation();
-    const pieceId = event.object.userData.pieceId;
-    const part = event.object.userData.part;
-    if (part) {
-      onSelectPart(part === selectedPart ? null : part);
+    const system = event.object.userData.system;
+    if (system) {
+      onSelectPart(system === selectedPart ? null : system);
     }
   };
   
-  if (!loadedParts.length) {
+  if (!pieces.length) {
     return (
-      <group>
-        <mesh position={[0, 0, 0]}>
-          <boxGeometry args={[2, 1, 4]} />
-          <meshStandardMaterial color="#ff0000" />
-        </mesh>
-        <Html center>
-          <div style={{ background: 'rgba(0,0,0,0.8)', padding: '20px', borderRadius: '8px', color: 'white' }}>
-            Loading car model...
-          </div>
-        </Html>
-      </group>
+      <Html center>
+        <div style={{ 
+          background: 'rgba(0,0,0,0.9)', 
+          padding: '20px', 
+          borderRadius: '8px', 
+          color: 'white',
+          fontFamily: 'system-ui'
+        }}>
+          Loading Tesla Model 3...
+        </div>
+      </Html>
     );
   }
   
   return (
     <group ref={groupRef} onClick={handleClick}>
-      {loadedParts.map((piece, i) => (
+      {pieces.map((piece, i) => (
         <primitive key={i} object={piece.object} />
       ))}
     </group>
   );
 }
 
-// Preload all models
-CAR_PARTS.forEach(part => {
-  useGLTF.preload(part.file);
-});
+// Preload Model 3
+useGLTF.preload('/models/model3.glb');

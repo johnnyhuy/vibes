@@ -5,22 +5,31 @@ interface SidebarProps {
   onToggleIsolate: () => void;
 }
 
+// Tesla Model 3 2021 Long Range systems
 const parts = [
   { id: 'body', name: 'Body & Structure' },
-  { id: 'glass', name: 'Glass & Windows' },
-  { id: 'doors', name: 'Doors & Panels' },
-  { id: 'interior', name: 'Interior' },
-  { id: 'wheels', name: 'Wheels & Tires' },
-  { id: 'lights', name: 'Lighting' },
-  { id: 'trim', name: 'Trim & Details' },
+  { id: 'glass', name: 'Panoramic Glass' },
+  { id: 'doors', name: 'Doors & Closures' },
+  { id: 'interior', name: 'Passenger Cabin' },
+  { id: 'battery', name: 'Battery Pack (82 kWh)' },
+  { id: 'motors', name: 'Dual Motors (AWD)' },
+  { id: 'thermal', name: 'Thermal System' },
+  { id: 'suspension', name: 'Suspension' },
+  { id: 'wheels', name: 'Wheels & Brakes' },
+  { id: 'charging', name: 'Charging & HV' },
+  { id: 'electronics', name: 'Computers & 12V' },
+  { id: 'lights', name: 'Exterior Lighting' },
 ];
 
 export default function Sidebar({ selectedPart, onSelectPart, isolated, onToggleIsolate }: SidebarProps) {
   return (
     <aside className="sidebar">
       <div className="sidebar-header">
-        <h1>SEDAN</h1>
-        <p className="subtitle">Kenney Car Kit — CC0</p>
+        <h1>MODEL 3</h1>
+        <p className="subtitle">2021 Long Range</p>
+        <p className="subtitle" style={{ marginTop: '4px', fontSize: '9px', opacity: 0.5 }}>
+          Educational Unofficial
+        </p>
       </div>
       
       <div className="parts-list">
@@ -46,10 +55,9 @@ export default function Sidebar({ selectedPart, onSelectPart, isolated, onToggle
         </button>
         
         <p className="disclaimer">
-          Car model: Kenney Car Kit (CC0)<br />
-          <a href="https://kenney.nl/assets/car-kit" target="_blank" rel="noopener" style={{ color: '#3b82f6', textDecoration: 'none' }}>
-            kenney.nl/assets/car-kit
-          </a>
+          Model: David_Holiday (CC-BY-4.0)<br />
+          Unofficial educational recreation<br />
+          Not affiliated with Tesla, Inc.
         </p>
       </div>
     </aside>

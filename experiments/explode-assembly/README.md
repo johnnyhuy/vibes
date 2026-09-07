@@ -1,17 +1,18 @@
 # explode-assembly
 
-Interactive car exploded view demo — inspired by [@ashebytes' viral X posts](https://x.com/ashebytes/status/1831768826242351397) showing a Tesla Model X pulled apart into 334 modeled pieces.
+**Tesla Model 3 2021 Long Range** — Interactive exploded view demo inspired by [@ashebytes' viral X posts](https://x.com/ashebytes/status/1831768826242351397) showing a Model X pulled apart into 334 pieces.
 
 I rebuilt this after studying [ashemag/model-x-studio](https://github.com/ashemag/model-x-studio) to understand how they achieved that cinematic product explode effect.
 
 ## What I Built
 
-An interactive exploded assembly viewer using **React + Three.js (R3F) + real GLB meshes** (or procedural fallback):
+An interactive Tesla Model 3 exploded assembly viewer using **React + Three.js (R3F)**:
 
-- **Explosion slider** — Smoothly transition from assembled to exploded view
-- **Click to select** — Highlight and isolate individual parts or systems
-- **Multi-mesh support** — Works with any GLB that has separated parts
-- **Cinematic UI** — Dark, minimal interface matching automotive marketing sites
+- **Real Tesla Model 3 GLB** — David_Holiday's CC-BY-4.0 model from Sketchfab
+- **12 system groups** — Body, glass, doors, cabin, battery (82 kWh), dual motors (AWD), thermal, suspension, wheels, charging, computers, lighting
+- **Explosion slider** — Smoothly transition from assembled to exploded view (0-100%)
+- **Click to select** — Highlight and isolate individual systems
+- **Dark cinematic UI** — Automotive marketing aesthetic with studio lighting
 - **Explosion layout algorithm** — Based on ashemag's approach (2D grid packing, projection)
 
 ## Run It
@@ -24,7 +25,7 @@ npm run dev
 
 Open http://localhost:5173
 
-**Model**: Uses **Kenney Car Kit** (CC0) — sedan body + individual wheels assembled programmatically. See [ATTRIBUTION.md](./ATTRIBUTION.md) for details.
+**Model**: Tesla Model 3 by David_Holiday (CC-BY-4.0). See [ATTRIBUTION.md](./ATTRIBUTION.md) for full details.
 
 ## How ashemag Did It
 
@@ -84,37 +85,32 @@ Stack:
 
 ashemag uses this same stack + shadcn for UI components + Vinext/Vercel for deployment.
 
-## Current Model: Kenney Car Kit
+## Model Source: Tesla Model 3
 
-This demo uses the **Kenney Car Kit** (CC0 Public Domain):
-- **Sedan body** (`sedan.glb`) — Main car model
-- **Wheels** (`wheel-default.glb` × 4) — Positioned programmatically
-- **Source**: https://kenney.nl/assets/car-kit
-- **License**: CC0 — free for any use, no attribution required (but appreciated!)
+This demo uses a **Tesla Model 3** GLB:
+- **Model**: Tesla Model 3
+- **Author**: David_Holiday
+- **License**: CC Attribution 4.0 International (CC-BY-4.0)
+- **Source**: https://sketchfab.com/3d-models/tesla-model-3-123c10f376ec4f18b93c73afc382808b
+- **Downloaded via**: https://github.com/pakagronglb/tesla-3d-showcase
+- **File**: `model3.glb` (289 KB)
 
-The Car Kit includes 40+ low-poly vehicles (sedans, trucks, ambulances, etc.) + separate wheels + debris parts. All optimized for real-time rendering.
+**Attribution (required by CC-BY-4.0)**:
+> "Tesla Model 3" by David_Holiday is licensed under CC Attribution 4.0 International
 
-### Why Kenney vs. ashemag's 334-piece Model X?
+### How It Works
 
-ashemag's [viral Model X demo](https://x.com/ashebytes/status/1831768826242351397) uses a custom multi-mesh GLB with 334 separate pieces — each door panel, headlight, bolt, etc. is a distinct mesh island. That level of granularity requires:
-1. A pre-split model from BlendKit/Sketchfab (often paywalled or requires manual download)
-2. OR manually splitting a car mesh in Blender (tedious for 100+ parts)
+The code loads the single `model3.glb` file and:
+1. **Traverses all meshes/groups** in the scene graph
+2. **Detects systems** by mesh/node names (body, glass, doors, wheels, etc.)
+3. **Creates explodable pieces** — each mesh becomes a selectable part
+4. **Maps to 12 system groups** — Body, Glass, Doors, Cabin, Battery, Dual Motors, Thermal, Suspension, Wheels, Charging, Computers, Lighting
 
-For an open-source demo with **no download barriers**, Kenney's CC0 kit is ideal:
-- Direct download, no auth required
-- Clean low-poly meshes
-- Separate wheels that can be positioned/exploded independently
-- 5 pieces (body + 4 wheels) → enough to demonstrate the explosion algorithm
+This approach works with any GLB — the denser the mesh separation, the better the explode effect.
 
-### Getting a 334-piece style exploded view
+### vs. ashemag's 334-piece Model X
 
-If you want the full ashemag experience:
-1. Download [WolfGames36's separated cars](https://sketchfab.com/3d-models/chrysler-c300-improved-bd1143b6e5f34f419c636c05fdaa6664) (CC-BY, Sketchfab account required)
-2. OR get [BlendKit Model X](https://www.blendkit.com/asset-gallery-detail/983e8f94-5a56-44a4-94d9-eed5e4cdcd6c/) (Royalty Free, account required)
-3. Replace `public/models/sedan.glb` with your multi-mesh car
-4. Update `CarModel.tsx` to enumerate all mesh children instead of loading separate GLB files
-
-See [ATTRIBUTION.md](./ATTRIBUTION.md) for full details on sourcing multi-part cars.
+ashemag's [viral demo](https://x.com/ashebytes/status/1831768826242351397) uses BlendKit's Model X with 334 pre-split mesh islands. This Model 3 has fewer separated parts but demonstrates the same algorithm with a freely available CC-BY model.
 
 ## Code Structure
 

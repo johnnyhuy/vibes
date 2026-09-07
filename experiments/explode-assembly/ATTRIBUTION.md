@@ -15,66 +15,56 @@ This exploded view demo is inspired by ashemag's viral X/Twitter posts and open-
 1. **Multi-mesh GLB structure** — The trick is having a 3D model split into many separate mesh islands (100s of pieces), not a single merged mesh
 2. **Explosion layout** — Project each mesh's bounding box onto a 2D plane, pack into a grid, calculate translation vectors
 3. **Smooth transitions** — Lerp between assembled (original position) and exploded (grid position) based on slider value
-4. **Part metadata** — Use `userData.component` and `userData.part` in GLB to organize pieces into systems
+4. **Part metadata** — Use `userData` properties to organize pieces into systems
 5. **Raycasting for selection** — Three.js raycaster for click-to-select pieces
 
 This implementation follows those patterns while using different models and styling.
 
-## 3D Model Sources
+## 3D Model Source
 
-### Current Demo: Kenney Car Kit
-- **Model**: Sedan + wheels from [Kenney Car Kit](https://kenney.nl/assets/car-kit)
-- **License**: CC0 1.0 Universal (Public Domain)
-- **Source**: https://kenney.nl/assets/car-kit
-- **Creator**: Kenney (kenney.nl)
-- **Format**: GLB (glTF Binary)
-- **Attribution**: Not required by license, but appreciated (credit "Kenney.nl" or "www.kenney.nl")
+### Tesla Model 3
 
-The Car Kit includes 40+ low-poly vehicle models with separate wheels and debris parts. This demo uses:
-- `sedan.glb` — Main car body
-- `wheel-default.glb` × 4 — Individual wheels positioned programmatically
-- All models are optimized for real-time rendering and work in game engines (Unity, Unreal, Godot, etc.)
+- **Model**: Tesla Model 3
+- **Author**: David_Holiday
+- **License**: CC Attribution 4.0 International (CC-BY-4.0)
+- **Source**: https://sketchfab.com/3d-models/tesla-model-3-123c10f376ec4f18b93c73afc382808b
+- **Downloaded via**: https://github.com/pakagronglb/tesla-3d-showcase (MIT licensed repo with proper attribution)
+- **File**: `model3_scene.glb` (289 KB)
 
-### Recommended CC-BY Sources
+**Attribution Required (CC-BY-4.0)**:
+> "Tesla Model 3" by David_Holiday is licensed under CC Attribution 4.0 International
+> https://sketchfab.com/3d-models/tesla-model-3-123c10f376ec4f18b93c73afc382808b
 
-1. **WolfGames36 on Sketchfab** (CC-BY, separated parts)
-   - [CHRYSLER C300 IMPROVED](https://sketchfab.com/3d-models/chrysler-c300-improved-bd1143b6e5f34f419c636c05fdaa6664)
-   - [FORD MUSTANG IMPROVED](https://sketchfab.com/3d-models/ford-mustang--improved-88775b874f094f9eb946d198cf851786)
-   - [CHALLENGER SRT](https://sketchfab.com/3d-models/challenger-srt-36e48dc32e6442f3bd2885801070557d)
-   - These models have separated meshes (windows, doors, hood, wheels, lights, etc.)
-   
-2. **BlendKit Royalty Free** (Commercial use allowed, attribution required)
-   - [Model X by cgi Moon](https://www.blendkit.com/asset-gallery-detail/983e8f94-5a56-44a4-94d9-eed5e4cdcd6c/) (used by ashemag)
-   - Requires BlendKit account and manual download
+**Also Used By**:
+- pakagronglb/tesla-3d-showcase — Interactive Model 3 showcase (MIT repo)
+- This demo — Exploded view educational recreation
 
-### How to Add Your Own Model
+### Disclaimer
 
-1. Download a multi-part car GLB from Sketchfab (CC-BY) or BlendKit (Royalty Free)
-2. Place it at `public/models/car.glb`
-3. Optionally add `userData.part` metadata to meshes in Blender:
-   ```python
-   # In Blender Python console
-   obj = bpy.context.object
-   obj["part"] = "body"  # or "wheels", "doors", etc.
-   ```
-4. The app will automatically load and explode it
+This is an **unofficial educational recreation** of Tesla Model 3 architecture. Not affiliated with, endorsed by, or connected to Tesla, Inc.
+
+All mesh organization and system mapping (body, glass, doors, battery, motors, etc.) is inferred from the 3D model structure and publicly available Tesla specifications. This is a learning tool to demonstrate explosion layout algorithms, not an official Tesla parts catalog.
 
 ## License Notes
 
 - **This code**: MIT License (see LICENSE in repo root)
-- **ashemag's code patterns**: Referenced for educational purposes, not copied verbatim
-- **3D models**: Subject to their own licenses (CC-BY, Royalty Free, etc.) — always attribute the original creator
-- **BlendKit Royalty Free**: Allows use in apps; do NOT resell models as asset packs
-- **Sketchfab CC-BY**: Requires attribution; check individual model licenses
+- **ashemag's code patterns**: Referenced for educational purposes, explosion algorithm implementation
+- **Tesla Model 3 3D model**: CC-BY-4.0 by David_Holiday — attribution required, modifications allowed
+- **pakagronglb/tesla-3d-showcase**: MIT license (repo that hosts the GLB with proper attribution)
 
-## Attribution Requirements
+## Required Attribution
 
-If you use WolfGames36's models, include:
-> 3D model "[Model Name]" by WolfGames36, improved version of original by [Original Creator], licensed under CC-BY 4.0
+When using this demo or the Model 3 GLB:
 
-If you use BlendKit models, include:
-> 3D model by [Artist Name] on BlendKit, used under BlendKit Royalty Free license
+```
+"Tesla Model 3" 3D model by David_Holiday
+Licensed under CC Attribution 4.0 International (CC-BY-4.0)
+Source: https://sketchfab.com/3d-models/tesla-model-3-123c10f376ec4f18b93c73afc382808b
+
+Explosion layout patterns inspired by ashemag/model-x-studio
+Code: MIT License
+```
 
 ---
 
-Built by Johnny Huynh • Inspired by @ashebytes' viral exploded car demos • Educational/research only — not production code
+Built by Johnny Huynh • Inspired by @ashebytes' viral exploded car demos • Educational/research only — not production code • Not affiliated with Tesla, Inc.
