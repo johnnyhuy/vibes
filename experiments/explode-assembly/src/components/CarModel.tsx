@@ -12,23 +12,24 @@ interface CarModelProps {
 }
 
 // System mapping for Tesla Model 3 2021 Long Range
+// Includes French Sketchfab names: capot (hood), cal (caliper), phare (headlight), etc.
 const SYSTEM_KEYWORDS: Record<string, string[]> = {
-  body: ['body', 'chassis', 'frame', 'structure', 'hood', 'trunk', 'fender', 'bumper', 'panel'],
-  glass: ['glass', 'window', 'windshield', 'roof'],
-  doors: ['door', 'handle'],
-  interior: ['seat', 'dashboard', 'console', 'interior', 'steering'],
-  battery: ['battery', 'pack', 'cell'],
-  motors: ['motor', 'drive', 'powertrain'],
+  body: ['body', 'chassis', 'frame', 'structure', 'hood', 'trunk', 'fender', 'bumper', 'panel', 'capot', 'paint'],
+  glass: ['glass', 'window', 'windshield', 'roof', 'vitre'],
+  doors: ['door', 'handle', 'porte'],
+  interior: ['seat', 'dashboard', 'console', 'interior', 'steering', 'int', 'cabin'],
+  battery: ['battery', 'pack', 'cell', 'batterie'],
+  motors: ['motor', 'drive', 'powertrain', 'moteur'],
   thermal: ['radiator', 'cooler', 'hvac', 'condenser'],
   suspension: ['suspension', 'spring', 'shock', 'strut', 'arm'],
-  wheels: ['wheel', 'tire', 'brake', 'rotor', 'caliper'],
+  wheels: ['wheel', 'tire', 'brake', 'rotor', 'caliper', 'cal', 'roue'],
   charging: ['charger', 'port', 'cable', 'connector'],
-  electronics: ['computer', 'ecu', 'battery_12v', 'wiring'],
-  lights: ['light', 'lamp', 'headlight', 'taillight', 'fog'],
+  electronics: ['computer', 'ecu', 'battery_12v', 'wiring', 'plastic'],
+  lights: ['light', 'lamp', 'headlight', 'taillight', 'fog', 'phare', 'led'],
 };
 
-// Whitelist-only approach: include ONLY meshes that match car system keywords
-// or are named car roots. Everything else is excluded by default (props, unnamed Object_*, etc.)
+// Include-by-default after GLB strip: trust that cleaned GLB only contains car parts
+// Only exclude known props (in case strip didn't run) and container nodes
 function shouldIncludeMesh(name: string): boolean {
   if (!name || name.length === 0) {
     return false; // Skip unnamed meshes
@@ -36,38 +37,39 @@ function shouldIncludeMesh(name: string): boolean {
   
   const lowerName = name.toLowerCase();
   
-  // Explicitly exclude known props/scene objects that survived GLB stripping
-  // Note: 'object_' removed - after GLB strip, many car parts are named Object_*
-  const EXCLUDE_KEYWORDS = [
-    'cylinder012', // traffic light stand (in case strip didn't run)
-    'debris_tires', 'debris_tire', // piled wheels
-    'walldeskse', 'speaker', // studio speakers  
-    'traffic', 'light_pole', 'sign', 'cone', 'barrier',
-    'table', 'chair', 'cactus', 'kayak', 'train',
-    'floor', 'wall', 'ceiling', 'room', 'ground_plane',
-    'picnic', 'bench', 'decoration', 'fence', 
-    'tire_stack', 'tire_prop', 'background', 'environment',
+  // Exclude container/root nodes that shouldn't be explodable pieces
+  // These are organizational groups, not renderable parts
+  const CONTAINER_NODES = [
+    'rootnode',
+    'tesla model 3.fbx',
+    'sketchfab_model',
+    'sketchfab_scene',
+    'scene',
+    'root',
   ];
   
-  if (EXCLUDE_KEYWORDS.some(kw => lowerName.includes(kw))) {
+  if (CONTAINER_NODES.some(container => lowerName === container)) {
     return false;
   }
   
-  // Whitelist: ONLY include if matches car system keywords
-  for (const keywords of Object.values(SYSTEM_KEYWORDS)) {
-    if (keywords.some(kw => lowerName.includes(kw))) {
-      return true;
-    }
+  // Exclude known props (safety net in case GLB strip didn't run)
+  const PROP_KEYWORDS = [
+    'cylinder012',      // traffic light stand
+    'debris_tires',     // piled wheels
+    'debris_tire',
+    'walldeskse',       // studio speakers
+    'speaker',
+    'traffic',
+    'light_pole',
+  ];
+  
+  if (PROP_KEYWORDS.some(kw => lowerName.includes(kw))) {
+    return false;
   }
   
-  // Whitelist: Known car root names
-  const CAR_ROOT_KEYWORDS = ['model3', 'tesla', 'car', 'vehicle'];
-  if (CAR_ROOT_KEYWORDS.some(kw => lowerName.includes(kw))) {
-    return true;
-  }
-  
-  // Default: EXCLUDE everything else (props, unnamed objects, scene nodes)
-  return false;
+  // After GLB strip + container/prop exclusions: include everything else
+  // This catches French names (Capot*, cal*, int) and generic Object_* car parts
+  return true;
 }
 
 function detectSystem(name: string): string {
