@@ -13,6 +13,7 @@ Thumbs attached on the 2026-09-08 agent pass (not copied from the source demos' 
 - `orb-onix-fresh.jpg` — [onix_react](https://x.com/onix_react/status/2096978661802975464) promo still (glass orb, preset rail, copy-code). Built: `experiments/nacre-loom/`. Notes: `docs/reverse-engineering/nacre-loom.md`. Feel only. The Pages URL 404s — do not scrape it.
 - `img2threejs-monster-tree-og.jpg` — [NickDevFE](https://x.com/NickDevFE/status/2096946586781692297) video thumb (moonlit woodland, rear-three-quarter, glowing path). Pattern only for `experiments/heartwood-warden`. Do not recreate Groot or copy their HUD.
 - `img2threejs-og-cover.png` — site OG at `https://img2threejs.io/og-cover.png` (“One photo in. A procedural model out.” / AWP | Medusa). Composition and lighting lockup only. Do not copy the wordmark, orange “procedural”, cube logo, or footer specs.
+- `clyde-conveyor-thumb.jpg` — [clydejuniordev](https://x.com/clydejuniordev/status/2097086770576011601) video thumb (round table, diners, conveyor). Built: `experiments/moon-dumpling-relay/`. Notes: `docs/reverse-engineering/moon-dumpling-relay.md`. Pattern only. Do not copy their source, cats, sushi brand, or Pokémon framing.
 
 If a checkout is missing the binaries, the same stills live on those posts.
 

@@ -22,6 +22,7 @@ Structured decisions about the monorepo's technical architecture:
 - [ADR-0012: Procedural Wood Biplane Over a Reference GLB](./adr/0012-procedural-wood-biplane.md) — Amber Longeron; canvas grain, no Jenny GLB
 - [ADR-0013: Lobed Glass Vessel and an Invented Nacre Film](./adr/0013-nacre-loom-lobed-glass.md) — Nacre Loom; transmission shell + weaves, no generator clone
 - [ADR-0014: Playable Procedural Showcase over a Mesh-Provider Client](./adr/0014-heartwood-warden-procedural-showcase.md) — Heartwood Warden; walkable glade, not another image-to-3d client
+- [ADR-0015: A Procedural Party-Game Slice, Invented Theme](./adr/0015-procedural-party-game-slice.md) — Moon Dumpling Relay; moon-gate table, no sushi-paws fork
 
 ### Reverse Engineering
 
@@ -41,6 +42,7 @@ Clean-room notes from studying public projects:
 - [Vintage Wooden Biplane Lane-Dodge](./reverse-engineering/amber-longeron.md) — Built: Amber Longeron / Kiln Run (`experiments/amber-longeron/`)
 - [Interactive WebGL Orb Generator](./reverse-engineering/nacre-loom.md) — Built: Nacre Loom / 珠络 (`experiments/nacre-loom/`). Site was 404; still + copy only.
 - [img2threejs monster-tree showcase](./reverse-engineering/heartwood-warden.md) — Built: Heartwood Warden / 心木守 (`experiments/heartwood-warden/`). Clean-room; no Groot / no factory paste.
+- [Procedural Conveyor Party Game](./reverse-engineering/moon-dumpling-relay.md) — Built: Moon Dumpling Relay / 月饺接力 (`experiments/moon-dumpling-relay/`). README claims only; no source clone.
 - [NeuralKinetics Video-Shader Hero Pattern](./reverse-engineering/neuralkinetics-video-shader-hero.md) — Poster-first video/shader pipeline, organic motion, reduced-motion handling
 - [Procedural Runtime Geometry Pattern](./reverse-engineering/procedural-runtime-geometry.md) — Steam Atlas mechanical assembly, runtime CSG, parametric parts
 - [Visual Quality Bar](./visual-quality-bar.md) — Cinematic product demo aesthetic (dark UI, frosted glass, studio lighting)
@@ -69,7 +71,7 @@ Things that went sideways and what I learnt:
 
 - [Preview stills](./visual-qa/README.md) — refresh `docs/previews/<app>.png` on ship / redeploy
 - [2026-09-07: Hill-Climb Visual QA Loop](./visual-qa-2026-09-07.md) — Explode mesh filter hardening, earth/v8 confirmation
-- [2026-09-08: Production visual QA](./visual-qa-2026-09-08-prod.md) — explode / steam / glass / tower LIVE; semicircle still `25587f54`; scroll 404. Audio-gadget linked, not live. Wind Lea + Amber Longeron + Nacre Loom + Heartwood Warden local; no new project.
+- [2026-09-08: Production visual QA](./visual-qa-2026-09-08-prod.md) — explode / steam / glass / tower LIVE; semicircle still `25587f54`; scroll 404. Audio-gadget linked, not live. Wind Lea + Amber Longeron + Nacre Loom + Heartwood Warden + Moon Dumpling Relay local; no new project.
 
 ## Writing Style
 
