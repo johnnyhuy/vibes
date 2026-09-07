@@ -1,0 +1,43 @@
+# Node
+node_modules/
+dist/
+.vite/
+package-lock.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+
+# CAD artifacts (regenerate via script)
+*.stl
+*.step
+*.stp
+*.glb
+*.obj
+*.fbx
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+
+# Environment
+.env
+.env.local
+.env.*.local
