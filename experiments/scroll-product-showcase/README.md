@@ -55,7 +55,7 @@ npm run build
 Vercel project: **`vibes-scroll-product`** (`prj_XLBiIlbjweejp9himT53bolPEMUW`)  
 Dashboard **Root Directory** (required): **`experiments/scroll-product-showcase`**
 
-`vercel.json` cannot set Root Directory. **0 production** — alias still `DEPLOYMENT_NOT_FOUND`. Sibling-folder commits are skipped here (`ignoreCommand` / `ignored-build-step`), so this README touch is what lets the next post-quota `main` merge actually build this Root. First production after ~**2026-09-08 12:55 UTC**. Do not retry-spam from the agent.
+`vercel.json` cannot set Root Directory. **Still no READY production** — one CANCELED hook only. Sibling-folder commits are skipped here (`ignoreCommand` / `ignored-build-step`), so this courtyard-pass README touch is what lets the next post-quota `main` merge actually build this Root. First production after ~**2026-09-08 12:55 UTC**. Do not retry-spam from the agent.
 
 ## What I Learnt
 

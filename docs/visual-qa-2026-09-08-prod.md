@@ -2,7 +2,32 @@
 
 Quota still resets ~**2026-09-08 12:55 UTC**. I am **not** redeploying on this hill-climb.
 
-## Latest — ~2:22–2:33am AEST (supersedes the morning explode FAIL)
+## Latest — ~4:37am AEST headed production QA
+
+Stills named `hill-climb/prod-*-20260908-0425.png` (I did not open those binaries this pass; I am trusting the headed report). Quota still ~12:55 UTC. I am **not** redeploying.
+
+| Surface | Verdict | Notes |
+| --- | --- | --- |
+| [vibes-steam-atlas.vercel.app](https://vibes-steam-atlas.vercel.app) | **PASS** | Assembled locomotive, Assembled / 0% / All. `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS` on `a94b16e`. Skip after quota. |
+| [vibes-blender-semicircle.vercel.app](https://vibes-blender-semicircle.vercel.app) | **FAIL** | Still cropped mega-arc (thin vertical ring on black). Production still stale `25587f54`. |
+| [vibes-glass-capability-brain.vercel.app](https://vibes-glass-capability-brain.vercel.app/) | **PASS** | Capability Map live. Skip. |
+| [vibes-explode.vercel.app](https://vibes-explode.vercel.app) @ 0% | **PASS** | Assembled Model 3, frosted UI. Skip. |
+| [vibes-scroll-product.vercel.app](https://vibes-scroll-product.vercel.app) | **404** | No READY production. |
+| [vibes-japanese-tower.vercel.app](https://vibes-japanese-tower.vercel.app) | **404** | Project exists, 0 deployments. |
+| ballance-roll / chinese-courtyard | **none** | No Vercel projects. Local only. |
+
+### Redeploy order after ~12:55 UTC
+
+One each. Stop.
+
+1. **Skip** `vibes-explode`
+2. **Skip** `vibes-steam-atlas` — LIVE PASS on `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS` unless a later check goes stale
+3. `vibes-blender-semicircle` — one `main` redeploy (replace `25587f54`)
+4. `vibes-scroll-product` — first READY production
+5. `vibes-japanese-tower` — first production
+6. Glass — **already live**. Do not create `vibes-ballance-roll` or a courtyard project.
+
+## Earlier — ~2:22–2:33am AEST (supersedes the morning explode FAIL)
 
 Stills: `prod-explode-0-20260908-0222.png`, `prod-explode-80-20260908-0222.png`.
 
@@ -11,7 +36,7 @@ Stills: `prod-explode-0-20260908-0222.png`, `prod-explode-80-20260908-0222.png`.
 | [vibes-explode.vercel.app](https://vibes-explode.vercel.app) @ 0% | **PASS** | Black studio, assembled Model 3, frosted **MODEL 3** UI |
 | same @ ~76% | **PASS** | Ordered gallery |
 | [vibes-blender-semicircle.vercel.app](https://vibes-blender-semicircle.vercel.app) | **FAIL** | Cropped mega-arc — thin blue curve on black. Production still commit `25587f54` |
-| steam-atlas production alias | **FAIL** | `404 DEPLOYMENT_NOT_FOUND`. Later `main` redeploy **CANCELED** `ignored-build-step` (tip only touched japanese-tower) |
+| steam-atlas production alias | **FAIL at 2:33am** | Then `404 DEPLOYMENT_NOT_FOUND`. Later `main` redeploy **CANCELED** `ignored-build-step`. **Superseded:** READY on `a94b16e` / `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS` (see Latest). |
 | scroll-product production alias | **FAIL** | `404 DEPLOYMENT_NOT_FOUND` |
 
 **explode production** is `dpl_ELE1f1XhqGQ7hciZSjkPVLMPmUh8` on `main` `de25d60`. Skip explode after quota unless it goes stale again.
@@ -25,11 +50,11 @@ Stills: `prod-explode-0-20260908-0222.png`, `prod-explode-80-20260908-0222.png`.
 One each. Stop.
 
 1. **Skip** `vibes-explode` — already fresh on `de25d60` unless a later check goes stale
-2. `vibes-blender-semicircle` — one `main` redeploy (replace `25587f54`)
-3. `vibes-steam-atlas` — **confirm** dashboard Root = `experiments/procedural-steam-atlas`, then first production from a commit that **touches this Root** (or dashboard Redeploy). A sibling-only `main` tip CANCELs with `ignored-build-step`.
-4. `vibes-scroll-product` — first production
-5. `vibes-japanese-tower` — first production (project exists; `deploy: false`)
-6. Glass — **already live**. Do not spend a slot. Do not create `vibes-ballance-roll`.
+2. **Skip** `vibes-steam-atlas` — LIVE PASS ~4:37am
+3. `vibes-blender-semicircle` — one `main` redeploy (replace `25587f54`)
+4. `vibes-scroll-product` — first READY production
+5. `vibes-japanese-tower` — first production (project exists; `deploy: false`; 0 deployments)
+6. Glass — **already live**. Do not spend a slot. Do not create `vibes-ballance-roll` or a courtyard project.
 
 Do not spam deploys.
 
@@ -109,7 +134,8 @@ No locomotive. No production HTML. Matches `live: false` on `prj_7D08PT8sdUjhigC
 
 - No Vercel redeploy, no `vercel --prod`, no extra projects
 - No pause (400 on hobby)
-- No code change to explode/semicircle in this PR — explode prod is already `de25d60`; semicircle fix is on `main` and waiting
+- No `vibes-ballance-roll` or courtyard Vercel project
+- No code change to explode/semicircle — explode prod is already `de25d60`; semicircle fix is on `main` and waiting
 
 ## Redeploy order (after ~2026-09-08 12:55 UTC)
 
@@ -127,6 +153,7 @@ See the **Latest** table at the top. Explode is skipped. Semicircle is first.
 ---
 
 **Morning capture**: 2026-09-08 ~12:07–12:29 AEST  
-**Latest QA**: 2026-09-08 ~2:22–2:33am AEST  
+**2:22am QA**: explode PASS; semicircle FAIL `25587f54`  
+**Courtyard-pass QA**: steam **LIVE PASS** ~4:37am AEST (`a94b16e` / `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS`, assembled locomotive)  
 **Author**: Johnny Huynh  
-**Action**: Wait for quota. Skip explode. Then semicircle → steam-atlas → scroll-product → glass. No more.
+**Action**: Wait for quota. Skip explode and steam. Semicircle first real job. Then scroll → tower. No ballance or courtyard project.

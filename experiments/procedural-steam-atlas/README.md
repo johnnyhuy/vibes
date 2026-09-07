@@ -26,11 +26,11 @@ Open http://localhost:5173 → drag to orbit, scroll to zoom, use controls to ex
 ## Deploy
 
 Vercel project: **`vibes-steam-atlas`** (`prj_7D08PT8sdUjhigCEuz83oltZrDMv`)  
-Root Directory: **`experiments/procedural-steam-atlas`** — **set this in the dashboard before any post-quota deploy.** Do not use the repo root.
+Root Directory: **`experiments/procedural-steam-atlas`**. Keep it. Do not use the repo root.
 
 `vercel.json` here sets Vite + `ignoreCommand`. It cannot set Root Directory. `create_git_project` reuse (`deploy: false`) also **does not write Root**. Pause API returned **400** on hobby — I cannot pause this project to stop fan-out.
 
-No successful **production** deploy yet — alias still `404 DEPLOYMENT_NOT_FOUND`. A `create_git_project` redeploy of `main` came back **CANCELED** (`errorLink` `ignored-build-step`): the latest `main` commit only touched `japanese-tower`, so this folder’s `ignoreCommand` correctly skipped and never wrote a production alias. After quota (~2026-09-08 12:55 UTC): confirm Root in the dashboard, then merge a commit that **touches this Root** (this README) or use a dashboard Redeploy that bypasses ignore. Don’t spam retries from the agent.
+Production **LIVE PASS** ~4:37am AEST on `main` `a94b16e` / `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS`. Alias [vibes-steam-atlas.vercel.app](https://vibes-steam-atlas.vercel.app) shows the assembled locomotive (Assembled / 0% / All). Skip after quota unless a later visual QA fails. Don’t spam retries from the agent. This README sentence keeps the Root in the next merge diff.
 
 See [docs/incidents/2026-09-08-steam-atlas-wrong-root.md](../../docs/incidents/2026-09-08-steam-atlas-wrong-root.md).
 
@@ -177,6 +177,6 @@ For now, this proves the pattern: **pure TypeScript geometry functions can creat
 
 ---
 
-**Status**: Linked, **0 production** (`DEPLOYMENT_NOT_FOUND` / last main redeploy CANCELED `ignored-build-step`)  
+**Status**: Linked, production **LIVE PASS** `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS` on `a94b16e`  
 **Last updated**: 2026-09-08  
 **Built by**: Johnny Huynh · kitchen sink · research and education only — not production code
