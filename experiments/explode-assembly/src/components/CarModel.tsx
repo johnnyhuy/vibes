@@ -1,5 +1,5 @@
-import { useRef, useEffect, useMemo } from 'react';
-import { useGLTF, Html } from '@react-three/drei';
+import { useRef, useMemo } from 'react';
+import { useGLTF } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { calculateExplosionLayout } from '../utils/explosion';
@@ -11,8 +11,7 @@ interface CarModelProps {
   onSelectPart: (part: string | null) => void;
 }
 
-// System mapping for Tesla Model 3 2021 Long Range
-// Includes French Sketchfab names: capot (hood), cal (caliper), phare (headlight), etc.
+// System mapping with French Sketchfab names
 const SYSTEM_KEYWORDS: Record<string, string[]> = {
   body: ['body', 'chassis', 'frame', 'structure', 'hood', 'trunk', 'fender', 'bumper', 'panel', 'capot', 'paint'],
   glass: ['glass', 'window', 'windshield', 'roof', 'vitre'],
@@ -28,57 +27,6 @@ const SYSTEM_KEYWORDS: Record<string, string[]> = {
   lights: ['light', 'lamp', 'headlight', 'taillight', 'fog', 'phare', 'led'],
 };
 
-// Include-by-default after GLB strip: trust that cleaned GLB only contains car parts
-// Only exclude known props (in case strip didn't run) and container nodes
-function shouldIncludeMesh(name: string): boolean {
-  if (!name || name.length === 0) {
-    return false; // Skip unnamed meshes
-  }
-  
-  const lowerName = name.toLowerCase();
-  
-  // Exclude container/root nodes that shouldn't be explodable pieces
-  // These are organizational groups, not renderable parts
-  const CONTAINER_NODES = [
-    'rootnode',
-    'tesla model 3.fbx',
-    'sketchfab_model',
-    'sketchfab_scene',
-    'scene',
-    'root',
-  ];
-  
-  if (CONTAINER_NODES.some(container => lowerName === container)) {
-    return false;
-  }
-  
-  // Exclude known props + environment meshes (safety net in case GLB strip didn't run)
-  const PROP_KEYWORDS = [
-    'cylinder012',      // traffic light stand
-    'debris_tires',     // piled wheels
-    'debris_tire',
-    'walldeskse',       // studio speakers
-    'speaker',
-    'traffic',
-    'light_pole',
-    'plane',            // room floor/wall planes
-    'floor',
-    'wall',
-    'room',
-    'ground',
-    'background',
-    'environment',
-  ];
-  
-  if (PROP_KEYWORDS.some(kw => lowerName.includes(kw))) {
-    return false;
-  }
-  
-  // After GLB strip + container/prop exclusions: include everything else
-  // This catches French names (Capot*, cal*, int) and generic Object_* car parts
-  return true;
-}
-
 function detectSystem(name: string): string {
   const lowerName = name.toLowerCase();
   for (const [system, keywords] of Object.entries(SYSTEM_KEYWORDS)) {
@@ -89,124 +37,154 @@ function detectSystem(name: string): string {
   return 'body';
 }
 
+// Check if mesh is a known prop (not car part)
+function isProp(name: string): boolean {
+  if (!name) return false;
+  const lower = name.toLowerCase();
+  
+  const PROP_KEYWORDS = [
+    'cylinder012', 'debris_tires', 'debris_tire',
+    'walldeskse', 'speaker', 'traffic', 'light_pole',
+    'plane', 'floor', 'wall', 'room', 'ground',
+    'background', 'environment', 'scene',
+  ];
+  
+  return PROP_KEYWORDS.some(kw => lower.includes(kw));
+}
+
+// Check if node is a container (not renderable)
+function isContainer(name: string): boolean {
+  if (!name) return false;
+  const lower = name.toLowerCase();
+  
+  const CONTAINERS = [
+    'rootnode', 'tesla model 3.fbx', 'sketchfab_model',
+    'sketchfab_scene', 'scene', 'root',
+  ];
+  
+  return CONTAINERS.some(c => lower === c);
+}
+
+interface Piece {
+  node: THREE.Mesh;
+  home: THREE.Vector3;
+  bounds: THREE.Box3;
+  center: THREE.Vector3;
+  system: string;
+  id: string;
+}
+
 export default function CarModel({ explode, selectedPart, isolated, onSelectPart }: CarModelProps) {
-  const groupRef = useRef<THREE.Group>(null);
-  const piecesRef = useRef<any[]>([]);
+  const explodeRootRef = useRef<THREE.Group>(null);
   
   // Load Model 3 GLB
   const { scene } = useGLTF('/models/model3.glb');
   
-  // Extract and organize all meshes/groups into explodable pieces
-  const pieces = useMemo(() => {
-    const extracted: any[] = [];
-    const excluded: string[] = [];
+  // Setup explosion structure using attach() pattern (ashemag approach)
+  const { explodeRoot, pieces } = useMemo(() => {
+    console.log('=== SETTING UP EXPLODE STRUCTURE (ATTACH PATTERN) ===');
     
-    scene.traverse((node: any) => {
-      // Only process actual Mesh nodes (not Groups or Object3D containers)
-      // Groups can cause clone/reparent issues
-      if (!node.isMesh) {
-        return;
+    // Clone the entire scene once
+    const model = scene.clone(true);
+    model.updateMatrixWorld(true);
+    
+    // Remove known prop nodes from the cloned graph
+    const propsRemoved: string[] = [];
+    model.traverse((node: any) => {
+      if (isProp(node.name) || isContainer(node.name)) {
+        if (node.parent && node.name) {
+          propsRemoved.push(node.name);
+          node.parent.remove(node);
+        }
       }
-      
-      // Filter out non-car meshes (props, scene objects)
-      if (!shouldIncludeMesh(node.name || '')) {
-        if (node.name) excluded.push(node.name);
-        return;
+    });
+    
+    // Create explode root group
+    const explodeRoot = new THREE.Group();
+    explodeRoot.name = 'ExplodeRoot';
+    
+    // Collect all mesh nodes
+    const meshes: THREE.Mesh[] = [];
+    model.traverse((obj: any) => {
+      if (obj.isMesh) {
+        meshes.push(obj as THREE.Mesh);
       }
+    });
+    
+    console.log(`Found ${meshes.length} meshes after removing ${propsRemoved.length} props`);
+    
+    // Attach meshes to explode root (preserves world transform)
+    const pieces: Piece[] = [];
+    for (const mesh of meshes) {
+      // Skip if somehow a prop survived
+      if (isProp(mesh.name)) continue;
       
-      const bounds = new THREE.Box3().setFromObject(node);
-      if (bounds.isEmpty()) return; // Skip empty bounds
+      // CRITICAL: attach() preserves world matrix while reparenting
+      explodeRoot.attach(mesh);
       
+      // Now mesh.position is local to explodeRoot, with world transform preserved
+      const home = mesh.position.clone();
+      
+      const bounds = new THREE.Box3().setFromObject(mesh);
       const center = bounds.getCenter(new THREE.Vector3());
-      const system = detectSystem(node.name || 'unknown');
+      const system = detectSystem(mesh.name || 'unknown');
       
-      // Preserve world transforms BEFORE cloning
-      // This ensures assembled car stays assembled at explode=0
-      const worldPosition = new THREE.Vector3();
-      const worldQuaternion = new THREE.Quaternion();
-      const worldScale = new THREE.Vector3();
-      node.getWorldPosition(worldPosition);
-      node.getWorldQuaternion(worldQuaternion);
-      node.getWorldScale(worldScale);
-      
-      // Clone the node
-      const clone = node.clone();
-      
-      // Apply world transforms to clone (detached from hierarchy)
-      clone.position.copy(worldPosition);
-      clone.quaternion.copy(worldQuaternion);
-      clone.scale.copy(worldScale);
-      
-      // Store for explosion animation
-      clone.userData.originalPosition = worldPosition.clone();
-      clone.userData.originalQuaternion = worldQuaternion.clone();
-      clone.userData.originalScale = worldScale.clone();
-      clone.userData.originalParent = node.parent;
-      clone.userData.system = system;
-      clone.userData.id = `${system}-${extracted.length}`;
-      clone.userData.bounds = bounds;
-      clone.userData.center = center;
-      
-      // Enhance materials (with error handling)
-      try {
-        clone.traverse((child: any) => {
-          if (child.isMesh) {
-            child.castShadow = true;
-            child.receiveShadow = true;
-            child.userData.system = system;
-            child.userData.pieceId = clone.userData.id;
-            
-            if (child.material) {
-              // Handle both single material and material arrays (multi-material meshes)
-              if (Array.isArray(child.material)) {
-                child.material = child.material.map((mat: any) => {
-                  const cloned = mat.clone();
-                  cloned.metalness = Math.min(cloned.metalness + 0.2, 0.8);
-                  cloned.roughness = Math.max(cloned.roughness - 0.1, 0.3);
-                  cloned.envMapIntensity = 1.5;
-                  return cloned;
-                });
-              } else {
-                const mat = child.material.clone();
-                mat.metalness = Math.min(mat.metalness + 0.2, 0.8);
-                mat.roughness = Math.max(mat.roughness - 0.1, 0.3);
-                mat.envMapIntensity = 1.5;
-                child.material = mat;
-              }
+      // Force materials opaque and enhance
+      mesh.traverse((child: any) => {
+        if (child.isMesh && child.material) {
+          try {
+            if (Array.isArray(child.material)) {
+              child.material = child.material.map((mat: any) => {
+                const m = mat.clone();
+                m.transparent = false;
+                m.opacity = 1;
+                m.metalness = Math.min(m.metalness + 0.2, 0.8);
+                m.roughness = Math.max(m.roughness - 0.1, 0.3);
+                m.envMapIntensity = 1.5;
+                return m;
+              });
+            } else {
+              const mat = child.material.clone();
+              mat.transparent = false;
+              mat.opacity = 1;
+              mat.metalness = Math.min(mat.metalness + 0.2, 0.8);
+              mat.roughness = Math.max(mat.roughness - 0.1, 0.3);
+              mat.envMapIntensity = 1.5;
+              child.material = mat;
             }
+          } catch (err) {
+            console.error(`Material clone error for ${mesh.name}:`, err);
           }
-        });
-      } catch (err) {
-        console.error(`Failed to enhance materials for ${node.name}:`, err);
-        // Continue without material enhancement if it fails
-      }
+        }
+        
+        if (child.isMesh) {
+          child.castShadow = true;
+          child.receiveShadow = true;
+        }
+      });
       
-      extracted.push({
-        object: clone,
-        system,
-        id: clone.userData.id,
-        originalPosition: worldPosition.clone(),  // Use world position
+      pieces.push({
+        node: mesh,
+        home,
         bounds,
         center,
+        system,
+        id: `${system}-${pieces.length}`,
       });
-    });  // end of scene.traverse
-    
-    console.log('=== MODEL 3 EXTRACTION SUMMARY ===');
-    console.log(`Extracted: ${extracted.length} pieces`);
-    console.log(`Excluded: ${excluded.length} meshes`);
-    if (extracted.length > 0) {
-      console.log('Sample extracted:', extracted.slice(0, 5).map(p => p.id));
-    }
-    if (excluded.length > 0) {
-      console.log('Sample excluded:', excluded.slice(0, 10));
     }
     
-    if (extracted.length === 0) {
-      console.error('⚠️ WARNING: Zero pieces extracted! This will cause blank canvas.');
-      console.error('Check that model3.glb contains meshes and filter logic is correct.');
+    console.log(`Extracted ${pieces.length} pieces for explosion`);
+    console.log('Sample pieces:', pieces.slice(0, 5).map(p => ({
+      name: p.node.name,
+      system: p.system,
+      home: p.home.toArray().map(v => v.toFixed(2)),
+    })));
+    
+    if (pieces.length === 0) {
+      console.error('⚠️ WARNING: Zero pieces extracted!');
     }
     
-    return extracted;
+    return { explodeRoot, pieces };
   }, [scene]);
   
   // Calculate explosion layout
@@ -215,56 +193,64 @@ export default function CarModel({ explode, selectedPart, isolated, onSelectPart
     return calculateExplosionLayout(pieces);
   }, [pieces]);
   
-  // Store pieces ref
-  useEffect(() => {
-    piecesRef.current = pieces;
-  }, [pieces]);
-  
-  // Animate explosion
+  // Animate explosion (mutate live nodes, don't clone)
   useFrame(() => {
-    if (!groupRef.current || !piecesRef.current.length) return;
+    if (!explodeRootRef.current || !pieces.length) return;
     
     const explosionAmount = explode / 100;
-    const smoothAmount = THREE.MathUtils.lerp(
-      piecesRef.current[0]?._lastAmount || 0,
-      explosionAmount,
-      0.1
-    );
     
-    piecesRef.current.forEach((piece, i) => {
+    pieces.forEach((piece, i) => {
       const offset = layout[i] || new THREE.Vector3();
-      const targetPos = piece.originalPosition.clone().add(
-        offset.clone().multiplyScalar(smoothAmount * 2.5)
-      );
       
-      piece.object.position.lerp(targetPos, 0.15);
-      piece._lastAmount = smoothAmount;
+      // Mutate the live node's position (ashemag pattern)
+      // position = home + (offset * explosionAmount * multiplier)
+      piece.node.position.copy(piece.home).addScaledVector(offset, explosionAmount * 2.5);
       
       // Visibility based on selection/isolation
       if (isolated && selectedPart) {
-        piece.object.visible = piece.system === selectedPart;
+        piece.node.visible = piece.system === selectedPart;
       } else {
-        piece.object.visible = true;
+        piece.node.visible = true;
       }
       
-      // Highlight selected
-      piece.object.traverse((node: any) => {
-        if (node.isMesh && node.material) {
-          if (piece.system === selectedPart) {
-            node.material.emissive = new THREE.Color(0x3b82f6);
-            node.material.emissiveIntensity = 0.4;
-            node.material.opacity = 1;
-            node.material.transparent = false;
-          } else if (selectedPart && piece.system !== selectedPart && explosionAmount > 0.05) {
-            node.material.emissive = new THREE.Color(0x000000);
-            node.material.emissiveIntensity = 0;
-            node.material.opacity = 0.3;
-            node.material.transparent = true;
+      // Highlight selected (only when exploding to avoid ghost at 0%)
+      piece.node.traverse((child: any) => {
+        if (child.isMesh && child.material) {
+          const isSelected = piece.system === selectedPart;
+          const isOther = selectedPart && piece.system !== selectedPart;
+          
+          if (Array.isArray(child.material)) {
+            child.material.forEach((mat: any) => {
+              if (isSelected) {
+                mat.emissive = new THREE.Color(0x3b82f6);
+                mat.emissiveIntensity = 0.4;
+              } else if (isOther && explosionAmount > 0.05) {
+                mat.emissive = new THREE.Color(0x000000);
+                mat.emissiveIntensity = 0;
+                mat.opacity = 0.3;
+                mat.transparent = true;
+              } else {
+                mat.emissive = new THREE.Color(0x000000);
+                mat.emissiveIntensity = 0;
+                mat.opacity = 1;
+                mat.transparent = false;
+              }
+            });
           } else {
-            node.material.emissive = new THREE.Color(0x000000);
-            node.material.emissiveIntensity = 0;
-            node.material.opacity = 1;
-            node.material.transparent = false;
+            if (isSelected) {
+              child.material.emissive = new THREE.Color(0x3b82f6);
+              child.material.emissiveIntensity = 0.4;
+            } else if (isOther && explosionAmount > 0.05) {
+              child.material.emissive = new THREE.Color(0x000000);
+              child.material.emissiveIntensity = 0;
+              child.material.opacity = 0.3;
+              child.material.transparent = true;
+            } else {
+              child.material.emissive = new THREE.Color(0x000000);
+              child.material.emissiveIntensity = 0;
+              child.material.opacity = 1;
+              child.material.transparent = false;
+            }
           }
         }
       });
@@ -274,60 +260,38 @@ export default function CarModel({ explode, selectedPart, isolated, onSelectPart
   // Handle clicks
   const handleClick = (event: any) => {
     event.stopPropagation();
-    const system = event.object.userData.system;
-    if (system) {
-      onSelectPart(system === selectedPart ? null : system);
+    
+    // Find which piece was clicked
+    let clickedSystem: string | null = null;
+    for (const piece of pieces) {
+      if (event.object === piece.node || piece.node.children.includes(event.object)) {
+        clickedSystem = piece.system;
+        break;
+      }
+    }
+    
+    if (clickedSystem) {
+      onSelectPart(clickedSystem === selectedPart ? null : clickedSystem);
     }
   };
   
   if (!pieces.length) {
     return (
-      <Html center>
-        <div style={{ 
-          background: 'rgba(40,0,0,0.95)', 
-          padding: '30px', 
-          borderRadius: '8px', 
-          color: '#ffaaaa',
-          fontFamily: 'monospace',
-          fontSize: '14px',
-          maxWidth: '500px',
-          border: '2px solid #ff4444',
-        }}>
-          <div style={{ fontSize: '20px', marginBottom: '15px', color: '#ff6666' }}>
-            ⚠️ Zero Pieces Extracted
-          </div>
-          <div style={{ marginBottom: '10px' }}>
-            The filter excluded all meshes from model3.glb.
-          </div>
-          <div style={{ fontSize: '12px', color: '#aaa' }}>
-            Check browser console for extraction details.
-          </div>
-          <button
-            onClick={() => window.location.reload()}
-            style={{
-              marginTop: '15px',
-              padding: '10px 20px',
-              background: '#ff4444',
-              color: '#fff',
-              border: 'none',
-              borderRadius: '4px',
-              cursor: 'pointer',
-              fontFamily: 'monospace',
-            }}
-          >
-            Reload
-          </button>
-        </div>
-      </Html>
+      <group>
+        <mesh position={[0, 2, 0]}>
+          <boxGeometry args={[2, 0.5, 0.1]} />
+          <meshBasicMaterial color="#ff4444" />
+        </mesh>
+      </group>
     );
   }
   
   return (
-    <group ref={groupRef} onClick={handleClick}>
-      {pieces.map((piece, i) => (
-        <primitive key={i} object={piece.object} />
-      ))}
-    </group>
+    <primitive
+      ref={explodeRootRef}
+      object={explodeRoot}
+      onClick={handleClick}
+    />
   );
 }
 
