@@ -132,7 +132,7 @@ npm run build
 1. **Wait ~24h** for quota to reset, then:
    - Trigger manual redeploy for `vibes-explode` (via Vercel dashboard "Redeploy")
    - Set Root Directory for `vibes-steam-atlas` → auto-deploys
-   - Merge PR #10 → auto-deploys `vibes-scroll-product` (if created)
+   - One deploy of `vibes-scroll-product` (project already created; #10 is on `main`)
 
 2. **Run `vercel dev` locally** to simulate production environment:
    ```bash
