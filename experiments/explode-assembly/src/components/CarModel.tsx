@@ -27,6 +27,38 @@ const SYSTEM_KEYWORDS: Record<string, string[]> = {
   lights: ['light', 'lamp', 'headlight', 'taillight', 'fog'],
 };
 
+// Props/scene objects to exclude (not part of the car)
+const EXCLUDE_KEYWORDS = [
+  'traffic', 'light_pole', 'pole', 'sign', 'cone', 'barrier',
+  'speaker', 'table', 'chair', 'cactus', 'kayak', 'train',
+  'floor', 'wall', 'ceiling', 'room', 'ground_plane', 'plane',
+  'picnic', 'bench', 'prop', 'decoration', 'fence', 
+  'tire_stack', 'tire_prop', 'background', 'environment',
+  'light_001', 'light_002', 'light_003', // scene lights
+];
+
+function shouldIncludeMesh(name: string): boolean {
+  const lowerName = name.toLowerCase();
+  
+  // Exclude known props/scene objects
+  if (EXCLUDE_KEYWORDS.some(kw => lowerName.includes(kw))) {
+    return false;
+  }
+  
+  // Include if it matches car systems
+  for (const keywords of Object.values(SYSTEM_KEYWORDS)) {
+    if (keywords.some(kw => lowerName.includes(kw))) {
+      return true;
+    }
+  }
+  
+  // Include generic mesh names (likely part of car)
+  // but exclude if name contains excluded keywords
+  return !lowerName.includes('scene') && 
+         !lowerName.includes('root') &&
+         lowerName.length > 0;
+}
+
 function detectSystem(name: string): string {
   const lowerName = name.toLowerCase();
   for (const [system, keywords] of Object.entries(SYSTEM_KEYWORDS)) {
@@ -47,8 +79,15 @@ export default function CarModel({ explode, selectedPart, isolated, onSelectPart
   // Extract and organize all meshes/groups into explodable pieces
   const pieces = useMemo(() => {
     const extracted: any[] = [];
+    const excluded: string[] = [];
     
     scene.traverse((node: any) => {
+      // Filter out non-car meshes (props, scene objects)
+      if (!shouldIncludeMesh(node.name || '')) {
+        if (node.name) excluded.push(node.name);
+        return;
+      }
+      
       // Split by individual meshes or groups with meshes
       if (node.isMesh || (node.isGroup && node.children.some((c: any) => c.isMesh))) {
         const bounds = new THREE.Box3().setFromObject(node);
@@ -96,6 +135,7 @@ export default function CarModel({ explode, selectedPart, isolated, onSelectPart
     });
     
     console.log(`Extracted ${extracted.length} explodable pieces from Model 3`);
+    console.log(`Excluded ${excluded.length} non-car meshes:`, excluded.slice(0, 10));
     return extracted;
   }, [scene]);
   
