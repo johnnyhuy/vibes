@@ -1,114 +1,171 @@
 # explode-assembly
 
-**Tesla Model 3 2021 Long Range** — Exploded view recreation. Inspired by that [viral X post](https://x.com/ashebytes/status/1831768826242351397) showing a Model X pulled apart into 334 modeled pieces.
+Interactive car exploded view demo — inspired by [@ashebytes' viral X posts](https://x.com/ashebytes/status/1831768826242351397) showing a Tesla Model X pulled apart into 334 modeled pieces.
 
-I built this as an educational recreation of the 2021 Model 3 Long Range architecture. This is an **unofficial project** — not affiliated with Tesla, Inc.
+I rebuilt this after studying [ashemag/model-x-studio](https://github.com/ashemag/model-x-studio) to understand how they achieved that cinematic product explode effect.
 
-## What I Made
+## What I Built
 
-An interactive exploded assembly viewer showing the 2021 Model 3 LR with accurate system groups:
+An interactive exploded assembly viewer using **React + Three.js (R3F) + real GLB meshes** (or procedural fallback):
 
-- **12 system groups** — Body, glass roof, doors, cabin, battery pack (82 kWh structural), dual motors (AWD), thermal (heat pump), suspension, wheels & brakes, charging & HV, computers, lighting
-- **~80 individual parts** — Enough density to feel like a real product explode (not just 5 blobs)
-- **Explode slider** — Smoothly transition from assembled Model 3 to fully exploded
-- **Part details** — Click components to see real 2021 LR specs (kWh, kW, dual motor config, HW3, etc.)
-- **System isolation** — Highlight entire systems (e.g., show only battery pack)
-- **Cinematic UI** — Dark, minimal interface matching Tesla's aesthetic
+- **Explosion slider** — Smoothly transition from assembled to exploded view
+- **Click to select** — Highlight and isolate individual parts or systems
+- **Multi-mesh support** — Works with any GLB that has separated parts
+- **Cinematic UI** — Dark, minimal interface matching automotive marketing sites
+- **Explosion layout algorithm** — Based on ashemag's approach (2D grid packing, projection)
 
-## Running It
+## Run It
 
 ```bash
+cd experiments/explode-assembly
 npm install
 npm run dev
 ```
 
-Open in browser → drag to orbit, slide to explode, click parts for details.
+Open http://localhost:5173
 
-## Disclaimer
+**Note**: The default demo uses procedural geometry (colored boxes) as a fallback. To see a real car explode, add a multi-part GLB at `public/models/car.glb` — see [ATTRIBUTION.md](./ATTRIBUTION.md) for CC-BY sources.
 
-This is an **unofficial educational recreation** of the 2021 Tesla Model 3 Long Range architecture using publicly available specifications. Not affiliated with, endorsed by, or connected to Tesla, Inc.
+## How ashemag Did It
 
-All technical specifications are sourced from:
-- Official Tesla specs (tesla.com archives)
-- EPA filings
-- Teardown reports (Munro Live, etc.)
-- Owner's manual data
+After studying their code, here's the pattern:
 
-No proprietary CAD data, OEM meshes, or Sketchfab assets were used.
+### 1. Multi-Mesh GLB (The Key Trick)
+
+**NOT** a single merged car mesh. Instead:
+- 100s of separate mesh islands in one GLB file
+- Each mesh is a selectable "piece" (door panel, headlight, wheel bolt, etc.)
+- ashemag's Model X has **334 pieces**
+
+You can create this by:
+- Finding a car model with separated parts (WolfGames36 on Sketchfab)
+- OR manually splitting a model in Blender (select faces → Separate → By Loose Parts)
+- OR using BlendKit Royalty Free models (like cgi Moon's Model X used by ashemag)
+
+### 2. Explosion Layout Algorithm
+
+```
+For each mesh piece:
+  1. Calculate 3D bounding box
+  2. Project onto 2D viewing plane (right/up vectors)
+  3. Pack into grid layout (like bin packing)
+  4. Calculate translation vector from center to grid slot
+
+On slider change:
+  - Lerp each piece from originalPosition to (originalPosition + translation * sliderValue)
+```
+
+See `src/utils/explosion.ts` for my implementation (based on ashemag's `explosion-layout.ts`).
+
+### 3. Part Metadata & Organization
+
+Optional but useful — add `userData` to meshes in Blender:
+
+```python
+# In Blender Python console
+for obj in bpy.context.selected_objects:
+    obj["part"] = "body"  # or "wheels", "doors", etc.
+    obj["component"] = "front-left-door"  # unique ID
+```
+
+This lets you group pieces into systems (body, wheels, battery, etc.) for the sidebar.
+
+### 4. React + R3F + Three.js
+
+Stack:
+- **React** — UI state (explode slider, selected part, isolated view)
+- **@react-three/fiber** — Declarative Three.js in React
+- **@react-three/drei** — Helpers (OrbitControls, Environment, etc.)
+- **Three.js** — GLTFLoader, raycaster, mesh manipulation
+
+ashemag uses this same stack + shadcn for UI components + Vinext/Vercel for deployment.
+
+## Getting a Multi-Part Car GLB
+
+### Option A: WolfGames36 on Sketchfab (CC-BY, Free)
+
+1. Go to [CHRYSLER C300 IMPROVED](https://sketchfab.com/3d-models/chrysler-c300-improved-bd1143b6e5f34f419c636c05fdaa6664) (or [Ford Mustang](https://sketchfab.com/3d-models/ford-mustang--improved-88775b874f094f9eb946d198cf851786), [Challenger](https://sketchfab.com/3d-models/challenger-srt-36e48dc32e6442f3bd2885801070557d))
+2. Click "Download 3D Model" → select GLB format
+3. Save to `public/models/car.glb`
+4. Add attribution in your docs (see [ATTRIBUTION.md](./ATTRIBUTION.md))
+
+These models have separated meshes (windows, doors, hood, wheels, lights, etc.) — perfect for exploded views.
+
+### Option B: BlendKit Royalty Free (Paid/Free, Commercial OK)
+
+1. Create account at [blendkit.com](https://www.blendkit.com/)
+2. Download [Model X by cgi Moon](https://www.blendkit.com/asset-gallery-detail/983e8f94-5a56-44a4-94d9-eed5e4cdcd6c/) (same one ashemag used)
+3. Export as GLB from Blender
+4. Save to `public/models/car.glb`
+5. Add BlendKit attribution
+
+### Option C: Split Your Own Model
+
+If you have a single-mesh car:
+
+1. Open in Blender
+2. Select all faces → Mesh → Separate → By Loose Parts
+3. Or manually select regions → P → Separate Selection
+4. File → Export → glTF 2.0 (.glb)
+
+## Code Structure
+
+```
+src/
+├── main.tsx              # React entry point
+├── App.tsx               # Main app container
+├── components/
+│   ├── Scene.tsx         # R3F Canvas + lights + camera
+│   ├── CarModel.tsx      # GLB loader + explosion animation
+│   ├── Sidebar.tsx       # Parts list + isolation controls
+│   └── Controls.tsx      # Explode slider
+├── utils/
+│   └── explosion.ts      # Grid packing algorithm (ashemag pattern)
+└── styles.css            # Dark UI styling
+```
 
 ## Why I Built This
 
-After seeing that viral Model X explode demo, I wanted to understand the underlying structure. This is my learning experiment for:
+After seeing those viral Tesla explode demos, I wanted to understand the underlying tech. This is my learning experiment for:
 
-1. **Procedural assembly layouts** — How to position components hierarchically
-2. **Explode animations** — Calculating offset vectors for dramatic separation
-3. **Interactive annotation** — Connecting 3D objects to UI panels
-4. **Technical aesthetics** — Making engineering data look elegant
+1. **Multi-mesh 3D asset workflows** — How to structure GLBs for interactive exploded views
+2. **Spatial algorithms** — 2D packing, projection, translation vectors
+3. **R3F architecture** — Integrating Three.js with React
+4. **Product visualization UX** — Sliders, isolation, selection, cinematic cameras
 
-## Technical Details
-
-### 2021 Model 3 Long Range Specs
-
-- **Dual Motor AWD**: Front induction + rear permanent magnet (combined 346 hp / 258 kW)
-- **Battery**: Structural pack, ~82 kWh usable, NCA/NMC cells, 4416 cells
-- **Range**: ~353 miles EPA (2021)
-- **Charging**: 250 kW DC peak (CCS), 11.5 kW AC onboard
-- **Thermal**: Heat pump system (2021+ refresh with Octovalve)
-- **Computers**: AMD Ryzen MCU, FSD Computer HW3.0
-- **Suspension**: Double wishbone front, multi-link rear
-
-### The Code
-
-**Procedural Model 3 shape**: ~80 boxes positioned to match fastback sedan proportions (~4.7m long, ~1.85m wide, ~2.88m wheelbase scaled to viewport).
-
-**System grouping**: 12 systems with 4-10 parts each for density.
-
-**Explode offsets**: Each part has a vector defining where it moves when exploded.
-
-**Real specs**: Detail cards show actual 2021 LR specifications.
-
-## Using Your Own Model 3 GLB
-
-If you have a licensed Model 3 mesh (from Sketchfab, TurboSquid, or your own work), you can load it:
-
-```
-http://localhost:5173/?model=https://example.com/model3.glb
-```
-
-Or add a file input UI. The code will attempt to map mesh names to systems automatically (looks for keywords like "battery", "motor", "door", etc. in mesh names).
-
-## How AI Agents Could Generate This
-
-An agent given "explode view of a 2021 Model 3 Long Range" could:
-
-1. **Research architecture** — LLM fetches public specs, EPA data, teardown reports
-2. **Generate part manifest** — Outputs JSON with system groups, part names, positions, specs
-3. **Calculate layout** — Model 3 proportions (fastback sedan, ~2.88m wheelbase) → procedural geometry
-4. **Create explode offsets** — Push parts outward along assembly axes
-5. **Style the scene** — Tesla aesthetic (dark UI, cinematic lighting, clean typography)
+An AI agent could generate this by:
+1. Researching ashemag's approach (GitHub code, X threads, docs)
+2. Finding/downloading CC-BY multi-part car GLB from Sketchfab
+3. Implementing explosion layout algorithm
+4. Creating React + R3F UI with proper controls
+5. Adding proper attribution
 
 I hand-coded this, but the structure shows what's automatable.
 
 ## Differences from ai-3d-lanes/web-3d
 
-**explode-assembly (Model 3)**: Specific product recreation, real specs, automotive marketing aesthetic, density (~80 parts)
+**explode-assembly**: 
+- Real GLB loading (or procedural fallback)
+- React + R3F architecture
+- ashemag's explosion algorithm
+- Product marketing aesthetic
 
-**web-3d lane**: Generic motor assembly, educational cutaway, fewer parts
+**web-3d lane**: 
+- Vanilla Three.js
+- Generic motor assembly
+- Educational cutaway scene
+- Simpler approach
 
-Both use Three.js + Vite, but this one targets product visualisation fidelity.
+Both valid, different use cases.
 
-## What's Next
+## Sources & Attribution
 
-- Add animation timeline (auto-rotate through systems)
-- Generate parts from CAD files instead of boxes
-- Connect to real product databases
-- Export to video for marketing
+- **Code inspiration**: [ashemag/model-x-studio](https://github.com/ashemag/model-x-studio) — explosion layout, React+R3F patterns
+- **3D models**: See [ATTRIBUTION.md](./ATTRIBUTION.md) for CC-BY and Royalty Free sources
+- **Stack**: React, @react-three/fiber, @react-three/drei, Three.js, Vite
 
-## Sources
+Built by Johnny Huynh • This is my kitchen sink • Research and education only — not production code
 
-- [Tesla Model 3 Specs (2021)](https://www.tesla.com/model3) (archived)
-- EPA certification data
-- [Munro Live teardown reports](https://www.youtube.com/c/MunroLive)
-- Owner's manual technical specifications
+---
 
-This is my kitchen sink. Research and education only — not production code. Not affiliated with Tesla, Inc.
+**Disclaimer**: This is an independent educational project. Not affiliated with Tesla, ashemag, WolfGames36, or BlendKit. All 3D models are subject to their own licenses — always attribute creators.

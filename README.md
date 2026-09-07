@@ -9,15 +9,17 @@ I'm Johnny Huynh, and this monorepo is where I learn by building. Each experimen
 ### Interactive 3D Demos
 
 #### [explode-assembly](./experiments/explode-assembly/)
-**Tesla Model 3 2021 Long Range** exploded view recreation. Inspired by the viral AI 3D product explode demos on X.
+Interactive car exploded view demo — ashemag-style with real GLB support. Inspired by [this X post](https://x.com/ashebytes/status/1831768826242351397).
 
-**What it is**: Educational recreation of Model 3 LR architecture. System groups, dual motor AWD layout, structural battery pack, cinematic UI. Unofficial — not affiliated with Tesla.
+**What it is**: React + R3F + Three.js exploded assembly viewer. Multi-mesh GLB loader with explosion layout algorithm (2D grid packing like ashemag's). Includes procedural fallback when no GLB present. Load your own CC-BY car at `/models/car.glb`.
 
 **Run it**:
 ```bash
 cd experiments/explode-assembly
 npm install && npm run dev
 ```
+
+**How to get a multi-part car**: Download CC-BY models from WolfGames36 on Sketchfab or BlendKit Royalty Free. See README for instructions.
 
 ---
 
