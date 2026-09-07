@@ -32,7 +32,15 @@ A sphere GLB or a scraped preset pack would look borrowed. Hobby Vercel quota is
 
 **Why**: Clean-room. I want “state → look,” not an orb library. Tide Film is a horizontal nacre belt because that is the *pattern* the still teaches, named and mixed by me.
 
-### 3. Snippet export is generated, not theirs
+### 3. Custom GLSL film + physical glass + bloom
+
+**Chosen**: Interior weaves and a fresnel rim are my GLSL. The shell stays `MeshPhysicalMaterial` (transmission / IOR / thickness). A light `@react-three/postprocessing` Bloom sits on the canvas so the belt reads as glow, not a flat band.
+
+**Rejected**: Scraping their shader. A full-screen raymarch. Cloning their left thumbnail rail.
+
+**Why**: The still’s hero is glass + bloom + a horizontal colour wave. I wanted that *read* with code I can stand behind. The postprocessing Bloom is a stock pass, not their repo.
+
+### 4. Snippet export is generated, not theirs
 
 **Chosen**: `buildLoomSnippet()` writes a JSON loom config and a short `nacreFilm()` GLSL helper from the live dyes.
 
@@ -40,7 +48,7 @@ A sphere GLB or a scraped preset pack would look borrowed. Hobby Vercel quota is
 
 **Why**: The brief asked for a copy affordance. The payload has to be something I can stand behind.
 
-### 4. No Vercel project this pass
+### 5. No Vercel project this pass
 
 **Chosen**: `vercel.json` with `framework: vite`, `outputDirectory: dist`, `ignoreCommand`. No `create_git_project`.
 
@@ -60,7 +68,8 @@ A sphere GLB or a scraped preset pack would look borrowed. Hobby Vercel quota is
 
 1. Additive film is not a true volume
 2. `onBeforeCompile` is brittle across three minors
-3. Local QA only until a project exists
+3. Bloom can wash a low-contrast capture
+4. Local QA only until a project exists
 
 ## Alternatives considered
 

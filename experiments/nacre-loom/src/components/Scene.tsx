@@ -1,6 +1,7 @@
 import { useLayoutEffect, useRef } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
+import { Bloom, EffectComposer } from '@react-three/postprocessing';
 import { ACESFilmicToneMapping, PCFSoftShadowMap, Vector3 } from 'three';
 import type { LoomState, StageId } from '../recipes';
 import Kiln from './Kiln';
@@ -75,6 +76,14 @@ export default function Scene({ loom, stage, orbiting, reducedMotion }: Props) {
         autoRotate={orbiting && !reducedMotion}
         autoRotateSpeed={0.38}
       />
+      <EffectComposer disableNormalPass>
+        <Bloom
+          luminanceThreshold={0.28}
+          luminanceSmoothing={0.38}
+          intensity={0.9}
+          mipmapBlur
+        />
+      </EffectComposer>
     </Canvas>
   );
 }

@@ -48,11 +48,12 @@ export function buildLoomSnippet(state: LoomState): string {
   const glsl = `// Nacre Loom film — invented for vibes, not a third-party clone
 vec3 nacreFilm(vec3 p, vec3 n, vec3 v, float t) {
   float fres = pow(1.0 - max(dot(n, v), 0.0), 2.2);
+  float along = 0.5 + 0.5 * sin(atan(p.z, p.x) * 1.7 + t * 0.85);
   vec3 a = ${hexToVec3(state.filmA)};
   vec3 b = ${hexToVec3(state.filmB)};
   vec3 c = ${hexToVec3(state.filmC)};
-  vec3 film = mix(a, b, 0.5 + 0.5 * sin(p.y * 8.0 + t + fres * 3.0));
-  return mix(film, c, fres);
+  vec3 film = mix(a, b, along);
+  return mix(film, c, smoothstep(0.42, 0.95, along) + fres * 0.35);
 }`;
 
   return `/* Nacre Loom / 珠络 — vibes · nacre-loom */

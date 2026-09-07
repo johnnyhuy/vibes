@@ -5,7 +5,7 @@ I built this after reading [@onix_react](https://x.com/onix_react/status/2096978
 ## What I built
 
 - **A lobed glass vessel** — icosahedron shell with three moving attractors. Not a perfect catalogue sphere. `MeshPhysicalMaterial` transmission, IOR, thickness, roughness, clearcoat.
-- **A nacre film** — my own thin-film shader (belt, coil, bloom, wake, veil, seed). Additive interior, not their preset names.
+- **A nacre film** — my own thin-film shader (belt, coil, bloom, wake, veil, seed) plus a fresnel rim and a modest bloom pass. Additive interior. Not their preset names.
 - **Recipes I mixed** — Tide Film, Pearl Drift, Brine Glass, Copper Wake, Ink Nacre, Cinder Milk. Chips, not a thumbnail grid.
 - **Loom desk** — dyes, speed / amplitude, lobe morph, glass knobs. Well is the close look; Kiln shows the other mixes on a ring.
 - **Copy loom snippet** — generated JSON + a short GLSL film helper that is mine.

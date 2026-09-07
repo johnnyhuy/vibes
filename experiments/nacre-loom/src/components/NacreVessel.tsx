@@ -1,7 +1,14 @@
 import { useLayoutEffect, useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { AdditiveBlending, Color } from 'three';
-import { injectLobe, nacreFragment, nacreVertex, type LobeUniforms } from '../nacreShader';
+import {
+  injectLobe,
+  nacreFragment,
+  nacreVertex,
+  rimFragment,
+  rimVertex,
+  type LobeUniforms,
+} from '../nacreShader';
 import { weaveIndex, type LoomState } from '../recipes';
 
 interface Props {
@@ -111,6 +118,18 @@ export default function NacreVessel({
           uniforms={filmUniforms}
           vertexShader={nacreVertex}
           fragmentShader={nacreFragment}
+          transparent
+          depthWrite={false}
+          blending={AdditiveBlending}
+          toneMapped={false}
+        />
+      </mesh>
+      <mesh>
+        <icosahedronGeometry args={[1.045, 5]} />
+        <shaderMaterial
+          uniforms={filmUniforms}
+          vertexShader={rimVertex}
+          fragmentShader={rimFragment}
           transparent
           depthWrite={false}
           blending={AdditiveBlending}

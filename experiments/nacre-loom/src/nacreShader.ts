@@ -84,9 +84,9 @@ export const nacreFragment = /* glsl */ `
   varying vec3 vView;
 
   float belt(vec3 p, float t) {
-    float wave = 0.12 * sin(p.x * 6.4 + t * 1.4) + 0.08 * sin(p.z * 4.6 - t);
-    float band = 1.0 - smoothstep(0.05, 0.32 * uAmp + 0.16, abs(p.y - wave));
-    return band * band;
+    float wave = 0.14 * sin(p.x * 5.6 + t * 1.55) + 0.09 * sin(p.z * 4.2 - t * 1.1);
+    float band = 1.0 - smoothstep(0.04, 0.28 * uAmp + 0.2, abs(p.y - wave));
+    return pow(band, 1.35);
   }
 
   float coil(vec3 p, float t) {
@@ -134,9 +134,43 @@ export const nacreFragment = /* glsl */ `
     float fres = pow(1.0 - ndv, 2.35);
     float clock = uTime * mix(uSpeed, 0.0, uReduced);
     float mask = weaveMask(vPos, clock);
-    vec3 film = mix(uFilmA, uFilmB, 0.5 + 0.5 * sin(vPos.y * 8.4 + clock + fres * 3.2));
-    film = mix(film, uFilmC, fres);
-    float glow = mask * (0.85 + 1.1 * fres) + fres * 0.32;
-    gl_FragColor = vec4(film * glow * 2.6, clamp(glow, 0.1, 1.0));
+    float along = 0.5 + 0.5 * sin(atan(vPos.z, vPos.x) * 1.7 + clock * 0.85);
+    vec3 film = mix(uFilmA, uFilmB, along);
+    film = mix(film, uFilmC, smoothstep(0.42, 0.95, along));
+    film = mix(film, uFilmC, fres * 0.35);
+    float glow = mask * (1.15 + 0.85 * fres) + fres * 0.22;
+    gl_FragColor = vec4(film * glow * 2.9, clamp(glow, 0.08, 1.0));
+  }
+`;
+
+export const rimVertex = /* glsl */ `
+  uniform float uTime;
+  uniform float uMorph;
+  uniform float uSpeed;
+  uniform float uAmp;
+  ${LOBE_GLSL}
+
+  varying vec3 vNormalW;
+  varying vec3 vView;
+
+  void main() {
+    vec3 displaced = lobeDisplace(position, uTime, uMorph, uSpeed, uAmp);
+    vec4 world = modelMatrix * vec4(displaced, 1.0);
+    vNormalW = normalize(mat3(modelMatrix) * normalize(displaced));
+    vView = cameraPosition - world.xyz;
+    gl_Position = projectionMatrix * viewMatrix * world;
+  }
+`;
+
+export const rimFragment = /* glsl */ `
+  varying vec3 vNormalW;
+  varying vec3 vView;
+
+  void main() {
+    vec3 n = normalize(vNormalW);
+    vec3 v = normalize(vView);
+    float fres = pow(1.0 - max(dot(n, v), 0.0), 2.85);
+    vec3 rim = vec3(0.82, 0.94, 1.0);
+    gl_FragColor = vec4(rim * fres * 2.15, fres);
   }
 `;
