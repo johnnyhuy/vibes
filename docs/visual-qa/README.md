@@ -2,22 +2,22 @@
 
 Hill-climb and production visual QA should keep the root README honest.
 
-## Preview stills
+## Showcase previews
 
-When an app **ships** or **redeploys**, refresh:
+The root README is a **showcase**. Prefer a short looping GIF:
 
 ```text
-docs/previews/<app>.png
+docs/previews/<app>.gif
 ```
 
-`<app>` is the experiment folder name (`explode-assembly`, `procedural-steam-atlas`, …).
+`<app>` is the experiment folder name (`explode-assembly`, `procedural-steam-atlas`, …). Semicircle uses `blender-semicircle.gif`.
 
-- Prefer a **LIVE / production PASS** frame over a 404 page.
-- Do **not** put stale or FAIL frames in the README Preview column. Record those in Status (and here) only.
+- Capture locally (`npm run build` + `npm run preview`, or `npm run dev`) with a few seconds of meaningful motion (slider, explode, orbit, scroll).
+- Aim for ~2–4s, ~640px wide, optimised (`ffmpeg` + `gifsicle` when available).
+- A still (`docs/previews/<app>.png`) is a temporary fallback if a GIF is impractical — do not leave a 404 page as the hero. `scroll-product-showcase` currently uses a still (`MeshPhysicalMaterial` transmission did not composite in the capture environment).
 - Extra angles (explode ordered gallery, etc.) can sit beside the hero as `docs/previews/<app>-gallery.png`.
-- Local-only apps (no Vercel project) may use a local `npm run build` + `npm run preview` still, and Status must say **local-only**.
 
-The apps table in the [root README](../../README.md) embeds these files.
+The apps table in the [root README](../../README.md) embeds the GIFs. Ops status lives in [deployment notes](../deployment/), not in the showcase table.
 
 ## Logs
 
