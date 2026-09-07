@@ -1,6 +1,8 @@
 # Design sweep — frosted HUD / cinematic studio
 
-Hill-climb pass against the X.com clean-room refs. I changed **experiment UI, lighting, and camera** only. I did not scrape meshes, and I left the root README apps table alone (a sibling pass already rewrote it).
+Hill-climb pass against the X.com clean-room refs. I changed **experiment UI, lighting, and camera** only. I did not scrape meshes, and I left the root README apps table alone (PR #21 squash-merged with GIFs).
+
+Production stills Johnny attached after #21 (`readme-shots/`: explode, steam-atlas, glass-brain, earth, v8, physics, semicircle) are the **visual baseline**. Steam and physics read dark / low-contrast; semicircle prod is still the cropped XY sliver (`25587f54`). This branch is rebased onto `1e26ce5` (XZ arc + corner-fit) and keeps that framing.
 
 **No Vercel redeploy on this pass.** Hobby quota is still tight. Local `npm run build` + preview is the QA. Production stills in `docs/previews/` are **pre-sweep** until the next honest ship.
 
@@ -24,10 +26,10 @@ Highest-gap first:
 1. **earth-timeline** — bulky bottom card + solid play button → Astra-class layout: left editorial, thin tick timeline, frosted play pill, Earth offset with terminator lighting, camera pulled back.
 2. **v8-cutaway** — Courier slabs + muddy grid → Inter HUD, cycle chips, firing-order dots, glass dock, matte block / chrome crank, ring platform, FOV 36.
 3. **scroll-product-showcase** — already the closest read. Added lime frame, quiet nav, batch badge, pill CTAs, slightly wider hero camera. Still Aether, not TEPHRA.
-4. **procedural-steam-atlas** — opaque corner panel in a void → plaque + editorial + bottom glass dock, `#000` studio, key/fill/rim, illuminated ring.
-5. **blender-semicircle-viewer** — 3rem title fighting the arc → slim editorial chrome; bbox pad `1.32` → `1.42`; pure black.
+4. **procedural-steam-atlas** — opaque corner panel in a void → plaque + editorial + bottom glass dock, `#000` studio, key/fill/rim, illuminated ring. Follow-up vs prod still: lifted metal values, exposure, and rim so the boiler no longer disappears into black.
+5. **blender-semicircle-viewer** — slim editorial chrome on top of `1e26ce5` XZ horseshoe + above-front corner-fit (margin 1.14). Pure black studio. Prod still is stale cropped XY.
 6. **explode-assembly** — already the Model 3 studio. More transparent glass + selected-part overview card (right).
-7. **web-physics** — bulky left card → quiet kicker + kbd chips; black studio, pulled camera.
+7. **web-physics** — quiet kicker + kbd chips. Follow-up vs prod still: ACES exposure, stronger key/fill/rim, lighter floor so bodies read against black.
 8. **glass-capability-brain** — kept the **light clinical stage** (Claude Fable-class, not a dark hero). Dock is more glass, less solid white.
 9. **japanese-tower / ballance-roll / chinese-courtyard** — kept outdoor cinematic lighting; panels drop from ~0.6 white to ~0.4 glass.
 

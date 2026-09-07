@@ -111,13 +111,13 @@ export default function Scene({
       <CameraRig explode={explode} layout={layout.width ? layout : EMPTY_LAYOUT} />
 
       {/* Lights only — no Environment, no grey floor, no HDRI sky. */}
-      <hemisphereLight args={['#d7e2ee', '#000000', 0.28]} />
-      <directionalLight position={[-7, 11, 5]} intensity={4.6} />
-      <directionalLight position={[8, 6, 4]} intensity={3.2} color="#ffffff" />
-      <directionalLight position={[7, 5, -7]} intensity={2.8} color="#b9d0ea" />
-      <directionalLight position={[1, 2, -8]} intensity={2.6} color="#ffffff" />
-      <spotLight position={[0, 16, 3]} intensity={2.4} angle={0.65} penumbra={1} />
-      <ambientLight intensity={0.55} />
+      <hemisphereLight args={['#e4eef8', '#000000', 0.34]} />
+      <directionalLight position={[-7, 11, 5]} intensity={5.1} />
+      <directionalLight position={[8, 6, 4]} intensity={3.5} color="#ffffff" />
+      <directionalLight position={[7, 5, -7]} intensity={3.4} color="#b9d0ea" />
+      <directionalLight position={[1, 2, -8]} intensity={3.2} color="#fff4e0" />
+      <spotLight position={[0, 16, 3]} intensity={2.8} angle={0.65} penumbra={1} />
+      <ambientLight intensity={0.62} />
 
       <CarModel
         explode={explode}

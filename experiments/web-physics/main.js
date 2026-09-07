@@ -19,7 +19,7 @@ function init() {
   
   scene = new THREE.Scene();
   scene.background = new THREE.Color(0x000000);
-  scene.fog = new THREE.Fog(0x000000, 28, 70);
+  scene.fog = new THREE.Fog(0x000000, 42, 90);
   
   camera = new THREE.PerspectiveCamera(
     50,
@@ -35,15 +35,17 @@ function init() {
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.4;
   container.appendChild(renderer.domElement);
   
-  const hemi = new THREE.HemisphereLight(0xd7e2ee, 0x000000, 0.2);
+  const hemi = new THREE.HemisphereLight(0xe8eef6, 0x111318, 0.45);
   scene.add(hemi);
 
-  const ambientLight = new THREE.AmbientLight(0xffffff, 0.18);
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.36);
   scene.add(ambientLight);
   
-  const directionalLight = new THREE.DirectionalLight(0xfff4e6, 1.25);
+  const directionalLight = new THREE.DirectionalLight(0xfff4e6, 2.1);
   directionalLight.position.set(5, 10, 7);
   directionalLight.castShadow = true;
   directionalLight.shadow.mapSize.width = 2048;
@@ -54,9 +56,13 @@ function init() {
   directionalLight.shadow.camera.bottom = -15;
   scene.add(directionalLight);
   
-  const fillLight = new THREE.DirectionalLight(0x4488ff, 0.3);
+  const fillLight = new THREE.DirectionalLight(0x8eb6ff, 0.65);
   fillLight.position.set(-5, 3, -5);
   scene.add(fillLight);
+
+  const rimLight = new THREE.DirectionalLight(0xffe0b8, 0.85);
+  rimLight.position.set(2, 4, -8);
+  scene.add(rimLight);
   
   world = new CANNON.World({
     gravity: new CANNON.Vec3(0, -9.82, 0)
@@ -86,7 +92,7 @@ function createGround() {
   
   const groundGeometry = new THREE.BoxGeometry(20, 1, 20);
   const groundMaterial = new THREE.MeshStandardMaterial({
-    color: 0x0b0c0e,
+    color: 0x1c2028,
     metalness: 0.08,
     roughness: 0.92
   });
@@ -98,11 +104,11 @@ function createGround() {
 
 function createWalls() {
   const wallMaterial = new THREE.MeshStandardMaterial({
-    color: 0x101114,
-    metalness: 0.2,
-    roughness: 0.8,
+    color: 0x0a0b0e,
+    metalness: 0.15,
+    roughness: 0.85,
     transparent: true,
-    opacity: 0.6
+    opacity: 0.28
   });
   
   const walls = [
@@ -147,10 +153,10 @@ function spawnBox(x, y, z) {
   const geometry = new THREE.BoxGeometry(size, size, size);
   const material = new THREE.MeshStandardMaterial({
     color: colors[Math.floor(Math.random() * colors.length)],
-    metalness: 0.6,
-    roughness: 0.3,
+    metalness: 0.42,
+    roughness: 0.22,
     emissive: colors[Math.floor(Math.random() * colors.length)],
-    emissiveIntensity: 0.1
+    emissiveIntensity: 0.22
   });
   
   const mesh = new THREE.Mesh(geometry, material);
@@ -178,10 +184,10 @@ function spawnSphere(x, y, z) {
   const geometry = new THREE.SphereGeometry(radius, 16, 16);
   const material = new THREE.MeshStandardMaterial({
     color: colors[Math.floor(Math.random() * colors.length)],
-    metalness: 0.7,
-    roughness: 0.2,
+    metalness: 0.55,
+    roughness: 0.16,
     emissive: colors[Math.floor(Math.random() * colors.length)],
-    emissiveIntensity: 0.15
+    emissiveIntensity: 0.28
   });
   
   const mesh = new THREE.Mesh(geometry, material);

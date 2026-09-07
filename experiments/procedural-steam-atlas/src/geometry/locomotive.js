@@ -1,27 +1,27 @@
 import * as THREE from 'three';
 
 const MATERIAL_METAL = new THREE.MeshStandardMaterial({
-  color: 0x2a2a2a,
-  metalness: 0.9,
-  roughness: 0.3,
+  color: 0x4e555e,
+  metalness: 0.82,
+  roughness: 0.28,
 });
 
 const MATERIAL_BRASS = new THREE.MeshStandardMaterial({
-  color: 0xb8860b,
-  metalness: 0.8,
-  roughness: 0.2,
+  color: 0xd4a017,
+  metalness: 0.78,
+  roughness: 0.22,
 });
 
 const MATERIAL_STEEL = new THREE.MeshStandardMaterial({
-  color: 0x4a4a4a,
-  metalness: 0.95,
-  roughness: 0.15,
+  color: 0x7a828c,
+  metalness: 0.9,
+  roughness: 0.18,
 });
 
 const MATERIAL_RED = new THREE.MeshStandardMaterial({
-  color: 0x8b0000,
-  metalness: 0.3,
-  roughness: 0.7,
+  color: 0xc41e1e,
+  metalness: 0.35,
+  roughness: 0.45,
 });
 
 export function createLocomotive() {

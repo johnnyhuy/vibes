@@ -180,13 +180,13 @@ const shared = {
 };
 
 function setupLighting() {
-  const hemi = new THREE.HemisphereLight(0xc8d4e8, 0x1a1a1e, 0.6);
+  const hemi = new THREE.HemisphereLight(0xdce6f2, 0x111318, 0.7);
   scene.add(hemi);
 
-  const ambient = new THREE.AmbientLight(0xffffff, 0.24);
+  const ambient = new THREE.AmbientLight(0xffffff, 0.32);
   scene.add(ambient);
 
-  const keyLight = new THREE.DirectionalLight(0xffffff, 1.25);
+  const keyLight = new THREE.DirectionalLight(0xffffff, 1.55);
   keyLight.position.set(10, 24, 28);
   keyLight.castShadow = true;
   keyLight.shadow.mapSize.width = 2048;
@@ -197,11 +197,11 @@ function setupLighting() {
   keyLight.shadow.camera.bottom = -24;
   scene.add(keyLight);
 
-  const fillLight = new THREE.DirectionalLight(0x88aaff, 0.65);
+  const fillLight = new THREE.DirectionalLight(0x88aaff, 0.85);
   fillLight.position.set(-20, 16, 10);
   scene.add(fillLight);
 
-  const rimLight = new THREE.DirectionalLight(0xffffee, 0.8);
+  const rimLight = new THREE.DirectionalLight(0xffffee, 1.05);
   rimLight.position.set(6, 14, -22);
   scene.add(rimLight);
 }

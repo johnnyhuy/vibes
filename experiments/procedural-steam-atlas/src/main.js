@@ -18,7 +18,7 @@ function init() {
     0.1,
     1000
   );
-  camera.position.set(15.5, 6.4, 15.5);
+  camera.position.set(13.2, 5.6, 13.2);
 
   renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setSize(window.innerWidth, window.innerHeight);
@@ -26,7 +26,7 @@ function init() {
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.2;
+  renderer.toneMappingExposure = 1.55;
 
   document.getElementById('canvas-container').appendChild(renderer.domElement);
 
@@ -49,13 +49,13 @@ function init() {
 }
 
 function setupLights() {
-  const hemi = new THREE.HemisphereLight(0xd7e2ee, 0x000000, 0.22);
+  const hemi = new THREE.HemisphereLight(0xe8eef6, 0x111318, 0.42);
   scene.add(hemi);
 
-  const ambientLight = new THREE.AmbientLight(0xffffff, 0.16);
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.32);
   scene.add(ambientLight);
 
-  const keyLight = new THREE.DirectionalLight(0xfff4e6, 1.45);
+  const keyLight = new THREE.DirectionalLight(0xfff4e6, 2.15);
   keyLight.position.set(10, 15, 10);
   keyLight.castShadow = true;
   keyLight.shadow.camera.left = -20;
@@ -66,17 +66,21 @@ function setupLights() {
   keyLight.shadow.mapSize.height = 2048;
   scene.add(keyLight);
 
-  const fillLight = new THREE.DirectionalLight(0x6495ed, 0.42);
+  const fillLight = new THREE.DirectionalLight(0x8eb6ff, 0.7);
   fillLight.position.set(-8, 5, -5);
   scene.add(fillLight);
 
-  const rimLight = new THREE.DirectionalLight(0xffc27a, 0.85);
+  const rimLight = new THREE.DirectionalLight(0xffc27a, 1.25);
   rimLight.position.set(0, 4, -12);
   scene.add(rimLight);
 
+  const bounce = new THREE.DirectionalLight(0xffffff, 0.55);
+  bounce.position.set(-4, 8, 10);
+  scene.add(bounce);
+
   const ring = new THREE.Mesh(
     new THREE.RingGeometry(8.2, 8.38, 96),
-    new THREE.MeshBasicMaterial({ color: 0x8aa4bb, transparent: true, opacity: 0.28, side: THREE.DoubleSide })
+    new THREE.MeshBasicMaterial({ color: 0xb7cbe0, transparent: true, opacity: 0.42, side: THREE.DoubleSide })
   );
   ring.rotation.x = -Math.PI / 2;
   ring.position.y = -1.98;
