@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Scene from './components/Scene';
 import Sidebar from './components/Sidebar';
 import Controls from './components/Controls';
+import { ErrorBoundary } from './components/ErrorBoundary';
 import './styles.css';
 
 export default function App() {
@@ -19,12 +20,14 @@ export default function App() {
       />
       
       <div className="viewport">
-        <Scene 
-          explode={explode}
-          selectedPart={selectedPart}
-          isolated={isolated}
-          onSelectPart={setSelectedPart}
-        />
+        <ErrorBoundary>
+          <Scene 
+            explode={explode}
+            selectedPart={selectedPart}
+            isolated={isolated}
+            onSelectPart={setSelectedPart}
+          />
+        </ErrorBoundary>
         
         <Controls 
           explode={explode}
