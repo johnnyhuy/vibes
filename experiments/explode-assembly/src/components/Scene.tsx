@@ -12,8 +12,8 @@ interface SceneProps {
 export default function Scene({ explode, selectedPart, isolated, onSelectPart }: SceneProps) {
   return (
     <Canvas shadows className="canvas">
-      <color attach="background" args={['#0a0c0e']} />
-      <fog attach="fog" args={['#0a0c0e', 20, 60]} />
+      <color attach="background" args={['#000000']} />
+      <fog attach="fog" args={['#000000', 20, 60]} />
       
       <PerspectiveCamera makeDefault position={[-5, 3, 7]} fov={45} />
       <OrbitControls 
@@ -48,7 +48,7 @@ export default function Scene({ explode, selectedPart, isolated, onSelectPart }:
         onSelectPart={onSelectPart}
       />
       
-      {/* Studio ground */}
+      {/* Studio ground - pure black */}
       <mesh 
         rotation={[-Math.PI / 2, 0, 0]} 
         position={[0, -0.5, 0]} 
@@ -56,15 +56,12 @@ export default function Scene({ explode, selectedPart, isolated, onSelectPart }:
       >
         <planeGeometry args={[100, 100]} />
         <meshStandardMaterial 
-          color="#1a1d23" 
-          metalness={0.1} 
-          roughness={0.9}
-          envMapIntensity={0.5}
+          color="#000000" 
+          metalness={0.05} 
+          roughness={0.95}
+          envMapIntensity={0.3}
         />
       </mesh>
-      
-      {/* Grid helper for studio feel */}
-      <gridHelper args={[50, 50, '#2a3038', '#1e2228']} position={[0, -0.49, 0]} />
     </Canvas>
   );
 }
