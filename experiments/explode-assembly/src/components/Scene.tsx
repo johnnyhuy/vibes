@@ -12,10 +12,12 @@ interface SceneProps {
 export default function Scene({ explode, selectedPart, isolated, onSelectPart }: SceneProps) {
   return (
     <Canvas shadows className="canvas">
-      <color attach="background" args={['#0a0c0e']} />
-      <fog attach="fog" args={['#0a0c0e', 20, 60]} />
+      {/* Pure black background for cinematic studio look */}
+      <color attach="background" args={['#000000']} />
+      <fog attach="fog" args={['#000000', 25, 70]} />
       
-      <PerspectiveCamera makeDefault position={[-5, 3, 7]} fov={45} />
+      {/* Camera positioned to frame full sedan */}
+      <PerspectiveCamera makeDefault position={[-6, 3, 8]} fov={40} />
       <OrbitControls 
         enableDamping 
         dampingFactor={0.05}
@@ -25,21 +27,32 @@ export default function Scene({ explode, selectedPart, isolated, onSelectPart }:
         target={[0, 0.5, 0]}
       />
       
-      <Environment preset="night" />
+      {/* Studio environment */}
+      <Environment preset="studio" />
       
-      <ambientLight intensity={0.3} />
+      {/* Key light - main illumination */}
       <directionalLight 
-        position={[-8, 12, 8]} 
-        intensity={3} 
+        position={[-10, 12, 8]} 
+        intensity={2.5} 
         castShadow
         shadow-mapSize={[2048, 2048]}
-        shadow-camera-left={-10}
-        shadow-camera-right={10}
-        shadow-camera-top={10}
-        shadow-camera-bottom={-10}
+        shadow-camera-left={-15}
+        shadow-camera-right={15}
+        shadow-camera-top={15}
+        shadow-camera-bottom={-15}
       />
-      <directionalLight position={[6, 6, -10]} intensity={1.5} color="#6b9bd1" />
-      <spotLight position={[0, 8, 0]} intensity={0.8} angle={0.6} penumbra={1} />
+      
+      {/* Fill light - soften shadows */}
+      <directionalLight position={[8, 8, -10]} intensity={1.2} color="#8ba6d1" />
+      
+      {/* Rim light - edge definition */}
+      <directionalLight position={[-5, 4, -8]} intensity={0.8} color="#ffffff" />
+      
+      {/* Top accent */}
+      <spotLight position={[0, 12, 0]} intensity={0.6} angle={0.5} penumbra={1} />
+      
+      {/* Ambient for soft global fill */}
+      <ambientLight intensity={0.25} />
       
       <CarModel 
         explode={explode}
@@ -48,7 +61,7 @@ export default function Scene({ explode, selectedPart, isolated, onSelectPart }:
         onSelectPart={onSelectPart}
       />
       
-      {/* Studio ground */}
+      {/* Studio ground - dark reflective surface */}
       <mesh 
         rotation={[-Math.PI / 2, 0, 0]} 
         position={[0, -0.5, 0]} 
@@ -56,15 +69,15 @@ export default function Scene({ explode, selectedPart, isolated, onSelectPart }:
       >
         <planeGeometry args={[100, 100]} />
         <meshStandardMaterial 
-          color="#1a1d23" 
-          metalness={0.1} 
-          roughness={0.9}
-          envMapIntensity={0.5}
+          color="#0a0a0a" 
+          metalness={0.3} 
+          roughness={0.7}
+          envMapIntensity={0.8}
         />
       </mesh>
       
-      {/* Grid helper for studio feel */}
-      <gridHelper args={[50, 50, '#2a3038', '#1e2228']} position={[0, -0.49, 0]} />
+      {/* Subtle grid for studio context */}
+      <gridHelper args={[50, 50, '#1a1a1a', '#0f0f0f']} position={[0, -0.49, 0]} />
     </Canvas>
   );
 }

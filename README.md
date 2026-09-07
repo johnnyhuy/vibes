@@ -9,9 +9,9 @@ I'm Johnny Huynh, and this monorepo is where I learn by building. Each experimen
 ### Interactive 3D Demos
 
 #### [explode-assembly](./experiments/explode-assembly/)
-Interactive car exploded view demo — ashemag-style with real GLB support. Inspired by [this X post](https://x.com/ashebytes/status/1831768826242351397).
+Interactive Tesla Model 3 exploded view demo — inspired by [@ashebytes' viral Model X explode](https://x.com/ashebytes/status/2096009146248122416) (334 pieces via GPT-6 Astra).
 
-**What it is**: React + R3F + Three.js exploded assembly viewer. Multi-mesh GLB loader with explosion layout algorithm (2D grid packing like ashemag's). Includes procedural fallback when no GLB present. Load your own CC-BY car at `/models/car.glb`.
+**What it is**: React + R3F + Three.js exploded assembly viewer. Multi-mesh GLB loader with explosion layout algorithm (2D grid packing). Uses David_Holiday's CC-BY-4.0 Tesla Model 3 from Sketchfab. See [ashemag/model-x-studio](https://github.com/ashemag/model-x-studio) for the pattern.
 
 **Run it**:
 ```bash
@@ -19,12 +19,14 @@ cd experiments/explode-assembly
 npm install && npm run dev
 ```
 
-**How to get a multi-part car**: Download CC-BY models from WolfGames36 on Sketchfab or BlendKit Royalty Free. See README for instructions.
+**Live**: [vibes-explode.vercel.app](https://vibes-explode.vercel.app)
 
 ---
 
 #### [earth-timeline](./experiments/earth-timeline/)
-Interactive Earth history spanning 4.5 billion years.
+Interactive Earth history visualisation spanning 4.5 billion years. Drag the timeline from planetary formation to present day, watch the planet evolve from molten rock to vibrant blue-green.
+
+**Stack**: React + R3F + drei. Procedural textures, orbital camera, cinematic dark UI.
 
 **Run it**:
 ```bash
@@ -32,10 +34,14 @@ cd experiments/earth-timeline
 npm install && npm run dev
 ```
 
+**Live**: [vibes-earth.vercel.app](https://vibes-earth.vercel.app)
+
 ---
 
 #### [v8-cutaway](./experiments/v8-cutaway/)
-Technical engine visualisation with live gauges.
+Technical V8 engine cutaway with proper 90° V-configuration, animated pistons, live gauges (RPM, stroke cycle, pressure), and speed control. Orbit to inspect, adjust speed slider to rev.
+
+**Stack**: React + R3F + drei. Parametric geometry, kinematic animation, technical aesthetic.
 
 **Run it**:
 ```bash
@@ -43,16 +49,20 @@ cd experiments/v8-cutaway
 npm install && npm run dev
 ```
 
+**Live**: [vibes-v8.vercel.app](https://vibes-v8.vercel.app)
+
 ---
 
 #### [web-physics](./experiments/web-physics/)
-Browser-based rigid body physics playground (Three.js + cannon-es).
+Browser-based rigid body physics playground (Three.js + cannon-es). Drop cubes, spheres, and compound shapes into a physics-simulated world.
 
 **Run it**:
 ```bash
 cd experiments/web-physics
 npm install && npm run dev
 ```
+
+**Live**: [vibes-physics.vercel.app](https://vibes-physics.vercel.app)
 
 ---
 
@@ -71,20 +81,24 @@ Four parallel approaches: **web-3d**, **blender** (MCP vs computer-use), **cad**
 
 ## Deployment (Vercel)
 
-Each browser demo has its own Vercel project on this repo (Root Directory set in the dashboard). PR previews show up as Vercel bot comments on the PR.
+Each browser demo has its own Vercel project on this repo (Root Directory set in the dashboard). All demos are live on `main`.
 
-| App | Vercel project | Root Directory |
-| --- | --- | --- |
-| web-3d | `vibes` | `experiments/ai-3d-lanes/web-3d` |
-| explode-assembly | `vibes-explode` | `experiments/explode-assembly` |
-| earth-timeline | `vibes-earth` | `experiments/earth-timeline` |
-| v8-cutaway | `vibes-v8` | `experiments/v8-cutaway` |
-| web-physics | `vibes-physics` | `experiments/web-physics` |
+| App | Vercel project | Root Directory | Production URL |
+| --- | --- | --- | --- |
+| web-3d | `vibes` | `experiments/ai-3d-lanes/web-3d` | TBD |
+| explode-assembly | `vibes-explode` | `experiments/explode-assembly` | vibes-explode.vercel.app |
+| earth-timeline | `vibes-earth` | `experiments/earth-timeline` | vibes-earth.vercel.app |
+| v8-cutaway | `vibes-v8` | `experiments/v8-cutaway` | vibes-v8.vercel.app |
+| web-physics | `vibes-physics` | `experiments/web-physics` | vibes-physics.vercel.app |
 
-Stable branch preview host pattern:
-`https://<project>-git-cursor-ai-3d-lanes-monorepo-90aa-johnnyhuy-dev.vercel.app`
+PR previews show up as Vercel bot comments on each pull request.
 
-Production URLs go live after this PR merges to `main`.
+## Documentation
+
+See [./docs](./docs/) for:
+- **Architecture Decision Records (ADRs)** — Why the monorepo is structured this way
+- **Reverse Engineering Notes** — Clean-room analysis of public patterns (e.g., ashemag's Model X explode)
+- **Incidents & Lessons** — Things that went sideways and what I learnt
 
 ## Disclaimer
 
