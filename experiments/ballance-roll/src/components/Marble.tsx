@@ -1,10 +1,11 @@
-import { useLayoutEffect, useRef } from 'react';
+import { useLayoutEffect, useRef, type MutableRefObject } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 import type { Body } from 'cannon-es';
 import { Mesh, Vector3 } from 'three';
 import { HAZE_WALK, pointInAabb, segmentAabb } from '../course';
 import { applyDrive, BALL_MATERIALS, createBallBody } from '../physics';
 import { BALL_FEEL, FALL_Y } from '../materials';
+import type { Steer } from '../hooks';
 import type { BallKind, PlayState } from '../types';
 import { useCannonWorld } from './PhysicsWorld';
 
@@ -17,7 +18,7 @@ interface Props {
   kind: BallKind;
   resetToken: number;
   state: PlayState;
-  steer: { x: number; z: number };
+  steer: MutableRefObject<Steer>;
   reducedMotion: boolean;
   takenMotes: string[];
   onDrive: () => void;
@@ -74,11 +75,16 @@ export default function Marble({
     if (state === 'ready' || state === 'rolling') {
       camera.getWorldDirection(drive);
       drive.y = 0;
-      if (drive.lengthSq() < 1e-5) drive.set(0, 0, -1);
+      if (drive.lengthSq() < 1e-4) drive.set(0, 0, -1);
       drive.normalize();
       right.set(-drive.z, 0, drive.x);
-      const wishX = right.x * steer.x + drive.x * -steer.z;
-      const wishZ = right.z * steer.x + drive.z * -steer.z;
+      const input = steer.current;
+      const camX = right.x * input.x + drive.x * -input.z;
+      const camZ = right.z * input.x + drive.z * -input.z;
+      const worldX = input.x;
+      const worldZ = input.z;
+      const wishX = Math.abs(camX) + Math.abs(camZ) > 0.05 ? camX : worldX;
+      const wishZ = Math.abs(camX) + Math.abs(camZ) > 0.05 ? camZ : worldZ;
       const pushing = applyDrive(body, kind, { x: wishX, z: wishZ });
       if (pushing && state === 'ready') onDrive();
     }
@@ -121,7 +127,7 @@ export default function Marble({
         if (dist < 0.72) onMote(mote.id);
       });
     }
-  });
+  }, -2);
 
   return (
     <mesh ref={mesh} castShadow>

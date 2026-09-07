@@ -1,5 +1,7 @@
 import { Canvas } from '@react-three/fiber';
 import { ACESFilmicToneMapping, PCFSoftShadowMap } from 'three';
+import type { MutableRefObject } from 'react';
+import type { Steer } from '../hooks';
 import type { BallKind, PlayState } from '../types';
 import CourseMesh from './CourseMesh';
 import Marble from './Marble';
@@ -10,7 +12,7 @@ interface Props {
   kind: BallKind;
   resetToken: number;
   state: PlayState;
-  steer: { x: number; z: number };
+  steer: MutableRefObject<Steer>;
   reducedMotion: boolean;
   takenMotes: string[];
   onDrive: () => void;

@@ -84,6 +84,9 @@ export function applyDrive(
   const length = Math.hypot(input.x, input.z);
   if (length < 0.05) return false;
   const scale = feel.drive / length;
-  body.applyForce(new CANNON.Vec3(input.x * scale, 0, input.z * scale), body.position);
+  const force = new CANNON.Vec3(input.x * scale, 0, input.z * scale);
+  body.wakeUp();
+  body.applyForce(force, body.position);
+  body.applyImpulse(new CANNON.Vec3(force.x * 0.016, 0, force.z * 0.016), body.position);
   return true;
 }

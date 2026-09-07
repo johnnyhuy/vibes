@@ -30,6 +30,7 @@ body {
 
 .app {
   position: relative;
+  outline: none;
 }
 
 .app canvas {

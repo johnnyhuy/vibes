@@ -10,6 +10,29 @@ interface Props {
   onPad: (axis: 'x' | 'z', value: number) => void;
 }
 
+function PadButton({
+  children,
+  onHold
+}: {
+  children: string;
+  onHold: (held: boolean) => void;
+}) {
+  return (
+    <button
+      type="button"
+      onPointerDown={(event) => {
+        event.preventDefault();
+        event.currentTarget.setPointerCapture(event.pointerId);
+        onHold(true);
+      }}
+      onPointerUp={() => onHold(false)}
+      onPointerCancel={() => onHold(false)}
+    >
+      {children}
+    </button>
+  );
+}
+
 function statusCopy(hud: HudSnapshot): string {
   if (hud.state === 'ready') return 'Roll when you are ready';
   if (hud.state === 'rolling') return 'Stay on the stone';
@@ -68,39 +91,11 @@ export default function Hud({ kind, hud, onKind, onReset, onPad }: Props) {
       </aside>
 
       <div className="pad" aria-label="Steer">
-        <button
-          type="button"
-          onPointerDown={() => onPad('z', -1)}
-          onPointerUp={() => onPad('z', 0)}
-          onPointerLeave={() => onPad('z', 0)}
-        >
-          ↑
-        </button>
+        <PadButton onHold={(held) => onPad('z', held ? -1 : 0)}>↑</PadButton>
         <div className="pad-row">
-          <button
-            type="button"
-            onPointerDown={() => onPad('x', -1)}
-            onPointerUp={() => onPad('x', 0)}
-            onPointerLeave={() => onPad('x', 0)}
-          >
-            ←
-          </button>
-          <button
-            type="button"
-            onPointerDown={() => onPad('z', 1)}
-            onPointerUp={() => onPad('z', 0)}
-            onPointerLeave={() => onPad('z', 0)}
-          >
-            ↓
-          </button>
-          <button
-            type="button"
-            onPointerDown={() => onPad('x', 1)}
-            onPointerUp={() => onPad('x', 0)}
-            onPointerLeave={() => onPad('x', 0)}
-          >
-            →
-          </button>
+          <PadButton onHold={(held) => onPad('x', held ? -1 : 0)}>←</PadButton>
+          <PadButton onHold={(held) => onPad('z', held ? 1 : 0)}>↓</PadButton>
+          <PadButton onHold={(held) => onPad('x', held ? 1 : 0)}>→</PadButton>
         </div>
       </div>
     </>

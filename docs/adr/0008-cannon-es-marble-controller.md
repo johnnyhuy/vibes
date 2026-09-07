@@ -38,9 +38,9 @@ The public X demo is “three materials, three courses.” I only needed **three
 
 | Feel | Mass | Friction | Restitution | Drive |
 | --- | --- | --- | --- | --- |
-| Wood | 1.15 | 0.82 | 0.16 | 38 |
-| Stone | 2.7 | 0.58 | 0.06 | 52 |
-| Metal | 4.1 | 0.16 | 0.11 | 64 |
+| Wood | 1.15 | 0.82 | 0.16 | 56 |
+| Stone | 2.7 | 0.58 | 0.06 | 78 |
+| Metal | 4.1 | 0.16 | 0.11 | 92 |
 
 Swapping mid-run keeps the body and updates mass / material / damping. Reset is a new body at the start stone.
 

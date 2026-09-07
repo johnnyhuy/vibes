@@ -3,7 +3,7 @@ import { ErrorBoundary } from './components/ErrorBoundary';
 import Hud from './components/Hud';
 import Scene from './components/Scene';
 import { HAZE_WALK } from './course';
-import { readSteer, useHeldKeys, usePrefersReducedMotion } from './hooks';
+import { usePrefersReducedMotion, useSteerInput } from './hooks';
 import type { BallKind, PlayState } from './types';
 
 export default function App() {
@@ -13,17 +13,8 @@ export default function App() {
   const [takenMotes, setTakenMotes] = useState<string[]>([]);
   const [elapsed, setElapsed] = useState(0);
   const [startedAt, setStartedAt] = useState<number | null>(null);
-  const [pad, setPad] = useState({ x: 0, z: 0 });
   const reducedMotion = usePrefersReducedMotion();
-  const keys = useHeldKeys();
-  const [steer, setSteer] = useState({ x: 0, z: 0 });
-
-  useEffect(() => {
-    const id = window.setInterval(() => {
-      setSteer(readSteer(keys.current, pad));
-    }, 32);
-    return () => window.clearInterval(id);
-  }, [keys, pad]);
+  const { steer, setPad } = useSteerInput();
 
   useEffect(() => {
     if (state !== 'rolling' || startedAt === null) return undefined;
@@ -44,10 +35,11 @@ export default function App() {
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
       const key = event.key.toLowerCase();
-      if (key === 'r') reset();
-      if (key === '1') setKind('wood');
-      if (key === '2') setKind('stone');
-      if (key === '3') setKind('metal');
+      const code = event.code.toLowerCase();
+      if (key === 'r' || code === 'keyr') reset();
+      if (key === '1' || code === 'digit1') setKind('wood');
+      if (key === '2' || code === 'digit2') setKind('stone');
+      if (key === '3' || code === 'digit3') setKind('metal');
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
@@ -73,10 +65,6 @@ export default function App() {
     setTakenMotes((current) => (current.includes(id) ? current : [...current, id]));
   }, []);
 
-  const onPad = useCallback((axis: 'x' | 'z', value: number) => {
-    setPad((current) => ({ ...current, [axis]: value }));
-  }, []);
-
   const hud = useMemo(
     () => ({
       elapsed,
@@ -89,7 +77,7 @@ export default function App() {
 
   return (
     <ErrorBoundary>
-      <div className="app">
+      <div className="app" tabIndex={0}>
         <Scene
           kind={kind}
           resetToken={resetToken}
@@ -102,7 +90,7 @@ export default function App() {
           onFinished={onFinished}
           onMote={onMote}
         />
-        <Hud kind={kind} hud={hud} onKind={setKind} onReset={reset} onPad={onPad} />
+        <Hud kind={kind} hud={hud} onKind={setKind} onReset={reset} onPad={setPad} />
         <p className="hint">
           WASD or arrows
           <span className="sep">·</span>
