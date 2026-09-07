@@ -462,10 +462,10 @@ const content = [
 ## Implementation Checklist
 
 - [x] Document scroll-driven 3D pattern
-- [ ] Add scroll product demo to `experiments/`
-- [ ] Test with procedural geometry (torus, abstract shape)
-- [ ] Dark cinematic UI with scroll hints
-- [ ] Vercel deployment ready
+- [x] Add scroll product demo to `experiments/` → [scroll-product-showcase](../../experiments/scroll-product-showcase/)
+- [x] Test with procedural geometry (torus knot + sphere/cylinder composition)
+- [x] Dark cinematic UI with scroll hints
+- [x] Vercel deployment ready
 
 ---
 

@@ -97,6 +97,24 @@ npm install && npm run dev
 
 ---
 
+#### [scroll-product-showcase](./experiments/scroll-product-showcase/)
+Scroll-driven 3D product hero with glass materials and refraction. Clean-room implementation of the pattern popularised by Apple and recent viral WebGL demos (like [himanshubuildss' glass bottle](https://x.com/himanshubuildss/status/2096243989439713677)).
+
+**What it is**: React + R3F + drei. Fixed canvas with tall scroll container. Scroll progress drives product rotation and camera movement. Procedural torus knot + sphere geometry with MeshPhysicalMaterial transmission for glass effect. Dark cinematic UI.
+
+**Run it**:
+```bash
+cd experiments/scroll-product-showcase
+npm install && npm run dev
+```
+
+---
+
+#### [procedural-steam-atlas](./experiments/procedural-steam-atlas/)
+Procedurally generated Steam Atlas style — see the [experiment folder](./experiments/procedural-steam-atlas/) for details. Merged in PR #8.
+
+---
+
 ### Image, texture & CAD
 
 - [image-to-3d](./experiments/image-to-3d/) — image→mesh stubs
@@ -115,7 +133,9 @@ Each browser demo has its own Vercel project on this repo (Root Directory set in
 | earth-timeline | `vibes-earth` | `experiments/earth-timeline` | vibes-earth.vercel.app |
 | v8-cutaway | `vibes-v8` | `experiments/v8-cutaway` | vibes-v8.vercel.app |
 | web-physics | `vibes-physics` | `experiments/web-physics` | vibes-physics.vercel.app |
+| scroll-product-showcase | `vibes-scroll-product` (suggested) | `experiments/scroll-product-showcase` | TBD |
 | blender-semicircle-viewer | (not yet linked) | `experiments/blender-semicircle-viewer` | TBD |
+| procedural-steam-atlas | (not yet linked) | `experiments/procedural-steam-atlas` | TBD |
 
 PR previews show up as Vercel bot comments on each pull request.
 
