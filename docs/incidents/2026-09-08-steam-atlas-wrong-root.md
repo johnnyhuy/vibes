@@ -3,7 +3,7 @@
 **Date**: 2026-09-07 → 2026-09-08  
 **Component**: Vercel project `vibes-steam-atlas` (`prj_7D08PT8sdUjhigCEuz83oltZrDMv`)  
 **Severity**: Medium (no production URL; previews exist; quota burned)  
-**Status**: Waiting for hobby quota reset (~2026-09-08 12:55 UTC). Do not retry-spam.
+**Status**: Waiting for hobby quota reset (~2026-09-08 12:55 UTC). Do not retry-spam. A later `create_git_project` redeploy of `main` was **CANCELED** (`ignored-build-step`) — still no production alias.
 
 I verified this against the Vercel API on 2026-09-08 (~14:10 UTC). I did **not** create or redeploy anything.
 
@@ -45,7 +45,26 @@ So Root Directory **was already** `experiments/procedural-steam-atlas`. The *bra
 | `dpl_75YKdK6USAzrh2n8dTjJJY1ftp2h` READY | explode ordered-gallery PR #12 | `procedural-steam-atlas@1.0.0` / `vite build` |
 | `dpl_8GgW9zQZRVKBbv6asW1RtJtU1j56` READY | semicircle framing PR #15 | `procedural-steam-atlas@1.0.0` / `vite build` |
 
-Commit messages in the Vercel list are the **git hook**, not the app. Once the folder exists on the branch, this project builds steam-atlas correctly.
+Commit messages in the Vercel list are the **git hook**, not the app. Once the folder exists on the branch, this project builds steam-atlas correctly — **unless** `ignoreCommand` skips the folder.
+
+### Later `main` redeploy — CANCELED `ignored-build-step`
+
+A `create_git_project` reuse / redeploy of **`main`** after steam-atlas existed on that line of history did **not** write a production alias. The deployment was **CANCELED** with `errorLink` **`ignored-build-step`**.
+
+That is this folder’s `ignoreCommand` doing its job:
+
+```
+git diff --quiet HEAD^ HEAD ./
+```
+
+The latest `main` commit (`9328191`, Ridge Pagoda) only touched `experiments/japanese-tower`. Diff in `experiments/procedural-steam-atlas` was empty → ignore exits 0 → Vercel skips the Vite build → **no new READY production** → alias stays `404 DEPLOYMENT_NOT_FOUND`.
+
+`ignored-build-step` is **not** a Root Directory bug and **not** a quota ERROR. It means “this Root did not change.” Sibling-folder commits will never refresh a skipped project’s production alias. Pending apps need either:
+
+1. A commit that **touches their Root Directory** (even a README sentence), then one `main` deploy after quota, or
+2. A **dashboard Redeploy** that bypasses `ignoreCommand`
+
+Do not treat a CANCELED ignore as “try create_git_project again.” That will skip again if the commit still does not touch this folder.
 
 ---
 
@@ -54,7 +73,7 @@ Commit messages in the Vercel list are the **git hook**, not the app. Once the f
 1. **A project with a Root Directory still deploys on every push** to the linked repo. Eight hobbies × each Cloud Agent commit is how we hit 100/day.
 2. **A Root Directory that is unset** (or pointed at `.`) will try to build the monorepo root. There is no root `package.json`. That is a 404/ERROR factory. Confirm the dashboard field after quota reset — do not clear it.
 3. **A Root Directory that is set, on a branch that lacks the folder**, is the ERROR we already have. Production from an old PR branch will never go READY.
-4. **`vercel.json` cannot pin Root Directory.** I can only document it and set `ignoreCommand` so *this folder* no-ops when it did not change. Skipped builds may still count toward the hobby deployment cap.
+4. **`vercel.json` cannot pin Root Directory.** I can only document it and set `ignoreCommand` so *this folder* no-ops when it did not change. A skip shows up as **CANCELED** / `ignored-build-step` — it does **not** promote a production alias. Skipped hooks may still count toward the hobby deployment cap.
 5. **`create_git_project` reuse + `deploy: false` does not change Root Directory.** I tried to reuse `vibes-steam-atlas` without burning a deploy. The project id stayed `prj_7D08PT8sdUjhigCEuz83oltZrDMv`. Root did not move. `live` stayed `false`. Do not treat reuse as a settings write.
 6. **Pause is not available on hobby.** The Pause API returned **400** for this project. I cannot pause steam-atlas to stop monorepo fan-out. The only brakes are: correct Root in the dashboard, `ignoreCommand` in this folder, and not pushing.
 
@@ -72,12 +91,12 @@ I did not add a monorepo-root `vercel.json`. That would fight the other seven pr
 
 ## After Quota Resets (~2026-09-08 12:55 UTC)
 
-One production deploy from **`main`** (the folder exists there — `03bbe0c` and later).
+One production deploy from **`main`** after a commit that **touches** `experiments/procedural-steam-atlas` (this hill-climb’s README sentence is that touch). A `main` tip that only changed another experiment will CANCELED/`ignored-build-step` again.
 
 **Before any deploy**, dashboard → `vibes-steam-atlas` → Settings → Root Directory = **`experiments/procedural-steam-atlas`**. MCP reuse did not do this. Then:
 
-1. Deploy `main` **once**
-2. Stop. Do not retry on preview aliases. Do not call pause (400 on hobby).
+1. Deploy `main` **once** (or dashboard Redeploy that bypasses ignore)
+2. Stop. Do not retry on preview aliases. Do not call pause (400 on hobby). Do not `create_git_project` again from the agent.
 
 **Visual QA 2026-09-08 ~12:29 AEST** (`hill-climb/prod-steam-atlas-20260908-0007.png`): production alias is a Vercel error page —
 

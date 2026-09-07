@@ -11,14 +11,14 @@ Stills: `prod-explode-0-20260908-0222.png`, `prod-explode-80-20260908-0222.png`.
 | [vibes-explode.vercel.app](https://vibes-explode.vercel.app) @ 0% | **PASS** | Black studio, assembled Model 3, frosted **MODEL 3** UI |
 | same @ ~76% | **PASS** | Ordered gallery |
 | [vibes-blender-semicircle.vercel.app](https://vibes-blender-semicircle.vercel.app) | **FAIL** | Cropped mega-arc — thin blue curve on black. Production still commit `25587f54` |
-| steam-atlas production alias | **FAIL** | `404 DEPLOYMENT_NOT_FOUND` |
+| steam-atlas production alias | **FAIL** | `404 DEPLOYMENT_NOT_FOUND`. Later `main` redeploy **CANCELED** `ignored-build-step` (tip only touched japanese-tower) |
 | scroll-product production alias | **FAIL** | `404 DEPLOYMENT_NOT_FOUND` |
 
 **explode production** is `dpl_ELE1f1XhqGQ7hciZSjkPVLMPmUh8` on `main` `de25d60`. Skip explode after quota unless it goes stale again.
 
-**glass**: `vibes-glass-capability-brain` (`prj_yJbQTsiB138V5jh92cwSWd8rZmij`), Root `experiments/glass-capability-brain`, created `deploy: false`, SSO off, **0 production**.
+**glass**: [vibes-glass-capability-brain.vercel.app](https://vibes-glass-capability-brain.vercel.app/) production READY `dpl_3CE9Dd7X7og5MuSLpcGgyxboacgz` on `9328191`. SSO off. Shipped on the tower merge — [incident](./incidents/2026-09-08-glass-auto-deploy-on-tower-merge.md).
 
-**japanese-tower**: local only. No Vercel project.
+**japanese-tower**: project `vibes-japanese-tower` (`prj_T1KL4cJSMuY0Z6oKGnNtv8zVP0Js`) exists, Root set, **0 production**.
 
 ### Redeploy order after ~12:55 UTC
 
@@ -26,11 +26,12 @@ One each. Stop.
 
 1. **Skip** `vibes-explode` — already fresh on `de25d60` unless a later check goes stale
 2. `vibes-blender-semicircle` — one `main` redeploy (replace `25587f54`)
-3. `vibes-steam-atlas` — **confirm** dashboard Root = `experiments/procedural-steam-atlas`, then first production
+3. `vibes-steam-atlas` — **confirm** dashboard Root = `experiments/procedural-steam-atlas`, then first production from a commit that **touches this Root** (or dashboard Redeploy). A sibling-only `main` tip CANCELs with `ignored-build-step`.
 4. `vibes-scroll-product` — first production
-5. `vibes-glass-capability-brain` — first production (Root already set; SSO off)
+5. `vibes-japanese-tower` — first production (project exists; `deploy: false`)
+6. Glass — **already live**. Do not spend a slot. Do not create `vibes-ballance-roll`.
 
-Do not create a japanese-tower project. Do not spam deploys.
+Do not spam deploys.
 
 ---
 

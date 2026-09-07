@@ -30,7 +30,7 @@ Root Directory: **`experiments/procedural-steam-atlas`** — **set this in the d
 
 `vercel.json` here sets Vite + `ignoreCommand`. It cannot set Root Directory. `create_git_project` reuse (`deploy: false`) also **does not write Root**. Pause API returned **400** on hobby — I cannot pause this project to stop fan-out.
 
-No successful **production** deploy yet. After quota reset (~2026-09-08 12:55 UTC): set Root in the dashboard, one deploy from `main`. Don't spam retries.
+No successful **production** deploy yet — alias still `404 DEPLOYMENT_NOT_FOUND`. A `create_git_project` redeploy of `main` came back **CANCELED** (`errorLink` `ignored-build-step`): the latest `main` commit only touched `japanese-tower`, so this folder’s `ignoreCommand` correctly skipped and never wrote a production alias. After quota (~2026-09-08 12:55 UTC): confirm Root in the dashboard, then merge a commit that **touches this Root** (this README) or use a dashboard Redeploy that bypasses ignore. Don’t spam retries from the agent.
 
 See [docs/incidents/2026-09-08-steam-atlas-wrong-root.md](../../docs/incidents/2026-09-08-steam-atlas-wrong-root.md).
 
@@ -177,4 +177,6 @@ For now, this proves the pattern: **pure TypeScript geometry functions can creat
 
 ---
 
-Built by Johnny Huynh • This is my kitchen sink • Research and education only — not production code
+**Status**: Linked, **0 production** (`DEPLOYMENT_NOT_FOUND` / last main redeploy CANCELED `ignored-build-step`)  
+**Last updated**: 2026-09-08  
+**Built by**: Johnny Huynh · kitchen sink · research and education only — not production code

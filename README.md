@@ -19,7 +19,7 @@ cd experiments/procedural-steam-atlas
 npm install && npm run dev
 ```
 
-**Live**: TBD — `vibes-steam-atlas` (`prj_7D08PT8sdUjhigCEuz83oltZrDMv`) is linked. Root **must** stay `experiments/procedural-steam-atlas`. No successful **production** deploy yet (one ERROR on a PR branch that lacked the folder; later previews built the right app). See [incident](./docs/incidents/2026-09-08-steam-atlas-wrong-root.md).
+**Live**: TBD — `vibes-steam-atlas` (`prj_7D08PT8sdUjhigCEuz83oltZrDMv`) is linked. Root **must** stay `experiments/procedural-steam-atlas`. No successful **production** deploy yet (one ERROR on a PR branch that lacked the folder; later previews built the right app; a `main` redeploy **CANCELED** `ignored-build-step` because that tip only touched japanese-tower). See [incident](./docs/incidents/2026-09-08-steam-atlas-wrong-root.md).
 
 ---
 
@@ -110,7 +110,7 @@ cd experiments/scroll-product-showcase
 npm install && npm run dev
 ```
 
-**Live**: TBD — `vibes-scroll-product` (`prj_XLBiIlbjweejp9himT53bolPEMUW`) is linked with Root `experiments/scroll-product-showcase`. **Zero deployments** as of 2026-09-08. First production is last in the post-quota queue.
+**Live**: TBD — `vibes-scroll-product` (`prj_XLBiIlbjweejp9himT53bolPEMUW`) is linked with Root `experiments/scroll-product-showcase`. **Zero deployments** as of 2026-09-08. Sibling-folder commits skip this Root (`ignored-build-step`). First production after quota needs a commit that touches this folder.
 
 ---
 
@@ -125,7 +125,7 @@ cd experiments/glass-capability-brain
 npm install && npm run dev
 ```
 
-**Live**: TBD — project `vibes-glass-capability-brain` (`prj_yJbQTsiB138V5jh92cwSWd8rZmij`) was created with Root `experiments/glass-capability-brain` and `deploy: false`. **0 production**. Do not deploy until the hobby quota resets (~**2026-09-08 12:55 UTC**).
+**Live**: [vibes-glass-capability-brain.vercel.app](https://vibes-glass-capability-brain.vercel.app/) — **LIVE** `dpl_3CE9Dd7X7og5MuSLpcGgyxboacgz` on `9328191`. SSO off. Shipped on the japanese-tower merge; steam / scroll / semicircle did **not** move with it (`ignored-build-step`).
 
 ---
 
@@ -140,7 +140,22 @@ cd experiments/japanese-tower
 npm install && npm run dev
 ```
 
-**Live**: TBD — **no Vercel project**. Do not create one or deploy until the hobby quota resets (~**2026-09-08 12:55 UTC**).
+**Live**: TBD — project `vibes-japanese-tower` (`prj_T1KL4cJSMuY0Z6oKGnNtv8zVP0Js`) exists with Root `experiments/japanese-tower`, created `deploy: false`. **0 production** until after quota (~**2026-09-08 12:55 UTC**). Do not force a deploy on this PR.
+
+---
+
+#### [ballance-roll](./experiments/ballance-roll/)
+Procedural rolling-marble course above an ocean of clouds. Clean-room take on [@fayazara](https://x.com/fayazara/status/2096997505397584041). Branding is mine (`Nimbus Path` / 霞); I did not copy their courses, HUD, or the *Ballance* wordmark.
+
+**Stack**: React + R3F + drei + cannon-es. Wood / stone / metal contact feels. No .glb.
+
+**Run it**:
+```bash
+cd experiments/ballance-roll
+npm install && npm run dev
+```
+
+**Live**: TBD — **no Vercel project**. Do not create one on this PR.
 
 ---
 
@@ -156,9 +171,9 @@ Each browser demo has its own Vercel project on this repo (Root Directory set in
 
 > ⚠️ **Hobby quota exhausted** (`api-deployments-free-per-day` = **0 remaining**). Reset **~2026-09-08 12:55 UTC** (~10:55pm AEST). **Do not retry-spam deploys.** See [quota incident](./docs/incidents/2026-09-07-vercel-deploy-quota.md) and [Root Directory checklist](./docs/deployment/vercel-root-directories.md).
 >
-> **Redeploy order after reset** (one each): **skip explode** (fresh on `de25d60` / `dpl_ELE1f1XhqGQ7hciZSjkPVLMPmUh8`) → semicircle → steam-atlas (**confirm** Root Directory = `experiments/procedural-steam-atlas`) → scroll-product → glass-capability-brain.
+> **Redeploy order after reset** (one each): **skip explode** (fresh on `de25d60` / `dpl_ELE1f1XhqGQ7hciZSjkPVLMPmUh8`) → semicircle → steam-atlas (**confirm** Root Directory = `experiments/procedural-steam-atlas`) → scroll-product → japanese-tower. **Glass is already live** — skip it. Do not create `vibes-ballance-roll`.
 >
-> Production visual QA 2026-09-08 ~2:22–2:33am AEST: explode **PASS** @0% and @~76%; semicircle still FAIL on commit `25587f54`; steam-atlas + scroll-product `404 DEPLOYMENT_NOT_FOUND`. Glass project exists (`deploy: false`, SSO off, 0 production). Evidence in [docs/visual-qa-2026-09-08-prod.md](./docs/visual-qa-2026-09-08-prod.md). **Do not redeploy on this PR. Do not create a japanese-tower Vercel project.**
+> Production visual QA 2026-09-08 ~2:22–2:33am AEST: explode **PASS** @0% and @~76%; semicircle still FAIL on commit `25587f54`; steam-atlas + scroll-product `404 DEPLOYMENT_NOT_FOUND`. A later steam-atlas `main` redeploy **CANCELED** (`ignored-build-step`) — sibling-folder commits do not refresh production aliases. Glass is LIVE at [vibes-glass-capability-brain.vercel.app](https://vibes-glass-capability-brain.vercel.app/) (`9328191` / `dpl_3CE9Dd7X7og5MuSLpcGgyxboacgz`, SSO off). Evidence in [docs/visual-qa-2026-09-08-prod.md](./docs/visual-qa-2026-09-08-prod.md), [glass incident](./docs/incidents/2026-09-08-glass-auto-deploy-on-tower-merge.md), [steam-atlas incident](./docs/incidents/2026-09-08-steam-atlas-wrong-root.md). **Do not redeploy on this PR. Do not create a ballance-roll Vercel project.**
 
 | App | Vercel project | Root Directory | Production URL | Status |
 | --- | --- | --- | --- | --- |
@@ -168,10 +183,11 @@ Each browser demo has its own Vercel project on this repo (Root Directory set in
 | v8-cutaway | `vibes-v8` | `experiments/v8-cutaway` | [vibes-v8.vercel.app](https://vibes-v8.vercel.app) | ✅ |
 | web-physics | `vibes-physics` | `experiments/web-physics` | [vibes-physics.vercel.app](https://vibes-physics.vercel.app) | ✅ |
 | blender-semicircle-viewer | `vibes-blender-semicircle` (`prj_PLhnoCVRKmpHc8SxyLRmcp3MFZMC`) | `experiments/blender-semicircle-viewer` | [vibes-blender-semicircle.vercel.app](https://vibes-blender-semicircle.vercel.app) | ⚠️ FAIL 2:33am: cropped mega-arc. Production still `25587f54`. **#1** after quota: one `main` redeploy |
-| procedural-steam-atlas | `vibes-steam-atlas` (`prj_7D08PT8sdUjhigCEuz83oltZrDMv`) | **`experiments/procedural-steam-atlas` (confirm in the dashboard before any deploy)** | `404 DEPLOYMENT_NOT_FOUND` | ⚠️ FAIL 2:33am. **#2** after quota: confirm Root, then one `main` production deploy |
-| scroll-product-showcase | `vibes-scroll-product` (`prj_XLBiIlbjweejp9himT53bolPEMUW`) | `experiments/scroll-product-showcase` | none | Linked, **0 deployments**. **#3** first production |
-| glass-capability-brain | `vibes-glass-capability-brain` (`prj_yJbQTsiB138V5jh92cwSWd8rZmij`) | `experiments/glass-capability-brain` | none | Created `deploy: false`, SSO off. **0 production**. **#4** after quota. Do not spam. |
-| japanese-tower | — | `experiments/japanese-tower` (when a project exists) | none | **No Vercel project.** Local build only. Do not create one while quota is 0. |
+| procedural-steam-atlas | `vibes-steam-atlas` (`prj_7D08PT8sdUjhigCEuz83oltZrDMv`) | **`experiments/procedural-steam-atlas` (confirm in the dashboard before any deploy)** | `404 DEPLOYMENT_NOT_FOUND` | ⚠️ Last `main` redeploy **CANCELED** `ignored-build-step`. **#2** after quota: confirm Root, then one `main` deploy from a commit that touches this folder |
+| scroll-product-showcase | `vibes-scroll-product` (`prj_XLBiIlbjweejp9himT53bolPEMUW`) | `experiments/scroll-product-showcase` | none | Linked, **0 deployments**. Sibling commits skip (`ignored-build-step`). **#3** first production after a Root-touching merge |
+| glass-capability-brain | `vibes-glass-capability-brain` (`prj_yJbQTsiB138V5jh92cwSWd8rZmij`) | `experiments/glass-capability-brain` | [vibes-glass-capability-brain.vercel.app](https://vibes-glass-capability-brain.vercel.app/) | ✅ **LIVE** `dpl_3CE9Dd7X7og5MuSLpcGgyxboacgz` on `9328191`. SSO off. Skip after quota. |
+| japanese-tower | `vibes-japanese-tower` (`prj_T1KL4cJSMuY0Z6oKGnNtv8zVP0Js`) | `experiments/japanese-tower` | none | Created `deploy: false`. **0 production**. **#4** after quota (glass already live). |
+| ballance-roll | — | `experiments/ballance-roll` (when a project exists) | none | **No Vercel project.** Local build only. Do not create one on this PR. |
 
 PR previews show up as Vercel bot comments on each pull request (when quota available).
 

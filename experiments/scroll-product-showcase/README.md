@@ -55,7 +55,7 @@ npm run build
 Vercel project: **`vibes-scroll-product`** (`prj_XLBiIlbjweejp9himT53bolPEMUW`)  
 Dashboard **Root Directory** (required): **`experiments/scroll-product-showcase`**
 
-`vercel.json` cannot set Root Directory. First production is last in the post-quota queue (~**2026-09-08 12:55 UTC**). Do not retry-spam.
+`vercel.json` cannot set Root Directory. **0 production** — alias still `DEPLOYMENT_NOT_FOUND`. Sibling-folder commits are skipped here (`ignoreCommand` / `ignored-build-step`), so this README touch is what lets the next post-quota `main` merge actually build this Root. First production after ~**2026-09-08 12:55 UTC**. Do not retry-spam from the agent.
 
 ## What I Learnt
 
@@ -72,6 +72,6 @@ Dashboard **Root Directory** (required): **`experiments/scroll-product-showcase`
 
 ---
 
-**Status**: Local build is the QA until quota resets  
+**Status**: Linked, **0 production** — needs a Root-touching merge (or dashboard Redeploy) after quota  
 **Last updated**: 2026-09-08  
 **Built by**: Johnny Huynh

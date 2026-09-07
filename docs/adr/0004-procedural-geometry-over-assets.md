@@ -175,6 +175,7 @@ With a .glb, each rivet is a separate mesh → more memory overhead.
 | **earth-timeline** | Procedural sphere + textures | Parametric planet, but uses canvas textures |
 | **v8-cutaway** | Procedural geometry | Mechanical engine, parametric configuration |
 | **japanese-tower** | Procedural geometry | Architectural keep; season/weather retints materials (ADR-0007) |
+| **ballance-roll** | Procedural geometry | Sky-path + marble; contact materials, no course GLB (ADR-0008) |
 
 ## Pattern: Procedural Geometry Functions
 
