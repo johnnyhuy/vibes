@@ -180,7 +180,7 @@ animate();
 - Optional: Click individual laptops for interaction
 - Deploy-ready with `vercel.json`
 
-**Framing lesson** (hit this on the first viewer): a hardcoded camera looking at the origin clips a radius-12, 51-laptop arc into a mega-crop. Fit the camera to the group's world bounds and look at the bbox centre. See `docs/incidents/2026-09-07-semicircle-cropped-mega-arc.md`.
+**Framing lesson**: a hardcoded origin seat clips a radius-12 arc, but bbox-fitting a vertical XY arch of Z-thin meshes still reads as a hairline. Lay the array on XZ (Y-up), sit the camera above-front, and fit all eight AABB corners. See `docs/incidents/2026-09-07-semicircle-cropped-mega-arc.md`.
 
 ---
 
