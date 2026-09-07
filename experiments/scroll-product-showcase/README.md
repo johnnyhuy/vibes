@@ -2,41 +2,39 @@
 
 A clean-room scroll-driven glass bottle — my take on the viral WebGL product hero, not a copy of anyone's mesh.
 
-Inspired by [himanshubuildss' photoreal bottle](https://x.com/himanshubuildss/status/2096243989439713677) (verified 2026-09-07): refractive liquid, dynamic scroll rotation, interlocking marketing UI. I studied the pattern and rebuilt it with procedural geometry.
+Inspired by [himanshubuildss' photoreal bottle](https://x.com/himanshubuildss/status/2096243989439713677) (thumb: `hill-climb/refs/himanshu-glass-bottle-thumb.jpg`): dark green glass, refractive liquid, **horizontal** apothecary, “scroll — it rolls.” I studied the pattern and rebuilt it with procedural geometry.
 
 ## What I Built
 
-The first pass used a torus knot. It proved transmission works and looked like homework. This iteration is a **lathed perfume carafe** I called Aether:
+Pass 1 was a torus knot. Pass 2 was an upright amber carafe with a brass stopper — still the wrong silhouette next to the thumb. This pass is the Caldera-class **read**, not the brand:
 
-- **Outer glass** — `LatheGeometry` profile (punt, body, shoulder, neck, lip). `MeshPhysicalMaterial` with `transmission: 1`, `ior: 1.5`, thickness + teal attenuation.
-- **Inner liquid** — A second lathe, filled to a meniscus disk. Amber, `ior: 1.4`, shorter attenuation path.
-- **Brass collar + stopper** — The only opaque metal, so the glass has something to refract against.
-- **Scroll is the controller** — Native window scroll (0→1) damps yaw, pitch, and a camera arc in `useFrame`. Bidirectional.
-- **Interlocking copy** — Frosted cards fade in left/right as you pass them. Canvas is `position: fixed` with `pointer-events: none`.
+- **Horizontal lathe** — wide cylinder, short neck, flat punt, **black cap**. Group is rolled onto its side (`rotation.z = π/2`).
+- **Dark green glass** — `transmission: 1`, `ior: 1.48`, short green attenuation. Liquid is a second lathe, darker, `ior: 1.39`.
+- **Type in the scene** — lime `AETHER` is drei `Text` *behind* the bottle so transmission has something to bend. DOM headlines cannot do that.
+- **Strip Lightformers** — long thin studio lights for the horizontal speculars. No city HDRI.
+- **Scroll rolls the long axis** — `rotation.x` tracks window scroll, damped in `useFrame`. Bidirectional.
+- **Interlocking copy** — frosted cards, chartreuse kickers. Canvas `pointer-events: none`.
 
-No GLB. No HDRI file. drei `Environment` preset `city` plus three-point lights.
+No GLB. No TEPHRA/CALDERA assets. Aether is a fictional batch.
 
 ## Why I Dropped ScrollControls
 
-drei `ScrollControls` paints its own overlay on the canvas. I also had a tall HTML page. Two scrollers, one wheel — the marketing sections and the 3D rotation drifted apart.
-
-Native `window` scroll + lerp is the Apple/Stripe version of this pattern. `ScrollControls` is still the right tool when the HTML lives inside `<Scroll html>`. I wanted real document flow and pointer-events on the cards.
+drei `ScrollControls` paints its own overlay. Native `window` scroll + lerp is the marketing-page version.
 
 ## The Mapping
 
 ```
 scroll offset 0 → 1
-  bottle yaw     0 → ~370°
-  bottle pitch   sin-wave tilt
-  camera         3/4 view → closer, higher, a little orbit
+  bottle roll (X)   0 → 360°
+  camera            slight dolly in
 ```
 
-`prefers-reduced-motion` parks the spin and keeps a readable 3/4 seat.
+`prefers-reduced-motion` parks the roll.
 
 ## Stack
 
 - Vite + React 19
-- React Three Fiber + drei (`Environment`, `ContactShadows`)
+- React Three Fiber + drei (`Environment`, `Lightformer`, `Text`, `ContactShadows`)
 - Three.js `LatheGeometry` + `MeshPhysicalMaterial`
 
 ## Run
@@ -57,16 +55,14 @@ npm run build
 Vercel project: **`vibes-scroll-product`** (`prj_XLBiIlbjweejp9himT53bolPEMUW`)  
 Dashboard **Root Directory** (required): **`experiments/scroll-product-showcase`**
 
-`vercel.json` here sets Vite build output. It cannot set Root Directory — that is a dashboard field. If Root is empty, this project will try to build the monorepo root and fail.
-
-First production deploy is still queued behind the 2026-09-07 hobby quota (reset **~2026-09-08 12:55 UTC**). After reset, one deploy from `main`. Do not retry-spam.
+`vercel.json` cannot set Root Directory. First production is last in the post-quota queue (~**2026-09-08 12:55 UTC**). Do not retry-spam.
 
 ## What I Learnt
 
-1. **A bottle reads as a product. A torus knot reads as a shaderball.** Same materials, different silhouette.
-2. **Two IORs beat one glass mesh.** Liquid is a volume, not a tint on the shell.
-3. **Fixed canvas + document scroll** is the marketing-page version. Don't fight it with an overlay scroller.
-4. **City HDRI > studio** for glass. You need high-contrast highlights or transmission looks like plastic.
+1. **Silhouette first.** Upright gold-stopper ≠ the thumb. Horizontal dark cylinder does.
+2. **Refraction needs a subject.** Put the hero word in the 3D scene.
+3. **Lightformers beat a generic city HDRI** for those long product-shot highlights.
+4. **“It rolls” is a long-axis spin**, not a turntable yaw.
 
 ## Related
 

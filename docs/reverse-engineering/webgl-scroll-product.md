@@ -424,7 +424,7 @@ const content = [
 
 1. ✅ **Document the pattern** (this file)
 2. ✅ **Scroll product demo** (`experiments/scroll-product-showcase/`)
-   - Procedural **lathe bottle + liquid** (2026-09-08). First pass was a torus knot — same materials, weaker product read. Still clean-room: I drew the profile, I did not lift himanshubuildss' mesh.
+   - Procedural **horizontal dark-green lathe + liquid** (2026-09-08, after the himanshubuildss thumb). Earlier that day: upright amber carafe (wrong silhouette). Before that: torus knot. Still clean-room. Type lives in the 3D scene so transmission can bend it.
    - Dark cinematic interlocking cards
    - Native window scroll → damped rotation + camera (dropped drei `ScrollControls` overlay)
 3. 🚧 **Reusable component library** (optional)

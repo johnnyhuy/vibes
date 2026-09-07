@@ -13,7 +13,7 @@ I verified this against the Vercel API on 2026-09-08 (~14:10 UTC). I did **not**
 
 Dashboard noise looks like “Root Directory is missing, so every monorepo PR built the wrong experiment.” Commit messages on steam-atlas deployments are scroll-product, explode, semicircle. One production ERROR, later READY previews, `live: false`.
 
-That hunch is **half right**. The project *does* eat every monorepo PR. The Root Directory is **not** missing.
+That hunch is **half right**. The project *does* eat every monorepo PR. A later `create_git_project` **reuse** of `vibes-steam-atlas` with `deploy: false` did **not** write or fix Root Directory. There is still **no live production**. Treat Root as **misconfigured until I set it in the dashboard** — do not trust MCP create/reuse to persist it.
 
 ---
 
@@ -55,6 +55,8 @@ Commit messages in the Vercel list are the **git hook**, not the app. Once the f
 2. **A Root Directory that is unset** (or pointed at `.`) will try to build the monorepo root. There is no root `package.json`. That is a 404/ERROR factory. Confirm the dashboard field after quota reset — do not clear it.
 3. **A Root Directory that is set, on a branch that lacks the folder**, is the ERROR we already have. Production from an old PR branch will never go READY.
 4. **`vercel.json` cannot pin Root Directory.** I can only document it and set `ignoreCommand` so *this folder* no-ops when it did not change. Skipped builds may still count toward the hobby deployment cap.
+5. **`create_git_project` reuse + `deploy: false` does not change Root Directory.** I tried to reuse `vibes-steam-atlas` without burning a deploy. The project id stayed `prj_7D08PT8sdUjhigCEuz83oltZrDMv`. Root did not move. `live` stayed `false`. Do not treat reuse as a settings write.
+6. **Pause is not available on hobby.** The Pause API returned **400** for this project. I cannot pause steam-atlas to stop monorepo fan-out. The only brakes are: correct Root in the dashboard, `ignoreCommand` in this folder, and not pushing.
 
 ---
 
@@ -72,11 +74,12 @@ I did not add a monorepo-root `vercel.json`. That would fight the other seven pr
 
 One production deploy from **`main`** (the folder exists there — `03bbe0c` and later).
 
-1. Dashboard → `vibes-steam-atlas` → Settings → Root Directory = `experiments/procedural-steam-atlas` (confirm, do not blank it)
-2. Deployments → Deploy `main` **once**
-3. Stop. Do not retry on preview aliases from explode/semicircle PRs
+**Before any deploy**, dashboard → `vibes-steam-atlas` → Settings → Root Directory = **`experiments/procedural-steam-atlas`**. MCP reuse did not do this. Then:
 
-If production 404s, the root was cleared. Set it and deploy once more. That's the only retry that is allowed.
+1. Deploy `main` **once**
+2. Stop. Do not retry on preview aliases. Do not call pause (400 on hobby).
+
+If production 404s, Root is still wrong. Set it in the dashboard and deploy once more. That's the only retry that is allowed.
 
 ---
 

@@ -156,7 +156,7 @@ Trigger **one** deploy per project, in this order. Do not retry-spam. Do not cre
 
 1. **`vibes-explode`** — production still grey studio / old UI. One redeploy of `main` for #12 black studio + ordered gallery
 2. **`vibes-blender-semicircle`** — production still pre-`5941e259` / pre-`03bbe0c` FOV+bbox framing
-3. **`vibes-steam-atlas`** — first production. Confirm Root Directory is `experiments/procedural-steam-atlas` (it is set; do not clear it), then one deploy from `main`
+3. **`vibes-steam-atlas`** — first production. **Set** dashboard Root Directory to `experiments/procedural-steam-atlas` first (`create_git_project` reuse did not write it; Pause API 400 on hobby). Then one deploy from `main`
 4. **`vibes-scroll-product`** (`prj_XLBiIlbjweejp9himT53bolPEMUW`) — first production. Root already `experiments/scroll-product-showcase`. Zero deployments as of 2026-09-08.
 
 ---

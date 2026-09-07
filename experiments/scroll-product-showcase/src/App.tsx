@@ -37,71 +37,74 @@ export default function App() {
   return (
     <>
       <Canvas
-        camera={{ position: [0.55, 0.12, 6.4], fov: 32 }}
+        camera={{ position: [0, 0.28, 6.6], fov: 30 }}
         dpr={[1, 2]}
-        gl={{ antialias: true, alpha: false, toneMapping: ACESFilmicToneMapping, toneMappingExposure: 1.05 }}
+        gl={{ antialias: true, alpha: false, toneMapping: ACESFilmicToneMapping, toneMappingExposure: 1.12 }}
         style={{ position: 'fixed', inset: 0, width: '100vw', height: '100vh', pointerEvents: 'none' }}
       >
         <ProductScene />
       </Canvas>
 
       <div className="page">
+        <header className="topbar">
+          <span>Aether</span>
+          <span>Batch 04</span>
+        </header>
+
         <Reveal className="hero" side="center">
-          <p className="eyebrow">Aether · No. 04</p>
-          <h1>Aether</h1>
-          <p className="subtitle">A glass bottle, told by the scroll</p>
           <p className="lede">
-            I wanted the viral product-hero pattern without borrowing anyone's mesh.
-            Scroll and the carafe turns — refractive glass, amber liquid, studio lights.
+            I rebuilt the viral glass-bottle scrollytelling pattern without
+            borrowing a mesh. Dark green glass, liquid volume, type sitting
+            <em> behind</em> the bottle so transmission has something to bend.
           </p>
-          <div className="scroll-hint">Scroll to rotate</div>
+          <div className="scroll-hint">Scroll — it rolls</div>
         </Reveal>
 
         <Reveal className="feature" side="left">
           <div className="card">
             <p className="kicker">01 — Silhouette</p>
-            <h2>Lathed, not imported</h2>
+            <h2>On its side</h2>
             <p>
-              The body is a LatheGeometry profile I drew as 2D points — punt, shoulder,
-              neck, lip. No GLB. The brass collar and stopper are the only opaque parts,
-              so the glass can stay honest about transmission.
+              The himanshubuildss thumb is a wide apothecary cylinder, short neck,
+              black cap, lying down. I lathed that profile. A standing perfume
+              carafe with a brass stopper was the wrong read.
             </p>
           </div>
         </Reveal>
 
         <Reveal className="feature" side="right">
           <div className="card">
-            <p className="kicker">02 — Liquid</p>
-            <h2>Two indices of refraction</h2>
+            <p className="kicker">02 — Transmission</p>
+            <h2>Type through glass</h2>
             <p>
-              Outer shell: IOR 1.5, transmission 1, a short attenuation path so edges
-              go teal. Inner volume: IOR 1.4, amber attenuation, a disk for the meniscus.
-              Light bends twice. That is the whole trick.
+              Outer shell: IOR 1.48, transmission 1, short green attenuation.
+              Inner volume: darker, IOR 1.39. The lime “AETHER” is a drei Text
+              in the scene, not a DOM headline — otherwise the bottle has
+              nothing to refract.
             </p>
           </div>
         </Reveal>
 
         <Reveal className="feature" side="left">
           <div className="card">
-            <p className="kicker">03 — Camera</p>
-            <h2>Scroll is the dolly</h2>
+            <p className="kicker">03 — Roll</p>
+            <h2>Scroll is the long axis</h2>
             <p>
-              Progress maps to yaw, a little pitch, and a damped camera arc.
-              I dropped drei ScrollControls — the overlay stole the wheel from the
-              marketing page. Native window scroll, lerp in useFrame. Bidirectional.
+              “Scroll — it rolls.” Progress maps to rotation around the
+              bottle’s length, damped in useFrame. Strip Lightformers give the
+              long speculars. Bidirectional. Native window scroll.
             </p>
           </div>
         </Reveal>
 
         <Reveal className="feature" side="right">
           <div className="card">
-            <p className="kicker">04 — Why this</p>
-            <h2>Clean-room product hero</h2>
+            <p className="kicker">04 — Clean-room</p>
+            <h2>Pattern, not the brand</h2>
             <p>
-              Inspired by himanshubuildss' glass-bottle scrollytelling, not a copy of
-              the asset. Same pattern Apple and Stripe use: fixed canvas, tall page,
-              interlocking copy. Mine is Aether — a fictional refill, first person,
-              educational.
+              I studied the Caldera-class hero (chartreuse, black, horizontal
+              glass). I did not copy TEPHRA, the rocks, or the mesh. Aether is
+              a fictional batch. Educational only.
             </p>
           </div>
         </Reveal>

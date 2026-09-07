@@ -102,7 +102,7 @@ npm install && npm run dev
 #### [scroll-product-showcase](./experiments/scroll-product-showcase/)
 Scroll-driven glass bottle hero. Clean-room take on the pattern in [himanshubuildss' carafe](https://x.com/himanshubuildss/status/2096243989439713677) — refractive liquid, scroll rotation, interlocking copy. My mesh is a lathe I drew, not theirs.
 
-**What it is**: React + R3F + drei. Fixed canvas, native window scroll. Procedural `LatheGeometry` bottle + amber liquid (`MeshPhysicalMaterial` transmission / IOR / thickness). Camera and yaw damp in `useFrame`. Dark cinematic cards.
+**What it is**: React + R3F + drei. Horizontal dark-green lathe bottle, liquid volume, lime 3D type *behind* the glass, strip Lightformers. Native window scroll rolls the long axis. Chartreuse interlocking cards.
 
 **Run it**:
 ```bash
@@ -136,7 +136,7 @@ Each browser demo has its own Vercel project on this repo (Root Directory set in
 | v8-cutaway | `vibes-v8` | `experiments/v8-cutaway` | [vibes-v8.vercel.app](https://vibes-v8.vercel.app) | ✅ |
 | web-physics | `vibes-physics` | `experiments/web-physics` | [vibes-physics.vercel.app](https://vibes-physics.vercel.app) | ✅ |
 | blender-semicircle-viewer | `vibes-blender-semicircle` (`prj_PLhnoCVRKmpHc8SxyLRmcp3MFZMC`) | `experiments/blender-semicircle-viewer` | [vibes-blender-semicircle.vercel.app](https://vibes-blender-semicircle.vercel.app) | ⚠️ Prod still pre-`5941e259` / pre-`03bbe0c` FOV+bbox. **#2** after reset |
-| procedural-steam-atlas | `vibes-steam-atlas` (`prj_7D08PT8sdUjhigCEuz83oltZrDMv`) | `experiments/procedural-steam-atlas` | none (`live: false`) | ⚠️ **0 production READY**. Root is set — do not blank it. **#3** first production from `main` |
+| procedural-steam-atlas | `vibes-steam-atlas` (`prj_7D08PT8sdUjhigCEuz83oltZrDMv`) | **`experiments/procedural-steam-atlas` (set this in the dashboard before any deploy)** | none (`live: false`) | ⚠️ **0 production READY**. `create_git_project` reuse did **not** write Root. Pause API **400** on hobby. **#3** first production from `main` after Root is set |
 | scroll-product-showcase | `vibes-scroll-product` (`prj_XLBiIlbjweejp9himT53bolPEMUW`) | `experiments/scroll-product-showcase` | none | Linked, **0 deployments**. Build ✅ locally. **#4** first production |
 
 PR previews show up as Vercel bot comments on each pull request (when quota available).

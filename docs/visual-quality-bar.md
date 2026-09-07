@@ -69,12 +69,12 @@ This document captures the visual quality bar I'm aiming for in the vibes experi
 ###5. [@himanshubuildss Glass Bottle Scroll](https://x.com/himanshubuildss/status/2096243989439713677)
 **What it is**: Photoreal glass bottle with refraction, liquid, scroll-driven rotation
 
-**Visual qualities**:
-- **Photoreal materials** — Glass transmission, refraction, clearcoat
-- **HDRI lighting** — Environment map for realistic reflections
-- **Scroll interaction** — User scroll controls 3D rotation (not auto-animation)
-- **Liquid simulation** — Inner liquid volume with separate material
-- **Fixed canvas** — 3D scene stays in place while page scrolls
+**Visual qualities** (from `hill-climb/refs/himanshu-glass-bottle-thumb.jpg`):
+- **Horizontal apothecary** — wide cylinder, short neck, black cap, lying on its side
+- **Dark green / black glass** — transmission so lime type behind the bottle distorts
+- **Strip studio highlights** — long speculars along the length
+- **Scroll — it rolls** — long-axis spin, not a turntable
+- **Chartreuse + black** marketing chrome (I used Aether, not their brand)
 
 **Reference doc**: `docs/reverse-engineering/webgl-scroll-product.md`
 
@@ -112,13 +112,13 @@ Across all six demos, the quality bar is:
 ## My Implementation Status
 
 ### scroll-product-showcase ✅ (local)
-- ✅ Dark background (`#050505`)
-- ✅ React + R3F + drei
-- ✅ Procedural glass bottle + liquid (not a torus knot)
-- ✅ Scroll-driven rotation + camera damp
-- ✅ Frosted interlocking cards
+- ✅ Black stage (`#030303`) + chartreuse type (Caldera-class read, not the brand)
+- ✅ Horizontal apothecary lathe, black cap, dark green glass + liquid
+- ✅ 3D `Text` behind the bottle (refraction subject)
+- ✅ Strip Lightformers (long speculars)
+- ✅ Scroll rolls the long axis (“it rolls”)
 - ⚠️ No live URL until quota reset + **#4** first production
-- ⚠️ City HDRI preset, not a custom studio EXR
+- Thumb: `hill-climb/refs/himanshu-glass-bottle-thumb.jpg`
 
 ### explode-assembly ✅
 - ✅ Dark background

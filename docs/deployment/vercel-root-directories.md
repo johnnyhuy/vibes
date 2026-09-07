@@ -9,7 +9,13 @@ Hobby quota: 100 deploys/day. Reset after the 2026-09-07 burn: **~2026-09-08 12:
 
 Project Settings → General → **Root Directory** → the experiment folder. Save.
 
-If this is empty, Vercel builds the repo root. There is no root `package.json`. You get ERROR or a 404. That is the steam-atlas class of failure when the configured folder is also missing *on the git ref* — see [the incident](../incidents/2026-09-08-steam-atlas-wrong-root.md).
+If this is empty, Vercel builds the repo root. There is no root `package.json`. You get ERROR or a 404.
+
+**`create_git_project` reuse (`deploy: false`) does not write this field.** I reused `vibes-steam-atlas` and Root stayed whatever the dashboard already had — still no production. Set it by hand.
+
+**Pause API = 400 on hobby** for that project. I cannot pause it to stop fan-out.
+
+See [the incident](../incidents/2026-09-08-steam-atlas-wrong-root.md).
 
 ## Per-app (verified 2026-09-08)
 
@@ -21,7 +27,7 @@ If this is empty, Vercel builds the repo root. There is no root `package.json`. 
 | `vibes-v8` | `prj_7Em98GNdH9nceT1LonpntoCgNgRY` | `experiments/v8-cutaway` |
 | `vibes-physics` | `prj_Ilh5mBV0g7m7btvnxnhZuFY5ZjiH` | `experiments/web-physics` |
 | `vibes-blender-semicircle` | `prj_PLhnoCVRKmpHc8SxyLRmcp3MFZMC` | `experiments/blender-semicircle-viewer` |
-| `vibes-steam-atlas` | `prj_7D08PT8sdUjhigCEuz83oltZrDMv` | **`experiments/procedural-steam-atlas`** (must stay set; 0 production READY) |
+| `vibes-steam-atlas` | `prj_7D08PT8sdUjhigCEuz83oltZrDMv` | **MUST set `experiments/procedural-steam-atlas` in the dashboard before any post-quota deploy.** Reuse/MCP did not persist it. 0 production READY |
 | `vibes-scroll-product` | `prj_XLBiIlbjweejp9himT53bolPEMUW` | **`experiments/scroll-product-showcase`** (set; 0 deployments) |
 
 In-repo `vercel.json` lives *inside* those folders (`framework: vite`, `outputDirectory: dist`, `ignoreCommand` where I have added it).
@@ -34,7 +40,7 @@ One deploy per project. Stop.
 
 1. `vibes-explode` — production is stale grey studio; need `main` for #12 black studio + ordered gallery
 2. `vibes-blender-semicircle` — production is pre-`5941e259` / pre-`03bbe0c` FOV+bbox framing
-3. `vibes-steam-atlas` — **first production** from `main` after confirming Root
+3. `vibes-steam-atlas` — **first production** from `main` only after the dashboard Root is `experiments/procedural-steam-atlas`
 4. `vibes-scroll-product` — **first production** from `main` (Root already `experiments/scroll-product-showcase`)
 
 Do not create extra Vercel projects. Do not force production redeploys while the quota is 0.

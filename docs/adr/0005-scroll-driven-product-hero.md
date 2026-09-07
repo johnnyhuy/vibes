@@ -23,8 +23,8 @@ Key architectural choices:
 
 ```tsx
 const offset = window.scrollY / (scrollHeight - innerHeight); // 0 → 1
-product.rotation.y = damp(product.rotation.y, offset * Math.PI * 2, 4, dt);
-camera.position.z = damp(camera.position.z, 6.4 - offset * 2.35, 3.2, dt);
+product.rotation.x = damp(product.rotation.x, offset * Math.PI * 2, 3.6, dt); // long-axis roll
+camera.position.z = damp(camera.position.z, 6.6 - offset * 1.35, 3, dt);
 ```
 
 **Rejected**: `requestAnimationFrame` loop with easing toward target state.
@@ -48,14 +48,17 @@ camera.position.z = damp(camera.position.z, 6.4 - offset * 2.35, 3.2, dt);
 
 ### 3. Procedural Geometry (Not GLB Import)
 
-**Chosen (2026-09-08)**: A lathed perfume bottle + inner liquid, still 100% Three.js primitives.
+**Chosen (2026-09-08, later the same day)**: A **horizontal** dark-green apothecary lathe + liquid + black cap. Lime 3D type sits behind the glass.
 
 ```tsx
-<latheGeometry args={[outerProfile, 64]} />   // glass shell
-<latheGeometry args={[liquidProfile, 48]} />  // amber volume
+<group rotation={[0, 0, Math.PI / 2]}>  // lie on the long axis
+  <latheGeometry args={[outerProfile, 80]} />
+  <latheGeometry args={[liquidProfile, 64]} />
+</group>
 ```
 
-**Earlier (2026-09-07)**: Torus knot + cylinder + sphere. Same materials, weaker product read.
+**Earlier that day**: Upright amber carafe + brass stopper — still the wrong silhouette vs the himanshubuildss thumb.
+**2026-09-07**: Torus knot. Shaderball.
 
 **Rejected**: Importing a realistic product GLB (bottle, phone, etc).
 
@@ -83,7 +86,7 @@ camera.position.z = damp(camera.position.z, 6.4 - offset * 2.35, 3.2, dt);
 
 I kept every decision above except the torus knot and the drei overlay scroller.
 
-The viral reference is still [himanshubuildss](https://x.com/himanshubuildss/status/2096243989439713677) — photoreal glass, refractive liquid, scroll rotation, interlocking UI. I am not copying the asset. I am matching the *pattern* with a lathe I wrote.
+The viral reference is still [himanshubuildss](https://x.com/himanshubuildss/status/2096243989439713677) (thumb: `hill-climb/refs/himanshu-glass-bottle-thumb.jpg`) — horizontal dark glass, refractive liquid, **scroll rolls the long axis**, interlocking UI, type *through* the bottle. I am not copying TEPHRA/CALDERA. I am matching the pattern with a lathe I wrote.
 
 `ignoreCommand` in this experiment's `vercel.json` skips Vite when `experiments/scroll-product-showcase/` did not change. It does **not** set Root Directory. That stays a dashboard field (`experiments/scroll-product-showcase`).
 

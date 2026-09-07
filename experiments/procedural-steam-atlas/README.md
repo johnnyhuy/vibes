@@ -26,11 +26,11 @@ Open http://localhost:5173 → drag to orbit, scroll to zoom, use controls to ex
 ## Deploy
 
 Vercel project: **`vibes-steam-atlas`** (`prj_7D08PT8sdUjhigCEuz83oltZrDMv`)  
-Root Directory: **`experiments/procedural-steam-atlas`** (required — do not use the repo root, do not blank the dashboard field)
+Root Directory: **`experiments/procedural-steam-atlas`** — **set this in the dashboard before any post-quota deploy.** Do not use the repo root.
 
-`vercel.json` here sets Vite + `ignoreCommand` so unrelated PRs skip *this* build. It cannot set Root Directory.
+`vercel.json` here sets Vite + `ignoreCommand`. It cannot set Root Directory. `create_git_project` reuse (`deploy: false`) also **does not write Root**. Pause API returned **400** on hobby — I cannot pause this project to stop fan-out.
 
-No successful **production** deploy yet. The one production attempt ERROR'd because that PR branch did not contain this folder (`NOW_SANDBOX_WORKER_ROOTDIR_NOT_EXIST`). Later previews from explode/semicircle PRs *did* build this app — the commit message in Vercel is the hook, not the experiment. After quota reset (~2026-09-08 12:55 UTC): confirm Root, one deploy from `main`. Don't spam retries.
+No successful **production** deploy yet. After quota reset (~2026-09-08 12:55 UTC): set Root in the dashboard, one deploy from `main`. Don't spam retries.
 
 See [docs/incidents/2026-09-08-steam-atlas-wrong-root.md](../../docs/incidents/2026-09-08-steam-atlas-wrong-root.md).
 
