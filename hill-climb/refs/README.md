@@ -10,6 +10,7 @@ Thumbs attached on the 2026-09-08 agent pass (not copied from the source demos' 
 - Chinese courtyard still lives on [MrLarus](https://x.com/MrLarus/status/2096971051334857181). Built: `experiments/chinese-courtyard/`. Notes: `docs/reverse-engineering/chinese-courtyard-threejs.md`. Vibe only — do not copy their L-plan, chrome, or mesh.
 - `biplane-heymichu-thumb.jpg` — [heymichu25](https://x.com/heymichu25/status/2097062564299759855) (video thumb `…/2097062514253316096/…`). Built: `experiments/amber-longeron/`. Notes: `docs/reverse-engineering/amber-longeron.md`. Feel only.
 - `biplane-live-20260908-0738.png` — headed still of their public live canvas (tan void, red orbs, no HUD). Same feel-only rule. Do not copy assets or chrome.
+- `orb-onix-fresh.jpg` — [onix_react](https://x.com/onix_react/status/2096978661802975464) promo still (glass orb, preset rail, copy-code). Built: `experiments/nacre-loom/`. Notes: `docs/reverse-engineering/nacre-loom.md`. Feel only. The Pages URL 404s — do not scrape it.
 
 If a checkout is missing the binaries, the same stills live on those posts.
 
