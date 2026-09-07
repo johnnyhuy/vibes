@@ -1,0 +1,57 @@
+# web-3d
+
+Interactive 3D assembly explorer built with Three.js and Vite.
+
+## Features
+
+- **Assembly Scene**: Exploded view of a 12-part motor assembly
+  - Interactive explode slider
+  - Click parts to see detailed information
+  - Hover highlighting
+  - Professional dark UI
+
+- **Cutaway Scene**: Mechanical cross-section visualisation
+  - Half-section view of cylindrical motor
+  - Rotating internal components
+  - Coil windings and shaft detail
+
+## Running Locally
+
+```bash
+npm install
+npm run dev
+```
+
+Open the displayed localhost URL in your browser.
+
+## Build
+
+```bash
+npm run build
+```
+
+Output in `dist/`
+
+## Tech Stack
+
+- **Three.js** — 3D rendering
+- **Vite** — Fast dev server and build tool
+- **Vanilla JS** — No framework overhead
+
+## Scene Details
+
+### Assembly Parts
+12 procedurally generated parts representing a typical electric motor:
+- Housing, rotor, stator
+- Front/rear bearings and end caps
+- Drive shaft, cooling fan
+- Terminal box, mounting flange, windings
+
+### Cutaway Scene
+Cross-section view revealing:
+- Outer shell (with clipping plane)
+- Rotor core
+- 8 electromagnetic coils
+- Central drive shaft
+
+All geometry is procedural — no external model files required.
