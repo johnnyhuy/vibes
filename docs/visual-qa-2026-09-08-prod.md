@@ -1,6 +1,42 @@
-# Production Visual QA — 2026-09-08 ~12:07–12:29 AEST
+# Production Visual QA — 2026-09-08
 
-I captured four production URLs. **All four FAIL.** This is not a code bug on `main` (`03bbe0c`). It is stale / missing production deploys behind the hobby quota. I am **not** redeploying. Quota resets ~**2026-09-08 12:55 UTC**.
+Quota still resets ~**2026-09-08 12:55 UTC**. I am **not** redeploying on this hill-climb.
+
+## Latest — ~2:22–2:33am AEST (supersedes the morning explode FAIL)
+
+Stills: `prod-explode-0-20260908-0222.png`, `prod-explode-80-20260908-0222.png`.
+
+| Surface | Verdict | Notes |
+| --- | --- | --- |
+| [vibes-explode.vercel.app](https://vibes-explode.vercel.app) @ 0% | **PASS** | Black studio, assembled Model 3, frosted **MODEL 3** UI |
+| same @ ~76% | **PASS** | Ordered gallery |
+| [vibes-blender-semicircle.vercel.app](https://vibes-blender-semicircle.vercel.app) | **FAIL** | Cropped mega-arc — thin blue curve on black. Production still commit `25587f54` |
+| steam-atlas production alias | **FAIL** | `404 DEPLOYMENT_NOT_FOUND` |
+| scroll-product production alias | **FAIL** | `404 DEPLOYMENT_NOT_FOUND` |
+
+**explode production** is `dpl_ELE1f1XhqGQ7hciZSjkPVLMPmUh8` on `main` `de25d60`. Skip explode after quota unless it goes stale again.
+
+**glass**: `vibes-glass-capability-brain` (`prj_yJbQTsiB138V5jh92cwSWd8rZmij`), Root `experiments/glass-capability-brain`, created `deploy: false`, SSO off, **0 production**.
+
+**japanese-tower**: local only. No Vercel project.
+
+### Redeploy order after ~12:55 UTC
+
+One each. Stop.
+
+1. **Skip** `vibes-explode` — already fresh on `de25d60` unless a later check goes stale
+2. `vibes-blender-semicircle` — one `main` redeploy (replace `25587f54`)
+3. `vibes-steam-atlas` — **confirm** dashboard Root = `experiments/procedural-steam-atlas`, then first production
+4. `vibes-scroll-product` — first production
+5. `vibes-glass-capability-brain` — first production (Root already set; SSO off)
+
+Do not create a japanese-tower project. Do not spam deploys.
+
+---
+
+## Morning — ~12:07–12:29 AEST (historical)
+
+I captured four production URLs. **All four FAIL at that hour.** That was stale / missing production, not a code bug on then-`main` (`03bbe0c`). The ~2:22am pass above updates explode only.
 
 Stills (agent thread; names below):
 
@@ -24,7 +60,7 @@ Stills (agent thread; names below):
 - Slider at **0% / Assembled**
 - Body is **fragmented white shells** floating apart; tyres off the chassis
 
-That is the pre-#12 (and pre-mesh-filter) world. One `main` redeploy of `vibes-explode` is **#1** after quota reset.
+That was the pre-#12 world at noon. **Superseded at ~2:22am AEST** — explode production is now PASS on `dpl_ELE1f1XhqGQ7hciZSjkPVLMPmUh8`.
 
 ## 2. explode @ ~81% — clipped / unreadable
 
@@ -37,7 +73,7 @@ That is the pre-#12 (and pre-mesh-filter) world. One `main` redeploy of `vibes-e
 - **No readable car / no ordered gallery** — viewport is empty or clipped
 - Same opaque old pill
 
-Confirms production is not running the ordered-gallery layout from #12. Same one redeploy as above. Do not burn a second explode deploy.
+That noon still was empty. **Superseded at ~2:22am** — ~76% is an ordered gallery. Do not burn another explode deploy.
 
 ## 3. semicircle — cropped mega-arc, nearly black
 
@@ -50,7 +86,7 @@ Confirms production is not running the ordered-gallery layout from #12. Same one
 - Individual laptops unreadable
 - UI chrome is the current titles/buttons — the **camera/lighting on prod is the old hardcoded seat**
 
-Code fix is already on `main`. Production is not. One `main` redeploy of `vibes-blender-semicircle` is **#2**.
+Code fix is already on `main`. Production is still `25587f54` at 2:33am (thin blue curve on black). First real post-quota job.
 
 ## 4. steam-atlas — 404 DEPLOYMENT_NOT_FOUND
 
@@ -72,16 +108,11 @@ No locomotive. No production HTML. Matches `live: false` on `prj_7D08PT8sdUjhigC
 
 - No Vercel redeploy, no `vercel --prod`, no extra projects
 - No pause (400 on hobby)
-- No code change to explode/semicircle in this PR — `main` already has the fixes
+- No code change to explode/semicircle in this PR — explode prod is already `de25d60`; semicircle fix is on `main` and waiting
 
 ## Redeploy order (after ~2026-09-08 12:55 UTC)
 
-One each. Stop.
-
-1. `vibes-explode` — `main` (#12 black studio + ordered gallery). Pass when 0% is a whole car on black, 80% is a readable ordered grid.
-2. `vibes-blender-semicircle` — `main` bbox framing. Pass when all 51 laptops read as a 180° arc.
-3. `vibes-steam-atlas` — **set Root first**, then `main`. Pass when the locomotive page loads (not `DEPLOYMENT_NOT_FOUND`).
-4. `vibes-scroll-product` — first production after #16 merges. Pass when Aether is the horizontal dark-green bottle, not a torus knot.
+See the **Latest** table at the top. Explode is skipped. Semicircle is first.
 
 ## Related
 
@@ -92,6 +123,9 @@ One each. Stop.
 
 ---
 
-**Captured**: 2026-09-08 ~12:07–12:29 AEST  
+---
+
+**Morning capture**: 2026-09-08 ~12:07–12:29 AEST  
+**Latest QA**: 2026-09-08 ~2:22–2:33am AEST  
 **Author**: Johnny Huynh  
-**Action**: Wait for quota. Then the four deploys above. No more.
+**Action**: Wait for quota. Skip explode. Then semicircle → steam-atlas → scroll-product → glass. No more.

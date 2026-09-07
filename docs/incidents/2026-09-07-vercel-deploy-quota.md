@@ -243,8 +243,9 @@ Trigger **one** deploy per project, in this order. Do not retry-spam. Do not cre
 **2026-09-08 ~00:07 AEST** — #15 on `main` (`03bbe0c`). Quota still 0. Redeploy order: explode → semicircle → steam-atlas first prod → scroll-product first prod  
 **2026-09-08 ~14:10 UTC** — API re-check (read-only): steam-atlas `live: false`; production ERROR was missing-folder-on-branch, not a blank Root. scroll-product still 0 deployments.  
 **2026-09-08 ~12:07–12:29 AEST** — Production visual QA. explode 0% + 80% FAIL (grey / not assembled / not ordered). semicircle FAIL (cropped black arc). steam-atlas FAIL (`404 DEPLOYMENT_NOT_FOUND`). See [visual QA](../visual-qa-2026-09-08-prod.md). **Do not redeploy.**  
-**2026-09-08 ~12:55 UTC / ~10:55pm AEST** (estimated reset) — One deploy each: explode → semicircle → steam-atlas (Root first) → scroll-product  
-**TBD** — Post-recovery: explode 0% is a whole car on black; 80% is an ordered grid; semicircle shows 51 laptops; steam-atlas is not a 404; scroll-product is the horizontal Aether bottle
+**2026-09-08 ~2:22–2:33am AEST** — Re-QA. explode **PASS** @0% and @~76% (`dpl_ELE1f1XhqGQ7hciZSjkPVLMPmUh8` on `de25d60`). semicircle still FAIL on `25587f54`. steam-atlas + scroll-product still `DEPLOYMENT_NOT_FOUND`. glass project exists (`deploy: false`, SSO off). **Skip explode after quota.** Order: semicircle → steam-atlas (confirm Root) → scroll-product → glass.  
+**2026-09-08 ~12:55 UTC / ~10:55pm AEST** (estimated reset) — One deploy each per the 2:33am order. Do not redeploy explode unless it goes stale.  
+**TBD** — Post-recovery: semicircle shows 51 laptops; steam-atlas is not a 404; scroll-product is the horizontal Aether bottle; glass has a first production
 
 ---
 

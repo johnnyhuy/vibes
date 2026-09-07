@@ -174,6 +174,7 @@ With a .glb, each rivet is a separate mesh → more memory overhead.
 | **explode-assembly** | GLB loading | Need real Tesla Model 3 detail (334 pieces) |
 | **earth-timeline** | Procedural sphere + textures | Parametric planet, but uses canvas textures |
 | **v8-cutaway** | Procedural geometry | Mechanical engine, parametric configuration |
+| **japanese-tower** | Procedural geometry | Architectural keep; season/weather retints materials (ADR-0007) |
 
 ## Pattern: Procedural Geometry Functions
 

@@ -93,9 +93,22 @@ This document captures the visual quality bar I'm aiming for in the vibes experi
 
 ---
 
+### 7. [@bharatmodi2014 Japanese Tower](https://x.com/bharatmodi2014/status/2096974996455444494)
+**What it is**: Interactive Three.js Japanese keep — seasons, day/night, weather, atmosphere
+
+**Visual qualities** (from the public post + video thumb; I did not copy their chrome):
+- **Outdoor cinematic valley** — not a studio turntable
+- **Controls retint the world** — lighting, fog, particles, materials
+- **Glass overlay** — season / weather / time as first-class state; thumb also shows a keep *being raised*
+- **Architectural hero** — stacked roofs + scaffold read as a tenshu even at low poly
+
+**Reference doc**: `docs/reverse-engineering/japanese-tower-threejs.md`
+
+---
+
 ## Common Patterns
 
-Across all six demos, the quality bar is:
+Across these demos, the quality bar is:
 
 1. **Dark UI** — Black backgrounds, not grey (#000 or #0a0a0a)
 2. **Frosted glass panels** — `backdrop-filter: blur(20px)`, rgba backgrounds
@@ -111,6 +124,13 @@ Across all six demos, the quality bar is:
 
 ## My Implementation Status
 
+### japanese-tower ✅ (local)
+- ✅ Pale glass chrome (not their product frame)
+- ✅ Procedural keep + lift (scaffold → storeys → tiles)
+- ✅ Season / day-night / weather / haze actually change the look
+- ⚠️ No Vercel project — do not create one until quota resets
+- Inspired by [bharatmodi2014](https://x.com/bharatmodi2014/status/2096974996455444494)
+
 ### scroll-product-showcase ✅ (local)
 - ✅ Black stage (`#030303`) + chartreuse type (Caldera-class read, not the brand)
 - ✅ Horizontal apothecary lathe, black cap, dark green glass + liquid
@@ -125,7 +145,7 @@ Across all six demos, the quality bar is:
 - ✅ React + R3F + drei
 - ✅ Orbital camera
 - ✅ Explosion slider
-- ⚠️ UI could be more frosted-glass (currently plain CSS)
+- ✅ Frosted MODEL 3 UI on production `de25d60` (PASS 2026-09-08 ~2:22am AEST)
 - ⚠️ Lighting could be more studio-like
 
 ### earth-timeline ✅
@@ -196,4 +216,4 @@ Then implementing those patterns with:
 
 **Author**: Johnny Huynh  
 **Purpose**: Visual quality reference for vibes experiments  
-**Last Updated**: 2026-09-07
+**Last Updated**: 2026-09-08 (~2:22am AEST hill-climb: glass merged; steam/scroll still no production; quota wait)
