@@ -1,77 +1,131 @@
-import { Canvas } from '@react-three/fiber';
+import { useEffect, useRef } from 'react';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
+import * as THREE from 'three';
 import CarModel from './CarModel';
+import {
+  EMPTY_LAYOUT,
+  LAYOUT_CENTER,
+  OVERVIEW_DIRECTION,
+  type ExplosionLayout,
+} from '../utils/explosion';
 
 interface SceneProps {
   explode: number;
   selectedPart: string | null;
   isolated: boolean;
   onSelectPart: (part: string | null) => void;
+  layout: ExplosionLayout;
+  onLayoutReady: (layout: ExplosionLayout) => void;
 }
 
-export default function Scene({ explode, selectedPart, isolated, onSelectPart }: SceneProps) {
+function CameraRig({
+  explode,
+  layout,
+}: {
+  explode: number;
+  layout: ExplosionLayout;
+}) {
+  const { camera, size } = useThree();
+  const controls = useThree((state) => state.controls) as {
+    target: THREE.Vector3;
+    addEventListener?: (type: string, fn: () => void) => void;
+    removeEventListener?: (type: string, fn: () => void) => void;
+  } | null;
+  const userOrbiting = useRef(false);
+
+  useEffect(() => {
+    const start = () => {
+      userOrbiting.current = true;
+    };
+    const end = () => {
+      userOrbiting.current = false;
+    };
+    controls?.addEventListener?.('start', start);
+    controls?.addEventListener?.('end', end);
+    return () => {
+      controls?.removeEventListener?.('start', start);
+      controls?.removeEventListener?.('end', end);
+    };
+  }, [controls]);
+
+  useFrame((_, dt) => {
+    if (userOrbiting.current) return;
+
+    const amount = explode / 100;
+    const f = THREE.MathUtils.smoothstep(amount, 0.12, 0.7);
+    const homeTarget = new THREE.Vector3(0, 0.8, 0);
+    const target = homeTarget.lerp(LAYOUT_CENTER, f);
+
+    const perspective = camera as THREE.PerspectiveCamera;
+    const tangent = Math.tan(THREE.MathUtils.degToRad(perspective.fov / 2));
+    const aspect = size.width / Math.max(size.height, 1);
+    const fullDistance =
+      Math.max(layout.height / (2 * tangent), layout.width / (2 * tangent * aspect)) * 1.28 + 4;
+    const assembledDistance = Math.max(10.5, 7.5 / aspect);
+    const distance = THREE.MathUtils.lerp(assembledDistance, fullDistance, f);
+    const desired = target.clone().addScaledVector(OVERVIEW_DIRECTION, distance);
+    const blend = 1 - Math.exp(-8 * dt);
+
+    camera.position.lerp(desired, blend);
+    controls?.target.lerp(target, blend);
+  });
+
+  return null;
+}
+
+export default function Scene({
+  explode,
+  selectedPart,
+  isolated,
+  onSelectPart,
+  layout,
+  onLayoutReady,
+}: SceneProps) {
   return (
-    <Canvas shadows className="canvas">
-      {/* Pure black background for cinematic studio look */}
+    <Canvas
+      className="canvas"
+      gl={{
+        antialias: true,
+        toneMapping: THREE.ACESFilmicToneMapping,
+        toneMappingExposure: 1.05,
+        alpha: false,
+      }}
+      onCreated={({ gl }) => {
+        gl.setClearColor('#000000', 1);
+      }}
+    >
       <color attach="background" args={['#000000']} />
-      <fog attach="fog" args={['#000000', 25, 70]} />
-      
-      {/* Camera positioned to frame full sedan */}
-      <PerspectiveCamera makeDefault position={[-6, 3, 8]} fov={40} />
-      <OrbitControls 
-        enableDamping 
-        dampingFactor={0.05}
+
+      <PerspectiveCamera makeDefault position={[-5.7, 2.9, 6.3]} fov={38} />
+      <OrbitControls
+        makeDefault
+        enableDamping
+        dampingFactor={0.065}
         minDistance={5}
-        maxDistance={40}
-        maxPolarAngle={Math.PI * 0.48}
-        target={[0, 0.5, 0]}
+        maxDistance={220}
+        maxPolarAngle={Math.PI * 0.49}
+        minPolarAngle={0.18}
+        target={[0, 0.8, 0]}
       />
-      
-      {/* Key light - main illumination */}
-      <directionalLight 
-        position={[-10, 12, 8]} 
-        intensity={2.5} 
-        castShadow
-        shadow-mapSize={[2048, 2048]}
-        shadow-camera-left={-15}
-        shadow-camera-right={15}
-        shadow-camera-top={15}
-        shadow-camera-bottom={-15}
-      />
-      
-      {/* Fill light - soften shadows */}
-      <directionalLight position={[8, 8, -10]} intensity={1.2} color="#8ba6d1" />
-      
-      {/* Rim light - edge definition */}
-      <directionalLight position={[-5, 4, -8]} intensity={0.8} color="#ffffff" />
-      
-      {/* Top accent */}
-      <spotLight position={[0, 12, 0]} intensity={0.6} angle={0.5} penumbra={1} />
-      
-      {/* Ambient for soft global fill */}
-      <ambientLight intensity={0.25} />
-      
-      <CarModel 
+      <CameraRig explode={explode} layout={layout.width ? layout : EMPTY_LAYOUT} />
+
+      {/* Lights only — no Environment, no grey floor, no HDRI sky. */}
+      <hemisphereLight args={['#d7e2ee', '#000000', 0.28]} />
+      <directionalLight position={[-7, 11, 5]} intensity={4.6} />
+      <directionalLight position={[8, 6, 4]} intensity={3.2} color="#ffffff" />
+      <directionalLight position={[7, 5, -7]} intensity={2.8} color="#b9d0ea" />
+      <directionalLight position={[1, 2, -8]} intensity={2.6} color="#ffffff" />
+      <spotLight position={[0, 16, 3]} intensity={2.4} angle={0.65} penumbra={1} />
+      <ambientLight intensity={0.55} />
+
+      <CarModel
         explode={explode}
         selectedPart={selectedPart}
         isolated={isolated}
         onSelectPart={onSelectPart}
+        onLayoutReady={onLayoutReady}
       />
-      
-      {/* Studio ground - dark reflective surface */}
-      <mesh 
-        rotation={[-Math.PI / 2, 0, 0]} 
-        position={[0, -0.5, 0]} 
-        receiveShadow
-      >
-        <planeGeometry args={[100, 100]} />
-        <meshStandardMaterial 
-          color="#000000" 
-          metalness={0.05} 
-          roughness={0.95}
-          envMapIntensity={0.3}
-        />
-      </mesh>
     </Canvas>
   );
 }

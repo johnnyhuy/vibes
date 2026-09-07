@@ -5,58 +5,53 @@ interface SidebarProps {
   onToggleIsolate: () => void;
 }
 
-// Tesla Model 3 2021 Long Range systems
 const parts = [
-  { id: 'body', name: 'Body & Structure' },
-  { id: 'glass', name: 'Panoramic Glass' },
-  { id: 'doors', name: 'Doors & Closures' },
-  { id: 'interior', name: 'Passenger Cabin' },
-  { id: 'battery', name: 'Battery Pack (82 kWh)' },
-  { id: 'motors', name: 'Dual Motors (AWD)' },
-  { id: 'thermal', name: 'Thermal System' },
+  { id: 'body', name: 'Body & structure' },
+  { id: 'glass', name: 'Panoramic glass' },
+  { id: 'doors', name: 'Doors & closures' },
+  { id: 'interior', name: 'Passenger cabin' },
+  { id: 'battery', name: 'Battery pack' },
+  { id: 'motors', name: 'Dual motors' },
+  { id: 'thermal', name: 'Thermal system' },
   { id: 'suspension', name: 'Suspension' },
-  { id: 'wheels', name: 'Wheels & Brakes' },
+  { id: 'wheels', name: 'Wheels & brakes' },
   { id: 'charging', name: 'Charging & HV' },
   { id: 'electronics', name: 'Computers & 12V' },
-  { id: 'lights', name: 'Exterior Lighting' },
+  { id: 'lights', name: 'Exterior lighting' },
 ];
 
 export default function Sidebar({ selectedPart, onSelectPart, isolated, onToggleIsolate }: SidebarProps) {
   return (
-    <aside className="sidebar">
-      <div className="sidebar-header">
-        <h1>MODEL 3</h1>
-        <p className="subtitle">2021 Long Range</p>
-        <p className="subtitle" style={{ marginTop: '4px', fontSize: '9px', opacity: 0.5 }}>
-          Educational Unofficial
-        </p>
-      </div>
-      
-      <div className="parts-list">
+    <aside className="components-panel glass-panel">
+      <div className="panel-heading">
         <h2>Components</h2>
-        {parts.map(part => (
+      </div>
+
+      <div className="parts-list">
+        {parts.map((part, index) => (
           <button
             key={part.id}
-            className={`part-item ${selectedPart === part.id ? 'active' : ''}`}
+            className={`part-row ${selectedPart === part.id ? 'selected' : ''}`}
             onClick={() => onSelectPart(part.id === selectedPart ? null : part.id)}
           >
-            <span className="indicator"></span>
-            {part.name}
+            <span className="part-number">{String(index + 1).padStart(2, '0')}</span>
+            <span className="part-name">{part.name}</span>
+            <span className="part-chevron" aria-hidden>
+              ›
+            </span>
           </button>
         ))}
       </div>
-      
-      <div className="sidebar-footer">
-        <button 
+
+      <div className="panel-footer">
+        <button
           className={`isolate-btn ${isolated ? 'active' : ''}`}
           onClick={onToggleIsolate}
         >
-          {isolated ? 'Show All' : 'Isolate Selected'}
+          {isolated ? 'Show everything' : 'Isolate component'}
         </button>
-        
         <p className="disclaimer">
-          Model: David_Holiday (CC-BY-4.0)<br />
-          Unofficial educational recreation<br />
+          David_Holiday · CC-BY-4.0<br />
           Not affiliated with Tesla, Inc.
         </p>
       </div>
