@@ -72,15 +72,15 @@ function GnarledTree({
       </mesh>
       <mesh position={[0.06, 2.35, 0.08]} castShadow>
         <icosahedronGeometry args={[0.92, 0]} />
-        <meshStandardMaterial color="#1d3324" roughness={0.82} />
+        <meshStandardMaterial color="#2a4a34" roughness={0.82} />
       </mesh>
       <mesh position={[0.42, 2.15, -0.22]} castShadow>
         <icosahedronGeometry args={[0.58, 0]} />
-        <meshStandardMaterial color="#274233" roughness={0.8} />
+        <meshStandardMaterial color="#355a3c" roughness={0.8} />
       </mesh>
       <mesh position={[-0.28, 2.05, 0.18]} castShadow>
         <icosahedronGeometry args={[0.46, 0]} />
-        <meshStandardMaterial color="#163026" roughness={0.84} />
+        <meshStandardMaterial color="#1e3a2a" roughness={0.84} />
       </mesh>
     </group>
   );
@@ -108,7 +108,7 @@ function Terrain() {
       position={[0, -0.02, 0]}
       receiveShadow
     >
-      <meshStandardMaterial color="#1a261c" roughness={0.96} metalness={0.02} />
+      <meshStandardMaterial color="#16301c" roughness={0.96} metalness={0.02} />
     </mesh>
   );
 }
@@ -117,9 +117,9 @@ export default function Glade() {
   const { scene } = useThree();
 
   useLayoutEffect(() => {
-    const fog = scene.fog instanceof FogExp2 ? scene.fog : new FogExp2('#081018', 0.034);
-    fog.color.set('#081018');
-    fog.density = 0.034;
+    const fog = scene.fog instanceof FogExp2 ? scene.fog : new FogExp2('#08141c', 0.026);
+    fog.color.set('#08141c');
+    fog.density = 0.026;
     scene.fog = fog;
     scene.background = new Color('#081018');
   }, [scene]);
@@ -127,12 +127,12 @@ export default function Glade() {
   return (
     <>
       <SkyDome />
-      <color attach="background" args={['#081018']} />
-      <hemisphereLight color="#6f88a8" groundColor="#12160f" intensity={0.22} />
-      <ambientLight color="#1a2430" intensity={0.1} />
+      <color attach="background" args={['#08141c']} />
+      <hemisphereLight color="#7a96b4" groundColor="#142016" intensity={0.28} />
+      <ambientLight color="#1a2830" intensity={0.14} />
       <directionalLight
         color="#d5e4f6"
-        intensity={0.62}
+        intensity={0.88}
         position={[MOON.x, MOON.y, MOON.z]}
         castShadow
         shadow-mapSize={[1024, 1024]}
@@ -157,7 +157,7 @@ export default function Glade() {
           <meshBasicMaterial
             color="#9eb6d4"
             transparent
-            opacity={0.045}
+            opacity={0.08}
             side={DoubleSide}
             depthWrite={false}
             fog={false}
@@ -168,7 +168,7 @@ export default function Glade() {
       <Terrain />
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.03, 0]} receiveShadow>
         <circleGeometry args={[7.4, 40]} />
-        <meshStandardMaterial color="#243224" roughness={0.94} />
+        <meshStandardMaterial color="#2a3c28" roughness={0.94} />
       </mesh>
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.05, 0]} receiveShadow>
         <ringGeometry args={[5.35, 5.85, 42]} />

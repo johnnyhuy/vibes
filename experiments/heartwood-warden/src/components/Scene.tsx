@@ -24,7 +24,7 @@ export default function Scene({ player, input, casts, reducedMotion }: Props) {
       gl={{
         antialias: true,
         toneMapping: ACESFilmicToneMapping,
-        toneMappingExposure: 0.92,
+        toneMappingExposure: 1.02,
       }}
       onCreated={({ gl }) => {
         gl.shadowMap.type = PCFSoftShadowMap;

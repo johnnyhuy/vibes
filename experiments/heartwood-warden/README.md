@@ -36,6 +36,18 @@ npm run build
 
 Post-quota order stays: (1) promote `vibes-blender-semicircle` production from the framing-fix git-main preview (2) `vibes-scroll-product` first READY (3) `vibes-audio-gadget-spin` first production (4) `vibes-procedural-grass-field` (5) only then ballance / courtyard / amber-longeron / nacre-loom / this glade. Do not create those pending projects here.
 
+## Local playtest (2026-09-07)
+
+Headed preview on `127.0.0.1:4173` after `npm run build`:
+
+- Canvas painted a dark teal-navy glade, not a grey void. Guardian, trees, and lanterns readable.
+- WASD walked; Shift+W sprinted; topbar stance flipped idle → walk → sprint.
+- Casts `1` `2` `3` `4` `7` `0` each changed the desk title and showed distinct VFX.
+- Ward snippet panel opened with generated JSON + helper.
+- Console: no fatal errors. Only a missing-favicon 404 on the first pass (now an inline SVG icon) and benign WebGL `ReadPixels` notes.
+
+No Vercel project. No production URL.
+
 ## Related
 
 - [docs/reverse-engineering/heartwood-warden.md](../../docs/reverse-engineering/heartwood-warden.md)
