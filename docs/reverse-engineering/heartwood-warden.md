@@ -5,6 +5,7 @@
 - Live marketing URL from the post: [https://img2threejs.io/#/x/monster-tree](https://img2threejs.io/#/x/monster-tree) — exhibit title there is “Groot — Heart of the Forest”
 - Site OG lockup: [https://img2threejs.io/og-cover.png](https://img2threejs.io/og-cover.png) — local copy `hill-climb/refs/img2threejs-og-cover.png`. Headline: “One photo in. A procedural model out.” Subject on that card is AWP | Medusa, not the woodland hero.
 - X video thumb: `https://pbs.twimg.com/amplify_video_thumb/2096943840838193152/img/LOlXKpGYZbPCG-yU.jpg` — local copy `hill-climb/refs/img2threejs-monster-tree-og.jpg`. This is the woodland *mood*.
+- Live visual QA stills attached 2026-09-08 (marketing route + full viewer): moonlit shafts, spirit lights, WASD tutorial, bottom 1–0 cast strip. Pattern only. I did not copy Groot, their ability names, Field Guide card, thumbnail rail, or img2threejs chrome.
 - Thread clarifications (same conversation, verified via X API):
   - Skins via Hyper3D, then handed to img2threejs (`2096950738555634001`)
   - Showcase performance is intentionally unoptimised (`2096961252413317274`)
@@ -78,7 +79,8 @@ I did **not** confirm any of that against their bundle.
 | Hyper3D skins | No skins. One procedural composite. Bark plates + moss seams only |
 | img2threejs factory | Hand-authored R3F groups. `Warden.tsx`, `Glade.tsx`, `CastField.tsx` |
 | Their cast list / VFX names | Vine lash, spore bloom, root pulse, amber heart, moss veil, canopy bind, lantern call, night dew, heartwood choir, moon graft |
-| Product gallery chrome / “Open full viewer” | Frosted 2026-09-08 HUD: topbar, left editorial, right cast desk, optional snippet. Brand `vibes · heartwood warden` |
+| Product gallery chrome / “Open full viewer” / Field Guide | Frosted 2026-09-08 HUD: topbar, left editorial, right cast desk, optional snippet. Brand `vibes · heartwood warden` |
+| Bottom 1–0 ability bar (their names) | Bottom **cast strip** with my names (vine lash … moon graft). `kbd` WASD hint, not a tutorial card |
 | Their generated source pane | `buildWardSnippet()` — my JSON shape + a short `rootPulse()` helper |
 | Unoptimised kitchen sink | Modest budget: 20 trees, 7 spirits, 3 spirit lights, one moon shadow map, throttled VFX ticks |
 
