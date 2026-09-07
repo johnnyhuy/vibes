@@ -9,9 +9,9 @@ I'm Johnny Huynh, and this monorepo is where I learn by building. Each experimen
 ### Interactive 3D Demos
 
 #### [explode-assembly](./experiments/explode-assembly/)
-**Tesla Model 3 2021 Long Range** exploded view recreation. Inspired by [this X post](https://x.com/ashebytes/status/1831768826242351397).
+**Tesla Model 3 2021 Long Range** exploded view recreation. Inspired by the viral AI 3D product explode demos on X.
 
-**What it is**: Educational recreation of Model 3 LR architecture. 12 system groups (~80 parts), real 2021 specs (82 kWh battery, dual motor AWD, heat pump), cinematic UI. Unofficial — not affiliated with Tesla.
+**What it is**: Educational recreation of Model 3 LR architecture. System groups, dual motor AWD layout, structural battery pack, cinematic UI. Unofficial — not affiliated with Tesla.
 
 **Run it**:
 ```bash
@@ -22,9 +22,7 @@ npm install && npm run dev
 ---
 
 #### [earth-timeline](./experiments/earth-timeline/)
-Interactive Earth history spanning 4.5 billion years. Inspired by [this X post](https://x.com/akshdeeps/status/1832134890432381354).
-
-**What it is**: Procedural globe with timeline scrub through geological eras. Watch evolution unfold.
+Interactive Earth history spanning 4.5 billion years.
 
 **Run it**:
 ```bash
@@ -35,9 +33,7 @@ npm install && npm run dev
 ---
 
 #### [v8-cutaway](./experiments/v8-cutaway/)
-Technical engine visualisation with live gauges. Inspired by [this X post](https://x.com/DilumSanjaya/status/1832045625846227101).
-
-**What it is**: Animated 8-cylinder engine showing piston motion, valve timing, RPM, and stroke cycles.
+Technical engine visualisation with live gauges.
 
 **Run it**:
 ```bash
@@ -48,9 +44,7 @@ npm install && npm run dev
 ---
 
 #### [web-physics](./experiments/web-physics/)
-Browser-based rigid body physics playground.
-
-**What it is**: Click to spawn boxes, Space for spheres, watch collisions and gravity. Built with Three.js + cannon-es.
+Browser-based rigid body physics playground (Three.js + cannon-es).
 
 **Run it**:
 ```bash
@@ -63,114 +57,36 @@ npm install && npm run dev
 ### AI 3D Workflows
 
 #### [ai-3d-lanes](./experiments/ai-3d-lanes/)
-Four parallel approaches to AI-assisted 3D creation:
-
-1. **web-3d** — Interactive Three.js exploded assembly (original demo)
-2. **blender** — Blender MCP scripting vs computer-use comparison (inspired by [this X post](https://x.com/developedbyed/status/1831768826242351397))
-3. **cad** — Parametric CAD with CadQuery
-4. **mesh-gen** — AI mesh generation services (docs + stubs)
-
-Each lane has its own README with setup instructions.
+Four parallel approaches: **web-3d**, **blender** (MCP vs computer-use), **cad** (CadQuery), **mesh-gen** (docs + stubs).
 
 ---
 
-### Image & Texture Generation
+### Image, texture & CAD
 
-#### [image-to-3d](./experiments/image-to-3d/)
-Single-image to 3D mesh generation. Inspired by [GROK BOT X post](https://x.com/omarsar0/status/1832043906668355898).
+- [image-to-3d](./experiments/image-to-3d/) — image→mesh stubs
+- [ai-image-texture](./experiments/ai-image-texture/) — image gen providers
+- [llm-openscad](./experiments/llm-openscad/) — text→OpenSCAD
 
-**What it is**: Documentation + dry-run stub for Meshy/Tripo/Rodin workflows. Hardware desk-console aesthetic.
+## Deployment (Vercel)
 
-**Run it**:
-```bash
-cd experiments/image-to-3d
-python mesh_client.py  # Dry-run mode, no API key needed
-open viewer.html       # Browser placeholder viewer
-```
+Each browser demo has its own Vercel project on this repo (Root Directory set in the dashboard). PR previews show up as Vercel bot comments on the PR.
 
----
+| App | Vercel project | Root Directory |
+| --- | --- | --- |
+| web-3d | `vibes` | `experiments/ai-3d-lanes/web-3d` |
+| explode-assembly | `vibes-explode` | `experiments/explode-assembly` |
+| earth-timeline | `vibes-earth` | `experiments/earth-timeline` |
+| v8-cutaway | `vibes-v8` | `experiments/v8-cutaway` |
+| web-physics | `vibes-physics` | `experiments/web-physics` |
 
-#### [ai-image-texture](./experiments/ai-image-texture/)
-AI image generation landscape overview.
+Stable branch preview host pattern:
+`https://<project>-git-cursor-ai-3d-lanes-monorepo-90aa-johnnyhuy-dev.vercel.app`
 
-**What it is**: Provider comparison (Flux, DALL·E, Midjourney, Stable Diffusion, Meshy Texture, Polycam) + dry-run client + viewer.
-
-**Run it**:
-```bash
-cd experiments/ai-image-texture
-python image_client.py
-open viewer.html
-```
-
----
-
-### Code-First CAD
-
-#### [llm-openscad](./experiments/llm-openscad/)
-Text-to-CAD using LLMs to generate OpenSCAD code.
-
-**What it is**: Example .scad files (bracket, enclosure, gear) + prompt templates for effective LLM CAD generation.
-
-**Run it**:
-```bash
-cd experiments/llm-openscad
-python generate_part.py  # Dry-run mode, selects templates
-# With OpenSCAD installed:
-openscad -o out.stl examples/bracket.scad
-```
-
----
-
-## Philosophy
-
-I built these experiments to understand how AI agents generate interactive content — the kind of demos where you slide through exploded views, scrub timelines, and see physics simulations.
-
-Each experiment answers specific questions:
-- **explode-assembly**: How do product marketing sites structure exploded views?
-- **earth-timeline**: How do you make billions of years feel tangible?
-- **v8-cutaway**: How do you sync 3D animation with technical readouts?
-- **web-physics**: How do agents generate physics scenarios from prompts?
-- **blender**: When does MCP beat computer-use for automation?
-- **image-to-3d**: When does mesh generation beat traditional modelling?
-- **llm-openscad**: How do LLMs emit parametric CAD code?
-
-## Structure
-
-```
-vibes/
-├── experiments/
-│   ├── explode-assembly/      # Tesla-style product explode
-│   ├── earth-timeline/         # Interactive globe + geologic time
-│   ├── v8-cutaway/             # Engine cutaway with gauges
-│   ├── web-physics/            # Physics playground
-│   ├── ai-3d-lanes/            # 4 AI 3D workflows
-│   ├── image-to-3d/            # Image→mesh (GROK BOT aesthetic)
-│   ├── ai-image-texture/       # Image generation providers
-│   └── llm-openscad/           # Text→CAD generation
-├── LICENSE                      # MIT
-└── README.md                    # This file
-```
-
-## Deployment
-
-**web-3d** (from ai-3d-lanes) is deployed on Vercel with automatic PR previews:
-- Production: Deploys from `main`
-- Previews: Every PR gets a unique URL
-- Root Directory set to `experiments/ai-3d-lanes/web-3d`
-
-Other experiments are local-only for now.
-
-## Adding Experiments
-
-1. Create `experiments/<name>/`
-2. Add a clear README explaining what and why
-3. Include setup/run instructions
-4. Update this root README
-5. Keep it simple — working code over perfect code
+Production URLs go live after this PR merges to `main`.
 
 ## Disclaimer
 
-**Research and education only.** These experiments are rough, incomplete, or whimsical. Not production code. I'm learning in public.
+**Research and education only.** Rough, incomplete, or whimsical. Not production. I'm learning in public.
 
 ## Licence
 
