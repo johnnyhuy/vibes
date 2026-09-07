@@ -68,7 +68,7 @@ export default function SkyRig({ look }: Props) {
   return (
     <>
       <SkyDome zenith={look.skyZenith} horizon={look.skyHorizon} />
-      <hemisphereLight args={[look.hemiSky, look.hemiGround, 0.55]} />
+      <hemisphereLight color={look.hemiSky} groundColor={look.hemiGround} intensity={0.55} />
       <ambientLight color={look.ambientColor} intensity={look.ambientIntensity} />
       <directionalLight
         color={look.sunColor}
