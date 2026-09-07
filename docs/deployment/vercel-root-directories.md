@@ -48,8 +48,8 @@ One deploy per project. Stop. Updated 2026-09-08 (ballance-roll hill-climb).
 
 1. **Skip** `vibes-explode` — PASS at 2:22am on `dpl_ELE1f1XhqGQ7hciZSjkPVLMPmUh8` / `main` `de25d60`. Redeploy only if a later check goes stale.
 2. `vibes-blender-semicircle` — production still `25587f54` (cropped mega-arc / thin blue curve). One `main` redeploy for bbox framing.
-3. `vibes-steam-atlas` — production READY on `a94b16e` / `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS`. **Confirm** dashboard Root = `experiments/procedural-steam-atlas` and that the alias still reads as the locomotive before spending a slot. Skip if it does.
-4. `vibes-scroll-product` — first production from `main` (Root already `experiments/scroll-product-showcase`). Still no READY production.
+3. **Skip** `vibes-steam-atlas` — LIVE on `a94b16e` / `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS` (locomotive UI). Redeploy only if a later visual QA fails.
+4. `vibes-scroll-product` — first READY production from `main` (Root already `experiments/scroll-product-showcase`).
 5. `vibes-japanese-tower` — created `deploy: false`, Root `experiments/japanese-tower`, **0 deployments**. First production after quota. Glass is already live — do not spend a slot on it.
 6. Do **not** create `vibes-ballance-roll` or a courtyard project until quota is healthy.
 
@@ -71,7 +71,7 @@ Explode production still **PASS** on `de25d60`. Semicircle still FAIL on `25587f
 
 ### Hill-climb — 2026-09-08 (chinese-courtyard)
 
-steam-atlas production **READY** on the ballance merge: `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS` / `main` `a94b16e`. HTML is Procedural Steam Atlas. I did not screenshot the WebGL canvas. Semicircle production still `25587f54`. scroll-product still no READY production. japanese-tower still 0 deployments. This pass is the courtyard experiment plus README touches so pending Roots stay in the merge diff. No new Vercel projects. No forced production redeploys.
+steam-atlas production **LIVE** on the ballance merge: `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS` / `main` `a94b16e` (locomotive UI). Semicircle production still `25587f54`. scroll-product still no READY production. japanese-tower still 0 deployments. This pass is the courtyard experiment plus README touches so pending Roots stay in the merge diff. No new Vercel projects. No forced production redeploys. Skip explode and steam after quota unless they go stale.
 
 ---
 

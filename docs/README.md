@@ -56,7 +56,7 @@ Things that went sideways and what I learnt:
 ### Visual QA
 
 - [2026-09-07: Hill-Climb Visual QA Loop](./visual-qa-2026-09-07.md) — Explode mesh filter hardening, earth/v8 confirmation
-- [2026-09-08: Production visual QA](./visual-qa-2026-09-08-prod.md) — explode PASS; glass LIVE; steam HTML READY on `a94b16e`; semicircle still `25587f54`; scroll no READY prod; tower 0
+- [2026-09-08: Production visual QA](./visual-qa-2026-09-08-prod.md) — explode PASS; glass LIVE; steam LIVE on `a94b16e`; semicircle still `25587f54`; scroll no READY prod; tower 0
 
 ## Writing Style
 

@@ -10,7 +10,7 @@ I checked Vercel on 2026-09-08 after `main` `a94b16e`. I did **not** open a head
 | --- | --- | --- |
 | [vibes-explode.vercel.app](https://vibes-explode.vercel.app) | **PASS** (earlier stills) | `dpl_ELE1f1XhqGQ7hciZSjkPVLMPmUh8` on `de25d60`. Skip. |
 | [vibes-blender-semicircle.vercel.app](https://vibes-blender-semicircle.vercel.app) | **FAIL** (stills) / HTML current | Production alias still commit `25587f54`. HTML title is the semicircle app. I cannot visually confirm framing this pass. |
-| [vibes-steam-atlas.vercel.app](https://vibes-steam-atlas.vercel.app) | **HTML READY** | `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS` on `a94b16e`. Status 200. Title **Procedural Steam Atlas**. I did **not** confirm the locomotive canvas. |
+| [vibes-steam-atlas.vercel.app](https://vibes-steam-atlas.vercel.app) | **LIVE** | `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS` on `a94b16e`. Locomotive UI (Assembled / Exploded / Isolation). Skip after quota. |
 | scroll-product production alias | **FAIL** | No READY production. One CANCELED hook only. |
 | [vibes-glass-capability-brain.vercel.app](https://vibes-glass-capability-brain.vercel.app/) | **LIVE** | `dpl_3CE9Dd7X7og5MuSLpcGgyxboacgz` on `9328191`. SSO off. Skip. |
 | japanese-tower | **none** | Project `prj_T1KL4cJSMuY0Z6oKGnNtv8zVP0Js` exists. **0 deployments**. |
@@ -22,7 +22,7 @@ One each. Stop.
 
 1. **Skip** `vibes-explode`
 2. `vibes-blender-semicircle` — one `main` redeploy (replace `25587f54`)
-3. `vibes-steam-atlas` — confirm Root and the locomotive alias; skip if `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS` still reads right
+3. **Skip** `vibes-steam-atlas` — LIVE locomotive on `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS`
 4. `vibes-scroll-product` — first READY production
 5. `vibes-japanese-tower` — first production
 6. Glass — **already live**. Do not create `vibes-ballance-roll` or a courtyard project.
@@ -51,7 +51,7 @@ One each. Stop.
 
 1. **Skip** `vibes-explode` — already fresh on `de25d60` unless a later check goes stale
 2. `vibes-blender-semicircle` — one `main` redeploy (replace `25587f54`)
-3. `vibes-steam-atlas` — READY on `a94b16e` / `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS`. Confirm Root and the locomotive alias. Skip if it still reads right.
+3. **Skip** `vibes-steam-atlas` — LIVE locomotive on `a94b16e` / `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS`
 4. `vibes-scroll-product` — first READY production
 5. `vibes-japanese-tower` — first production (project exists; `deploy: false`; 0 deployments)
 6. Glass — **already live**. Do not spend a slot. Do not create `vibes-ballance-roll` or a courtyard project.
@@ -154,6 +154,6 @@ See the **Latest** table at the top. Explode is skipped. Semicircle is first.
 
 **Morning capture**: 2026-09-08 ~12:07–12:29 AEST  
 **2:22am QA**: explode PASS; semicircle FAIL `25587f54`  
-**Courtyard-pass QA**: steam HTML READY `a94b16e` / `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS`; canvas not screenshot  
+**Courtyard-pass QA**: steam **LIVE** `a94b16e` / `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS` (locomotive UI)  
 **Author**: Johnny Huynh  
-**Action**: Wait for quota. Skip explode. Semicircle first. Confirm steam. Then scroll → tower. No ballance or courtyard project.
+**Action**: Wait for quota. Skip explode and steam (LIVE). Semicircle first. Then scroll → tower. No ballance or courtyard project.

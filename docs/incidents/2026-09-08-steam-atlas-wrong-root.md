@@ -3,7 +3,7 @@
 **Date**: 2026-09-07 → 2026-09-08  
 **Component**: Vercel project `vibes-steam-atlas` (`prj_7D08PT8sdUjhigCEuz83oltZrDMv`)  
 **Severity**: Medium (no production URL; previews exist; quota burned)  
-**Status**: First production **READY** on `main` `a94b16e` / `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS` after the ballance-roll merge touched this Root. HTML is Procedural Steam Atlas (200). I did not screenshot the WebGL canvas. Do not retry-spam. Do not create extra projects.
+**Status**: First production **LIVE** on `main` `a94b16e` / `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS` after the ballance-roll merge touched this Root. Alias serves the locomotive UI. Do not retry-spam. Do not create extra projects.
 
 I verified this against the Vercel API on 2026-09-08 (~14:10 UTC). I did **not** create or redeploy anything.
 

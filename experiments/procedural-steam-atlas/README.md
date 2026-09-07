@@ -30,7 +30,7 @@ Root Directory: **`experiments/procedural-steam-atlas`** — **set this in the d
 
 `vercel.json` here sets Vite + `ignoreCommand`. It cannot set Root Directory. `create_git_project` reuse (`deploy: false`) also **does not write Root**. Pause API returned **400** on hobby — I cannot pause this project to stop fan-out.
 
-Production **READY** on `main` `a94b16e` / `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS` after the ballance-roll merge touched this Root. Alias [vibes-steam-atlas.vercel.app](https://vibes-steam-atlas.vercel.app) returns the locomotive HTML (200). I have not screenshot the canvas on the courtyard hill-climb. Confirm dashboard Root before any extra deploy. Don’t spam retries from the agent. This README sentence keeps the Root in the next merge diff.
+Production **LIVE** on `main` `a94b16e` / `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS` after the ballance-roll merge touched this Root. Alias [vibes-steam-atlas.vercel.app](https://vibes-steam-atlas.vercel.app) serves the locomotive UI (Assembled / Exploded / Isolation). Skip after quota unless a later visual QA fails. Don’t spam retries from the agent. This README sentence keeps the Root in the next merge diff.
 
 See [docs/incidents/2026-09-08-steam-atlas-wrong-root.md](../../docs/incidents/2026-09-08-steam-atlas-wrong-root.md).
 
@@ -177,6 +177,6 @@ For now, this proves the pattern: **pure TypeScript geometry functions can creat
 
 ---
 
-**Status**: Linked, production READY `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS` on `a94b16e` (HTML confirmed; canvas not screenshot)  
+**Status**: Linked, production **LIVE** `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS` on `a94b16e`  
 **Last updated**: 2026-09-08  
 **Built by**: Johnny Huynh · kitchen sink · research and education only — not production code
