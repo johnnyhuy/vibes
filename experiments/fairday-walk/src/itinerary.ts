@@ -2,6 +2,7 @@ export const BRAND = {
   lockup: 'vibes · fairday walk',
   place: 'Fairday Walk',
   placeZh: '晴巷 · 风里的册页',
+  slip: 'Slip 7',
 } as const;
 
 export type StopId =

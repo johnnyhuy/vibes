@@ -125,9 +125,9 @@ Across these demos, the quality bar is:
 ## My Implementation Status
 
 ### fairday-walk ✅ (local)
-- ✅ Fair-day residential lane + frosted light HUD (serif place chip, Inter chrome)
-- ✅ Eight invented stops, scroll-driven camera, Explore orbit on the current place
-- ✅ Mid-fi procedural PBR (tiles, laundry, well, bikes). Vendored Poly Haven sky HDRI under Suspense
+- ✅ Fair-day residential folio on a floating cobble plot + frosted light HUD (serif place chip, Inter chrome)
+- ✅ Eight invented stops, Folio walk / Orbit / Recast, Clothlight…Folio looks, Line haze
+- ✅ Mid-fi procedural PBR (tiles, laundry, well, bikes, grass, leaves). Vendored Poly Haven sky HDRI under Suspense
 - ⚠️ No Vercel project — do not create one until quota is healthy
 - Inspired by [anyumeng28](https://x.com/anyumeng28/status/2097175519825383852) (post + live *read* only)
 

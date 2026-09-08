@@ -7,7 +7,7 @@
 **Study date**: 2026-09-08  
 **Status**: **Built** — `experiments/fairday-walk/` (Fairday Walk / 晴巷 · 风里的册页). Clean-room only.
 
-**Disclaimer**: I studied the public post text and the live *read* (soft outdoor memory places, walk / orbit, photo→3D feel). I did **not** download or decompile their JS, copy meshes, textures, CSS, HUD strings, routes, or branding. This demo is first-person Johnny Huynh / vibes — it is **not** 晴天 · 风里的记忆.
+**Disclaimer**: I studied the public post text and the live *read* (soft outdoor memory diorama, walk / orbit / reset, lighting intensity). I did **not** download or decompile their JS, copy meshes, textures, CSS, HUD strings, routes, or branding. This demo is first-person Johnny Huynh / vibes — it is **not** 晴天 · 风里的记忆 / 风里的记忆 NO. 001.
 
 ---
 
@@ -19,11 +19,13 @@
 
 Observed *read* (pattern only — I am not restating their HUD copy or domain chrome as a spec):
 
-- Soft outdoor light, not a black studio
-- Residential / courtyard memory places
-- Travel along a sequence, then inspect one
-- Walk or orbit, photo→3D density rather than toy boxes
-- A place name you can read
+- Soft outdoor memory diorama on a floating plot
+- Drag orbit, wheel zoom, a reset gesture
+- A lighting / weather-intensity axis
+- Bottom mode pills
+- Photo→3D density rather than toy boxes
+
+I will not reuse their title, NO. 001, lighting-ref nouns, or weather chrome.
 
 The viral object is **an old-photo memory you can walk**, not a chalk landmark tour and not a harbour walker.
 
@@ -62,13 +64,13 @@ Instanced tiles, recessed windows, wind laundry, well, bicycles, pigeons, awning
 
 Names: **Laundry Court**, **Bicycle Shed**, **Courtyard Well**, **Shop Awning**, **Window Fern**, **Rooftop Pigeon**, **Evening Laundry**, **Fig Alley**.
 
-### 3. Explore as a mode
+### 3. Orbit as a mode; Recast restores the pose
 
-OrbitControls off until Explore. Pointer-events on the canvas only then. Wheel zoom stays in the scene. Esc / Leave restores the scroll framing.
+OrbitControls off until Orbit. Pointer-events on the canvas only then. Wheel zoom stays in the scene. Recast / double-click / Esc restore the authored framing.
 
 ### 4. Thin frosted HUD, fair-day paper
 
-Brand `vibes · fairday walk`. Stop counter. Explore. Serif place chip. First-person caption. Inter for chrome. No chalk museum desk, no dusk harbour HUD.
+Brand `vibes · fairday walk`. Slip 7. Folio / Orbit / Recast pills. Invented lighting stances and a Line-haze slider. Serif place chip. First-person caption. Inter for chrome. No chalk museum desk, no dusk harbour HUD, no copied Chinese pills.
 
 ## Clean-room checklist
 

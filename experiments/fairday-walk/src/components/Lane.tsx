@@ -1,11 +1,13 @@
 import { STOPS } from '../itinerary';
+import type { ResolvedLook } from '../looks';
 import { lane } from '../palette';
 import { Cobble, House, Plaster } from './Kit';
 
 const FIRST = STOPS[0].position[2];
 const LAST = STOPS[STOPS.length - 1].position[2];
-const LENGTH = FIRST - LAST + 36;
+const LENGTH = FIRST - LAST + 28;
 const MID = (FIRST + LAST) / 2;
+const WIDTH = 22;
 
 const FILL = [
   { x: -7.4, z: -11, w: 3.4, d: 2.6, h: 3.4, plaster: lane.plasterCool },
@@ -24,21 +26,33 @@ const FILL = [
   { x: 7.4, z: -143, w: 3.5, d: 2.6, h: 3.7, plaster: lane.plaster },
 ] as const;
 
-export default function Lane() {
+export default function Lane({ look }: { look: ResolvedLook }) {
   return (
     <group>
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.02, MID]} receiveShadow>
-        <planeGeometry args={[48, LENGTH]} />
-        <Plaster color={lane.earth} roughness={0.97} />
+      <mesh position={[0, -0.55, MID]} castShadow receiveShadow>
+        <boxGeometry args={[WIDTH, 1.05, LENGTH]} />
+        <meshStandardMaterial color={lane.earth} roughness={0.94} />
       </mesh>
+      {[-1, 1].map((side) => (
+        <mesh key={`bevel-${side}`} position={[side * (WIDTH / 2 + 0.35), -0.85, MID]} rotation={[0, 0, side * 0.4]} castShadow>
+          <boxGeometry args={[1.2, 0.7, LENGTH]} />
+          <meshStandardMaterial color={lane.plasterShade} roughness={0.9} />
+        </mesh>
+      ))}
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.01, MID]} receiveShadow>
         <planeGeometry args={[7.4, LENGTH]} />
         <Cobble />
       </mesh>
       {[-3.85, 3.85].map((x) => (
-        <mesh key={x} position={[x, 0.08, MID]} receiveShadow>
-          <boxGeometry args={[0.55, 0.1, LENGTH]} />
-          <meshStandardMaterial color={lane.plasterShade} roughness={0.9} />
+        <mesh key={x} position={[x, 0.05, MID]} receiveShadow>
+          <boxGeometry args={[1.15, 0.08, LENGTH]} />
+          <meshStandardMaterial color={lane.moss} roughness={0.92 - look.wet * 0.2} />
+        </mesh>
+      ))}
+      {[-1, 1].map((end) => (
+        <mesh key={`end-${end}`} position={[0, -0.2, MID + end * (LENGTH / 2 + 0.2)]} castShadow>
+          <boxGeometry args={[WIDTH * 0.72, 0.7, 0.7]} />
+          <Plaster color={lane.plasterShade} />
         </mesh>
       ))}
       {FILL.map((house, i) => (

@@ -46,7 +46,8 @@ body.is-explore {
 .editorial,
 .meter,
 .hint,
-.ticks {
+.ticks,
+.dock {
   z-index: 4;
 }
 
@@ -196,11 +197,72 @@ body.is-explore {
   width: auto;
 }
 
-.ticks {
+.haze {
+  display: block;
+  width: 100%;
+  margin: 0.45rem 0 0.15rem;
+  accent-color: var(--accent);
+}
+
+.haze-label {
+  margin-top: 0.75rem;
+}
+
+.haze-ticks {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.looks {
+  flex-wrap: wrap;
+  margin-top: 0.55rem;
+}
+
+.dock {
   position: fixed;
   left: 50%;
-  bottom: 1.2rem;
+  bottom: 1.15rem;
   transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  z-index: 4;
+}
+
+.pills {
+  display: flex;
+  gap: 0.28rem;
+  padding: 0.32rem 0.4rem;
+  background: var(--panel);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+
+.pills button {
+  appearance: none;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 0.26rem 0.7rem;
+  font: inherit;
+  font-size: 0.74rem;
+  cursor: pointer;
+}
+
+.pills button.active {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.ticks {
   display: flex;
   gap: 0.38rem;
   list-style: none;

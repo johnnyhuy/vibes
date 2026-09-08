@@ -1,14 +1,19 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import Hud from './components/Hud';
 import Scene from './components/Scene';
 import { scrollToStop, usePrefersReducedMotion, useWindowScroll } from './hooks';
 import { BRAND, STOPS, stopIndexFromOffset } from './itinerary';
+import { resolveLook, type LookId } from './looks';
 
 export default function App() {
   const [index, setIndex] = useState(0);
   const [exploring, setExploring] = useState(false);
+  const [lookId, setLookId] = useState<LookId>('folio');
+  const [haze, setHaze] = useState(0.18);
+  const [recast, setRecast] = useState(0);
   const reducedMotion = usePrefersReducedMotion();
+  const look = useMemo(() => resolveLook(lookId, haze), [haze, lookId]);
 
   const onScroll = useCallback((offset: number) => {
     setIndex(stopIndexFromOffset(offset));
@@ -30,6 +35,14 @@ export default function App() {
     setExploring(next);
   }, []);
 
+  const onRecast = useCallback(() => {
+    if (exploring) {
+      setRecast((value) => value + 1);
+      return;
+    }
+    scrollToStop(index, STOPS.length, reducedMotion);
+  }, [exploring, index, reducedMotion]);
+
   useEffect(() => {
     document.documentElement.classList.toggle('is-explore', exploring);
     document.body.classList.toggle('is-explore', exploring);
@@ -42,7 +55,7 @@ export default function App() {
   useEffect(() => {
     if (!exploring) return undefined;
     const block = (event: WheelEvent) => {
-      if ((event.target as HTMLElement | null)?.closest?.('.topbar, .meter, .ticks')) return;
+      if ((event.target as HTMLElement | null)?.closest?.('.topbar, .meter, .ticks, .dock, .pills, .haze')) return;
       event.preventDefault();
     };
     window.addEventListener('wheel', block, { passive: false });
@@ -59,9 +72,14 @@ export default function App() {
         setExploring(false);
         return;
       }
-      if (key === 'e') {
+      if (key === 'o' || key === 'e') {
         event.preventDefault();
         setExploring((current) => !current);
+        return;
+      }
+      if (key === 'r') {
+        event.preventDefault();
+        onRecast();
         return;
       }
       if (event.key === 'ArrowDown' || event.key === 'PageDown' || key === ']') {
@@ -75,13 +93,32 @@ export default function App() {
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [exploring, goTo, index]);
+  }, [exploring, goTo, index, onRecast]);
 
   return (
     <ErrorBoundary>
       <div className={`app ${exploring ? 'exploring' : ''}`}>
-        <Scene offset={offset} stop={stop} exploring={exploring} reducedMotion={reducedMotion} />
-        <Hud stop={stop} index={index} exploring={exploring} onExplore={onExplore} onStep={goTo} />
+        <Scene
+          offset={offset}
+          stop={stop}
+          exploring={exploring}
+          reducedMotion={reducedMotion}
+          look={look}
+          recast={recast}
+          onRecast={onRecast}
+        />
+        <Hud
+          stop={stop}
+          index={index}
+          exploring={exploring}
+          lookId={lookId}
+          haze={haze}
+          onExplore={onExplore}
+          onStep={goTo}
+          onLook={setLookId}
+          onHaze={setHaze}
+          onRecast={onRecast}
+        />
         <div className="page" aria-hidden={exploring}>
           {STOPS.map((item) => (
             <section key={item.id} id={item.id} className="stop-spacer">
@@ -91,7 +128,7 @@ export default function App() {
           ))}
         </div>
         <p className="sr-only">
-          {BRAND.lockup}. {stop.name}. {exploring ? 'Explore orbit.' : 'Scroll itinerary.'}
+          {BRAND.lockup}. {BRAND.slip}. {stop.name}. {exploring ? 'Orbit.' : 'Folio walk.'}
         </p>
       </div>
     </ErrorBoundary>

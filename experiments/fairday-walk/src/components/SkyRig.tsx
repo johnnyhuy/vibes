@@ -2,10 +2,15 @@ import { useLayoutEffect, useRef } from 'react';
 import { Environment } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
 import { BackSide, Color, FogExp2, ShaderMaterial } from 'three';
-import { lane } from '../palette';
+import type { ResolvedLook } from '../looks';
 
-function SkyDome() {
+function SkyDome({ zenith, horizon }: { zenith: string; horizon: string }) {
   const material = useRef<ShaderMaterial>(null);
+
+  useLayoutEffect(() => {
+    material.current?.uniforms.zenith.value.set(zenith);
+    material.current?.uniforms.horizon.value.set(horizon);
+  }, [horizon, zenith]);
 
   return (
     <mesh renderOrder={-1}>
@@ -16,8 +21,8 @@ function SkyDome() {
         depthWrite={false}
         fog={false}
         uniforms={{
-          zenith: { value: new Color(lane.skyZenith) },
-          horizon: { value: new Color(lane.skyHorizon) },
+          zenith: { value: new Color(zenith) },
+          horizon: { value: new Color(horizon) },
         }}
         vertexShader={`
           varying vec3 vDir;
@@ -40,28 +45,28 @@ function SkyDome() {
   );
 }
 
-export default function SkyRig() {
+export default function SkyRig({ look }: { look: ResolvedLook }) {
   const { scene, gl } = useThree();
 
   useLayoutEffect(() => {
-    const fog = scene.fog instanceof FogExp2 ? scene.fog : new FogExp2(lane.fog, 0.018);
-    fog.color.set(lane.fog);
-    fog.density = 0.018;
+    const fog = scene.fog instanceof FogExp2 ? scene.fog : new FogExp2(look.fogColor, look.fogDensity);
+    fog.color.set(look.fogColor);
+    fog.density = look.fogDensity;
     scene.fog = fog;
-    scene.background = new Color(lane.skyHorizon);
-    gl.toneMappingExposure = 1.12;
-  }, [gl, scene]);
+    scene.background = new Color(look.skyHorizon);
+    gl.toneMappingExposure = look.exposure;
+  }, [gl, look, scene]);
 
   return (
     <>
-      <SkyDome />
-      <Environment files="/hdri/fairday-sky.hdr" background={false} environmentIntensity={0.72} />
-      <hemisphereLight color={lane.skyZenith} groundColor={lane.earth} intensity={0.58} />
-      <ambientLight color={lane.paper} intensity={0.38} />
+      <SkyDome zenith={look.skyZenith} horizon={look.skyHorizon} />
+      <Environment files="/hdri/fairday-sky.hdr" background={false} environmentIntensity={look.envGain} />
+      <hemisphereLight color={look.hemiSky} groundColor={look.hemiGround} intensity={0.56} />
+      <ambientLight color={look.skyHorizon} intensity={look.ambient} />
       <directionalLight
-        color={lane.sun}
-        intensity={1.45}
-        position={[18, 22, 10]}
+        color={look.sunColor}
+        intensity={look.sunIntensity}
+        position={look.sun}
         castShadow
         shadow-mapSize={[2048, 2048]}
         shadow-camera-near={2}
@@ -71,7 +76,7 @@ export default function SkyRig() {
         shadow-camera-top={36}
         shadow-camera-bottom={-36}
       />
-      <directionalLight color={lane.amber} intensity={0.22} position={[-10, 6, -8]} />
+      <directionalLight color={look.fillColor} intensity={look.fillIntensity} position={look.fill} />
     </>
   );
 }

@@ -1,36 +1,51 @@
-import { Suspense } from 'react';
+import { Suspense, useEffect, useRef } from 'react';
 import { ContactShadows, OrbitControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import type { MutableRefObject } from 'react';
 import { ACESFilmicToneMapping, PCFSoftShadowMap } from 'three';
+import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 import { STOPS, type Stop } from '../itinerary';
-import { lane } from '../palette';
+import type { ResolvedLook } from '../looks';
 import CameraRig from './CameraRig';
+import Drift from './Drift';
 import Lane from './Lane';
 import Places from './Places';
 import SkyRig from './SkyRig';
 
-interface Props {
+interface WorldProps {
   offset: MutableRefObject<number>;
   stop: Stop;
   exploring: boolean;
   reducedMotion: boolean;
+  look: ResolvedLook;
+  recast: number;
 }
 
-function World({
-  offset,
-  stop,
-  exploring,
-  reducedMotion,
-}: Props) {
+interface Props extends WorldProps {
+  onRecast: () => void;
+}
+
+function World({ offset, stop, exploring, reducedMotion, look, recast }: WorldProps) {
+  const controls = useRef<OrbitControlsImpl>(null);
+
+  useEffect(() => {
+    const orbit = controls.current;
+    if (!orbit) return;
+    orbit.object.position.set(...stop.camera);
+    orbit.target.set(...stop.lookAt);
+    orbit.update();
+  }, [recast, stop]);
+
   return (
     <>
-      <SkyRig />
-      <Lane />
+      <SkyRig look={look} />
+      <Lane look={look} />
+      <Drift reducedMotion={reducedMotion} />
       <Places stops={STOPS} activeId={stop.id} reducedMotion={reducedMotion} />
       <CameraRig offset={offset} exploring={exploring} reducedMotion={reducedMotion} />
       <ContactShadows position={[0, 0.02, stop.position[2]]} opacity={0.28} scale={22} blur={2.4} far={8} />
       <OrbitControls
+        ref={controls}
         enabled={exploring}
         makeDefault={exploring}
         enablePan={false}
@@ -47,7 +62,7 @@ function World({
   );
 }
 
-export default function Scene({ offset, stop, exploring, reducedMotion }: Props) {
+export default function Scene({ offset, stop, exploring, reducedMotion, look, recast, onRecast }: Props) {
   return (
     <Canvas
       camera={{ position: stop.camera, fov: 36, near: 0.1, far: 220 }}
@@ -56,10 +71,13 @@ export default function Scene({ offset, stop, exploring, reducedMotion }: Props)
       gl={{
         antialias: true,
         toneMapping: ACESFilmicToneMapping,
-        toneMappingExposure: 1.12,
+        toneMappingExposure: look.exposure,
       }}
       onCreated={({ gl }) => {
         gl.shadowMap.type = PCFSoftShadowMap;
+      }}
+      onDoubleClick={() => {
+        if (exploring) onRecast();
       }}
       style={{
         position: 'fixed',
@@ -69,9 +87,16 @@ export default function Scene({ offset, stop, exploring, reducedMotion }: Props)
         pointerEvents: exploring ? 'auto' : 'none',
       }}
     >
-      <color attach="background" args={[lane.skyHorizon]} />
+      <color attach="background" args={[look.skyHorizon]} />
       <Suspense fallback={null}>
-        <World offset={offset} stop={stop} exploring={exploring} reducedMotion={reducedMotion} />
+        <World
+          offset={offset}
+          stop={stop}
+          exploring={exploring}
+          reducedMotion={reducedMotion}
+          look={look}
+          recast={recast}
+        />
       </Suspense>
     </Canvas>
   );

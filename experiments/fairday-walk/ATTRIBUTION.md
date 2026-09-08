@@ -5,7 +5,7 @@
 - [@anyumeng28](https://x.com/anyumeng28/status/2097175519825383852) — public post: GPT-6 Astra modelling feel; Three.js photo→3D; about half a Plus weekly quota; Blender refinement mentioned; old photos into a playable 3D page so a memory can be walked again. Verified 2026-09-08 via X API, post id `2097175519825383852`.
 - Live they linked: [https://qingtian-memory-3d.anyumeng28.chatgpt.site](https://qingtian-memory-3d.anyumeng28.chatgpt.site) — public page title *晴天 · 风里的记忆*. Feel / “soft outdoor memory places you can walk or orbit” only. I did **not** scrape source, assets, CSS, HUD chrome, routes, or branding.
 
-I did **not** copy their source, meshes, textures, HUD copy, place list, domain, or logo. Fairday Walk / 晴巷 · 风里的册页 and the eight lane stops are mine. No 晴天 / Qing Tian / anyumeng nouns.
+I did **not** copy their source, meshes, textures, HUD copy, place list, lighting-ref labels, domain, or logo. Fairday Walk / 晴巷 · 风里的册页 / Slip 7 and the eight lane stops are mine. Clothlight, Porchwash, Lanehaze, Ridgegold, Folio, Line haze, Folio / Orbit / Recast are mine. No 晴天 / Qing Tian / 风里的记忆 NO. 001 / anyumeng nouns.
 
 ## HDRI (CC0)
 
