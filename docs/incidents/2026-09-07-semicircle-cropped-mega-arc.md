@@ -1,8 +1,8 @@
 # 2026-09-07: Semicircle Viewer Cropped Mega-Arc
 
-**Status**: Code fix is this PR (XZ layout + corner-fit framing). **Do not treat bbox-only `03bbe0c` as fixed.** Production is still FAIL on stale `25587f54`. Do not force a production redeploy until quota resets (~2026-09-08 12:55 UTC).  
+**Status**: Code fix is this PR (orbit-safe horseshoe pose). XZ layout + single-azimuth AABB corner-fit (`1e26ce5`) was necessary but still under-distanced the wide bowl. Production is still FAIL on stale `25587f54`. Do not force a production redeploy until quota resets (~2026-09-08 20:39 UTC).  
 **Affected**: `experiments/blender-semicircle-viewer` / `vibes-blender-semicircle`  
-**Root cause (revised 2026-09-08)**: The arc was a **vertical XY standing arch** of Z-thin meshes. Bounds-fit framing correctly framed that silhouette — a 24-unit-tall D with a ~0.6-unit stroke — so it still read as a cropped hairline.
+**Root cause (revised 2026-09-08)**: The arc was a **vertical XY standing arch** of Z-thin meshes. Bounds-fit framing correctly framed that silhouette — a 24-unit-tall D with a ~0.6-unit stroke — so it still read as a cropped hairline. After the XZ move, a second crop remained: `distanceToFitCorners` fitted eight AABB corners about the bbox centre, then seated the camera on a *lifted* look target with margin 1.14. That under-distances a 28-unit-wide flat horseshoe, so the camera sits in/near the open diameter and the viewport fills with a huge right-side mega-arc.
 
 ---
 
@@ -56,6 +56,26 @@ Procedural geometry only. No Apple assets.
 
 ---
 
+## 2026-09-08 — still a cropped mega-arc after XZ + AABB fit
+
+The XZ layout was correct. The **seat** was not.
+
+`frameCameraToArc` used one group AABB, one hero vector `(0, 0.72, 0.69)`, and margin `1.14`, then applied a Y lift *after* the distance solve. A wide, shallow horseshoe has most of its mass far from those eight box corners’ “along” term, so the solved `d` parks the camera too close to the open diameter. On load (and after Reset) you get a black studio with UI intact and a **huge cropped arc on the right** — not a readable bowl.
+
+### What this pass changed
+
+1. **Fit from the look target** — lift Y first, then solve distance. No more centre/target mismatch.
+2. **Mesh corners, not one group AABB** — every laptop lid and deck is in the fit.
+3. **Orbit-safe distance** — max of 12 azimuths at 52° elevation so auto-rotate cannot clip an end.
+4. **Sphere floor (0.64)** — if the AABB is empty or too tight, the camera cannot drop inside the bowl.
+5. **Margin 1.36** — breathing room on all sides. Polar clamp tightened (`maxPolarAngle = 0.38π`) so a drag cannot go edge-on. Fog starts well behind the array.
+
+Math lives in `framing.js` with `node --test framing.test.js` covering 16:9, portrait, and a full orbit.
+
+Still no production redeploy from the agent (hobby quota until ~2026-09-08 20:39 UTC). Preview deploys from this PR are fine if Vercel has slots.
+
+---
+
 ## Why this matters
 
 Legendaryy’s public demo ([2096510965789422001](https://x.com/Legendaryy/status/2096510965789422001)) is the reference *pattern*: a full semicircle of laptops you can read at a glance. A vertical paper-thin arch framed from the side is not that pattern, even when every vertex is “in view”.
@@ -73,4 +93,5 @@ Legendaryy’s public demo ([2096510965789422001](https://x.com/Legendaryy/statu
 
 **First pass**: 2026-09-07 (bbox framing)  
 **Revised**: 2026-09-08 (XZ layout + corner-fit; preview QA still FAIL on bbox-only)  
+**Revised**: 2026-09-08 later (orbit-safe look-target fit + sphere floor; still do not prod-redeploy)  
 **Author**: Johnny Huynh

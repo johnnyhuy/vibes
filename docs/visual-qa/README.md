@@ -10,7 +10,7 @@ The root README is a **showcase**. Prefer a short looping GIF:
 docs/previews/<app>.gif
 ```
 
-`<app>` is the experiment folder name (`explode-assembly`, `procedural-steam-atlas`, …). Semicircle uses `blender-semicircle.gif`.
+`<app>` is the experiment folder name (`explode-assembly`, `procedural-steam-atlas`, …). Semicircle uses `blender-semicircle.gif` (refresh after the orbit-safe horseshoe framing fix — the previous GIF was the cropped mega-arc).
 
 - Capture locally (`npm run build` + `npm run preview`, or `npm run dev`) with a few seconds of meaningful motion (slider, explode, orbit, scroll).
 - Aim for ~2–4s, ~640px wide, optimised (`ffmpeg` + `gifsicle` when available).

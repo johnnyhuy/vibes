@@ -72,7 +72,7 @@ Things that went sideways and what I learnt:
 - [2026-09-07: Vercel SSO Blocks Preview QA](./incidents/vercel-sso-blocks-preview-qa.md)
 - [2026-09-07: Vercel Deployment Quota Exhausted](./incidents/2026-09-07-vercel-deploy-quota.md) — Free tier 100/day limit hit, production URLs serve stale commits
 - [2026-09-07: Attach Preview Name-Crash](./incidents/2026-09-07-attach-preview-name-crash.md) — Material `??` defaults + unsafe `node.name` log; code landed via #12
-- [2026-09-07: Semicircle Viewer Cropped Mega-Arc](./incidents/2026-09-07-semicircle-cropped-mega-arc.md) — Hardcoded camera clipped the 51-laptop 180° array; now bbox-framed
+- [2026-09-07: Semicircle Viewer Cropped Mega-Arc](./incidents/2026-09-07-semicircle-cropped-mega-arc.md) — Hardcoded / AABB-only seats cropped the 51-laptop horseshoe; now orbit-safe look-target fit
 - [2026-09-08: steam-atlas Production Never Landed](./incidents/2026-09-08-steam-atlas-wrong-root.md) — first production LIVE PASS on `a94b16e` / `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS` (assembled locomotive ~4:37am AEST); earlier 404 / `ignored-build-step`
 - [2026-09-08: Glass Auto-Deployed on the Tower Merge](./incidents/2026-09-08-glass-auto-deploy-on-tower-merge.md) — glass production LIVE on `9328191`; steam / scroll / semicircle / tower did not follow (`ignored-build-step`)
 - [2026-09-07: Audio-gadget linked before quota](./incidents/2026-09-07-audio-gadget-linked-before-quota.md) — `prj_N57mvThg4UcU9XxLK3F5wAICz9PA` created `deploy: false`, SSO off; Root still dashboard-owned; no production until ~2026-09-08 20:39 UTC
