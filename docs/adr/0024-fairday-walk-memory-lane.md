@@ -27,7 +27,7 @@ Alba Forum (ADR-0020) already maps window scroll onto landmark poses. Keel Hex t
 
 ### 2. Mid-fi procedural PBR, local HDRI, floating plot
 
-**Chosen**: Instanced roof tiles, recessed windows, wind-hung laundry, lathed well, tube bicycles, pigeons, striped awning, grass verge, drifting leaves. The lane sits on a floating cobble plot in haze, not an infinite ground. Canvas plaster / cobble / tile / wood maps. Vendored Poly Haven Kloofendal 48d partly-cloudy sky HDRI under Suspense.
+**Chosen**: Instanced roof tiles, recessed windows, wind-hung laundry, lathed well, tube bicycles, pigeons, striped awning, grass verge, drifting leaves, a court tree with cream blooms. The lane sits on a floating earth-cut plot (soil strata + wet cobble) in teal haze, not an infinite ground. Canvas plaster / cobble / tile / wood maps. Vendored Poly Haven Kloofendal 48d partly-cloudy sky HDRI under Suspense.
 
 **Rejected**: Their photo-derived meshes, guitarist / notes / rainy teal island. Kenney toy houses as the hero. Runtime CDN Environment files.
 
@@ -35,7 +35,7 @@ Alba Forum (ADR-0020) already maps window scroll onto landmark poses. Keel Hex t
 
 ### 3. Invented names, looks, and chrome
 
-**Chosen**: Fairday Walk / 晴巷 · 风里的册页 / Slip 7. Brand `vibes · fairday walk`. Eight names I wrote (Laundry Court … Fig Alley). Lighting stances I wrote: Clothlight, Porchwash, Lanehaze, Ridgegold, Folio. Line-haze slider: Sheet / Drift / Mist. Bottom pills: Folio / Orbit / Recast. Frosted light HUD.
+**Chosen**: Fairday Walk / 晴巷 · 风里的册页 / Slip 7. Brand `vibes · fairday walk`. Eight names I wrote (Laundry Court … Fig Alley). Lighting stances I wrote: Clothlight, Porchwash, Lanehaze, Ridgegold, Folio. Line-haze slider: Sheet / Drift / Mist (breeze→mist; invented labels only). Bottom pills: Folio / Orbit / Sheetdrift / Recast. Frosted light HUD.
 
 **Rejected**: Their title, place nouns, lighting-ref labels, 晴雨之间, domain, logo, or chrome as a spec.
 

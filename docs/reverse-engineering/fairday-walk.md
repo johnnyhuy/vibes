@@ -70,7 +70,7 @@ OrbitControls off until Orbit. Pointer-events on the canvas only then. Wheel zoo
 
 ### 4. Thin frosted HUD, fair-day paper
 
-Brand `vibes · fairday walk`. Slip 7. Folio / Orbit / Recast pills. Invented lighting stances and a Line-haze slider. Serif place chip. First-person caption. Inter for chrome. No chalk museum desk, no dusk harbour HUD, no copied Chinese pills.
+Brand `vibes · fairday walk`. Slip 7. Folio / Orbit / Sheetdrift / Recast pills. Invented lighting stances and a Line-haze slider (Sheet / Drift / Mist). Serif place chip. First-person caption. Inter for chrome. No chalk museum desk, no dusk harbour HUD, no copied Chinese pills.
 
 ## Clean-room checklist
 

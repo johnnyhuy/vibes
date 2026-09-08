@@ -7,7 +7,7 @@ I built this after reading [@anyumeng28](https://x.com/anyumeng28/status/2097175
 - **A breezy residential lane** — plaster, tiled roofs, cobble, hanging cloth. Not a chalk forum and not a dusk harbour.
 - **Eight invented stops** — Laundry Court, Bicycle Shed, Courtyard Well, Shop Awning, Window Fern, Rooftop Pigeon, Evening Laundry, Fig Alley. Not a Qing Tian list.
 - **Scroll-driven camera** — native window scroll, damped in `useFrame`, same family as Alba Forum / scroll-product-showcase. Bidirectional. Prev / next chips and arrow keys step the folio.
-- **Folio / Orbit / Recast** — invented mode pills. Folio walks the stops. Orbit + wheel zoom inspects. Recast (or double-click) returns the authored pose. Esc leaves Orbit.
+- **Folio / Orbit / Sheetdrift / Recast** — invented mode pills. Folio walks the stops. Orbit + wheel zoom inspects. Sheetdrift keeps leaves and cloth in the breeze. Recast (or double-click) returns the authored pose. Esc leaves Orbit.
 - **Clothlight / Porchwash / Lanehaze / Ridgegold / Folio** — invented lighting stances. **Line haze** (Sheet / Drift / Mist) is my breeze→mist axis, not their weather chrome.
 - **Mid-fi PBR** — instanced roof tiles, recessed windows, wind-hung laundry, lathed well, tube bicycles, pigeons, striped awning. Local Poly Haven sky HDRI under Suspense. No scraped GLBs. No runtime CDN. No blocky toy as the hero.
 
@@ -41,7 +41,7 @@ Post-quota order stays: (1) promote `vibes-blender-semicircle` production from t
 Headed preview on `127.0.0.1:4173` after `npm run build`:
 
 - Fair-day canvas: plaster lane, Laundry Court framed, brand `vibes · fairday walk`. Soft fog, tiled roofs — not a chalk avenue and not a dusk pier.
-- Thin frosted HUD: lockup, Slip 7, `01 / 08`, Folio / Orbit / Recast, invented lighting chips + Line haze.
+- Thin frosted HUD: lockup, Slip 7, `01 / 08`, Folio / Orbit / Sheetdrift / Recast, invented lighting chips + Line haze.
 - Next walks the invented folio (Bicycle Shed, Courtyard Well, … Fig Alley). No 晴天 / Qing Tian nouns.
 - Orbit inspects the current place; Recast / Esc returns to the authored pose.
 - Console: no fatals. Benign WebGL `ReadPixels` / software-GL notes only. Build green.

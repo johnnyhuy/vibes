@@ -5,8 +5,10 @@ import {
   ActiveGlow,
   Awning,
   Bicycle,
+  BloomTuft,
   Clothesline,
   Coop,
+  CourtTree,
   Crate,
   Fern,
   FigTree,
@@ -27,13 +29,27 @@ function LaundryCourt({ active, reducedMotion }: LandmarkProps) {
     <group>
       <ActiveGlow active={active} />
       <House width={5.2} depth={3.4} height={4.2} plaster={lane.plasterWarm} bays={3} />
-      <group position={[0, 0, 2.4]}>
+      <group position={[1.85, 0, 1.15]} scale={1.12}>
+        <CourtTree />
+      </group>
+      <pointLight position={[1.55, 2.05, 1.35]} color="#f2d4a4" intensity={1.8} distance={8} />
+      <group position={[0, 0, 2.55]}>
         <Clothesline length={4.8} sheets={5} reducedMotion={reducedMotion} />
       </group>
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.02, 1.8]} receiveShadow>
-        <circleGeometry args={[2.4, 24]} />
-        <meshStandardMaterial color={lane.earth} roughness={0.96} />
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.03, 1.9]} receiveShadow>
+        <circleGeometry args={[2.55, 24]} />
+        <meshStandardMaterial color={lane.moss} roughness={0.92} />
       </mesh>
+      {[
+        [-1.35, 1.1],
+        [0.85, 2.4],
+        [-0.4, 2.85],
+        [1.55, 2.15],
+      ].map(([x, z], i) => (
+        <group key={i} position={[x, 0, z]}>
+          <BloomTuft count={6 + i} />
+        </group>
+      ))}
     </group>
   );
 }

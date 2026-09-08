@@ -1,3 +1,5 @@
+import { lane } from './palette';
+
 export type LookId = 'clothlight' | 'porchwash' | 'lanehaze' | 'ridgegold' | 'folio';
 
 export const LOOKS: { id: LookId; name: string }[] = [
@@ -108,16 +110,35 @@ const BASE: Record<LookId, Omit<ResolvedLook, 'haze' | 'fogDensity' | 'sunIntens
   },
 };
 
+function mixHex(a: string, b: string, t: number) {
+  const parse = (hex: string) => [
+    parseInt(hex.slice(1, 3), 16),
+    parseInt(hex.slice(3, 5), 16),
+    parseInt(hex.slice(5, 7), 16),
+  ];
+  const [ar, ag, ab] = parse(a);
+  const [br, bg, bb] = parse(b);
+  const to = (n: number) => n.toString(16).padStart(2, '0');
+  return `#${to(Math.round(ar + (br - ar) * t))}${to(Math.round(ag + (bg - ag) * t))}${to(Math.round(ab + (bb - ab) * t))}`;
+}
+
 export function resolveLook(id: LookId, haze: number): ResolvedLook {
   const t = Math.min(1, Math.max(0, haze));
   const base = BASE[id];
   return {
     ...base,
     haze: t,
-    fogDensity: 0.011 + t * 0.02,
-    sunIntensity: 1.48 - t * 0.72,
-    envGain: 0.78 - t * 0.32,
-    wet: t * 0.55,
-    exposure: 1.14 - t * 0.18,
+    skyZenith: mixHex(base.skyZenith, '#07161c', t * 0.92),
+    skyHorizon: mixHex(base.skyHorizon, '#12282e', t * 0.94),
+    fogColor: mixHex(base.fogColor, '#163038', t * 0.9),
+    fogDensity: 0.012 + t * 0.036,
+    sunIntensity: 1.42 - t * 0.92,
+    envGain: 0.74 - t * 0.42,
+    wet: t * 0.88,
+    exposure: 1.1 - t * 0.32,
   };
+}
+
+export function wetCobble(wet: number) {
+  return mixHex(lane.cobble, '#6e787c', Math.min(1, wet * 1.05));
 }

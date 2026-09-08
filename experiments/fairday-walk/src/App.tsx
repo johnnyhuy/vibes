@@ -9,8 +9,9 @@ import { resolveLook, type LookId } from './looks';
 export default function App() {
   const [index, setIndex] = useState(0);
   const [exploring, setExploring] = useState(false);
-  const [lookId, setLookId] = useState<LookId>('folio');
-  const [haze, setHaze] = useState(0.18);
+  const [lookId, setLookId] = useState<LookId>('lanehaze');
+  const [haze, setHaze] = useState(0.52);
+  const [sheetdrift, setSheetdrift] = useState(true);
   const [recast, setRecast] = useState(0);
   const reducedMotion = usePrefersReducedMotion();
   const look = useMemo(() => resolveLook(lookId, haze), [haze, lookId]);
@@ -82,6 +83,11 @@ export default function App() {
         onRecast();
         return;
       }
+      if (key === 'l') {
+        event.preventDefault();
+        setSheetdrift((current) => !current);
+        return;
+      }
       if (event.key === 'ArrowDown' || event.key === 'PageDown' || key === ']') {
         event.preventDefault();
         goTo(index + 1);
@@ -105,6 +111,7 @@ export default function App() {
           reducedMotion={reducedMotion}
           look={look}
           recast={recast}
+          sheetdrift={sheetdrift}
           onRecast={onRecast}
         />
         <Hud
@@ -113,10 +120,12 @@ export default function App() {
           exploring={exploring}
           lookId={lookId}
           haze={haze}
+          sheetdrift={sheetdrift}
           onExplore={onExplore}
           onStep={goTo}
           onLook={setLookId}
           onHaze={setHaze}
+          onSheetdrift={setSheetdrift}
           onRecast={onRecast}
         />
         <div className="page" aria-hidden={exploring}>

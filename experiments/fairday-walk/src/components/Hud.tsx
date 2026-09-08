@@ -7,10 +7,12 @@ interface Props {
   exploring: boolean;
   lookId: LookId;
   haze: number;
+  sheetdrift: boolean;
   onExplore: (next: boolean) => void;
   onStep: (index: number) => void;
   onLook: (id: LookId) => void;
   onHaze: (value: number) => void;
+  onSheetdrift: (next: boolean) => void;
   onRecast: () => void;
 }
 
@@ -20,10 +22,12 @@ export default function Hud({
   exploring,
   lookId,
   haze,
+  sheetdrift,
   onExplore,
   onStep,
   onLook,
   onHaze,
+  onSheetdrift,
   onRecast,
 }: Props) {
   const total = STOPS.length;
@@ -57,7 +61,7 @@ export default function Hud({
         <p className="kicker">{BRAND.placeZh}</p>
         <h1>{BRAND.place}</h1>
         <p className="lede">
-          A breezy lane I invented. Folio walks the stops. Orbit inspects. Recast returns the pose.
+          A breezy lane I invented. Folio walks the stops. Orbit inspects. Sheetdrift keeps the line in motion. Recast returns the pose.
         </p>
       </header>
 
@@ -102,6 +106,13 @@ export default function Hud({
           </button>
           <button type="button" className={exploring ? 'active' : undefined} onClick={() => onExplore(true)}>
             Orbit
+          </button>
+          <button
+            type="button"
+            className={sheetdrift ? 'active' : undefined}
+            onClick={() => onSheetdrift(!sheetdrift)}
+          >
+            Sheetdrift
           </button>
           <button type="button" onClick={onRecast}>
             Recast

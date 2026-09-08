@@ -10,12 +10,20 @@ const FIRST = STOPS[0].position[2];
 const LAST = STOPS[STOPS.length - 1].position[2];
 const LENGTH = FIRST - LAST + 28;
 const MID = (FIRST + LAST) / 2;
-const GRASS = 220;
-const LEAVES = 70;
+const GRASS = 420;
+const LEAVES = 90;
+const VEIL = 80;
 
-export default function Drift({ reducedMotion }: { reducedMotion: boolean }) {
+export default function Drift({
+  reducedMotion,
+  haze,
+}: {
+  reducedMotion: boolean;
+  haze: number;
+}) {
   const grass = useRef<InstancedMesh>(null);
   const leaves = useRef<InstancedMesh>(null);
+  const veil = useRef<InstancedMesh>(null);
   const seeds = useMemo(
     () =>
       Array.from({ length: LEAVES }, (_, i) => ({
@@ -45,20 +53,38 @@ export default function Drift({ reducedMotion }: { reducedMotion: boolean }) {
 
   useFrame((state) => {
     const mesh = leaves.current;
-    if (!mesh) return;
+    const streaks = veil.current;
     const t = reducedMotion ? 0 : state.clock.elapsedTime;
-    seeds.forEach((seed, i) => {
-      dummy.position.set(
-        seed.x + Math.sin(t * 0.35 + seed.p) * 1.6,
-        seed.y + Math.sin(t * 0.55 + seed.p) * 0.35,
-        seed.z + ((t * 1.1 + seed.p * 4) % LENGTH) - LENGTH / 2
-      );
-      dummy.rotation.set(t * 0.7 + seed.p, t * 0.4, seed.p);
-      dummy.scale.setScalar(seed.s);
-      dummy.updateMatrix();
-      mesh.setMatrixAt(i, dummy.matrix);
-    });
-    mesh.instanceMatrix.needsUpdate = true;
+    if (mesh) {
+      seeds.forEach((seed, i) => {
+        dummy.position.set(
+          seed.x + Math.sin(t * 0.35 + seed.p) * 1.6,
+          seed.y + Math.sin(t * 0.55 + seed.p) * 0.35,
+          seed.z + ((t * 1.1 + seed.p * 4) % LENGTH) - LENGTH / 2
+        );
+        dummy.rotation.set(t * 0.7 + seed.p, t * 0.4, seed.p);
+        dummy.scale.setScalar(seed.s);
+        dummy.updateMatrix();
+        mesh.setMatrixAt(i, dummy.matrix);
+      });
+      mesh.instanceMatrix.needsUpdate = true;
+    }
+    if (streaks) {
+      for (let i = 0; i < VEIL; i += 1) {
+        const p = hash(i + 21) * Math.PI * 2;
+        dummy.position.set(
+          (hash(i) - 0.5) * 16,
+          ((t * (1.4 + haze) + hash(i + 8) * 8) % 7) + 0.2,
+          MID + (hash(i + 3) - 0.5) * LENGTH
+        );
+        dummy.rotation.set(0.35, p, 0.15);
+        dummy.scale.set(0.015, 0.28 + haze * 0.22, 1);
+        dummy.updateMatrix();
+        streaks.setMatrixAt(i, dummy.matrix);
+      }
+      streaks.instanceMatrix.needsUpdate = true;
+      streaks.visible = haze > 0.22;
+    }
   });
 
   return (
@@ -70,6 +96,10 @@ export default function Drift({ reducedMotion }: { reducedMotion: boolean }) {
       <instancedMesh ref={leaves} args={[undefined, undefined, LEAVES]}>
         <planeGeometry args={[1, 0.55]} />
         <meshStandardMaterial color={lane.tile} roughness={0.7} side={DoubleSide} />
+      </instancedMesh>
+      <instancedMesh ref={veil} args={[undefined, undefined, VEIL]}>
+        <planeGeometry args={[1, 1]} />
+        <meshStandardMaterial color="#d8e8ee" transparent opacity={0.22} depthWrite={false} side={DoubleSide} />
       </instancedMesh>
     </group>
   );

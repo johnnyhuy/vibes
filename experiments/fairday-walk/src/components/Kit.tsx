@@ -35,9 +35,17 @@ export function Tile({ color = lane.tile }: { color?: string }) {
   return <meshStandardMaterial color={color} map={map} roughness={0.62} metalness={0.08} />;
 }
 
-export function Cobble({ color = lane.cobble }: { color?: string }) {
+export function Cobble({
+  color = lane.cobble,
+  roughness = 0.94,
+  metalness = 0.02,
+}: {
+  color?: string;
+  roughness?: number;
+  metalness?: number;
+}) {
   const map = useMemo(() => cobbleMap(), []);
-  return <meshStandardMaterial color={color} map={map} roughness={0.94} metalness={0.02} />;
+  return <meshStandardMaterial color={color} map={map} roughness={roughness} metalness={metalness} />;
 }
 
 export function TileRoof({
@@ -533,6 +541,61 @@ export function Fern({ scale = 1 }: { scale?: number }) {
           </mesh>
         );
       })}
+    </group>
+  );
+}
+
+export function CourtTree() {
+  return (
+    <group>
+      <mesh position={[0, 1.35, 0]} castShadow>
+        <cylinderGeometry args={[0.2, 0.3, 2.7, 10]} />
+        <Wood />
+      </mesh>
+      {[
+        [0, 3.05, 0, 1.35],
+        [0.72, 2.72, 0.28, 0.82],
+        [-0.62, 2.8, -0.22, 0.78],
+        [0.28, 3.38, -0.38, 0.68],
+        [-0.32, 3.22, 0.52, 0.62],
+        [0.48, 3.15, 0.55, 0.5],
+        [-0.55, 3.05, 0.18, 0.48],
+        [0.08, 3.55, 0.12, 0.42],
+      ].map(([x, y, z, r], i) => (
+        <mesh key={i} position={[x, y, z]} castShadow>
+          <sphereGeometry args={[r, 12, 10]} />
+          <meshStandardMaterial color={i % 2 ? lane.leaf : '#3f5c30'} roughness={0.84} />
+        </mesh>
+      ))}
+      {Array.from({ length: 10 }, (_, i) => (
+        <mesh
+          key={`bloom-${i}`}
+          position={[
+            Math.cos(i * 1.8) * 0.85,
+            2.85 + hash(i + 8) * 0.7,
+            Math.sin(i * 1.4) * 0.75,
+          ]}
+        >
+          <sphereGeometry args={[0.045 + hash(i) * 0.02, 6, 6]} />
+          <meshStandardMaterial color={hash(i) > 0.5 ? '#e8d27a' : lane.clothCream} roughness={0.5} />
+        </mesh>
+      ))}
+    </group>
+  );
+}
+
+export function BloomTuft({ count = 7 }: { count?: number }) {
+  return (
+    <group>
+      {Array.from({ length: count }, (_, i) => (
+        <mesh
+          key={i}
+          position={[(hash(i) - 0.5) * 0.55, 0.06, (hash(i + 4) - 0.5) * 0.55]}
+        >
+          <sphereGeometry args={[0.045 + hash(i + 2) * 0.025, 6, 6]} />
+          <meshStandardMaterial color={hash(i) > 0.45 ? '#e8d27a' : lane.clothCream} roughness={0.55} />
+        </mesh>
+      ))}
     </group>
   );
 }

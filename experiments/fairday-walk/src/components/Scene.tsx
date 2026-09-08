@@ -19,13 +19,14 @@ interface WorldProps {
   reducedMotion: boolean;
   look: ResolvedLook;
   recast: number;
+  sheetdrift: boolean;
 }
 
 interface Props extends WorldProps {
   onRecast: () => void;
 }
 
-function World({ offset, stop, exploring, reducedMotion, look, recast }: WorldProps) {
+function World({ offset, stop, exploring, reducedMotion, look, recast, sheetdrift }: WorldProps) {
   const controls = useRef<OrbitControlsImpl>(null);
 
   useEffect(() => {
@@ -40,8 +41,8 @@ function World({ offset, stop, exploring, reducedMotion, look, recast }: WorldPr
     <>
       <SkyRig look={look} />
       <Lane look={look} />
-      <Drift reducedMotion={reducedMotion} />
-      <Places stops={STOPS} activeId={stop.id} reducedMotion={reducedMotion} />
+      <Drift reducedMotion={reducedMotion || !sheetdrift} haze={look.haze} />
+      <Places stops={STOPS} activeId={stop.id} reducedMotion={reducedMotion || !sheetdrift} />
       <CameraRig offset={offset} exploring={exploring} reducedMotion={reducedMotion} />
       <ContactShadows position={[0, 0.02, stop.position[2]]} opacity={0.28} scale={22} blur={2.4} far={8} />
       <OrbitControls
@@ -62,7 +63,16 @@ function World({ offset, stop, exploring, reducedMotion, look, recast }: WorldPr
   );
 }
 
-export default function Scene({ offset, stop, exploring, reducedMotion, look, recast, onRecast }: Props) {
+export default function Scene({
+  offset,
+  stop,
+  exploring,
+  reducedMotion,
+  look,
+  recast,
+  sheetdrift,
+  onRecast,
+}: Props) {
   return (
     <Canvas
       camera={{ position: stop.camera, fov: 36, near: 0.1, far: 220 }}
@@ -96,6 +106,7 @@ export default function Scene({ offset, stop, exploring, reducedMotion, look, re
           reducedMotion={reducedMotion}
           look={look}
           recast={recast}
+          sheetdrift={sheetdrift}
         />
       </Suspense>
     </Canvas>
