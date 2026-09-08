@@ -32,7 +32,7 @@ npm install && npm run build
 
 ## Deploy
 
-**No Vercel project.** Do not create one on this PR. Hobby quota on `johnnyhuy-dev` stays exhausted until **~2026-09-08 20:39 UTC**. I am not burning a slot on a new app. This experiment is **local-only**.
+**No Vercel project. No production.** Do not create one on this PR. Hobby quota on `johnnyhuy-dev` stays exhausted until **~2026-09-08 20:39 UTC**. Local-only until then. Future name `vibes-keel-hex` is fine; I am not creating it from the agent.
 
 `vercel.json` only carries the usual Vite fields plus `ignoreCommand`. It cannot set Root Directory. If I add a project later, the name pattern is `vibes-<experiment>` — here **`vibes-keel-hex`**. Dashboard **Root Directory** must be `experiments/keel-hex`.
 

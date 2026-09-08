@@ -30,7 +30,7 @@ Structured decisions about the monorepo's technical architecture:
 - [ADR-0020: An Educational Landmark Scroll, Invented Chalk City](./adr/0020-alba-forum-educational-landmark-scroll.md) — Alba Forum; chalk avenue + Explore, no Rome tour clone
 - [ADR-0021: A Compact Coast-Highway Drive Slice](./adr/0021-brine-causeway-coast-drive.md) — Brine Causeway; coast + coupe + span, no APEX clone
 - [ADR-0022: A Harbour Walker Orbit, Invented Chassis](./adr/0022-breakwater-harbour-orbit.md) — Breakwater; dusk pier + Spile Frame, no forge clone
-- [ADR-0023: A Step-Sequenced Hex Trainer Assembly, Invented Chassis](./adr/0023-keel-hex-assembly.md) — Keel Hex; KH-55 / Spool Plate scrubber, no PX4 clone
+- [ADR-0023: A Step-Sequenced Hex Trainer Assembly, Invented Chassis](./adr/0023-keel-hex-assembly.md) — Keel Hex; KH-55 / Spool Plate, Assembled / Inside / Exploded, no PX4 clone
 
 ### Reverse Engineering
 
