@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { collectMeshCorners, computeHorseshoePose } from './framing.js';
 
 // Configuration
 const LAPTOP_COUNT = 51;
@@ -16,7 +17,7 @@ const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x000000);
 scene.fog = new THREE.Fog(0x000000, 80, 160);
 
-// Camera — FOV stays moderate; distance comes from the 3D bounds.
+// Camera — FOV stays moderate; distance comes from orbit-safe horseshoe fit.
 const CAMERA_FOV = 40;
 const camera = new THREE.PerspectiveCamera(
   CAMERA_FOV,
@@ -37,8 +38,8 @@ document.getElementById('canvas-container').appendChild(renderer.domElement);
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 controls.dampingFactor = 0.05;
-controls.minPolarAngle = 0.28;
-controls.maxPolarAngle = Math.PI * 0.44;
+controls.minPolarAngle = 0.24;
+controls.maxPolarAngle = Math.PI * 0.38;
 controls.autoRotate = true;
 controls.autoRotateSpeed = 0.25;
 
@@ -47,94 +48,33 @@ const framedPose = {
   target: new THREE.Vector3(),
 };
 
-// ~46° elevation: the XZ bowl reads as a horseshoe, not a foreshortened wire.
-const HERO_DIRECTION = new THREE.Vector3(0, 0.72, 0.69).normalize();
-const WORLD_UP = new THREE.Vector3(0, 1, 0);
-
-function collectBoxCorners(box, target = []) {
-  const { min, max } = box;
-  const points = [
-    [min.x, min.y, min.z],
-    [min.x, min.y, max.z],
-    [min.x, max.y, min.z],
-    [min.x, max.y, max.z],
-    [max.x, min.y, min.z],
-    [max.x, min.y, max.z],
-    [max.x, max.y, min.z],
-    [max.x, max.y, max.z],
-  ];
-  for (let i = 0; i < 8; i += 1) {
-    if (!target[i]) target[i] = new THREE.Vector3();
-    target[i].set(points[i][0], points[i][1], points[i][2]);
-  }
-  return target;
-}
-
-const _corners = collectBoxCorners(new THREE.Box3());
-const _offset = new THREE.Vector3();
-const _xAxis = new THREE.Vector3();
-const _yAxis = new THREE.Vector3();
-const _zAxis = new THREE.Vector3();
-
-/**
- * Distance so every AABB corner sits inside the frustum with margin.
- * Camera sits at centre + direction * distance and lookAt(centre).
- */
-function distanceToFitCorners(center, corners, direction, vFov, hFov, margin) {
-  _zAxis.copy(direction).normalize();
-  _xAxis.crossVectors(WORLD_UP, _zAxis);
-  if (_xAxis.lengthSq() < 1e-8) {
-    _xAxis.set(1, 0, 0);
-  } else {
-    _xAxis.normalize();
-  }
-  _yAxis.crossVectors(_zAxis, _xAxis).normalize();
-
-  const tanH = Math.tan(hFov * 0.5);
-  const tanV = Math.tan(vFov * 0.5);
-  let needed = 1;
-
-  for (let i = 0; i < corners.length; i += 1) {
-    _offset.copy(corners[i]).sub(center);
-    const along = _offset.dot(_zAxis);
-    const x = _offset.dot(_xAxis);
-    const y = _offset.dot(_yAxis);
-    needed = Math.max(needed, along + Math.abs(x) / tanH, along + Math.abs(y) / tanV);
-  }
-
-  return needed * margin;
-}
-
 function frameCameraToArc(root) {
-  const box = new THREE.Box3().setFromObject(root);
-  const center = box.getCenter(new THREE.Vector3());
-  const corners = collectBoxCorners(box, _corners);
+  const points = collectMeshCorners(root);
+  const pose = computeHorseshoePose({
+    points,
+    vFov: THREE.MathUtils.degToRad(camera.fov),
+    aspect: camera.aspect,
+    liftY: SCREEN_HEIGHT * 0.28,
+    fallbackRadius: SEMICIRCLE_RADIUS,
+  });
 
-  const aspect = Math.max(camera.aspect, 0.01);
-  const vFov = THREE.MathUtils.degToRad(camera.fov);
-  const hFov = 2 * Math.atan(Math.tan(vFov * 0.5) * aspect);
-  const distance = distanceToFitCorners(center, corners, HERO_DIRECTION, vFov, hFov, 1.14);
-
-  const target = center.clone();
-  target.y += SCREEN_HEIGHT * 0.28;
-
-  camera.near = Math.max(0.1, distance / 80);
-  camera.far = Math.max(200, distance * 8);
+  camera.near = Math.max(0.1, pose.distance / 80);
+  camera.far = Math.max(200, pose.distance * 8);
   camera.updateProjectionMatrix();
-  camera.position.copy(target).addScaledVector(HERO_DIRECTION, distance);
-  camera.lookAt(target);
+  camera.position.copy(pose.position);
+  camera.lookAt(pose.target);
 
-  controls.target.copy(target);
-  controls.minDistance = distance * 0.4;
-  controls.maxDistance = distance * 2.6;
+  controls.target.copy(pose.target);
+  controls.minDistance = pose.distance * 0.45;
+  controls.maxDistance = pose.distance * 2.8;
   controls.update();
 
   framedPose.position.copy(camera.position);
-  framedPose.target.copy(target);
+  framedPose.target.copy(pose.target);
 
   if (scene.fog) {
-    scene.fog.near = distance * 1.55;
-    scene.fog.far = distance * 3.4;
+    scene.fog.near = pose.distance * 1.85;
+    scene.fog.far = pose.distance * 4.2;
   }
 }
 
@@ -293,6 +233,7 @@ function createGround() {
 
 const btnRotate = document.getElementById('btn-rotate');
 const btnReset = document.getElementById('btn-reset');
+let arcRoot = null;
 
 btnRotate.addEventListener('click', () => {
   controls.autoRotate = !controls.autoRotate;
@@ -301,16 +242,17 @@ btnRotate.addEventListener('click', () => {
 });
 
 btnReset.addEventListener('click', () => {
-  camera.position.copy(framedPose.position);
-  camera.lookAt(framedPose.target);
-  controls.target.copy(framedPose.target);
-  controls.update();
+  if (arcRoot) frameCameraToArc(arcRoot);
+  else {
+    camera.position.copy(framedPose.position);
+    camera.lookAt(framedPose.target);
+    controls.target.copy(framedPose.target);
+    controls.update();
+  }
   controls.autoRotate = true;
   btnRotate.classList.add('active');
   btnRotate.textContent = 'Auto-Rotate';
 });
-
-let arcRoot = null;
 
 window.addEventListener('resize', () => {
   camera.aspect = window.innerWidth / window.innerHeight;
@@ -333,6 +275,6 @@ frameCameraToArc(arcRoot);
 
 console.log(`✅ Created ${laptops.length} laptops in an XZ semicircle`);
 console.log('📐 Procedural geometry — no external models loaded');
-console.log('📷 Camera framed above-front to the 3D arc bounds');
+console.log('📷 Camera framed above-front to the horseshoe (orbit-safe)');
 
 animate();

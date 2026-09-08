@@ -249,5 +249,11 @@ experiments/ai-3d-lanes/blender/
 
 ---
 
-**Last updated**: 2026-09-07  
+## Amendment — semicircle framing (2026-09-08)
+
+The companion viewer is an XZ horseshoe, not a Blender Z-up XY arch. Fitting one AABB from a single above-front vector, then lifting the look target, under-distances the wide bowl and crops to a mega-arc. **Decision**: solve distance from the look target against every mesh corner, take the max over a full orbit at ~52° elevation, floor against a bounding sphere, margin 1.36. See `experiments/blender-semicircle-viewer/framing.js` and [the crop incident](../incidents/2026-09-07-semicircle-cropped-mega-arc.md).
+
+---
+
+**Last updated**: 2026-09-08  
 **Status**: Accepted (Phase 1 complete, Phase 2 in progress)

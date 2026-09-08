@@ -10,7 +10,7 @@ Interactive Three.js viewer displaying 51 procedural laptop-like objects arrange
 
 - **51 laptop-like objects** — Procedurally generated (not real MacBooks)
 - **Semicircle layout** — Horizontal XZ 180° arc (Three.js Y-up), lids facing inward
-- **Corner-fit camera** — Above-front pose from the group's 3D bounds so the array reads as a product semicircle, not a vertical hairline
+- **Orbit-safe horseshoe camera** — Above-front pose from every mesh corner + a sphere floor so the full 180° bowl stays in frame on load, resize, Reset, and auto-rotate
 - **Dark cinematic UI** — Matching the vibes quality bar
 - **Studio lighting** — Three-point setup (key, fill, rim)
 - **Interactive camera** — OrbitControls with auto-rotate
@@ -57,7 +57,7 @@ This experiment is configured for Vercel deployment alongside the other vibes pr
 
 ### Deploy status (2026-09-08)
 
-Project `vibes-blender-semicircle` (`prj_PLhnoCVRKmpHc8SxyLRmcp3MFZMC`) is live but **stale**: production is still commit `25587f54` (cropped mega-arc). Preview QA on 2026-09-08 showed bbox-only `frameCameraToArc` still FAIL — the arc was a vertical XY arch. This Root now lays the array on XZ and corner-fits from above-front. Sibling-folder commits skip via `ignored-build-step`. Do not force a production redeploy from the agent (hobby quota until ~2026-09-08 12:55 UTC). Preview deploys from a PR that touches this folder are fine.
+Project `vibes-blender-semicircle` (`prj_PLhnoCVRKmpHc8SxyLRmcp3MFZMC`) is live but **stale**: production is still commit `25587f54` (cropped mega-arc). XZ layout + single-azimuth AABB fit still sat the camera too close (wide bowl, look-target lift after the solve). This Root now uses `framing.js`: look-target fit, 12-azimuth orbit max, sphere floor, margin 1.36. Sibling-folder commits skip via `ignored-build-step`. Do not force a production redeploy from the agent (hobby quota until ~2026-09-08 20:39 UTC). Preview deploys from a PR that touches this folder are fine.
 
 ## Tech Stack
 
@@ -144,7 +144,7 @@ This viewer demonstrates the **end result** of an agent-driven 3D workflow:
 - [ ] Add click interactions (select individual laptops)
 - [ ] Animate laptop screen content (fake display textures)
 - [ ] Add particle effects (subtle dust/light rays)
-- [x] Horizontal XZ semicircle + above-front corner-fit framing (bbox-only on a vertical XY arch still FAIL)
+- [x] Horizontal XZ semicircle + orbit-safe horseshoe framing (AABB-only / look-target mismatch still cropped)
 - [ ] Post-processing (bloom, depth of field)
 
 ## Notes
@@ -155,6 +155,6 @@ If you want ultra-realistic MacBooks, use official Apple press assets (with prop
 
 ---
 
-**Last updated**: 2026-09-08  
+**Last updated**: 2026-09-08 (orbit-safe horseshoe framing)  
 **Author**: Johnny Huynh  
 **License**: MIT
