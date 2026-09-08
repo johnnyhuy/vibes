@@ -173,7 +173,7 @@ With a .glb, each rivet is a separate mesh → more memory overhead.
 | **procedural-steam-atlas** | Procedural geometry | Educational demo, mechanical object, parametric |
 | **explode-assembly** | GLB loading | Need real Tesla Model 3 detail (334 pieces) |
 | **earth-timeline** | Procedural sphere + textures | Parametric planet, but uses canvas textures |
-| **v8-cutaway** | Procedural geometry | Mechanical engine, parametric configuration |
+| **v8-cutaway** | Licensed GLB + HUD | meeww Animated Engine V8 (CC-BY); gauges still code |
 | **japanese-tower** | Procedural geometry | Architectural keep; season/weather retints materials (ADR-0007) |
 | **chinese-courtyard** | Procedural geometry | Four-sided siheyuan; season/sun retints materials (ADR-0009). No Blender GLB this pass. |
 | **ballance-roll** | Procedural geometry | Sky-path + marble; contact materials, no course GLB (ADR-0008) |

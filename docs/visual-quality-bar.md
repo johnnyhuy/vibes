@@ -248,7 +248,7 @@ Across these demos, the quality bar is:
 - ✅ Orbital camera
 - ✅ Live gauges (RPM, stroke cycle, pressure)
 - ✅ 2026-09-08 sweep: firing-order dots, glass dock, ring platform
-- ⚠️ Geometry is simplified (no camshafts, connecting rods)
+- ✅ Licensed multi-mesh V8 (meeww CC-BY) + studio HDRI — not procedural boxes
 - ⚠️ Could add cutaway shader for progressive reveal
 
 ---

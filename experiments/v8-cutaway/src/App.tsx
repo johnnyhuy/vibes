@@ -26,7 +26,7 @@ export default function App() {
       <header className="header">
         <p className="kicker">Study in motion</p>
         <h1>V8 · Four-Stroke</h1>
-        <p className="subtitle">90° V-angle · 1-8-4-3-6-5-7-2 · 5.5 L</p>
+        <p className="subtitle">Licensed V8 mesh · 1-8-4-3-6-5-7-2 · four-stroke</p>
         <div className="cycle-legend" aria-hidden>
           {CYCLES.map((cycle) => (
             <span

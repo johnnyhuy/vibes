@@ -1,6 +1,11 @@
-import { useRef, useMemo } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
+import { useAnimations, useGLTF } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
-import * as THREE from 'three';
+import type { Mesh, MeshStandardMaterial, Object3D } from 'three';
+import { enableShadows, fitObject, hideStudioProps } from '../modelFit';
+
+const MODEL = '/models/v8-engine.glb';
+const CYCLES = ['INTAKE', 'COMPRESSION', 'POWER', 'EXHAUST'] as const;
 
 interface V8EngineProps {
   engineSpeed: number;
@@ -10,6 +15,24 @@ interface V8EngineProps {
   setFiringIndex: (index: number) => void;
 }
 
+function polishMaterials(root: Object3D): void {
+  root.traverse((object) => {
+    const mesh = object as Mesh;
+    if (!mesh.isMesh || !mesh.material) return;
+    const sources = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
+    const next = sources.map((source) => {
+      const mat = (source as MeshStandardMaterial).clone();
+      if ('envMapIntensity' in mat) mat.envMapIntensity = 1.15;
+      if ('metalness' in mat && (mat.metalness ?? 0) > 0.15) {
+        mat.metalness = Math.min(0.92, (mat.metalness ?? 0.4) + 0.08);
+        mat.roughness = Math.min(mat.roughness ?? 0.4, 0.42);
+      }
+      return mat;
+    });
+    mesh.material = next.length === 1 ? next[0] : next;
+  });
+}
+
 export default function V8Engine({
   engineSpeed,
   setRpm,
@@ -17,141 +40,42 @@ export default function V8Engine({
   setPressure,
   setFiringIndex,
 }: V8EngineProps) {
-  const crankshaftRef = useRef<THREE.Mesh>(null);
-  const pistonsLeftRef = useRef<THREE.Group>(null);
-  const pistonsRightRef = useRef<THREE.Group>(null);
-  const crankRotation = useRef(0);
+  const { scene, animations } = useGLTF(MODEL);
+  const crankTurns = useRef(0);
 
-  const vAngle = Math.PI / 2;
+  const model = useMemo(() => {
+    const clone = scene.clone(true);
+    hideStudioProps(clone);
+    fitObject(clone, 5.4, { ground: true });
+    enableShadows(clone);
+    polishMaterials(clone);
+    return clone;
+  }, [scene]);
 
-  const firingOrder = [0, 7, 3, 2, 5, 4, 6, 1];
+  const { actions, mixer } = useAnimations(animations, model);
 
-  const pistonPhases = useMemo(() => {
-    return firingOrder.map((_, i) => (firingOrder[i] * Math.PI / 4));
-  }, []);
+  useEffect(() => {
+    const action = actions.Object_0 ?? Object.values(actions)[0];
+    if (!action) return;
+    action.reset().play();
+    action.paused = false;
+    return () => {
+      action.stop();
+    };
+  }, [actions]);
 
-  useFrame((state, delta) => {
-    crankRotation.current += delta * engineSpeed * 2;
+  useFrame((_, delta) => {
+    const running = engineSpeed > 0;
+    if (mixer) mixer.timeScale = running ? engineSpeed * 0.85 : 0;
+    crankTurns.current += running ? delta * engineSpeed * 2 : 0;
 
-    const rpm = engineSpeed === 0 ? 0 : Math.floor(engineSpeed * 200 + 300);
-    setRpm(rpm);
-
-    const cycle = Math.floor((crankRotation.current / (Math.PI * 2)) % 4);
-    const cycles = ['INTAKE', 'COMPRESSION', 'POWER', 'EXHAUST'];
-    setStrokeCycle(cycles[cycle]);
-    setFiringIndex(Math.floor((crankRotation.current / (Math.PI / 4)) % 8));
-
-    const pressure = (1.5 + Math.sin(crankRotation.current) * 0.5).toFixed(1);
-    setPressure(pressure);
-
-    if (crankshaftRef.current) {
-      crankshaftRef.current.rotation.z = crankRotation.current;
-    }
-
-    if (pistonsLeftRef.current) {
-      pistonsLeftRef.current.children.forEach((piston, i) => {
-        const phase = pistonPhases[i];
-        const offset = Math.sin(crankRotation.current + phase) * 0.8;
-        piston.position.y = offset;
-      });
-    }
-
-    if (pistonsRightRef.current) {
-      pistonsRightRef.current.children.forEach((piston, i) => {
-        const phase = pistonPhases[i];
-        const offset = Math.sin(crankRotation.current + phase) * 0.8;
-        piston.position.y = offset;
-      });
-    }
+    setRpm(running ? Math.floor(engineSpeed * 200 + 300) : 0);
+    setStrokeCycle(CYCLES[Math.floor((crankTurns.current / (Math.PI * 2)) % 4)]);
+    setFiringIndex(Math.floor((crankTurns.current / (Math.PI / 4)) % 8));
+    setPressure((1.5 + Math.sin(crankTurns.current) * 0.5).toFixed(1));
   });
 
-  const blockMaterial = new THREE.MeshStandardMaterial({
-    color: '#16181c',
-    metalness: 0.42,
-    roughness: 0.55,
-  });
-
-  const crankMaterial = new THREE.MeshStandardMaterial({
-    color: '#d4d7dc',
-    metalness: 0.92,
-    roughness: 0.16,
-  });
-
-  const pistonMaterial = new THREE.MeshStandardMaterial({
-    color: '#4d6f93',
-    metalness: 0.55,
-    roughness: 0.28,
-  });
-
-  const valveMaterial = new THREE.MeshStandardMaterial({
-    color: '#8b5cf6',
-    metalness: 0.78,
-    roughness: 0.22,
-  });
-
-  return (
-    <group>
-      <mesh position={[0, 0, 0]} material={blockMaterial}>
-        <boxGeometry args={[8, 3, 4]} />
-      </mesh>
-
-      <group position={[0, 1.5, 1]} rotation={[0, 0, -vAngle / 2]}>
-        <mesh material={blockMaterial}>
-          <boxGeometry args={[8, 1.5, 1]} />
-        </mesh>
-      </group>
-
-      <group position={[0, 1.5, -1]} rotation={[0, 0, vAngle / 2]}>
-        <mesh material={blockMaterial}>
-          <boxGeometry args={[8, 1.5, 1]} />
-        </mesh>
-      </group>
-
-      <mesh ref={crankshaftRef} position={[0, -1.5, 0]} rotation={[0, 0, Math.PI / 2]} material={crankMaterial}>
-        <cylinderGeometry args={[0.3, 0.3, 9, 16]} />
-      </mesh>
-
-      <group ref={pistonsLeftRef} position={[0, 0, 1.5]} rotation={[0, 0, -vAngle / 2]}>
-        {[0, 1, 2, 3].map((i) => (
-          <mesh key={i} position={[-3 + i * 2, 0, 0]} material={pistonMaterial}>
-            <cylinderGeometry args={[0.4, 0.4, 1.5, 16]} />
-          </mesh>
-        ))}
-      </group>
-
-      <group ref={pistonsRightRef} position={[0, 0, -1.5]} rotation={[0, 0, vAngle / 2]}>
-        {[0, 1, 2, 3].map((i) => (
-          <mesh key={i} position={[-3 + i * 2, 0, 0]} material={pistonMaterial}>
-            <cylinderGeometry args={[0.4, 0.4, 1.5, 16]} />
-          </mesh>
-        ))}
-      </group>
-
-      <group position={[0, 3, 1.5]} rotation={[0, 0, -vAngle / 2]}>
-        {[0, 1, 2, 3].map((i) => (
-          <group key={i} position={[-3 + i * 2, 0, 0]}>
-            <mesh position={[-0.3, 0, 0]} material={valveMaterial}>
-              <cylinderGeometry args={[0.15, 0.15, 0.8, 8]} />
-            </mesh>
-            <mesh position={[0.3, 0, 0]} material={valveMaterial}>
-              <cylinderGeometry args={[0.15, 0.15, 0.8, 8]} />
-            </mesh>
-          </group>
-        ))}
-      </group>
-
-      <group position={[0, 3, -1.5]} rotation={[0, 0, vAngle / 2]}>
-        {[0, 1, 2, 3].map((i) => (
-          <group key={i} position={[-3 + i * 2, 0, 0]}>
-            <mesh position={[-0.3, 0, 0]} material={valveMaterial}>
-              <cylinderGeometry args={[0.15, 0.15, 0.8, 8]} />
-            </mesh>
-            <mesh position={[0.3, 0, 0]} material={valveMaterial}>
-              <cylinderGeometry args={[0.15, 0.15, 0.8, 8]} />
-            </mesh>
-          </group>
-        ))}
-      </group>
-    </group>
-  );
+  return <primitive object={model} />;
 }
+
+useGLTF.preload(MODEL);
