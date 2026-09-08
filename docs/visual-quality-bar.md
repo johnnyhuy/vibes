@@ -124,6 +124,13 @@ Across these demos, the quality bar is:
 
 ## My Implementation Status
 
+### fairday-walk ✅ (local)
+- ✅ Fair-day residential lane + frosted light HUD (serif place chip, Inter chrome)
+- ✅ Eight invented stops, scroll-driven camera, Explore orbit on the current place
+- ✅ Mid-fi procedural PBR (tiles, laundry, well, bikes). Vendored Poly Haven sky HDRI under Suspense
+- ⚠️ No Vercel project — do not create one until quota is healthy
+- Inspired by [anyumeng28](https://x.com/anyumeng28/status/2097175519825383852) (post + live *read* only)
+
 ### keel-hex ✅ (local)
 - ✅ White studio bench + light frosted HUD (Alba Forum family, teal accent, invented nouns)
 - ✅ Procedural KH-55 / Spool Plate hex trainer, Assembled / Inside / Exploded, Play assembly walk
@@ -293,4 +300,4 @@ Then implementing those patterns with:
 
 **Author**: Johnny Huynh  
 **Purpose**: Visual quality reference for vibes experiments  
-**Last Updated**: 2026-09-08 (Keel Hex white-bench trainer; still no new Vercel project; quota wait ~2026-09-08 20:39 UTC)
+**Last Updated**: 2026-09-08 (Fairday Walk memory lane; still no new Vercel project; quota wait ~2026-09-08 20:39 UTC)
