@@ -124,6 +124,13 @@ Across these demos, the quality bar is:
 
 ## My Implementation Status
 
+### kiln-studs ✅ (local)
+- ✅ Dark brick studio + frosted dusk HUD (Cinder Mere tokens, invented nouns)
+- ✅ Procedural Ember Hare (42 stud bricks), eight-step instructions, explode
+- ✅ Idea → palette mock only (three hardcoded prompts). No SetCreator / no catalog
+- ⚠️ No Vercel project — do not create one until quota is healthy
+- Inspired by [antonklingspor](https://x.com/antonklingspor/status/2097062589268136439) (post + X video thumb; no site scrape)
+
 ### heartwood-warden ✅ (local)
 - ✅ Dark moonlit woodland (teal-navy, not grey) + frosted pale-glass HUD
 - ✅ Procedural shrine guardian, sine gait, ten invented casts, lantern spirits
@@ -258,4 +265,4 @@ Then implementing those patterns with:
 
 **Author**: Johnny Huynh  
 **Purpose**: Visual quality reference for vibes experiments  
-**Last Updated**: 2026-09-08 (Poly Haven PBR forest + kiln cart + local HDRIs; still no new Vercel project; quota wait ~2026-09-08 20:39 UTC)
+**Last Updated**: 2026-09-08 (Poly Haven PBR forest + kiln cart + local HDRIs + Kiln Studs; still no new Vercel project; quota wait ~2026-09-08 20:39 UTC)
