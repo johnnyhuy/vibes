@@ -13,7 +13,7 @@ interface Props {
 export default function Scene({ step, orbiting, reducedMotion }: Props) {
   return (
     <Canvas
-      camera={{ position: [1.55, 1.18, 1.85], fov: 32, near: 0.08, far: 28 }}
+      camera={{ position: [1.42, 1.32, 1.72], fov: 32, near: 0.08, far: 28 }}
       dpr={[1, 1.75]}
       shadows
       gl={{

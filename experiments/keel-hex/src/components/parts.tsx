@@ -43,10 +43,10 @@ export function SpoolPlate({ highlight }: { highlight: boolean }) {
       <mesh geometry={plate} rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.08, 0]} castShadow receiveShadow>
         <meshPhysicalMaterial
           color={TONE.graphite}
-          roughness={0.42}
-          metalness={0.58}
-          clearcoat={0.18}
-          clearcoatRoughness={0.4}
+          roughness={0.58}
+          metalness={0.22}
+          clearcoat={0.08}
+          clearcoatRoughness={0.55}
           emissive={emissive}
           emissiveIntensity={emit}
         />
@@ -170,7 +170,7 @@ export function RotorCups({ highlight }: { highlight: boolean }) {
 }
 
 export function NestBoard({ highlight }: { highlight: boolean }) {
-  const board = useHexPlate(0.118, 0.006);
+  const board = useHexPlate(0.132, 0.006);
 
   return (
     <group position={[0, 0.118, 0]}>
@@ -258,9 +258,9 @@ export function LoomTraces({ highlight }: { highlight: boolean }) {
 
 export function SpoolCell({ highlight }: { highlight: boolean }) {
   return (
-    <group position={[0, 0.148, 0]}>
+    <group position={[0, 0.156, 0]}>
       <mesh castShadow receiveShadow>
-        <boxGeometry args={[0.14, 0.036, 0.086]} />
+        <boxGeometry args={[0.118, 0.032, 0.07]} />
         <meshPhysicalMaterial
           color={TONE.pewter}
           roughness={0.38}
@@ -294,9 +294,9 @@ export function SpoolCell({ highlight }: { highlight: boolean }) {
 export function BindStraps({ highlight }: { highlight: boolean }) {
   return (
     <group>
-      {[-0.028, 0.028].map((z) => (
-        <mesh key={z} position={[0, 0.168, z]} castShadow>
-          <boxGeometry args={[0.156, 0.01, 0.016]} />
+      {[-0.024, 0.024].map((z) => (
+        <mesh key={z} position={[0, 0.174, z]} castShadow>
+          <boxGeometry args={[0.132, 0.01, 0.014]} />
           <meshPhysicalMaterial
             color={TONE.teal}
             roughness={0.48}
@@ -306,10 +306,10 @@ export function BindStraps({ highlight }: { highlight: boolean }) {
           />
         </mesh>
       ))}
-      {[-0.07, 0.07].map((x) =>
-        [-0.028, 0.028].map((z) => (
-          <mesh key={`${x}-${z}`} position={[x, 0.15, z]}>
-            <boxGeometry args={[0.01, 0.028, 0.016]} />
+      {[-0.06, 0.06].map((x) =>
+        [-0.024, 0.024].map((z) => (
+          <mesh key={`${x}-${z}`} position={[x, 0.156, z]}>
+            <boxGeometry args={[0.01, 0.026, 0.014]} />
             <meshPhysicalMaterial color={TONE.teal} roughness={0.48} metalness={0.12} />
           </mesh>
         ))
@@ -343,11 +343,11 @@ export function PetalRotors({ highlight }: { highlight: boolean }) {
               >
                 <meshPhysicalMaterial
                   color={TONE.copper}
-                  roughness={0.36}
-                  metalness={0.22}
-                  clearcoat={0.35}
-                  emissive={highlight ? TONE.copper : '#000'}
-                  emissiveIntensity={highlight ? 0.18 : 0}
+                  roughness={0.58}
+                  metalness={0.06}
+                  clearcoat={0.12}
+                  emissive={TONE.copper}
+                  emissiveIntensity={highlight ? 0.22 : 0.08}
                 />
               </mesh>
             ))}
@@ -418,36 +418,26 @@ export function BindPin({ highlight }: { highlight: boolean }) {
 }
 
 export function CanopySpine({ highlight }: { highlight: boolean }) {
-  const canopy = useMemo(() => {
-    const pts = [
-      new Vector2(0, 0),
-      new Vector2(0.07, 0.004),
-      new Vector2(0.078, 0.02),
-      new Vector2(0.05, 0.036),
-      new Vector2(0.02, 0.04),
-      new Vector2(0, 0.038),
-    ];
-    return new LatheGeometry(pts, 24);
-  }, []);
-  useLayoutEffect(() => () => canopy.dispose(), [canopy]);
-
   return (
-    <group position={[0, 0.168, -0.01]}>
-      <mesh geometry={canopy} rotation={[0, 0, 0]} castShadow>
+    <group position={[0, 0.132, -0.092]}>
+      <mesh rotation={[0.18, 0, 0]} castShadow>
+        <boxGeometry args={[0.072, 0.018, 0.046]} />
         <meshPhysicalMaterial
           color={TONE.graphite}
-          roughness={0.3}
-          metalness={0.55}
-          clearcoat={0.4}
-          transmission={0.08}
-          thickness={0.2}
+          roughness={0.32}
+          metalness={0.58}
+          clearcoat={0.28}
           emissive={highlight ? TONE.teal : '#000'}
           emissiveIntensity={highlight ? 0.1 : 0}
         />
       </mesh>
-      <mesh position={[-0.04, 0.03, -0.02]} rotation={[0.4, 0.3, 0]}>
-        <boxGeometry args={[0.036, 0.004, 0.01]} />
-        <meshPhysicalMaterial color={TONE.ink} roughness={0.5} metalness={0.2} />
+      <mesh position={[0, 0.016, -0.01]} rotation={[0.32, 0, 0]} castShadow>
+        <boxGeometry args={[0.048, 0.01, 0.03]} />
+        <meshPhysicalMaterial color={TONE.carbon} roughness={0.36} metalness={0.5} />
+      </mesh>
+      <mesh position={[0, 0.01, 0.018]}>
+        <boxGeometry args={[0.04, 0.004, 0.008]} />
+        <meshPhysicalMaterial color={TONE.teal} roughness={0.4} metalness={0.3} />
       </mesh>
     </group>
   );

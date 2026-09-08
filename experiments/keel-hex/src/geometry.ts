@@ -40,9 +40,9 @@ export function hexPlateGeometry(radius: number, depth: number): ExtrudeGeometry
 export function petalShape(): Shape {
   const shape = new Shape();
   shape.moveTo(0, 0);
-  shape.bezierCurveTo(0.012, 0.02, 0.03, 0.08, 0.016, 0.2);
-  shape.bezierCurveTo(0.008, 0.23, -0.008, 0.23, -0.016, 0.2);
-  shape.bezierCurveTo(-0.03, 0.08, -0.012, 0.02, 0, 0);
+  shape.bezierCurveTo(0.016, 0.024, 0.042, 0.1, 0.022, 0.26);
+  shape.bezierCurveTo(0.01, 0.3, -0.01, 0.3, -0.022, 0.26);
+  shape.bezierCurveTo(-0.042, 0.1, -0.016, 0.024, 0, 0);
   return shape;
 }
 
