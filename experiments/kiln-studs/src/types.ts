@@ -41,7 +41,7 @@ export interface Idea {
 export interface Look {
   id: LookId;
   name: string;
-  preset: 'studio' | 'sunset' | 'night' | 'apartment' | 'warehouse';
+  hdri: string;
   env: number;
   key: string;
   keyInt: number;

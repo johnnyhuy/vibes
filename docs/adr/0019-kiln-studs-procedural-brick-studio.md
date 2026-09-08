@@ -15,7 +15,7 @@ A pasted brick API or their bridge set would *read* as a fork. Hobby Vercel quot
 
 ### 1. Procedural studs, not a catalog GLB
 
-**Chosen**: Vite + React + R3F + drei + three `~0.170`, same stack as Cinder Mere / Foil Tilt Card. `catalog.ts` lists forty-two bricks. Bodies are rounded boxes or cylinders; studs are shaded cylinders. MeshPhysical + an apartment / sunset / night env map.
+**Chosen**: Vite + React + R3F + drei + three `~0.170`, same stack as Cinder Mere / Foil Tilt Card. `catalog.ts` lists forty-two bricks. Bodies are rounded boxes or cylinders; studs are shaded cylinders. MeshPhysical + three vendored Poly Haven 1k HDRIs (CC0) behind a nested `Suspense`, so a slow env fetch cannot blank the canvas.
 
 **Rejected**:
 - Scraping SetCreator or a brick-link catalog

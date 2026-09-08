@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { ContactShadows, Environment } from '@react-three/drei';
 import { Bloom, EffectComposer } from '@react-three/postprocessing';
 import type { Look, Palette, ViewMode } from '../types';
@@ -16,9 +17,12 @@ export default function Studio({ look, palette, step, mode, reducedMotion }: Pro
   return (
     <>
       <color attach="background" args={[look.bg]} />
-      <fog attach="fog" args={[look.bg, 7.5, 18]} />
-      <Environment preset={look.preset} environmentIntensity={look.env} background={false} />
-      <ambientLight intensity={0.18} color="#d8c8b8" />
+      <fog attach="fog" args={[look.bg, 8.5, 20]} />
+      <Suspense fallback={null}>
+        <Environment files={look.hdri} environmentIntensity={look.env} background={false} />
+      </Suspense>
+      <hemisphereLight args={['#f0d8c0', '#2a1c18', 0.42]} />
+      <ambientLight intensity={0.28} color="#d8c8b8" />
       <directionalLight
         position={[3.4, 5.2, 2.6]}
         intensity={look.keyInt}

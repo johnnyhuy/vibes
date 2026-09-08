@@ -140,7 +140,7 @@ export const LOOKS: Look[] = [
   {
     id: 'studio',
     name: 'Studio',
-    preset: 'apartment',
+    hdri: '/hdri/lebombo_1k.hdr',
     env: 0.34,
     key: '#f2e6d4',
     keyInt: 1.22,
@@ -155,7 +155,7 @@ export const LOOKS: Look[] = [
   {
     id: 'kiln-dusk',
     name: 'Kiln dusk',
-    preset: 'sunset',
+    hdri: '/hdri/venice_sunset_1k.hdr',
     env: 0.3,
     key: '#f0b078',
     keyInt: 1.4,
@@ -170,7 +170,7 @@ export const LOOKS: Look[] = [
   {
     id: 'pewter',
     name: 'Pewter',
-    preset: 'night',
+    hdri: '/hdri/dikhololo_night_1k.hdr',
     env: 0.4,
     key: '#d8dde4',
     keyInt: 1.08,

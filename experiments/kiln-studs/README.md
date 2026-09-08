@@ -42,11 +42,11 @@ Post-quota order stays: (1) promote `vibes-blender-semicircle` production from t
 Headed preview on `127.0.0.1:4173` after `npm run build`:
 
 - Dark studio, frosted HUD, brand `vibes · kiln studs`. Not their chrome.
-- Ember Hare reads as a sitting hare on a kiln plinth (haunches, cream chest, tall ears, a small pot).
-- Drag orbits; step slider and arrows walk eight marks; explode separates studs.
-- Dusk hare / Clay slip / Pewter ash remaps the glaze. Studio / Kiln dusk / Pewter change the stage.
-- Narrow viewport docks the desk; the hare still readable.
-- Console: no fatal errors. Build green.
+- Ember Hare reads as a sitting kiln-hearth hare (haunches, cream chest, tall ears, a small pot) on a bronze-rim pedestal. Studs catch the key.
+- Drag orbits; explode separates the 42 bricks; assemble puts them back. Step / Play walk the eight marks.
+- Dusk hare / Clay slip / Pewter ash remaps the glaze. Studio / Kiln dusk / Pewter change the stage (vendored HDRIs, no CDN).
+- Console: no fatals. Benign WebGL `ReadPixels` / software-GL notes only. Build green.
+- Still: `docs/previews/kiln-studs.png`.
 
 No Vercel project. No production URL.
 

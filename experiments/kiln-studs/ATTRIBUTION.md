@@ -12,6 +12,14 @@ I did **not** copy their source, assets, branding, brick catalog APIs, buy-links
 
 All brick geometry, pedestal, palettes, HUD copy, and instruction marks are original procedural work under the repo MIT licence. No third-party GLB. No LEGO / SetCreator catalog.
 
+Local studio HDRIs (CC0, Poly Haven via the public `pmndrs/drei-assets` pack). Vendored so the canvas does not depend on a CDN:
+
+- `public/hdri/lebombo_1k.hdr` — Lebombo, Greg Zaal / Poly Haven, CC0
+- `public/hdri/venice_sunset_1k.hdr` — Venice Sunset, Greg Zaal / Poly Haven, CC0
+- `public/hdri/dikhololo_night_1k.hdr` — Dikhololo Night, Greg Zaal / Poly Haven, CC0
+
+Source pack: [pmndrs/drei-assets hdri](https://github.com/pmndrs/drei-assets). I did not ship a display-stand GLB.
+
 ## Related kitchen-sink credits
 
 Sibling experiments that *do* ship licensed meshes keep their own `ATTRIBUTION.md`. This folder does not reuse those files.

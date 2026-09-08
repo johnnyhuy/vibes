@@ -21,6 +21,7 @@ export default function Scene({ look, palette, step, mode, orbiting, reducedMoti
       shadows
       gl={{
         antialias: true,
+        preserveDrawingBuffer: true,
         toneMapping: ACESFilmicToneMapping,
         toneMappingExposure: look.exposure,
       }}
