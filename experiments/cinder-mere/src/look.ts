@@ -27,7 +27,7 @@ const DUSK: ResolvedLook = {
   skyZenith: '#1a1733',
   skyHorizon: '#e07a42',
   fogColor: '#c46a48',
-  fogDensity: 0.016,
+  fogDensity: 0.011,
   sunColor: '#ffb070',
   sunIntensity: 1.55,
   sunElevation: 0.18,
@@ -40,7 +40,7 @@ const DUSK: ResolvedLook = {
   waterOpacity: 0.78,
   exposure: 0.96,
   lampGain: 1,
-  groundTint: '#d2b094',
+  groundTint: '#e0c4a4',
   cloudOpacity: 0.18,
 };
 

@@ -120,7 +120,15 @@ export default function App() {
   return (
     <ErrorBoundary>
       <div className="app" tabIndex={0}>
-        <Scene vehicle={vehicle} input={input} look={look} reducedMotion={reducedMotion} />
+        <Scene
+          vehicle={vehicle}
+          input={input}
+          look={look}
+          reducedMotion={reducedMotion}
+          onCanvasClick={() => {
+            document.querySelector<HTMLElement>('.app')?.focus();
+          }}
+        />
         <Hud
           hud={hud}
           onMute={onMute}

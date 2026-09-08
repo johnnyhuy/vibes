@@ -66,10 +66,14 @@ export function useDriveInput(): MutableRefObject<DriveInput> {
     window.addEventListener('keydown', down, { passive: false });
     window.addEventListener('keyup', up);
     window.addEventListener('blur', blur);
+    document.addEventListener('keydown', down, { passive: false });
+    document.addEventListener('keyup', up);
     return () => {
       window.removeEventListener('keydown', down);
       window.removeEventListener('keyup', up);
       window.removeEventListener('blur', blur);
+      document.removeEventListener('keydown', down);
+      document.removeEventListener('keyup', up);
     };
   }, []);
 

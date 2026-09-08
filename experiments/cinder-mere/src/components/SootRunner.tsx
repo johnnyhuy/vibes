@@ -51,11 +51,11 @@ export default function SootRunner({ vehicle, look }: Props) {
     <group ref={group}>
       <mesh position={[0, 0.38, 0.08]} castShadow>
         <boxGeometry args={[1.15, 0.38, 2.05]} />
-        <meshStandardMaterial map={soot} color="#8a5a42" roughness={0.72} />
+        <meshStandardMaterial map={soot} color="#d08a58" roughness={0.62} />
       </mesh>
       <mesh position={[0, 0.62, -0.55]} castShadow>
         <boxGeometry args={[1.02, 0.42, 0.72]} />
-        <meshStandardMaterial color="#3a2a22" roughness={0.64} />
+        <meshStandardMaterial color="#6a4030" roughness={0.58} />
       </mesh>
       <mesh position={[0, 0.72, 0.72]} castShadow>
         <boxGeometry args={[1.08, 0.22, 0.55]} />

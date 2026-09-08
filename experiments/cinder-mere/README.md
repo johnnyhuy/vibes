@@ -36,6 +36,18 @@ npm run build
 
 Post-quota order stays: (1) promote `vibes-blender-semicircle` production from the framing-fix git-main preview (2) `vibes-scroll-product` first READY (3) `vibes-audio-gadget-spin` first production (4) `vibes-procedural-grass-field` (5) only then ballance / courtyard / amber-longeron / nacre-loom / heartwood-warden / moon-dumpling-relay / foil-tilt-card / zephyr-vale / this basin. Do not create those pending projects here.
 
+## Local playtest (2026-09-08)
+
+Headed preview on `127.0.0.1:4173` after `npm run build`:
+
+- Dusk canvas: ember haze, dark mere, Wick Spire lamp, Soot Runner on the Flint Ford bank. Brand `vibes · cinder mere`.
+- Day chip: brighter blue sky, green bowl, teal mere. Same invented cart — not their GT.
+- Drive: W raises Pace (0 → 5 in the puppeteer pass). First spawn sat in the mere and cancelled motion; the cart now wakes on the dry bank.
+- Mute stays default. No console fatals; only benign WebGL `ReadPixels` notes.
+- Still: `docs/previews/cinder-mere.png`.
+
+No Vercel project. No production URL.
+
 ## Distinct from siblings
 
 Zephyr Vale is a **sunlit walker**. Heartwood Warden is a **moonlit walk + casts**. Amber Longeron is a **lane-dodge biplane**. Ballance-roll is a **marble**. This pass is a **dusk drive slice**.

@@ -13,7 +13,7 @@ interface Props {
 
 export default function FollowCamera({ vehicle, reducedMotion }: Props) {
   const { camera } = useThree();
-  const smoothing = useRef(new Vector3(-18, 9.2, 24));
+  const smoothing = useRef(new Vector3(-14, 7.4, 20));
 
   useFrame((_, delta) => {
     const body = vehicle.current;

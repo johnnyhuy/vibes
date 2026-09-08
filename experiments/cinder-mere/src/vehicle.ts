@@ -68,7 +68,7 @@ export function stepVehicle(state: VehicleState, input: DriveInput, dt: number):
   const aheadX = state.x + Math.sin(state.yaw) * nextSpeed * clampedDt;
   const aheadZ = state.z + Math.cos(state.yaw) * nextSpeed * clampedDt;
   const climb = heightAt(aheadX, aheadZ) - heightAt(state.x, state.z);
-  nextSpeed -= climb * 7.2 * clampedDt;
+  nextSpeed -= Math.max(-3.2, Math.min(3.2, climb)) * 4.4 * clampedDt;
 
   let nextX = state.x + Math.sin(state.yaw) * nextSpeed * clampedDt;
   let nextZ = state.z + Math.cos(state.yaw) * nextSpeed * clampedDt;
@@ -77,10 +77,13 @@ export function stepVehicle(state: VehicleState, input: DriveInput, dt: number):
   nextZ = bounded.z;
 
   const ground = heightAt(nextX, nextZ);
-  if (ground < WATER_LEVEL - 0.42) {
-    nextSpeed *= 0.55;
+  if (ground < WATER_LEVEL - 0.12) {
+    nextSpeed *= 0.84;
+  }
+  if (ground < WATER_LEVEL - 0.95) {
     nextX = state.x;
     nextZ = state.z;
+    nextSpeed *= 0.4;
   }
 
   state.x = nextX;

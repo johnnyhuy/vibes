@@ -9,12 +9,13 @@ interface Props {
   input: InputRef;
   look: ResolvedLook;
   reducedMotion: boolean;
+  onCanvasClick?: () => void;
 }
 
-export default function Scene({ vehicle, input, look, reducedMotion }: Props) {
+export default function Scene({ vehicle, input, look, reducedMotion, onCanvasClick }: Props) {
   return (
     <Canvas
-      camera={{ position: [-18, 9.2, 24], fov: 42, near: 0.1, far: 240 }}
+      camera={{ position: [-14, 7.4, 20], fov: 42, near: 0.1, far: 240 }}
       dpr={[1, 1.6]}
       shadows
       gl={{
@@ -25,6 +26,7 @@ export default function Scene({ vehicle, input, look, reducedMotion }: Props) {
       onCreated={({ gl }) => {
         gl.shadowMap.type = PCFSoftShadowMap;
       }}
+      onPointerDown={() => onCanvasClick?.()}
     >
       <DriveWorld vehicle={vehicle} input={input} look={look} reducedMotion={reducedMotion} />
     </Canvas>

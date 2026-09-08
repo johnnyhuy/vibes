@@ -44,16 +44,16 @@ export const LANDMARKS: Landmark[] = [
     id: 'ford',
     name: 'Flint Ford',
     nameZh: '燧津',
-    copy: 'Stepping stones across the southwest tongue. This is where the Soot Runner wakes.',
+    copy: 'Stepping stones on the southwest tongue. The Soot Runner wakes on the dry bank above them.',
     x: -22.2,
     z: 10.4,
   },
 ];
 
 export const SPAWN = {
-  x: -20.4,
-  z: 12.2,
-  yaw: Math.atan2(20.4, -12.2),
+  x: -24.2,
+  z: 18.4,
+  yaw: Math.atan2(24.2, -18.4),
 } as const;
 
 function hash2(x: number, z: number): number {
