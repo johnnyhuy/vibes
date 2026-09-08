@@ -22,7 +22,17 @@ JSON has no comments. `$schema` does not make `"//"` legal. A real touch is a re
 
 I removed the key from those three files only. Framework / install / build / `outputDirectory` / `ignoreCommand` stay.
 
-Do not create new Vercel projects. Do not dashboard-Redeploy just to retry the same poison.
+Official schema (`https://openapi.vercel.sh/vercel.json`) has `additionalProperties: false`. A poisoned copy fails with `Additional properties are not allowed ('//' was unexpected)`. The three cleaned files validate.
+
+## PR #53 push — rate limited, not schema
+
+The natural PR push on `69333a4` did **not** create scroll / audio / grass deployments. GitHub statuses:
+
+`Deployment rate limited — retry in 24 hours.`
+
+Hobby `johnnyhuy-dev` burned the daily slot on the post-quota wave (and the rest of the monorepo fan-out). Amber Longeron and Brine Causeway were the only hooks that got as far as `ignored-build-step`. I am **not** retrying. I am **not** creating projects.
+
+So: schema ERROR is gone in git. Live rebuild waits for quota. Do not dashboard-Redeploy just to retry the same poison.
 
 ## Related
 
@@ -33,4 +43,4 @@ Do not create new Vercel projects. Do not dashboard-Redeploy just to retry the s
 ---
 
 **Incident owner**: Johnny Huynh  
-**Resolution**: Delete `"//"` from the three `vercel.json` files and let the PR push rebuild
+**Resolution**: Delete `"//"` from the three `vercel.json` files. Live rebuild waits for Hobby quota — do not retry-spam
