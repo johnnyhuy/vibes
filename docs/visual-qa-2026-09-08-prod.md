@@ -24,7 +24,7 @@ Stills named `hill-climb/prod-*-20260908-0425.png` (I did not open those binarie
 | [vibes-explode.vercel.app](https://vibes-explode.vercel.app) @ 0% | **PASS** | Assembled Model 3, frosted UI. Skip. |
 | [vibes-scroll-product.vercel.app](https://vibes-scroll-product.vercel.app) | **404** | No READY production. |
 | [vibes-japanese-tower.vercel.app](https://vibes-japanese-tower.vercel.app) | **LIVE** | Ridge Pagoda title. `dpl_Gap9BAXosU4jMEsQsR8c2nKyEPjg` from courtyard PR. Skip after quota unless visual QA fails. |
-| ballance-roll / chinese-courtyard / audio-gadget-spin | **none** | No Vercel projects. Local only. |
+| ballance-roll / chinese-courtyard / audio-gadget-spin / foil-tilt-card | **none** | No Vercel projects. Local only. |
 
 ### Redeploy order after ~12:55 UTC
 

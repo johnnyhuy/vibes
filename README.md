@@ -27,8 +27,9 @@ Each app is a self-contained Vite experiment under [`experiments/`](./experiment
 | <img src="docs/previews/nacre-loom.png" width="280" alt="Nacre Loom lobed glass vessel (still)"> | [nacre-loom](./experiments/nacre-loom/README.md) | — | Nacre Loom glass vessel. Lobed shell, thin-film weave, copyable snippet. React + R3F + drei. |
 | <img src="docs/previews/heartwood-warden.png" width="280" alt="Heartwood Warden in a moonlit glade (still)"> | [heartwood-warden](./experiments/heartwood-warden/README.md) | — | Heartwood Warden woodland. Procedural guardian, lantern spirits, invented casts. React + R3F + drei. |
 | <img src="docs/previews/moon-dumpling-relay.png" width="280" alt="Moon Dumpling Relay moon-gate table (still)"> | [moon-dumpling-relay](./experiments/moon-dumpling-relay/README.md) | — | Moon Dumpling Relay. Fox / raccoon / owl diners, spinning moon-gate, chili / tea-leaf. Local-only. React + R3F + drei. |
+| <img src="docs/previews/foil-tilt-card.png" width="280" alt="Lumen Fox foil tilt card (still)"> | [foil-tilt-card](./experiments/foil-tilt-card/README.md) | — | Foil Tilt Card. Lumen Fox No.042, layered print, view-tied foil. Local-only. React + R3F + drei. |
 
-Clips are short local loops from each Vite demo. The scroll bottle, Wind Lea, Amber Longeron, Nacre Loom, Heartwood Warden, and Moon Dumpling Relay are stills until I can loop the glass, the wind, the flight, the film, the glade, and the conveyor.
+Clips are short local loops from each Vite demo. The scroll bottle, Wind Lea, Amber Longeron, Nacre Loom, Heartwood Warden, Moon Dumpling Relay, and Foil Tilt Card are stills until I can loop the glass, the wind, the flight, the film, the glade, the conveyor, and the foil.
 
 **Also in the repo:** [ai-3d-lanes](./experiments/ai-3d-lanes/README.md) (web-3d / blender / cad / mesh-gen) · [image-to-3d](./experiments/image-to-3d/README.md) · [ai-image-texture](./experiments/ai-image-texture/README.md) · [llm-openscad](./experiments/llm-openscad/README.md)
 
