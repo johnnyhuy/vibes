@@ -30,9 +30,12 @@ Open the displayed localhost URL.
 
 ```bash
 npm run build
+npm run preview
 ```
 
 Output in `dist/` — ready for static hosting.
+
+Headed local loop: `docs/previews/blender-semicircle.gif`. Full XZ horseshoe with margin — I dragged a slow orbit so it is not the cropped mega-arc.
 
 ## Deploy to Vercel
 

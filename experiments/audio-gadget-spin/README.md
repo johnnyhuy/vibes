@@ -32,7 +32,10 @@ npm run dev
 
 ```bash
 npm run build
+npm run preview
 ```
+
+Headed local loop: `docs/previews/audio-gadget-spin.gif`. Auto-spin on the licensed cups, mute left on. The old three-frame clip was basically a still.
 
 ## Deploy
 

@@ -26,6 +26,8 @@ npm run dev
 
 Open http://localhost:5173 → orbit camera, adjust speed slider, watch the engine run.
 
+Headed local loop: `docs/previews/v8-cutaway.gif`. I recaptured it at 8× with a slow orbit so the pistons and firing-order chips actually move in the README table.
+
 ## Why I Made This
 
 I wanted to understand how to build **technical visualisations** that explain complex mechanical systems — the kind you'd see in engineering documentation or automotive marketing.

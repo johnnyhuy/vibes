@@ -48,7 +48,10 @@ npm run dev
 
 ```bash
 npm run build
+npm run preview
 ```
+
+Headed local loop: `docs/previews/scroll-product-showcase.gif`. Scroll maps to the long-axis roll. I captured ~4s from `vite preview` so the README table is no longer a still.
 
 ## Deploy
 
