@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import { DoubleSide } from 'three';
 import {
   buildTerrainGeometry,
+  broadSpots,
   pineSpots,
   reedSpots,
   scrubSpots,
@@ -68,6 +69,37 @@ function Scrub({
   );
 }
 
+function Broadleaf({
+  x,
+  z,
+  y,
+  scale,
+  twist,
+}: {
+  x: number;
+  z: number;
+  y: number;
+  scale: number;
+  twist: number;
+}) {
+  return (
+    <group position={[x, y, z]} rotation={[0, twist, 0]} scale={scale}>
+      <mesh position={[0, 0.85, 0]} castShadow>
+        <cylinderGeometry args={[0.16, 0.22, 1.7, 6]} />
+        <meshStandardMaterial color="#5a4030" roughness={0.86} />
+      </mesh>
+      <mesh position={[0, 2.05, 0]} castShadow>
+        <sphereGeometry args={[1.05, 8, 6]} />
+        <meshStandardMaterial color="#4a6a34" roughness={0.78} />
+      </mesh>
+      <mesh position={[0.45, 1.85, 0.2]}>
+        <sphereGeometry args={[0.55, 7, 5]} />
+        <meshStandardMaterial color="#3f5a2c" roughness={0.8} />
+      </mesh>
+    </group>
+  );
+}
+
 function Pine({
   x,
   z,
@@ -102,11 +134,12 @@ export default function Basin({ look }: Props) {
   const reeds = useMemo(() => reedSpots(), []);
   const scrub = useMemo(() => scrubSpots(), []);
   const pines = useMemo(() => pineSpots(), []);
+  const broads = useMemo(() => broadSpots(), []);
 
   return (
     <group>
       <mesh geometry={terrain} receiveShadow>
-        <meshStandardMaterial vertexColors roughness={0.92} metalness={0.02} />
+        <meshStandardMaterial vertexColors color={look.groundTint} roughness={0.92} metalness={0.02} />
       </mesh>
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, WATER_LEVEL, 0]}>
         <circleGeometry args={[WORLD_HALF * 0.34, 48]} />
@@ -129,6 +162,9 @@ export default function Basin({ look }: Props) {
       ))}
       {pines.map((pine, index) => (
         <Pine key={`pine-${index}`} {...pine} />
+      ))}
+      {broads.map((tree, index) => (
+        <Broadleaf key={`broad-${index}`} {...tree} />
       ))}
     </group>
   );

@@ -86,6 +86,29 @@ export default function SkyRig({ look }: Props) {
         <sphereGeometry args={[1.15, 16, 16]} />
         <meshBasicMaterial color={look.sunColor} fog={false} />
       </mesh>
+      {look.cloudOpacity > 0.08 && (
+        <group>
+          {[
+            [22, 16, -48],
+            [-18, 14, -56],
+            [8, 13, 52],
+            [-36, 15, 18],
+            [40, 17, 8],
+          ].map(([x, y, z], index) => (
+            <mesh key={index} position={[x, y, z]} scale={[4.8 + index * 0.4, 0.7, 2.2]}>
+              <sphereGeometry args={[1, 10, 7]} />
+              <meshStandardMaterial
+                color="#f4f7fb"
+                transparent
+                opacity={look.cloudOpacity}
+                roughness={1}
+                depthWrite={false}
+                fog={false}
+              />
+            </mesh>
+          ))}
+        </group>
+      )}
     </>
   );
 }

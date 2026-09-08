@@ -5,7 +5,7 @@
 - Live they linked: [https://gg-shifro.vercel.app/](https://gg-shifro.vercel.app/) — public page title *Aura Valley — Ultra Realistic Open World Drive*
 - Video thumb: `https://pbs.twimg.com/amplify_video_thumb/2097116044192350208/img/U4tma-Ej9qWmN7x0.jpg` — local copy `hill-climb/refs/aura-valley-shifro-thumb.jpg` when present
 - Headed live *read* (2026-09-08): dusk / sunset valley, a drivable vehicle, time-of-day chrome, a follow-ish camera. Pattern only.
-- X video thumb (`aura-valley-shifro-thumb.jpg`): one daylight frame — follow-cam behind a low car, wide grassy basin, scrub on the floor, trees on the slopes. Sky / terrain / vehicle *silhouette* only. I did not redraw their asphalt loop, sports GT, or HUD.
+- X video thumb (`aura-valley-shifro-thumb.jpg`, attached as `aura-valley-thumb-20260908.jpg` when present): one daylight frame — chase-cam behind a low car, wide grassy basin, scrub on the floor, trees on the slopes, bright blue sky. Sky / terrain / vehicle *silhouette* only. I did not redraw their asphalt loop, sports GT, or HUD.
 
 **Study date**: 2026-09-08  
 **Status**: **Built** — `experiments/cinder-mere/` (Cinder Mere / 烬泽). Clean-room only.

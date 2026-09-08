@@ -18,6 +18,8 @@ export interface ResolvedLook {
   waterOpacity: number;
   exposure: number;
   lampGain: number;
+  groundTint: string;
+  cloudOpacity: number;
 }
 
 const DUSK: ResolvedLook = {
@@ -38,26 +40,30 @@ const DUSK: ResolvedLook = {
   waterOpacity: 0.78,
   exposure: 0.96,
   lampGain: 1,
+  groundTint: '#d2b094',
+  cloudOpacity: 0.18,
 };
 
 const DAY: ResolvedLook = {
   name: 'day',
-  skyZenith: '#6ea6d4',
-  skyHorizon: '#d7e6ef',
-  fogColor: '#c5d3c8',
-  fogDensity: 0.0075,
-  sunColor: '#fff2d4',
-  sunIntensity: 2.05,
-  sunElevation: 0.72,
-  sunAzimuth: 0.55,
-  ambientColor: '#8aa0a8',
-  ambientIntensity: 0.42,
-  hemiSky: '#d8e8f4',
-  hemiGround: '#6a5a40',
+  skyZenith: '#4e92d2',
+  skyHorizon: '#cfe6f6',
+  fogColor: '#c8ddc6',
+  fogDensity: 0.0064,
+  sunColor: '#fff6e0',
+  sunIntensity: 2.2,
+  sunElevation: 0.78,
+  sunAzimuth: 0.48,
+  ambientColor: '#9ab0a4',
+  ambientIntensity: 0.48,
+  hemiSky: '#d4ecff',
+  hemiGround: '#6e7a40',
   waterColor: '#3d6a72',
   waterOpacity: 0.7,
   lampGain: 0.15,
-  exposure: 1.08,
+  exposure: 1.12,
+  groundTint: '#b7d46a',
+  cloudOpacity: 0.55,
 };
 
 function mixHex(a: string, b: string, t: number): string {
@@ -99,6 +105,8 @@ export function blendLook(from: ResolvedLook, to: ResolvedLook, t: number): Reso
     waterOpacity: lerp(from.waterOpacity, to.waterOpacity, k),
     exposure: lerp(from.exposure, to.exposure, k),
     lampGain: lerp(from.lampGain, to.lampGain, k),
+    groundTint: mixHex(from.groundTint, to.groundTint, k),
+    cloudOpacity: lerp(from.cloudOpacity, to.cloudOpacity, k),
   };
 }
 

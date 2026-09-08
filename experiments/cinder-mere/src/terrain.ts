@@ -281,3 +281,19 @@ export function pineSpots(): PineSpot[] {
     };
   }).filter((spot) => spot.y > WATER_LEVEL + 1.4);
 }
+
+export function broadSpots(): PineSpot[] {
+  const seeds = [0.85, 1.15, 1.55, 2.05, 4.55, 4.95, 5.35];
+  return seeds.map((angle, index) => {
+    const radius = (0.46 + hash2(index, 6) * 0.08) * WORLD_HALF;
+    const x = Math.cos(angle) * radius;
+    const z = Math.sin(angle) * radius;
+    return {
+      x,
+      z,
+      y: heightAt(x, z),
+      scale: 0.95 + hash2(index, 14) * 0.4,
+      twist: hash2(index, 18) * Math.PI,
+    };
+  }).filter((spot) => spot.y > WATER_LEVEL + 0.6);
+}

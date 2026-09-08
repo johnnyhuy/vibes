@@ -17,8 +17,8 @@ export default function FollowCamera({ vehicle, reducedMotion }: Props) {
 
   useFrame((_, delta) => {
     const body = vehicle.current;
-    const back = 8.6;
-    const height = 4.05;
+    const back = 6.8;
+    const height = 3.15;
     const sin = Math.sin(body.yaw);
     const cos = Math.cos(body.yaw);
     offset.set(body.x - sin * back, body.y + height, body.z - cos * back);
@@ -29,7 +29,7 @@ export default function FollowCamera({ vehicle, reducedMotion }: Props) {
       smoothing.current.lerp(offset, ease);
     }
     camera.position.copy(smoothing.current);
-    look.set(body.x + sin * 4.2, body.y + 0.85, body.z + cos * 4.2);
+    look.set(body.x + sin * 7.2, body.y + 0.7, body.z + cos * 7.2);
     camera.lookAt(look);
   });
 
