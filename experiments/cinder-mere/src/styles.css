@@ -42,7 +42,7 @@ body {
 
 .topbar,
 .editorial,
-.desk,
+.meter,
 .hint,
 .pad {
   z-index: 4;
@@ -117,18 +117,17 @@ body {
   color: var(--muted);
 }
 
-.desk {
+.meter {
   position: absolute;
   top: 5.1rem;
-  right: 1.1rem;
-  width: min(20.5rem, 36vw);
-  padding: 1.05rem 1.1rem 1rem;
+  right: 1.2rem;
+  width: min(12.5rem, 28vw);
+  padding: 0.7rem 0.8rem 0.75rem;
   background: var(--panel);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--line);
-  border-radius: 1rem;
-  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+  border-radius: 0.85rem;
 }
 
 .panel-kicker {
@@ -138,35 +137,16 @@ body {
   color: var(--accent);
 }
 
-.panel-title {
-  font-size: 1.35rem;
+.percent {
+  font-size: 1.05rem;
   letter-spacing: -0.03em;
-  margin: 0.15rem 0 0.4rem;
+  line-height: 1.25;
+  margin: 0.2rem 0 0.5rem;
 }
 
-.panel-title .zh {
-  font-size: 0.82rem;
-  letter-spacing: 0.08em;
+.pace-num {
   color: var(--muted);
-}
-
-.panel-copy {
-  font-size: 0.8rem;
-  line-height: 1.45;
-  color: var(--muted);
-  margin-bottom: 0.75rem;
-}
-
-.pace {
-  font-size: 0.78rem;
-  letter-spacing: 0.04em;
-  color: var(--ink);
-  margin-bottom: 0.75rem;
-}
-
-.pace .sep {
-  margin: 0 0.4rem;
-  color: var(--muted);
+  font-variant-numeric: tabular-nums;
 }
 
 .chips,
@@ -305,14 +285,11 @@ body {
     display: none;
   }
 
-  .desk {
+  .meter {
     top: auto;
     bottom: 8.2rem;
-    left: 0.75rem;
     right: 0.75rem;
-    width: auto;
-    max-height: 28vh;
-    overflow: auto;
+    width: 10.5rem;
   }
 
   .hint {

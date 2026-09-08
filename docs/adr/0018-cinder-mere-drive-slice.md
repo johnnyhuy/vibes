@@ -35,7 +35,7 @@ Zephyr Vale (ADR-0017) already covers a **sunlit walker**. Heartwood Warden is a
 
 ### 3. Invented marks and chrome
 
-**Chosen**: Cinder Mere / 烬泽. Wick Spire, Pewter Jetty, Low Kiln, Flint Ford. Frosted 2026-09-08 HUD. Brand `vibes · cinder mere`. Pace chip, not a loop odometer.
+**Chosen**: Cinder Mere / 烬泽. Wick Spire, Pewter Jetty, Low Kiln, Flint Ford. Thin frosted 2026-09-08 HUD (brand, editorial, one pace chip). Brand `vibes · cinder mere`. A 2026-09-08 live still showed hood-cam meadow + dense vehicle chrome; I kept dusk follow-cam and did not add tabs, swatches, a loop map, or a giant speedo.
 
 **Rejected**: Their valley title, loop names, time-chip labels as a spec, hidden-cursor look chrome, autosteer.
 

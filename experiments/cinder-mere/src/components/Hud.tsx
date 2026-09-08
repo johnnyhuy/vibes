@@ -41,7 +41,7 @@ export default function Hud({ hud, onMute, onTime, onReset, onPad, onBrake }: Pr
       <nav className="topbar" aria-label="Cinder Mere">
         <p className="brand">vibes · cinder mere</p>
         <div className="top-groups">
-          <p className="stance">{hud.timeName}</p>
+          <p className="stance">{hud.timeName === 'day' ? 'ash noon' : hud.timeName}</p>
           <div className="chips">
             <button
               type="button"
@@ -55,7 +55,7 @@ export default function Hud({ hud, onMute, onTime, onReset, onPad, onBrake }: Pr
               className={hud.timeMode === 'day' ? 'active' : undefined}
               onClick={() => onTime('day')}
             >
-              Day
+              Ash noon
             </button>
             <button
               type="button"
@@ -75,24 +75,18 @@ export default function Hud({ hud, onMute, onTime, onReset, onPad, onBrake }: Pr
         <p className="kicker">烬泽</p>
         <h1>Cinder Mere</h1>
         <p className="lede">
-          I cut a dusk basin you can drive — a kiln cart, four invented
-          markers, and haze instead of a sixteen-kilometre map.
+          A kiln cart in a dusk basin. Four marks I named. No loop, no GT.
         </p>
       </header>
 
-      <aside className="desk" aria-label="Drive desk">
-        <p className="panel-kicker">Nearest mark</p>
-        <p className="panel-title">
-          {landmark.name} <span className="zh">{landmark.nameZh}</span>
+      <aside className="meter" aria-label="Pace">
+        <p className="panel-kicker">{landmark.nameZh}</p>
+        <p className="percent">
+          {landmark.name}
+          <span className="pace-num"> · {hud.pace}</span>
         </p>
-        <p className="panel-copy">{landmark.copy}</p>
-        <p className="pace">
-          Pace {hud.pace}
-          <span className="sep">·</span>
-          {hud.landmarkRange < 8 ? 'beside it' : `${hud.landmarkRange.toFixed(0)} m out`}
-        </p>
-        <button type="button" className="ghost" onClick={onReset}>
-          Reset to Flint Ford
+        <button type="button" className="ghost compact" onClick={onReset}>
+          Bank
         </button>
       </aside>
 
@@ -107,7 +101,7 @@ export default function Hud({ hud, onMute, onTime, onReset, onPad, onBrake }: Pr
         <span className="sep">·</span>
         <kbd>T</kbd> time
         <span className="sep">·</span>
-        <kbd>R</kbd> reset
+        <kbd>R</kbd> bank
       </p>
 
       <div className="pad" aria-label="Drive">
@@ -121,8 +115,8 @@ export default function Hud({ hud, onMute, onTime, onReset, onPad, onBrake }: Pr
       </div>
 
       <p className="sr-only">
-        Cinder Mere. {hud.timeName}. Nearest {landmark.name}. Pace {hud.pace}.
-        WASD drive, space brake, T cycles time, R resets.
+        Cinder Mere. {hud.timeName}. Nearest {landmark.name}. {landmark.copy} Pace {hud.pace}.
+        WASD drive, space brake, T cycles time, R returns to the Flint Ford bank.
       </p>
     </>
   );

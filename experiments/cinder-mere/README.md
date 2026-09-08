@@ -8,7 +8,7 @@ I built this after reading [@ShifroAnimation](https://x.com/ShifroAnimation/stat
 - **Soot Runner / 炱奔** — a kiln-yard utility cart from boxes, drums, and a soot canvas. No sports GT. No car GLB.
 - **Arcade drive** — W accelerate, S brake / reverse, A D steer, Space brake. Height samples keep the cart on the bowl. Soft follow cam.
 - **Four marks I named** — Wick Spire, Pewter Jetty, Low Kiln, Flint Ford. Not their loop, not Zephyr Vale’s oak / bothy / mill.
-- **Dusk / day / cycle** — two looks I mixed, plus a slow auto blend. Default is dusk.
+- **Dusk / ash noon / cycle** — dusk is the default. Ash noon is pewter sky + dusty ochre, not a lush meadow. A slow auto blend.
 - **Mute-default reed bed** — filtered noise + two quiet sines. The toggle starts **Muted**.
 
 ## Stack
@@ -41,8 +41,9 @@ Post-quota order stays: (1) promote `vibes-blender-semicircle` production from t
 Headed preview on `127.0.0.1:4173` after `npm run build`:
 
 - Dusk canvas: ember haze, dark mere, Wick Spire lamp, Soot Runner on the Flint Ford bank. Brand `vibes · cinder mere`.
-- Day chip: brighter blue sky, green bowl, teal mere. Same invented cart — not their GT.
-- Drive: W raises Pace (0 → 5 in the puppeteer pass). First spawn sat in the mere and cancelled motion; the cart now wakes on the dry bank.
+- Thin HUD: brand, editorial, one Flint Ford pace chip, WASD hint. No tabs, swatches, loop map, or giant speedo.
+- Ash noon chip: pewter sky, dusty ochre bowl. Same kiln cart — not a yellow GT meadow.
+- Drive: W raises the chip (Flint Ford · 0 → 5). Cart wakes on the dry bank.
 - Mute stays default. No console fatals; only benign WebGL `ReadPixels` notes.
 - Still: `docs/previews/cinder-mere.png`.
 

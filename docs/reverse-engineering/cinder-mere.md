@@ -6,6 +6,7 @@
 - Video thumb: `https://pbs.twimg.com/amplify_video_thumb/2097116044192350208/img/U4tma-Ej9qWmN7x0.jpg` — local copy `hill-climb/refs/aura-valley-shifro-thumb.jpg` when present
 - Headed live *read* (2026-09-08): dusk / sunset valley, a drivable vehicle, time-of-day chrome, a follow-ish camera. Pattern only.
 - X video thumb (`aura-valley-shifro-thumb.jpg`, attached as `aura-valley-thumb-20260908.jpg` when present): one daylight frame — chase-cam behind a low car, wide grassy basin, scrub on the floor, trees on the slopes, bright blue sky. Sky / terrain / vehicle *silhouette* only. I did not redraw their asphalt loop, sports GT, or HUD.
+- Live QA still (2026-09-08 ~11:41, `hill-climb/ref-aura-valley-20260908-1141.png` when present): hood / FPV over a bright daytime meadow with tree rows. Dense product chrome (title lockup, vehicle panel, swatches, tabs, circular loop map, large speed readout, click-to-look). Pattern only. I will not restating those nouns as a spec, and I will not ship hood-cam meadow + yellow GT.
 
 **Study date**: 2026-09-08  
 **Status**: **Built** — `experiments/cinder-mere/` (Cinder Mere / 烬泽). Clean-room only.
@@ -67,11 +68,11 @@ Soot Runner is a kiln cart: box, drums, hoop, lanterns. Not a clear-coat GT.
 
 ### 3. Daytimes as looks, not their clock
 
-Dusk (default), day, and a slow cycle. Ember horizon vs cool noon. Lamps brighten at dusk.
+Dusk (default) and **ash noon** — pewter sky, dusty ochre bowl, not a lush meadow. A slow cycle. Lamps brighten at dusk. The 2026-09-08 live still is hood-cam meadow daylight; I kept the opposite read.
 
-### 4. Frosted HUD, invented marks
+### 4. Thin frosted HUD, invented marks
 
-Brand `vibes · cinder mere`. Left editorial in Johnny voice. Right desk names the nearest mark. WASD hint. Mute starts on.
+Brand `vibes · cinder mere`. Left editorial in Johnny voice. A small pace chip names the nearest mark. WASD hint. Mute starts on. No tabs, swatches, loop map, or giant speedo.
 
 Marks: **Wick Spire**, **Pewter Jetty**, **Low Kiln**, **Flint Ford**.
 
@@ -105,6 +106,7 @@ Marks: **Wick Spire**, **Pewter Jetty**, **Low Kiln**, **Flint Ford**.
 3. Slope drag keeps the rim from feeling like ice
 4. Do not name the HUD after someone else’s valley
 5. Keep it distinct from Zephyr Vale: dusk + drive, not daylight + walk
+6. Their live still is hood-cam meadow + dense chrome — thin dusk HUD is the clean-room answer
 
 ## Related
 
