@@ -4,9 +4,9 @@
 
 - [@BrenBuilds](https://x.com/BrenBuilds/status/2097221820743139824) — public post: a chase game that grew from a flat slice into three environments, built with Astra, Three.js, and Blender. Verified 2026-09-08 via X API, post id `2097221820743139824`.
 - Live they advertised: `bison-breakaway.brenhq.com` — public page title / t.co card only (*A Yellowstone Chase*; “One bison. Three ways to run.”). Feel / “three biomes + a chase loop” only.
-- Feel-only stills may live at `hill-climb/refs/bison-breakaway-*.png` when attached on the operator box. I invented the biomes from the pitch nouns if those files are missing.
+- Feel-only menu still: `hill-climb/refs/bison-breakaway-20260908-1824.png` when attached. Interaction pattern only (tabs + poster + play). I did not copy the illustration, park nouns, or CTA.
 
-I did **not** fetch that live site into this repo, decompile their bundle, or copy meshes, textures, HUD chrome, mode names, or park branding. Ochre Gallop / 赭奔, Ashmane / 灰鬃, Sulfur Terrace, Spout Basin, Rim Overlook, Ribbon Cut, Plume Break, and Shelf Drift are mine.
+I did **not** fetch that live site into this repo, decompile their bundle, or copy meshes, textures, HUD chrome, mode names, poster art, or park branding. Ochre Gallop / 赭奔, Ashmane / 灰鬃, Sulfur Terrace, Spout Basin, Rim Overlook, Ribbon Cut, Plume Break, and Shelf Drift are mine.
 
 ## HDRI (CC0)
 

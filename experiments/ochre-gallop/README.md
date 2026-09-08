@@ -2,10 +2,11 @@
 
 I built this after reading [@BrenBuilds](https://x.com/BrenBuilds/status/2097221820743139824). The public pitch: a chase game that used to be flat, now three environments, Astra + Three.js + Blender. Their advertised live is a Yellowstone chase with three park-named places and three run modes. I wanted the *read* — three selectable highlands, one short chase loop each — without cloning their world, runner, HUD, or bundle.
 
-I studied the **post text** and the **public card title / description**. I did **not** scrape, fork, or copy that live site’s source, models, Yellowstone / NPS branding, mode names, or UI chrome. This is my educational demo — **vibes · ochre gallop**. The place is invented: **Ochre Gallop / 赭奔**.
+I studied the **post text**, the **public card title / description**, and a feel-only **menu** still (`hill-climb/refs/bison-breakaway-20260908-1824.png` when present). I did **not** scrape, fork, or copy that live site’s source, models, Yellowstone / NPS branding, mode names, poster art, or UI chrome. This is my educational demo — **vibes · ochre gallop**. The place is invented: **Ochre Gallop / 赭奔**.
 
 ## What I built
 
+- **An invented lobby** — two columns: geometric poster + highland tabs + rust **Open** CTA. Select, then stride. Not their yellow Play card or silk-screen toss.
 - **Three invented highlands** — Sulfur Terrace / 硫阶, Spout Basin / 喷盆, Rim Overlook / 檐望. Concentric mineral lips, a sinter bowl, a canyon shelf. Not park itineraries.
 - **Ashmane / 灰鬃** — a procedural stylized ungulate. Umber hide, ash mane, gallop gait. Not a photo-real bison brand.
 - **One loop per highland** — Ribbon Cut (weave the terrace gates), Plume Break (outrun a steam front), Shelf Drift (endless overlook). Gauntlet / escape / endless *feel* only; the nouns are mine.
@@ -42,11 +43,12 @@ Future name remains **`vibes-ochre-gallop`**. Dashboard **Root Directory** would
 
 Headed preview on `127.0.0.1:4173` after `npm run build`:
 
-- Sulfur Terrace default: ochre / coral rings, teal pool, Ashmane on the lip. Brand `vibes · ochre gallop`.
-- Chips switch Spout Basin (steam front + vents) and Rim Overlook (shelf + canyon). Each loop is playable.
-- Thin HUD: lockup, highland chips, stride meter. No park lockup, no third-party mode names.
+- Lobby first: charcoal, invented poster, Sulfur Terrace tab, rust **Open Sulfur Terrace**. Tabs rewrite the poster and CTA.
+- Enter / Open drops into the chase. Esc / Highlands returns.
+- In-level: ochre terrace, teal pool, Ashmane. Chips still switch Spout Basin and Rim Overlook.
+- Thin HUD. No park lockup, no yellow Play, no third-party mode names.
 - Mute stays default. No console fatals; only benign WebGL `ReadPixels` notes.
-- Still: `docs/previews/ochre-gallop.png`.
+- Still: `docs/previews/ochre-gallop.png` (lobby).
 
 No Vercel project. No production URL.
 

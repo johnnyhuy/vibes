@@ -5,6 +5,8 @@ export const BRAND = {
   name: 'Ochre Gallop',
   nameZh: '赭奔',
   lede: 'Three invented highlands. One ash-maned runner. Cut the ribbon, break the plume, drift the shelf.',
+  lobbyLine: 'Pick a highland. Ashmane takes the first stride.',
+  stamp: 'OG · 赭奔',
 } as const;
 
 export const RUNNER = {
@@ -22,6 +24,9 @@ export interface BiomeSpec {
   loopZh: string;
   feel: string;
   copy: string;
+  hook: string;
+  facts: string;
+  openLabel: string;
   key: string;
 }
 
@@ -34,6 +39,9 @@ export const BIOMES: BiomeSpec[] = [
     loopZh: '缎切',
     feel: 'weave',
     copy: 'Concentric mineral lips. Pass the ochre gates in order. Miss a cone and the ribbon resets.',
+    hook: 'Along the lips. Through the ribbon.',
+    facts: 'six gates · mineral lips · compact ring',
+    openLabel: 'Open Sulfur Terrace',
     key: '1',
   },
   {
@@ -44,6 +52,9 @@ export const BIOMES: BiomeSpec[] = [
     loopZh: '羽突',
     feel: 'escape',
     copy: 'A steam front walks the sinter. Reach Clear Crust before the plume takes the mane.',
+    hook: 'Across the sinter. Ahead of the plume.',
+    facts: 'steam front · clear crust · short dash',
+    openLabel: 'Open Spout Basin',
     key: '2',
   },
   {
@@ -54,6 +65,9 @@ export const BIOMES: BiomeSpec[] = [
     loopZh: '檐漂',
     feel: 'endless',
     copy: 'A narrow shelf over an invented canyon. Hold the line. Distance is the score.',
+    hook: 'On the shelf. Over the drop.',
+    facts: 'endless shelf · canyon drop · hold the line',
+    openLabel: 'Open Rim Overlook',
     key: '3',
   },
 ];

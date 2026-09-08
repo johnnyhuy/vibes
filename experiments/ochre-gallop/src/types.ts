@@ -1,6 +1,7 @@
 import type { MutableRefObject } from 'react';
 
 export type BiomeId = 'terrace' | 'basin' | 'rim';
+export type Screen = 'lobby' | 'chase';
 export type PlayPhase = 'ready' | 'running' | 'cleared' | 'caught';
 export type HazardKind = 'cone' | 'vent' | 'rock' | 'gate' | 'goal';
 

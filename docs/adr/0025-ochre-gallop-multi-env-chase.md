@@ -42,7 +42,15 @@ Cinder Mere already covers a **dusk basin + cart**. Brine Causeway is a **coast 
 
 **Why**: Clean-room. The pattern is “three biomes, one chase each.” The place has to be one I can stand behind.
 
-### 4. Local dusk HDRI, no new Vercel link
+### 4. An invented lobby, not their menu chrome
+
+**Chosen**: DOM lobby first. Two columns: geometric highland poster + invented tabs / copy / rust **Open** CTA. Enter opens the chase. Esc returns. Poster art is CSS/SVG rings, vents, and a shelf — no tossed figure, no park print.
+
+**Rejected**: Their yellow pills, silk-screen poster, park tab nouns, “Play … →” label, jump/slide legend, or NPS vibe strings.
+
+**Why**: The 2026-09-08 menu still is a *select-and-play* pattern. The lesson is “pick a highland, then stride.” The card has to be one I can stand behind.
+
+### 5. Local dusk HDRI, no new Vercel link
 
 **Chosen**: Qwantani Dusk 2 1k HDRI vendored locally (CC0). `vercel.json` with `framework: vite`, `outputDirectory: dist`, `ignoreCommand`. No `create_git_project`. Future name only: `vibes-ochre-gallop`. Root Directory = `experiments/ochre-gallop`.
 

@@ -2,14 +2,16 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { isMuted, setMuted } from './audio';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import Hud from './components/Hud';
+import Lobby from './components/Lobby';
 import Scene from './components/Scene';
 import { usePrefersReducedMotion, useRunInput } from './hooks';
 import { createLoop, resetLoop } from './loops';
 import { resolveLook } from './look';
 import { createRunner, paceKph, resetRunner } from './runner';
-import type { BiomeId, HudSnapshot } from './types';
+import type { BiomeId, HudSnapshot, Screen } from './types';
 
 export default function App() {
+  const [screen, setScreen] = useState<Screen>('lobby');
   const [biome, setBiome] = useState<BiomeId>('terrace');
   const runner = useRef(createRunner('terrace'));
   const loop = useRef(createLoop());
@@ -38,10 +40,20 @@ export default function App() {
   const onBiome = useCallback(
     (next: BiomeId) => {
       setBiome(next);
-      bank(next);
+      if (screen === 'chase') bank(next);
     },
-    [bank]
+    [bank, screen]
   );
+
+  const onOpen = useCallback(() => {
+    bank(biome);
+    setScreen('chase');
+  }, [bank, biome]);
+
+  const onLobby = useCallback(() => {
+    bank(biome);
+    setScreen('lobby');
+  }, [bank, biome]);
 
   const onMute = useCallback(() => {
     const next = !isMuted();
@@ -78,20 +90,29 @@ export default function App() {
         event.preventDefault();
         onBiome('rim');
       }
-      if (key === 'r') {
-        event.preventDefault();
-        bank(biome);
-      }
       if (key === 'm') {
         event.preventDefault();
         onMute();
       }
+      if (screen === 'lobby' && (key === 'enter' || event.code === 'Enter')) {
+        event.preventDefault();
+        onOpen();
+      }
+      if (screen === 'chase' && key === 'escape') {
+        event.preventDefault();
+        onLobby();
+      }
+      if (screen === 'chase' && key === 'r') {
+        event.preventDefault();
+        bank(biome);
+      }
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [bank, biome, onBiome, onMute]);
+  }, [bank, biome, onBiome, onLobby, onMute, onOpen, screen]);
 
   useEffect(() => {
+    if (screen !== 'chase') return undefined;
     let frame = 0;
     const tick = () => {
       const body = runner.current;
@@ -108,7 +129,7 @@ export default function App() {
     };
     frame = window.requestAnimationFrame(tick);
     return () => window.cancelAnimationFrame(frame);
-  }, []);
+  }, [screen]);
 
   const hud = useMemo<HudSnapshot>(
     () => ({
@@ -127,26 +148,33 @@ export default function App() {
   return (
     <ErrorBoundary>
       <div className="app" tabIndex={0}>
-        <Scene
-          key={biome}
-          biome={biome}
-          runner={runner}
-          input={input}
-          loop={loop}
-          look={look}
-          reducedMotion={reducedMotion}
-          onCanvasClick={() => {
-            document.querySelector<HTMLElement>('.app')?.focus();
-          }}
-        />
-        <Hud
-          hud={hud}
-          onBiome={onBiome}
-          onMute={onMute}
-          onReset={() => bank(biome)}
-          onPad={onPad}
-          onBurst={onBurst}
-        />
+        {screen === 'lobby' ? (
+          <Lobby biome={biome} muted={muted} onBiome={onBiome} onOpen={onOpen} onMute={onMute} />
+        ) : (
+          <>
+            <Scene
+              key={biome}
+              biome={biome}
+              runner={runner}
+              input={input}
+              loop={loop}
+              look={look}
+              reducedMotion={reducedMotion}
+              onCanvasClick={() => {
+                document.querySelector<HTMLElement>('.app')?.focus();
+              }}
+            />
+            <Hud
+              hud={hud}
+              onBiome={onBiome}
+              onMute={onMute}
+              onReset={() => bank(biome)}
+              onLobby={onLobby}
+              onPad={onPad}
+              onBurst={onBurst}
+            />
+          </>
+        )}
       </div>
     </ErrorBoundary>
   );

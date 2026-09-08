@@ -3,12 +3,12 @@
 **References**:
 - [BrenBuilds](https://x.com/BrenBuilds/status/2097221820743139824) — “After Carl’s Yellowstone bison toss in July, we made a quick game. It was previously flat. Now Bison Breakaway has three environments: Grand Prismatic, Old Faithful & Artist Point. Built with Astra, @threejs and Blender.” (verified 2026-09-08 via X API, post id `2097221820743139824`)
 - Live they advertised: `bison-breakaway.brenhq.com` — public t.co card title *Bison Breakaway — A Yellowstone Chase*; description “One bison. Three ways to run. Play Gauntlet, Yellowstone Escape and Endless.” Pattern only. **I did not network-fetch that site into the repo.**
-- Feel-only stills may appear later at `hill-climb/refs/bison-breakaway-*.png` on the operator box. If absent, I invented from the pitch: mineral terrace / geyser basin / overlook *vibes* → **invented** biomes.
+- Feel-only stills: `hill-climb/refs/bison-breakaway-20260908-1824.png` when attached (menu, not in-level 3D). Pattern only: dark charcoal, three place tabs, poster card, play CTA, controls legend. If the file is missing from a checkout, the same *read* is in the operator attachment.
 
 **Study date**: 2026-09-08  
 **Status**: **Built** — `experiments/ochre-gallop/` (Ochre Gallop / 赭奔). Clean-room only.
 
-**Disclaimer**: I studied the public post text and the public card title / description. I did **not** download or decompile their JS chunks, copy meshes, textures, HUD strings, mode names, park branding, or Blender files. This demo is first-person Johnny Huynh / vibes — it is **not** their chase.
+**Disclaimer**: I studied the public post text, the public card title / description, and a feel-only **menu** still. I did **not** download or decompile their JS chunks, copy meshes, textures, HUD strings, mode names, park branding, poster illustration, or Blender files. This demo is first-person Johnny Huynh / vibes — it is **not** their chase.
 
 ---
 
@@ -22,13 +22,14 @@ The viral object is **three places you chase through**, not a studio turntable a
 
 Observed *read* (pattern only — I am not restating their HUD copy or domain chrome as a spec):
 
+- A lobby before the 3D: poster card + three place tabs + a play CTA
 - Three selectable environments
-- A chase / run loop
+- A chase / run loop after play
 - A four-legged runner in the lower third; follow-cam language
 - Browser playable
 - Three loop *feels*: a weave, an escape, an endless hold
 
-I will not reuse their title, park place-names, mode names, animal brand, or NPS marks.
+I will not reuse their title, park place-names, mode names, animal brand, NPS marks, poster illustration, yellow CTA, or jump/slide legend.
 
 ## Why This Pattern Exists
 
@@ -72,7 +73,17 @@ Ashmane is boxes and a mane. Not a photographed bison.
 | Escape | Plume Break | Steam front vs Clear Crust |
 | Endless | Shelf Drift | Distance on the overlook |
 
-### 4. Thin frosted HUD
+### 4. Invented lobby chrome
+
+The menu still is two columns: a print card and a tab / copy / play stack. Mine:
+
+- Left: SVG highland print (rings / vents / shelf). Stamp `OG · 赭奔`
+- Tabs: Sulfur Terrace / Spout Basin / Rim Overlook
+- CTA: **Open Sulfur Terrace** (updates with the tab)
+- Legend: WASD stride, space burst, Esc highlands
+- Copper rust button, celadon stamp — not their yellow pills or silk-screen toss
+
+### 5. Thin frosted HUD
 
 Brand `vibes · ochre gallop`. Left editorial in Johnny voice. Right stride chip. Mute starts on. No likes rail, no park lockup, no third-party CTA.
 
@@ -95,7 +106,8 @@ Do not ship, even as “placeholder”:
 - Gauntlet / Yellowstone Escape / Endless as mode titles
 - Yellowstone, NPS, or park-service marks
 - Their bison mesh, hide texture, or Blender hero
-- Their HUD chrome, fonts, or CTA copy
+- Their menu poster, silk-screen toss, compass, or dashed trail
+- Their HUD chrome, fonts, yellow Play label, or jump/slide legend
 - Any file fetched from their advertised host into `experiments/`
 
 ## When To Use This Pattern

@@ -6,6 +6,7 @@ interface Props {
   onBiome: (id: BiomeId) => void;
   onMute: () => void;
   onReset: () => void;
+  onLobby: () => void;
   onPad: (axis: 'throttle' | 'steer', value: number) => void;
   onBurst: (held: boolean) => void;
 }
@@ -33,7 +34,7 @@ function PadButton({
   );
 }
 
-export default function Hud({ hud, onBiome, onMute, onReset, onPad, onBurst }: Props) {
+export default function Hud({ hud, onBiome, onMute, onReset, onLobby, onPad, onBurst }: Props) {
   const biome = biomeAt(hud.biome);
 
   return (
@@ -54,6 +55,9 @@ export default function Hud({ hud, onBiome, onMute, onReset, onPad, onBurst }: P
               </button>
             ))}
           </div>
+          <button type="button" className="ghost compact" onClick={onLobby}>
+            Highlands
+          </button>
           <button type="button" className={`ghost compact ${hud.muted ? 'active' : ''}`} onClick={onMute}>
             {hud.muted ? 'Muted' : 'Sinter bed'}
           </button>
@@ -106,6 +110,8 @@ export default function Hud({ hud, onBiome, onMute, onReset, onPad, onBurst }: P
         highland
         <span className="sep">·</span>
         <kbd>R</kbd> bank
+        <span className="sep">·</span>
+        <kbd>Esc</kbd> highlands
       </p>
 
       <div className="pad" aria-label="Run">
