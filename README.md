@@ -32,8 +32,9 @@ Each app is a self-contained Vite experiment under [`experiments/`](./experiment
 | <img src="docs/previews/cinder-mere.png" width="280" alt="Cinder Mere dusk basin and Soot Runner (still)"> | [cinder-mere](./experiments/cinder-mere/README.md) | — | Cinder Mere. Dusk-basin drive, licensed kiln cart, sunset HDRI. Local-only. React + R3F + drei. |
 | <img src="docs/previews/kiln-studs.png" width="280" alt="Kiln Studs Ember Hare brick studio (still)"> | [kiln-studs](./experiments/kiln-studs/README.md) | — | Kiln Studs. Ember Hare stud set, idea→palette, step / explode. Local-only. React + R3F + drei. |
 | <img src="docs/previews/alba-forum.png" width="280" alt="Alba Forum chalk avenue and Ivory Arch (still)"> | [alba-forum](./experiments/alba-forum/README.md) | — | Alba Forum. Chalk-city landmark scroll, Explore orbit. Local-only. React + R3F + drei. |
+| <img src="docs/previews/brine-causeway.png" width="280" alt="Brine Causeway late-sun coast and Iodine Wedge (still)"> | [brine-causeway](./experiments/brine-causeway/README.md) | — | Brine Causeway. Coast-highway drive, procedural Iodine Wedge, Vermilion Span. Local-only. React + R3F + drei. |
 
-Clips are short local loops from each Vite demo. The scroll bottle, Wind Lea, Amber Longeron, Nacre Loom, Heartwood Warden, Moon Dumpling Relay, Foil Tilt Card, Zephyr Vale, Cinder Mere, Kiln Studs, and Alba Forum are stills until I can loop the glass, the wind, the flight, the film, the glade, the conveyor, the foil, the vale, the basin, the studio, and the avenue.
+Clips are short local loops from each Vite demo. The scroll bottle, Wind Lea, Amber Longeron, Nacre Loom, Heartwood Warden, Moon Dumpling Relay, Foil Tilt Card, Zephyr Vale, Cinder Mere, Kiln Studs, Alba Forum, and Brine Causeway are stills until I can loop the glass, the wind, the flight, the film, the glade, the conveyor, the foil, the vale, the basin, the studio, the avenue, and the causeway.
 
 **Also in the repo:** [ai-3d-lanes](./experiments/ai-3d-lanes/README.md) (web-3d / blender / cad / mesh-gen) · [image-to-3d](./experiments/image-to-3d/README.md) · [ai-image-texture](./experiments/ai-image-texture/README.md) · [llm-openscad](./experiments/llm-openscad/README.md)
 
@@ -63,4 +64,4 @@ Open the Vite URL (usually `http://localhost:5173`). Same `npm install && npm ru
 
 ## Licence
 
-MIT — see [LICENSE](./LICENSE). Third-party meshes stay under their own licences: David_Holiday Model 3 (CC-BY) in explode-assembly, bradacvojtech Sopwith Camel (CC-BY) in amber-longeron, Spacebar Headphones (CC-BY) in audio-gadget-spin, Poly Haven CC0 forest / cart / HDRIs in heartwood-warden and cinder-mere. Credits live in each experiment’s `ATTRIBUTION.md`.
+MIT — see [LICENSE](./LICENSE). Third-party meshes stay under their own licences: David_Holiday Model 3 (CC-BY) in explode-assembly, bradacvojtech Sopwith Camel (CC-BY) in amber-longeron, Spacebar Headphones (CC-BY) in audio-gadget-spin, Poly Haven CC0 forest / cart / HDRIs in heartwood-warden, cinder-mere, and brine-causeway. Credits live in each experiment’s `ATTRIBUTION.md`.
