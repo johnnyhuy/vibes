@@ -33,17 +33,17 @@ Explode-assembly (ADR-0002) already maps a Tesla Model 3 into isolate / explode.
 
 **Why**: Clean-room. The pattern is “walk a trainer together.” The chassis has to be one I can stand behind.
 
-### 3. Scrubber storytelling, not explode
+### 3. Assembled / Inside / Exploded, not a Tesla gallery
 
-**Chosen**: Twelve named marks. Previous / Next / Replay. A progress fraction. 1x / 2x / 4x walk. Explore is a turntable, not a second app. Parts *arrive* from an offset; they do not pack into a 2D grid.
+**Chosen**: Three numbered modes. **Play assembly** still walks the twelve invented marks (the old scrubber, now a CTA). Exploded is a 0–100% distance slider with authored offsets — not explode-assembly’s 2D pack. Inside lifts the Spool Cell and hides the spine so the Nest Board stays readable. Toggles: labels, auto rotate, petals, loom, tide vane, sight bead.
 
-**Rejected**: Their instruction chrome. Extending explode-assembly with a drone GLB. A 200-piece CAD dump.
+**Rejected**: Their S3 / PX4 chrome, language chip, and OEM part strings. Extending explode-assembly with a drone GLB. A 200-piece CAD dump.
 
-**Why**: You can read why the petals arrive after the cups. Explode already taught radial isolate.
+**Why**: A later feel-only still of the live site preferred modes + explode + labels over a pure 12-step dock. The walk stays; it is no longer the only control.
 
 ### 4. White studio, not another dusk demo
 
-**Chosen**: Off-white paper floor, soft contact shadow, studio key. Light frosted HUD (Alba Forum family, teal accent).
+**Chosen**: Off-white paper floor, soft contact shadow, studio key. Light frosted HUD (Alba Forum family, forest-teal accent). Floating Html labels with leaders.
 
 **Rejected**: Cinder Mere / Breakwater dusk. A black car studio.
 

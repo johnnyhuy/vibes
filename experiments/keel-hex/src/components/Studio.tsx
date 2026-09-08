@@ -1,14 +1,19 @@
 import { Suspense } from 'react';
 import { ContactShadows, Environment } from '@react-three/drei';
 import { LOOK } from '../catalog';
+import type { Toggles, ViewMode } from '../types';
 import Trainer from './Trainer';
 
 interface Props {
   step: number;
+  mode: ViewMode;
+  explode: number;
+  playing: boolean;
+  toggles: Toggles;
   reducedMotion: boolean;
 }
 
-export default function Studio({ step, reducedMotion }: Props) {
+export default function Studio({ step, mode, explode, playing, toggles, reducedMotion }: Props) {
   return (
     <>
       <color attach="background" args={[LOOK.bg]} />
@@ -40,7 +45,14 @@ export default function Studio({ step, reducedMotion }: Props) {
         angle={0.5}
         penumbra={0.8}
       />
-      <Trainer step={step} reducedMotion={reducedMotion} />
+      <Trainer
+        step={step}
+        mode={mode}
+        explode={explode}
+        playing={playing}
+        toggles={toggles}
+        reducedMotion={reducedMotion}
+      />
       <ContactShadows position={[0, 0.002, 0]} opacity={0.28} scale={6.4} blur={2.8} far={2.4} color="#2a2622" />
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]} receiveShadow>
         <circleGeometry args={[6.8, 64]} />

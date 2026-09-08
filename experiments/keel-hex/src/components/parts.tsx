@@ -1,5 +1,6 @@
-import { useLayoutEffect, useMemo } from 'react';
-import { LatheGeometry, Vector2 } from 'three';
+import { useLayoutEffect, useMemo, useRef } from 'react';
+import { useFrame } from '@react-three/fiber';
+import { Group, LatheGeometry, Vector2 } from 'three';
 import { ARM_COUNT, ARM_RADIUS, PLATE_RADIUS, armAngle, hexPlateGeometry, petalGeometry } from '../geometry';
 import { TONE } from '../palette';
 
@@ -318,11 +319,20 @@ export function BindStraps({ highlight }: { highlight: boolean }) {
   );
 }
 
-export function PetalRotors({ highlight }: { highlight: boolean }) {
+export function PetalRotors({ highlight, spin }: { highlight: boolean; spin: boolean }) {
   const petal = usePetals();
+  const hubs = useRef<Group>(null);
+
+  useFrame((_, delta) => {
+    const node = hubs.current;
+    if (!node || !spin) return;
+    node.children.forEach((child) => {
+      child.rotateY(delta * 4.2);
+    });
+  });
 
   return (
-    <group>
+    <group ref={hubs}>
       {Array.from({ length: ARM_COUNT }, (_, i) => {
         const angle = armAngle(i);
         const x = Math.cos(angle) * ARM_RADIUS;
@@ -333,11 +343,11 @@ export function PetalRotors({ highlight }: { highlight: boolean }) {
               <cylinderGeometry args={[0.016, 0.016, 0.01, 16]} />
               <meshPhysicalMaterial color={TONE.graphite} roughness={0.35} metalness={0.7} />
             </mesh>
-            {[0, Math.PI].map((spin) => (
+            {[0, Math.PI].map((turn) => (
               <mesh
-                key={spin}
+                key={turn}
                 geometry={petal}
-                rotation={[-Math.PI / 2, 0, spin]}
+                rotation={[-Math.PI / 2, 0, turn]}
                 position={[0, 0.004, 0]}
                 castShadow
               >
@@ -412,6 +422,40 @@ export function BindPin({ highlight }: { highlight: boolean }) {
       <mesh position={[0, -0.04, 0]}>
         <cylinderGeometry args={[0.01, 0.01, 0.008, 12]} />
         <meshPhysicalMaterial color={TONE.graphite} roughness={0.4} metalness={0.6} />
+      </mesh>
+    </group>
+  );
+}
+
+export function TideVane() {
+  return (
+    <group position={[0, 0.2, 0.11]}>
+      <mesh castShadow>
+        <boxGeometry args={[0.006, 0.07, 0.028]} />
+        <meshPhysicalMaterial color={TONE.teal} roughness={0.4} metalness={0.25} />
+      </mesh>
+      <mesh position={[0, 0.04, 0.01]} rotation={[0.4, 0, 0]} castShadow>
+        <boxGeometry args={[0.004, 0.03, 0.04]} />
+        <meshPhysicalMaterial color={TONE.graphite} roughness={0.36} metalness={0.5} />
+      </mesh>
+    </group>
+  );
+}
+
+export function SightBead() {
+  return (
+    <group position={[0.08, 0.16, 0.1]} rotation={[0.2, 0.4, 0]}>
+      <mesh castShadow>
+        <boxGeometry args={[0.028, 0.016, 0.036]} />
+        <meshPhysicalMaterial color={TONE.carbon} roughness={0.38} metalness={0.55} />
+      </mesh>
+      <mesh position={[0, 0, 0.022]}>
+        <cylinderGeometry args={[0.008, 0.01, 0.012, 12]} />
+        <meshPhysicalMaterial color={TONE.steel} roughness={0.22} metalness={0.8} />
+      </mesh>
+      <mesh position={[0, 0, 0.03]}>
+        <sphereGeometry args={[0.006, 12, 10]} />
+        <meshPhysicalMaterial color={TONE.brass} roughness={0.28} metalness={0.75} />
       </mesh>
     </group>
   );

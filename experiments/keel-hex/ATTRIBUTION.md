@@ -4,7 +4,8 @@
 
 - [@Peter05704721](https://x.com/Peter05704721/status/2097144569989300371) — public pitch: GPT-6 Astra knocked out a Three.js assembly view for a drone / flight-controller build — step scrubber, parts coming together, explore the completed aircraft, Replay.
 - Public live they advertised: [https://s3-px4-assembly.pages.dev](https://s3-px4-assembly.pages.dev). Title / pitch / *feel* only. I did **not** download their JS, meshes, chrome, or part catalog.
-- Video thumb: local copy `hill-climb/refs/px4-assembly-x-thumb-20260908.jpg` when present. Mood only (white studio, completed trainer, a bottom scrubber). I did not rebuild their quad or copy their 12/12 strings.
+- Video thumb: local copy `hill-climb/refs/px4-assembly-x-thumb-20260908.jpg` when present. Mood only.
+- Later feel-only still: `hill-climb/refs/px4-assembly-live-20260908-1515.png` when present. Interaction model only (modes, explode slider, labels). I did not rebuild their quad or copy their chrome.
 
 I did **not** copy their source, assets, branding, OEM flight-controller names, or UI chrome. Keel Hex / 龙骨盘, KH-55, and Spool Plate / 卷盘板 are mine.
 

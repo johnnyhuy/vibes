@@ -1,4 +1,4 @@
-import type { SpeedId, StepInfo } from './types';
+import type { ModeInfo, SpeedId, StepInfo, Toggles, Vec3, ViewMode } from './types';
 
 export const BRAND = {
   lockup: 'vibes · keel hex',
@@ -9,10 +9,47 @@ export const BRAND = {
   chassisZh: '卷盘板',
   bench: 'Spool Bay',
   benchZh: '卷湾',
-  lede: 'A hex trainer I laid on a white bench. Twelve marks from plate to petals. Not a product explode.',
+  chip: 'Invented trainer · hex bench',
+  title: 'Walk the KH-55 together.',
+  lede: 'A hex trainer I laid on a white bench. Nest Board in the well, six rotor cups, a Spool Cell on teal cinches. Not a product explode.',
+  cta: 'Play assembly',
+  ctaStop: 'Hold walk',
+  statA: 'KH-55 · Spool Plate',
+  statB: 'Six rotor cups',
+  panel: 'Read the bench',
 };
 
 export const SPEEDS: SpeedId[] = [1, 2, 4];
+
+export const DEFAULT_TOGGLES: Toggles = {
+  labels: true,
+  orbit: false,
+  petals: true,
+  loom: true,
+  tide: false,
+  sight: false,
+};
+
+export const MODES: ModeInfo[] = [
+  {
+    id: 'assembled',
+    index: '01',
+    name: 'Assembled',
+    copy: 'Trainer sealed. Orbit the KH-55. Play assembly walks the twelve marks.',
+  },
+  {
+    id: 'inside',
+    index: '02',
+    name: 'Inside',
+    copy: 'Cell and spine lift. The Nest Board stays in the well. Loom still finds the cups.',
+  },
+  {
+    id: 'exploded',
+    index: '03',
+    name: 'Exploded',
+    copy: 'Parts step off their seats. The slider is distance, not a Tesla gallery pack.',
+  },
+];
 
 export const STEPS: StepInfo[] = [
   {
@@ -94,8 +131,8 @@ export function stepById(id: number): StepInfo {
   return STEPS[clamped - 1];
 }
 
-export function clampStep(id: number): number {
-  return Math.min(STEPS.length, Math.max(1, Math.round(id)));
+export function modeById(id: ViewMode): ModeInfo {
+  return MODES.find((item) => item.id === id) ?? MODES[0];
 }
 
 export const LOOK = {
@@ -109,4 +146,24 @@ export const LOOK = {
   fillInt: 0.38,
   rim: '#ffffff',
   rimInt: 0.55,
+};
+
+export interface PartMotion {
+  from: Vec3;
+  explode: Vec3;
+  inside: Vec3;
+}
+
+export const MOTION: Record<string, PartMotion> = {
+  plate: { from: [0, 0.42, 0], explode: [0, -0.06, 0], inside: [0, 0, 0] },
+  spars: { from: [0, 0.22, 0], explode: [0, 0.05, 0], inside: [0, 0, 0] },
+  cups: { from: [0, 0.38, 0], explode: [0, 0.16, 0], inside: [0, 0.02, 0] },
+  nest: { from: [0, 0.46, 0], explode: [0, 0.22, 0], inside: [0, 0.04, 0] },
+  loom: { from: [0, 0.28, 0], explode: [0, 0.18, 0], inside: [0, 0.06, 0] },
+  cell: { from: [0, 0.52, 0], explode: [0, 0.4, 0], inside: [0, 0.2, 0] },
+  straps: { from: [0, 0.4, 0], explode: [0, 0.46, 0], inside: [0, 0.2, 0] },
+  petals: { from: [0, 0.56, 0], explode: [0, 0.3, 0], inside: [0, 0.04, 0] },
+  skids: { from: [0, -0.18, 0], explode: [0, -0.16, 0], inside: [0, 0, 0] },
+  pin: { from: [0, 0.62, 0], explode: [0.1, 0.42, -0.1], inside: [0, 0.08, 0] },
+  canopy: { from: [0, 0.5, 0], explode: [0, 0.34, -0.18], inside: [0, 0.24, -0.06] },
 };

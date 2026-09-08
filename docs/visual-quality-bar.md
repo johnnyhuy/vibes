@@ -126,7 +126,7 @@ Across these demos, the quality bar is:
 
 ### keel-hex ✅ (local)
 - ✅ White studio bench + light frosted HUD (Alba Forum family, teal accent, invented nouns)
-- ✅ Procedural KH-55 / Spool Plate hex trainer, twelve-mark scrubber, Replay / Explore
+- ✅ Procedural KH-55 / Spool Plate hex trainer, Assembled / Inside / Exploded, Play assembly walk
 - ✅ Vendored Poly Haven CC0 Studio Small 03. No PX4 / S3 catalog. Distinct from explode-assembly
 - ⚠️ No Vercel project — do not create one until quota is healthy
 - Inspired by [Peter05704721](https://x.com/Peter05704721/status/2097144569989300371) (post + X video thumb; no site scrape)
