@@ -109,7 +109,7 @@ export default function Glade() {
   useLayoutEffect(() => {
     const fog = scene.fog instanceof FogExp2 ? scene.fog : new FogExp2('#0a1412', 0.052);
     fog.color.set('#0a1412');
-    fog.density = 0.052;
+    fog.density = 0.038;
     scene.fog = fog;
     scene.background = new Color('#070b0a');
   }, [scene]);
@@ -122,7 +122,7 @@ export default function Glade() {
       <ambientLight color="#121c1a" intensity={0.07} />
       <directionalLight
         color="#c8d8ee"
-        intensity={1.05}
+        intensity={1.45}
         position={[MOON.x, MOON.y, MOON.z]}
         castShadow
         shadow-mapSize={[1024, 1024]}
@@ -165,7 +165,7 @@ export default function Glade() {
         </mesh>
       ))}
       <Stars radius={52} depth={26} count={900} factor={2.6} saturation={0} fade speed={0} />
-      <Environment files="/hdri/night.hdr" background={false} environmentIntensity={0.4} />
+      <Environment files="/hdri/night.hdr" background={false} environmentIntensity={0.62} />
       <Terrain />
       <DewRill />
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.03, 0]} receiveShadow>

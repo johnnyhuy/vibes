@@ -1,6 +1,6 @@
 import { useLayoutEffect, useMemo } from 'react';
 import { useGLTF } from '@react-three/drei';
-import { Color, MeshPhysicalMaterial, Vector3, type Mesh, type MeshStandardMaterial } from 'three';
+import { Color, Vector3, type Mesh, type MeshStandardMaterial } from 'three';
 import type { Finish, HotspotId } from '../finishes';
 import { enableShadows, fitObject, meshLabel } from '../modelFit';
 import Hotspots from './Hotspots';
@@ -54,28 +54,25 @@ export default function Headphones({ finish, highlight, onHotspot }: Props) {
       if (!mesh.isMesh || !mesh.material) return;
       const materials = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
       const next = materials.map((source) => {
-        const std = (source as MeshStandardMaterial).clone() as MeshStandardMaterial;
-        const mat = new MeshPhysicalMaterial();
-        mat.copy(std);
+        const mat = (source as MeshStandardMaterial).clone() as MeshStandardMaterial;
         const role = roleFor(meshLabel(mesh));
         const hex = finishColor(role, finish);
         if (mat.color) mat.color.lerp(new Color(hex), 0.72);
         const lit = highlight !== null && (role === highlight || (highlight === 'controls' && role === 'housing'));
-        mat.emissive.set(lit ? finish.accent : '#000000');
-        mat.emissiveIntensity = lit ? 0.28 : 0;
-        mat.envMapIntensity = 1.25;
+        if (mat.emissive) {
+          mat.emissive.set(lit ? finish.accent : '#000000');
+          mat.emissiveIntensity = lit ? 0.28 : 0;
+        }
+        mat.envMapIntensity = 1.35;
         if (role === 'metal') {
           mat.metalness = 0.88;
           mat.roughness = 0.18;
-          mat.clearcoat = 0.65;
-          mat.clearcoatRoughness = 0.2;
         } else if (role === 'housing' || role === 'controls') {
-          mat.clearcoat = 0.42;
-          mat.clearcoatRoughness = 0.32;
-          mat.roughness = Math.min(mat.roughness, 0.48);
+          mat.roughness = Math.min(mat.roughness ?? 0.5, 0.42);
+          mat.metalness = Math.max(mat.metalness ?? 0, 0.22);
         } else if (role === 'cushion') {
           mat.roughness = 0.78;
-          mat.clearcoat = 0.05;
+          mat.metalness = 0.04;
         }
         return mat;
       });

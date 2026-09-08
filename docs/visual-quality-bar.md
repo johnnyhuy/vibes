@@ -141,7 +141,7 @@ Across these demos, the quality bar is:
 
 ### amber-longeron ✅ (local)
 - ✅ Linen-tan studio + soft upper-left key (not a black canyon)
-- ✅ Licensed vintage biplane GLB (bradacvojtech Sopwith Camel, CC-BY) + studio HDRI + MeshPhysical + carnelian lane orbs
+- ✅ Licensed vintage biplane GLB (bradacvojtech Sopwith Camel, CC-BY) + studio HDRI + carnelian lane orbs
 - ✅ Auto-starts; flight HUD is a faint distance chip; crash keeps a small card
 - ⚠️ No Vercel project — do not create one until quota is healthy
 - Inspired by [heymichu25](https://x.com/heymichu25/status/2097062564299759855)
@@ -155,7 +155,7 @@ Across these demos, the quality bar is:
 
 ### audio-gadget-spin ✅ (local)
 - ✅ Dark studio + frosted marketing chrome
-- ✅ Licensed over-ear GLB (Spacebar Headphones, CC-BY) + studio HDRI + MeshPhysical clearcoat + finish tints / hotspots
+- ✅ Licensed over-ear GLB (Spacebar Headphones, CC-BY) + studio HDRI + finish tints / hotspots
 - ✅ Slow auto-orbit, drag override, three finishes, mute-default Web Audio
 - ⚠️ Project `vibes-audio-gadget-spin` (`prj_N57mvThg4UcU9XxLK3F5wAICz9PA`) exists `deploy: false`, SSO off — **no production**. Do not redeploy until after quota (~2026-09-08 20:39 UTC)
 - Inspired by [Xr0ud](https://x.com/Xr0ud/status/2096982574132297791), [mrblackstudio](https://x.com/mrblackstudio/status/2096893411395600782), [Gilbert93533589](https://x.com/Gilbert93533589/status/2096920288319435154)

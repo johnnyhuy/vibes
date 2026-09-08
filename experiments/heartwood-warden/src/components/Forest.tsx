@@ -10,7 +10,7 @@ import {
   type PropSpot,
 } from '../world';
 
-const MOON_TINT = new Color('#d4ddd6');
+const MOON_TINT = new Color('#e8eee8');
 
 function keepPbr(mesh: Mesh): void {
   const materials = Array.isArray(mesh.material) ? mesh.material : [mesh.material];

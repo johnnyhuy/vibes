@@ -58,14 +58,14 @@ function place(
 
 /** Collision hulls — canopy trees only. Undergrowth is walkable. */
 export const TREES: PropSpot[] = [
-  ...Array.from({ length: 6 }, (_, index) =>
-    place(index, 7.15 + unit(index + 3) * 0.7, 6, HERO_TREE, 7.4, 1.08 + unit(index + 21) * 0.22)
+  ...Array.from({ length: 4 }, (_, index) =>
+    place(index, 7.05 + unit(index + 3) * 0.55, 4, HERO_TREE, 8.2, 1.12 + unit(index + 21) * 0.18)
   ),
-  ...Array.from({ length: 8 }, (_, index) =>
-    place(index + 6, 11.4 + unit(index + 13) * 2.1, 8, SPARE_TREE, 5.6, 1.05 + unit(index + 33) * 0.28)
+  ...Array.from({ length: 5 }, (_, index) =>
+    place(index + 6, 10.6 + unit(index + 13) * 1.6, 5, FIR_TREE, 7.6, 1.2 + unit(index + 33) * 0.16)
   ),
-  ...Array.from({ length: 2 }, (_, index) =>
-    place(index + 20, 13.6, 2, FIR_TREE, 6.8, 1.15 + unit(index + 7) * 0.12)
+  ...Array.from({ length: 4 }, (_, index) =>
+    place(index + 20, 13.2, 4, SPARE_TREE, 5.4, 1.08 + unit(index + 7) * 0.2)
   ),
 ];
 

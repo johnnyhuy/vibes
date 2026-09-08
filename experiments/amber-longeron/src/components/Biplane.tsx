@@ -1,7 +1,7 @@
 import { useMemo, useRef } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
-import { MeshPhysicalMaterial, MeshStandardMaterial, type Group, type Mesh } from 'three';
+import { MeshStandardMaterial, type Group, type Mesh } from 'three';
 import { enableShadows, faceAircraftForward, fitObject, hideNamedMeshes } from '../modelFit';
 
 const MODEL = '/models/vintage-biplane.glb';
@@ -25,17 +25,14 @@ export default function Biplane({ crashed, reducedMotion }: Props) {
       if (!mesh.isMesh || !mesh.material) return;
       const materials = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
       const next = materials.map((source) => {
-        const std =
+        const mat =
           source instanceof MeshStandardMaterial
             ? source.clone()
             : new MeshStandardMaterial({ color: '#6a4a2c' });
-        const physical = new MeshPhysicalMaterial();
-        physical.copy(std);
-        physical.envMapIntensity = 1.15;
-        physical.clearcoat = std.metalness > 0.35 ? 0.45 : 0.12;
-        physical.clearcoatRoughness = 0.35;
-        physical.roughness = Math.min(0.86, std.roughness ?? 0.55);
-        return physical;
+        mat.envMapIntensity = 1.2;
+        mat.roughness = Math.min(0.82, mat.roughness ?? 0.55);
+        if ((mat.metalness ?? 0) > 0.25) mat.metalness = Math.min(0.85, mat.metalness + 0.15);
+        return mat;
       });
       mesh.material = next.length === 1 ? next[0] : next;
     });
