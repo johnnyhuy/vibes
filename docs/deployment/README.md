@@ -26,6 +26,10 @@ Hobby quota on `johnnyhuy-dev` resets after the 2026-09-07 burn (~**2026-09-08 2
 | procedural-grass-field | — | `experiments/procedural-grass-field` | — | no project (if `vibes-procedural-grass-field` already exists `deploy: false`, leave it idle) |
 | amber-longeron | — | `experiments/amber-longeron` | — | no project |
 | nacre-loom | — | `experiments/nacre-loom` | — | no project |
+| heartwood-warden | — | `experiments/heartwood-warden` | — | no project |
+| moon-dumpling-relay | — | `experiments/moon-dumpling-relay` | — | no project |
+| foil-tilt-card | — | `experiments/foil-tilt-card` | — | no project |
+| zephyr-vale | — | `experiments/zephyr-vale` | — | no project — post-quota name `vibes-zephyr-vale` |
 
 PR previews appear as Vercel bot comments when quota allows.
 

@@ -24,6 +24,7 @@ Structured decisions about the monorepo's technical architecture:
 - [ADR-0014: Playable Procedural Showcase over a Mesh-Provider Client](./adr/0014-heartwood-warden-procedural-showcase.md) — Heartwood Warden; walkable glade, not another image-to-3d client
 - [ADR-0015: A Procedural Party-Game Slice, Invented Theme](./adr/0015-procedural-party-game-slice.md) — Moon Dumpling Relay; moon-gate table, no sushi-paws fork
 - [ADR-0016: Runtime Foil Card Without a Blender Pipeline](./adr/0016-runtime-foil-card-without-blender.md) — Foil Tilt Card; Lumen Fox layers + foil shader, no skill fork
+- [ADR-0017: A Procedural Peaceful Wander Slice](./adr/0017-zephyr-vale-procedural-wander.md) — Zephyr Vale; daylight wind letters, no Crayon clone
 
 ### Reverse Engineering
 
@@ -45,6 +46,7 @@ Clean-room notes from studying public projects:
 - [img2threejs monster-tree showcase](./reverse-engineering/heartwood-warden.md) — Built: Heartwood Warden / 心木守 (`experiments/heartwood-warden/`). Clean-room; no Groot / no factory paste.
 - [Procedural Conveyor Party Game](./reverse-engineering/moon-dumpling-relay.md) — Built: Moon Dumpling Relay / 月饺接力 (`experiments/moon-dumpling-relay/`). README claims only; no source clone.
 - [Layered Holo Tilt Card](./reverse-engineering/foil-tilt-card.md) — Built: Foil Tilt Card / Lumen Fox (`experiments/foil-tilt-card/`). README claims only; no skill / Blender / web-template copy.
+- [TusharXo / Crayon wind wander](./reverse-engineering/zephyr-vale.md) — Built: Zephyr Vale / 风笺谷 (`experiments/zephyr-vale/`). Feel only; no play-bundle scrape.
 - [NeuralKinetics Video-Shader Hero Pattern](./reverse-engineering/neuralkinetics-video-shader-hero.md) — Poster-first video/shader pipeline, organic motion, reduced-motion handling
 - [Procedural Runtime Geometry Pattern](./reverse-engineering/procedural-runtime-geometry.md) — Steam Atlas mechanical assembly, runtime CSG, parametric parts
 - [Visual Quality Bar](./visual-quality-bar.md) — Cinematic product demo aesthetic (dark UI, frosted glass, studio lighting)
