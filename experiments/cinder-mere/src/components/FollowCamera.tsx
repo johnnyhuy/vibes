@@ -13,12 +13,12 @@ interface Props {
 
 export default function FollowCamera({ vehicle, reducedMotion }: Props) {
   const { camera } = useThree();
-  const smoothing = useRef(new Vector3(-16, 8.4, 22));
+  const smoothing = useRef(new Vector3(-18, 9.2, 24));
 
   useFrame((_, delta) => {
     const body = vehicle.current;
-    const back = 7.4;
-    const height = 3.15;
+    const back = 8.6;
+    const height = 4.05;
     const sin = Math.sin(body.yaw);
     const cos = Math.cos(body.yaw);
     offset.set(body.x - sin * back, body.y + height, body.z - cos * back);

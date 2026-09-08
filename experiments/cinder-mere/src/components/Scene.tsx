@@ -14,7 +14,7 @@ interface Props {
 export default function Scene({ vehicle, input, look, reducedMotion }: Props) {
   return (
     <Canvas
-      camera={{ position: [-16, 8.4, 22], fov: 42, near: 0.1, far: 240 }}
+      camera={{ position: [-18, 9.2, 24], fov: 42, near: 0.1, far: 240 }}
       dpr={[1, 1.6]}
       shadows
       gl={{

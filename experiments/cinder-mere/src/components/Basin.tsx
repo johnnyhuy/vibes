@@ -4,6 +4,7 @@ import {
   buildTerrainGeometry,
   pineSpots,
   reedSpots,
+  scrubSpots,
   WATER_LEVEL,
   WORLD_HALF,
 } from '../terrain';
@@ -35,6 +36,33 @@ function Reed({
       <mesh position={[0.02, 0.78, 0.01]}>
         <sphereGeometry args={[0.05, 5, 4]} />
         <meshStandardMaterial color="#8a6a32" roughness={0.82} />
+      </mesh>
+    </group>
+  );
+}
+
+function Scrub({
+  x,
+  z,
+  y,
+  scale,
+  twist,
+}: {
+  x: number;
+  z: number;
+  y: number;
+  scale: number;
+  twist: number;
+}) {
+  return (
+    <group position={[x, y, z]} rotation={[0, twist, 0]} scale={scale}>
+      <mesh position={[0, 0.22, 0]} castShadow>
+        <sphereGeometry args={[0.38, 6, 5]} />
+        <meshStandardMaterial color="#3a4a28" roughness={0.92} />
+      </mesh>
+      <mesh position={[0.18, 0.18, 0.08]}>
+        <sphereGeometry args={[0.22, 5, 4]} />
+        <meshStandardMaterial color="#4a3a22" roughness={0.9} />
       </mesh>
     </group>
   );
@@ -72,6 +100,7 @@ function Pine({
 export default function Basin({ look }: Props) {
   const terrain = useMemo(() => buildTerrainGeometry(), []);
   const reeds = useMemo(() => reedSpots(), []);
+  const scrub = useMemo(() => scrubSpots(), []);
   const pines = useMemo(() => pineSpots(), []);
 
   return (
@@ -94,6 +123,9 @@ export default function Basin({ look }: Props) {
       </mesh>
       {reeds.map((reed, index) => (
         <Reed key={`reed-${index}`} {...reed} />
+      ))}
+      {scrub.map((clump, index) => (
+        <Scrub key={`scrub-${index}`} {...clump} />
       ))}
       {pines.map((pine, index) => (
         <Pine key={`pine-${index}`} {...pine} />

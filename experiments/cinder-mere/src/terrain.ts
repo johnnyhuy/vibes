@@ -235,6 +235,37 @@ export interface PineSpot {
   twist: number;
 }
 
+export interface ScrubSpot {
+  x: number;
+  z: number;
+  y: number;
+  scale: number;
+  twist: number;
+}
+
+export function scrubSpots(count = 90): ScrubSpot[] {
+  const spots: ScrubSpot[] = [];
+  for (let i = 0; i < count * 4 && spots.length < count; i += 1) {
+    const seed = i + 61;
+    const angle = hash2(seed, 4) * Math.PI * 2;
+    const radius = (0.28 + hash2(seed, 9) * 0.42) * WORLD_HALF;
+    const x = Math.cos(angle) * radius;
+    const z = Math.sin(angle) * radius;
+    const y = heightAt(x, z);
+    const r = Math.hypot(x, z) / WORLD_HALF;
+    if (y < WATER_LEVEL + 0.35 || y > WATER_LEVEL + 5.4) continue;
+    if (Math.abs(r - 0.39) < 0.035) continue;
+    spots.push({
+      x,
+      z,
+      y,
+      scale: 0.55 + hash2(seed, 15) * 0.7,
+      twist: hash2(seed, 21) * Math.PI,
+    });
+  }
+  return spots;
+}
+
 export function pineSpots(): PineSpot[] {
   return Array.from({ length: 18 }, (_, index) => {
     const angle = (index / 18) * Math.PI * 2 + hash2(index, 2) * 0.28;
