@@ -38,6 +38,7 @@ See [the incident](../incidents/2026-09-08-steam-atlas-wrong-root.md).
 | — | — | `experiments/amber-longeron` — **no project**. Do not create one on this PR. |
 | — | — | `experiments/nacre-loom` — **no project**. Do not create one on this PR. |
 | — | — | `experiments/heartwood-warden` — **no project**. Do not create one on this PR. |
+| — | — | `experiments/moon-dumpling-relay` — **no project**. Do not create one on this PR. |
 
 In-repo `vercel.json` lives *inside* those folders (`framework: vite`, `outputDirectory: dist`, `ignoreCommand` where I have added it).
 
@@ -55,7 +56,7 @@ One deploy per project. Stop. Updated 2026-09-07 (heartwood-warden hill-climb). 
 2. `vibes-scroll-product` — first READY production from `main` (Root already `experiments/scroll-product-showcase`).
 3. `vibes-audio-gadget-spin` (`prj_N57mvThg4UcU9XxLK3F5wAICz9PA`) — first production after dashboard Root is confirmed as `experiments/audio-gadget-spin`. Linked `deploy: false`. **Do not redeploy on this PR.**
 4. `vibes-procedural-grass-field` — first production (or create-then-promote only in this slot). If it already exists `deploy: false`, leave it idle until this slot.
-5. Only then ballance / courtyard / amber-longeron / nacre-loom / heartwood-warden. Do **not** create `vibes-ballance-roll`, a courtyard project, `vibes-amber-longeron`, `vibes-nacre-loom`, or `vibes-heartwood-warden` until quota is healthy.
+5. Only then ballance / courtyard / amber-longeron / nacre-loom / heartwood-warden / moon-dumpling-relay. Do **not** create `vibes-ballance-roll`, a courtyard project, `vibes-amber-longeron`, `vibes-nacre-loom`, `vibes-heartwood-warden`, or `vibes-moon-dumpling-relay` until quota is healthy.
 6. **Skip** explode / steam-atlas / japanese-tower / glass unless a later visual QA says they broke.
 
 `experiments/glass-capability-brain/` has `vercel.json`. Project `vibes-glass-capability-brain` (`prj_yJbQTsiB138V5jh92cwSWd8rZmij`) has production READY at [vibes-glass-capability-brain.vercel.app](https://vibes-glass-capability-brain.vercel.app/) (SSO off). It shipped for free on the japanese-tower `main` merge (`9328191` / `dpl_3CE9Dd7X7og5MuSLpcGgyxboacgz`). See [the incident](../incidents/2026-09-08-glass-auto-deploy-on-tower-merge.md).
@@ -75,6 +76,8 @@ One deploy per project. Stop. Updated 2026-09-07 (heartwood-warden hill-climb). 
 `experiments/nacre-loom/` is a new Vite app with its own `vercel.json` (`ignoreCommand`). **No Vercel project.** Do not create one on this PR. When I do: dashboard Root Directory = `experiments/nacre-loom`.
 
 `experiments/heartwood-warden/` is a new Vite app with its own `vercel.json` (`ignoreCommand`). **No Vercel project.** Do not create one on this PR. When I do: dashboard Root Directory = `experiments/heartwood-warden`.
+
+`experiments/moon-dumpling-relay/` is a new Vite app with its own `vercel.json` (`ignoreCommand`). **No Vercel project.** Do not create one on this PR. When I do: dashboard Root Directory = `experiments/moon-dumpling-relay`. Local-only until quota is healthy.
 
 steam-atlas Root must stay `experiments/procedural-steam-atlas`. It already has LIVE production. Do not spend a post-quota slot on it unless a later visual QA fails.
 
@@ -120,5 +123,9 @@ Git-main semicircle *preview* PASS; production still FAIL on stale `25587f54`. `
 
 ---
 
+### Hill-climb — 2026-09-08 (moon-dumpling-relay)
+
+This pass adds Moon Dumpling Relay locally. **No new Vercel project. No redeploy.** Quota still 0 until ~2026-09-08 20:39 UTC. Post-quota order unchanged. Do not create `vibes-moon-dumpling-relay`.
+
 **Author**: Johnny Huynh  
-**Last updated**: 2026-09-07 (heartwood-warden)
+**Last updated**: 2026-09-08 (moon-dumpling-relay)
