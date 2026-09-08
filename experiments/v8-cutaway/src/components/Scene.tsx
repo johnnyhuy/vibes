@@ -20,14 +20,14 @@ function Studio() {
       <ambientLight intensity={0.16} />
       <directionalLight
         position={[6.4, 8.2, 4.8]}
-        intensity={1.35}
+        intensity={1.85}
         color="#fff7ee"
         castShadow
         shadow-mapSize-width={1024}
         shadow-mapSize-height={1024}
       />
-      <directionalLight position={[-6.2, 2.4, -3.8]} intensity={0.42} color="#7aa4ff" />
-      <spotLight position={[0, 9.2, 2.2]} intensity={0.9} angle={0.5} penumbra={0.85} color="#ffffff" />
+      <directionalLight position={[-6.2, 2.4, -3.8]} intensity={0.55} color="#7aa4ff" />
+      <spotLight position={[0, 9.2, 2.2]} intensity={1.25} angle={0.5} penumbra={0.85} color="#ffffff" />
 
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.01, 0]} receiveShadow>
         <circleGeometry args={[4.6, 64]} />
@@ -59,7 +59,7 @@ export default function Scene({
       gl={{
         antialias: true,
         toneMapping: ACESFilmicToneMapping,
-        toneMappingExposure: 1.05,
+        toneMappingExposure: 1.12,
       }}
       onCreated={({ gl }) => {
         gl.shadowMap.type = PCFSoftShadowMap;
@@ -67,7 +67,7 @@ export default function Scene({
     >
       <Studio />
       <Suspense fallback={null}>
-        <Environment files="/hdri/studio.hdr" environmentIntensity={0.85} background={false} />
+        <Environment files="/hdri/studio.hdr" environmentIntensity={1.12} background={false} />
         <V8Engine
           engineSpeed={engineSpeed}
           setRpm={setRpm}

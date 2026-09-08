@@ -22,7 +22,7 @@ function polishMaterials(root: Object3D): void {
     const sources = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
     const next = sources.map((source) => {
       const mat = (source as MeshStandardMaterial).clone();
-      if ('envMapIntensity' in mat) mat.envMapIntensity = 1.15;
+      if ('envMapIntensity' in mat) mat.envMapIntensity = 1.45;
       if ('metalness' in mat && (mat.metalness ?? 0) > 0.15) {
         mat.metalness = Math.min(0.92, (mat.metalness ?? 0.4) + 0.08);
         mat.roughness = Math.min(mat.roughness ?? 0.4, 0.42);
