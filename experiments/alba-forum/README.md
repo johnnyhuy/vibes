@@ -37,11 +37,13 @@ Post-quota order stays: (1) promote `vibes-blender-semicircle` production from t
 
 ## Local playtest (2026-09-08)
 
-Headed preview after `npm run build` + `npm run preview` (capture notes in the still):
+Headed preview on `127.0.0.1:4173` after `npm run build`:
 
-- Chalk canvas: off-white ground, Ivory Arch framed, brand `vibes · alba forum`.
-- Thin frosted HUD: lockup, `01 / 10`, Explore, landmark chip + first-person caption.
-- Scroll / Next walks the invented itinerary. Explore orbits the current mesh; Leave returns to scroll framing.
+- Chalk canvas: off-white ground, Ivory Arch framed, brand `vibes · alba forum`. Soft fog, sage cypress — not a dark kiln desk and not a coast drive.
+- Thin frosted HUD: lockup, `01 / 10`, Prev / Next / Explore, serif landmark chip + first-person caption.
+- Next walks the invented itinerary (Chalk Forum, Pale Obelisk, … Cloud Rotunda). No Rome nouns.
+- Explore orbits the current mesh and zooms; Leave / Esc returns to scroll framing.
+- Console: no fatals. Benign WebGL `ReadPixels` / software-GL notes only. Build green.
 - Still: `docs/previews/alba-forum.png`.
 
 No Vercel project. No production URL.
