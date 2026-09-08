@@ -1,0 +1,287 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --ink: #e8eef4;
+  --muted: #8d99a8;
+  --panel: rgba(8, 11, 18, 0.58);
+  --line: rgba(220, 230, 245, 0.1);
+  --accent: #9fd4e6;
+}
+
+html,
+body,
+#root,
+.app {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #05070c;
+  color: var(--ink);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.app {
+  position: relative;
+}
+
+.app canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  touch-action: none;
+}
+
+.topbar,
+.editorial,
+.desk,
+.hint {
+  z-index: 4;
+}
+
+.topbar {
+  position: absolute;
+  top: 0.9rem;
+  left: 1rem;
+  right: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.55rem 0.75rem;
+  background: var(--panel);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--line);
+  border-radius: 0.85rem;
+}
+
+.brand {
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.top-groups {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.65rem;
+}
+
+.clock {
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+}
+
+.editorial {
+  position: absolute;
+  top: 5.1rem;
+  left: 1.2rem;
+  max-width: 22rem;
+  pointer-events: none;
+}
+
+.kicker {
+  font-size: 1.35rem;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  margin-bottom: 0.2rem;
+}
+
+.editorial h1 {
+  font-size: 2.2rem;
+  font-weight: 640;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.lede {
+  margin-top: 0.65rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.desk {
+  position: absolute;
+  top: 5.1rem;
+  right: 1.1rem;
+  width: min(20.5rem, 36vw);
+  max-height: calc(100vh - 7.2rem);
+  overflow: auto;
+  padding: 1.05rem 1.1rem 1rem;
+  background: var(--panel);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+}
+
+.panel-kicker {
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.panel-title {
+  font-size: 1.35rem;
+  letter-spacing: -0.03em;
+  margin: 0.15rem 0 0.4rem;
+}
+
+.panel-copy {
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--muted);
+  margin-bottom: 0.75rem;
+}
+
+.sliders {
+  display: grid;
+  gap: 0.42rem;
+  margin-bottom: 0.85rem;
+}
+
+.inline-slider {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.inline-slider input {
+  accent-color: var(--accent);
+  width: 7.2rem;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.28rem;
+}
+
+.chips button,
+.ghost {
+  appearance: none;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 0.28rem 0.62rem;
+  font: inherit;
+  font-size: 0.74rem;
+  cursor: pointer;
+}
+
+.chips button.active,
+.ghost.active {
+  background: var(--ink);
+  color: #111318;
+  border-color: var(--ink);
+}
+
+.ghost {
+  border-radius: 0.5rem;
+}
+
+.ghost.compact {
+  margin: 0;
+  width: auto;
+}
+
+.ghost:disabled,
+.chips button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.hint {
+  position: absolute;
+  left: 1.2rem;
+  bottom: 1.25rem;
+  font-size: 0.72rem;
+  color: var(--muted);
+  pointer-events: none;
+  max-width: 22rem;
+}
+
+.hint .sep {
+  margin: 0 0.35rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.crash {
+  min-height: 100vh;
+  padding: 3rem;
+  background: #05070c;
+  color: var(--ink);
+}
+
+.crash pre {
+  margin: 1rem 0;
+  white-space: pre-wrap;
+}
+
+.crash button {
+  border: 0;
+  background: var(--accent);
+  color: #111318;
+  padding: 0.6rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .editorial {
+    max-width: 58vw;
+  }
+
+  .lede {
+    display: none;
+  }
+
+  .desk {
+    top: auto;
+    bottom: 3.4rem;
+    left: 0.75rem;
+    right: 0.75rem;
+    width: auto;
+    max-height: 42vh;
+  }
+
+  .hint {
+    display: none;
+  }
+}

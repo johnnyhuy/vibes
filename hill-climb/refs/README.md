@@ -14,6 +14,7 @@ Thumbs attached on the 2026-09-08 agent pass (not copied from the source demos' 
 - `img2threejs-monster-tree-og.jpg` — [NickDevFE](https://x.com/NickDevFE/status/2096946586781692297) video thumb (moonlit woodland, rear-three-quarter, glowing path). Pattern only for `experiments/heartwood-warden`. Do not recreate Groot or copy their HUD.
 - `img2threejs-og-cover.png` — site OG at `https://img2threejs.io/og-cover.png` (“One photo in. A procedural model out.” / AWP | Medusa). Composition and lighting lockup only. Do not copy the wordmark, orange “procedural”, cube logo, or footer specs.
 - `clyde-conveyor-thumb.jpg` — [clydejuniordev](https://x.com/clydejuniordev/status/2097086770576011601) video thumb (round table, diners, conveyor). Built: `experiments/moon-dumpling-relay/`. Notes: `docs/reverse-engineering/moon-dumpling-relay.md`. Pattern only. Do not copy their source, cats, sushi brand, or Pokémon framing.
+- `holo-card-github-og-20260908.png` — [EverettFish/holo-card-studio](https://github.com/EverettFish/holo-card-studio) public GitHub OG (glow-on-dark silhouette). Built: `experiments/foil-tilt-card/`. Notes: `docs/reverse-engineering/foil-tilt-card.md`. Mood only. Do not copy their skill, Blender scripts, web-template, or demo subjects.
 
 If a checkout is missing the binaries, the same stills live on those posts.
 
