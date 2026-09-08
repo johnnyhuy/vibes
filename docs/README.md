@@ -32,6 +32,7 @@ Structured decisions about the monorepo's technical architecture:
 - [ADR-0022: A Harbour Walker Orbit, Invented Chassis](./adr/0022-breakwater-harbour-orbit.md) — Breakwater; dusk pier + Spile Frame, no forge clone
 - [ADR-0023: A Step-Sequenced Hex Trainer Assembly, Invented Chassis](./adr/0023-keel-hex-assembly.md) — Keel Hex; KH-55 / Spool Plate, Assembled / Inside / Exploded, no PX4 clone
 - [ADR-0024: A Soft Outdoor Memory Walk, Invented Residential Lane](./adr/0024-fairday-walk-memory-lane.md) — Fairday Walk; breezy folio + Orbit / Recast, no 晴天 clone
+- [ADR-0025: A Multi-Environment Chase Slice](./adr/0025-ochre-gallop-multi-env-chase.md) — Ochre Gallop; three invented highlands + Ashmane, no park-chase clone
 
 ### Reverse Engineering
 
@@ -61,6 +62,7 @@ Clean-room notes from studying public projects:
 - [Crayon Arcade mecha / breakwater pitch](./reverse-engineering/breakwater.md) — Built: Breakwater / 防波 (`experiments/breakwater/`). Feel only; no play-bundle scrape.
 - [Peter05704721 / drone assembly scrubber](./reverse-engineering/keel-hex.md) — Built: Keel Hex / 龙骨盘, KH-55 (`experiments/keel-hex/`). Feel only; no Pages scrape.
 - [@anyumeng28 / photo→3D memory walk](./reverse-engineering/fairday-walk.md) — Built: Fairday Walk / 晴巷 · 风里的册页 (`experiments/fairday-walk/`). Feel only; no 晴天 scrape.
+- [BrenBuilds / three-environment chase pitch](./reverse-engineering/ochre-gallop.md) — Built: Ochre Gallop / 赭奔 (`experiments/ochre-gallop/`). Feel only; no live-site scrape.
 - [NeuralKinetics Video-Shader Hero Pattern](./reverse-engineering/neuralkinetics-video-shader-hero.md) — Poster-first video/shader pipeline, organic motion, reduced-motion handling
 - [Procedural Runtime Geometry Pattern](./reverse-engineering/procedural-runtime-geometry.md) — Steam Atlas mechanical assembly, runtime CSG, parametric parts
 - [High-Fidelity Mesh Pipeline](./reverse-engineering/high-fidelity-mesh-pipeline.md) — Why Blender MCP stays blocky; Sketchfab / Poly Haven / image→3D → GLB → R3F
@@ -81,7 +83,7 @@ Things that went sideways and what I learnt:
 - [2026-09-08: Glass Auto-Deployed on the Tower Merge](./incidents/2026-09-08-glass-auto-deploy-on-tower-merge.md) — glass production LIVE on `9328191`; steam / scroll / semicircle / tower did not follow (`ignored-build-step`)
 - [2026-09-07: Audio-gadget linked before quota](./incidents/2026-09-07-audio-gadget-linked-before-quota.md) — `prj_N57mvThg4UcU9XxLK3F5wAICz9PA` created `deploy: false`, SSO off; Root still dashboard-owned; no production until ~2026-09-08 20:39 UTC
 - [2026-09-08: README said no Vercel project after link-only creates](./incidents/2026-09-08-readme-vercel-link-only-drift.md) — kiln-studs / cinder-mere / alba-forum / brine-causeway / breakwater already exist `deploy: false`; do not promote until ~2026-09-08 20:39 UTC
-- [2026-09-08: Hobby repo-link cap (25) blocked `vibes-keel-hex`](./incidents/2026-09-08-vercel-repo-link-limit-25.md) — `repo_links_exceeded_limit`; Keel Hex / Fairday Walk / later apps stay local-only; do not `create_git_project` or unlink without Johnny
+- [2026-09-08: Hobby repo-link cap (25) blocked `vibes-keel-hex`](./incidents/2026-09-08-vercel-repo-link-limit-25.md) — `repo_links_exceeded_limit`; Keel Hex / Fairday Walk / Ochre Gallop / later apps stay local-only; do not `create_git_project` or unlink without Johnny
 
 ### Deployment
 

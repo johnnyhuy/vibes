@@ -27,6 +27,7 @@ Pro raises the per-repo link cap to **150**. I am not upgrading from the agent.
 | --- | --- |
 | **Keel Hex** (`experiments/keel-hex`) | On `main` (`cd32acd`). **No** `vibes-keel-hex`. Local-only. Future name stays `vibes-keel-hex`. |
 | **Fairday Walk** | Separate PR in flight. Do not create `vibes-fairday-walk` (or any new link) from this repo until a slot exists. |
+| **Ochre Gallop** (`experiments/ochre-gallop`) | Same rule. **No** `vibes-ochre-gallop`. Local-only. Future name stays `vibes-ochre-gallop`. |
 | **Later experiments** | Same rule. New Vite apps stay local. `vercel.json` can still live in-repo; it cannot invent a project. |
 
 Existing linked apps (explode, steam-atlas, glass, tower, the link-only kiln / cinder / alba / brine / breakwater set, and the rest already on the repo) are **unchanged**. This incident does not unlink them.
