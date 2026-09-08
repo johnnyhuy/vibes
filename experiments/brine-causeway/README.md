@@ -30,11 +30,11 @@ npm run build
 
 ## Deploy
 
-**No Vercel project.** Do not create one on this PR. Hobby quota on `johnnyhuy-dev` stays exhausted until **~2026-09-08 20:39 UTC**. I am not burning a slot on a new app. This experiment is **local-only**.
+Project `vibes-brine-causeway` (`prj_UmVE510DKswQAtJf6NVYzOzQvqQf`) exists as **link-only**. It was created `deploy: false` while Hobby quota on `johnnyhuy-dev` is still exhausted. SSO off. **No production yet.** Do not promote production or burn a deploy until quota recovers **~2026-09-08 20:39 UTC**.
 
-`vercel.json` only carries the usual Vite fields plus `ignoreCommand`. It cannot set Root Directory. If I add a project later, the name pattern is `vibes-<experiment>` — here **`vibes-brine-causeway`**. Dashboard **Root Directory** must be `experiments/brine-causeway`.
+Dashboard **Root Directory** must be `experiments/brine-causeway`. `create_git_project` does not write that field. `vercel.json` only carries the usual Vite fields plus `ignoreCommand`. See [the drift note](../../docs/incidents/2026-09-08-readme-vercel-link-only-drift.md).
 
-Post-quota order stays: (1) promote `vibes-blender-semicircle` production from the framing-fix git-main preview (2) `vibes-scroll-product` first READY (3) `vibes-audio-gadget-spin` first production (4) `vibes-procedural-grass-field` (5) only then ballance / courtyard / amber-longeron / nacre-loom / heartwood-warden / moon-dumpling-relay / foil-tilt-card / zephyr-vale / cinder-mere / kiln-studs / alba-forum / this causeway. Do not create `vibes-brine-causeway` here. `vibes-cinder-mere`, `vibes-kiln-studs`, and `vibes-alba-forum` already exist as link-only — do not promote them until quota recovers.
+Post-quota order stays: (1) promote `vibes-blender-semicircle` production from the framing-fix git-main preview (2) `vibes-scroll-product` first READY (3) `vibes-audio-gadget-spin` first production (4) `vibes-procedural-grass-field` (5) only then ballance / courtyard / amber-longeron / nacre-loom / heartwood-warden / moon-dumpling-relay / foil-tilt-card / zephyr-vale / cinder-mere / kiln-studs / alba-forum / this causeway. Do not create extra pending projects here.
 
 ## Local playtest (2026-09-08)
 
@@ -47,7 +47,7 @@ Headed preview on `127.0.0.1:4173` after `npm run build`:
 - Mute stays default. No console fatals; only benign WebGL `ReadPixels` notes.
 - Still: `docs/previews/brine-causeway.png`.
 
-No Vercel project. No production URL.
+Linked, no production URL.
 
 ## Distinct from siblings
 
@@ -61,6 +61,6 @@ Cinder Mere is a **dusk basin + kiln cart**. Zephyr Vale is a **sunlit walker**.
 
 ---
 
-**Status**: Local build is the QA until a project exists  
+**Status**: Linked `deploy: false`, 0 production — do not promote until quota recovers  
 **Last updated**: 2026-09-08  
 **Built by**: Johnny Huynh

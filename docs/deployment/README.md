@@ -33,8 +33,8 @@ Hobby quota on `johnnyhuy-dev` resets after the 2026-09-07 burn (~**2026-09-08 2
 | cinder-mere | `vibes-cinder-mere` (`prj_pXdvd08peYAlt8s9QrW3yRB6nNvv`) | `experiments/cinder-mere` | — | linked `deploy: false`, SSO off, 0 production |
 | kiln-studs | `vibes-kiln-studs` (`prj_qI0BHjZbM8vNYHuhPtpmN91ZOLT8`) | `experiments/kiln-studs` | — | linked `deploy: false`, SSO off, 0 production |
 | alba-forum | `vibes-alba-forum` (`prj_q9pJAos2JhRzr1M3uBAalAnAST17`) | `experiments/alba-forum` | — | linked `deploy: false`, SSO off, 0 production |
-| brine-causeway | — | `experiments/brine-causeway` | — | no project — post-quota name `vibes-brine-causeway` |
-| breakwater | — | `experiments/breakwater` | — | no project — post-quota name `vibes-breakwater` |
+| brine-causeway | `vibes-brine-causeway` (`prj_UmVE510DKswQAtJf6NVYzOzQvqQf`) | `experiments/brine-causeway` | — | linked `deploy: false`, SSO off, 0 production |
+| breakwater | `vibes-breakwater` (`prj_ZR9kwHuMM2cBrQPvtuoXkdwunyho`) | `experiments/breakwater` | — | linked `deploy: false`, SSO off, 0 production |
 
 PR previews appear as Vercel bot comments when quota allows.
 
