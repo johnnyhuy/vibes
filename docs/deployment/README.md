@@ -32,6 +32,7 @@ Hobby quota on `johnnyhuy-dev` resets after the 2026-09-07 burn (~**2026-09-08 2
 | zephyr-vale | — | `experiments/zephyr-vale` | — | no project — post-quota name `vibes-zephyr-vale` |
 | cinder-mere | — | `experiments/cinder-mere` | — | no project — post-quota name `vibes-cinder-mere` |
 | kiln-studs | — | `experiments/kiln-studs` | — | no project — post-quota name `vibes-kiln-studs` |
+| alba-forum | — | `experiments/alba-forum` | — | no project — post-quota name `vibes-alba-forum` |
 
 PR previews appear as Vercel bot comments when quota allows.
 
