@@ -1,10 +1,9 @@
-import { useEffect, useRef } from 'react';
+import { Suspense, useEffect, useRef } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import { ACESFilmicToneMapping, PCFSoftShadowMap } from 'three';
 import type { Finish, HotspotId } from '../finishes';
 import Headphones from './Headphones';
-import Hotspots from './Hotspots';
 import Studio from './Studio';
 
 interface Props {
@@ -35,8 +34,9 @@ export default function Scene({ finish, highlight, autoSpin, onHotspot, onUserOr
       }}
     >
       <Studio />
-      <Headphones finish={finish} highlight={highlight} />
-      <Hotspots active={highlight} onPick={onHotspot} />
+      <Suspense fallback={null}>
+        <Headphones finish={finish} highlight={highlight} onHotspot={onHotspot} />
+      </Suspense>
       <OrbitControls
         makeDefault
         enablePan={false}

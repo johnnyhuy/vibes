@@ -21,6 +21,9 @@ __pycache__/
 *.obj
 *.fbx
 
+# Licensed demo meshes the experiments actually load
+!experiments/**/public/**/*.glb
+
 # IDE
 .vscode/
 .idea/

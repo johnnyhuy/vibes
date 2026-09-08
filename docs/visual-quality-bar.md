@@ -127,6 +127,7 @@ Across these demos, the quality bar is:
 ### heartwood-warden ✅ (local)
 - ✅ Dark moonlit woodland (teal-navy, not grey) + frosted pale-glass HUD
 - ✅ Procedural shrine guardian, sine gait, ten invented casts, lantern spirits
+- ✅ Kenney Nature Kit trees / rocks / log (CC0) instead of stick trunks
 - ✅ Optional generated ward snippet (our code shape)
 - ⚠️ No Vercel project — do not create one until quota is healthy
 - Inspired by [NickDevFE](https://x.com/NickDevFE/status/2096946586781692297) (OG lockup + X woodland thumb studied; no source scraped)
@@ -139,8 +140,8 @@ Across these demos, the quality bar is:
 - Inspired by [onix_react](https://x.com/onix_react/status/2096978661802975464) (live URL 404; still + copy only)
 
 ### amber-longeron ✅ (local)
-- ✅ Linen-tan studio + soft upper-left key (toy wood reads; not a black canyon)
-- ✅ Composite biplane + low-contrast canvas varnish + carnelian lane orbs
+- ✅ Linen-tan studio + soft upper-left key (not a black canyon)
+- ✅ Licensed vintage biplane GLB (bradacvojtech Sopwith Camel, CC-BY) + carnelian lane orbs
 - ✅ Auto-starts; flight HUD is a faint distance chip; crash keeps a small card
 - ⚠️ No Vercel project — do not create one until quota is healthy
 - Inspired by [heymichu25](https://x.com/heymichu25/status/2097062564299759855)
@@ -154,7 +155,7 @@ Across these demos, the quality bar is:
 
 ### audio-gadget-spin ✅ (local)
 - ✅ Dark studio + frosted marketing chrome
-- ✅ Procedural over-ear (tube + squircle cups + glass window)
+- ✅ Licensed over-ear GLB (Spacebar Headphones, CC-BY) + finish tints / hotspots
 - ✅ Slow auto-orbit, drag override, three finishes, mute-default Web Audio
 - ⚠️ Project `vibes-audio-gadget-spin` (`prj_N57mvThg4UcU9XxLK3F5wAICz9PA`) exists `deploy: false`, SSO off — **no production**. Do not redeploy until after quota (~2026-09-08 20:39 UTC)
 - Inspired by [Xr0ud](https://x.com/Xr0ud/status/2096982574132297791), [mrblackstudio](https://x.com/mrblackstudio/status/2096893411395600782), [Gilbert93533589](https://x.com/Gilbert93533589/status/2096920288319435154)

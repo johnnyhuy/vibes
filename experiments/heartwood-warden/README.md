@@ -7,7 +7,7 @@ The live marketing URL is [img2threejs.io/#/x/monster-tree](https://img2threejs.
 ## What I built
 
 - **A moss-bound shrine guardian** — bark plates, a hollow chest with an amber resin heart, a carved mask, a crescent of bare twigs. Not a Marvel tree-person. Composite primitives. No character GLB.
-- **A moonlit woodland glade** — tall trunk silhouettes, a stone ring, thick night fog, a moon-dew rill I invented, faint shafts. Dark woodland, not a grey void. Rear-three-quarter follow.
+- **A moonlit woodland glade** — Kenney Nature Kit trees, rocks, and a fallen log (CC0) instead of stick trunks. Stone ring, thick night fog, a moon-dew rill I invented, faint shafts. Dark woodland, not a grey void. Rear-three-quarter follow. See [ATTRIBUTION.md](./ATTRIBUTION.md).
 - **Lantern spirits** — seven drifting orbs. Three carry lights. They keep the path and hurry in on lantern call.
 - **Walk and sprint** — WASD or arrows. Shift runs. Simple gait: idle sway, walk plant, run lean.
 - **Ten casts I named** — vine lash, spore bloom, root pulse, amber heart, moss veil, canopy bind, lantern call, night dew, heartwood choir, moon graft. Keys `1`–`0`.
@@ -56,9 +56,10 @@ No Vercel project. No production URL.
 
 - [docs/reverse-engineering/heartwood-warden.md](../../docs/reverse-engineering/heartwood-warden.md)
 - [docs/adr/0014-heartwood-warden-procedural-showcase.md](../../docs/adr/0014-heartwood-warden-procedural-showcase.md)
+- [ATTRIBUTION.md](./ATTRIBUTION.md)
 
 ---
 
 **Status**: Local build is the QA until a project exists  
-**Last updated**: 2026-09-07  
+**Last updated**: 2026-09-08  
 **Built by**: Johnny Huynh

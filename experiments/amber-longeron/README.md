@@ -4,9 +4,8 @@ I built this after reading [@heymichu25](https://x.com/heymichu25/status/2097062
 
 ## What I built
 
-- **A composite biplane** — cylinder fuselage, plank wings, two cabane struts, a dark hub, a spinning prop. No .glb. A longeron is a fuselage spar; you can read every part in `Biplane.tsx`.
-- **Toy canvas wood** — low-contrast amber / walnut maps. Soft upper-left key so the grain reads as varnish, not zebra stripes. See [ADR-0012](../../docs/adr/0012-procedural-wood-biplane.md).
-- **Kiln Run** — three lanes on a linen-tan studio floor. Carnelian orbs are solid (the public *lane-orb* mechanic, my material). Bronze rings are a count I invented.
+- **A licensed vintage biplane** — bradacvojtech’s Sopwith Camel (CC-BY-4.0), Draco-compressed in `public/models/vintage-biplane.glb`. Ground plane hidden. A small spinning prop stays on the nose so the Kiln Run still reads as flight. See [ATTRIBUTION.md](./ATTRIBUTION.md).
+- **Linen Kiln Run** — three lanes on a linen-tan studio floor. Carnelian orbs are still solid (the public *lane-orb* mechanic, my material). Bronze rings are a count I invented.
 - **Snappy steer** — A / D, arrows, or swipe. The run starts on its own. `R` resets.
 - **Almost no HUD** — a faint distance chip in flight. Crash gets a small card. Instructions live in a screen-reader line only.
 
@@ -41,9 +40,10 @@ Post-quota order stays: (1) promote `vibes-blender-semicircle` from the git-main
 
 - [docs/reverse-engineering/amber-longeron.md](../../docs/reverse-engineering/amber-longeron.md)
 - [docs/adr/0012-procedural-wood-biplane.md](../../docs/adr/0012-procedural-wood-biplane.md)
+- [ATTRIBUTION.md](./ATTRIBUTION.md)
 
 ---
 
 **Status**: Local build is the QA until a project exists  
-**Last updated**: 2026-09-07  
+**Last updated**: 2026-09-08  
 **Built by**: Johnny Huynh
