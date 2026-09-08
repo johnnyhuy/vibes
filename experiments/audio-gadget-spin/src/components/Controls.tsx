@@ -58,9 +58,9 @@ export default function Controls({
         <p className="kicker">環</p>
         <h1>Lumen Cuff</h1>
         <p className="lede">
-          I built a turntable for a gadget I invented — squircle cups, a glass
-          driver window, three finishes. No brand mesh. Mute stays on until
-          you ask.
+          I built a turntable for a gadget I invented — a licensed over-ear
+          mesh, three finishes, mute-default clicks. Not a brand storefront.
+          Sound stays off until you ask.
         </p>
       </header>
 

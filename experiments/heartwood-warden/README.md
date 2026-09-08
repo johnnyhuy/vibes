@@ -7,7 +7,7 @@ The live marketing URL is [img2threejs.io/#/x/monster-tree](https://img2threejs.
 ## What I built
 
 - **A moss-bound shrine guardian** — bark plates, a hollow chest with an amber resin heart, a carved mask, a crescent of bare twigs. Not a Marvel tree-person. Composite primitives. No character GLB.
-- **A moonlit woodland glade** — tall trunk silhouettes, a stone ring, thick night fog, a moon-dew rill I invented, faint shafts. Dark woodland, not a grey void. Rear-three-quarter follow.
+- **A moonlit woodland glade** — Kenney Nature Kit trees, rocks, and a fallen log (CC0) instead of stick trunks. Stone ring, thick night fog, a moon-dew rill I invented, faint shafts. Dark woodland, not a grey void. Rear-three-quarter follow. See [ATTRIBUTION.md](./ATTRIBUTION.md).
 - **Lantern spirits** — seven drifting orbs. Three carry lights. They keep the path and hurry in on lantern call.
 - **Walk and sprint** — WASD or arrows. Shift runs. Simple gait: idle sway, walk plant, run lean.
 - **Ten casts I named** — vine lash, spore bloom, root pulse, amber heart, moss veil, canopy bind, lantern call, night dew, heartwood choir, moon graft. Keys `1`–`0`.
@@ -38,17 +38,14 @@ npm run build
 
 Post-quota order stays: (1) promote `vibes-blender-semicircle` production from the framing-fix git-main preview (2) `vibes-scroll-product` first READY (3) `vibes-audio-gadget-spin` first production (4) `vibes-procedural-grass-field` (5) only then ballance / courtyard / amber-longeron / nacre-loom / this glade. Do not create those pending projects here.
 
-## Local playtest (2026-09-07)
+## Local playtest (2026-09-08)
 
-Headed preview on `127.0.0.1:4173` after `npm run build`:
+Headed preview on `127.0.0.1:4175` after `npm run build`:
 
-- Canvas painted a dark woodland night: fog, trunk silhouettes, moon-dew rill. Not a grey void.
+- Canvas painted a dark woodland night: fog, Kenney oaks / pines / rocks, moon-dew rill. Not a grey void.
 - Rear-three-quarter follow; guardian (mask, amber well, crescent twigs) readable in the lower third.
-- WASD walked; Shift+W sprinted; topbar stance flipped idle → walk → sprint.
-- Casts `1` `2` `3` `4` `7` `0` each changed the desk title and the bottom strip.
-- Later polish: denser fog, clearer moon shafts, brighter lanterns, first-class 1–0 strip, `kbd` WASD.
-- Ward snippet panel opened with generated JSON + helper.
-- Console: no fatal errors. Inline favicon; benign WebGL `ReadPixels` notes.
+- WASD walked; vine lash (`1`) changed the desk title and the bottom strip.
+- Console: no fatal errors.
 
 No Vercel project. No production URL.
 
@@ -56,9 +53,10 @@ No Vercel project. No production URL.
 
 - [docs/reverse-engineering/heartwood-warden.md](../../docs/reverse-engineering/heartwood-warden.md)
 - [docs/adr/0014-heartwood-warden-procedural-showcase.md](../../docs/adr/0014-heartwood-warden-procedural-showcase.md)
+- [ATTRIBUTION.md](./ATTRIBUTION.md)
 
 ---
 
 **Status**: Local build is the QA until a project exists  
-**Last updated**: 2026-09-07  
+**Last updated**: 2026-09-08  
 **Built by**: Johnny Huynh

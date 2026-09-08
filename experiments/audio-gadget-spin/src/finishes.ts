@@ -56,22 +56,22 @@ export const HOTSPOTS: Hotspot[] = [
   {
     id: 'driver',
     label: 'Open driver',
-    copy: 'A glass window over a perforated cup. I drew the grille as a canvas texture — no brand mesh, no scanned driver.',
+    copy: 'Open cups and a speaker net on a licensed over-ear mesh. Finishes retint the driver — mute-default click still lives in Web Audio.',
   },
   {
     id: 'cushion',
     label: 'Cushion',
-    copy: 'Soft squircle pads. Sheen stands in for fabric. Two finishes swap the colour; the silhouette stays mine.',
+    copy: 'Foam pads on the real cups. Three finishes swap the sheen; the silhouette is Spacebar’s CC-BY headset, not a squircle.',
   },
   {
     id: 'yoke',
-    label: 'Slider yoke',
-    copy: 'Twin chrome rails and a small yoke. Telescopes in the render, not in the CAD of someone else’s factory.',
+    label: 'Headband',
+    copy: 'A modelled head-support instead of a tube primitive. Attach points moved to the licensed mesh.',
   },
   {
     id: 'controls',
-    label: 'Edge slab',
-    copy: 'Three dummy pills on the cup rim. They fire a mute-default oscillator click — not a sampled product sound.',
+    label: 'Cup housing',
+    copy: 'Housing and rails take the finish colour. They fire a mute-default oscillator click — not a sampled product sound.',
   },
 ];
 

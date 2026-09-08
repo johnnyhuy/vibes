@@ -1,7 +1,7 @@
 # ADR-0014: Playable Procedural Showcase over a Mesh-Provider Client
 
 **Date**: 2026-09-07  
-**Status**: Accepted  
+**Status**: Amended 2026-09-08 — Kenney CC0 forest kitbash; invented guardian / casts unchanged  
 **Context**: [vibes](../../) monorepo  
 **Related**: [heartwood-warden.md](../reverse-engineering/heartwood-warden.md), [heartwood-warden](../../experiments/heartwood-warden/), [ADR-0004](./0004-procedural-geometry-over-assets.md), [image-to-3d](../../experiments/image-to-3d/)
 
@@ -87,6 +87,10 @@ npm install && npm run build
 ```
 
 Do **not** create a Vercel project or deploy until quota resets (~2026-09-08 20:39 UTC). If I add one later: Root Directory = `experiments/heartwood-warden`.
+
+## Amendment 2026-09-08
+
+Stick trees read as toys against the explode-assembly quality bar. The glade now instances Kenney Nature Kit trees, rocks, and a log (CC0) from `public/models/`. The guardian, casts, and invented chrome stay procedural. No character GLB. See `experiments/heartwood-warden/ATTRIBUTION.md`.
 
 ## References
 

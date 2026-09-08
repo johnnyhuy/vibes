@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { Suspense, useRef } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { ACESFilmicToneMapping } from 'three';
 import type { PlayState } from '../types';
@@ -62,16 +62,18 @@ export default function Scene({
         pointer.current = null;
       }}
     >
-      <FlightWorld
-        state={state}
-        resetToken={resetToken}
-        reducedMotion={reducedMotion}
-        consumeLane={consumeLane}
-        consumeStart={consumeStart}
-        onStart={onStart}
-        onCrash={onCrash}
-        onHud={onHud}
-      />
+      <Suspense fallback={null}>
+        <FlightWorld
+          state={state}
+          resetToken={resetToken}
+          reducedMotion={reducedMotion}
+          consumeLane={consumeLane}
+          consumeStart={consumeStart}
+          onStart={onStart}
+          onCrash={onCrash}
+          onHud={onHud}
+        />
+      </Suspense>
     </Canvas>
   );
 }

@@ -1,7 +1,7 @@
 # ADR-0010: Procedural Headphone Spin, Mute-Default Web Audio
 
 **Date**: 2026-09-08  
-**Status**: Accepted  
+**Status**: Amended 2026-09-08 — licensed over-ear GLB; mute-default audio unchanged  
 **Context**: [vibes](../../) monorepo  
 **Related**: [audio-gadget-product-spin.md](../reverse-engineering/audio-gadget-product-spin.md), [audio-gadget-spin](../../experiments/audio-gadget-spin/), [ADR-0004](./0004-procedural-geometry-over-assets.md)
 
@@ -71,6 +71,10 @@ npm install && npm run build
 ```
 
 **Amendment 2026-09-07:** Project `vibes-audio-gadget-spin` (`prj_N57mvThg4UcU9XxLK3F5wAICz9PA`) now exists, created `deploy: false`. SSO off. Intended Root: `experiments/audio-gadget-spin`. **No production.** Do not redeploy until after quota (~**2026-09-08 20:39 UTC**), and only after semicircle then scroll. See [the incident](../incidents/2026-09-07-audio-gadget-linked-before-quota.md).
+
+## Amendment 2026-09-08
+
+The quality bar moved to explode-assembly’s real multi-mesh GLB. The procedural cuff now loads Spacebar’s Headphones (CC-BY-4.0) from `public/models/headphones.glb`. Finishes still retint housing / foam / net. Hotspots moved onto the licensed cups and headband. Mute-default Web Audio is unchanged. See `experiments/audio-gadget-spin/ATTRIBUTION.md`.
 
 ## References
 

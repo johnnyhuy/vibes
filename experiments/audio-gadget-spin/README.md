@@ -10,7 +10,7 @@ I studied the *pattern*. I did **not** copy their meshes, stills, chrome, or bra
 
 ## What I built
 
-- **Procedural over-ear** — tube headband, chrome sliders, squircle cups, a glass driver window, a canvas-painted grille. Primitives + `MeshPhysicalMaterial`. No .glb.
+- **Licensed over-ear** — Spacebar’s Headphones (CC-BY-4.0) in `public/models/headphones.glb`. Finishes retint housing / foam / net / screws. Hotspots sit on the real cups and headband. See [ATTRIBUTION.md](./ATTRIBUTION.md).
 - **Studio turntable** — dark stage, strip Lightformers, slow auto-orbit. Drag overrides; spin comes back after a beat unless you hold it.
 - **Three finishes** — Studio, Midnight, Citrus. Hotspots on the driver, cushion, yoke, and edge slab.
 - **Mute-default audio** — Web Audio oscillators for a click / whoosh. Browsers block autoplay; the toggle starts **Muted**.
@@ -46,6 +46,7 @@ Do not create `vibes-ballance-roll`, a courtyard project, or a grass-field proje
 
 - [docs/reverse-engineering/audio-gadget-product-spin.md](../../docs/reverse-engineering/audio-gadget-product-spin.md)
 - [docs/adr/0010-procedural-audio-spin-mute-default.md](../../docs/adr/0010-procedural-audio-spin-mute-default.md)
+- [ATTRIBUTION.md](./ATTRIBUTION.md)
 
 ---
 

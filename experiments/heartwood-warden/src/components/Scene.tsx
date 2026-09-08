@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Bloom, EffectComposer } from '@react-three/postprocessing';
 import { ACESFilmicToneMapping, PCFSoftShadowMap } from 'three';
@@ -30,7 +31,9 @@ export default function Scene({ player, input, casts, reducedMotion }: Props) {
         gl.shadowMap.type = PCFSoftShadowMap;
       }}
     >
-      <Glade />
+      <Suspense fallback={null}>
+        <Glade />
+      </Suspense>
       <Warden player={player} input={input} reducedMotion={reducedMotion} />
       <Spirits player={player} reducedMotion={reducedMotion} />
       <CastField player={player} casts={casts} reducedMotion={reducedMotion} />

@@ -178,11 +178,11 @@ With a .glb, each rivet is a separate mesh → more memory overhead.
 | **chinese-courtyard** | Procedural geometry | Four-sided siheyuan; season/sun retints materials (ADR-0009). No Blender GLB this pass. |
 | **ballance-roll** | Procedural geometry | Sky-path + marble; contact materials, no course GLB (ADR-0008) |
 | **procedural-grass-field** | Instanced shader blades | Meadow density; no turf GLB (ADR-0011) |
-| **amber-longeron** | Procedural geometry | Composite biplane + canvas wood; no Jenny GLB (ADR-0012) |
+| **amber-longeron** | Licensed GLB + procedural orbs | Sopwith Camel CC-BY; linen / orbs still code (ADR-0012 amendment) |
 | **nacre-loom** | Procedural geometry | Lobed icosahedron + film weaves; no orb GLB (ADR-0013) |
-| **heartwood-warden** | Procedural geometry | Shrine guardian + glade + casts; no character GLB (ADR-0014) |
+| **heartwood-warden** | Procedural guardian + CC0 forest kitbash | Kenney trees; no character GLB (ADR-0014 amendment) |
 | **chinese-courtyard** | Procedural geometry | Siheyuan halls + moon gate; no courtyard GLB (ADR-0009) |
-| **audio-gadget-spin** | Procedural geometry | Over-ear cuff + canvas grille; no brand GLB (ADR-0010) |
+| **audio-gadget-spin** | Licensed GLB + finish tints | Spacebar Headphones CC-BY; mute-default audio (ADR-0010 amendment) |
 
 ## Pattern: Procedural Geometry Functions
 

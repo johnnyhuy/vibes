@@ -2,7 +2,8 @@ import { useLayoutEffect, useMemo } from 'react';
 import { BackSide, Color, DoubleSide, FogExp2, PlaneGeometry, ShaderMaterial } from 'three';
 import { Stars } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
-import { MOON, TREES } from '../world';
+import { MOON } from '../world';
+import Forest from './Forest';
 
 function SkyDome() {
   const material = useMemo(
@@ -40,41 +41,6 @@ function SkyDome() {
       <sphereGeometry args={[70, 28, 18]} />
       <primitive object={material} attach="material" />
     </mesh>
-  );
-}
-
-function GnarledTree({
-  x,
-  z,
-  scale,
-  twist,
-  lean,
-}: {
-  x: number;
-  z: number;
-  scale: number;
-  twist: number;
-  lean: number;
-}) {
-  return (
-    <group position={[x, 0, z]} rotation={[lean, twist, -lean * 0.4]} scale={scale}>
-      <mesh position={[0, 1.15, 0]} castShadow>
-        <cylinderGeometry args={[0.1, 0.2, 2.3, 6]} />
-        <meshStandardMaterial color="#2c2016" roughness={0.94} />
-      </mesh>
-      <mesh position={[0.06, 2.35, 0.03]} rotation={[0.1, 0.3, 0.08]} castShadow>
-        <cylinderGeometry args={[0.05, 0.1, 0.9, 5]} />
-        <meshStandardMaterial color="#241810" roughness={0.92} />
-      </mesh>
-      <mesh position={[0.04, 2.85, 0.06]} castShadow>
-        <icosahedronGeometry args={[0.42, 0]} />
-        <meshStandardMaterial color="#1f3a28" roughness={0.86} />
-      </mesh>
-      <mesh position={[0.28, 2.65, -0.12]} castShadow>
-        <icosahedronGeometry args={[0.26, 0]} />
-        <meshStandardMaterial color="#274833" roughness={0.84} />
-      </mesh>
-    </group>
   );
 }
 
@@ -220,22 +186,7 @@ export default function Glade() {
         <ringGeometry args={[5.35, 5.85, 42]} />
         <meshStandardMaterial color="#5a5448" roughness={0.84} />
       </mesh>
-      {[0, 1, 2, 3, 4, 5].map((index) => {
-        const angle = (index / 6) * Math.PI * 2;
-        return (
-          <mesh
-            key={index}
-            position={[Math.cos(angle) * 5.6, 0.22, Math.sin(angle) * 5.6]}
-            castShadow
-          >
-            <dodecahedronGeometry args={[0.28, 0]} />
-            <meshStandardMaterial color="#7a7468" roughness={0.88} />
-          </mesh>
-        );
-      })}
-      {TREES.map((tree, index) => (
-        <GnarledTree key={index} {...tree} />
-      ))}
+      <Forest />
     </>
   );
 }
