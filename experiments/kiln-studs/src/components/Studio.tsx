@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { ContactShadows, Environment } from '@react-three/drei';
+import { ContactShadows, Environment, MeshReflectorMaterial } from '@react-three/drei';
 import { Bloom, EffectComposer } from '@react-three/postprocessing';
 import type { Look, Palette, ViewMode } from '../types';
 import HareSet from './HareSet';
@@ -48,9 +48,18 @@ export default function Studio({ look, palette, step, mode, reducedMotion }: Pro
       <Pedestal />
       <HareSet step={step} mode={mode} palette={palette} reducedMotion={reducedMotion} />
       <ContactShadows position={[0, -0.01, 0]} opacity={0.42} scale={8} blur={2.4} far={2.8} />
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.165, 0]} receiveShadow>
-        <circleGeometry args={[7.2, 48]} />
-        <meshStandardMaterial color={look.bg} roughness={0.92} metalness={0} />
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.168, 0]} receiveShadow>
+        <circleGeometry args={[7.4, 64]} />
+        <MeshReflectorMaterial
+          blur={[280, 70]}
+          resolution={384}
+          mixBlur={0.85}
+          mixStrength={0.38}
+          roughness={0.82}
+          metalness={0.22}
+          color={look.bg}
+          mirror={0.12}
+        />
       </mesh>
       <EffectComposer disableNormalPass>
         <Bloom

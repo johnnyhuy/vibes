@@ -79,6 +79,13 @@ body {
   gap: 0.65rem;
 }
 
+.stance {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
 .editorial {
   position: absolute;
   top: 5.1rem;
@@ -141,7 +148,11 @@ body {
   font-size: 0.78rem;
   line-height: 1.45;
   color: var(--muted);
-  margin-bottom: 0.65rem;
+  margin-bottom: 0.55rem;
+}
+
+.desk .chips {
+  margin-bottom: 0.7rem;
 }
 
 .panel-copy.tight {

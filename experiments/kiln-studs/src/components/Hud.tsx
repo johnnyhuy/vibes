@@ -39,6 +39,7 @@ export default function Hud({
       <nav className="topbar" aria-label="Kiln Studs">
         <p className="brand">{BRAND.lockup}</p>
         <div className="top-groups">
+          <p className="stance">{idea.name}</p>
           <div className="chips" aria-label="Looks">
             {LOOKS.map((item) => (
               <button
@@ -46,18 +47,6 @@ export default function Hud({
                 type="button"
                 className={look.id === item.id ? 'active' : undefined}
                 onClick={() => onLook(item.id)}
-              >
-                {item.name}
-              </button>
-            ))}
-          </div>
-          <div className="chips" aria-label="Ideas">
-            {IDEAS.map((item) => (
-              <button
-                key={item.id}
-                type="button"
-                className={idea.id === item.id ? 'active' : undefined}
-                onClick={() => onIdea(item.id)}
               >
                 {item.name}
               </button>
@@ -80,6 +69,18 @@ export default function Hud({
         <p className="panel-copy">
           {idea.prompt} Local remap only — I did not call a model.
         </p>
+        <div className="chips" aria-label="Ideas">
+          {IDEAS.map((item) => (
+            <button
+              key={item.id}
+              type="button"
+              className={idea.id === item.id ? 'active' : undefined}
+              onClick={() => onIdea(item.id)}
+            >
+              {item.nameZh} · {item.name}
+            </button>
+          ))}
+        </div>
         <p className="step-line">
           <span>
             {step.id} / {max}

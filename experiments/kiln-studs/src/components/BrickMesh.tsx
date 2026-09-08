@@ -36,8 +36,8 @@ function Plastic({
       roughness={roughness}
       metalness={0.04}
       clearcoat={clearcoat}
-      clearcoatRoughness={0.28}
-      sheen={0.18}
+      clearcoatRoughness={0.18}
+      sheen={0.22}
       sheenRoughness={0.4}
       sheenColor={color}
       emissive={emissive}
@@ -86,10 +86,16 @@ export default function BrickMesh({ brick, palette, highlight }: Props) {
         </mesh>
         {showStuds &&
           studOffsets.map(([sx, sz], index) => (
-            <mesh key={index} position={[sx, top + STUD_H / 2, sz]} castShadow>
-              <cylinderGeometry args={[STUD_R, STUD_R, STUD_H, 18]} />
-              <Plastic {...finish} />
-            </mesh>
+            <group key={index} position={[sx, top, sz]}>
+              <mesh position={[0, STUD_H / 2, 0]} castShadow>
+                <cylinderGeometry args={[STUD_R, STUD_R, STUD_H, 20]} />
+                <Plastic {...finish} />
+              </mesh>
+              <mesh position={[0, STUD_H * 0.12, 0]} rotation={[Math.PI / 2, 0, 0]}>
+                <torusGeometry args={[STUD_R * 0.92, STUD_R * 0.12, 8, 20]} />
+                <Plastic {...finish} />
+              </mesh>
+            </group>
           ))}
       </group>
     );
@@ -103,10 +109,16 @@ export default function BrickMesh({ brick, palette, highlight }: Props) {
       {showStuds &&
         xs.flatMap((sx) =>
           zs.map((sz) => (
-            <mesh key={`${sx}:${sz}`} position={[sx, top + STUD_H / 2, sz]} castShadow>
-              <cylinderGeometry args={[STUD_R, STUD_R, STUD_H, 16]} />
-              <Plastic {...finish} />
-            </mesh>
+            <group key={`${sx}:${sz}`} position={[sx, top, sz]}>
+              <mesh position={[0, STUD_H / 2, 0]} castShadow>
+                <cylinderGeometry args={[STUD_R, STUD_R, STUD_H, 20]} />
+                <Plastic {...finish} />
+              </mesh>
+              <mesh position={[0, STUD_H * 0.12, 0]} rotation={[Math.PI / 2, 0, 0]}>
+                <torusGeometry args={[STUD_R * 0.92, STUD_R * 0.12, 8, 20]} />
+                <Plastic {...finish} />
+              </mesh>
+            </group>
           ))
         )}
       {brick.kind === 'brick' && brick.w * brick.d >= 2 && (

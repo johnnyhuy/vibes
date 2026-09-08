@@ -8,7 +8,7 @@ I built this after reading [@antonklingspor](https://x.com/antonklingspor/status
 - **Idea → palette** — three hardcoded prompts (Dusk hare, Clay slip, Pewter ash). They only remap five colours I named. No network, no model call.
 - **Studio / kiln dusk / pewter** — apartment / sunset / night env maps plus a soft key. A bronze-rim pedestal I modelled, not a downloaded stand.
 - **Assemble / step / explode** — eight marks I named. Arrow keys walk the instruction. `E` separates the studs. `R` puts them back.
-- **Frosted 2026-09-08 HUD** — brand lockup, Inter, thin glass. Same dusk tokens as Cinder Mere, different nouns. No commerce rail.
+- **Frosted 2026-09-08 HUD** — brand lockup, Inter, thin glass. Looks stay on the top bar (Cinder Mere language). Idea chips sit on the desk as a small prompt rail — not a white gallery, not their search. No commerce rail.
 
 Drag to orbit. Wheel zooms. Space plays the steps.
 
