@@ -8,20 +8,23 @@
 
 ## Summary
 
-Three experiment READMEs still said **No Vercel project** / local-only after I already created link-only apps (`deploy: false`) on `johnnyhuy-dev` (`team_qBCPdqU9J1cQDL4rkrFsjNoa`). The first local note called out kiln-studs. Same lie on cinder-mere and alba-forum.
+Experiment READMEs still said **No Vercel project** / local-only after I already created link-only apps (`deploy: false`) on `johnnyhuy-dev` (`team_qBCPdqU9J1cQDL4rkrFsjNoa`). First pass: kiln-studs / cinder-mere / alba-forum. Same lie again on brine-causeway and breakwater after those `deploy: false` creates.
 
 | Project | Id | Root Directory |
 | --- | --- | --- |
 | `vibes-kiln-studs` | `prj_qI0BHjZbM8vNYHuhPtpmN91ZOLT8` | `experiments/kiln-studs` |
 | `vibes-cinder-mere` | `prj_pXdvd08peYAlt8s9QrW3yRB6nNvv` | `experiments/cinder-mere` |
 | `vibes-alba-forum` | `prj_q9pJAos2JhRzr1M3uBAalAnAST17` | `experiments/alba-forum` |
+| `vibes-brine-causeway` | `prj_UmVE510DKswQAtJf6NVYzOzQvqQf` | `experiments/brine-causeway` |
+| `vibes-breakwater` | `prj_ZR9kwHuMM2cBrQPvtuoXkdwunyho` | `experiments/breakwater` |
 
 Read-only API check 2026-09-08: `live: false`, `latestDeployment: null`, SSO off. I did **not** create projects, change Root Directory, or trigger deploys.
 
 ## What I did
 
-- Rewrote the three Deploy sections: project **exists** as link-only; name + Root; do not promote production / do not burn deploys until Hobby quota recovers **~2026-09-08 20:39 UTC**
+- Rewrote the Deploy sections: project **exists** as link-only; name + Root; do not promote production / do not burn deploys until Hobby quota recovers **~2026-09-08 20:39 UTC**
 - Left production alone
+- 2026-09-08 follow-up: same rewrite for brine-causeway and breakwater after they drifted the same way
 
 ## Related
 

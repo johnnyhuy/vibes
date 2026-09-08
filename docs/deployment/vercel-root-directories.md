@@ -44,8 +44,8 @@ See [the incident](../incidents/2026-09-08-steam-atlas-wrong-root.md).
 | `vibes-cinder-mere` | `prj_pXdvd08peYAlt8s9QrW3yRB6nNvv` | **`experiments/cinder-mere`** — linked `deploy: false`. SSO off. **0 production**. Do not promote until quota ~2026-09-08 20:39 UTC. |
 | `vibes-kiln-studs` | `prj_qI0BHjZbM8vNYHuhPtpmN91ZOLT8` | **`experiments/kiln-studs`** — linked `deploy: false`. SSO off. **0 production**. Do not promote until quota ~2026-09-08 20:39 UTC. |
 | `vibes-alba-forum` | `prj_q9pJAos2JhRzr1M3uBAalAnAST17` | **`experiments/alba-forum`** — linked `deploy: false`. SSO off. **0 production**. Do not promote until quota ~2026-09-08 20:39 UTC. |
-| — | — | `experiments/brine-causeway` — **no project**. Do not create one on this PR. Post-quota name pattern: `vibes-<experiment>` → `vibes-brine-causeway`. |
-| — | — | `experiments/breakwater` — **no project**. Do not create one on this PR. Post-quota name pattern: `vibes-<experiment>` → `vibes-breakwater`. |
+| `vibes-brine-causeway` | `prj_UmVE510DKswQAtJf6NVYzOzQvqQf` | **`experiments/brine-causeway`** — linked `deploy: false`. SSO off. **0 production**. Do not promote until quota ~2026-09-08 20:39 UTC. |
+| `vibes-breakwater` | `prj_ZR9kwHuMM2cBrQPvtuoXkdwunyho` | **`experiments/breakwater`** — linked `deploy: false`. SSO off. **0 production**. Do not promote until quota ~2026-09-08 20:39 UTC. |
 
 In-repo `vercel.json` lives *inside* those folders (`framework: vite`, `outputDirectory: dist`, `ignoreCommand` where I have added it).
 
@@ -63,7 +63,7 @@ One deploy per project. Stop. Updated 2026-09-07 (heartwood-warden hill-climb). 
 2. `vibes-scroll-product` — first READY production from `main` (Root already `experiments/scroll-product-showcase`).
 3. `vibes-audio-gadget-spin` (`prj_N57mvThg4UcU9XxLK3F5wAICz9PA`) — first production after dashboard Root is confirmed as `experiments/audio-gadget-spin`. Linked `deploy: false`. **Do not redeploy on this PR.**
 4. `vibes-procedural-grass-field` — first production (or create-then-promote only in this slot). If it already exists `deploy: false`, leave it idle until this slot.
-5. Only then ballance / courtyard / amber-longeron / nacre-loom / heartwood-warden / moon-dumpling-relay / foil-tilt-card / zephyr-vale / cinder-mere / kiln-studs / alba-forum / brine-causeway / breakwater. Do **not** create `vibes-ballance-roll`, a courtyard project, `vibes-amber-longeron`, `vibes-nacre-loom`, `vibes-heartwood-warden`, `vibes-moon-dumpling-relay`, `vibes-foil-tilt-card`, `vibes-zephyr-vale`, `vibes-brine-causeway`, or `vibes-breakwater` until quota is healthy. `vibes-cinder-mere`, `vibes-kiln-studs`, and `vibes-alba-forum` already exist as link-only — do not promote them until quota recovers. New projects follow `vibes-<experiment>`.
+5. Only then ballance / courtyard / amber-longeron / nacre-loom / heartwood-warden / moon-dumpling-relay / foil-tilt-card / zephyr-vale / cinder-mere / kiln-studs / alba-forum / brine-causeway / breakwater. Do **not** create `vibes-ballance-roll`, a courtyard project, `vibes-amber-longeron`, `vibes-nacre-loom`, `vibes-heartwood-warden`, `vibes-moon-dumpling-relay`, `vibes-foil-tilt-card`, or `vibes-zephyr-vale` until quota is healthy. `vibes-cinder-mere`, `vibes-kiln-studs`, `vibes-alba-forum`, `vibes-brine-causeway`, and `vibes-breakwater` already exist as link-only — do not promote them until quota recovers. New projects follow `vibes-<experiment>`.
 6. **Skip** explode / steam-atlas / japanese-tower / glass unless a later visual QA says they broke.
 
 `experiments/glass-capability-brain/` has `vercel.json`. Project `vibes-glass-capability-brain` (`prj_yJbQTsiB138V5jh92cwSWd8rZmij`) has production READY at [vibes-glass-capability-brain.vercel.app](https://vibes-glass-capability-brain.vercel.app/) (SSO off). It shipped for free on the japanese-tower `main` merge (`9328191` / `dpl_3CE9Dd7X7og5MuSLpcGgyxboacgz`). See [the incident](../incidents/2026-09-08-glass-auto-deploy-on-tower-merge.md).
@@ -96,9 +96,9 @@ One deploy per project. Stop. Updated 2026-09-07 (heartwood-warden hill-climb). 
 
 `experiments/alba-forum/` has `vercel.json` (`ignoreCommand`). Project `vibes-alba-forum` (`prj_q9pJAos2JhRzr1M3uBAalAnAST17`) exists, created `deploy: false`. SSO off. Intended Root: `experiments/alba-forum`. **0 production** — do not promote until after quota. See [the drift note](../incidents/2026-09-08-readme-vercel-link-only-drift.md).
 
-`experiments/brine-causeway/` is a new Vite app with its own `vercel.json` (`ignoreCommand`). **No Vercel project.** Do not create one on this PR. When I do: project name `vibes-brine-causeway` (`vibes-<experiment>`), dashboard Root Directory = `experiments/brine-causeway`. Local-only until quota is healthy.
+`experiments/brine-causeway/` has `vercel.json` (`ignoreCommand`). Project `vibes-brine-causeway` (`prj_UmVE510DKswQAtJf6NVYzOzQvqQf`) exists, created `deploy: false`. SSO off. Intended Root: `experiments/brine-causeway`. **0 production** — do not promote until after quota. See [the drift note](../incidents/2026-09-08-readme-vercel-link-only-drift.md).
 
-`experiments/breakwater/` is a new Vite app with its own `vercel.json` (`ignoreCommand`). **No Vercel project.** Do not create one on this PR. When I do: project name `vibes-breakwater` (`vibes-<experiment>`), dashboard Root Directory = `experiments/breakwater`. Local-only until quota is healthy.
+`experiments/breakwater/` has `vercel.json` (`ignoreCommand`). Project `vibes-breakwater` (`prj_ZR9kwHuMM2cBrQPvtuoXkdwunyho`) exists, created `deploy: false`. SSO off. Intended Root: `experiments/breakwater`. **0 production** — do not promote until after quota. See [the drift note](../incidents/2026-09-08-readme-vercel-link-only-drift.md).
 
 steam-atlas Root must stay `experiments/procedural-steam-atlas`. It already has LIVE production. Do not spend a post-quota slot on it unless a later visual QA fails.
 
