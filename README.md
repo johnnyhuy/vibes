@@ -51,6 +51,7 @@ Open the Vite URL (usually `http://localhost:5173`). Same `npm install && npm ru
 ## Docs
 
 - [docs/](./docs/) — ADRs, reverse-engineering notes, incidents
+- [High-fidelity mesh pipeline](./docs/reverse-engineering/high-fidelity-mesh-pipeline.md) — why viral WebGL is not blocky (educational)
 - [Deployment notes](./docs/deployment/) — Vercel projects and Root Directory
 - [Visual quality bar](./docs/visual-quality-bar.md)
 

@@ -51,6 +51,7 @@ Clean-room notes from studying public projects:
 - [ShifroAnimation / Aura Valley drive](./reverse-engineering/cinder-mere.md) — Built: Cinder Mere / 烬泽 (`experiments/cinder-mere/`). Feel only; no Vercel-bundle scrape.
 - [NeuralKinetics Video-Shader Hero Pattern](./reverse-engineering/neuralkinetics-video-shader-hero.md) — Poster-first video/shader pipeline, organic motion, reduced-motion handling
 - [Procedural Runtime Geometry Pattern](./reverse-engineering/procedural-runtime-geometry.md) — Steam Atlas mechanical assembly, runtime CSG, parametric parts
+- [High-Fidelity Mesh Pipeline](./reverse-engineering/high-fidelity-mesh-pipeline.md) — Why Blender MCP stays blocky; Sketchfab / Poly Haven / image→3D → GLB → R3F
 - [Visual Quality Bar](./visual-quality-bar.md) — Cinematic product demo aesthetic (dark UI, frosted glass, studio lighting)
 - [2026-09-08 design sweep](./design-sweep-2026-09-08.md) — Frosted HUD / black studio pass vs the X refs (local QA only)
 
