@@ -1,4 +1,5 @@
 import { useLayoutEffect, useRef } from 'react';
+import { Environment } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
 import { BackSide, Color, FogExp2, ShaderMaterial } from 'three';
 import type { ResolvedLook } from '../look';
@@ -67,6 +68,11 @@ export default function SkyRig({ look }: Props) {
   return (
     <>
       <SkyDome zenith={look.skyZenith} horizon={look.skyHorizon} />
+      <Environment
+        files="/hdri/sunset.hdr"
+        background={false}
+        environmentIntensity={look.name === 'dusk' ? 0.68 : 0.46}
+      />
       <hemisphereLight color={look.hemiSky} groundColor={look.hemiGround} intensity={0.58} />
       <ambientLight color={look.ambientColor} intensity={look.ambientIntensity} />
       <directionalLight

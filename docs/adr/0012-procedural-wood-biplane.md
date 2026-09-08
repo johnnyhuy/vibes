@@ -79,7 +79,7 @@ Do **not** create a Vercel project or deploy until quota resets (~2026-09-08 20:
 
 ## Amendment 2026-09-08
 
-The quality bar moved to explode-assembly’s real multi-mesh GLB. The composite toy biplane now loads bradacvojtech’s Sopwith Camel (CC-BY-4.0) from `public/models/vintage-biplane.glb`. Canvas wood stays in `wood.ts` as the teaching map; the craft you fly is the licensed mesh. Linen void, carnelian orbs, and invented chrome are unchanged. See `experiments/amber-longeron/ATTRIBUTION.md`.
+The quality bar moved to explode-assembly’s real multi-mesh GLB. The composite toy biplane now loads bradacvojtech’s Sopwith Camel (CC-BY-4.0) from `public/models/vintage-biplane.glb`. A later pass added a local Poly Haven studio HDRI so the Camel is not a flat linen cutout. Canvas wood stays in `wood.ts` as the teaching map; the craft you fly is the licensed mesh. Linen void, carnelian orbs, and invented chrome are unchanged. See `experiments/amber-longeron/ATTRIBUTION.md`.
 
 ## References
 

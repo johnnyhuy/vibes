@@ -23,6 +23,7 @@ __pycache__/
 
 # Licensed demo meshes the experiments actually load
 !experiments/**/public/**/*.glb
+!experiments/**/public/**/*.hdr
 
 # IDE
 .vscode/
@@ -38,6 +39,9 @@ __pycache__/
 .Spotlight-V100
 .Trashes
 Thumbs.db
+
+# Scratch downloads
+.tmp/
 
 # Environment
 .env

@@ -127,7 +127,7 @@ Across these demos, the quality bar is:
 ### heartwood-warden ✅ (local)
 - ✅ Dark moonlit woodland (teal-navy, not grey) + frosted pale-glass HUD
 - ✅ Procedural shrine guardian, sine gait, ten invented casts, lantern spirits
-- ✅ Kenney Nature Kit trees / rocks / log (CC0) instead of stick trunks
+- ✅ Poly Haven CC0 photogrammetry canopy + undergrowth + night HDRI (not Kenney boxes)
 - ✅ Optional generated ward snippet (our code shape)
 - ⚠️ No Vercel project — do not create one until quota is healthy
 - Inspired by [NickDevFE](https://x.com/NickDevFE/status/2096946586781692297) (OG lockup + X woodland thumb studied; no source scraped)
@@ -141,7 +141,7 @@ Across these demos, the quality bar is:
 
 ### amber-longeron ✅ (local)
 - ✅ Linen-tan studio + soft upper-left key (not a black canyon)
-- ✅ Licensed vintage biplane GLB (bradacvojtech Sopwith Camel, CC-BY) + carnelian lane orbs
+- ✅ Licensed vintage biplane GLB (bradacvojtech Sopwith Camel, CC-BY) + studio HDRI + carnelian lane orbs
 - ✅ Auto-starts; flight HUD is a faint distance chip; crash keeps a small card
 - ⚠️ No Vercel project — do not create one until quota is healthy
 - Inspired by [heymichu25](https://x.com/heymichu25/status/2097062564299759855)
@@ -155,10 +155,16 @@ Across these demos, the quality bar is:
 
 ### audio-gadget-spin ✅ (local)
 - ✅ Dark studio + frosted marketing chrome
-- ✅ Licensed over-ear GLB (Spacebar Headphones, CC-BY) + finish tints / hotspots
+- ✅ Licensed over-ear GLB (Spacebar Headphones, CC-BY) + studio HDRI + finish tints / hotspots
 - ✅ Slow auto-orbit, drag override, three finishes, mute-default Web Audio
 - ⚠️ Project `vibes-audio-gadget-spin` (`prj_N57mvThg4UcU9XxLK3F5wAICz9PA`) exists `deploy: false`, SSO off — **no production**. Do not redeploy until after quota (~2026-09-08 20:39 UTC)
 - Inspired by [Xr0ud](https://x.com/Xr0ud/status/2096982574132297791), [mrblackstudio](https://x.com/mrblackstudio/status/2096893411395600782), [Gilbert93533589](https://x.com/Gilbert93533589/status/2096920288319435154)
+
+### cinder-mere ✅ (local)
+- ✅ Dusk basin heightmap + invented marks (Wick Spire / Pewter Jetty / Low Kiln / Flint Ford)
+- ✅ Poly Haven CC0 portable welding cart as Soot Runner + Venice Sunset HDRI
+- ⚠️ No Vercel project — do not create one until quota is healthy
+- Inspired by [ShifroAnimation](https://x.com/ShifroAnimation/status/2097116905068966284) (public post + live *read* only)
 
 ### japanese-tower ✅
 - ✅ Pale glass chrome (not their product frame)
@@ -252,4 +258,4 @@ Then implementing those patterns with:
 
 **Author**: Johnny Huynh  
 **Purpose**: Visual quality reference for vibes experiments  
-**Last Updated**: 2026-09-08 (licensed GLBs for amber-longeron, audio-gadget-spin, heartwood-warden; still no new Vercel project; quota wait ~2026-09-08 20:39 UTC)
+**Last Updated**: 2026-09-08 (Poly Haven PBR forest + kiln cart + local HDRIs; still no new Vercel project; quota wait ~2026-09-08 20:39 UTC)

@@ -1,7 +1,7 @@
 # ADR-0014: Playable Procedural Showcase over a Mesh-Provider Client
 
 **Date**: 2026-09-07  
-**Status**: Amended 2026-09-08 — Kenney CC0 forest kitbash; invented guardian / casts unchanged  
+**Status**: Amended 2026-09-08 — Poly Haven CC0 photogrammetry forest + night HDRI; invented guardian / casts unchanged  
 **Context**: [vibes](../../) monorepo  
 **Related**: [heartwood-warden.md](../reverse-engineering/heartwood-warden.md), [heartwood-warden](../../experiments/heartwood-warden/), [ADR-0004](./0004-procedural-geometry-over-assets.md), [image-to-3d](../../experiments/image-to-3d/)
 
@@ -90,7 +90,7 @@ Do **not** create a Vercel project or deploy until quota resets (~2026-09-08 20:
 
 ## Amendment 2026-09-08
 
-Stick trees read as toys against the explode-assembly quality bar. The glade now instances Kenney Nature Kit trees, rocks, and a log (CC0) from `public/models/`. The guardian, casts, and invented chrome stay procedural. No character GLB. See `experiments/heartwood-warden/ATTRIBUTION.md`.
+Stick trees read as toys against the explode-assembly quality bar. Kenney Nature Kit still read as chunky stand-ins. The glade now instances Poly Haven CC0 photogrammetry (quiver trees, fir sapling, moss rocks, stump, shrub, fallen trunk) plus a local Dikhololo Night HDRI. The guardian, casts, and invented chrome stay procedural. No character GLB. See `experiments/heartwood-warden/ATTRIBUTION.md`.
 
 ## References
 

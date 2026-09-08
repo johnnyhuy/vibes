@@ -1,7 +1,7 @@
 # ADR-0018: A Compact Heightmap Drive Slice
 
 **Date**: 2026-09-08  
-**Status**: Accepted  
+**Status**: Amended 2026-09-08 — Poly Haven CC0 welding-cart GLB + sunset HDRI; heightmap basin unchanged  
 **Context**: [vibes](../../) monorepo  
 **Related**: [cinder-mere.md](../reverse-engineering/cinder-mere.md), [cinder-mere](../../experiments/cinder-mere/), [ADR-0004](./0004-procedural-geometry-over-assets.md), [ADR-0010](./0010-procedural-audio-spin-mute-default.md), [ADR-0012](./0012-procedural-wood-biplane.md), [ADR-0017](./0017-zephyr-vale-procedural-wander.md)
 
@@ -27,11 +27,11 @@ Zephyr Vale (ADR-0017) already covers a **sunlit walker**. Heartwood Warden is a
 
 ### 2. An invented cart, not their GT
 
-**Chosen**: Soot Runner / 炱奔. Box chassis, drum wheels, roll hoop, soot canvas, lanterns. Height samples + slope pitch/roll.
+**Chosen**: Soot Runner / 炱奔. Poly Haven portable welding cart (CC0 PBR), lamps I added, height samples + slope pitch/roll.
 
-**Rejected**: Their vehicle name / silhouette. A marketplace sports-car GLB. A Kenney racer.
+**Rejected**: Their vehicle name / silhouette. A marketplace sports-car GLB. A Kenney racer. The first-pass box chassis.
 
-**Why**: ADR-0004 prefers primitives when the code is the lesson. A utility kiln cart is a different read from a pearl clear-coat GT.
+**Why**: A real kiln-yard cart is a different read from a pearl clear-coat GT, and boxes failed the explode-assembly quality bar.
 
 ### 3. Invented marks and chrome
 
@@ -64,11 +64,11 @@ Zephyr Vale (ADR-0017) already covers a **sunlit walker**. Heartwood Warden is a
 1. You can read why the mere is low and the rim is high
 2. Vehicle feel lives in one function
 3. Distinct from Zephyr Vale, Heartwood Warden, Amber Longeron, and Ballance-roll
-4. Bundle stays code-only
+4. Cart mesh is a real PBR GLB; terrain stays inspectable heightmap
 
 ### Negative
 
-1. Boxes are not a photographed car
+1. A welding cart is not a photographed GT
 2. Arcade height samples are not tyre contact
 3. Local QA only until a project exists
 

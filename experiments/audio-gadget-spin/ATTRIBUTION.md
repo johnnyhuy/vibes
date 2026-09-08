@@ -16,6 +16,15 @@ Lumen Cuff keeps invented chrome (**Lumen Cuff / 環**, Studio / Midnight / Citr
 
 Not a brand storefront. Finishes and hotspots are ours; the cups and headband are Spacebar’s mesh.
 
+## HDRI (CC0)
+
+- **Asset**: [Studio Small 09](https://polyhaven.com/a/studio_small_09)
+- **Author**: Sergej Majboroda
+- **Licence**: [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/)
+- **File**: `public/hdri/studio.hdr` (1k)
+
+Replaces the old Lightformer-only cubemap so the Spacebar PBR maps pick up a real studio.
+
 ## Code
 
 MIT — see the repo [LICENSE](../../LICENSE).

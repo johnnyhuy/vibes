@@ -4,7 +4,7 @@ I built this after reading [@heymichu25](https://x.com/heymichu25/status/2097062
 
 ## What I built
 
-- **A licensed vintage biplane** — bradacvojtech’s Sopwith Camel (CC-BY-4.0), Draco-compressed in `public/models/vintage-biplane.glb`. Ground plane hidden. A small spinning prop stays on the nose so the Kiln Run still reads as flight. See [ATTRIBUTION.md](./ATTRIBUTION.md).
+- **A licensed vintage biplane** — bradacvojtech’s Sopwith Camel (CC-BY-4.0), Draco-compressed in `public/models/vintage-biplane.glb`. Local studio HDRI + stronger envMapIntensity so the linen run is not a flat hemisphere. Ground plane hidden. A small spinning prop stays on the nose so the Kiln Run still reads as flight. See [ATTRIBUTION.md](./ATTRIBUTION.md).
 - **Linen Kiln Run** — three lanes on a linen-tan studio floor. Carnelian orbs are still solid (the public *lane-orb* mechanic, my material). Bronze rings are a count I invented.
 - **Snappy steer** — A / D, arrows, or swipe. The run starts on its own. `R` resets.
 - **Almost no HUD** — a faint distance chip in flight. Crash gets a small card. Instructions live in a screen-reader line only.
