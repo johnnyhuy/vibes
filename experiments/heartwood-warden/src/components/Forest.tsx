@@ -62,8 +62,8 @@ function ForestTree({
   model,
 }: (typeof TREES)[number]) {
   return (
-    <group position={[x, 0, z]} rotation={[lean, twist, -lean * 0.4]} scale={scale * 1.35}>
-      <FittedAsset url={model} targetSpan={3.4} />
+    <group position={[x, 0, z]} rotation={[lean, twist, -lean * 0.4]} scale={scale * 1.55}>
+      <FittedAsset url={model} targetSpan={4.2} />
     </group>
   );
 }
@@ -78,7 +78,7 @@ export default function Forest() {
         const angle = (index / 6) * Math.PI * 2;
         return (
           <group key={`rock-${index}`} position={[Math.cos(angle) * 5.6, 0, Math.sin(angle) * 5.6]}>
-            <FittedAsset url={ROCK_MODELS[index % ROCK_MODELS.length]} targetSpan={0.62} />
+            <FittedAsset url={ROCK_MODELS[index % ROCK_MODELS.length]} targetSpan={0.95} />
           </group>
         );
       })}

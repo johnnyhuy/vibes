@@ -38,17 +38,14 @@ npm run build
 
 Post-quota order stays: (1) promote `vibes-blender-semicircle` production from the framing-fix git-main preview (2) `vibes-scroll-product` first READY (3) `vibes-audio-gadget-spin` first production (4) `vibes-procedural-grass-field` (5) only then ballance / courtyard / amber-longeron / nacre-loom / this glade. Do not create those pending projects here.
 
-## Local playtest (2026-09-07)
+## Local playtest (2026-09-08)
 
-Headed preview on `127.0.0.1:4173` after `npm run build`:
+Headed preview on `127.0.0.1:4175` after `npm run build`:
 
-- Canvas painted a dark woodland night: fog, trunk silhouettes, moon-dew rill. Not a grey void.
+- Canvas painted a dark woodland night: fog, Kenney oaks / pines / rocks, moon-dew rill. Not a grey void.
 - Rear-three-quarter follow; guardian (mask, amber well, crescent twigs) readable in the lower third.
-- WASD walked; Shift+W sprinted; topbar stance flipped idle → walk → sprint.
-- Casts `1` `2` `3` `4` `7` `0` each changed the desk title and the bottom strip.
-- Later polish: denser fog, clearer moon shafts, brighter lanterns, first-class 1–0 strip, `kbd` WASD.
-- Ward snippet panel opened with generated JSON + helper.
-- Console: no fatal errors. Inline favicon; benign WebGL `ReadPixels` notes.
+- WASD walked; vine lash (`1`) changed the desk title and the bottom strip.
+- Console: no fatal errors.
 
 No Vercel project. No production URL.
 

@@ -30,18 +30,26 @@ function unit(seed: number): number {
   return value - Math.floor(value);
 }
 
-export const TREES: TreeSpot[] = Array.from({ length: 20 }, (_, index) => {
-  const ring = 11.2 + unit(index + 3) * 4.6;
-  const angle = (index / 20) * Math.PI * 2 + unit(index + 9) * 0.28;
+function spot(index: number, ring: number, count: number, scale: number): TreeSpot {
+  const angle = (index / count) * Math.PI * 2 + unit(index + 9) * 0.28;
   return {
     x: Math.cos(angle) * ring,
     z: Math.sin(angle) * ring * 0.92,
-    scale: 0.82 + unit(index + 21) * 0.55,
+    scale,
     twist: unit(index + 41) * Math.PI,
     lean: (unit(index + 17) - 0.5) * 0.18,
     model: TREE_MODELS[index % TREE_MODELS.length],
   };
-});
+}
+
+export const TREES: TreeSpot[] = [
+  ...Array.from({ length: 8 }, (_, index) =>
+    spot(index, 7.35 + unit(index + 3) * 1.55, 8, 1.18 + unit(index + 21) * 0.38)
+  ),
+  ...Array.from({ length: 20 }, (_, index) =>
+    spot(index + 8, 12.1 + unit(index + 13) * 4.2, 20, 0.92 + unit(index + 33) * 0.5)
+  ),
+];
 
 export function clampToGlade(x: number, z: number): { x: number; z: number } {
   const length = Math.hypot(x, z);
