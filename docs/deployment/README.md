@@ -30,9 +30,9 @@ Hobby quota on `johnnyhuy-dev` resets after the 2026-09-07 burn (~**2026-09-08 2
 | moon-dumpling-relay | — | `experiments/moon-dumpling-relay` | — | no project |
 | foil-tilt-card | — | `experiments/foil-tilt-card` | — | no project |
 | zephyr-vale | — | `experiments/zephyr-vale` | — | no project — post-quota name `vibes-zephyr-vale` |
-| cinder-mere | — | `experiments/cinder-mere` | — | no project — post-quota name `vibes-cinder-mere` |
-| kiln-studs | — | `experiments/kiln-studs` | — | no project — post-quota name `vibes-kiln-studs` |
-| alba-forum | — | `experiments/alba-forum` | — | no project — post-quota name `vibes-alba-forum` |
+| cinder-mere | `vibes-cinder-mere` (`prj_pXdvd08peYAlt8s9QrW3yRB6nNvv`) | `experiments/cinder-mere` | — | linked `deploy: false`, SSO off, 0 production |
+| kiln-studs | `vibes-kiln-studs` (`prj_qI0BHjZbM8vNYHuhPtpmN91ZOLT8`) | `experiments/kiln-studs` | — | linked `deploy: false`, SSO off, 0 production |
+| alba-forum | `vibes-alba-forum` (`prj_q9pJAos2JhRzr1M3uBAalAnAST17`) | `experiments/alba-forum` | — | linked `deploy: false`, SSO off, 0 production |
 
 PR previews appear as Vercel bot comments when quota allows.
 
@@ -43,4 +43,5 @@ PR previews appear as Vercel bot comments when quota allows.
 - [Audio-gadget linked before quota](../incidents/2026-09-07-audio-gadget-linked-before-quota.md)
 - [steam-atlas wrong Root](../incidents/2026-09-08-steam-atlas-wrong-root.md)
 - [glass auto-deploy on tower merge](../incidents/2026-09-08-glass-auto-deploy-on-tower-merge.md)
+- [README ↔ Vercel link-only drift](../incidents/2026-09-08-readme-vercel-link-only-drift.md)
 - [Visual QA](../visual-qa/README.md)
