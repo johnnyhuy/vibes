@@ -124,6 +124,13 @@ Across these demos, the quality bar is:
 
 ## My Implementation Status
 
+### brine-causeway ✅ (local)
+- ✅ Late-sun coast strip + thin editorial HUD (atmosphere chip, Cut the brine)
+- ✅ Procedural Iodine Wedge, Vermilion Span, Salt Reach loop. No Ferrari nouns
+- ✅ Vendored Poly Haven CC0 coast HDRI. Mute-default surf. No third-party rail
+- ⚠️ No Vercel project — do not create one until quota is healthy
+- Inspired by [arianlooterking](https://x.com/arianlooterking/status/2097080866526704056) (post + live *read* only)
+
 ### alba-forum ✅ (local)
 - ✅ Soft off-white / chalk avenue + frosted museum HUD (serif landmark chip, Inter chrome)
 - ✅ Ten invented stops, scroll-driven camera, Explore orbit on the current mesh
