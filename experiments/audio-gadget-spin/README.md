@@ -11,7 +11,7 @@ I studied the *pattern*. I did **not** copy their meshes, stills, chrome, or bra
 ## What I built
 
 - **Licensed over-ear** — Spacebar’s Headphones (CC-BY-4.0) in `public/models/headphones.glb`. Finishes retint housing / foam / net / screws. Hotspots sit on the real cups and headband. See [ATTRIBUTION.md](./ATTRIBUTION.md).
-- **Studio turntable** — dark stage, strip Lightformers, slow auto-orbit. Drag overrides; spin comes back after a beat unless you hold it.
+- **Studio turntable** — dark stage, Poly Haven studio HDRI, MeshPhysical clearcoat on the licensed cups, slow auto-orbit. Drag overrides; spin comes back after a beat unless you hold it.
 - **Three finishes** — Studio, Midnight, Citrus. Hotspots on the driver, cushion, yoke, and edge slab.
 - **Mute-default audio** — Web Audio oscillators for a click / whoosh. Browsers block autoplay; the toggle starts **Muted**.
 

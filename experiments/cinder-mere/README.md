@@ -5,7 +5,7 @@ I built this after reading [@ShifroAnimation](https://x.com/ShifroAnimation/stat
 ## What I built
 
 - **A compact heightmapped basin** — a mere in the middle, a rising rim, dusk haze. Not 16 km². One `heightAt(x, z)` shared by the mesh, the cart, and the marks.
-- **Soot Runner / 炱奔** — a kiln-yard utility cart from boxes, drums, and a soot canvas. No sports GT. No car GLB.
+- **Soot Runner / 炱奔** — Poly Haven’s portable welding cart (CC0 PBR GLB) with lamps I added. Terrain stays the heightmap. No sports GT.
 - **Arcade drive** — W accelerate, S brake / reverse, A D steer, Space brake. Height samples keep the cart on the bowl. Soft follow cam.
 - **Four marks I named** — Wick Spire, Pewter Jetty, Low Kiln, Flint Ford. Not their loop, not Zephyr Vale’s oak / bothy / mill.
 - **Dusk / ash noon / cycle** — dusk is the default. Ash noon is pewter sky + dusty ochre, not a lush meadow. A slow auto blend.
@@ -42,7 +42,7 @@ Headed preview on `127.0.0.1:4173` after `npm run build`:
 
 - Dusk canvas: ember haze, dark mere, Wick Spire lamp, Soot Runner on the Flint Ford bank. Brand `vibes · cinder mere`.
 - Thin HUD: brand, editorial, one Flint Ford pace chip, WASD hint. No tabs, swatches, loop map, or giant speedo.
-- Ash noon chip: pewter sky, dusty ochre bowl. Same kiln cart — not a yellow GT meadow.
+- Ash noon chip: pewter sky, dusty ochre bowl. Same licensed kiln cart — not a yellow GT meadow.
 - Drive: W raises the chip (Flint Ford · 0 → 5). Cart wakes on the dry bank.
 - Mute stays default. No console fatals; only benign WebGL `ReadPixels` notes.
 - Still: `docs/previews/cinder-mere.png`.

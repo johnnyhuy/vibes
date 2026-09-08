@@ -15,6 +15,15 @@ Amber Longeron keeps invented chrome (**Amber Longeron / 桁**, Kiln Run, linen 
 
 The demo is not a Sopwith product page. Markings stay on the licensed mesh; the HUD still says Amber Longeron.
 
+## HDRI (CC0)
+
+- **Asset**: [Studio Small 09](https://polyhaven.com/a/studio_small_09)
+- **Author**: Sergej Majboroda
+- **Licence**: [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/)
+- **File**: `public/hdri/studio.hdr` (1k)
+
+Used as a drei `<Environment>` so the Camel reads metal and linen instead of a flat hemisphere. Mesh stays bradacvojtech’s.
+
 ## Code
 
 MIT — see the repo [LICENSE](../../LICENSE).

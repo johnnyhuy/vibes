@@ -1,6 +1,6 @@
 import { useLayoutEffect, useMemo } from 'react';
 import { BackSide, Color, DoubleSide, FogExp2, PlaneGeometry, ShaderMaterial } from 'three';
-import { Stars } from '@react-three/drei';
+import { Environment, Stars } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
 import { MOON } from '../world';
 import Forest from './Forest';
@@ -165,6 +165,7 @@ export default function Glade() {
         </mesh>
       ))}
       <Stars radius={52} depth={26} count={900} factor={2.6} saturation={0} fade speed={0} />
+      <Environment files="/hdri/night.hdr" background={false} environmentIntensity={0.4} />
       <Terrain />
       <DewRill />
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.03, 0]} receiveShadow>

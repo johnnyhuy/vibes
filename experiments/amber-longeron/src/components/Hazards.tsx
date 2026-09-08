@@ -6,7 +6,14 @@ function Orb({ seed }: { seed: number }) {
   return (
     <mesh scale={scale}>
       <sphereGeometry args={[0.62, 24, 18]} />
-      <meshStandardMaterial color="#d12f24" roughness={0.32} metalness={0.04} />
+      <meshPhysicalMaterial
+        color="#d12f24"
+        roughness={0.22}
+        metalness={0.08}
+        clearcoat={0.55}
+        clearcoatRoughness={0.28}
+        envMapIntensity={1.2}
+      />
     </mesh>
   );
 }

@@ -1,7 +1,7 @@
 import { useMemo, useRef } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
-import type { Group } from 'three';
+import { MeshPhysicalMaterial, MeshStandardMaterial, type Group, type Mesh } from 'three';
 import { enableShadows, faceAircraftForward, fitObject, hideNamedMeshes } from '../modelFit';
 
 const MODEL = '/models/vintage-biplane.glb';
@@ -20,6 +20,25 @@ export default function Biplane({ crashed, reducedMotion }: Props) {
     faceAircraftForward(clone);
     const box = fitObject(clone, 2.55);
     enableShadows(clone);
+    clone.traverse((object) => {
+      const mesh = object as Mesh;
+      if (!mesh.isMesh || !mesh.material) return;
+      const materials = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
+      const next = materials.map((source) => {
+        const std =
+          source instanceof MeshStandardMaterial
+            ? source.clone()
+            : new MeshStandardMaterial({ color: '#6a4a2c' });
+        const physical = new MeshPhysicalMaterial();
+        physical.copy(std);
+        physical.envMapIntensity = 1.15;
+        physical.clearcoat = std.metalness > 0.35 ? 0.45 : 0.12;
+        physical.clearcoatRoughness = 0.35;
+        physical.roughness = Math.min(0.86, std.roughness ?? 0.55);
+        return physical;
+      });
+      mesh.material = next.length === 1 ? next[0] : next;
+    });
     return {
       model: clone,
       propPos: [0, 0.05, box.max.z + 0.03] as [number, number, number],
