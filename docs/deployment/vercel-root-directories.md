@@ -3,7 +3,7 @@
 I'm writing this down because Root Directory lives in the **Vercel dashboard**, not in git. `vercel.json` inside an experiment can set framework / build / `ignoreCommand`. It cannot set Root Directory. A monorepo-root `vercel.json` would fight every other project. I am not adding one.
 
 Team: `johnnyhuy-dev` (`team_qBCPdqU9J1cQDL4rkrFsjNoa`)  
-Hobby quota: 100 deploys/day. Reset after the 2026-09-07 burn: **~2026-09-08 20:39 UTC** (API; earlier notes said 12:55 UTC). Do not retry-spam.
+Hobby quota: 100 deploys/day. Reset after the 2026-09-07 burn: **~2026-09-08 20:39 UTC** (API; earlier notes said 12:55 UTC). Do not retry-spam. **Repo-link cap: 25 projects per Git repo on Hobby** — `create_git_project` for `vibes-keel-hex` already failed (`repo_links_exceeded_limit`); no new links until Johnny frees a slot or upgrades to Pro. See [the incident](../incidents/2026-09-08-vercel-repo-link-limit-25.md).
 
 ## Dashboard field (required)
 

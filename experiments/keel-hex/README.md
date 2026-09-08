@@ -32,11 +32,11 @@ npm install && npm run build
 
 ## Deploy
 
-**No Vercel project. No production.** Do not create one on this PR. Hobby quota on `johnnyhuy-dev` stays exhausted until **~2026-09-08 20:39 UTC**. Local-only until then. Future name `vibes-keel-hex` is fine; I am not creating it from the agent.
+**No `vibes-keel-hex` project exists.** Creating it failed with Vercel `repo_links_exceeded_limit`: Hobby team `johnnyhuy-dev` already has **25** projects linked to this GitHub repo (the cap). This is not a daily-quota reset. A new git link will keep failing until Johnny unlinks a project or upgrades to Pro.
 
-`vercel.json` only carries the usual Vite fields plus `ignoreCommand`. It cannot set Root Directory. If I add a project later, the name pattern is `vibes-<experiment>` — here **`vibes-keel-hex`**. Dashboard **Root Directory** must be `experiments/keel-hex`.
+Do **not** call `create_git_project` or retry the create. Local-only until a slot is freed. See [the incident](../../docs/incidents/2026-09-08-vercel-repo-link-limit-25.md).
 
-Post-quota order stays: (1) promote `vibes-blender-semicircle` production from the framing-fix git-main preview (2) `vibes-scroll-product` first READY (3) `vibes-audio-gadget-spin` first production (4) `vibes-procedural-grass-field` (5) only then ballance / courtyard / amber-longeron / nacre-loom / heartwood-warden / moon-dumpling-relay / foil-tilt-card / zephyr-vale / cinder-mere / kiln-studs / alba-forum / brine-causeway / breakwater / this bench. Do not create `vibes-keel-hex` here.
+Future name remains **`vibes-keel-hex`**. Dashboard **Root Directory** would be `experiments/keel-hex`. `vercel.json` only carries the usual Vite fields plus `ignoreCommand`; it cannot set Root Directory.
 
 ## Local playtest (2026-09-08)
 

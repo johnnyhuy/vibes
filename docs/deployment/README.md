@@ -35,7 +35,7 @@ Hobby quota on `johnnyhuy-dev` resets after the 2026-09-07 burn (~**2026-09-08 2
 | alba-forum | `vibes-alba-forum` (`prj_q9pJAos2JhRzr1M3uBAalAnAST17`) | `experiments/alba-forum` | — | linked `deploy: false`, SSO off, 0 production |
 | brine-causeway | `vibes-brine-causeway` (`prj_UmVE510DKswQAtJf6NVYzOzQvqQf`) | `experiments/brine-causeway` | — | linked `deploy: false`, SSO off, 0 production |
 | breakwater | `vibes-breakwater` (`prj_ZR9kwHuMM2cBrQPvtuoXkdwunyho`) | `experiments/breakwater` | — | linked `deploy: false`, SSO off, 0 production |
-| keel-hex | — | `experiments/keel-hex` | — | no project — post-quota name `vibes-keel-hex` |
+| keel-hex | — | `experiments/keel-hex` | — | no project — 25-link cap blocked `vibes-keel-hex`; local-only until a slot or Pro |
 
 PR previews appear as Vercel bot comments when quota allows.
 
@@ -47,4 +47,5 @@ PR previews appear as Vercel bot comments when quota allows.
 - [steam-atlas wrong Root](../incidents/2026-09-08-steam-atlas-wrong-root.md)
 - [glass auto-deploy on tower merge](../incidents/2026-09-08-glass-auto-deploy-on-tower-merge.md)
 - [README ↔ Vercel link-only drift](../incidents/2026-09-08-readme-vercel-link-only-drift.md)
+- [Hobby repo-link cap (25)](../incidents/2026-09-08-vercel-repo-link-limit-25.md)
 - [Visual QA](../visual-qa/README.md)
