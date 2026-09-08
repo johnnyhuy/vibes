@@ -79,6 +79,7 @@ Things that went sideways and what I learnt:
 - [2026-09-08: Glass Auto-Deployed on the Tower Merge](./incidents/2026-09-08-glass-auto-deploy-on-tower-merge.md) — glass production LIVE on `9328191`; steam / scroll / semicircle / tower did not follow (`ignored-build-step`)
 - [2026-09-07: Audio-gadget linked before quota](./incidents/2026-09-07-audio-gadget-linked-before-quota.md) — `prj_N57mvThg4UcU9XxLK3F5wAICz9PA` created `deploy: false`, SSO off; Root still dashboard-owned; no production until ~2026-09-08 20:39 UTC
 - [2026-09-08: README said no Vercel project after link-only creates](./incidents/2026-09-08-readme-vercel-link-only-drift.md) — kiln-studs / cinder-mere / alba-forum / brine-causeway / breakwater already exist `deploy: false`; do not promote until ~2026-09-08 20:39 UTC
+- [2026-09-08: Hobby repo-link cap (25) blocked `vibes-keel-hex`](./incidents/2026-09-08-vercel-repo-link-limit-25.md) — `repo_links_exceeded_limit`; Keel Hex / Fairday Walk / later apps stay local-only; do not `create_git_project` or unlink without Johnny
 
 ### Deployment
 
