@@ -21,12 +21,12 @@ function aliases(event: KeyboardEvent): string[] {
 
 export function createPlayer(): PlayerState {
   return {
-    x: -0.6,
+    x: -0.35,
     y: 0,
-    z: 1.45,
+    z: 0.55,
     yaw: 0,
-    lookYaw: 0.18,
-    lookPitch: 0.08,
+    lookYaw: 0.12,
+    lookPitch: 0.22,
     speed: 0,
     sprinting: false,
     stance: 'idle',

@@ -18,13 +18,13 @@ interface Props {
 export default function Scene({ player, input, gathered, reducedMotion, onCanvasClick }: Props) {
   return (
     <Canvas
-      camera={{ position: [2.8, 6.8, 10.2], fov: 38, near: 0.1, far: 140 }}
+      camera={{ position: [4.6, 12.4, 12.8], fov: 40, near: 0.12, far: 180 }}
       dpr={[1, 1.6]}
       shadows
       gl={{
         antialias: true,
         toneMapping: ACESFilmicToneMapping,
-        toneMappingExposure: 1.05,
+        toneMappingExposure: 1.16,
       }}
       onCreated={({ gl }) => {
         gl.shadowMap.type = PCFSoftShadowMap;

@@ -9,39 +9,47 @@ import {
   PlaneGeometry,
   ShaderMaterial,
 } from 'three';
+import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 import { reedFragment, reedVertex } from '../grassShader';
-import { heightAt, WATER_LEVEL } from '../world';
+import { heightAt, ISLES, WATER_LEVEL } from '../world';
 
 const dummy = new Object3D();
-const COUNT = 2800;
+const COUNT = 7600;
 
 function hash(n: number): number {
   const x = Math.sin(n * 127.1) * 43758.5453;
   return x - Math.floor(x);
 }
 
-export default function ReedGrass({ reducedMotion }: { reducedMotion: boolean }) {
-  const mesh = useRef<InstancedMesh>(null);
-  const material = useRef<ShaderMaterial>(null);
-
-  const geometry = useMemo(() => {
-    const plane = new PlaneGeometry(0.07, 1, 1, 4);
+function tuftGeometry() {
+  const blades = [0, 1, 2].map((index) => {
+    const plane = new PlaneGeometry(0.11, 1, 1, 4);
     plane.translate(0, 0.5, 0);
     const pos = plane.attributes.position;
     for (let i = 0; i < pos.count; i += 1) {
       const y = pos.getY(i);
-      pos.setX(i, pos.getX(i) * (1 - y * 0.78));
+      pos.setX(i, pos.getX(i) * (1 - y * 0.8));
     }
     pos.needsUpdate = true;
-    plane.computeVertexNormals();
+    plane.rotateY((index / 3) * Math.PI);
     return plane;
-  }, []);
+  });
+  const merged = mergeGeometries(blades, false);
+  blades.forEach((blade) => blade.dispose());
+  merged?.computeVertexNormals();
+  return merged ?? blades[0];
+}
+
+export default function ReedGrass({ reducedMotion }: { reducedMotion: boolean }) {
+  const mesh = useRef<InstancedMesh>(null);
+  const material = useRef<ShaderMaterial>(null);
+  const geometry = useMemo(() => tuftGeometry(), []);
 
   const uniforms = useMemo(
     () => ({
       uTime: { value: 0 },
       uReduced: { value: reducedMotion ? 1 : 0 },
-      uWind: { value: [0.82, 0.48] },
+      uWind: { value: [0.78, 0.42] },
     }),
     [reducedMotion]
   );
@@ -63,24 +71,31 @@ export default function ReedGrass({ reducedMotion }: { reducedMotion: boolean })
 
     const phases = new Float32Array(COUNT);
     const tints = new Float32Array(COUNT * 3);
-    const moss = new Color('#5f7d38');
-    const lime = new Color('#8aaa4c');
+    const moss = new Color('#5d8a36');
+    const lime = new Color('#c6de62');
     const mix = new Color();
 
     for (let i = 0; i < COUNT; i += 1) {
-      const clump = i % 5;
-      const ox = [-1.2, 3.4, -6.5, 8.2, 1.1][clump];
-      const oz = [2.6, 0.4, 1.8, -2.2, 4.1][clump];
-      const x = ox + (hash(i + 3) - 0.5) * 10.5;
-      const z = oz + (hash(i + 11) - 0.5) * 8.4;
+      let x = 0;
+      let z = 0;
+      if (i < 6200) {
+        const radius = Math.sqrt(hash(i + 3)) * 10.6;
+        const angle = hash(i + 11) * Math.PI * 2;
+        x = Math.cos(angle) * radius;
+        z = Math.sin(angle) * radius * 0.78 + 1.1;
+      } else {
+        const isle = ISLES[(i - 6200) % ISLES.length];
+        x = isle.x + (hash(i + 6) - 0.5) * 3.4;
+        z = isle.z + (hash(i + 13) - 0.5) * 3.0;
+      }
       const y = heightAt(x, z);
-      if (y < WATER_LEVEL + 0.08) {
-        dummy.position.set(0, -8, 0);
+      if (y < WATER_LEVEL + 0.1) {
+        dummy.position.set(0, -10, 0);
         dummy.scale.setScalar(0);
       } else {
         dummy.position.set(x, y, z);
         dummy.rotation.y = hash(i + 21) * Math.PI;
-        dummy.scale.set(0.85 + hash(i + 5) * 0.5, 0.55 + hash(i + 9) * 0.7, 1);
+        dummy.scale.set(0.9 + hash(i + 5) * 0.55, 0.42 + hash(i + 9) * 0.55, 1);
       }
       dummy.updateMatrix();
       instanced.setMatrixAt(i, dummy.matrix);
@@ -104,11 +119,7 @@ export default function ReedGrass({ reducedMotion }: { reducedMotion: boolean })
   });
 
   return (
-    <instancedMesh
-      ref={mesh}
-      args={[geometry, shader, COUNT]}
-      frustumCulled={false}
-    >
+    <instancedMesh ref={mesh} args={[geometry, shader, COUNT]} frustumCulled={false}>
       <primitive object={shader} attach="material" ref={material} />
     </instancedMesh>
   );

@@ -8,28 +8,30 @@ function ListeningOak() {
   const y = heightAt(x, z);
   return (
     <group position={[x, y, z]}>
-      <mesh position={[0, 1.35, 0]} castShadow>
-        <cylinderGeometry args={[0.34, 0.52, 2.7, 8]} />
+      <mesh position={[0, 1.7, 0]} castShadow>
+        <cylinderGeometry args={[0.42, 0.68, 3.4, 8]} />
         <meshStandardMaterial color="#6b4a30" roughness={0.94} />
       </mesh>
-      <mesh position={[0.55, 2.35, 0.1]} rotation={[0.2, 0.4, 0.55]} castShadow>
-        <cylinderGeometry args={[0.08, 0.16, 1.4, 6]} />
+      <mesh position={[0.72, 2.85, 0.12]} rotation={[0.18, 0.35, 0.62]} castShadow>
+        <cylinderGeometry args={[0.1, 0.2, 1.7, 6]} />
         <meshStandardMaterial color="#5a3c26" roughness={0.92} />
       </mesh>
-      <mesh position={[-0.48, 2.55, -0.18]} rotation={[0.15, -0.5, -0.6]} castShadow>
-        <cylinderGeometry args={[0.07, 0.14, 1.2, 6]} />
+      <mesh position={[-0.62, 3.05, -0.22]} rotation={[0.12, -0.45, -0.58]} castShadow>
+        <cylinderGeometry args={[0.08, 0.17, 1.45, 6]} />
         <meshStandardMaterial color="#5a3c26" roughness={0.92} />
       </mesh>
       {[
-        [0.1, 3.55, 0.05, 1.15, '#7eaa4e'],
-        [0.85, 3.2, 0.25, 0.78, '#8ab85a'],
-        [-0.7, 3.35, -0.2, 0.7, '#628a3c'],
-        [0.35, 3.9, -0.45, 0.62, '#93b85c'],
-        [-0.2, 3.75, 0.55, 0.58, '#6f9844'],
+        [0.12, 4.35, 0.08, 1.55, '#c6d85a'],
+        [1.15, 3.95, 0.35, 1.05, '#a8c84a'],
+        [-0.95, 4.15, -0.28, 0.98, '#7eaa42'],
+        [0.55, 4.85, -0.55, 0.82, '#d4e06a'],
+        [-0.35, 4.65, 0.72, 0.78, '#8fbc4a'],
+        [0.85, 4.55, 0.85, 0.7, '#b8d252'],
+        [-1.15, 3.75, 0.45, 0.68, '#6f9840'],
       ].map(([ox, oy, oz, r, color], index) => (
         <mesh key={index} position={[ox, oy, oz]} castShadow>
           <icosahedronGeometry args={[Number(r), 0]} />
-          <meshStandardMaterial color={String(color)} roughness={0.82} />
+          <meshStandardMaterial color={String(color)} roughness={0.78} />
         </mesh>
       ))}
     </group>
@@ -40,7 +42,7 @@ function LogSeat() {
   const { x, z } = LANDMARKS.seat;
   const y = heightAt(x, z);
   return (
-    <group position={[x, y, z]} rotation={[0, 0.55, 0]}>
+    <group position={[x, y, z]} rotation={[0, 0.15, 0]}>
       <mesh position={[-0.55, 0.18, 0]} castShadow>
         <cylinderGeometry args={[0.12, 0.14, 0.34, 8]} />
         <meshStandardMaterial color="#6a4e32" roughness={0.9} />
@@ -173,8 +175,8 @@ function FordStones() {
     () =>
       Array.from({ length: 6 }, (_, index) => {
         const t = index / 5;
-        const x = 4.15 + Math.sin(t * 3) * 0.25;
-        const z = -9.2 - t * 7.2;
+        const x = 4.15 + Math.sin(t * 3) * 0.22;
+        const z = -6.4 - t * 6.4;
         return { x, z, y: heightAt(x, z), s: 0.38 + (index % 2) * 0.08 };
       }),
     []
@@ -228,16 +230,18 @@ function PathRibbon() {
 function Wildflowers() {
   const spots = useMemo(
     () =>
-      Array.from({ length: 70 }, (_, index) => {
+      Array.from({ length: 160 }, (_, index) => {
         const angle = index * 2.399;
-        const radius = 1.6 + (index % 9) * 0.85;
-        const x = Math.cos(angle) * radius + (index % 3) * 0.2;
-        const z = Math.sin(angle) * radius * 0.7 + 2.4;
+        const radius = 1.1 + (index % 14) * 0.52;
+        const x = Math.cos(angle) * radius + (index % 3) * 0.16;
+        const z = Math.sin(angle) * radius * 0.72 + 0.8;
+        const y = heightAt(x, z);
         return {
           x,
           z,
-          y: heightAt(x, z) + 0.04,
-          color: index % 3 === 0 ? '#f4efe2' : '#e6c86a',
+          y: y + 0.045,
+          color: index % 4 === 0 ? '#f3c3c8' : index % 3 === 0 ? '#f6f1e4' : '#e8d27a',
+          hidden: y < 0.7,
         };
       }),
     []
@@ -245,12 +249,14 @@ function Wildflowers() {
 
   return (
     <group>
-      {spots.map((spot, index) => (
-        <mesh key={index} position={[spot.x, spot.y, spot.z]}>
-          <sphereGeometry args={[0.035, 5, 4]} />
-          <meshStandardMaterial color={spot.color} roughness={0.6} />
-        </mesh>
-      ))}
+      {spots
+        .filter((spot) => !spot.hidden)
+        .map((spot, index) => (
+          <mesh key={index} position={[spot.x, spot.y, spot.z]}>
+            <sphereGeometry args={[0.038, 5, 4]} />
+            <meshStandardMaterial color={spot.color} roughness={0.55} />
+          </mesh>
+        ))}
     </group>
   );
 }

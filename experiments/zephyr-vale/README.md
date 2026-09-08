@@ -40,10 +40,11 @@ Post-quota order stays: (1) promote `vibes-blender-semicircle` production from t
 
 Headed preview on `127.0.0.1:4173` after `npm run build`:
 
-- Canvas painted a sunlit knoll: reed grass, listening oak, log seat, drifting slips. Soft haze, not a grey void.
-- Elevated three-quarter follow; reed walker (straw hat, staff, Bellkite) readable in the lower third.
-- HUD: `vibes · zephyr vale`, 风笺谷, gather pill `0 / 8`, mute default.
-- Still: `docs/previews/zephyr-vale.png`.
+- Canvas painted a high-angle knoll in a turquoise mere: reed tufts, listening oak, log seat, islands. Soft daylight, not a grey meadow.
+- Elevated follow; reed walker (straw hat, staff, Bellkite) on the crest.
+- HUD: `vibes · zephyr vale`, 风笺谷, gather pill, mute default.
+- Still: `docs/previews/zephyr-vale.png` (after the hilltop/water pass).
+- Feel-only refs: `hill-climb/refs/tushar-wind-wanders.jpg`, plus `crayon-wind-wanders-og.jpg` / `crayon-tide-remembers-thumb.jpg` when present. I did not build Tide Remembers.
 
 No Vercel project. No production URL.
 

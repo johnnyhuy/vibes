@@ -5,6 +5,8 @@
 - Live play URL from the task / t.co: [https://app.usecrayon.ai/play/a9a3c165-74b3-4ff6-9588-ad97f829ddb5](https://app.usecrayon.ai/play/a9a3c165-74b3-4ff6-9588-ad97f829ddb5)
 - Quoted progress clip: [TusharXo](https://x.com/TusharXo/status/2096380894579929427) — GPT-6 Astra + Three.js, “will be live on @usecrayon later today”
 - X photo still: `https://pbs.twimg.com/media/HRkc1uoaQAAJv_0.jpg` — local copy `hill-climb/refs/tushar-wind-wanders.jpg` when present
+- Crayon play OG still — `hill-climb/refs/crayon-wind-wanders-og.jpg` when present (mood / lighting / composition only)
+- Optional sibling vibe — `hill-climb/refs/crayon-tide-remembers-thumb.jpg` when present. **Not built this PR.** Underwater Ghibli-town feel only; I stayed on the sunlit vale.
 - Progress video thumb: `https://pbs.twimg.com/amplify_video_thumb/2096376650602848256/img/fwpJyqeSixLxyMUC.jpg` — local copy `hill-climb/refs/tushar-wind-wanders-progress.jpg` when present
 - Attached hill-climb stills on the agent pass (mood / lighting / composition only). If a checkout is missing the binaries, the same stills live on those posts.
 
@@ -32,12 +34,22 @@ Observed *read* (pattern only — I am not restating their chrome as a spec to c
 - Soft daylight, haze on the horizon, painterly greens and milky turquoise
 - Post-and-rail fence + dirt path (I will not redraw that fence)
 
+**Crayon play OG** (`crayon-wind-wanders-og.jpg`, when present):
+
+- Wider valley, winding path, rustic homestead, water, large clouds
+- Soft afternoon light; a yellow-dressed wanderer and purple droplet companion
+- I will not redraw that silhouette, scarf, cottage, windmill, or sailboat
+
 **Progress still** (`tushar-wind-wanders-progress.jpg`):
 
 - Deeper valley, winding path, rustic structures, a boat, a windmill-like vertical
 - Soft afternoon light, large clouds
-- A yellow-dressed wanderer looking back, red scarf, purple droplet companion
-- I will not redraw that silhouette, scarf, or companion
+- Same feel-only rule as the OG
+
+**Sibling vibe, not this experiment** (`crayon-tide-remembers-thumb.jpg`):
+
+- Underwater city, cel outlines, whales, cool blues. Clean HUD.
+- I took only “quiet atmosphere + thin HUD.” I did **not** build Tide Remembers.
 
 **Copy on the post** (text only):
 
@@ -68,9 +80,9 @@ I did **not** confirm any of that against their bundle.
 | Purple teardrop companion | **Bellkite** — cream paper kite + bronze bell |
 | Park bench + post-and-rail fence | **Log seat** + reed-marker path (no rail fence) |
 | Moss cottage + wooden windmill + two-masted sailboat | **Reed bothy**, **overshot waterwheel**, **coracle** |
-| Their tree / island layout | Listening oak on my knoll; three islands I placed; a ford I invented |
+| Their tree / island layout | Listening oak on my knoll; seven isles I placed; a ford I invented |
 | Their letters / HUD copy | Eight **breeze slips** with verses I wrote |
-| Direct-behind or gallery crop | Elevated follow + click-to-look yaw |
+| Direct-behind or gallery crop | High-angle follow + click-to-look yaw |
 | Their audio (unknown) | Mute-default filtered wind + two quiet sines |
 
 ## What I did NOT copy
@@ -80,6 +92,7 @@ I did **not** confirm any of that against their bundle.
 - No yellow-dress wanderer, red scarf, or purple droplet
 - No post-and-rail fence, moss cottage, windmill, or sailboat
 - No downloaded play JS / meshes / HUD strings
+- No Tide Remembers city / whales / beacons
 - No new Vercel project
 
 ## Why this experiment

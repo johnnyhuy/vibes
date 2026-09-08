@@ -1,21 +1,29 @@
-export const VALE_RADIUS = 36;
-export const WATER_LEVEL = 0.28;
+export const VALE_RADIUS = 38;
+export const WATER_LEVEL = 0.46;
 export const WALK_SPEED = 3.35;
 export const RUN_SPEED = 5.4;
-export const SUN = { x: 22, y: 30, z: 10 } as const;
+export const SUN = { x: 18, y: 34, z: 14 } as const;
 
 export const LANDMARKS = {
-  oak: { x: 3.45, z: 5.55 },
-  seat: { x: -2.35, z: 2.55 },
-  cairn: { x: -8.15, z: 1.15 },
-  bothy: { x: 10.35, z: 0.35 },
-  wheel: { x: 8.15, z: -6.85 },
-  shore: { x: 2.2, z: -8.55 },
-  west: { x: -13.6, z: 0.75 },
-  isleA: { x: 5.0, z: -19.5 },
-  isleB: { x: -9.5, z: -24.0 },
-  isleC: { x: 14.0, z: -27.0 },
+  oak: { x: 1.55, z: 2.35 },
+  seat: { x: -1.85, z: 0.15 },
+  cairn: { x: -5.15, z: 2.05 },
+  bothy: { x: 5.85, z: 1.45 },
+  wheel: { x: 4.95, z: -4.35 },
+  shore: { x: 1.15, z: -6.25 },
+  west: { x: -5.85, z: 2.55 },
+  isleA: { x: 7.2, z: -14.5 },
 } as const;
+
+export const ISLES = [
+  { x: 7.2, z: -14.5, s: 3.15 },
+  { x: -11.4, z: -18.2, s: 3.55 },
+  { x: 16.8, z: -21.4, s: 2.95 },
+  { x: -3.4, z: -26.2, s: 2.75 },
+  { x: 20.4, z: -8.6, s: 2.45 },
+  { x: -18.6, z: -11.8, s: 2.25 },
+  { x: 12.2, z: -32.0, s: 2.85 },
+] as const;
 
 export interface TreeSpot {
   x: number;
@@ -25,43 +33,65 @@ export interface TreeSpot {
   kind: 'pine' | 'broad';
 }
 
-function unit(seed: number): number {
+export function unit(seed: number): number {
   const value = Math.sin(seed * 127.1 + 311.7) * 43758.5453;
   return value - Math.floor(value);
 }
 
 export function heightAt(x: number, z: number): number {
-  const knoll = Math.exp(-(x * x + (z - 3) * (z - 3)) * 0.016) * 2.55;
-  const east = Math.exp(-((x - 17) ** 2 + (z - 1) ** 2) * 0.008) * 2.05;
-  const west = Math.exp(-((x + 15) ** 2 + (z + 2) ** 2) * 0.01) * 1.55;
-  const roll = Math.sin(x * 0.1 + 1.1) * Math.cos(z * 0.08) * 0.3;
-  const slope = 0.78 - Math.max(0, -z - 1.2) * 0.12;
-  const isleA = Math.exp(-((x - 5) ** 2 + (z + 19.5) ** 2) * 0.085) * 1.72;
-  const isleB = Math.exp(-((x + 9.5) ** 2 + (z + 24) ** 2) * 0.065) * 1.9;
-  const isleC = Math.exp(-((x - 14) ** 2 + (z + 27) ** 2) * 0.05) * 1.38;
-  const ford =
-    Math.exp(-((x - 4.4) ** 2) * 0.38) * Math.max(0, 1 - Math.abs(z + 12.5) / 7.6) * 1.05;
-  return Math.max(-0.55, slope + knoll + east + west + roll + isleA + isleB + isleC + ford);
+  const dx = x;
+  const dz = z - 1.15;
+  const r2 = dx * dx + dz * dz;
+  const main = Math.exp(-r2 * 0.021) * 4.55;
+  const skirt = Math.exp(-r2 * 0.0085) * 0.72;
+  let isles = 0;
+  for (const isle of ISLES) {
+    const ir = (x - isle.x) ** 2 + (z - isle.z) ** 2;
+    isles += Math.exp(-ir * 0.048) * isle.s;
+  }
+  const ford = Math.exp(-((x - 4.15) ** 2) * 0.4) * Math.exp(-((z + 8.4) ** 2) * 0.068) * 1.62;
+  const roll = Math.sin(x * 0.28) * Math.cos(z * 0.22) * 0.1 * Math.exp(-r2 * 0.012);
+  return Math.max(-0.2, main + skirt + isles + ford + roll);
 }
 
-export const TREES: TreeSpot[] = Array.from({ length: 22 }, (_, index) => {
-  const ring = 12.4 + unit(index + 3) * 7.2;
-  const angle = (index / 22) * Math.PI * 1.15 + 0.35 + unit(index + 9) * 0.22;
-  return {
-    x: Math.cos(angle) * ring,
-    z: Math.sin(angle) * ring * 0.55 + 1.4,
-    scale: 0.78 + unit(index + 21) * 0.5,
-    twist: unit(index + 41) * Math.PI,
-    kind: unit(index + 7) > 0.38 ? 'pine' : 'broad',
-  };
-});
+export const TREES: TreeSpot[] = [
+  ...Array.from({ length: 14 }, (_, index) => {
+    const ring = 6.4 + unit(index + 3) * 2.8;
+    const angle = (index / 14) * Math.PI * 1.7 + 0.4 + unit(index + 9) * 0.2;
+    return {
+      x: Math.cos(angle) * ring,
+      z: Math.sin(angle) * ring * 0.72 + 1.1,
+      scale: 0.72 + unit(index + 21) * 0.42,
+      twist: unit(index + 41) * Math.PI,
+      kind: (unit(index + 7) > 0.42 ? 'pine' : 'broad') as TreeSpot['kind'],
+    };
+  }),
+  ...ISLES.flatMap((isle, isleIndex) =>
+    Array.from({ length: 7 }, (_, index) => {
+      const seed = isleIndex * 17 + index;
+      const angle = (index / 7) * Math.PI * 2 + unit(seed + 2);
+      const radius = 0.7 + unit(seed + 5) * (1.1 + isle.s * 0.18);
+      return {
+        x: isle.x + Math.cos(angle) * radius,
+        z: isle.z + Math.sin(angle) * radius,
+        scale: 0.55 + unit(seed + 8) * 0.45,
+        twist: unit(seed + 11) * Math.PI,
+        kind: (unit(seed + 4) > 0.3 ? 'pine' : 'broad') as TreeSpot['kind'],
+      };
+    })
+  ),
+];
 
 const BLOCKERS = [
-  { x: LANDMARKS.oak.x, z: LANDMARKS.oak.z, r: 0.9 },
-  { x: LANDMARKS.bothy.x, z: LANDMARKS.bothy.z, r: 1.45 },
-  { x: LANDMARKS.wheel.x, z: LANDMARKS.wheel.z, r: 1.15 },
-  { x: LANDMARKS.cairn.x, z: LANDMARKS.cairn.z, r: 0.7 },
-  ...TREES.map((tree) => ({ x: tree.x, z: tree.z, r: 0.55 * tree.scale })),
+  { x: LANDMARKS.oak.x, z: LANDMARKS.oak.z, r: 1.05 },
+  { x: LANDMARKS.bothy.x, z: LANDMARKS.bothy.z, r: 1.35 },
+  { x: LANDMARKS.wheel.x, z: LANDMARKS.wheel.z, r: 1.05 },
+  { x: LANDMARKS.cairn.x, z: LANDMARKS.cairn.z, r: 0.65 },
+  ...TREES.filter((tree) => heightAt(tree.x, tree.z) > WATER_LEVEL + 0.4).map((tree) => ({
+    x: tree.x,
+    z: tree.z,
+    r: 0.48 * tree.scale,
+  })),
 ];
 
 export function clampToVale(x: number, z: number): { x: number; z: number } {
@@ -89,19 +119,19 @@ export function pushFromBlockers(x: number, z: number): { x: number; z: number }
 
 export function tryStep(fromX: number, fromZ: number, toX: number, toZ: number): { x: number; z: number } {
   const pushed = pushFromBlockers(toX, toZ);
-  if (heightAt(pushed.x, pushed.z) < WATER_LEVEL - 0.34) {
+  if (heightAt(pushed.x, pushed.z) < WATER_LEVEL - 0.28) {
     return { x: fromX, z: fromZ };
   }
   return pushed;
 }
 
 export const PATH: Array<[number, number]> = [
-  [0.1, 3.2],
-  [0.8, 1.4],
-  [1.8, -0.6],
-  [2.9, -3.2],
-  [3.8, -6.4],
-  [4.3, -9.6],
-  [4.4, -12.5],
-  [4.6, -15.4],
+  [0.15, 2.4],
+  [0.55, 0.85],
+  [1.35, -0.85],
+  [2.45, -2.85],
+  [3.45, -4.85],
+  [4.05, -6.85],
+  [4.2, -8.55],
+  [5.15, -11.2],
 ];
