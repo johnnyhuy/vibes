@@ -252,4 +252,4 @@ Then implementing those patterns with:
 
 **Author**: Johnny Huynh  
 **Purpose**: Visual quality reference for vibes experiments  
-**Last Updated**: 2026-09-07 (heartwood-warden local; still no new Vercel project; quota wait ~2026-09-08 20:39 UTC)
+**Last Updated**: 2026-09-08 (licensed GLBs for amber-longeron, audio-gadget-spin, heartwood-warden; still no new Vercel project; quota wait ~2026-09-08 20:39 UTC)
