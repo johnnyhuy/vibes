@@ -124,6 +124,13 @@ Across these demos, the quality bar is:
 
 ## My Implementation Status
 
+### alba-forum ✅ (local)
+- ✅ Soft off-white / chalk avenue + frosted museum HUD (serif landmark chip, Inter chrome)
+- ✅ Ten invented stops, scroll-driven camera, Explore orbit on the current mesh
+- ✅ Procedural masonry only. No Rome itinerary. No coast drive
+- ⚠️ No Vercel project — do not create one until quota is healthy
+- Inspired by [levinstanley](https://x.com/levinstanley/status/2097083437610074117) (post + title-card feel; no site scrape)
+
 ### kiln-studs ✅ (local)
 - ✅ Dark brick studio + frosted dusk HUD (Cinder Mere tokens, invented nouns)
 - ✅ Procedural Ember Hare (42 stud bricks), eight-step instructions, explode

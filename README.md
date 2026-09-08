@@ -31,8 +31,9 @@ Each app is a self-contained Vite experiment under [`experiments/`](./experiment
 | <img src="docs/previews/zephyr-vale.png" width="280" alt="Zephyr Vale sunlit knoll and breeze slips (still)"> | [zephyr-vale](./experiments/zephyr-vale/README.md) | — | Zephyr Vale. Sunlit wander, reed walker, breeze slips. Local-only. React + R3F + drei. |
 | <img src="docs/previews/cinder-mere.png" width="280" alt="Cinder Mere dusk basin and Soot Runner (still)"> | [cinder-mere](./experiments/cinder-mere/README.md) | — | Cinder Mere. Dusk-basin drive, licensed kiln cart, sunset HDRI. Local-only. React + R3F + drei. |
 | <img src="docs/previews/kiln-studs.png" width="280" alt="Kiln Studs Ember Hare brick studio (still)"> | [kiln-studs](./experiments/kiln-studs/README.md) | — | Kiln Studs. Ember Hare stud set, idea→palette, step / explode. Local-only. React + R3F + drei. |
+| <img src="docs/previews/alba-forum.png" width="280" alt="Alba Forum chalk avenue and Ivory Arch (still)"> | [alba-forum](./experiments/alba-forum/README.md) | — | Alba Forum. Chalk-city landmark scroll, Explore orbit. Local-only. React + R3F + drei. |
 
-Clips are short local loops from each Vite demo. The scroll bottle, Wind Lea, Amber Longeron, Nacre Loom, Heartwood Warden, Moon Dumpling Relay, Foil Tilt Card, Zephyr Vale, Cinder Mere, and Kiln Studs are stills until I can loop the glass, the wind, the flight, the film, the glade, the conveyor, the foil, the vale, the basin, and the studio.
+Clips are short local loops from each Vite demo. The scroll bottle, Wind Lea, Amber Longeron, Nacre Loom, Heartwood Warden, Moon Dumpling Relay, Foil Tilt Card, Zephyr Vale, Cinder Mere, Kiln Studs, and Alba Forum are stills until I can loop the glass, the wind, the flight, the film, the glade, the conveyor, the foil, the vale, the basin, the studio, and the avenue.
 
 **Also in the repo:** [ai-3d-lanes](./experiments/ai-3d-lanes/README.md) (web-3d / blender / cad / mesh-gen) · [image-to-3d](./experiments/image-to-3d/README.md) · [ai-image-texture](./experiments/ai-image-texture/README.md) · [llm-openscad](./experiments/llm-openscad/README.md)
 

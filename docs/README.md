@@ -27,6 +27,7 @@ Structured decisions about the monorepo's technical architecture:
 - [ADR-0017: A Procedural Peaceful Wander Slice](./adr/0017-zephyr-vale-procedural-wander.md) — Zephyr Vale; daylight wind letters, no Crayon clone
 - [ADR-0018: A Compact Heightmap Drive Slice](./adr/0018-cinder-mere-drive-slice.md) — Cinder Mere; dusk basin drive, no Aura Valley clone
 - [ADR-0019: A Procedural Stud-Brick Studio, Invented Set](./adr/0019-kiln-studs-procedural-brick-studio.md) — Kiln Studs; Ember Hare stepper, no SetCreator clone
+- [ADR-0020: An Educational Landmark Scroll, Invented Chalk City](./adr/0020-alba-forum-educational-landmark-scroll.md) — Alba Forum; chalk avenue + Explore, no Rome tour clone
 
 ### Reverse Engineering
 
@@ -51,6 +52,7 @@ Clean-room notes from studying public projects:
 - [TusharXo / Crayon wind wander](./reverse-engineering/zephyr-vale.md) — Built: Zephyr Vale / 风笺谷 (`experiments/zephyr-vale/`). Feel only; no play-bundle scrape.
 - [ShifroAnimation / Aura Valley drive](./reverse-engineering/cinder-mere.md) — Built: Cinder Mere / 烬泽 (`experiments/cinder-mere/`). Feel only; no Vercel-bundle scrape.
 - [Anton Klingspor / idea → brick set](./reverse-engineering/kiln-studs.md) — Built: Kiln Studs / 窑钉, Ember Hare (`experiments/kiln-studs/`). Feel only; no SetCreator scrape.
+- [Levin Stanley / educational landmark scroll](./reverse-engineering/alba-forum.md) — Built: Alba Forum / 白坛 (`experiments/alba-forum/`). Feel only; no Rome-in-white scrape.
 - [NeuralKinetics Video-Shader Hero Pattern](./reverse-engineering/neuralkinetics-video-shader-hero.md) — Poster-first video/shader pipeline, organic motion, reduced-motion handling
 - [Procedural Runtime Geometry Pattern](./reverse-engineering/procedural-runtime-geometry.md) — Steam Atlas mechanical assembly, runtime CSG, parametric parts
 - [High-Fidelity Mesh Pipeline](./reverse-engineering/high-fidelity-mesh-pipeline.md) — Why Blender MCP stays blocky; Sketchfab / Poly Haven / image→3D → GLB → R3F
