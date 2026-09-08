@@ -1,4 +1,4 @@
-import { BRAND, IDEAS, LOOKS, STEPS } from '../catalog';
+import { BRAND, IDEAS, LOOKS, SET, STEPS } from '../catalog';
 import type { Idea, Look, StepInfo, ViewMode } from '../types';
 
 interface Props {
@@ -66,6 +66,9 @@ export default function Hud({
         <p className="panel-title">
           {BRAND.setName} · {BRAND.setNo}
         </p>
+        <p className="meta">
+          {SET.length} marks · {STEPS.length} steps
+        </p>
         <p className="panel-copy">
           {idea.prompt} Local remap only — I did not call a model.
         </p>
@@ -77,7 +80,8 @@ export default function Hud({
               className={idea.id === item.id ? 'active' : undefined}
               onClick={() => onIdea(item.id)}
             >
-              {item.nameZh} · {item.name}
+              <span className="swatch" style={{ background: item.palette.kiln }} />
+              {item.name}
             </button>
           ))}
         </div>

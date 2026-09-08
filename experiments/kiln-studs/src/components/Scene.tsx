@@ -1,6 +1,7 @@
 import { OrbitControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import { ACESFilmicToneMapping, PCFSoftShadowMap } from 'three';
+import { RectAreaLightUniformsLib } from 'three/examples/jsm/lights/RectAreaLightUniformsLib.js';
 import type { Look, Palette, ViewMode } from '../types';
 import Studio from './Studio';
 
@@ -16,7 +17,7 @@ interface Props {
 export default function Scene({ look, palette, step, mode, orbiting, reducedMotion }: Props) {
   return (
     <Canvas
-      camera={{ position: [2.15, 1.55, 3.35], fov: 34, near: 0.1, far: 32 }}
+      camera={{ position: [2.05, 1.42, 3.15], fov: 32, near: 0.1, far: 32 }}
       dpr={[1, 1.75]}
       shadows
       gl={{
@@ -26,6 +27,7 @@ export default function Scene({ look, palette, step, mode, orbiting, reducedMoti
         toneMappingExposure: look.exposure,
       }}
       onCreated={({ gl }) => {
+        RectAreaLightUniformsLib.init();
         gl.shadowMap.type = PCFSoftShadowMap;
       }}
     >

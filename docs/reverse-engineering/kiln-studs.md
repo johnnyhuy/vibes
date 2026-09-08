@@ -4,7 +4,7 @@
 - [Anton Klingspor](https://x.com/antonklingspor/status/2097062589268136439) — “turn any image or idea into a custom LEGO set … built by GPT-6 Astra with three.js. incredibly intricate sets, building instructions & a link to buy the bricks.” (verified 2026-09-08 via X API, post id `2097062589268136439`)
 - Public marketing URL in the post / task: [https://setcreator.com](https://setcreator.com). I read the *pitch*, not the running app’s source.
 - Video thumb: `https://pbs.twimg.com/amplify_video_thumb/2097062393167990784/img/XUCeVzdNGzHkI4Es.jpg` — local copy `hill-climb/refs/setcreator-anton-thumb-20260908.jpg` when present. Mood only.
-- Later feel-only stills (when present): `hill-climb/refs/setcreator-20260908-1223.png` — a white minimal *gallery* (search + “Rendering preview…” cards). Layout cleanliness only. I did not copy the white chrome, search, or card copy. `hill-climb/refs/apex-coast-20260908-1223.png` — high-fi PBR / env lighting bar only, not a drive target.
+- Later feel-only stills (attached 2026-09-08): `hill-climb/refs/setcreator-20260908-1223.png` — a white minimal *gallery* (search + “Rendering preview…” cards). I took **whitespace, one meta line, a quiet chip rail**. I did not copy the white page, search, “Find your next build”, liked/sort chrome, or card grid. `hill-climb/refs/apex-coast-20260908-1223.png` — glossy PBR + golden-hour env on a car. **Lighting only**: stronger env on the plastic, a strip key, warmer kiln-dusk. Not a coast drive, not their HUD.
 
 **Study date**: 2026-09-08  
 **Status**: **Built** — `experiments/kiln-studs/` (Kiln Studs / 窑钉, Ember Hare · 8 / 烬兔). Clean-room only.
