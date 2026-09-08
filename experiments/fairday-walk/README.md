@@ -40,8 +40,8 @@ Post-quota order stays: (1) promote `vibes-blender-semicircle` production from t
 
 Headed preview on `127.0.0.1:4173` after `npm run build`:
 
-- Fair-day canvas: plaster lane, Laundry Court framed, brand `vibes · fairday walk`. Soft fog, tiled roofs — not a chalk avenue and not a dusk pier.
-- Thin frosted HUD: lockup, Slip 7, `01 / 08`, Folio / Orbit / Sheetdrift / Recast, invented lighting chips + Line haze.
+- Teal-mist canvas: Laundry Court on a floating earth-cut plot, court tree, wet cobble, brand `vibes · fairday walk`. Not a chalk avenue and not a dusk pier.
+- Thin frosted HUD: lockup, Slip 7, `01 / 08`, Folio / Orbit / Sheetdrift / Recast, invented lighting chips + Line haze (Sheet / Drift / Mist).
 - Next walks the invented folio (Bicycle Shed, Courtyard Well, … Fig Alley). No 晴天 / Qing Tian nouns.
 - Orbit inspects the current place; Recast / Esc returns to the authored pose.
 - Console: no fatals. Benign WebGL `ReadPixels` / software-GL notes only. Build green.
