@@ -1,0 +1,15 @@
+export const TONE = {
+  graphite: '#2b2d30',
+  carbon: '#1c1e21',
+  steel: '#8b9096',
+  celadon: '#3a6a56',
+  pad: '#c9a24a',
+  chip: '#1a1c1e',
+  pewter: '#3a3e44',
+  cell: '#2a2d32',
+  teal: '#2a7a72',
+  copper: '#c46a3a',
+  brass: '#b08a4a',
+  paper: '#f3f0ea',
+  ink: '#1f2226',
+};

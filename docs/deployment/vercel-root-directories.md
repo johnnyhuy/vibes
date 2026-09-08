@@ -46,6 +46,7 @@ See [the incident](../incidents/2026-09-08-steam-atlas-wrong-root.md).
 | `vibes-alba-forum` | `prj_q9pJAos2JhRzr1M3uBAalAnAST17` | **`experiments/alba-forum`** — linked `deploy: false`. SSO off. **0 production**. Do not promote until quota ~2026-09-08 20:39 UTC. |
 | `vibes-brine-causeway` | `prj_UmVE510DKswQAtJf6NVYzOzQvqQf` | **`experiments/brine-causeway`** — linked `deploy: false`. SSO off. **0 production**. Do not promote until quota ~2026-09-08 20:39 UTC. |
 | `vibes-breakwater` | `prj_ZR9kwHuMM2cBrQPvtuoXkdwunyho` | **`experiments/breakwater`** — linked `deploy: false`. SSO off. **0 production**. Do not promote until quota ~2026-09-08 20:39 UTC. |
+| — | — | `experiments/keel-hex` — **no project**. Do not create one on this PR. Post-quota name pattern: `vibes-<experiment>` → `vibes-keel-hex`. |
 
 In-repo `vercel.json` lives *inside* those folders (`framework: vite`, `outputDirectory: dist`, `ignoreCommand` where I have added it).
 
@@ -99,6 +100,8 @@ One deploy per project. Stop. Updated 2026-09-07 (heartwood-warden hill-climb). 
 `experiments/brine-causeway/` has `vercel.json` (`ignoreCommand`). Project `vibes-brine-causeway` (`prj_UmVE510DKswQAtJf6NVYzOzQvqQf`) exists, created `deploy: false`. SSO off. Intended Root: `experiments/brine-causeway`. **0 production** — do not promote until after quota. See [the drift note](../incidents/2026-09-08-readme-vercel-link-only-drift.md).
 
 `experiments/breakwater/` has `vercel.json` (`ignoreCommand`). Project `vibes-breakwater` (`prj_ZR9kwHuMM2cBrQPvtuoXkdwunyho`) exists, created `deploy: false`. SSO off. Intended Root: `experiments/breakwater`. **0 production** — do not promote until after quota. See [the drift note](../incidents/2026-09-08-readme-vercel-link-only-drift.md).
+
+`experiments/keel-hex/` is a new Vite app with its own `vercel.json` (`ignoreCommand`). **No Vercel project.** Do not create one on this PR. When I do: project name `vibes-keel-hex` (`vibes-<experiment>`), dashboard Root Directory = `experiments/keel-hex`. Local-only until quota is healthy.
 
 steam-atlas Root must stay `experiments/procedural-steam-atlas`. It already has LIVE production. Do not spend a post-quota slot on it unless a later visual QA fails.
 
@@ -176,5 +179,9 @@ This pass adds Brine Causeway locally. **No new Vercel project. No redeploy.** Q
 
 This pass adds Breakwater locally. **No new Vercel project. No redeploy.** Quota still 0 until ~2026-09-08 20:39 UTC. Post-quota name pattern is `vibes-<experiment>` — this one would be `vibes-breakwater`. Do not create it here.
 
+### Hill-climb — 2026-09-08 (keel-hex)
+
+This pass adds Keel Hex locally. **No new Vercel project. No redeploy.** Quota still 0 until ~2026-09-08 20:39 UTC. Post-quota name pattern is `vibes-<experiment>` — this one would be `vibes-keel-hex`. Do not create it here.
+
 **Author**: Johnny Huynh  
-**Last updated**: 2026-09-08 (breakwater)
+**Last updated**: 2026-09-08 (keel-hex)

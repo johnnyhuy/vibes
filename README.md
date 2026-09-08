@@ -34,8 +34,9 @@ Each app is a self-contained Vite experiment under [`experiments/`](./experiment
 | <img src="docs/previews/alba-forum.png" width="280" alt="Alba Forum chalk avenue and Ivory Arch (still)"> | [alba-forum](./experiments/alba-forum/README.md) | — | Alba Forum. Chalk-city landmark scroll, Explore orbit. Linked, no production. React + R3F + drei. |
 | <img src="docs/previews/brine-causeway.png" width="280" alt="Brine Causeway late-sun coast and Iodine Wedge (still)"> | [brine-causeway](./experiments/brine-causeway/README.md) | — | Brine Causeway. Coast-highway drive, procedural Iodine Wedge, Vermilion Span. Linked, no production. React + R3F + drei. |
 | <img src="docs/previews/breakwater.png" width="280" alt="Breakwater dusk pier and Spile Frame (still)"> | [breakwater](./experiments/breakwater/README.md) | — | Breakwater. Harbour walker orbit, procedural Spile Frame, stylized water. Linked, no production. React + R3F + drei. |
+| <img src="docs/previews/keel-hex.png" width="280" alt="Keel Hex KH-55 trainer on a white bench (still)"> | [keel-hex](./experiments/keel-hex/README.md) | — | Keel Hex. KH-55 hex trainer assembly, Spool Plate, twelve-mark scrubber. Local-only. React + R3F + drei. |
 
-Clips are short local loops from each Vite demo. The scroll bottle, Wind Lea, Amber Longeron, Nacre Loom, Heartwood Warden, Moon Dumpling Relay, Foil Tilt Card, Zephyr Vale, Cinder Mere, Kiln Studs, Alba Forum, Brine Causeway, and Breakwater are stills until I can loop the glass, the wind, the flight, the film, the glade, the conveyor, the foil, the vale, the basin, the studio, the avenue, the causeway, and the pier.
+Clips are short local loops from each Vite demo. The scroll bottle, Wind Lea, Amber Longeron, Nacre Loom, Heartwood Warden, Moon Dumpling Relay, Foil Tilt Card, Zephyr Vale, Cinder Mere, Kiln Studs, Alba Forum, Brine Causeway, Breakwater, and Keel Hex are stills until I can loop the glass, the wind, the flight, the film, the glade, the conveyor, the foil, the vale, the basin, the studio, the avenue, the causeway, the pier, and the bench.
 
 **Also in the repo:** [ai-3d-lanes](./experiments/ai-3d-lanes/README.md) (web-3d / blender / cad / mesh-gen) · [image-to-3d](./experiments/image-to-3d/README.md) · [ai-image-texture](./experiments/ai-image-texture/README.md) · [llm-openscad](./experiments/llm-openscad/README.md)
 
@@ -65,4 +66,4 @@ Open the Vite URL (usually `http://localhost:5173`). Same `npm install && npm ru
 
 ## Licence
 
-MIT — see [LICENSE](./LICENSE). Third-party meshes stay under their own licences: David_Holiday Model 3 (CC-BY) in explode-assembly, bradacvojtech Sopwith Camel (CC-BY) in amber-longeron, Spacebar Headphones (CC-BY) in audio-gadget-spin, Poly Haven CC0 forest / cart / HDRIs in heartwood-warden, cinder-mere, brine-causeway, and breakwater. Credits live in each experiment’s `ATTRIBUTION.md`.
+MIT — see [LICENSE](./LICENSE). Third-party meshes stay under their own licences: David_Holiday Model 3 (CC-BY) in explode-assembly, bradacvojtech Sopwith Camel (CC-BY) in amber-longeron, Spacebar Headphones (CC-BY) in audio-gadget-spin, Poly Haven CC0 forest / cart / HDRIs in heartwood-warden, cinder-mere, brine-causeway, breakwater, and keel-hex. Credits live in each experiment’s `ATTRIBUTION.md`.
