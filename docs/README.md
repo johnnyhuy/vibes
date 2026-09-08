@@ -30,6 +30,7 @@ Structured decisions about the monorepo's technical architecture:
 - [ADR-0020: An Educational Landmark Scroll, Invented Chalk City](./adr/0020-alba-forum-educational-landmark-scroll.md) — Alba Forum; chalk avenue + Explore, no Rome tour clone
 - [ADR-0021: A Compact Coast-Highway Drive Slice](./adr/0021-brine-causeway-coast-drive.md) — Brine Causeway; coast + coupe + span, no APEX clone
 - [ADR-0022: A Harbour Walker Orbit, Invented Chassis](./adr/0022-breakwater-harbour-orbit.md) — Breakwater; dusk pier + Spile Frame, no forge clone
+- [ADR-0023: A Step-Sequenced Hex Trainer Assembly, Invented Chassis](./adr/0023-keel-hex-assembly.md) — Keel Hex; KH-55 / Spool Plate, Assembled / Inside / Exploded, no PX4 clone
 
 ### Reverse Engineering
 
@@ -57,6 +58,7 @@ Clean-room notes from studying public projects:
 - [Levin Stanley / educational landmark scroll](./reverse-engineering/alba-forum.md) — Built: Alba Forum / 白坛 (`experiments/alba-forum/`). Feel only; no Rome-in-white scrape.
 - [Arian / APEX Coast Run](./reverse-engineering/brine-causeway.md) — Built: Brine Causeway / 盐桥 (`experiments/brine-causeway/`). Feel only; no Mindblown scrape.
 - [Crayon Arcade mecha / breakwater pitch](./reverse-engineering/breakwater.md) — Built: Breakwater / 防波 (`experiments/breakwater/`). Feel only; no play-bundle scrape.
+- [Peter05704721 / drone assembly scrubber](./reverse-engineering/keel-hex.md) — Built: Keel Hex / 龙骨盘, KH-55 (`experiments/keel-hex/`). Feel only; no Pages scrape.
 - [NeuralKinetics Video-Shader Hero Pattern](./reverse-engineering/neuralkinetics-video-shader-hero.md) — Poster-first video/shader pipeline, organic motion, reduced-motion handling
 - [Procedural Runtime Geometry Pattern](./reverse-engineering/procedural-runtime-geometry.md) — Steam Atlas mechanical assembly, runtime CSG, parametric parts
 - [High-Fidelity Mesh Pipeline](./reverse-engineering/high-fidelity-mesh-pipeline.md) — Why Blender MCP stays blocky; Sketchfab / Poly Haven / image→3D → GLB → R3F

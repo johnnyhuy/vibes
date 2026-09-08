@@ -124,6 +124,13 @@ Across these demos, the quality bar is:
 
 ## My Implementation Status
 
+### keel-hex ✅ (local)
+- ✅ White studio bench + light frosted HUD (Alba Forum family, teal accent, invented nouns)
+- ✅ Procedural KH-55 / Spool Plate hex trainer, Assembled / Inside / Exploded, Play assembly walk
+- ✅ Vendored Poly Haven CC0 Studio Small 03. No PX4 / S3 catalog. Distinct from explode-assembly
+- ⚠️ No Vercel project — do not create one until quota is healthy
+- Inspired by [Peter05704721](https://x.com/Peter05704721/status/2097144569989300371) (post + X video thumb; no site scrape)
+
 ### breakwater ✅ (local)
 - ✅ Dusk pier + frosted dusk HUD (Cinder Mere / kiln tokens, invented nouns)
 - ✅ Procedural Spile Frame, tetrapod groyne, sine water, orbit + three marks
@@ -286,4 +293,4 @@ Then implementing those patterns with:
 
 **Author**: Johnny Huynh  
 **Purpose**: Visual quality reference for vibes experiments  
-**Last Updated**: 2026-09-08 (Breakwater harbour walker; still no new Vercel project; quota wait ~2026-09-08 20:39 UTC)
+**Last Updated**: 2026-09-08 (Keel Hex white-bench trainer; still no new Vercel project; quota wait ~2026-09-08 20:39 UTC)
