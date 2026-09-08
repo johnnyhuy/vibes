@@ -29,8 +29,9 @@ Each app is a self-contained Vite experiment under [`experiments/`](./experiment
 | <img src="docs/previews/moon-dumpling-relay.png" width="280" alt="Moon Dumpling Relay moon-gate table (still)"> | [moon-dumpling-relay](./experiments/moon-dumpling-relay/README.md) | — | Moon Dumpling Relay. Fox / raccoon / owl diners, spinning moon-gate, chili / tea-leaf. Local-only. React + R3F + drei. |
 | <img src="docs/previews/foil-tilt-card.png" width="280" alt="Lumen Fox foil tilt card (still)"> | [foil-tilt-card](./experiments/foil-tilt-card/README.md) | — | Foil Tilt Card. Lumen Fox No.042, layered print, view-tied foil. Local-only. React + R3F + drei. |
 | <img src="docs/previews/zephyr-vale.png" width="280" alt="Zephyr Vale sunlit knoll and breeze slips (still)"> | [zephyr-vale](./experiments/zephyr-vale/README.md) | — | Zephyr Vale. Sunlit wander, reed walker, breeze slips. Local-only. React + R3F + drei. |
+| <img src="docs/previews/cinder-mere.png" width="280" alt="Cinder Mere dusk basin and Soot Runner (still)"> | [cinder-mere](./experiments/cinder-mere/README.md) | — | Cinder Mere. Dusk-basin drive, Soot Runner, invented marks. Local-only. React + R3F + drei. |
 
-Clips are short local loops from each Vite demo. The scroll bottle, Wind Lea, Amber Longeron, Nacre Loom, Heartwood Warden, Moon Dumpling Relay, Foil Tilt Card, and Zephyr Vale are stills until I can loop the glass, the wind, the flight, the film, the glade, the conveyor, the foil, and the vale.
+Clips are short local loops from each Vite demo. The scroll bottle, Wind Lea, Amber Longeron, Nacre Loom, Heartwood Warden, Moon Dumpling Relay, Foil Tilt Card, Zephyr Vale, and Cinder Mere are stills until I can loop the glass, the wind, the flight, the film, the glade, the conveyor, the foil, the vale, and the basin.
 
 **Also in the repo:** [ai-3d-lanes](./experiments/ai-3d-lanes/README.md) (web-3d / blender / cad / mesh-gen) · [image-to-3d](./experiments/image-to-3d/README.md) · [ai-image-texture](./experiments/ai-image-texture/README.md) · [llm-openscad](./experiments/llm-openscad/README.md)
 

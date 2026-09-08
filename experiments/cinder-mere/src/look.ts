@@ -1,0 +1,116 @@
+import type { TimeMode, TimeName } from './types';
+
+export interface ResolvedLook {
+  name: TimeName;
+  skyZenith: string;
+  skyHorizon: string;
+  fogColor: string;
+  fogDensity: number;
+  sunColor: string;
+  sunIntensity: number;
+  sunElevation: number;
+  sunAzimuth: number;
+  ambientColor: string;
+  ambientIntensity: number;
+  hemiSky: string;
+  hemiGround: string;
+  waterColor: string;
+  waterOpacity: number;
+  exposure: number;
+  lampGain: number;
+}
+
+const DUSK: ResolvedLook = {
+  name: 'dusk',
+  skyZenith: '#1a1733',
+  skyHorizon: '#e07a42',
+  fogColor: '#c46a48',
+  fogDensity: 0.016,
+  sunColor: '#ffb070',
+  sunIntensity: 1.55,
+  sunElevation: 0.18,
+  sunAzimuth: 0.92,
+  ambientColor: '#4a2c28',
+  ambientIntensity: 0.32,
+  hemiSky: '#f0a070',
+  hemiGround: '#3a2a22',
+  waterColor: '#2a3d48',
+  waterOpacity: 0.78,
+  exposure: 0.96,
+  lampGain: 1,
+};
+
+const DAY: ResolvedLook = {
+  name: 'day',
+  skyZenith: '#6ea6d4',
+  skyHorizon: '#d7e6ef',
+  fogColor: '#c5d3c8',
+  fogDensity: 0.0075,
+  sunColor: '#fff2d4',
+  sunIntensity: 2.05,
+  sunElevation: 0.72,
+  sunAzimuth: 0.55,
+  ambientColor: '#8aa0a8',
+  ambientIntensity: 0.42,
+  hemiSky: '#d8e8f4',
+  hemiGround: '#6a5a40',
+  waterColor: '#3d6a72',
+  waterOpacity: 0.7,
+  lampGain: 0.15,
+  exposure: 1.08,
+};
+
+function mixHex(a: string, b: string, t: number): string {
+  const parse = (hex: string) => Number.parseInt(hex.slice(1), 16);
+  const av = parse(a);
+  const bv = parse(b);
+  const mix = (shift: number) => {
+    const left = (av >> shift) & 255;
+    const right = (bv >> shift) & 255;
+    return Math.round(left + (right - left) * t);
+  };
+  const r = mix(16);
+  const g = mix(8);
+  const bch = mix(0);
+  return `#${((r << 16) | (g << 8) | bch).toString(16).padStart(6, '0')}`;
+}
+
+function lerp(a: number, b: number, t: number): number {
+  return a + (b - a) * t;
+}
+
+export function blendLook(from: ResolvedLook, to: ResolvedLook, t: number): ResolvedLook {
+  const k = Math.min(1, Math.max(0, t));
+  return {
+    name: k < 0.5 ? from.name : to.name,
+    skyZenith: mixHex(from.skyZenith, to.skyZenith, k),
+    skyHorizon: mixHex(from.skyHorizon, to.skyHorizon, k),
+    fogColor: mixHex(from.fogColor, to.fogColor, k),
+    fogDensity: lerp(from.fogDensity, to.fogDensity, k),
+    sunColor: mixHex(from.sunColor, to.sunColor, k),
+    sunIntensity: lerp(from.sunIntensity, to.sunIntensity, k),
+    sunElevation: lerp(from.sunElevation, to.sunElevation, k),
+    sunAzimuth: lerp(from.sunAzimuth, to.sunAzimuth, k),
+    ambientColor: mixHex(from.ambientColor, to.ambientColor, k),
+    ambientIntensity: lerp(from.ambientIntensity, to.ambientIntensity, k),
+    hemiSky: mixHex(from.hemiSky, to.hemiSky, k),
+    hemiGround: mixHex(from.hemiGround, to.hemiGround, k),
+    waterColor: mixHex(from.waterColor, to.waterColor, k),
+    waterOpacity: lerp(from.waterOpacity, to.waterOpacity, k),
+    exposure: lerp(from.exposure, to.exposure, k),
+    lampGain: lerp(from.lampGain, to.lampGain, k),
+  };
+}
+
+export function resolveLook(mode: TimeMode, elapsed: number): ResolvedLook {
+  if (mode === 'dusk') return DUSK;
+  if (mode === 'day') return DAY;
+  const wave = (Math.sin(elapsed / 42) + 1) / 2;
+  return blendLook(DUSK, DAY, wave);
+}
+
+export function cycleTimeMode(mode: TimeMode): TimeMode {
+  if (mode === 'dusk') return 'day';
+  if (mode === 'day') return 'cycle';
+  return 'dusk';
+}
