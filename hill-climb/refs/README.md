@@ -30,6 +30,7 @@ Thumbs attached on the 2026-09-08 agent pass (not copied from the source demos' 
 - `breakwater-20260908-1418.png` — feel-only Crayon Arcade mecha / flooded-harbour still when attached (dusk HUD, chassis grid). Mood / lighting / “a walker on a breakwater” only for `experiments/breakwater`. Do not copy their forge, chassis nouns, deploy CTA, or play bundle.
 - `px4-assembly-x-thumb-20260908.jpg` — [Peter05704721](https://x.com/Peter05704721/status/2097144569989300371) video thumb (white studio, completed trainer, bottom scrubber). Built: `experiments/keel-hex/`. Notes: `docs/reverse-engineering/keel-hex.md`. Feel / lighting / “walk a trainer together” only. Do not copy their quad, PX4 / S3 chrome, or Pages source.
 - `px4-assembly-live-20260908-1515.png` — feel-only headed still of the public live (left hero, Assembled / Inside / Exploded, explode slider, labels). Interaction model only for `experiments/keel-hex`. Do not copy their chrome, nouns, or Pages source.
+- `bison-breakaway-20260908-1824.png` — feel-only **menu** still (dark charcoal, three place tabs, poster card, Play CTA) when attached. Interaction pattern only for `experiments/ochre-gallop`: pick a highland, then play into a chase. Do **not** copy their poster illustration, park names, NPS strings, yellow CTA, or jump/slide legend. If the binary is missing from a checkout, invent from the pitch.
 
 If a checkout is missing the binaries, the same stills live on those posts.
 
