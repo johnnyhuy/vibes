@@ -30,6 +30,7 @@ Hobby quota on `johnnyhuy-dev` resets after the 2026-09-07 burn (~**2026-09-08 2
 | moon-dumpling-relay | — | `experiments/moon-dumpling-relay` | — | no project |
 | foil-tilt-card | — | `experiments/foil-tilt-card` | — | no project |
 | zephyr-vale | — | `experiments/zephyr-vale` | — | no project — post-quota name `vibes-zephyr-vale` |
+| cinder-mere | — | `experiments/cinder-mere` | — | no project — post-quota name `vibes-cinder-mere` |
 
 PR previews appear as Vercel bot comments when quota allows.
 
