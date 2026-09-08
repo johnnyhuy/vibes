@@ -72,6 +72,8 @@ The XZ layout was correct. The **seat** was not.
 
 Math lives in `framing.js` with `node --test framing.test.js` covering 16:9, portrait, and a full orbit.
 
+Headed local preview (`npm run build` + `vite preview` @ 4173, Chrome 1280×720 and 390×844): **PASS** — full horseshoe with margin on load, after Reset Camera, after Auto-Rotate → Manual → Reset, and on a slow orbit. Stills: `docs/previews/blender-semicircle.png` and refreshed `docs/previews/blender-semicircle.gif`.
+
 Still no production redeploy from the agent (hobby quota until ~2026-09-08 20:39 UTC). Preview deploys from this PR are fine if Vercel has slots.
 
 ---
