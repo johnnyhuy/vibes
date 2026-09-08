@@ -34,6 +34,7 @@ Hobby quota on `johnnyhuy-dev` resets after the 2026-09-07 burn (~**2026-09-08 2
 | kiln-studs | `vibes-kiln-studs` (`prj_qI0BHjZbM8vNYHuhPtpmN91ZOLT8`) | `experiments/kiln-studs` | — | linked `deploy: false`, SSO off, 0 production |
 | alba-forum | `vibes-alba-forum` (`prj_q9pJAos2JhRzr1M3uBAalAnAST17`) | `experiments/alba-forum` | — | linked `deploy: false`, SSO off, 0 production |
 | brine-causeway | — | `experiments/brine-causeway` | — | no project — post-quota name `vibes-brine-causeway` |
+| breakwater | — | `experiments/breakwater` | — | no project — post-quota name `vibes-breakwater` |
 
 PR previews appear as Vercel bot comments when quota allows.
 

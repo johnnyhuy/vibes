@@ -27,6 +27,8 @@ Thumbs attached on the 2026-09-08 agent pass (not copied from the source demos' 
 - `crayon-tide-remembers-thumb.jpg` — optional sibling vibe (underwater Ghibli town, “The Tide Remembers”). **Not an experiment this PR.** Quiet atmosphere / thin HUD only. Do not build that city.
 - `tushar-wind-wanders-progress.jpg` — [TusharXo](https://x.com/TusharXo/status/2096380894579929427) progress video thumb (valley path, rustic structures). Same feel-only rule. Binaries live under `hill-climb/refs` when present; if a checkout is missing them, the stills live on those posts.
 
+- `breakwater-20260908-1418.png` — feel-only Crayon Arcade mecha / flooded-harbour still when attached (dusk HUD, chassis grid). Mood / lighting / “a walker on a breakwater” only for `experiments/breakwater`. Do not copy their forge, chassis nouns, deploy CTA, or play bundle.
+
 If a checkout is missing the binaries, the same stills live on those posts.
 
 Production QA stills — see [docs/visual-qa-2026-09-08-prod.md](../../docs/visual-qa-2026-09-08-prod.md). Morning FAIL set (~12:07 AEST), 2:22am explode PASS set (`prod-explode-0/80-20260908-0222.png`), and ~4:37am headed set (`prod-*-20260908-0425.png`: steam PASS, semicircle still FAIL):

@@ -124,6 +124,13 @@ Across these demos, the quality bar is:
 
 ## My Implementation Status
 
+### breakwater ✅ (local)
+- ✅ Dusk pier + frosted dusk HUD (Cinder Mere / kiln tokens, invented nouns)
+- ✅ Procedural Spile Frame, tetrapod groyne, sine water, orbit + three marks
+- ✅ Vendored Poly Haven CC0 Small Harbour Sunset. Mute-default surf. No chassis picker
+- ⚠️ No Vercel project — do not create one until quota is healthy
+- Inspired by a public Crayon Arcade mecha / breakwater pitch (feel-only still; no bundle scrape)
+
 ### brine-causeway ✅ (local)
 - ✅ Late-sun coast strip + thin editorial HUD (atmosphere chip, Cut the brine)
 - ✅ Procedural Iodine Wedge, Vermilion Span, Salt Reach loop. No Ferrari nouns
@@ -279,4 +286,4 @@ Then implementing those patterns with:
 
 **Author**: Johnny Huynh  
 **Purpose**: Visual quality reference for vibes experiments  
-**Last Updated**: 2026-09-08 (Poly Haven PBR forest + kiln cart + local HDRIs + Kiln Studs; still no new Vercel project; quota wait ~2026-09-08 20:39 UTC)
+**Last Updated**: 2026-09-08 (Breakwater harbour walker; still no new Vercel project; quota wait ~2026-09-08 20:39 UTC)
