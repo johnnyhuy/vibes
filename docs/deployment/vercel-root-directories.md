@@ -3,7 +3,7 @@
 I'm writing this down because Root Directory lives in the **Vercel dashboard**, not in git. `vercel.json` inside an experiment can set framework / build / `ignoreCommand`. It cannot set Root Directory. A monorepo-root `vercel.json` would fight every other project. I am not adding one.
 
 Team: `johnnyhuy-dev` (`team_qBCPdqU9J1cQDL4rkrFsjNoa`)  
-Hobby quota: 100 deploys/day. Reset after the 2026-09-07 burn: **~2026-09-08 20:39 UTC** (API; earlier notes said 12:55 UTC). Do not retry-spam. **Repo-link cap: 25 projects per Git repo on Hobby** — `create_git_project` for `vibes-keel-hex` already failed (`repo_links_exceeded_limit`); Fairday Walk and **Ochre Gallop are blocked by the same cap** — do not create `vibes-fairday-walk` or `vibes-ochre-gallop`. No new links until Johnny frees a slot or upgrades to Pro. See [the incident](../incidents/2026-09-08-vercel-repo-link-limit-25.md).
+Hobby quota: 100 deploys/day. Reset after the 2026-09-07 burn: **~2026-09-08 20:39 UTC** (API; earlier notes said 12:55 UTC). **Post-quota redeploy wave 2026-09-09:** Root-touch commits for scroll / audio / grass so `ignoreCommand` does not CANCELED-skip them again. Semicircle framing is already on `main` at [vibes-blender-semicircle.vercel.app](https://vibes-blender-semicircle.vercel.app). Do not retry-spam. **Repo-link cap: 25 projects per Git repo on Hobby** — `create_git_project` for `vibes-keel-hex` already failed (`repo_links_exceeded_limit`); Fairday Walk and **Ochre Gallop are blocked by the same cap** — do not create `vibes-fairday-walk` or `vibes-ochre-gallop`. No new links until Johnny frees a slot or upgrades to Pro. See [the incident](../incidents/2026-09-08-vercel-repo-link-limit-25.md).
 
 ## Dashboard field (required)
 
@@ -26,15 +26,15 @@ See [the incident](../incidents/2026-09-08-steam-atlas-wrong-root.md).
 | `vibes-earth` | `prj_SiIJCJMag4TvYUYp8qjzuZ5EIRLe` | `experiments/earth-timeline` |
 | `vibes-v8` | `prj_7Em98GNdH9nceT1LonpntoCgNgRY` | `experiments/v8-cutaway` |
 | `vibes-physics` | `prj_Ilh5mBV0g7m7btvnxnhZuFY5ZjiH` | `experiments/web-physics` |
-| `vibes-blender-semicircle` | `prj_PLhnoCVRKmpHc8SxyLRmcp3MFZMC` | `experiments/blender-semicircle-viewer` — production alias still on `25587f54` |
+| `vibes-blender-semicircle` | `prj_PLhnoCVRKmpHc8SxyLRmcp3MFZMC` | `experiments/blender-semicircle-viewer` — framing fix on `main`; [vibes-blender-semicircle.vercel.app](https://vibes-blender-semicircle.vercel.app). Skip this wave. |
 | `vibes-steam-atlas` | `prj_7D08PT8sdUjhigCEuz83oltZrDMv` | `experiments/procedural-steam-atlas` — **LIVE PASS** [vibes-steam-atlas.vercel.app](https://vibes-steam-atlas.vercel.app) (`dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS` on `a94b16e`). Assembled locomotive. Skip after quota. |
-| `vibes-scroll-product` | `prj_XLBiIlbjweejp9himT53bolPEMUW` | **`experiments/scroll-product-showcase`** (set; no READY production — one CANCELED) |
+| `vibes-scroll-product` | `prj_XLBiIlbjweejp9himT53bolPEMUW` | **`experiments/scroll-product-showcase`** — 2026-09-09 Root touch so ignoreCommand builds [vibes-scroll-product.vercel.app](https://vibes-scroll-product.vercel.app) |
 | `vibes-glass-capability-brain` | `prj_yJbQTsiB138V5jh92cwSWd8rZmij` | `experiments/glass-capability-brain` — production READY [vibes-glass-capability-brain.vercel.app](https://vibes-glass-capability-brain.vercel.app/) (`dpl_3CE9Dd7X7og5MuSLpcGgyxboacgz` on `9328191`). SSO off. |
 | `vibes-japanese-tower` | `prj_T1KL4cJSMuY0Z6oKGnNtv8zVP0Js` | `experiments/japanese-tower` — **LIVE** Ridge Pagoda at [vibes-japanese-tower.vercel.app](https://vibes-japanese-tower.vercel.app) (`dpl_Gap9BAXosU4jMEsQsR8c2nKyEPjg` from courtyard PR). Skip after quota unless visual QA fails. |
 | — | — | `experiments/ballance-roll` — **no project**. Do not create one on this PR. |
 | — | — | `experiments/chinese-courtyard` — **no project**. Do not create one on this PR. |
-| `vibes-audio-gadget-spin` | `prj_N57mvThg4UcU9XxLK3F5wAICz9PA` | **`experiments/audio-gadget-spin`** — created `deploy: false` this hour. SSO off. Root is dashboard-owned. **0 production** until post-quota. Do not redeploy on this PR. |
-| — | — | `experiments/procedural-grass-field` — **no project** on this pass. If `vibes-procedural-grass-field` already exists `deploy: false`, leave it idle. Do not create or redeploy on this PR. |
+| `vibes-audio-gadget-spin` | `prj_N57mvThg4UcU9XxLK3F5wAICz9PA` | **`experiments/audio-gadget-spin`** — SSO off. 2026-09-09 Root touch so ignoreCommand builds [vibes-audio-gadget-spin.vercel.app](https://vibes-audio-gadget-spin.vercel.app). Do not create a new project. |
+| `vibes-procedural-grass-field` | — | **`experiments/procedural-grass-field`** — 2026-09-09 Root touch so ignoreCommand builds [vibes-procedural-grass-field.vercel.app](https://vibes-procedural-grass-field.vercel.app). **Do not** `create_git_project` (25-link cap). |
 | — | — | `experiments/amber-longeron` — **no project**. Do not create one on this PR. |
 | — | — | `experiments/nacre-loom` — **no project**. Do not create one on this PR. |
 | — | — | `experiments/heartwood-warden` — **no project**. Do not create one on this PR. |
@@ -54,20 +54,20 @@ In-repo `vercel.json` lives *inside* those folders (`framework: vite`, `outputDi
 
 `ignoreCommand: git diff --quiet HEAD^ HEAD ./` skips the Vite build when that folder did not change. Vercel records that skip as **CANCELED** with `errorLink` **`ignored-build-step`**. It may still count as a hobby deployment. It does **not** write or refresh a production alias — that is why steam-atlas stayed `DEPLOYMENT_NOT_FOUND` after a `create_git_project` redeploy of `main` (the tip only touched `japanese-tower`).
 
-Pending apps (scroll-product, semicircle) need a commit that **touches their Root Directory** or a **dashboard Redeploy** that bypasses ignore, after quota ~2026-09-08 20:39 UTC. steam-atlas and japanese-tower already have LIVE production. A sibling-folder merge will skip the pending ones again.
+**2026-09-09 wave:** scroll / audio / grass get a commit that **touches their Root Directory** so `ignoreCommand` passes. Semicircle framing is already on `main`. steam-atlas, explode, earth, v8, physics, glass, japanese-tower, and web-3d/`vibes` already have LIVE production. A sibling-folder merge will skip anyone we do not touch.
 
 It will not save you if Root Directory is blank — that `vercel.json` is never read.
 
 ## Post-quota redeploy order
 
-One deploy per project. Stop. Updated 2026-09-07 (heartwood-warden hill-climb). Hobby quota is still **0** until **~2026-09-08 20:39 UTC**.
+One deploy per project. Stop. **Wave 2026-09-09** — quota reset ~2026-09-08 20:39 UTC. Semicircle framing is on `main`. This wave only Root-touches scroll / audio / grass.
 
-1. `vibes-blender-semicircle` — git-main *preview* PASS; production still FAIL on stale `25587f54` (cropped mega-arc). One `main` production redeploy for the framing fix.
-2. `vibes-scroll-product` — first READY production from `main` (Root already `experiments/scroll-product-showcase`).
-3. `vibes-audio-gadget-spin` (`prj_N57mvThg4UcU9XxLK3F5wAICz9PA`) — first production after dashboard Root is confirmed as `experiments/audio-gadget-spin`. Linked `deploy: false`. **Do not redeploy on this PR.**
-4. `vibes-procedural-grass-field` — first production (or create-then-promote only in this slot). If it already exists `deploy: false`, leave it idle until this slot.
-5. Only then ballance / courtyard / amber-longeron / nacre-loom / heartwood-warden / moon-dumpling-relay / foil-tilt-card / zephyr-vale / cinder-mere / kiln-studs / alba-forum / brine-causeway / breakwater / keel-hex / fairday-walk / ochre-gallop. Do **not** create `vibes-ballance-roll`, a courtyard project, `vibes-amber-longeron`, `vibes-nacre-loom`, `vibes-heartwood-warden`, `vibes-moon-dumpling-relay`, `vibes-foil-tilt-card`, `vibes-zephyr-vale`, `vibes-keel-hex`, `vibes-fairday-walk`, or `vibes-ochre-gallop` until a repo-link slot exists. `vibes-cinder-mere`, `vibes-kiln-studs`, `vibes-alba-forum`, `vibes-brine-causeway`, and `vibes-breakwater` already exist as link-only — do not promote them until quota recovers. New projects follow `vibes-<experiment>`.
-6. **Skip** explode / steam-atlas / japanese-tower / glass unless a later visual QA says they broke.
+1. `vibes-blender-semicircle` — **done on `main`**. Framing fix at [vibes-blender-semicircle.vercel.app](https://vibes-blender-semicircle.vercel.app). Skip this wave.
+2. `vibes-scroll-product` — Root-touch this wave so `ignoreCommand` builds [vibes-scroll-product.vercel.app](https://vibes-scroll-product.vercel.app).
+3. `vibes-audio-gadget-spin` (`prj_N57mvThg4UcU9XxLK3F5wAICz9PA`) — Root-touch this wave so `ignoreCommand` builds [vibes-audio-gadget-spin.vercel.app](https://vibes-audio-gadget-spin.vercel.app). Do not create a new project.
+4. `vibes-procedural-grass-field` — Root-touch this wave so `ignoreCommand` builds [vibes-procedural-grass-field.vercel.app](https://vibes-procedural-grass-field.vercel.app). **Do not** `create_git_project` (25-link cap).
+5. Only then ballance / courtyard / amber-longeron / nacre-loom / heartwood-warden / moon-dumpling-relay / foil-tilt-card / zephyr-vale / cinder-mere / kiln-studs / alba-forum / brine-causeway / breakwater / keel-hex / fairday-walk / ochre-gallop. Do **not** create `vibes-ballance-roll`, a courtyard project, `vibes-amber-longeron`, `vibes-nacre-loom`, `vibes-heartwood-warden`, `vibes-moon-dumpling-relay`, `vibes-foil-tilt-card`, `vibes-zephyr-vale`, `vibes-keel-hex`, `vibes-fairday-walk`, or `vibes-ochre-gallop` until a repo-link slot exists. `vibes-cinder-mere`, `vibes-kiln-studs`, `vibes-alba-forum`, `vibes-brine-causeway`, and `vibes-breakwater` already exist as link-only — do not promote them on this wave. New projects follow `vibes-<experiment>`.
+6. **Skip** explode / steam-atlas / japanese-tower / glass / earth / v8 / physics / web-3d unless a later visual QA says they broke.
 
 `experiments/glass-capability-brain/` has `vercel.json`. Project `vibes-glass-capability-brain` (`prj_yJbQTsiB138V5jh92cwSWd8rZmij`) has production READY at [vibes-glass-capability-brain.vercel.app](https://vibes-glass-capability-brain.vercel.app/) (SSO off). It shipped for free on the japanese-tower `main` merge (`9328191` / `dpl_3CE9Dd7X7og5MuSLpcGgyxboacgz`). See [the incident](../incidents/2026-09-08-glass-auto-deploy-on-tower-merge.md).
 
@@ -77,9 +77,9 @@ One deploy per project. Stop. Updated 2026-09-07 (heartwood-warden hill-climb). 
 
 `experiments/chinese-courtyard/` has `vercel.json` (`ignoreCommand`). **No Vercel project.** Do not create one on this PR. When I do: dashboard Root Directory = `experiments/chinese-courtyard`.
 
-`experiments/audio-gadget-spin/` has `vercel.json` (`ignoreCommand`). Project `vibes-audio-gadget-spin` (`prj_N57mvThg4UcU9XxLK3F5wAICz9PA`) exists, created `deploy: false`. SSO off. Intended Root: `experiments/audio-gadget-spin`. Root Directory is still dashboard-owned. **0 production** — do not redeploy until after quota, and only after semicircle then scroll. See [the incident](../incidents/2026-09-07-audio-gadget-linked-before-quota.md).
+`experiments/audio-gadget-spin/` has `vercel.json` (`ignoreCommand`). Project `vibes-audio-gadget-spin` (`prj_N57mvThg4UcU9XxLK3F5wAICz9PA`) exists. SSO off. Root: `experiments/audio-gadget-spin`. **2026-09-09 Root touch** so ignoreCommand builds [vibes-audio-gadget-spin.vercel.app](https://vibes-audio-gadget-spin.vercel.app). See [the incident](../incidents/2026-09-07-audio-gadget-linked-before-quota.md).
 
-`experiments/procedural-grass-field/` has `vercel.json` (`ignoreCommand`). **No new project on this PR.** If `vibes-procedural-grass-field` already exists `deploy: false`, do not redeploy it. When I do add or promote one: dashboard Root Directory = `experiments/procedural-grass-field`.
+`experiments/procedural-grass-field/` has `vercel.json` (`ignoreCommand`). **2026-09-09 Root touch** so ignoreCommand builds [vibes-procedural-grass-field.vercel.app](https://vibes-procedural-grass-field.vercel.app). **No new project** — 25-link cap. Dashboard Root Directory = `experiments/procedural-grass-field`.
 
 `experiments/amber-longeron/` is a new Vite app with its own `vercel.json` (`ignoreCommand`). **No Vercel project.** Do not create one on this PR. When I do: dashboard Root Directory = `experiments/amber-longeron`.
 
@@ -111,7 +111,7 @@ One deploy per project. Stop. Updated 2026-09-07 (heartwood-warden hill-climb). 
 
 steam-atlas Root must stay `experiments/procedural-steam-atlas`. It already has LIVE production. Do not spend a post-quota slot on it unless a later visual QA fails.
 
-Do not create extra Vercel projects. Do not force production redeploys while the quota is 0.
+Do not create extra Vercel projects. Do not call `create_git_project`. The 2026-09-09 wave only Root-touches scroll / audio / grass.
 
 ## README showcase previews
 
@@ -197,5 +197,9 @@ This pass adds Fairday Walk locally. **No new Vercel project. No redeploy.** Quo
 
 This pass adds Ochre Gallop locally. **No new Vercel project. No redeploy.** Hobby is at the **25 Git repo-link cap** (`repo_links_exceeded_limit` on keel-hex). Future name would be `vibes-ochre-gallop`. Do not create it here.
 
+### Hill-climb — 2026-09-09 (post-quota Root-touch wave)
+
+Quota reset ~2026-09-08 20:39 UTC. This pass **does not create projects**. I touch `experiments/scroll-product-showcase/`, `experiments/audio-gadget-spin/`, and `experiments/procedural-grass-field/` so `ignoreCommand` cannot CANCELED-skip them (`ignored-build-step`). Showcase Live links: [scroll](https://vibes-scroll-product.vercel.app), [audio](https://vibes-audio-gadget-spin.vercel.app), [grass](https://vibes-procedural-grass-field.vercel.app). Semicircle framing is already on `main` at [vibes-blender-semicircle.vercel.app](https://vibes-blender-semicircle.vercel.app). Skip explode / earth / v8 / physics / steam / glass / tower / web-3d.
+
 **Author**: Johnny Huynh  
-**Last updated**: 2026-09-08 (ochre-gallop)
+**Last updated**: 2026-09-09 (post-quota Root-touch wave)

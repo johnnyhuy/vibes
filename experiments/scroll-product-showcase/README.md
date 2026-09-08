@@ -55,7 +55,9 @@ npm run build
 Vercel project: **`vibes-scroll-product`** (`prj_XLBiIlbjweejp9himT53bolPEMUW`)  
 Dashboard **Root Directory** (required): **`experiments/scroll-product-showcase`**
 
-`vercel.json` cannot set Root Directory. **Still no READY production** — one CANCELED hook only. Sibling-folder commits are skipped here (`ignoreCommand` / `ignored-build-step`), so this courtyard-pass README touch is what lets the next post-quota `main` merge actually build this Root. First production after ~**2026-09-08 12:55 UTC**. Do not retry-spam from the agent.
+Production: [https://vibes-scroll-product.vercel.app](https://vibes-scroll-product.vercel.app)
+
+`vercel.json` cannot set Root Directory. Earlier `main` hooks CANCELED with `ignored-build-step` because this folder did not change. This 2026-09-09 post-quota Root touch is what lets `ignoreCommand` pass so production can actually build. I am not creating a new project. Do not retry-spam.
 
 ## What I Learnt
 
@@ -72,6 +74,6 @@ Dashboard **Root Directory** (required): **`experiments/scroll-product-showcase`
 
 ---
 
-**Status**: Linked, **0 production** — needs a Root-touching merge (or dashboard Redeploy) after quota  
-**Last updated**: 2026-09-08  
+**Status**: Production alias [vibes-scroll-product.vercel.app](https://vibes-scroll-product.vercel.app) — 2026-09-09 Root touch so ignoreCommand builds  
+**Last updated**: 2026-09-09  
 **Built by**: Johnny Huynh

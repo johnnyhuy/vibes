@@ -1,5 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "//": "2026-09-09 post-quota Root touch so ignoreCommand does not skip",
   "framework": "vite",
   "installCommand": "npm install",
   "buildCommand": "npm run build",
