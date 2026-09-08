@@ -78,6 +78,7 @@ Things that went sideways and what I learnt:
 - [Preview stills](./visual-qa/README.md) — refresh `docs/previews/<app>.png` on ship / redeploy
 - [2026-09-07: Hill-Climb Visual QA Loop](./visual-qa-2026-09-07.md) — Explode mesh filter hardening, earth/v8 confirmation
 - [2026-09-08: Production visual QA](./visual-qa-2026-09-08-prod.md) — explode / steam / glass / tower LIVE; semicircle still `25587f54`; scroll 404. Audio-gadget linked, not live. Wind Lea + Amber Longeron + Nacre Loom + Heartwood Warden + Moon Dumpling Relay + Foil Tilt Card + Zephyr Vale + Cinder Mere local; no new project.
+- [2026-09-08: Hi-fi hero meshes](./visual-qa-2026-09-08-hifi-heroes.md) — Poly Haven forest + kiln cart + studio/sunset/night HDRIs; local only; no new project.
 
 ## Writing Style
 

@@ -1,8 +1,7 @@
-import { CanvasTexture } from 'three';
 import { clampToBasin, heightAt, slopeAt, SPAWN, WATER_LEVEL } from './terrain';
 import type { DriveInput, VehicleState } from './types';
 
-export const RIDE_HEIGHT = 0.46;
+export const RIDE_HEIGHT = 0.02;
 const MAX_SPEED = 15.4;
 const REVERSE = 5.2;
 const ACCEL = 11.5;
@@ -98,37 +97,4 @@ export function stepVehicle(state: VehicleState, input: DriveInput, dt: number):
 
 export function paceKph(speed: number): number {
   return Math.round(Math.abs(speed) * 4.2);
-}
-
-export function paintSoot(): CanvasTexture {
-  const size = 256;
-  const canvas = document.createElement('canvas');
-  canvas.width = size;
-  canvas.height = size;
-  const ctx = canvas.getContext('2d');
-  if (!ctx) {
-    const fallback = new CanvasTexture(canvas);
-    return fallback;
-  }
-
-  ctx.fillStyle = '#5a4034';
-  ctx.fillRect(0, 0, size, size);
-  for (let i = 0; i < 1400; i += 1) {
-    const x = Math.random() * size;
-    const y = Math.random() * size;
-    const shade = 70 + Math.random() * 50;
-    ctx.fillStyle = `rgba(${shade + 20}, ${shade - 8}, ${shade - 18}, 0.22)`;
-    ctx.fillRect(x, y, 1 + Math.random() * 2, 1 + Math.random() * 2);
-  }
-  for (let i = 0; i < 8; i += 1) {
-    ctx.strokeStyle = `rgba(30, 18, 12, ${0.08 + Math.random() * 0.1})`;
-    ctx.beginPath();
-    ctx.moveTo(Math.random() * size, 0);
-    ctx.lineTo(Math.random() * size, size);
-    ctx.stroke();
-  }
-
-  const texture = new CanvasTexture(canvas);
-  texture.needsUpdate = true;
-  return texture;
 }

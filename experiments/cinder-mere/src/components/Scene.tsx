@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { ACESFilmicToneMapping, PCFSoftShadowMap } from 'three';
 import type { InputRef, VehicleRef } from '../types';
@@ -28,7 +29,9 @@ export default function Scene({ vehicle, input, look, reducedMotion, onCanvasCli
       }}
       onPointerDown={() => onCanvasClick?.()}
     >
-      <DriveWorld vehicle={vehicle} input={input} look={look} reducedMotion={reducedMotion} />
+      <Suspense fallback={null}>
+        <DriveWorld vehicle={vehicle} input={input} look={look} reducedMotion={reducedMotion} />
+      </Suspense>
     </Canvas>
   );
 }

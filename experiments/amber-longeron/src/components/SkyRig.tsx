@@ -1,4 +1,5 @@
 import { useLayoutEffect } from 'react';
+import { Environment } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
 import { Color, Fog } from 'three';
 
@@ -22,9 +23,10 @@ export default function SkyRig() {
         <planeGeometry args={[80, 80]} />
         <meshStandardMaterial color={LINEN} roughness={1} />
       </mesh>
-      <hemisphereLight args={['#fff6ea', '#d2bea0', 0.95]} />
-      <ambientLight color="#f3e6d2" intensity={0.55} />
-      <directionalLight color="#fff4e4" intensity={0.55} position={[-6, 10, 3]} />
+      <hemisphereLight args={['#fff6ea', '#d2bea0', 0.72]} />
+      <ambientLight color="#f3e6d2" intensity={0.42} />
+      <directionalLight color="#fff4e4" intensity={0.85} position={[-6, 10, 3]} />
+      <Environment files="/hdri/studio.hdr" background={false} environmentIntensity={0.9} />
     </>
   );
 }

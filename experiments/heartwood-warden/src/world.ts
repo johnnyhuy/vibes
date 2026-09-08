@@ -3,26 +3,32 @@ export const WALK_SPEED = 3.15;
 export const RUN_SPEED = 5.85;
 export const MOON = { x: 16, y: 26, z: -20 } as const;
 
-export const TREE_MODELS = [
-  '/models/tree_detailed_dark.glb',
-  '/models/tree_oak_dark.glb',
-  '/models/tree_thin_dark.glb',
-  '/models/tree_pineTallA_detailed.glb',
-  '/models/tree_pineTallC_detailed.glb',
-  '/models/tree_tall_dark.glb',
+export const HERO_TREE = '/models/quiver-hero.glb';
+export const SPARE_TREE = '/models/quiver-spare.glb';
+export const FIR_TREE = '/models/fir-canopy.glb';
+export const STUMP_MODEL = '/models/stump.glb';
+export const ROCK_MODEL = '/models/moss-rocks.glb';
+export const SHRUB_MODEL = '/models/undergrowth.glb';
+export const LOG_MODEL = '/models/fallen-trunk.glb';
+
+export const FOREST_MODELS = [
+  HERO_TREE,
+  SPARE_TREE,
+  FIR_TREE,
+  STUMP_MODEL,
+  ROCK_MODEL,
+  SHRUB_MODEL,
+  LOG_MODEL,
 ] as const;
 
-export const ROCK_MODELS = ['/models/rock_largeA.glb', '/models/rock_largeB.glb', '/models/rock_tallA.glb'] as const;
-
-export const LOG_MODEL = '/models/log.glb';
-
-export interface TreeSpot {
+export interface PropSpot {
   x: number;
   z: number;
   scale: number;
   twist: number;
   lean: number;
-  model: (typeof TREE_MODELS)[number];
+  model: (typeof FOREST_MODELS)[number];
+  span: number;
 }
 
 function unit(seed: number): number {
@@ -30,25 +36,54 @@ function unit(seed: number): number {
   return value - Math.floor(value);
 }
 
-function spot(index: number, ring: number, count: number, scale: number): TreeSpot {
-  const angle = (index / count) * Math.PI * 2 + unit(index + 9) * 0.28;
+function place(
+  index: number,
+  ring: number,
+  count: number,
+  model: PropSpot['model'],
+  span: number,
+  scale: number
+): PropSpot {
+  const angle = (index / count) * Math.PI * 2 + unit(index + 9) * 0.22;
   return {
     x: Math.cos(angle) * ring,
     z: Math.sin(angle) * ring * 0.92,
     scale,
     twist: unit(index + 41) * Math.PI,
-    lean: (unit(index + 17) - 0.5) * 0.18,
-    model: TREE_MODELS[index % TREE_MODELS.length],
+    lean: (unit(index + 17) - 0.5) * 0.08,
+    model,
+    span,
   };
 }
 
-export const TREES: TreeSpot[] = [
-  ...Array.from({ length: 8 }, (_, index) =>
-    spot(index, 7.35 + unit(index + 3) * 1.55, 8, 1.18 + unit(index + 21) * 0.38)
+/** Collision hulls — canopy trees only. Undergrowth is walkable. */
+export const TREES: PropSpot[] = [
+  ...Array.from({ length: 4 }, (_, index) =>
+    place(index, 7.05 + unit(index + 3) * 0.55, 4, HERO_TREE, 8.2, 1.12 + unit(index + 21) * 0.18)
   ),
-  ...Array.from({ length: 20 }, (_, index) =>
-    spot(index + 8, 12.1 + unit(index + 13) * 4.2, 20, 0.92 + unit(index + 33) * 0.5)
+  ...Array.from({ length: 5 }, (_, index) =>
+    place(index + 6, 10.6 + unit(index + 13) * 1.6, 5, FIR_TREE, 7.6, 1.2 + unit(index + 33) * 0.16)
   ),
+  ...Array.from({ length: 4 }, (_, index) =>
+    place(index + 20, 13.2, 4, SPARE_TREE, 5.4, 1.08 + unit(index + 7) * 0.2)
+  ),
+];
+
+export const UNDERGROWTH: PropSpot[] = [
+  ...Array.from({ length: 5 }, (_, index) =>
+    place(index + 40, 5.7, 5, ROCK_MODEL, 1.35, 0.85 + unit(index + 5) * 0.2)
+  ),
+  ...Array.from({ length: 4 }, (_, index) =>
+    place(index + 50, 8.8 + unit(index) * 1.4, 4, STUMP_MODEL, 1.15, 0.9 + unit(index + 11) * 0.18)
+  ),
+  ...Array.from({ length: 6 }, (_, index) =>
+    place(index + 60, 6.4 + unit(index + 2) * 3.2, 6, SHRUB_MODEL, 1.45, 0.95 + unit(index + 19) * 0.25)
+  ),
+];
+
+export const LOGS: PropSpot[] = [
+  { x: -3.8, z: -4.2, scale: 1, twist: 1.1, lean: 0, model: LOG_MODEL, span: 2.4 },
+  { x: 4.6, z: 3.2, scale: 0.86, twist: 0.7, lean: 0.04, model: LOG_MODEL, span: 2.1 },
 ];
 
 export function clampToGlade(x: number, z: number): { x: number; z: number } {
@@ -64,7 +99,7 @@ export function pushFromTrees(x: number, z: number): { x: number; z: number } {
   for (const tree of TREES) {
     const dx = nextX - tree.x;
     const dz = nextZ - tree.z;
-    const radius = 1.25 * tree.scale;
+    const radius = 1.05 * tree.scale;
     const dist = Math.hypot(dx, dz);
     if (dist < radius && dist > 0.001) {
       const push = (radius - dist) / dist;

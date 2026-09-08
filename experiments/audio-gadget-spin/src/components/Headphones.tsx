@@ -57,15 +57,22 @@ export default function Headphones({ finish, highlight, onHotspot }: Props) {
         const mat = (source as MeshStandardMaterial).clone() as MeshStandardMaterial;
         const role = roleFor(meshLabel(mesh));
         const hex = finishColor(role, finish);
-        if ('color' in mat && mat.color) mat.color.lerp(new Color(hex), 0.72);
+        if (mat.color) mat.color.lerp(new Color(hex), 0.72);
         const lit = highlight !== null && (role === highlight || (highlight === 'controls' && role === 'housing'));
-        if ('emissive' in mat && mat.emissive) {
+        if (mat.emissive) {
           mat.emissive.set(lit ? finish.accent : '#000000');
           mat.emissiveIntensity = lit ? 0.28 : 0;
         }
-        if (role === 'metal' && 'metalness' in mat) {
-          mat.metalness = 0.85;
-          mat.roughness = 0.22;
+        mat.envMapIntensity = 1.35;
+        if (role === 'metal') {
+          mat.metalness = 0.88;
+          mat.roughness = 0.18;
+        } else if (role === 'housing' || role === 'controls') {
+          mat.roughness = Math.min(mat.roughness ?? 0.5, 0.42);
+          mat.metalness = Math.max(mat.metalness ?? 0, 0.22);
+        } else if (role === 'cushion') {
+          mat.roughness = 0.78;
+          mat.metalness = 0.04;
         }
         return mat;
       });

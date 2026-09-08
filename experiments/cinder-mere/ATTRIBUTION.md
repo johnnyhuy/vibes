@@ -8,10 +8,24 @@
 
 I did **not** copy their source, meshes, textures, HUD copy, map, vehicle, or Vercel bundle. Cinder Mere / 烬泽, Soot Runner / 炱奔, and the four marks are mine.
 
-## Assets in this experiment
+## 3D model (CC0)
 
-All geometry, canvas soot, landmarks, HUD copy, and the reed bed are original procedural work under the repo MIT licence. No third-party GLB.
+- **Model**: [Portable Welding Cart](https://polyhaven.com/a/portable_welding_cart)
+- **Author**: Georgii Gorbunov
+- **Licence**: [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/)
+- **File**: `public/models/kiln-cart.glb` (1k PBR, Draco + WebP)
 
-## Related kitchen-sink credits
+The HUD still says Soot Runner. Lamps on the cart are mine.
 
-Sibling experiments that *do* ship licensed meshes keep their own `ATTRIBUTION.md`. This folder does not reuse those files.
+## HDRI (CC0)
+
+- **Asset**: [Venice Sunset](https://polyhaven.com/a/venice_sunset)
+- **Author**: Greg Zaal
+- **Licence**: [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/)
+- **File**: `public/hdri/sunset.hdr` (1k)
+
+Terrain, landmarks, and HUD copy stay original procedural work under the repo MIT licence.
+
+## Code
+
+MIT — see the repo [LICENSE](../../LICENSE).
