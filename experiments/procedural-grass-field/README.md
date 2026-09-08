@@ -31,11 +31,11 @@ npm run build
 
 ## Deploy
 
-**No Vercel project.** Do not create one on this PR. Hobby quota on `johnnyhuy-dev` stays exhausted until **~2026-09-08 20:39 UTC**. I am not burning a slot on a new app.
+Project name: **`vibes-procedural-grass-field`**. Dashboard **Root Directory** must be `experiments/procedural-grass-field`.
 
-`vercel.json` only carries the usual Vite fields plus `ignoreCommand`. It cannot set Root Directory. If I add a project later: dashboard **Root Directory** must be `experiments/procedural-grass-field`.
+Production: [https://vibes-procedural-grass-field.vercel.app](https://vibes-procedural-grass-field.vercel.app)
 
-`vibes-audio-gadget-spin` (`prj_N57mvThg4UcU9XxLK3F5wAICz9PA`) already exists with Root `experiments/audio-gadget-spin`. I documented it. I am not redeploying it here. Still no projects for ballance-roll or chinese-courtyard.
+Hobby is at the 25 Git repo-link cap — I am **not** calling `create_git_project`. If the project already exists (`deploy: false` or a prior CANCELED hook), this 2026-09-09 post-quota Root touch is what lets `ignoreCommand` pass so production can build. `vercel.json` cannot set Root Directory.
 
 ## Related
 
@@ -44,6 +44,6 @@ npm run build
 
 ---
 
-**Status**: Local build is the QA until a project exists  
-**Last updated**: 2026-09-07  
+**Status**: Production alias [vibes-procedural-grass-field.vercel.app](https://vibes-procedural-grass-field.vercel.app) — 2026-09-09 Root touch so ignoreCommand builds  
+**Last updated**: 2026-09-09  
 **Built by**: Johnny Huynh

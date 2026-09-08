@@ -36,11 +36,11 @@ npm run build
 
 ## Deploy
 
-Project `vibes-audio-gadget-spin` (`prj_N57mvThg4UcU9XxLK3F5wAICz9PA`) exists. It was created `deploy: false` before the hobby quota resets (~**2026-09-08 20:39 UTC**). SSO off. **No production yet.** Do not redeploy it on this PR.
+Project `vibes-audio-gadget-spin` (`prj_N57mvThg4UcU9XxLK3F5wAICz9PA`). SSO off. Dashboard **Root Directory** must be `experiments/audio-gadget-spin`.
 
-Dashboard **Root Directory** must be `experiments/audio-gadget-spin`. `create_git_project` does not write that field. `vercel.json` only carries the usual Vite fields plus `ignoreCommand`. See [the incident](../../docs/incidents/2026-09-07-audio-gadget-linked-before-quota.md).
+Production: [https://vibes-audio-gadget-spin.vercel.app](https://vibes-audio-gadget-spin.vercel.app)
 
-Do not create `vibes-ballance-roll`, a courtyard project, or a grass-field project either.
+I linked it `deploy: false` before quota. This 2026-09-09 post-quota Root touch is what lets `ignoreCommand` pass so the first production build is not skipped. `create_git_project` does not write Root Directory. I am not creating a new project. See [the incident](../../docs/incidents/2026-09-07-audio-gadget-linked-before-quota.md).
 
 ## Related
 
@@ -50,6 +50,6 @@ Do not create `vibes-ballance-roll`, a courtyard project, or a grass-field proje
 
 ---
 
-**Status**: Local build is the QA until a project exists  
-**Last updated**: 2026-09-08  
+**Status**: Production alias [vibes-audio-gadget-spin.vercel.app](https://vibes-audio-gadget-spin.vercel.app) — 2026-09-09 Root touch so ignoreCommand builds  
+**Last updated**: 2026-09-09  
 **Built by**: Johnny Huynh

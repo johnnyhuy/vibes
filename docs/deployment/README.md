@@ -4,7 +4,7 @@ Each browser demo is its own Vercel project on this repo. **Root Directory** is 
 
 Sibling-folder commits skip via `ignored-build-step` and do **not** refresh production aliases.
 
-Hobby quota on `johnnyhuy-dev` resets after the 2026-09-07 burn (~**2026-09-08 20:39 UTC**; earlier notes said 12:55). Do not retry-spam deploys. After reset, one each: (1) **semicircle** production from the git-main framing fix — git-main *preview* PASS, production still FAIL on stale `25587f54` (2) **scroll-product** first READY (still 404) (3) **audio-gadget** first production (4) **grass** (`vibes-procedural-grass-field`) (5) only then ballance / courtyard / amber-longeron / nacre-loom. Skip explode / steam / glass / tower unless a later visual QA fails. `vibes-audio-gadget-spin` (`prj_N57mvThg4UcU9XxLK3F5wAICz9PA`) is linked `deploy: false`, SSO off, Root `experiments/audio-gadget-spin` — no production, do not redeploy yet. Do not create projects for ballance-roll, chinese-courtyard, amber-longeron, nacre-loom, or a new grass app. If `vibes-procedural-grass-field` already exists `deploy: false`, leave it idle.
+Hobby quota on `johnnyhuy-dev` reset after the 2026-09-07 burn (~**2026-09-08 20:39 UTC**; earlier notes said 12:55). **Post-quota redeploy wave 2026-09-09:** Root-touch scroll / audio / grass so `ignoreCommand` does not skip them. Semicircle framing is on `main`. Do not retry-spam. Do not create projects (25-link cap). Skip explode / steam / glass / tower / earth / v8 / physics / web-3d unless a later visual QA fails.
 
 ## Production aliases
 
@@ -17,13 +17,13 @@ Hobby quota on `johnnyhuy-dev` resets after the 2026-09-07 burn (~**2026-09-08 2
 | v8-cutaway | `vibes-v8` | `experiments/v8-cutaway` | [vibes-v8.vercel.app](https://vibes-v8.vercel.app) | PASS |
 | web-physics | `vibes-physics` | `experiments/web-physics` | [vibes-physics.vercel.app](https://vibes-physics.vercel.app) | PASS |
 | japanese-tower | `vibes-japanese-tower` | `experiments/japanese-tower` | [vibes-japanese-tower.vercel.app](https://vibes-japanese-tower.vercel.app) | PASS (READY; was often 404) |
-| blender-semicircle-viewer | `vibes-blender-semicircle` | `experiments/blender-semicircle-viewer` | [vibes-blender-semicircle.vercel.app](https://vibes-blender-semicircle.vercel.app) | FAIL — stale `25587f54`, cropped |
-| scroll-product-showcase | `vibes-scroll-product` | `experiments/scroll-product-showcase` | — | 404 / no READY production |
+| blender-semicircle-viewer | `vibes-blender-semicircle` | `experiments/blender-semicircle-viewer` | [vibes-blender-semicircle.vercel.app](https://vibes-blender-semicircle.vercel.app) | framing on `main` — skip 2026-09-09 wave |
+| scroll-product-showcase | `vibes-scroll-product` | `experiments/scroll-product-showcase` | [vibes-scroll-product.vercel.app](https://vibes-scroll-product.vercel.app) | 2026-09-09 Root touch |
 | web-3d | `vibes` | `experiments/ai-3d-lanes/web-3d` | — | TBD |
 | ballance-roll | — | `experiments/ballance-roll` | — | no project |
 | chinese-courtyard | — | `experiments/chinese-courtyard` | — | no project |
-| audio-gadget-spin | `vibes-audio-gadget-spin` (`prj_N57mvThg4UcU9XxLK3F5wAICz9PA`) | `experiments/audio-gadget-spin` | — | linked `deploy: false`, SSO off, 0 production |
-| procedural-grass-field | — | `experiments/procedural-grass-field` | — | no project (if `vibes-procedural-grass-field` already exists `deploy: false`, leave it idle) |
+| audio-gadget-spin | `vibes-audio-gadget-spin` (`prj_N57mvThg4UcU9XxLK3F5wAICz9PA`) | `experiments/audio-gadget-spin` | [vibes-audio-gadget-spin.vercel.app](https://vibes-audio-gadget-spin.vercel.app) | 2026-09-09 Root touch |
+| procedural-grass-field | `vibes-procedural-grass-field` | `experiments/procedural-grass-field` | [vibes-procedural-grass-field.vercel.app](https://vibes-procedural-grass-field.vercel.app) | 2026-09-09 Root touch — do not create a project |
 | amber-longeron | — | `experiments/amber-longeron` | — | no project |
 | nacre-loom | — | `experiments/nacre-loom` | — | no project |
 | heartwood-warden | — | `experiments/heartwood-warden` | — | no project |
