@@ -1,4 +1,3 @@
-import { ContactShadows, Environment, Lightformer } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import { useEffect, useMemo, useRef, useState, type MutableRefObject } from 'react';
 import { Group } from 'three';
@@ -48,7 +47,10 @@ interface Sim {
   lastBite: string;
   seed: number;
   seated: boolean;
+  handedOff: boolean;
 }
+
+const SLOT_PLATES = seedPlates(1);
 
 export default function RelayWorld({
   phase,
@@ -64,6 +66,10 @@ export default function RelayWorld({
   const dinerRefs = useRef<Record<string, Group | null>>({});
   const plateRefs = useRef<Record<number, Group | null>>({});
   const hudBeat = useRef(0);
+  const hudRef = useRef(onHud);
+  const phaseOut = useRef(onPhase);
+  hudRef.current = onHud;
+  phaseOut.current = onPhase;
   const sim = useRef<Sim>(makeSim(selectedId, resetToken));
   const phaseRef = useRef(phase);
   const selectedRef = useRef(selectedId);
@@ -89,11 +95,12 @@ export default function RelayWorld({
     const livePhase = phaseRef.current;
     state.phase = livePhase;
     state.selectedId = selectedRef.current;
-    const now = state.clock;
     const spinRate = reducedMotion ? CONVEYOR_SPEED * 0.35 : CONVEYOR_SPEED;
 
     if (livePhase === 'select') {
       state.seated = false;
+      state.handedOff = false;
+      state.clock = 0;
       state.spin += spinRate * 0.45 * dt;
       state.actors = DINERS.map((diner, index) => ({
         ...seatActors(diner.id)[0],
@@ -112,14 +119,16 @@ export default function RelayWorld({
       if (livePhase === 'countdown') {
         state.clock += dt;
         state.spin += spinRate * 0.6 * dt;
-        if (state.clock >= COUNTDOWN_SECONDS) {
+        if (!state.handedOff && state.clock >= COUNTDOWN_SECONDS) {
+          state.handedOff = true;
           state.clock = 0;
-          onPhase('play');
+          phaseOut.current('play');
           playCue('bell');
         }
       } else if (livePhase === 'play') {
         state.clock += dt;
         state.spin += spinRate * dt;
+        const now = state.clock;
 
         const player = state.actors.find((actor) => actor.isPlayer);
         if (player) {
@@ -142,7 +151,7 @@ export default function RelayWorld({
           const deltaAngle = shortestDelta(actor.angle, target);
           const steer = Math.abs(deltaAngle) < 0.04 ? 0 : Math.sign(deltaAngle);
           stepActor(actor, steer, now, dt);
-          if (Math.abs(deltaAngle) < 0.16 && now >= actor.eatUntil) {
+          if (Math.abs(deltaAngle) < 0.28 && now >= actor.eatUntil) {
             const bite = eatNearest(actor, state.plates, state.spin, now, state.seed + 5);
             if (bite) state.seed += 1;
           }
@@ -150,13 +159,14 @@ export default function RelayWorld({
 
         if (state.clock >= ROUND_SECONDS) {
           playCue('bell');
-          onPhase('results');
+          phaseOut.current('results');
         }
       } else {
         state.spin += spinRate * 0.2 * dt;
       }
     }
 
+    const now = state.clock;
     if (ring.current) ring.current.rotation.y = state.spin;
 
     for (const actor of state.actors) {
@@ -180,10 +190,10 @@ export default function RelayWorld({
     }
 
     hudBeat.current += dt;
-    if (hudBeat.current > 0.09) {
+    if (hudBeat.current > 0.12) {
       hudBeat.current = 0;
       const player = state.actors.find((actor) => actor.isPlayer) ?? null;
-      onHud({
+      hudRef.current({
         phase: livePhase,
         selectedId: selectedRef.current,
         countdown: livePhase === 'countdown' ? Math.max(0, COUNTDOWN_SECONDS - state.clock) : 0,
@@ -201,52 +211,44 @@ export default function RelayWorld({
   return (
     <>
       <color attach="background" args={['#070910']} />
-      <fog attach="fog" args={['#070910', 9, 22]} />
-      <ambientLight intensity={0.16} />
-      <spotLight
-        position={[3.2, 7.2, 4.1]}
-        angle={0.48}
-        penumbra={0.7}
-        intensity={42}
-        color="#fff1d6"
-        castShadow
-        shadow-mapSize={1024}
-      />
-      <spotLight position={[-4.2, 3.4, -2.6]} angle={0.6} penumbra={0.8} intensity={10} color="#7f93c8" />
-      <pointLight position={[0, 1.8, 0]} intensity={6} color="#e8c27a" distance={6} />
+      <fog attach="fog" args={['#070910', 16, 32]} />
+      <ambientLight intensity={0.42} />
+      <directionalLight position={[4.2, 8.2, 5.1]} intensity={1.8} color="#fff1d6" castShadow={false} />
+      <directionalLight position={[-5.2, 3.4, -3.2]} intensity={0.55} color="#8ea4d4" />
+      <pointLight position={[0, 2.1, 0]} intensity={8} color="#e8c27a" distance={8} />
 
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.02, 0]} receiveShadow>
-        <circleGeometry args={[8.4, 72]} />
-        <meshStandardMaterial color="#0b0e14" roughness={0.96} />
+        <circleGeometry args={[8.4, 64]} />
+        <meshStandardMaterial color="#10141c" roughness={0.96} />
       </mesh>
 
-      <mesh position={[0, TABLE_Y, 0]} receiveShadow castShadow>
-        <cylinderGeometry args={[1.62, 1.68, 0.16, 48]} />
-        <meshStandardMaterial color="#2a2118" roughness={0.55} metalness={0.12} />
+      <mesh position={[0, TABLE_Y, 0]}>
+        <cylinderGeometry args={[1.62, 1.68, 0.16, 40]} />
+        <meshStandardMaterial color="#3a2c20" roughness={0.55} metalness={0.12} />
       </mesh>
 
       <mesh position={[0, 1.35, 0]}>
-        <torusGeometry args={[0.82, 0.055, 16, 48]} />
+        <torusGeometry args={[0.82, 0.055, 12, 40]} />
         <meshStandardMaterial
           color="#efe6d2"
           emissive="#c9b48a"
-          emissiveIntensity={0.28}
-          metalness={0.4}
-          roughness={0.22}
+          emissiveIntensity={0.42}
+          metalness={0.35}
+          roughness={0.28}
         />
       </mesh>
       <mesh position={[0, 0.55, 0]}>
-        <cylinderGeometry args={[0.07, 0.09, 1.05, 12]} />
+        <cylinderGeometry args={[0.07, 0.09, 1.05, 10]} />
         <meshStandardMaterial color="#3a2e22" roughness={0.7} />
       </mesh>
 
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, TABLE_Y + 0.02, 0]}>
-        <ringGeometry args={[CONVEYOR_RADIUS - 0.42, CONVEYOR_RADIUS + 0.42, 64]} />
-        <meshStandardMaterial color="#1a1612" roughness={0.48} metalness={0.22} />
+        <ringGeometry args={[CONVEYOR_RADIUS - 0.42, CONVEYOR_RADIUS + 0.42, 48]} />
+        <meshStandardMaterial color="#2a2218" roughness={0.5} metalness={0.18} />
       </mesh>
 
       <group ref={ring}>
-        {seedPlates().map((plate) => {
+        {SLOT_PLATES.map((plate) => {
           const angle = slotAngle(plate.slot, 0);
           return (
             <group
@@ -286,7 +288,7 @@ export default function RelayWorld({
 
       {lanterns.map((lantern, index) => (
         <group key={index} position={[lantern.x, 0, lantern.z]}>
-          <mesh position={[0, 0.7, 0]} castShadow>
+          <mesh position={[0, 0.7, 0]}>
             <cylinderGeometry args={[0.045, 0.055, 1.4, 8]} />
             <meshStandardMaterial color="#2c241c" />
           </mesh>
@@ -296,12 +298,6 @@ export default function RelayWorld({
           </mesh>
         </group>
       ))}
-
-      <ContactShadows position={[0, 0, 0]} opacity={0.45} scale={14} blur={2.4} far={5} />
-      <Environment resolution={128} frames={1} environmentIntensity={0.45}>
-        <Lightformer intensity={8} position={[0, 4.8, 1.4]} scale={[10, 0.28, 1]} />
-        <Lightformer intensity={3.2} position={[-3.4, 1.6, -2]} scale={[2, 2, 1]} color="#8ea4d4" />
-      </Environment>
     </>
   );
 }
@@ -314,9 +310,10 @@ function makeSim(selectedId: string, resetToken: number): Sim {
     spin: 0,
     actors: seatActors(selectedId),
     plates: seedPlates(resetToken + 4),
-    lastBite: 'Seat a diner.',
+    lastBite: 'Walk the rim. Eat when a plate lines up.',
     seed: resetToken + 11,
     seated: false,
+    handedOff: false,
   };
 }
 
@@ -375,4 +372,33 @@ function LiveDiner({
       onPick={phase === 'select' ? () => onSelect(dinerId) : undefined}
     />
   );
+}
+
+function eatNearest(
+  actor: ActorState,
+  plates: PlateState[],
+  spin: number,
+  now: number,
+  seed: number
+): string | null {
+  let found: PlateState | null = null;
+  let best = EAT_ARC;
+  for (const plate of plates) {
+    if (now < plate.hiddenUntil) continue;
+    const gap = Math.abs(shortestDelta(actor.angle, slotAngle(plate.slot, spin)));
+    if (gap <= best) {
+      best = gap;
+      found = plate;
+    }
+  }
+  if (!found || !angularNear(actor.angle, slotAngle(found.slot, spin))) return null;
+  const bite = applyBite(actor, found, now, seed);
+  if (actor.isPlayer) {
+    if (bite.kind === 'chili') playCue('chili');
+    else if (bite.kind === 'tea') playCue('tea');
+    else playCue('eat');
+  }
+  if (bite.kind === 'chili') return 'Chili panic — steering flips.';
+  if (bite.kind === 'tea') return 'Tea-leaf speed for a short burst.';
+  return `${bite.kind} +${bite.points}${bite.chain > 1 ? ` · fold ×${bite.chain}` : ''}`;
 }

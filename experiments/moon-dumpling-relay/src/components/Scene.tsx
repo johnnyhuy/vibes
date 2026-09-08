@@ -1,7 +1,7 @@
 import { OrbitControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
-import type { MutableRefObject } from 'react';
-import { ACESFilmicToneMapping, PCFSoftShadowMap } from 'three';
+import { memo, type MutableRefObject } from 'react';
+import { ACESFilmicToneMapping } from 'three';
 import type { HudSnapshot, InputState, Phase } from '../types';
 import RelayWorld from './RelayWorld';
 
@@ -16,7 +16,7 @@ interface Props {
   resetToken: number;
 }
 
-export default function Scene({
+function Scene({
   phase,
   selectedId,
   reducedMotion,
@@ -28,16 +28,12 @@ export default function Scene({
 }: Props) {
   return (
     <Canvas
-      camera={{ position: [5.4, 6.2, 5.8], fov: 36, near: 0.1, far: 40 }}
-      dpr={[1, 1.75]}
-      shadows
+      camera={{ position: [5.4, 6.2, 5.8], fov: 36, near: 0.1, far: 48 }}
+      dpr={[1, 1.5]}
       gl={{
         antialias: true,
         toneMapping: ACESFilmicToneMapping,
-        toneMappingExposure: 1.05,
-      }}
-      onCreated={({ gl }) => {
-        gl.shadowMap.type = PCFSoftShadowMap;
+        toneMappingExposure: 1.08,
       }}
     >
       <RelayWorld
@@ -60,9 +56,10 @@ export default function Scene({
         minPolarAngle={0.55}
         maxPolarAngle={1.2}
         target={[0, 0.45, 0]}
-        autoRotate={phase === 'select' && !reducedMotion}
-        autoRotateSpeed={0.28}
+        autoRotate={false}
       />
     </Canvas>
   );
 }
+
+export default memo(Scene);

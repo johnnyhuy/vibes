@@ -17,7 +17,7 @@ const emptyHud: HudSnapshot = {
   rivals: [],
   roster: [],
   status: 'clear',
-  lastBite: 'Seat a diner.',
+  lastBite: 'Walk the rim. Eat when a plate lines up.',
 };
 
 export default function App() {

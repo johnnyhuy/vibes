@@ -36,15 +36,7 @@ function Soup() {
   return (
     <mesh position={[0, 0.1, 0]} castShadow>
       <sphereGeometry args={[0.12, 14, 12]} />
-      <meshPhysicalMaterial
-        color="#f4ead4"
-        roughness={0.18}
-        metalness={0.04}
-        transmission={0.35}
-        thickness={0.4}
-        transparent
-        opacity={0.92}
-      />
+      <meshStandardMaterial color="#f3e2b8" roughness={0.28} metalness={0.12} />
     </mesh>
   );
 }
