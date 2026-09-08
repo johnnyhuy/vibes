@@ -53,9 +53,9 @@ function starfield(ctx: CanvasRenderingContext2D, count: number, alpha: number) 
 
 function paintNight(ctx: CanvasRenderingContext2D) {
   const sky = ctx.createRadialGradient(W * 0.5, H * 0.42, 40, W * 0.5, H * 0.5, H * 0.72);
-  sky.addColorStop(0, '#1c3558');
-  sky.addColorStop(0.42, '#101b33');
-  sky.addColorStop(1, '#06080e');
+  sky.addColorStop(0, '#27466c');
+  sky.addColorStop(0.42, '#14243d');
+  sky.addColorStop(1, '#070a12');
   ctx.fillStyle = sky;
   ctx.fillRect(0, 0, W, H);
 
@@ -65,8 +65,8 @@ function paintNight(ctx: CanvasRenderingContext2D) {
   ctx.fillStyle = bloom;
   ctx.fillRect(0, 0, W, H);
 
-  ctx.strokeStyle = 'rgba(190, 214, 236, 0.12)';
-  ctx.lineWidth = 2;
+  ctx.strokeStyle = 'rgba(190, 214, 236, 0.22)';
+  ctx.lineWidth = 2.4;
   for (let i = 0; i < 6; i += 1) {
     ctx.beginPath();
     ctx.ellipse(W * 0.5, H * 0.46, 140 + i * 78, 96 + i * 58, -0.18, 0, Math.PI * 2);
@@ -86,107 +86,125 @@ function paintNight(ctx: CanvasRenderingContext2D) {
   ctx.globalCompositeOperation = 'source-over';
 }
 
-function foxPaths(ctx: CanvasRenderingContext2D) {
-  const cx = W * 0.48;
-  const cy = H * 0.5;
-
+function foxBody(ctx: CanvasRenderingContext2D) {
   ctx.beginPath();
-  ctx.moveTo(cx - 70, cy + 210);
-  ctx.quadraticCurveTo(cx - 150, cy + 40, cx - 40, cy - 70);
-  ctx.quadraticCurveTo(cx + 10, cy - 30, cx + 80, cy - 20);
-  ctx.quadraticCurveTo(cx + 150, cy + 70, cx + 40, cy + 230);
-  ctx.quadraticCurveTo(cx - 10, cy + 270, cx - 70, cy + 210);
+  ctx.moveTo(W * 0.36, H * 0.78);
+  ctx.bezierCurveTo(W * 0.22, H * 0.7, W * 0.2, H * 0.52, W * 0.32, H * 0.46);
+  ctx.bezierCurveTo(W * 0.4, H * 0.42, W * 0.58, H * 0.46, W * 0.64, H * 0.56);
+  ctx.bezierCurveTo(W * 0.72, H * 0.7, W * 0.58, H * 0.84, W * 0.42, H * 0.82);
   ctx.closePath();
 }
 
-function ear(ctx: CanvasRenderingContext2D, x: number, y: number, lean: number) {
+function foxHead(ctx: CanvasRenderingContext2D) {
   ctx.beginPath();
-  ctx.moveTo(x, y + 90);
-  ctx.lineTo(x + lean * 38, y - 118);
-  ctx.lineTo(x + lean * 86, y + 78);
-  ctx.quadraticCurveTo(x + lean * 20, y + 110, x, y + 90);
+  ctx.ellipse(W * 0.4, H * 0.42, 92, 86, -0.28, 0, Math.PI * 2);
+}
+
+function foxMuzzle(ctx: CanvasRenderingContext2D) {
+  ctx.beginPath();
+  ctx.moveTo(W * 0.28, H * 0.44);
+  ctx.quadraticCurveTo(W * 0.18, H * 0.5, W * 0.24, H * 0.56);
+  ctx.quadraticCurveTo(W * 0.34, H * 0.54, W * 0.36, H * 0.48);
+  ctx.closePath();
+}
+
+function ear(ctx: CanvasRenderingContext2D, x: number, y: number, lean: number, tall: number) {
+  ctx.beginPath();
+  ctx.moveTo(x, y + 70);
+  ctx.lineTo(x + lean * 22, y - tall);
+  ctx.lineTo(x + lean * 70, y + 58);
+  ctx.quadraticCurveTo(x + lean * 16, y + 82, x, y + 70);
   ctx.closePath();
 }
 
 function tailPlume(ctx: CanvasRenderingContext2D, ox: number, oy: number, lift: number) {
   ctx.beginPath();
-  ctx.moveTo(W * 0.58, H * 0.62);
-  ctx.bezierCurveTo(W * 0.78 + ox, H * 0.5 + oy, W * 0.9 + ox, H * 0.36 + lift, W * 0.86 + ox, H * 0.22 + lift);
-  ctx.bezierCurveTo(W * 0.8 + ox, H * 0.34 + lift, W * 0.7, H * 0.52, W * 0.56, H * 0.64);
+  ctx.moveTo(W * 0.58, H * 0.66);
+  ctx.bezierCurveTo(W * 0.74 + ox, H * 0.58 + oy, W * 0.88 + ox, H * 0.4 + lift, W * 0.84 + ox, H * 0.24 + lift);
+  ctx.bezierCurveTo(W * 0.76 + ox, H * 0.36 + lift, W * 0.66, H * 0.54, W * 0.54, H * 0.68);
   ctx.closePath();
 }
 
 function paintFox(ctx: CanvasRenderingContext2D) {
   ctx.clearRect(0, 0, W, H);
 
-  const glow = ctx.createRadialGradient(W * 0.5, H * 0.52, 20, W * 0.5, H * 0.52, 340);
-  glow.addColorStop(0, 'rgba(127, 212, 216, 0.22)');
+  const glow = ctx.createRadialGradient(W * 0.46, H * 0.52, 20, W * 0.48, H * 0.52, 360);
+  glow.addColorStop(0, 'rgba(127, 212, 216, 0.28)');
   glow.addColorStop(1, 'rgba(127, 212, 216, 0)');
   ctx.fillStyle = glow;
   ctx.fillRect(0, 0, W, H);
 
-  ctx.fillStyle = 'rgba(127, 196, 214, 0.22)';
+  ctx.fillStyle = 'rgba(127, 196, 214, 0.34)';
   tailPlume(ctx, 0, 0, 0);
   ctx.fill();
-  ctx.fillStyle = 'rgba(232, 213, 163, 0.16)';
-  tailPlume(ctx, 30, 24, 40);
+  ctx.fillStyle = 'rgba(232, 213, 163, 0.26)';
+  tailPlume(ctx, 36, 18, 36);
   ctx.fill();
-  ctx.fillStyle = 'rgba(180, 210, 230, 0.14)';
-  tailPlume(ctx, -18, 36, 70);
+  ctx.fillStyle = 'rgba(180, 210, 230, 0.22)';
+  tailPlume(ctx, -16, 30, 68);
   ctx.fill();
 
   ctx.fillStyle = '#2a241f';
-  ear(ctx, W * 0.34, H * 0.3, -1);
+  ear(ctx, W * 0.3, H * 0.26, -1, 128);
   ctx.fill();
-  ear(ctx, W * 0.5, H * 0.28, 1);
+  ear(ctx, W * 0.44, H * 0.24, 1, 118);
   ctx.fill();
   ctx.fillStyle = '#7fd4d8';
-  ctx.globalAlpha = 0.55;
-  ear(ctx, W * 0.355, H * 0.33, -0.72);
+  ctx.globalAlpha = 0.62;
+  ear(ctx, W * 0.318, H * 0.29, -0.78, 88);
   ctx.fill();
-  ear(ctx, W * 0.51, H * 0.315, 0.72);
+  ear(ctx, W * 0.45, H * 0.275, 0.78, 80);
   ctx.fill();
   ctx.globalAlpha = 1;
 
-  const fur = ctx.createLinearGradient(W * 0.3, H * 0.3, W * 0.7, H * 0.75);
-  fur.addColorStop(0, '#3a322c');
-  fur.addColorStop(0.45, '#1b1a1c');
-  fur.addColorStop(1, '#0d1016');
+  const fur = ctx.createLinearGradient(W * 0.26, H * 0.4, W * 0.68, H * 0.82);
+  fur.addColorStop(0, '#4a3d34');
+  fur.addColorStop(0.45, '#221c1a');
+  fur.addColorStop(1, '#0e1016');
   ctx.fillStyle = fur;
-  foxPaths(ctx);
+  foxBody(ctx);
   ctx.fill();
 
-  ctx.fillStyle = '#d8c8b4';
-  ctx.beginPath();
-  ctx.ellipse(W * 0.46, H * 0.46, 64, 78, -0.2, 0, Math.PI * 2);
+  ctx.fillStyle = '#d9c7af';
+  foxHead(ctx);
+  ctx.fill();
+  ctx.fillStyle = '#cbb6a0';
+  foxMuzzle(ctx);
   ctx.fill();
 
   ctx.fillStyle = '#e8d5a3';
   ctx.beginPath();
-  ctx.ellipse(W * 0.48, H * 0.6, 42, 54, 0.1, Math.PI * 0.15, Math.PI * 1.55);
+  ctx.ellipse(W * 0.44, H * 0.62, 48, 58, 0.08, 0, Math.PI * 2);
   ctx.fill();
-
   ctx.strokeStyle = '#f4e7b8';
-  ctx.lineWidth = 10;
+  ctx.lineWidth = 11;
   ctx.lineCap = 'round';
   ctx.beginPath();
-  ctx.arc(W * 0.48, H * 0.61, 38, 0.55, 2.4);
+  ctx.arc(W * 0.44, H * 0.63, 40, 0.45, 2.55);
   ctx.stroke();
 
   ctx.fillStyle = '#f7f2ea';
   ctx.beginPath();
-  ctx.ellipse(W * 0.42, H * 0.445, 16, 11, -0.4, 0, Math.PI * 2);
+  ctx.ellipse(W * 0.36, H * 0.405, 18, 12, -0.35, 0, Math.PI * 2);
   ctx.fill();
   ctx.fillStyle = '#7fd4d8';
   ctx.beginPath();
-  ctx.ellipse(W * 0.425, H * 0.445, 6, 10, -0.4, 0, Math.PI * 2);
+  ctx.ellipse(W * 0.365, H * 0.405, 7, 11, -0.35, 0, Math.PI * 2);
   ctx.fill();
 
   ctx.fillStyle = '#1a1e24';
   ctx.beginPath();
-  ctx.moveTo(W * 0.335, H * 0.5);
-  ctx.quadraticCurveTo(W * 0.3, H * 0.53, W * 0.35, H * 0.545);
-  ctx.quadraticCurveTo(W * 0.39, H * 0.52, W * 0.335, H * 0.5);
+  ctx.moveTo(W * 0.22, H * 0.5);
+  ctx.quadraticCurveTo(W * 0.176, H * 0.53, W * 0.23, H * 0.552);
+  ctx.quadraticCurveTo(W * 0.27, H * 0.53, W * 0.22, H * 0.5);
+  ctx.fill();
+
+  ctx.fillStyle = '#3a322c';
+  ctx.beginPath();
+  ctx.ellipse(W * 0.34, H * 0.76, 28, 16, 0.2, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.beginPath();
+  ctx.ellipse(W * 0.5, H * 0.78, 26, 14, -0.1, 0, Math.PI * 2);
   ctx.fill();
 }
 
@@ -195,11 +213,15 @@ function paintLineart(ctx: CanvasRenderingContext2D) {
   ctx.strokeStyle = 'rgba(228, 236, 244, 0.78)';
   ctx.lineWidth = 2.2;
   ctx.lineJoin = 'round';
-  foxPaths(ctx);
+  foxBody(ctx);
   ctx.stroke();
-  ear(ctx, W * 0.34, H * 0.3, -1);
+  foxHead(ctx);
   ctx.stroke();
-  ear(ctx, W * 0.5, H * 0.28, 1);
+  foxMuzzle(ctx);
+  ctx.stroke();
+  ear(ctx, W * 0.3, H * 0.26, -1, 128);
+  ctx.stroke();
+  ear(ctx, W * 0.44, H * 0.24, 1, 118);
   ctx.stroke();
   tailPlume(ctx, 0, 0, 0);
   ctx.stroke();
@@ -285,13 +307,15 @@ function paintMask(ctx: CanvasRenderingContext2D) {
 
   ctx.fillStyle = '#f6f1dc';
   ctx.beginPath();
-  ctx.arc(W * 0.48, H * 0.61, 46, 0, Math.PI * 2);
+  ctx.arc(W * 0.44, H * 0.63, 50, 0, Math.PI * 2);
   ctx.fill();
   tailPlume(ctx, 0, 0, 0);
   ctx.fill();
-  ear(ctx, W * 0.34, H * 0.3, -1);
+  ear(ctx, W * 0.3, H * 0.26, -1, 128);
   ctx.fill();
-  ear(ctx, W * 0.5, H * 0.28, 1);
+  ear(ctx, W * 0.44, H * 0.24, 1, 118);
+  ctx.fill();
+  foxHead(ctx);
   ctx.fill();
 
   starfield(ctx, 80, 1);

@@ -273,7 +273,7 @@ export default function TiltCard({
           <FoilMesh
             map={atlas.verso}
             mask={atlas.versoMask}
-            foil={foil * 0.9}
+            foil={foil * 0.55}
             print={1}
             z={0.04}
             geometry={faceGeo}
@@ -282,7 +282,7 @@ export default function TiltCard({
           <FoilMesh
             map={atlas.versoMask}
             mask={atlas.versoMask}
-            foil={foil * 0.75}
+            foil={foil * 0.42}
             print={0}
             z={0.058}
             geometry={faceGeo}

@@ -61,6 +61,3 @@ export const foilFragment = /* glsl */ `
     gl_FragColor = vec4(color, clamp(alpha, 0.0, 1.0));
   }
 `;
-
-export const FOIL_TINT = new Color('#9fd4e6');
-export const FOIL_TILT = new Vector2();

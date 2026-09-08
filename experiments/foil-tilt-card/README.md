@@ -37,6 +37,20 @@ npm run build
 
 Post-quota order stays: (1) promote `vibes-blender-semicircle` production from the framing-fix git-main preview (2) `vibes-scroll-product` first READY (3) `vibes-audio-gadget-spin` first production (4) `vibes-procedural-grass-field` (5) only then ballance / courtyard / amber-longeron / nacre-loom / heartwood-warden / moon-dumpling-relay / this card. Do not create those pending projects here.
 
+## Local playtest (2026-09-08)
+
+Headed preview on `127.0.0.1:4173` after `npm run build`:
+
+- Dark studio, frosted HUD, brand `vibes · foil tilt card`. Not their chrome.
+- Lumen Fox reads as a geometric moon-fox (head, ears, crescent, three plumes). Night field + filigree + type sit on separate planes.
+- Drag tilts; foil rainbow walks with the view. Wheel zooms.
+- Flip shows verso (hex seal, deco lattice, motto). Topbar switches recto / verso.
+- Foil / tilt feel / spread sliders change the print. Reset pose and sway work. `F` / `R` bound.
+- Narrow viewport docks the desk; card still readable.
+- Console: no fatal errors after the inline favicon. Build green.
+
+No Vercel project. No production URL.
+
 ## Related
 
 - [docs/reverse-engineering/foil-tilt-card.md](../../docs/reverse-engineering/foil-tilt-card.md)
