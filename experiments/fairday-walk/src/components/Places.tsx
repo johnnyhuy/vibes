@@ -144,15 +144,15 @@ function RooftopPigeonPlace({ active }: LandmarkProps) {
     <group>
       <ActiveGlow active={active} />
       <House width={5.1} depth={3.6} height={4.8} plaster={lane.plaster} bays={3} storeys={2} />
-      <group position={[0.15, 5.95, 0]}>
+      <group position={[0.15, 5.95, 0.15]} scale={1.15}>
         <Coop />
-        <group position={[-0.55, 0.62, 0.28]}>
+        <group position={[-0.55, 0.62, 0.28]} scale={1.35}>
           <Pigeon hue="#cfc8bc" />
         </group>
-        <group position={[0.15, 0.64, -0.1]} rotation={[0, 0.8, 0]}>
+        <group position={[0.15, 0.64, -0.1]} rotation={[0, 0.8, 0]} scale={1.3}>
           <Pigeon hue="#b8b4ae" />
         </group>
-        <group position={[0.48, 0.22, 0.42]} rotation={[0, -0.4, 0]}>
+        <group position={[0.55, 0.58, 0.46]} rotation={[0, -0.4, 0]} scale={1.4}>
           <Pigeon hue="#d4cfc4" />
         </group>
       </group>
@@ -168,8 +168,8 @@ function EveningLaundryPlace({ active, reducedMotion }: LandmarkProps) {
       <group position={[2.6, 0, 0.4]} rotation={[0, -0.4, 0]}>
         <House width={3.6} depth={2.6} height={3.5} plaster={lane.plasterWarm} bays={2} storeys={1} door={false} />
       </group>
-      <group position={[0.8, 0, 2.2]} rotation={[0, 0.12, 0]}>
-        <Clothesline length={5.2} sheets={6} reducedMotion={reducedMotion} warm />
+      <group position={[1.35, 0, 0.85]} rotation={[0, 0.55, 0]}>
+        <Clothesline length={3.8} sheets={4} reducedMotion={reducedMotion} warm />
       </group>
       <pointLight position={[0.6, 2.2, 2.1]} color={lane.amber} intensity={2.4} distance={8} />
     </group>
@@ -181,13 +181,13 @@ function FigAlleyPlace({ active }: LandmarkProps) {
     <group>
       <ActiveGlow active={active} />
       <House width={4.4} depth={3.2} height={4.0} plaster={lane.plasterCool} bays={2} />
-      <group position={[1.55, 0, 2.15]}>
+      <group position={[0.85, 0, 2.55]} scale={1.28}>
         <FigTree />
       </group>
-      <group position={[-1.15, 0, 1.95]}>
+      <group position={[-0.85, 0, 2.35]}>
         <RainBarrel />
       </group>
-      <group position={[2.2, 0, 1.4]}>
+      <group position={[2.05, 0, 1.7]}>
         <Fern scale={1.05} />
       </group>
     </group>

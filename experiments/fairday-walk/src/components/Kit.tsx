@@ -1,12 +1,14 @@
 import { useLayoutEffect, useMemo, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import {
+  CanvasTexture,
   Color,
   DoubleSide,
   InstancedMesh,
   MeshStandardMaterial,
   Object3D,
   PlaneGeometry,
+  SRGBColorSpace,
 } from 'three';
 import { lane } from '../palette';
 import { cobbleMap, plasterMap, tileMap, woodMap } from '../textures';
@@ -478,26 +480,28 @@ export function Awning({ width = 3.4, depth = 1.35 }: { width?: number; depth?: 
     return plane;
   }, [depth, width]);
 
+  const stripes = useMemo(() => {
+    const canvas = document.createElement('canvas');
+    canvas.width = 256;
+    canvas.height = 64;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) throw new Error('Fairday Walk could not paint awning stripes');
+    const band = 32;
+    for (let x = 0; x < 256; x += band) {
+      ctx.fillStyle = (x / band) % 2 === 0 ? '#f4efe4' : '#9bb7c9';
+      ctx.fillRect(x, 0, band, 64);
+    }
+    const texture = new CanvasTexture(canvas);
+    texture.colorSpace = SRGBColorSpace;
+    texture.anisotropy = 8;
+    return texture;
+  }, []);
+
   return (
     <group>
       <mesh geometry={geometry} castShadow>
-        <meshStandardMaterial color={lane.clothRose} roughness={0.7} side={DoubleSide} />
+        <meshStandardMaterial map={stripes} roughness={0.68} side={DoubleSide} />
       </mesh>
-      {Array.from({ length: 7 }, (_, i) => {
-        const x = ((i + 0.5) / 7 - 0.5) * width;
-        return (
-          <mesh key={i} position={[x, 0.02, 0]} rotation={[-Math.PI / 2.35, 0, 0]}>
-            <planeGeometry args={[width / 9, depth]} />
-            <meshStandardMaterial
-              color={i % 2 === 0 ? lane.clothCream : lane.clothSky}
-              roughness={0.72}
-              side={DoubleSide}
-              transparent
-              opacity={0.92}
-            />
-          </mesh>
-        );
-      })}
       {[-1, 1].map((side) => (
         <mesh key={side} position={[(width / 2 - 0.12) * side, -0.35, 0.35]} rotation={[0.55, 0, 0]} castShadow>
           <cylinderGeometry args={[0.025, 0.025, 1.05, 6]} />
