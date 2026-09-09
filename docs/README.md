@@ -87,6 +87,7 @@ Things that went sideways and what I learnt:
 - [2026-09-09: `vercel.json` `"//"` comment key](./incidents/2026-09-09-vercel-json-comment-key.md) — Vercel schema-rejects `additional property //`; scroll / audio / grass ERROR on `607106de`
 - [2026-09-09: Security dep audit — no safe patch bumps](./incidents/2026-09-09-security-dep-audit.md) — 26 Vite 6 lockfiles clean on `6.4.3`; semicircle Vite 5 needs a major (parked); web-physics has no lockfile
 - [2026-09-09: Semicircle left Vite 5](./incidents/2026-09-09-semicircle-vite6-security-bump.md) — parked major from the [estate audit](https://github.com/johnnyhuy/vibes/pull/54) (`docs/incidents/2026-09-09-security-dep-audit.md` on that PR); now `vite@^6.4.3`, `three@^0.160.0` kept
+- [2026-09-09: web-physics lockfile](./incidents/2026-09-09-web-physics-lockfile.md) — added `package-lock.json` so `npm audit` can see the graph; 0 vulns; no deploy
 
 ### Deployment
 

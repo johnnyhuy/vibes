@@ -22,6 +22,8 @@ npm run dev
 
 Open the localhost URL in your browser and start spawning objects.
 
+The install graph is locked in `package-lock.json` so `npm audit` can see it.
+
 ## Build
 
 ```bash
