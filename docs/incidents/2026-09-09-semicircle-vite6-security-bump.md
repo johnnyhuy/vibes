@@ -45,12 +45,15 @@ I did **not** jump to Vite 7 or 8. `6.4` still gets the security backports.
 
 ## Verify
 
-```bash
-cd experiments/blender-semicircle-viewer
-npm run build
-node --test framing.test.js
-npm audit
-```
+Ran in `experiments/blender-semicircle-viewer` after the lockfile refresh:
+
+| Check | Result |
+| --- | --- |
+| `npm run build` | `vite v6.4.3` — 7 modules, `dist/` written |
+| `node --test framing.test.js` | 5/5 pass (load, bowl seat, portrait, orbit, empty points) |
+| `npm audit` | 0 vulnerabilities |
+
+No Vite 6 config breakage. Framing math is unchanged.
 
 ---
 
