@@ -27,7 +27,10 @@ npm run dev
 
 ```bash
 npm run build
+npm run preview
 ```
+
+Headed local loop: `docs/previews/procedural-grass-field.gif`. Wind + a pointer gust. Dense blades make a fat GIF, so I kept it short and ~480px wide.
 
 ## Deploy
 

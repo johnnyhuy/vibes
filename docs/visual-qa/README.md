@@ -10,12 +10,13 @@ The root README is a **showcase**. Prefer a short looping GIF:
 docs/previews/<app>.gif
 ```
 
-`<app>` is the experiment folder name (`explode-assembly`, `procedural-steam-atlas`, …). Semicircle uses `blender-semicircle.gif` (refreshed 2026-09-08 after the orbit-safe horseshoe framing fix — the previous GIF was the cropped mega-arc). A headed still sits beside it as `blender-semicircle.png`.
+`<app>` is the experiment folder name (`explode-assembly`, `procedural-steam-atlas`, …). Semicircle uses `blender-semicircle.gif` (refreshed 2026-09-08 after the orbit-safe horseshoe framing fix — the previous GIF was the cropped mega-arc; headed again 2026-09-08 so the README loop matches that framed bowl). A headed still sits beside it as `blender-semicircle.png`.
 
 - Capture locally (`npm run build` + `npm run preview`, or `npm run dev`) with a few seconds of meaningful motion (slider, explode, orbit, scroll).
-- Aim for ~2–4s, ~640px wide, optimised (`ffmpeg` + `gifsicle` when available).
-- A still (`docs/previews/<app>.png`) is a temporary fallback if a GIF is impractical — do not leave a 404 page as the hero. `scroll-product-showcase` currently uses a still (`MeshPhysicalMaterial` transmission did not composite in the capture environment). `procedural-grass-field`, `amber-longeron`, `nacre-loom`, `heartwood-warden`, `moon-dumpling-relay`, `foil-tilt-card`, `zephyr-vale`, `cinder-mere`, `kiln-studs`, `alba-forum`, `brine-causeway`, `breakwater`, `keel-hex`, and `fairday-walk` start as stills until I loop the wind, the flight, the film, the glade, the conveyor, the foil, the vale, the basin, the studio, the avenue, the causeway, the pier, the bench, and the lane.
+- Aim for ~2–4s, ~640px wide, optimised (`ffmpeg` + `gifsicle` when available). Dense meadows (Wind Lea) may need 8 fps / ~480px so the GIF stays under a megabyte.
+- A still (`docs/previews/<app>.png`) is a temporary fallback if a GIF is impractical — do not leave a 404 page as the hero. `scroll-product-showcase` and `procedural-grass-field` now have headed loops (transmission glass + wind). `amber-longeron`, `nacre-loom`, `heartwood-warden`, `moon-dumpling-relay`, `foil-tilt-card`, `zephyr-vale`, `cinder-mere`, `kiln-studs`, `alba-forum`, `brine-causeway`, `breakwater`, `keel-hex`, `fairday-walk`, and `ochre-gallop` stay stills until I loop the flight, the film, the glade, the conveyor, the foil, the vale, the basin, the studio, the avenue, the causeway, the pier, the bench, the lane, and the terrace.
 - Extra angles (explode ordered gallery, etc.) can sit beside the hero as `docs/previews/<app>-gallery.png`.
+- Helper: `scripts/capture-showcase-gifs.mjs` (headed Chrome, `127.0.0.1:4173–4177`).
 
 The apps table in the [root README](../../README.md) embeds the GIFs. Ops status lives in [deployment notes](../deployment/), not in the showcase table.
 
