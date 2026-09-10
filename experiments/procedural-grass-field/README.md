@@ -35,15 +35,16 @@ Project name: **`vibes-procedural-grass-field`**. Dashboard **Root Directory** m
 
 Production: [https://vibes-procedural-grass-field.vercel.app](https://vibes-procedural-grass-field.vercel.app)
 
-Hobby is at the 25 Git repo-link cap — I am **not** calling `create_git_project`. If the project already exists (`deploy: false` or a prior CANCELED hook), this 2026-09-09 post-quota Root touch is what lets `ignoreCommand` pass so production can build. `vercel.json` cannot set Root Directory.
+Hobby is at the 25 Git repo-link cap — I am **not** calling `create_git_project`. The 2026-09-09 Root touch poisoned schema with an illegal `"//"` key (PR #53 removes it). This 2026-09-10 post-quota README bump is the real Root touch so `ignoreCommand` builds a clean preview. `vercel.json` cannot set Root Directory.
 
 ## Related
 
 - [docs/reverse-engineering/procedural-grass-field.md](../../docs/reverse-engineering/procedural-grass-field.md)
 - [docs/adr/0011-procedural-grass-instancing.md](../../docs/adr/0011-procedural-grass-instancing.md)
+- [docs/incidents/2026-09-09-vercel-json-comment-key.md](../../docs/incidents/2026-09-09-vercel-json-comment-key.md)
 
 ---
 
-**Status**: Production alias [vibes-procedural-grass-field.vercel.app](https://vibes-procedural-grass-field.vercel.app) — 2026-09-09 Root touch so ignoreCommand builds  
-**Last updated**: 2026-09-09  
+**Status**: Production alias [vibes-procedural-grass-field.vercel.app](https://vibes-procedural-grass-field.vercel.app) — waiting on PR #53 merge after post-quota preview
+**Last updated**: 2026-09-10  
 **Built by**: Johnny Huynh
