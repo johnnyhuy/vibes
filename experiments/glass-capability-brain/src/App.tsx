@@ -1,9 +1,17 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { playGlassPing, setMuted } from './audio';
 import { CAPABILITIES, KEY_TO_ID, nextTourId, type CapabilityId } from './capabilities';
 import Dock from './components/Dock';
 import { ErrorBoundary } from './components/ErrorBoundary';
+import LightingStrip from './components/LightingStrip';
 import Scene from './components/Scene';
 import { usePrefersReducedMotion } from './hooks';
+import {
+  DEFAULT_LIGHTING_ID,
+  lightingById,
+  nextLightingId,
+  type LightingId,
+} from './lighting';
 import type { HudStats } from './types';
 
 const IDLE_MS = 8000;
@@ -13,6 +21,9 @@ export default function App() {
   const [selectedId, setSelectedId] = useState<CapabilityId | null>(null);
   const [hoveredId, setHoveredId] = useState<CapabilityId | null>(null);
   const [canvas, setCanvas] = useState<HTMLCanvasElement | null>(null);
+  const [lightingId, setLightingId] = useState<LightingId>(DEFAULT_LIGHTING_ID);
+  const [rippleNonce, setRippleNonce] = useState(0);
+  const [muted, setMutedState] = useState(true);
   const [stats, setStats] = useState<HudStats>({
     fps: 0,
     triangles: 0,
@@ -38,10 +49,31 @@ export default function App() {
     setSelectedId(null);
   }, [bumpInteract]);
 
+  const chooseLighting = useCallback(
+    (id: LightingId) => {
+      if (id === lightingId) return;
+      bumpInteract();
+      setLightingId(id);
+      setRippleNonce((nonce) => nonce + 1);
+      if (!muted && !reducedMotion) playGlassPing();
+    },
+    [bumpInteract, lightingId, muted, reducedMotion],
+  );
+
+  const toggleMute = useCallback(() => {
+    const next = !muted;
+    setMutedState(next);
+    void setMuted(next);
+  }, [muted]);
+
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         close();
+        return;
+      }
+      if (event.key === 'l' || event.key === 'L') {
+        chooseLighting(nextLightingId(lightingId));
         return;
       }
       const id = KEY_TO_ID[event.key];
@@ -49,7 +81,7 @@ export default function App() {
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [close, select]);
+  }, [chooseLighting, close, lightingId, select]);
 
   useEffect(() => {
     if (reducedMotion) return undefined;
@@ -63,10 +95,11 @@ export default function App() {
 
   const fpsLabel = stats.fps > 0 ? Math.round(stats.fps) : '—';
   const trisLabel = stats.triangles.toLocaleString('en-AU');
+  const lighting = lightingById(lightingId);
 
   return (
     <ErrorBoundary>
-      <div className="app">
+      <div className="app" data-lighting={lightingId}>
         <header className="header">
           <p className="brand">vibes · glass brain</p>
           <h1>Capability Map</h1>
@@ -76,9 +109,19 @@ export default function App() {
           </p>
         </header>
 
+        <LightingStrip
+          lightingId={lightingId}
+          muted={muted}
+          reducedMotion={reducedMotion}
+          onLighting={chooseLighting}
+          onMute={toggleMute}
+        />
+
         <Scene
           selectedId={selectedId}
           hoveredId={hoveredId}
+          lighting={lighting}
+          rippleNonce={rippleNonce}
           reducedMotion={reducedMotion}
           onSelect={select}
           onHover={setHoveredId}
@@ -98,6 +141,8 @@ export default function App() {
           jump to a node
           <span className="sep">·</span>
           <kbd>Esc</kbd> back
+          <span className="sep">·</span>
+          <kbd>L</kbd> cycle tint
           <span className="sep">·</span>
           {reducedMotion ? 'tour paused (reduced motion)' : 'idle for 8s starts the tour'}
         </p>

@@ -1,4 +1,5 @@
-import { useMemo } from 'react';
+import { useMemo, useRef } from 'react';
+import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
 function mulberry32(seed: number) {
@@ -53,8 +54,27 @@ function buildGraph(count = 72, radius = 1.62) {
   return { positions, segments: new Float32Array(segments) };
 }
 
-export default function NeuralGraph() {
+const lineGoal = new THREE.Color();
+const pointGoal = new THREE.Color();
+
+interface Props {
+  lineColor: string;
+  pointColor: string;
+  reducedMotion: boolean;
+}
+
+export default function NeuralGraph({ lineColor, pointColor, reducedMotion }: Props) {
   const { positions, segments } = useMemo(() => buildGraph(), []);
+  const lineMat = useRef<THREE.LineBasicMaterial>(null);
+  const pointMat = useRef<THREE.PointsMaterial>(null);
+
+  useFrame((_, delta) => {
+    const alpha = reducedMotion ? 1 : 1 - Math.exp(-delta * 2.35);
+    lineGoal.set(lineColor);
+    pointGoal.set(pointColor);
+    lineMat.current?.color.lerp(lineGoal, alpha);
+    pointMat.current?.color.lerp(pointGoal, alpha);
+  });
 
   return (
     <group>
@@ -62,13 +82,20 @@ export default function NeuralGraph() {
         <bufferGeometry>
           <bufferAttribute attach="attributes-position" args={[segments, 3]} />
         </bufferGeometry>
-        <lineBasicMaterial color="#8aaac8" transparent opacity={0.52} />
+        <lineBasicMaterial ref={lineMat} color="#8aaac8" transparent opacity={0.52} />
       </lineSegments>
       <points>
         <bufferGeometry>
           <bufferAttribute attach="attributes-position" args={[positions, 3]} />
         </bufferGeometry>
-        <pointsMaterial color="#b7cce0" size={0.042} sizeAttenuation transparent opacity={0.95} />
+        <pointsMaterial
+          ref={pointMat}
+          color="#b7cce0"
+          size={0.042}
+          sizeAttenuation
+          transparent
+          opacity={0.95}
+        />
       </points>
     </group>
   );

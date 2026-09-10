@@ -33,6 +33,7 @@ Structured decisions about the monorepo's technical architecture:
 - [ADR-0023: A Step-Sequenced Hex Trainer Assembly, Invented Chassis](./adr/0023-keel-hex-assembly.md) — Keel Hex; KH-55 / Spool Plate, Assembled / Inside / Exploded, no PX4 clone
 - [ADR-0024: A Soft Outdoor Memory Walk, Invented Residential Lane](./adr/0024-fairday-walk-memory-lane.md) — Fairday Walk; breezy folio + Orbit / Recast, no 晴天 clone
 - [ADR-0025: A Multi-Environment Chase Slice](./adr/0025-ochre-gallop-multi-env-chase.md) — Ochre Gallop; three invented highlands + Ashmane, no park-chase clone
+- [ADR-0026: Glass Ripple Stage Tints on the Capability Map](./adr/0026-glass-ripple-lighting.md) — Pale Lift / Ember Slide / Lumen Watch; no new Vercel project
 
 ### Reverse Engineering
 
@@ -43,7 +44,7 @@ Clean-room notes from studying public projects:
 - [Blender MCP → MacBook Semicircle → Web](./reverse-engineering/blender-mcp-macbook-semicircle.md) — Agent-driven workflow (GPT Astra + Blender MCP), semicircle array math, clean-room with procedural geometry
 - [Blender MCP → Product Keyboard Workflow](./reverse-engineering/blender-mcp-product-keyboard.md) — Offline rendering pipeline (scripts → render → web), product photography techniques
 - [WebGL Scroll Product Visualisation](./reverse-engineering/webgl-scroll-product.md) — Scroll-driven 3D (glass bottle refraction, photoreal materials, R3F patterns)
-- [Glass Capability Brain](./reverse-engineering/glass-capability-brain.md) — Built: orbiting capability nodes + live canvas pixel QA (`experiments/glass-capability-brain/`)
+- [Glass Capability Brain](./reverse-engineering/glass-capability-brain.md) — Built: orbiting capability nodes + live canvas pixel QA + invented stage tints (`experiments/glass-capability-brain/`)
 - [Japanese Tower / Seasonal Atmosphere](./reverse-engineering/japanese-tower-threejs.md) — Built: procedural pagoda + season / day / weather / haze (`experiments/japanese-tower/`)
 - [Rolling Marble / Ocean of Clouds](./reverse-engineering/ballance-roll-threejs.md) — Built: Haze Walk + wood/stone/metal (`experiments/ballance-roll/`). Ocean/dolphin still parked.
 - [Chinese Courtyard](./reverse-engineering/chinese-courtyard-threejs.md) — Built: four-sided North Court (`experiments/chinese-courtyard/`). Studied Blender→GLB→Three; shipped primitives.

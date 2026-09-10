@@ -3,8 +3,9 @@
 **References**:
 - [viewsfrom02108](https://x.com/viewsfrom02108/status/2094853472864682360) — “make a Three.js demo of your capabilities” (verified 2026-09-08 via X API)
 - Visual: `hill-climb/refs/glass-brain-thumb.jpg` (agent-thread thumb, 2026-09-08)
+- [SammmAing](https://x.com/SammmAing/status/2097762558887293019) — Dawn / Dusk / Moonlight glass-ripple pitch (verified 2026-09-10 via X API; vibe only)
 
-**Study date**: 2026-09-08  
+**Study date**: 2026-09-08; hill-climb 2026-09-10  
 **Purpose**: Clean-room notes. Built as `experiments/glass-capability-brain/`.
 
 **Disclaimer**: I studied the public post and the attached thumb. No code, no assets copied. This demo is first-person Johnny Huynh / vibes — it is **not** Claude Fable.
@@ -94,7 +95,7 @@ The HUD already prints `60 fps`. Inferred loop: downscaled readback every N fram
 | UI | Yes | HTML overlay: header, frosted dock, controls, HUD (`fps · tris · draws · three r…`). |
 | Branding | Yes | “Capability Map” / `vibes · glass brain`. First-person me. Not Claude Fable. |
 | `vercel.json` | Yes | In the experiment folder only (`framework: vite`, `outputDirectory: dist`, `ignoreCommand`). No monorepo-root file. |
-| Vercel project | No | Not created. Quota still 0 until ~2026-09-08 12:55 UTC. Do not deploy. |
+| Vercel project | Later | Production LIVE on the existing `vibes-glass-capability-brain`. 2026-09-10 hill-climb is a PR only — no new project (Hobby 25-link cap). |
 
 ### Node names I invented
 
@@ -111,6 +112,21 @@ The thumb only labels **Remember** and **Reason**. My other four, so the map sti
 
 Documented again in [ADR-0006](../adr/0006-glass-capability-map.md).
 
+## Hill-climb: glass ripple + stage tints (2026-09-10)
+
+**Public pitch (vibe only):** [SammmAing](https://x.com/SammmAing/status/2097762558887293019) — “Tap Dawn, Dusk or Moonlight. Watch the ripple travel through the glass while the whole scene gently takes on its color.” Video still only; I did not scrape the Astra bundle or copy chrome / branding / sound.
+
+**What I invented**
+
+| Pitch | Mine |
+| --- | --- |
+| Dawn / Dusk / Moonlight | **Pale Lift** / **Ember Slide** / **Lumen Watch** |
+| Their UI chrome | Existing capability-map overlay + a small “Stage tint” strip |
+| Their glass + audio | Same transmission sphere + a time-limited ring (`uRipple`) + mute-default oscillator |
+| A standalone lighting demo | The existing map: six moons, See pixel QA, dock, HUD |
+
+`prefers-reduced-motion` skips the ring and snaps the lerp. Sound starts muted. No new Vercel project (Hobby 25-link cap). See [ADR-0026](../adr/0026-glass-ripple-lighting.md).
+
 ## Checklist
 
 - [x] Light clinical backdrop
@@ -122,18 +138,21 @@ Documented again in [ADR-0006](../adr/0006-glass-capability-map.md).
 - [x] Bottom-left controls + bottom-right honest-ish HUD
 - [x] Experiment `vercel.json`
 - [x] ADR-0006
-- [ ] Vercel project + production URL — **after quota reset**, and only if I decide this demo needs a public URL
+- [x] Three invented stage tints + readable glass ripple (ADR-0026)
+- [x] Mute-default ping; reduced-motion short-circuit
+- [x] Vercel project + production URL — already LIVE; this pass is a PR only, no new project, no forced production
 - [ ] Visual QA against the thumb on a real GPU (local + preview)
 
 ## Later candidate (not this experiment)
 
-[bharatmodi2014](https://x.com/bharatmodi2014/status/2096974996455444494) — interactive Japanese pagoda / tower in Three.js. Fresh public ref. **Future kitchen-sink candidate only.** I am not building the tower in this PR.
+Particle collider / CERN detector seeds stay out of this folder.
 
 ## Open questions (still)
 
 1. Is their inner graph instanced lines or a texture? I used a seeded point/line graph.
 2. Does their 60 fps QA compare images or just print the rAF counter? I grade luma.
 3. How do they sandbox “writes and runs code”? I will not eval user JS.
+4. Their ripple is almost certainly a different shader. Mine is a geodesic ring on MeshPhysical — enough to read, not a fluid sim.
 
 ## Related
 
@@ -141,9 +160,10 @@ Documented again in [ADR-0006](../adr/0006-glass-capability-map.md).
 - `experiments/scroll-product-showcase/` — Aether bottle
 - `experiments/glass-capability-brain/` — this map
 - [ADR-0006](../adr/0006-glass-capability-map.md)
+- [ADR-0026](../adr/0026-glass-ripple-lighting.md)
 
 ---
 
-**Last updated**: 2026-09-08  
-**Status**: Built. Local `npm run build` is the gate. Not deployed.  
+**Last updated**: 2026-09-10  
+**Status**: Built. Local `npm run build` is the gate. Production LIVE stays on the previous deploy until Johnny promotes.  
 **Author**: Johnny Huynh

@@ -1,7 +1,7 @@
 # ADR-0006: Glass Capability Map — Light Clinical Stage + Pixel QA
 
 **Date**: 2026-09-08  
-**Status**: Accepted  
+**Status**: Accepted — amended 2026-09-10 by [ADR-0026](./0026-glass-ripple-lighting.md) (stage tints + glass ripple; no new Vercel project)  
 **Context**: [vibes](../../) monorepo  
 **Related**: [glass-capability-brain.md](../reverse-engineering/glass-capability-brain.md), [glass-capability-brain](../../experiments/glass-capability-brain/)
 
