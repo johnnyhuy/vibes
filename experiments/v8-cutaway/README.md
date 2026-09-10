@@ -1,21 +1,18 @@
 # v8-cutaway
 
-Technical V8 engine cutaway visualisation with real-time gauges and animated internals.
+Technical V8 engine cutaway with a licensed multi-mesh GLB, live gauges, and a studio HDRI.
 
-I built this to learn how to visualise mechanical systems with synchronised motion and technical overlays — the kind of engineering diagrams that make complex machinery understandable and beautiful. Inspired by [@DilumSanjaya's interactive V8](https://x.com/DilumSanjaya/status/2096280244663775423) with animated pistons/valves, rotatable view, and live gauges (RPM, firing order, chamber pressure).
+I built this to learn how to visualise mechanical systems with synchronised motion and technical overlays. Inspired by [@DilumSanjaya's interactive V8](https://x.com/DilumSanjaya/status/2096280244663775423) with animated pistons, a rotatable view, and live gauges. The hero is no longer procedural boxes — that lane lost the [high-fidelity mesh pipeline](../../docs/reverse-engineering/high-fidelity-mesh-pipeline.md) quality bar next to explode-assembly's Model 3.
 
 ## What I Built
 
-A V8 engine cutaway with proper V-configuration and animated internals:
+- **Licensed V8 mesh** — meeww's Animated Engine V8 (CC-BY-4.0), 94 separate meshes, PBR maps, 171-channel clip. See [ATTRIBUTION.md](./ATTRIBUTION.md).
+- **useGLTF + baked motion** — drei loads the GLB; `engineSpeed` scales the clip. Pause freezes it.
+- **Live gauges** — RPM, stroke cycle (intake / compression / power / exhaust), chamber pressure, firing-order 1-8-4-3-6-5-7-2.
+- **Studio lighting** — Poly Haven Studio Small 09 HDRI via `<Environment>`, contact shadows, ring platform.
+- **Orbit controls** — Rotate and zoom. UI chrome (glass dock, cycle chips) is unchanged.
 
-- **90° V-angle** — Two banks of 4 cylinders (proper V8, not inline-8)
-- **Animated pistons** — 8 cylinders firing in sequence with realistic stroke patterns
-- **Rotating crankshaft** — Synchronised rotation driving piston motion
-- **Valve timing** — Intake/exhaust valves opening based on cycle position
-- **Live gauges** — RPM, stroke cycle (intake/compression/power/exhaust), chamber pressure
-- **Speed control** — Adjust engine speed from 1x to 10x
-- **Technical aesthetic** — Monospace typography, clean indicators, metallic materials
-- **Orbit controls** — Rotate and zoom to inspect from any angle
+Kenney was not used as the hero. No Meshy / Tripo / Rodin key was present, so this is the Sketchfab CC-BY lane (vendored from Objaverse, licence still CC-BY).
 
 ## Running It
 
@@ -24,66 +21,51 @@ npm install
 npm run dev
 ```
 
-Open http://localhost:5173 → orbit camera, adjust speed slider, watch the engine run.
+Open http://localhost:5173 → orbit the camera, adjust speed, watch the licensed mesh run.
+
+Regenerate the vendored GLB / HDRI:
+
+```bash
+node scripts/fetch-v8-engine.mjs
+```
 
 Headed local loop: `docs/previews/v8-cutaway.gif`. I recaptured it at 8× with a slow orbit so the pistons and firing-order chips actually move in the README table.
 
 ## Why I Made This
 
-I wanted to understand how to build **technical visualisations** that explain complex mechanical systems — the kind you'd see in engineering documentation or automotive marketing.
-
-This is my learning experiment for:
-- **Kinematic chains** — How crankshaft rotation drives piston motion through connecting rods
-- **Phase offsets** — Firing order 1-8-4-3-6-5-7-2 (standard V8 pattern)
-- **V-configuration geometry** — Two banks at 90° angle sharing one crankshaft
-- **Visual indicators** — Connecting 3D motion to real-time 2D gauges
-- **Technical aesthetic** — Monospace typography, metallic materials, precise readouts
+I wanted a technical visualisation that still reads as an engineering diagram — and I wanted the *mesh* to survive a close-up. Procedural cylinders were the right first lesson (kinematics, phase offsets). They are the wrong hero next to a real multi-mesh product shot.
 
 ## The Mechanics
 
-**Crankshaft rotation**: Single rotating shaft, rotates based on `engineSpeed * delta * 2`.
+**Clip**: `Object_0`, 10 s, 171 channels. Time scale is `engineSpeed * 0.85`. Pause sets scale to 0.
 
-**Piston motion**: `y = sin(crankRotation + phase) * stroke`. Each piston has a phase offset based on firing order.
+**Gauges** (same mapping as the procedural pass, so the HUD still teaches four-stroke timing):
 
-**V-configuration**: Two banks of 4 cylinders each, positioned at 90° angle to the crankshaft axis.
-
-**Valve timing**: Intake/exhaust valves move with sine wave tied to crank rotation (simplified — real engines use camshafts).
-
-**Gauge updates**: RPM = `engineSpeed * 200 + 300`. Stroke cycle from `crankRotation / (2π) mod 4`. Pressure from sine wave.
+- RPM = `engineSpeed * 200 + 300` (0 when paused)
+- Stroke cycle from accumulated crank turns `/ (2π) mod 4`
+- Firing index from `/ (π/4) mod 8`
+- Pressure from a sine on those turns
 
 ## Simplifications
 
-This is an educational prototype, so I simplified:
-- **Basic geometry** — Procedural boxes and cylinders, not detailed CAD models
-- **No combustion** — Would need particle effects for explosions and exhaust
-- **Simplified valve train** — Real engines have camshafts, rocker arms, pushrods
-- **No connecting rods** — Pistons move directly from crankshaft rotation
-- **No lubrication/cooling** — Just the mechanical basics
-- **Uniform firing** — Real V8s have uneven firing intervals for better torque delivery
-
-A production version would use imported CAD geometry, proper connecting rod kinematics, and particle effects for combustion.
+- **Baked constraints** — meeww used Blender object constraints, not a live crank–rod solver
+- **No combustion particles**
+- **No cutaway clip plane** — internals show because the source mesh is an educational assembly, not because we boolean the block
+- **Decimate skipped** — 157k triangles is already web-sized; gltf-transform Draco only
 
 ## Stack
 
-- **React** — UI state management
-- **@react-three/fiber** — Declarative Three.js in React
-- **@react-three/drei** — OrbitControls, Grid, helpers
-- **Three.js** — 3D rendering engine
-- **Vite** — Fast dev server + build tool
+- **React** — UI state
+- **@react-three/fiber** — declarative Three.js
+- **@react-three/drei** — `useGLTF`, `useAnimations`, `Environment`, `OrbitControls`
+- **Three.js** — renderer
+- **Vite** — dev server + build
 
-Same stack as `explode-assembly` and `earth-timeline` — I'm standardising on React + R3F for interactive 3D demos.
+Same stack as `explode-assembly`.
 
 ## What's Next
 
-If I return to this, I'd add:
-- **Connecting rods** — Proper piston-to-crankshaft linkage geometry
-- **Camshafts** — Actual valve train with rocker arms
-- **Combustion effects** — Particle systems for explosions and exhaust
-- **Cutaway shader** — Progressive reveal with slice plane
-- **Torque/power curves** — Live graphs showing engine performance
-- **Compare configs** — Side-by-side inline-4, V6, V8, V12
-
-For now, this proves the pattern: V-configuration geometry + kinematic animation + technical UI.
+If I return to this: clip-plane cutaway, isolate-by-system like explode-assembly, and a lighter decimate of Tomaso's 2.2M-triangle disassembled block as an explode mode.
 
 ---
 
