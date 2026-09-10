@@ -13,7 +13,7 @@ import NeuralGraph from './NeuralGraph';
 
 const start = lightingById('pale-lift');
 
-const RIPPLE_SECONDS = 1.15;
+const RIPPLE_SECONDS = 2.2;
 const glassGoal = new THREE.Color();
 const attenGoal = new THREE.Color();
 const sheenGoal = new THREE.Color();

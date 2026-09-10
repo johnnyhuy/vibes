@@ -66,8 +66,8 @@ export const rippleSheenFragment = /* glsl */ `
     float ang = acos(clamp(dot(n, o), -1.0, 1.0));
     float front = uRipple * 3.05;
     float ring = abs(ang - front);
-    float band = smoothstep(0.28, 0.03, ring) * pow(1.0 - uRipple, 0.55);
-    float core = smoothstep(0.09, 0.0, ring) * band;
-    gl_FragColor = vec4(uColor, band * 0.62 + core * 0.38);
+    float band = smoothstep(0.42, 0.04, ring) * pow(1.0 - uRipple, 0.4);
+    float core = smoothstep(0.14, 0.0, ring) * band;
+    gl_FragColor = vec4(uColor, min(1.0, band * 0.85 + core * 0.55));
   }
 `;
