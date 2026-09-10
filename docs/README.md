@@ -85,6 +85,7 @@ Things that went sideways and what I learnt:
 - [2026-09-08: README said no Vercel project after link-only creates](./incidents/2026-09-08-readme-vercel-link-only-drift.md) — kiln-studs / cinder-mere / alba-forum / brine-causeway / breakwater already exist `deploy: false`; do not promote until ~2026-09-08 20:39 UTC
 - [2026-09-08: Hobby repo-link cap (25) blocked `vibes-keel-hex`](./incidents/2026-09-08-vercel-repo-link-limit-25.md) — `repo_links_exceeded_limit`; Keel Hex / Fairday Walk / Ochre Gallop / later apps stay local-only; do not `create_git_project` or unlink without Johnny
 - [2026-09-09: `vercel.json` `"//"` comment key](./incidents/2026-09-09-vercel-json-comment-key.md) — Vercel schema-rejects `additional property //`; scroll / audio / grass ERROR on `607106de`
+- [2026-09-09: Semicircle left Vite 5](./incidents/2026-09-09-semicircle-vite6-security-bump.md) — parked major from the [estate audit](https://github.com/johnnyhuy/vibes/pull/54) (`docs/incidents/2026-09-09-security-dep-audit.md` on that PR); now `vite@^6.4.3`, `three@^0.160.0` kept
 
 ### Deployment
 

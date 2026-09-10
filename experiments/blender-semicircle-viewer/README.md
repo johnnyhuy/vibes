@@ -61,8 +61,8 @@ Project `vibes-blender-semicircle` (`prj_PLhnoCVRKmpHc8SxyLRmcp3MFZMC`) is live 
 
 ## Tech Stack
 
-- **Three.js** — 3D rendering engine
-- **Vite** — Fast dev server and build tool
+- **Three.js** `^0.160.0` — 3D rendering engine (unchanged; Vite 6 peers allow it)
+- **Vite** `^6.4.3` — Fast dev server and build tool. I left Vite 5 (`5.4.21`) on 2026-09-09 after the [estate audit](https://github.com/johnnyhuy/vibes/pull/54) (`docs/incidents/2026-09-09-security-dep-audit.md` on that PR) because `npm audit fix` wanted Vite 8. This bump is the smallest real fix: Vite **6.4.x** is the current security-backport line. No `@vitejs/plugin-react` and no `vite.config` — vanilla JS, so the migrate was lockfile-only.
 - **Vanilla JavaScript** — No framework overhead
 
 ## The Pattern (Blender MCP Workflow)
@@ -155,6 +155,6 @@ If you want ultra-realistic MacBooks, use official Apple press assets (with prop
 
 ---
 
-**Last updated**: 2026-09-08 (orbit-safe horseshoe framing)  
+**Last updated**: 2026-09-09 (Vite 5 → 6.4.3 security bump; framing unchanged)  
 **Author**: Johnny Huynh  
 **License**: MIT
