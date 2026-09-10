@@ -57,7 +57,7 @@ Dashboard **Root Directory** (required): **`experiments/scroll-product-showcase`
 
 Production: [https://vibes-scroll-product.vercel.app](https://vibes-scroll-product.vercel.app)
 
-`vercel.json` cannot set Root Directory. Earlier `main` hooks CANCELED with `ignored-build-step` because this folder did not change. This 2026-09-09 post-quota Root touch is what lets `ignoreCommand` pass so production can actually build. I am not creating a new project. Do not retry-spam.
+`vercel.json` cannot set Root Directory. Earlier `main` hooks CANCELED with `ignored-build-step` because this folder did not change. The 2026-09-09 Root touch poisoned schema with an illegal `"//"` key (PR #53 removes it). This 2026-09-10 post-quota README bump is the real Root touch so `ignoreCommand` builds a clean preview. I am not creating a new project. Do not retry-spam.
 
 ## What I Learnt
 
@@ -71,9 +71,10 @@ Production: [https://vibes-scroll-product.vercel.app](https://vibes-scroll-produ
 - [docs/reverse-engineering/webgl-scroll-product.md](../../docs/reverse-engineering/webgl-scroll-product.md)
 - [docs/adr/0005-scroll-driven-product-hero.md](../../docs/adr/0005-scroll-driven-product-hero.md)
 - [docs/incidents/2026-09-07-vercel-deploy-quota.md](../../docs/incidents/2026-09-07-vercel-deploy-quota.md)
+- [docs/incidents/2026-09-09-vercel-json-comment-key.md](../../docs/incidents/2026-09-09-vercel-json-comment-key.md)
 
 ---
 
-**Status**: Production alias [vibes-scroll-product.vercel.app](https://vibes-scroll-product.vercel.app) — 2026-09-09 Root touch so ignoreCommand builds  
-**Last updated**: 2026-09-09  
+**Status**: Production alias [vibes-scroll-product.vercel.app](https://vibes-scroll-product.vercel.app) — waiting on PR #53 merge after post-quota preview
+**Last updated**: 2026-09-10  
 **Built by**: Johnny Huynh

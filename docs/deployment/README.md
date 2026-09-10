@@ -49,4 +49,5 @@ PR previews appear as Vercel bot comments when quota allows.
 - [glass auto-deploy on tower merge](../incidents/2026-09-08-glass-auto-deploy-on-tower-merge.md)
 - [README ↔ Vercel link-only drift](../incidents/2026-09-08-readme-vercel-link-only-drift.md)
 - [Hobby repo-link cap (25)](../incidents/2026-09-08-vercel-repo-link-limit-25.md)
+- [`vercel.json` `"//"` comment key](../incidents/2026-09-09-vercel-json-comment-key.md)
 - [Visual QA](../visual-qa/README.md)

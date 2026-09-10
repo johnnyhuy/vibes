@@ -40,7 +40,7 @@ Project `vibes-audio-gadget-spin` (`prj_N57mvThg4UcU9XxLK3F5wAICz9PA`). SSO off.
 
 Production: [https://vibes-audio-gadget-spin.vercel.app](https://vibes-audio-gadget-spin.vercel.app)
 
-I linked it `deploy: false` before quota. This 2026-09-09 post-quota Root touch is what lets `ignoreCommand` pass so the first production build is not skipped. `create_git_project` does not write Root Directory. I am not creating a new project. See [the incident](../../docs/incidents/2026-09-07-audio-gadget-linked-before-quota.md).
+I linked it `deploy: false` before quota. The 2026-09-09 Root touch poisoned schema with an illegal `"//"` key (PR #53 removes it). This 2026-09-10 post-quota README bump is the real Root touch so `ignoreCommand` builds a clean preview. `create_git_project` does not write Root Directory. I am not creating a new project. See [the incident](../../docs/incidents/2026-09-07-audio-gadget-linked-before-quota.md) and [the `//` incident](../../docs/incidents/2026-09-09-vercel-json-comment-key.md).
 
 ## Related
 
@@ -50,6 +50,6 @@ I linked it `deploy: false` before quota. This 2026-09-09 post-quota Root touch 
 
 ---
 
-**Status**: Production alias [vibes-audio-gadget-spin.vercel.app](https://vibes-audio-gadget-spin.vercel.app) — 2026-09-09 Root touch so ignoreCommand builds  
-**Last updated**: 2026-09-09  
+**Status**: Production alias [vibes-audio-gadget-spin.vercel.app](https://vibes-audio-gadget-spin.vercel.app) — older READY still serving; waiting on PR #53 merge after post-quota preview
+**Last updated**: 2026-09-10  
 **Built by**: Johnny Huynh

@@ -50,7 +50,7 @@ See [the incident](../incidents/2026-09-08-steam-atlas-wrong-root.md).
 | — | — | `experiments/fairday-walk` — **no project**. Do not create one on this PR. Post-quota name pattern: `vibes-<experiment>` → `vibes-fairday-walk`. |
 | — | — | `experiments/ochre-gallop` — **no project**. **Blocked by Hobby 25-link cap** (`repo_links_exceeded_limit`). Do not create `vibes-ochre-gallop`. Future name only. |
 
-In-repo `vercel.json` lives *inside* those folders (`framework: vite`, `outputDirectory: dist`, `ignoreCommand` where I have added it).
+In-repo `vercel.json` lives *inside* those folders (`framework: vite`, `outputDirectory: dist`, `ignoreCommand` where I have added it). Do **not** add a `"//"` comment key — Vercel schema-rejects `additional property //` and the deploy ERRORs before install. See [the incident](../incidents/2026-09-09-vercel-json-comment-key.md).
 
 `ignoreCommand: git diff --quiet HEAD^ HEAD ./` skips the Vite build when that folder did not change. Vercel records that skip as **CANCELED** with `errorLink` **`ignored-build-step`**. It may still count as a hobby deployment. It does **not** write or refresh a production alias — that is why steam-atlas stayed `DEPLOYMENT_NOT_FOUND` after a `create_git_project` redeploy of `main` (the tip only touched `japanese-tower`).
 
