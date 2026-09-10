@@ -43,7 +43,7 @@ export default function LightingRig({ preset, reducedMotion }: Props) {
       setEnvFrames(1);
       return undefined;
     }
-    setEnvFrames(Infinity);
+    setEnvFrames(8);
     const id = window.setTimeout(() => setEnvFrames(1), 1300);
     return () => window.clearTimeout(id);
   }, [preset.id, reducedMotion]);

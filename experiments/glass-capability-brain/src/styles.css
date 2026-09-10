@@ -77,9 +77,9 @@ body {
 }
 
 .app[data-lighting='ember-slide'] {
-  --stage: #efe0d2;
-  --stage-hi: #f8ece0;
-  --stage-lo: #ddc4ae;
+  --stage: #f3d9c4;
+  --stage-hi: #faeee4;
+  --stage-lo: #e0b896;
   --royal: #c2410c;
   --ink: #2a1c14;
 }

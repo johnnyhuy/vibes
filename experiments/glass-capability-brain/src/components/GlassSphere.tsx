@@ -2,7 +2,12 @@ import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import type { WebGLProgramParametersWithUniforms } from 'three';
 import * as THREE from 'three';
-import { injectGlassRipple, type RippleUniforms } from '../glassRipple';
+import {
+  injectGlassRipple,
+  rippleSheenFragment,
+  rippleSheenVertex,
+  type RippleUniforms,
+} from '../glassRipple';
 import { lightingById, type LightingPreset } from '../lighting';
 import NeuralGraph from './NeuralGraph';
 
@@ -11,6 +16,7 @@ const start = lightingById('pale-lift');
 const RIPPLE_SECONDS = 1.15;
 const glassGoal = new THREE.Color();
 const attenGoal = new THREE.Color();
+const sheenGoal = new THREE.Color();
 
 interface Props {
   preset: LightingPreset;
@@ -26,6 +32,14 @@ export default function GlassSphere({ preset, rippleNonce, reducedMotion }: Prop
       uRippleOrigin: { value: new THREE.Vector3(0.18, 0.52, 0.84) },
     }),
     [],
+  );
+  const sheenUniforms = useMemo(
+    () => ({
+      uRipple: uniforms.uRipple,
+      uRippleOrigin: uniforms.uRippleOrigin,
+      uColor: { value: new THREE.Color('#f4f8ff') },
+    }),
+    [uniforms],
   );
 
   useEffect(() => {
@@ -70,6 +84,8 @@ export default function GlassSphere({ preset, rippleNonce, reducedMotion }: Prop
         alpha,
       );
     }
+    sheenGoal.set(preset.glassColor).offsetHSL(0, 0.08, 0.22);
+    sheenUniforms.uColor.value.lerp(sheenGoal, alpha);
 
     if (reducedMotion) {
       uniforms.uRipple.value = 0;
@@ -101,6 +117,18 @@ export default function GlassSphere({ preset, rippleNonce, reducedMotion }: Prop
           transparent
           onBeforeCompile={onBeforeCompile}
           customProgramCacheKey={() => 'glass-ripple-v1'}
+        />
+      </mesh>
+      <mesh>
+        <sphereGeometry args={[2.205, 64, 64]} />
+        <shaderMaterial
+          uniforms={sheenUniforms}
+          vertexShader={rippleSheenVertex}
+          fragmentShader={rippleSheenFragment}
+          transparent
+          depthWrite={false}
+          blending={THREE.AdditiveBlending}
+          toneMapped={false}
         />
       </mesh>
     </group>
