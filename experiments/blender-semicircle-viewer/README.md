@@ -39,28 +39,11 @@ Headed local loop: `docs/previews/blender-semicircle.gif`. Full XZ horseshoe wit
 
 ## Deploy to Vercel
 
-This experiment is configured for Vercel deployment alongside the other vibes projects.
+Project `vibes-blender-semicircle` (`prj_PLhnoCVRKmpHc8SxyLRmcp3MFZMC`), Root `experiments/blender-semicircle-viewer`.
 
-### Setup (one-time)
+### Deploy status (2026-09-11)
 
-1. **Create Vercel project** (if not already):
-   - Visit [vercel.com/new](https://vercel.com/new)
-   - Import `johnnyhuy/vibes` repository
-
-2. **Configure Root Directory** in Vercel dashboard:
-   - Project Settings → Build & Development Settings
-   - **Root Directory**: `experiments/blender-semicircle-viewer`
-   - Enable "Include source files outside of the Root Directory"
-
-3. **Framework Detection**:
-   - Framework Preset: **Vite** (auto-detected)
-   - Build Command: `npm run build`
-   - Output Directory: `dist`
-   - Install Command: `npm install`
-
-### Deploy status (2026-09-08)
-
-Project `vibes-blender-semicircle` (`prj_PLhnoCVRKmpHc8SxyLRmcp3MFZMC`) is live but **stale**: production is still commit `25587f54` (cropped mega-arc). XZ layout + single-azimuth AABB fit still sat the camera too close (wide bowl, look-target lift after the solve). This Root now uses `framing.js`: look-target fit, 12-azimuth orbit max, sphere floor, margin 1.36. Sibling-folder commits skip via `ignored-build-step`. Do not force a production redeploy from the agent (hobby quota until ~2026-09-08 20:39 UTC). Preview deploys from a PR that touches this folder are fine.
+Production alias was still on #53 (`c1063df3` / `dpl_6ZTh2WE5tSzoPgirTDMPJTJKaWWo`) after the Vite 5 → 6.4.3 security bump (#55) landed on `main` — later sibling merges CANCELED this Root via `ignored-build-step`. This README Root-touch is the minimal force so production picks up Vite `^6.4.3`. Sibling-folder commits still skip via `ignored-build-step`. Do not create new Vercel projects (Hobby 25-link cap).
 
 ## Tech Stack
 
@@ -158,6 +141,6 @@ If you want ultra-realistic MacBooks, use official Apple press assets (with prop
 
 ---
 
-**Last updated**: 2026-09-09 (Vite 5 → 6.4.3 security bump; framing unchanged)  
+**Last updated**: 2026-09-11 (Root-touch to promote #55 Vite 6.4.3 onto production)  
 **Author**: Johnny Huynh  
 **License**: MIT
