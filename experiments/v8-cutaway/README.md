@@ -31,6 +31,10 @@ node scripts/fetch-v8-engine.mjs
 
 Headed local loop: `docs/previews/v8-cutaway.gif`. I recaptured it at 8× with a slow orbit so the pistons and firing-order chips actually move in the README table.
 
+## Deploy
+
+Project `vibes-v8`, Root `experiments/v8-cutaway`. Production alias was still on #53 (`c1063df3`) after the licensed multi-mesh V8 (#51) landed on `main` — later sibling merges CANCELED this Root via `ignored-build-step`. This README Root-touch (2026-09-11) is the minimal force so production picks up the CC-BY mesh. No new Vercel project (Hobby 25-link cap).
+
 ## Why I Made This
 
 I wanted a technical visualisation that still reads as an engineering diagram — and I wanted the *mesh* to survive a close-up. Procedural cylinders were the right first lesson (kinematics, phase offsets). They are the wrong hero next to a real multi-mesh product shot.
@@ -70,3 +74,5 @@ If I return to this: clip-plane cutaway, isolate-by-system like explode-assembly
 ---
 
 Built by Johnny Huynh • This is my kitchen sink • Research and education only — not production code
+
+**Last updated**: 2026-09-11 (Root-touch to promote #51 multi-mesh V8 onto production)

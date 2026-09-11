@@ -45,11 +45,9 @@ npm run build
 
 ## Deploy
 
-Production is **LIVE** at [https://vibes-glass-capability-brain.vercel.app/](https://vibes-glass-capability-brain.vercel.app/) (`dpl_3CE9Dd7X7og5MuSLpcGgyxboacgz` on `9328191`). SSO off. Project `vibes-glass-capability-brain` (`prj_yJbQTsiB138V5jh92cwSWd8rZmij`), Root `experiments/glass-capability-brain`.
+Production alias [https://vibes-glass-capability-brain.vercel.app/](https://vibes-glass-capability-brain.vercel.app/) was stuck on Ridge Pagoda-era `dpl_3CE9Dd7X7og5MuSLpcGgyxboacgz` (`9328191`) after #57 landed on `main` — sibling merges CANCELED this Root via `ignored-build-step`. This README Root-touch (2026-09-11) is the minimal force so Pale Lift / Ember Slide / Lumen Watch can ship to the production alias. SSO off. Project `vibes-glass-capability-brain` (`prj_yJbQTsiB138V5jh92cwSWd8rZmij`), Root `experiments/glass-capability-brain`.
 
-It shipped on the japanese-tower `main` merge — do not assume steam / scroll / semicircle / tower moved with it. Their later `main` hooks CANCELED with `ignored-build-step` because those Roots did not change. See [the incident](../../docs/incidents/2026-09-08-glass-auto-deploy-on-tower-merge.md).
-
-Dashboard **Root Directory** must stay `experiments/glass-capability-brain`. `vercel.json` cannot set that field. Do not force another production deploy on a hill-climb PR. This folder does not need a post-quota slot. Hobby is at the **25 Git repo-link cap** — do **not** create a new Vercel project for this tint pass.
+Dashboard **Root Directory** must stay `experiments/glass-capability-brain`. `vercel.json` cannot set that field. Hobby is at the **25 Git repo-link cap** — do **not** create a new Vercel project for this tint pass.
 
 ## Related
 
@@ -59,6 +57,6 @@ Dashboard **Root Directory** must stay `experiments/glass-capability-brain`. `ve
 
 ---
 
-**Status**: Production LIVE at https://vibes-glass-capability-brain.vercel.app/ (SSO off); hill-climb PR only — no new project, no forced production redeploy  
-**Last updated**: 2026-09-10  
+**Status**: Root-touch 2026-09-11 to promote #57 ripple onto production alias  
+**Last updated**: 2026-09-11  
 **Built by**: Johnny Huynh
