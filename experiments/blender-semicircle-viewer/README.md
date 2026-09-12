@@ -41,9 +41,9 @@ Headed local loop: `docs/previews/blender-semicircle.gif`. Full XZ horseshoe wit
 
 Project `vibes-blender-semicircle` (`prj_PLhnoCVRKmpHc8SxyLRmcp3MFZMC`), Root `experiments/blender-semicircle-viewer`.
 
-### Deploy status (2026-09-11)
+### Deploy status (2026-09-12)
 
-Production alias was still on #53 (`c1063df3` / `dpl_6ZTh2WE5tSzoPgirTDMPJTJKaWWo`) after the Vite 5 → 6.4.3 security bump (#55) landed on `main` — later sibling merges CANCELED this Root via `ignored-build-step`. This README Root-touch is the minimal force so production picks up Vite `^6.4.3`. Sibling-folder commits still skip via `ignored-build-step`. Do not create new Vercel projects (Hobby 25-link cap).
+Production alias was still stuck on #53 (`c1063df3` / `dpl_6ZTh2WE5`, asset `index-Cai8C-1x.js`) even after #58 Root-touched this README alongside glass + v8. Glass and v8 both went READY on `f98af6bf`; this Root never got a deployment for that commit (webhook miss / concurrent skip). Vite `^6.4.3` is already on `main` via #55 — this semicircle-only README bump is the minimal force so production can leave #53 and pick up the security line. Preview `dpl_24KQoAJh` (`index-B3pEjPew.js`) already proved the bump. No new Vercel projects (Hobby 25-link cap).
 
 ## Tech Stack
 
@@ -141,6 +141,6 @@ If you want ultra-realistic MacBooks, use official Apple press assets (with prop
 
 ---
 
-**Last updated**: 2026-09-11 (Root-touch to promote #55 Vite 6.4.3 onto production)  
+**Last updated**: 2026-09-12 (semicircle-only Root-touch — #58 skipped this Root; force Vite 6.4.3 onto production)  
 **Author**: Johnny Huynh  
 **License**: MIT
