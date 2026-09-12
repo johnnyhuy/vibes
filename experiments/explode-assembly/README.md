@@ -27,6 +27,14 @@ Open http://localhost:5173
 
 **Model**: Tesla Model 3 by David_Holiday (CC-BY-4.0). See [ATTRIBUTION.md](./ATTRIBUTION.md) for full details.
 
+## Deploy to Vercel
+
+Project `vibes-explode` (`prj_bkyEqYqsAhAk0ZrVnhXi9Him98Fb`), Root `experiments/explode-assembly`.
+
+### Deploy status (2026-09-12)
+
+Production alias [https://vibes-explode.vercel.app](https://vibes-explode.vercel.app) is still stuck on #53 (`c1063df3` / `dpl_6bxXCwTFq8dgMtFxrMMCpmzifqXk`, asset `index-ZWfp4Rqf.js`). I already shipped #55/#58/#59 and those rebuilt glass, v8, and semicircle production — `ignoreCommand` canceled this Root whenever I only touched sibling folders. Content is fine; the Root is stale, and I still had Vite `^6.0.1` here while the estate security line is `^6.4.3` (same backport as blender-semicircle in #55). This explode-only bump is the minimal force so `vibes-explode` has to leave #53 and pick up Vite `^6.4.3`. No new Vercel projects (Hobby 25-link cap).
+
 ## How ashemag Did It
 
 After studying their code, here's the pattern:
