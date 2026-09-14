@@ -38,7 +38,11 @@ Project name: **`vibes-procedural-grass-field`**. Dashboard **Root Directory** m
 
 Production: [https://vibes-procedural-grass-field.vercel.app](https://vibes-procedural-grass-field.vercel.app)
 
-Hobby is at the 25 Git repo-link cap — I am **not** calling `create_git_project`. The 2026-09-09 Root touch poisoned schema with an illegal `"//"` key (PR #53 removes it). This 2026-09-10 post-quota README bump is the real Root touch so `ignoreCommand` builds a clean preview. `vercel.json` cannot set Root Directory.
+Hobby is at the 25 Git repo-link cap — I am **not** calling `create_git_project`. `vercel.json` cannot set Root Directory.
+
+### Deploy status (2026-09-15)
+
+Production alias [https://vibes-procedural-grass-field.vercel.app](https://vibes-procedural-grass-field.vercel.app) is **still** on #53 (`c1063df3` / `dpl_HgYFbhVkcZc7djd`, asset `index-C0EC0qFj.js`) even after #65 landed Vite `^6.4.3` on main (`04b613a2`). That merge never produced a READY production deploy for this Root — later sibling merges only CANCELED via `ignoreCommand`. This grass-only README Root-touch is the minimal force so `vibes-procedural-grass-field` can leave #53. One-Root-per-pass to limit Hobby fan-out.
 
 ## Related
 
@@ -48,6 +52,6 @@ Hobby is at the 25 Git repo-link cap — I am **not** calling `create_git_projec
 
 ---
 
-**Status**: Production alias [vibes-procedural-grass-field.vercel.app](https://vibes-procedural-grass-field.vercel.app) — waiting on PR #53 merge after post-quota preview
-**Last updated**: 2026-09-10  
+**Status**: Production alias [vibes-procedural-grass-field.vercel.app](https://vibes-procedural-grass-field.vercel.app) — still on #53 after #65 missed a READY production build; this Root-touch forces `ignoreCommand` to rebuild
+**Last updated**: 2026-09-15 (grass-only Root-touch — #65 skipped a READY production deploy; force leave #53)  
 **Built by**: Johnny Huynh
