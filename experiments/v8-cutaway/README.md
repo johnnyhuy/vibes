@@ -33,7 +33,7 @@ Headed local loop: `docs/previews/v8-cutaway.gif`. I recaptured it at 8× with a
 
 ## Deploy
 
-Project `vibes-v8`, Root `experiments/v8-cutaway`. Production alias was still on #53 (`c1063df3`) after the licensed multi-mesh V8 (#51) landed on `main` — later sibling merges CANCELED this Root via `ignored-build-step`. This README Root-touch (2026-09-11) is the minimal force so production picks up the CC-BY mesh. No new Vercel project (Hobby 25-link cap).
+Project `vibes-v8`, Root `experiments/v8-cutaway`. This pass (2026-09-15) bumps declared Vite `^6.0.1` to `^6.4.3` so production and the declared range leave the old `^6.0.1` line. Same security line as #68 japanese-tower. Lockfile already resolves `vite@6.4.3`. The licensed multi-mesh V8 from #51 stays the hero. No new Vercel project (Hobby 25-link cap).
 
 ## Why I Made This
 
@@ -75,4 +75,4 @@ If I return to this: clip-plane cutaway, isolate-by-system like explode-assembly
 
 Built by Johnny Huynh • This is my kitchen sink • Research and education only — not production code
 
-**Last updated**: 2026-09-11 (Root-touch to promote #51 multi-mesh V8 onto production)
+**Last updated**: 2026-09-15 (Vite `^6.4.3` so declared range leaves `^6.0.1`)
