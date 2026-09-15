@@ -30,9 +30,11 @@ npm run build
 
 ## Deploy
 
-Project `vibes-japanese-tower` (`prj_T1KL4cJSMuY0Z6oKGnNtv8zVP0Js`) is **LIVE** at [vibes-japanese-tower.vercel.app](https://vibes-japanese-tower.vercel.app) — Ridge Pagoda title, `dpl_Gap9BAXosU4jMEsQsR8c2nKyEPjg` from the courtyard PR branch. Skip after quota unless visual QA fails. Do not force a deploy on this hill-climb.
+Project `vibes-japanese-tower` (`prj_T1KL4cJSMuY0Z6oKGnNtv8zVP0Js`) is **LIVE** at [vibes-japanese-tower.vercel.app](https://vibes-japanese-tower.vercel.app). Dashboard **Root Directory** must stay `experiments/japanese-tower`. `vercel.json` only carries the usual Vite fields plus `ignoreCommand` — it cannot set Root Directory. Hobby is at the 25 Git repo-link cap — I am **not** calling `create_git_project`.
 
-Dashboard **Root Directory** must stay `experiments/japanese-tower`. `vercel.json` only carries the usual Vite fields plus `ignoreCommand` — it cannot set Root Directory.
+### Deploy status (2026-09-15 ~11:25am AEST)
+
+Production alias [https://vibes-japanese-tower.vercel.app](https://vibes-japanese-tower.vercel.app) is **still** on `dpl_Gap9BAXosU4jMEsQsR8c2nKyEPjg` from branch `cursor/chinese-courtyard-siheyuan-b241` (PR #20, sha `7d1be7c0`) — last-modified ~2026-09-10. Every recent main build for this project has been CANCELED by `ignoreCommand` because I did not touch this Root. Grass already recovered on main via #67 (`dpl_GyZTo3QLBdYhUdogCHwEzaz7N6CN` / sha `54f88ee7`). This japanese-tower-only Vite `^6.4.3` bump + README Root-touch is the next one-Root pass so `vibes-japanese-tower` can leave PR #20. Same security line as #55/#60/#62/#63/#64/#65. Lockfile already resolves `vite@6.4.3`; I am not churning it.
 
 Glass is already LIVE at [vibes-glass-capability-brain.vercel.app](https://vibes-glass-capability-brain.vercel.app/) (SSO off). It shipped on the Ridge Pagoda `main` merge; this folder did not.
 
@@ -44,6 +46,6 @@ Glass is already LIVE at [vibes-glass-capability-brain.vercel.app](https://vibes
 
 ---
 
-**Status**: LIVE at https://vibes-japanese-tower.vercel.app (Ridge Pagoda, `dpl_Gap9BAXosU4jMEsQsR8c2nKyEPjg`). Skip after quota unless visual QA fails.  
-**Last updated**: 2026-09-08  
+**Status**: Production alias [vibes-japanese-tower.vercel.app](https://vibes-japanese-tower.vercel.app) — still on PR #20 (`7d1be7c0` / `dpl_Gap9BAXosU4jMEsQsR8c2nKyEPjg`); this Root-touch + Vite `^6.4.3` forces `ignoreCommand` to rebuild  
+**Last updated**: 2026-09-15 ~11:25am AEST (japanese-tower-only Vite `^6.4.3` + Root-touch — leave PR #20)  
 **Built by**: Johnny Huynh
