@@ -30,7 +30,7 @@ Root Directory: **`experiments/procedural-steam-atlas`**. Keep it. Do not use th
 
 `vercel.json` here sets Vite + `ignoreCommand`. It cannot set Root Directory. `create_git_project` reuse (`deploy: false`) also **does not write Root**. Pause API returned **400** on hobby — I cannot pause this project to stop fan-out.
 
-Production **LIVE PASS** ~4:37am AEST on `main` `a94b16e` / `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS`. Alias [vibes-steam-atlas.vercel.app](https://vibes-steam-atlas.vercel.app) shows the assembled locomotive (Assembled / 0% / All). Skip after quota unless a later visual QA fails. Don’t spam retries from the agent. This README sentence keeps the Root in the next merge diff.
+Production alias [vibes-steam-atlas.vercel.app](https://vibes-steam-atlas.vercel.app) is **still** on old `main` `a94b16e` / `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS` (asset `index-CC7WWyyp.js`) — last-modified ~2026-09-14. I documented that LIVE PASS ~2026-09-08. Every recent main/PR deploy for this project has been CANCELED by `ignoreCommand` because sibling one-Root merges did not touch this folder. The locomotive on the alias is still the assembled view (Assembled / 0% / All). This steam-only Vite `^6.4.3` bump + README Root-touch is the next one-Root pass so `vibes-steam-atlas` can leave `a94b16e`. Same security line as #55/#60/#62/#63/#64/#65/#68/#69. Lockfile already resolves `vite@6.4.3`; I am not churning it. Don’t spam retries from the agent.
 
 See [docs/incidents/2026-09-08-steam-atlas-wrong-root.md](../../docs/incidents/2026-09-08-steam-atlas-wrong-root.md).
 
@@ -177,6 +177,6 @@ For now, this proves the pattern: **pure TypeScript geometry functions can creat
 
 ---
 
-**Status**: Linked, production **LIVE PASS** `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS` on `a94b16e`  
-**Last updated**: 2026-09-08  
+**Status**: Production alias [vibes-steam-atlas.vercel.app](https://vibes-steam-atlas.vercel.app) — still on `a94b16e` / `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS` / `index-CC7WWyyp.js`; this Root-touch + Vite `^6.4.3` forces `ignoreCommand` to rebuild  
+**Last updated**: 2026-09-16 ~12:24pm AEST (steam-only Vite `^6.4.3` + Root-touch — leave `a94b16e`)  
 **Built by**: Johnny Huynh · kitchen sink · research and education only — not production code
