@@ -33,7 +33,11 @@ Headed local loop: `docs/previews/v8-cutaway.gif`. I recaptured it at 8× with a
 
 ## Deploy
 
-Project `vibes-v8`, Root `experiments/v8-cutaway`. This pass (2026-09-15) bumps declared Vite `^6.0.1` to `^6.4.3` so production and the declared range leave the old `^6.0.1` line. Same security line as #68 japanese-tower. Lockfile already resolves `vite@6.4.3`. The licensed multi-mesh V8 from #51 stays the hero. No new Vercel project (Hobby 25-link cap).
+Project `vibes-v8`, Root `experiments/v8-cutaway`. Production: [https://vibes-v8.vercel.app](https://vibes-v8.vercel.app). Dashboard **Root Directory** must stay `experiments/v8-cutaway`. Hobby is at the 25 Git repo-link cap — I am **not** calling `create_git_project`. `vercel.json` cannot set Root Directory. Vite is already `^6.4.3` via #69; lockfile already resolves `vite@6.4.3`. The licensed multi-mesh V8 from #51 stays the hero.
+
+### Deploy status (2026-09-16 ~1:50am AEST)
+
+Production alias [https://vibes-v8.vercel.app](https://vibes-v8.vercel.app) is **still** on the #68 sibling rebuild (`5d9fc768` / `dpl_GBfMhi1usotSFK3yuiR53JpZNnwb`, asset `index-DdJNq_D5.js`) even after #69. That PR produced a READY *preview* on `cursor/vite-v8-cutaway-a5e7` (`dpl_CVCwrxNqMbsMT6WXrNXA7w1Rewaj` / sha `34bc6f34`) but Vercel never produced a production deploy for main tip `5869b589` — same miss pattern as grass #66→#67. japanese-tower already recovered via #68 (`dpl_FYkek5AyqWBF9HY7AvhU112f1nAL` / sha `5d9fc768` / `index-cPM9rtHx.js` left PR #20). This v8-only README Root-touch is the minimal force so `vibes-v8` can leave the #68 sibling. One-Root-per-pass to limit Hobby fan-out.
 
 ## Why I Made This
 
@@ -75,4 +79,5 @@ If I return to this: clip-plane cutaway, isolate-by-system like explode-assembly
 
 Built by Johnny Huynh • This is my kitchen sink • Research and education only — not production code
 
-**Last updated**: 2026-09-15 (Vite `^6.4.3` so declared range leaves `^6.0.1`)
+**Status**: Production alias [vibes-v8.vercel.app](https://vibes-v8.vercel.app) — still on #68 sibling (`5d9fc768` / `dpl_GBfMhi1usotSFK3yuiR53JpZNnwb` / `index-DdJNq_D5.js`) after #69 missed a READY production build (preview-only `dpl_CVCwrxNqMbsMT6WXrNXA7w1Rewaj`); this Root-touch forces `ignoreCommand` to rebuild
+**Last updated**: 2026-09-16 ~1:50am AEST (v8-only Root-touch — #69 skipped a READY production deploy; force leave #68 sibling)
