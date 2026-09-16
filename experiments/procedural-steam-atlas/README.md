@@ -28,9 +28,11 @@ Open http://localhost:5173 → drag to orbit, scroll to zoom, use controls to ex
 Vercel project: **`vibes-steam-atlas`** (`prj_7D08PT8sdUjhigCEuz83oltZrDMv`)  
 Root Directory: **`experiments/procedural-steam-atlas`**. Keep it. Do not use the repo root.
 
-`vercel.json` here sets Vite + `ignoreCommand`. It cannot set Root Directory. `create_git_project` reuse (`deploy: false`) also **does not write Root**. Pause API returned **400** on hobby — I cannot pause this project to stop fan-out.
+Production: [https://vibes-steam-atlas.vercel.app](https://vibes-steam-atlas.vercel.app). Dashboard **Root Directory** must stay `experiments/procedural-steam-atlas`. Hobby is at the 25 Git repo-link cap — I am **not** calling `create_git_project`. `vercel.json` cannot set Root Directory. Pause API returned **400** on hobby. Vite is already `^6.4.3` via #71; lockfile already resolves `vite@6.4.3`.
 
-Production alias [vibes-steam-atlas.vercel.app](https://vibes-steam-atlas.vercel.app) is **still** on old `main` `a94b16e` / `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS` (asset `index-CC7WWyyp.js`) — last-modified ~2026-09-14. I documented that LIVE PASS ~2026-09-08. Every recent main/PR deploy for this project has been CANCELED by `ignoreCommand` because sibling one-Root merges did not touch this folder. The locomotive on the alias is still the assembled view (Assembled / 0% / All). This steam-only Vite `^6.4.3` bump + README Root-touch is the next one-Root pass so `vibes-steam-atlas` can leave `a94b16e`. Same security line as #55/#60/#62/#63/#64/#65/#68/#69. Lockfile already resolves `vite@6.4.3`; I am not churning it. Don’t spam retries from the agent.
+### Deploy status (2026-09-16 ~1:22pm AEST)
+
+Production alias [vibes-steam-atlas.vercel.app](https://vibes-steam-atlas.vercel.app) (and [vibes-steam-atlas-johnnyhuy-dev.vercel.app](https://vibes-steam-atlas-johnnyhuy-dev.vercel.app)) is **still** on old `main` `a94b16e` / `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS` (asset `index-CC7WWyyp.js`, last-modified ~2026-09-15 02:30 UTC) even after #71. That PR produced a READY *preview* on `cursor/vite-steam-atlas-3d0a` (`dpl_5Kr6xL6sWb5F17LyAGarz4nYaPvM` / sha `3476747f` / asset `index-kGk_gYzX.js`) but Vercel never produced a READY production deploy for main tip `ff6cbead` — same miss pattern as v8 #69→#70. Sibling main pushes keep getting `ignoreCommand` CANCELED for this Root (latest: `dpl_9dqygWZN59Mh6qNmZYrG9d6css11` on #70). This steam-only README Root-touch is the minimal force so `vibes-steam-atlas` can leave `a94b16e`. One-Root-per-pass to limit Hobby fan-out. Don’t spam retries from the agent.
 
 See [docs/incidents/2026-09-08-steam-atlas-wrong-root.md](../../docs/incidents/2026-09-08-steam-atlas-wrong-root.md).
 
@@ -177,6 +179,6 @@ For now, this proves the pattern: **pure TypeScript geometry functions can creat
 
 ---
 
-**Status**: Production alias [vibes-steam-atlas.vercel.app](https://vibes-steam-atlas.vercel.app) — still on `a94b16e` / `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS` / `index-CC7WWyyp.js`; this Root-touch + Vite `^6.4.3` forces `ignoreCommand` to rebuild  
-**Last updated**: 2026-09-16 ~12:24pm AEST (steam-only Vite `^6.4.3` + Root-touch — leave `a94b16e`)  
+**Status**: Production alias [vibes-steam-atlas.vercel.app](https://vibes-steam-atlas.vercel.app) — still on `a94b16e` / `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS` / `index-CC7WWyyp.js` after #71 missed a READY production build (preview-only `dpl_5Kr6xL6sWb5F17LyAGarz4nYaPvM`); this Root-touch forces `ignoreCommand` to rebuild  
+**Last updated**: 2026-09-16 ~1:22pm AEST (steam-only Root-touch — #71 skipped a READY production deploy; force leave `a94b16e`)  
 **Built by**: Johnny Huynh · kitchen sink · research and education only — not production code
