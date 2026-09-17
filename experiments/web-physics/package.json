@@ -12,6 +12,6 @@
     "cannon-es": "^0.20.0"
   },
   "devDependencies": {
-    "vite": "^6.0.1"
+    "vite": "^6.4.3"
   }
 }

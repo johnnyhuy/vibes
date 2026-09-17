@@ -119,3 +119,10 @@ Ideas for LLM-generated physics scenarios:
 - [cannon-es docs](https://pmndrs.github.io/cannon-es/)
 - [Three.js physics examples](https://threejs.org/examples/?q=physics)
 - [react-three/rapier](https://github.com/pmndrs/react-three-rapier) — React alternative with Rapier physics
+
+---
+
+**Status**: Production alias [vibes-physics.vercel.app](https://vibes-physics.vercel.app) — on #74 (`6bcd57bc` / `dpl_CGBPDXdhJ7UhyvZsoTAKwx3HcXuk`); this Root-touch + Vite `^6.4.3` forces `ignoreCommand` to rebuild  
+**Last updated**: 2026-09-17 ~9:30pm AEST (web-physics-only Vite `^6.4.3` + Root-touch)  
+**Deploy**: Linked `vibes-physics` / `prj_Ilh5mBV0g7m7btvnxnhZuFY5ZjiH`. Root Directory `experiments/web-physics`. No new projects (Hobby 25-link cap).  
+Built by Johnny Huynh • This is my kitchen sink • Research and education only — not production code
