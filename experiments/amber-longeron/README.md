@@ -30,11 +30,7 @@ npm run build
 
 ## Deploy
 
-**No Vercel project.** Do not create one on this PR. Hobby quota on `johnnyhuy-dev` stays exhausted until **~2026-09-08 20:39 UTC**. I am not burning a slot on a new app.
-
-`vercel.json` only carries the usual Vite fields plus `ignoreCommand`. It cannot set Root Directory. If I add a project later: dashboard **Root Directory** must be `experiments/amber-longeron`.
-
-Post-quota order stays: (1) promote `vibes-blender-semicircle` from the git-main framing fix (2) `vibes-scroll-product` first READY (3) `vibes-audio-gadget-spin` first production (4) then grass / ballance / courtyard. If `vibes-procedural-grass-field` already exists `deploy: false`, leave it idle. Do not create a project for this folder.
+Linked Vercel project `vibes-amber-longeron` / `prj_P8wkvn17aVx2YpjNwpSSY2njdJGA`. Dashboard **Root Directory** is `experiments/amber-longeron`. `vercel.json` carries the usual Vite fields plus `ignoreCommand` — it cannot set Root Directory. No new projects (Hobby 25-link cap).
 
 ## Related
 
@@ -44,6 +40,7 @@ Post-quota order stays: (1) promote `vibes-blender-semicircle` from the git-main
 
 ---
 
-**Status**: Local build is the QA until a project exists  
-**Last updated**: 2026-09-08  
-**Built by**: Johnny Huynh
+**Status**: Production had never left a READY build for this Root; Vite ^6.4.3 + this Root-touch force `ignoreCommand` to rebuild `vibes-amber-longeron`  
+**Last updated**: 2026-09-18 ~4:38am AEST (amber-longeron-only Vite security bump)  
+**Deploy**: Linked `vibes-amber-longeron` / `prj_P8wkvn17aVx2YpjNwpSSY2njdJGA`. Root Directory `experiments/amber-longeron`. No new projects (Hobby 25-link cap).  
+Built by Johnny Huynh • This is my kitchen sink • Research and education only — not production code
