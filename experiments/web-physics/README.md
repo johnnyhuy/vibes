@@ -122,7 +122,7 @@ Ideas for LLM-generated physics scenarios:
 
 ---
 
-**Status**: Production alias [vibes-physics.vercel.app](https://vibes-physics.vercel.app) — on #74 (`6bcd57bc` / `dpl_CGBPDXdhJ7UhyvZsoTAKwx3HcXuk`); this Root-touch + Vite `^6.4.3` forces `ignoreCommand` to rebuild  
-**Last updated**: 2026-09-17 ~9:30pm AEST (web-physics-only Vite `^6.4.3` + Root-touch)  
+**Status**: Production alias [vibes-physics.vercel.app](https://vibes-physics.vercel.app) — still on #74 (`6bcd57bc` / `dpl_CGBPDXdhJ7UhyvZsoTAKwx3HcXuk`) after #76 never produced a vibes-physics deploy; this Root-touch forces `ignoreCommand` to rebuild  
+**Last updated**: 2026-09-18 ~3:35am AEST (web-physics-only Root-touch after #76 miss)  
 **Deploy**: Linked `vibes-physics` / `prj_Ilh5mBV0g7m7btvnxnhZuFY5ZjiH`. Root Directory `experiments/web-physics`. No new projects (Hobby 25-link cap).  
 Built by Johnny Huynh • This is my kitchen sink • Research and education only — not production code
