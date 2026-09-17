@@ -54,6 +54,8 @@ In-repo `vercel.json` lives *inside* those folders (`framework: vite`, `outputDi
 
 `ignoreCommand: git diff --quiet HEAD^ HEAD ./` skips the Vite build when that folder did not change. Vercel records that skip as **CANCELED** with `errorLink` **`ignored-build-step`**. It may still count as a hobby deployment. It does **not** write or refresh a production alias — that is why steam-atlas stayed `DEPLOYMENT_NOT_FOUND` after a `create_git_project` redeploy of `main` (the tip only touched `japanese-tower`).
 
+**2026-09-17:** earth / v8 / explode / physics / semicircle / web-3d now have `ignoreCommand`. PR #73 proved the leak: steam-atlas-only `78639f2c` still rebuilt those six production aliases (earth `dpl_9bqUtJcDFH8FSopEv8HYf9qFHcSR`, v8 `dpl_NdfXkL3MZk5EBoaW8M5NdqBPXxaQ`, plus explode / physics / semicircle / web-3d). japanese-tower CANCELED as expected. See [the incident](../incidents/2026-09-17-ignorecommand-leak-earth-v8.md).
+
 **2026-09-09 wave:** scroll / audio / grass get a commit that **touches their Root Directory** so `ignoreCommand` passes. Semicircle framing is already on `main`. steam-atlas, explode, earth, v8, physics, glass, japanese-tower, and web-3d/`vibes` already have LIVE production. A sibling-folder merge will skip anyone we do not touch.
 
 It will not save you if Root Directory is blank — that `vercel.json` is never read.
@@ -202,4 +204,4 @@ This pass adds Ochre Gallop locally. **No new Vercel project. No redeploy.** Hob
 Quota reset ~2026-09-08 20:39 UTC. This pass **does not create projects**. I touch `experiments/scroll-product-showcase/`, `experiments/audio-gadget-spin/`, and `experiments/procedural-grass-field/` so `ignoreCommand` cannot CANCELED-skip them (`ignored-build-step`). Showcase Live links: [scroll](https://vibes-scroll-product.vercel.app), [audio](https://vibes-audio-gadget-spin.vercel.app), [grass](https://vibes-procedural-grass-field.vercel.app). Semicircle framing is already on `main` at [vibes-blender-semicircle.vercel.app](https://vibes-blender-semicircle.vercel.app). Skip explode / earth / v8 / physics / steam / glass / tower / web-3d.
 
 **Author**: Johnny Huynh  
-**Last updated**: 2026-09-09 (post-quota Root-touch wave)
+**Last updated**: 2026-09-17 (ignoreCommand for earth / v8 / explode / physics / semicircle / web-3d)
