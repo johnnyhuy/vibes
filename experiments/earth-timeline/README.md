@@ -80,4 +80,7 @@ For now, this proves the pattern: timeline scrubbing + visual evolution + cinema
 
 ---
 
+**Status**: Production alias [vibes-earth.vercel.app](https://vibes-earth.vercel.app) — on #74 (`6bcd57bc` / `dpl_Bar65X58wEJRZwiNBSozKHt7DXPC`); this Root-touch + Vite `^6.4.3` forces `ignoreCommand` to rebuild  
+**Last updated**: 2026-09-17 ~3:30pm AEST (earth-only Vite `^6.4.3` + Root-touch)  
+**Deploy**: Linked `vibes-earth` / `prj_SiIJCJMag4TvYUYp8qjzuZ5EIRLe`. Root Directory `experiments/earth-timeline`. No new projects (Hobby 25-link cap).  
 Built by Johnny Huynh • This is my kitchen sink • Research and education only — not production code
