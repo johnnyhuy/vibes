@@ -31,11 +31,7 @@ npm run build
 
 ## Deploy
 
-Project `vibes-kiln-studs` (`prj_qI0BHjZbM8vNYHuhPtpmN91ZOLT8`) exists as **link-only**. It was created `deploy: false` while Hobby quota on `johnnyhuy-dev` is still exhausted. SSO off. **No production yet.** Do not promote production or burn a deploy until quota recovers **~2026-09-08 20:39 UTC**.
-
-Dashboard **Root Directory** must be `experiments/kiln-studs`. `create_git_project` does not write that field. `vercel.json` only carries the usual Vite fields plus `ignoreCommand`. See [the drift note](../../docs/incidents/2026-09-08-readme-vercel-link-only-drift.md).
-
-Post-quota order stays: (1) promote `vibes-blender-semicircle` production from the framing-fix git-main preview (2) `vibes-scroll-product` first READY (3) `vibes-audio-gadget-spin` first production (4) `vibes-procedural-grass-field` (5) only then ballance / courtyard / amber-longeron / nacre-loom / heartwood-warden / moon-dumpling-relay / foil-tilt-card / zephyr-vale / cinder-mere / this studio. Do not create extra pending projects here.
+Linked Vercel project `vibes-kiln-studs` / `prj_qI0BHjZbM8vNYHuhPtpmN91ZOLT8` (link-only, 0 production, no production URL yet. Production has only been CANCELED lately via ignoreCommand). Dashboard **Root Directory** is `experiments/kiln-studs`. `vercel.json` carries the usual Vite fields plus `ignoreCommand`. It cannot set Root Directory. No new projects (Hobby 25-link cap). See [the drift note](../../docs/incidents/2026-09-08-readme-vercel-link-only-drift.md).
 
 ## Local playtest (2026-09-08)
 
@@ -63,6 +59,7 @@ Cinder Mere is a **dusk drive**. Foil Tilt Card is a **layered print**. Moon Dum
 
 ---
 
-**Status**: Linked `deploy: false`, 0 production — do not promote until quota recovers  
-**Last updated**: 2026-09-08  
-**Built by**: Johnny Huynh
+**Status**: Still link-only, 0 production; Vite ^6.4.3 + this Root-touch force `ignoreCommand` to rebuild `vibes-kiln-studs`  
+**Last updated**: 2026-09-19 ~8:25am AEST (kiln-studs-only Vite security bump)  
+**Deploy**: Linked `vibes-kiln-studs` / `prj_qI0BHjZbM8vNYHuhPtpmN91ZOLT8`. Root Directory `experiments/kiln-studs`. No production URL yet (production CANCELED via ignoreCommand until this Root rebuilds). No new projects (Hobby 25-link cap).  
+Built by Johnny Huynh • This is my kitchen sink • Research and education only, not production code
