@@ -31,11 +31,7 @@ npm run build
 
 ## Deploy
 
-No Vercel project. Hobby quota on `johnnyhuy-dev` is still tight until **~2026-09-08 12:55 UTC**. Do not create a project or force a deploy on this PR.
-
-If I add one later: dashboard **Root Directory** must be `experiments/ballance-roll`. `vercel.json` only carries the usual Vite fields plus `ignoreCommand` — it cannot set Root Directory.
-
-`vibes-japanese-tower` (`prj_T1KL4cJSMuY0Z6oKGnNtv8zVP0Js`) already exists with Root `experiments/japanese-tower` and was created `deploy: false`. **0 production** until after quota. That does not change this folder.
+Linked Vercel project `vibes-ballance-roll` / `prj_BSAzHRX6jgMZOx10fPYUUXXrKrmt`. Dashboard **Root Directory** is `experiments/ballance-roll`. `vercel.json` carries the usual Vite fields plus `ignoreCommand`. It cannot set Root Directory. No new projects (Hobby 25-link cap).
 
 ## Related
 
@@ -45,6 +41,7 @@ If I add one later: dashboard **Root Directory** must be `experiments/ballance-r
 
 ---
 
-**Status**: Local build is the QA until a project exists  
-**Last updated**: 2026-09-08  
-**Built by**: Johnny Huynh
+**Status**: Production had never left a READY build for this Root; Vite ^6.4.3 + this Root-touch force `ignoreCommand` to rebuild `vibes-ballance-roll`  
+**Last updated**: 2026-09-18 ~10:33am AEST (ballance-roll-only Vite security bump)  
+**Deploy**: Linked `vibes-ballance-roll` / `prj_BSAzHRX6jgMZOx10fPYUUXXrKrmt`. Root Directory `experiments/ballance-roll`. No new projects (Hobby 25-link cap).  
+Built by Johnny Huynh • This is my kitchen sink • Research and education only, not production code
