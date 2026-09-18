@@ -61,6 +61,7 @@ Zephyr Vale is a **sunlit walker**. Heartwood Warden is a **moonlit walk + casts
 
 ---
 
-**Status**: Linked `deploy: false`, 0 production — do not promote until quota recovers  
-**Last updated**: 2026-09-08  
-**Built by**: Johnny Huynh
+**Status**: Still link-only, 0 production; Vite ^6.4.3 + this Root-touch force `ignoreCommand` to rebuild `vibes-cinder-mere`  
+**Last updated**: 2026-09-18 ~11:52pm AEST (cinder-mere-only Vite security bump)  
+**Deploy**: Linked `vibes-cinder-mere` / `prj_pXdvd08peYAlt8s9QrW3yRB6nNvv`. Root Directory `experiments/cinder-mere`. No production URL yet. No new projects (Hobby 25-link cap).  
+Built by Johnny Huynh • This is my kitchen sink • Research and education only, not production code
