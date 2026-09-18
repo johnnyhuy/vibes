@@ -30,11 +30,7 @@ npm run build
 
 ## Deploy
 
-No Vercel project. Hobby quota on `johnnyhuy-dev` is still exhausted until **~2026-09-08 12:55 UTC**. Do not create a project or force a deploy on this PR.
-
-If I add one later: dashboard **Root Directory** must be `experiments/chinese-courtyard`. `vercel.json` only carries the usual Vite fields plus `ignoreCommand` — it cannot set Root Directory.
-
-Do not create `vibes-ballance-roll` either. That marble demo stays local.
+Linked Vercel project `vibes-chinese-courtyard` / `prj_6eH8pYXjJzcXT5lIGfaxejO6qXAO`. Dashboard **Root Directory** is `experiments/chinese-courtyard`. `vercel.json` carries the usual Vite fields plus `ignoreCommand`. It cannot set Root Directory. No new projects (Hobby 25-link cap).
 
 ## Related
 
@@ -45,6 +41,7 @@ Do not create `vibes-ballance-roll` either. That marble demo stays local.
 
 ---
 
-**Status**: Local build is the QA until a project exists  
-**Last updated**: 2026-09-08  
-**Built by**: Johnny Huynh
+**Status**: Production had never left a READY build for this Root; Vite ^6.4.3 + this Root-touch force `ignoreCommand` to rebuild `vibes-chinese-courtyard`  
+**Last updated**: 2026-09-18 ~6:26pm AEST (chinese-courtyard-only Vite security bump)  
+**Deploy**: Linked `vibes-chinese-courtyard` / `prj_6eH8pYXjJzcXT5lIGfaxejO6qXAO`. Root Directory `experiments/chinese-courtyard`. No new projects (Hobby 25-link cap).  
+Built by Johnny Huynh • This is my kitchen sink • Research and education only, not production code
