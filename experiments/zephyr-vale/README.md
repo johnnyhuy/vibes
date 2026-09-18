@@ -30,11 +30,7 @@ npm run build
 
 ## Deploy
 
-**No Vercel project.** Do not create one on this PR. Hobby quota on `johnnyhuy-dev` stays exhausted until **~2026-09-08 20:39 UTC**. I am not burning a slot on a new app.
-
-`vercel.json` only carries the usual Vite fields plus `ignoreCommand`. It cannot set Root Directory. If I add a project later, the name pattern is `vibes-<experiment>` — here **`vibes-zephyr-vale`**. Dashboard **Root Directory** must be `experiments/zephyr-vale`.
-
-Post-quota order stays: (1) promote `vibes-blender-semicircle` production from the framing-fix git-main preview (2) `vibes-scroll-product` first READY (3) `vibes-audio-gadget-spin` first production (4) `vibes-procedural-grass-field` (5) only then ballance / courtyard / amber-longeron / nacre-loom / heartwood-warden / moon-dumpling-relay / this vale. Do not create those pending projects here.
+Linked Vercel project `vibes-zephyr-vale` / `prj_g5olvF0lrvLZ89UZp4uZaxU2bTa8` (link-only, 0 production, no production URL yet. Production has only been CANCELED lately via ignoreCommand). Dashboard **Root Directory** is `experiments/zephyr-vale`. `vercel.json` carries the usual Vite fields plus `ignoreCommand`. It cannot set Root Directory. No new projects (Hobby 25-link cap). See [the drift note](../../docs/incidents/2026-09-08-readme-vercel-link-only-drift.md).
 
 ## Local playtest (2026-09-08)
 
@@ -46,7 +42,7 @@ Headed preview on `127.0.0.1:4173` after `npm run build`:
 - Still: `docs/previews/zephyr-vale.png` (after the hilltop/water pass).
 - Feel-only refs: `hill-climb/refs/tushar-wind-wanders.jpg`, plus `crayon-wind-wanders-og.jpg` / `crayon-tide-remembers-thumb.jpg` when present. I did not build Tide Remembers.
 
-No Vercel project. No production URL.
+Linked, no production URL.
 
 ## Related
 
@@ -55,6 +51,7 @@ No Vercel project. No production URL.
 
 ---
 
-**Status**: Local build is the QA until a project exists  
-**Last updated**: 2026-09-08  
-**Built by**: Johnny Huynh
+**Status**: Still link-only, 0 production; Vite ^6.4.3 + this Root-touch force `ignoreCommand` to rebuild `vibes-zephyr-vale`  
+**Last updated**: 2026-09-19 ~6:40am AEST (zephyr-vale-only Vite security bump)  
+**Deploy**: Linked `vibes-zephyr-vale` / `prj_g5olvF0lrvLZ89UZp4uZaxU2bTa8`. Root Directory `experiments/zephyr-vale`. No production URL yet (production CANCELED via ignoreCommand until this Root rebuilds). No new projects (Hobby 25-link cap).  
+Built by Johnny Huynh • This is my kitchen sink • Research and education only, not production code
