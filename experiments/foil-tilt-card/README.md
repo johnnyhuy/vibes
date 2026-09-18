@@ -31,11 +31,7 @@ npm run build
 
 ## Deploy
 
-**No Vercel project.** Do not create one on this PR. Hobby quota on `johnnyhuy-dev` stays exhausted until **~2026-09-08 20:39 UTC**. I am not burning a slot on a new app. This experiment is **local-only**.
-
-`vercel.json` only carries the usual Vite fields plus `ignoreCommand`. It cannot set Root Directory. If I add a project later: dashboard **Root Directory** must be `experiments/foil-tilt-card`.
-
-Post-quota order stays: (1) promote `vibes-blender-semicircle` production from the framing-fix git-main preview (2) `vibes-scroll-product` first READY (3) `vibes-audio-gadget-spin` first production (4) `vibes-procedural-grass-field` (5) only then ballance / courtyard / amber-longeron / nacre-loom / heartwood-warden / moon-dumpling-relay / this card. Do not create those pending projects here.
+Linked Vercel project `vibes-foil-tilt-card` / `prj_SpUrjDXzeQSTohXNWvGq7q3cKoxX` (link-only, 0 production, no production URL yet — production may still 404 `DEPLOYMENT_NOT_FOUND` until this Root rebuilds). Dashboard **Root Directory** is `experiments/foil-tilt-card`. `vercel.json` carries the usual Vite fields plus `ignoreCommand`. It cannot set Root Directory. No new projects (Hobby 25-link cap). See [the drift note](../../docs/incidents/2026-09-08-readme-vercel-link-only-drift.md).
 
 ## Local playtest (2026-09-08)
 
@@ -49,7 +45,7 @@ Headed preview on `127.0.0.1:4173` after `npm run build`:
 - Narrow viewport docks the desk; card still readable.
 - Console: no fatal errors after the inline favicon. Build green.
 
-No Vercel project. No production URL.
+Linked, no production URL.
 
 ## Related
 
@@ -58,6 +54,7 @@ No Vercel project. No production URL.
 
 ---
 
-**Status**: Local build is the QA until a project exists  
-**Last updated**: 2026-09-08  
-**Built by**: Johnny Huynh
+**Status**: Still link-only, 0 production; Vite ^6.4.3 + this Root-touch force `ignoreCommand` to rebuild `vibes-foil-tilt-card`  
+**Last updated**: 2026-09-19 ~2:00am AEST (foil-tilt-card-only Vite security bump)  
+**Deploy**: Linked `vibes-foil-tilt-card` / `prj_SpUrjDXzeQSTohXNWvGq7q3cKoxX`. Root Directory `experiments/foil-tilt-card`. No production URL yet (`DEPLOYMENT_NOT_FOUND` until this Root rebuilds). No new projects (Hobby 25-link cap).  
+Built by Johnny Huynh • This is my kitchen sink • Research and education only, not production code
