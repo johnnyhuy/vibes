@@ -32,11 +32,7 @@ npm run build
 
 ## Deploy
 
-**No Vercel project.** Do not create one on this PR. Hobby quota on `johnnyhuy-dev` stays exhausted until **~2026-09-08 20:39 UTC**. I am not burning a slot on a new app.
-
-`vercel.json` only carries the usual Vite fields plus `ignoreCommand`. It cannot set Root Directory. If I add a project later: dashboard **Root Directory** must be `experiments/heartwood-warden`.
-
-Post-quota order stays: (1) promote `vibes-blender-semicircle` production from the framing-fix git-main preview (2) `vibes-scroll-product` first READY (3) `vibes-audio-gadget-spin` first production (4) `vibes-procedural-grass-field` (5) only then ballance / courtyard / amber-longeron / nacre-loom / this glade. Do not create those pending projects here.
+Linked Vercel project `vibes-heartwood-warden` / `prj_TyrDfg7r52zArouthNjFS4m7B30Z` (link-only, 0 production, no production URL yet — production may still 404 `DEPLOYMENT_NOT_FOUND` until this Root rebuilds). Dashboard **Root Directory** is `experiments/heartwood-warden`. `vercel.json` carries the usual Vite fields plus `ignoreCommand`. It cannot set Root Directory. No new projects (Hobby 25-link cap). See [the drift note](../../docs/incidents/2026-09-08-readme-vercel-link-only-drift.md).
 
 ## Local playtest (2026-09-08)
 
@@ -47,7 +43,7 @@ Headed preview on `127.0.0.1:4175` after `npm run build`:
 - WASD walked; vine lash (`1`) changed the desk title and the bottom strip.
 - Console: no fatal errors.
 
-No Vercel project. No production URL.
+Linked, no production URL.
 
 ## Related
 
@@ -57,6 +53,7 @@ No Vercel project. No production URL.
 
 ---
 
-**Status**: Local build is the QA until a project exists  
-**Last updated**: 2026-09-08  
-**Built by**: Johnny Huynh
+**Status**: Still link-only, 0 production; Vite ^6.4.3 + this Root-touch force `ignoreCommand` to rebuild `vibes-heartwood-warden`  
+**Last updated**: 2026-09-19 ~2:50am AEST (heartwood-warden-only Vite security bump)  
+**Deploy**: Linked `vibes-heartwood-warden` / `prj_TyrDfg7r52zArouthNjFS4m7B30Z`. Root Directory `experiments/heartwood-warden`. No production URL yet (`DEPLOYMENT_NOT_FOUND` until this Root rebuilds). No new projects (Hobby 25-link cap).  
+Built by Johnny Huynh • This is my kitchen sink • Research and education only, not production code
