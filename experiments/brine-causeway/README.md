@@ -61,6 +61,7 @@ Cinder Mere is a **dusk basin + kiln cart**. Zephyr Vale is a **sunlit walker**.
 
 ---
 
-**Status**: Linked `deploy: false`, 0 production — do not promote until quota recovers  
-**Last updated**: 2026-09-08  
-**Built by**: Johnny Huynh
+**Status**: Still link-only, 0 production; Vite ^6.4.3 + this Root-touch force `ignoreCommand` to rebuild `vibes-brine-causeway`  
+**Last updated**: 2026-09-18 ~3:27pm AEST (brine-causeway-only Vite security bump)  
+**Deploy**: Linked `vibes-brine-causeway` / `prj_UmVE510DKswQAtJf6NVYzOzQvqQf`. Root Directory `experiments/brine-causeway`. No production URL yet. No new projects (Hobby 25-link cap).  
+Built by Johnny Huynh • This is my kitchen sink • Research and education only, not production code
