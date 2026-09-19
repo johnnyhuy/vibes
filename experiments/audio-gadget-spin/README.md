@@ -44,7 +44,7 @@ Project `vibes-audio-gadget-spin` (`prj_N57mvThg4UcU9XxLK3F5wAICz9PA`). SSO off.
 
 Production: [https://vibes-audio-gadget-spin.vercel.app](https://vibes-audio-gadget-spin.vercel.app)
 
-I linked it `deploy: false` before quota. The 2026-09-09 Root touch poisoned schema with an illegal `"//"` key (PR #53 removes it). This 2026-09-10 post-quota README bump is the real Root touch so `ignoreCommand` builds a clean preview. `create_git_project` does not write Root Directory. I am not creating a new project. See [the incident](../../docs/incidents/2026-09-07-audio-gadget-linked-before-quota.md) and [the `//` incident](../../docs/incidents/2026-09-09-vercel-json-comment-key.md).
+I linked it `deploy: false` before quota. The 2026-09-09 Root touch poisoned schema with an illegal `"//"` key (PR #53 removes it). The 2026-09-10 post-quota README bump was the first clean Root-touch. #95 landed the cup-rocker mute click on main (`e8c15a22`) but Vercel produced zero deployments for that SHA (Hobby rate limit / webhook miss). This 2026-09-19 README bump is the Root-touch so `ignoreCommand` rebuilds `vibes-audio-gadget-spin` off current main. `create_git_project` does not write Root Directory. I am not creating a new project. See [the incident](../../docs/incidents/2026-09-07-audio-gadget-linked-before-quota.md) and [the `//` incident](../../docs/incidents/2026-09-09-vercel-json-comment-key.md).
 
 ## Related
 
@@ -54,6 +54,6 @@ I linked it `deploy: false` before quota. The 2026-09-09 Root touch poisoned sch
 
 ---
 
-**Status**: Production alias [vibes-audio-gadget-spin.vercel.app](https://vibes-audio-gadget-spin.vercel.app). This Root-touch is the cup-rocker mute click so `ignoreCommand` rebuilds `vibes-audio-gadget-spin`. No new Vercel project (Hobby 25-link cap).
-**Last updated**: 2026-09-19  
+**Status**: Production alias [vibes-audio-gadget-spin.vercel.app](https://vibes-audio-gadget-spin.vercel.app) is still on #64 (`8c0f1b51` / `dpl_B9NqntJ3XW2ZvwfWhgMnaS6tAt3N`) after #95 never produced a deploy. This Root-touch forces `ignoreCommand` to rebuild `vibes-audio-gadget-spin`. No new Vercel project (Hobby 25-link cap).
+**Last updated**: 2026-09-19 ~5:25pm AEST (audio-gadget-spin-only Root-touch after #95 miss)
 **Built by**: Johnny Huynh
