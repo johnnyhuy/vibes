@@ -20,7 +20,7 @@ export default function Ashmane({ runner, reducedMotion }: Props) {
   const model = useMemo(() => {
     const clone = scene.clone(true);
     faceHorseForward(clone);
-    fitObject(clone, 1.86, { ground: true });
+    fitObject(clone, 2.18, { ground: true });
     enableShadows(clone);
     clone.traverse((object) => {
       const mesh = object as Mesh;
@@ -31,10 +31,10 @@ export default function Ashmane({ runner, reducedMotion }: Props) {
           source instanceof MeshStandardMaterial
             ? source.clone()
             : new MeshStandardMaterial({ color: '#8a5330' });
-        if (mat.color) mat.color.lerp(HIDE, 0.42);
-        mat.roughness = Math.max(0.48, mat.roughness ?? 0.55);
-        mat.metalness = Math.min(0.08, mat.metalness ?? 0);
-        mat.envMapIntensity = 1.25;
+        if (mat.color) mat.color.lerp(HIDE, 0.7);
+        mat.roughness = 0.58;
+        mat.metalness = 0.02;
+        mat.envMapIntensity = 1.45;
         return mat;
       });
       mesh.material = next.length === 1 ? next[0] : next;

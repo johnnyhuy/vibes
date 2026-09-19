@@ -52,7 +52,7 @@ Headed preview on `127.0.0.1:4173` after `npm run build`:
 - In-level: ochre terrace, teal pool, licensed Ashmane (no box stack). Chips still switch Spout Basin and Rim Overlook.
 - Thin HUD. No park lockup, no yellow Play, no third-party mode names.
 - Mute stays default. No console fatals; only benign WebGL `ReadPixels` notes.
-- Still: `docs/previews/ochre-gallop.png` (lobby). In-level Ashmane recapture is the next still if the headed preview lands.
+- Still: `docs/previews/ochre-gallop.png` (Sulfur Terrace chase, licensed Ashmane). Lobby layout is unchanged.
 
 No Vercel project. No production URL.
 

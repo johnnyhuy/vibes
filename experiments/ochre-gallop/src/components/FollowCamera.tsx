@@ -29,7 +29,7 @@ export default function FollowCamera({ runner, reducedMotion }: Props) {
       smoothing.current.lerp(offset, ease);
     }
     camera.position.copy(smoothing.current);
-    look.set(body.x + sin * 8.2, body.y + 0.55, body.z + cos * 8.2);
+    look.set(body.x + sin * 8.2, body.y + 0.92, body.z + cos * 8.2);
     camera.lookAt(look);
   });
 
