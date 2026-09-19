@@ -31,11 +31,7 @@ npm run build
 
 ## Deploy
 
-**No Vercel project.** Do not create one on this PR. Hobby quota on `johnnyhuy-dev` stays exhausted until **~2026-09-08 20:39 UTC**. I am not burning a slot on a new app. This experiment is **local-only**.
-
-`vercel.json` only carries the usual Vite fields plus `ignoreCommand`. It cannot set Root Directory. If I add a project later: dashboard **Root Directory** must be `experiments/moon-dumpling-relay`.
-
-Post-quota order stays: (1) promote `vibes-blender-semicircle` production from the framing-fix git-main preview (2) `vibes-scroll-product` first READY (3) `vibes-audio-gadget-spin` first production (4) `vibes-procedural-grass-field` (5) only then ballance / courtyard / amber-longeron / nacre-loom / heartwood-warden / this relay. Do not create those pending projects here.
+Linked Vercel project `vibes-moon-dumpling-relay` / `prj_oIOqxeUp7QkAOPYBoEyzR0rvegwP` (link-only, 0 production, no production URL yet. Production has only been CANCELED lately via ignoreCommand). Dashboard **Root Directory** is `experiments/moon-dumpling-relay`. `vercel.json` carries the usual Vite fields plus `ignoreCommand`. It cannot set Root Directory. No new projects (Hobby 25-link cap). See [the drift note](../../docs/incidents/2026-09-08-readme-vercel-link-only-drift.md).
 
 ## Related
 
@@ -44,6 +40,7 @@ Post-quota order stays: (1) promote `vibes-blender-semicircle` production from t
 
 ---
 
-**Status**: Local build is the QA until a project exists  
-**Last updated**: 2026-09-08  
-**Built by**: Johnny Huynh
+**Status**: Still link-only, 0 production; Vite ^6.4.3 + this Root-touch force `ignoreCommand` to rebuild `vibes-moon-dumpling-relay`  
+**Last updated**: 2026-09-19 ~10:30am AEST (moon-dumpling-relay-only Vite security bump)  
+**Deploy**: Linked `vibes-moon-dumpling-relay` / `prj_oIOqxeUp7QkAOPYBoEyzR0rvegwP`. Root Directory `experiments/moon-dumpling-relay`. No production URL yet (production CANCELED via ignoreCommand until this Root rebuilds). No new projects (Hobby 25-link cap).  
+Built by Johnny Huynh • This is my kitchen sink • Research and education only, not production code
