@@ -89,7 +89,7 @@ All geometry is procedural — no external model files required.
 
 ---
 
-**Status**: Production alias [vibes-zeta-steel.vercel.app](https://vibes-zeta-steel.vercel.app) — still on #74 (`6bcd57bc` / `dpl_88FGMM1GBXgiCVMQPmttmfwWRH4V`) after #91 never produced a vibes deploy; this Root-touch forces `ignoreCommand` to rebuild  
-**Last updated**: 2026-09-19 ~1:30pm AEST (web-3d-only Root-touch after #91 miss)  
+**Status**: Production alias [vibes-zeta-steel.vercel.app](https://vibes-zeta-steel.vercel.app) — still on #74 (`6bcd57bc` / `dpl_88FGMM1GBXgiCVMQPmttmfwWRH4V`) after #91 and #93 never produced a vibes deploy; this Root-touch forces `ignoreCommand` to rebuild  
+**Last updated**: 2026-09-19 ~2:25pm AEST (web-3d-only Root-touch after #91/#93 miss)  
 **Deploy**: Linked `vibes` / `prj_4b6cXKJVxCYNTn6WuofofmkBZPX6`. Root Directory `experiments/ai-3d-lanes/web-3d`. No new projects (Hobby 25-link cap).  
 Built by Johnny Huynh • This is my kitchen sink • Research and education only — not production code
