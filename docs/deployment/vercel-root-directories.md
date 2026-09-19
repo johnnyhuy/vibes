@@ -18,7 +18,7 @@ If this is empty, Vercel builds the repo root. There is no root `package.json`. 
 
 See [the incident](../incidents/2026-09-08-steam-atlas-wrong-root.md).
 
-## Per-app (verified 2026-09-19 AEST, Vercel API team `johnnyhuy-dev`)
+## Per-app (verified 2026-09-19 AEST, Vercel API team `johnnyhuy-dev`; audio / semicircle / glass IDs rechecked 2026-09-20 AEST)
 
 All **25** git-linked projects are **LIVE** with latest READY production. This table is the source of truth. Do **not** treat any row here as "no project", "0 production", "link-only", or "do not promote".
 
@@ -29,14 +29,14 @@ All **25** git-linked projects are **LIVE** with latest READY production. This t
 | `vibes-earth` | `prj_SiIJCJMag4TvYUYp8qjzuZ5EIRLe` | `experiments/earth-timeline` | **LIVE** [vibes-earth.vercel.app](https://vibes-earth.vercel.app) |
 | `vibes-v8` | `prj_7Em98GNdH9nceT1LonpntoCgNgRY` | `experiments/v8-cutaway` | **LIVE** [vibes-v8.vercel.app](https://vibes-v8.vercel.app) |
 | `vibes-physics` | `prj_Ilh5mBV0g7m7btvnxnhZuFY5ZjiH` | `experiments/web-physics` | **LIVE** [vibes-physics.vercel.app](https://vibes-physics.vercel.app) |
-| `vibes-blender-semicircle` | `prj_PLhnoCVRKmpHc8SxyLRmcp3MFZMC` | `experiments/blender-semicircle-viewer` | **LIVE** [vibes-blender-semicircle.vercel.app](https://vibes-blender-semicircle.vercel.app) — framing on `main` |
+| `vibes-blender-semicircle` | `prj_PLhnoCVRKmpHc8SxyLRmcp3MFZMC` | `experiments/blender-semicircle-viewer` | **LIVE** [vibes-blender-semicircle.vercel.app](https://vibes-blender-semicircle.vercel.app) `dpl_Ei5PArDDuKAJbRDXxeScExHD8sHG` (`447686fb`, #101 Root-touch after #98 Classic Laptop) |
 | `vibes-steam-atlas` | `prj_7D08PT8sdUjhigCEuz83oltZrDMv` | `experiments/procedural-steam-atlas` | **LIVE** [vibes-steam-atlas.vercel.app](https://vibes-steam-atlas.vercel.app) `dpl_98Yz1BpRLivVxs63SuV4UFb7Z9WS` |
 | `vibes-scroll-product` | `prj_XLBiIlbjweejp9himT53bolPEMUW` | `experiments/scroll-product-showcase` | **LIVE** [vibes-scroll-product.vercel.app](https://vibes-scroll-product.vercel.app) `dpl_DTgSMUvDqSsWwhNz7vL3VR9MgfeY` (#63) |
-| `vibes-glass-capability-brain` | `prj_yJbQTsiB138V5jh92cwSWd8rZmij` | `experiments/glass-capability-brain` | **LIVE** [vibes-glass-capability-brain.vercel.app](https://vibes-glass-capability-brain.vercel.app) `dpl_3CE9Dd7X7og5MuSLpcGgyxboacgz` |
+| `vibes-glass-capability-brain` | `prj_yJbQTsiB138V5jh92cwSWd8rZmij` | `experiments/glass-capability-brain` | **LIVE** [vibes-glass-capability-brain.vercel.app](https://vibes-glass-capability-brain.vercel.app) `dpl_DyQwdDkZcmcia4HAa42VaiFj9Q2w` (`6f455822`, #62 Vite bump; Pale Lift / Ember Slide / Lumen Watch) |
 | `vibes-japanese-tower` | `prj_T1KL4cJSMuY0Z6oKGnNtv8zVP0Js` | `experiments/japanese-tower` | **LIVE** [vibes-japanese-tower.vercel.app](https://vibes-japanese-tower.vercel.app) `dpl_Gap9BAXosU4jMEsQsR8c2nKyEPjg` |
 | `vibes-ballance-roll` | `prj_BSAzHRX6jgMZOx10fPYUUXXrKrmt` | `experiments/ballance-roll` | **LIVE** [vibes-ballance-roll.vercel.app](https://vibes-ballance-roll.vercel.app) `dpl_4SDB2ERjW7EiDX28PGsDQLEqCkrj` (#80) |
 | `vibes-chinese-courtyard` | `prj_6eH8pYXjJzcXT5lIGfaxejO6qXAO` | `experiments/chinese-courtyard` | **LIVE** [vibes-chinese-courtyard.vercel.app](https://vibes-chinese-courtyard.vercel.app) `dpl_94rAqcG9q98czKhD7PUeVs6nDxCo` (#83) |
-| `vibes-audio-gadget-spin` | `prj_N57mvThg4UcU9XxLK3F5wAICz9PA` | `experiments/audio-gadget-spin` | **LIVE** [vibes-audio-gadget-spin.vercel.app](https://vibes-audio-gadget-spin.vercel.app) `dpl_B9NqntJ3XW2ZvwfWhgMnaS6tAt3N` (#64) |
+| `vibes-audio-gadget-spin` | `prj_N57mvThg4UcU9XxLK3F5wAICz9PA` | `experiments/audio-gadget-spin` | **LIVE** [vibes-audio-gadget-spin.vercel.app](https://vibes-audio-gadget-spin.vercel.app) `dpl_2K1X2kWCXyFLaech4oxqdxzffYk1` (`e8c15a22`, #95 cup-screw mute / mute rocker) |
 | `vibes-procedural-grass-field` | `prj_iJND14XT4LtOHI2gnUR0UM8RFk9F` | `experiments/procedural-grass-field` | **LIVE** [vibes-procedural-grass-field.vercel.app](https://vibes-procedural-grass-field.vercel.app) `dpl_GyZTo3QLBdYhUdogCHwEzaz7N6CN` |
 | `vibes-amber-longeron` | `prj_P8wkvn17aVx2YpjNwpSSY2njdJGA` | `experiments/amber-longeron` | **LIVE** [vibes-amber-longeron.vercel.app](https://vibes-amber-longeron.vercel.app) `dpl_CJns3zztgwxW5TWDYrJxwB29bR23` (#78) |
 | `vibes-nacre-loom` | `prj_JG69HBJtf8eb6ZKLqH3IXutMyZNU` | `experiments/nacre-loom` | **LIVE** [vibes-nacre-loom.vercel.app](https://vibes-nacre-loom.vercel.app) `dpl_6oGiyXHv76vgmiAbMaaKFEZzzGqt` (#89) |
@@ -80,11 +80,15 @@ steam-atlas Root must stay `experiments/procedural-steam-atlas`. It already has 
 
 The root README is a visual showcase (GIFs, not an ops table). Refresh `docs/previews/<app>.gif` when an app ships or the motion clip goes stale. Stills are a fallback only. Ops status lives in [deployment notes](./). See [docs/visual-qa/README.md](../visual-qa/README.md).
 
+### Hill-climb — 2026-09-20 (docs ID sync only)
+
+Docs-only. **No redeploy. No new projects.** I synced three stale Latest READY prod IDs to live Vercel production (team `johnnyhuy-dev`). Audio is `dpl_2K1X2kWCXyFLaech4oxqdxzffYk1` (`e8c15a22`, #95 mute rocker). Semicircle is `dpl_Ei5PArDDuKAJbRDXxeScExHD8sHG` (`447686fb`, #101 Root-touch after #98 Classic Laptop). Glass is `dpl_DyQwdDkZcmcia4HAa42VaiFj9Q2w` (`6f455822`, #62 Vite bump; Pale Lift / Ember Slide / Lumen Watch). Aliases HTTP 200. I did not Root-touch any experiment README. Hobby 25-link cap still full.
+
 ### Hill-climb — 2026-09-19 (docs sync after Vite wave)
 
 Docs-only. **No redeploy. No new projects.** Vite `^6.4.3` wave (#63–#90-ish) is complete: repo search found 0 remaining `"vite": "^6.0.1"` in experiments; sampled `package.json` files (including the local-only trio) already declare `"vite": "^6.4.3"`. Open PRs: none on `vibes` or `s2000-digital-dash`. Hobby 25-link cap still full. This pass rewrites the Root map so later runs stop treating LIVE apps as "0 production" / "no project". Sibling `ignoreCommand` CANCELED skips stay expected noise.
 
-The dated notes below are contemporaneous logs. **Current status is the 2026-09-19 table.** Do not follow an older "no project" / "0 production" / "do not promote" line for an app that is LIVE above.
+The dated notes below are contemporaneous logs. **Current status is the 2026-09-20 table.** Do not follow an older "no project" / "0 production" / "do not promote" line for an app that is LIVE above.
 
 ### Hill-climb — 2026-09-09 (post-quota Root-touch wave)
 
@@ -165,4 +169,4 @@ This pass added Ochre Gallop locally. **Still no project.** Hobby is at the **25
 ---
 
 **Author**: Johnny Huynh  
-**Last updated**: 2026-09-19 (Hill-climb docs sync — Vite `^6.4.3` wave complete; 25 linked projects LIVE; keel / fairday / ochre local-only)
+**Last updated**: 2026-09-20 (Hill-climb docs ID sync only; audio / semicircle / glass LIVE dpl IDs match production)
