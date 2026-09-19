@@ -8,7 +8,9 @@ import { polishLaptopMaterials, prepareLaptopTemplate } from './laptopFit.js';
 const LAPTOP_COUNT = 51;
 const SEMICIRCLE_RADIUS = 14.0;
 const ARC_ANGLE = 180.0;
-const LAPTOP_WIDTH = 0.72;
+const LAPTOP_WIDTH = 0.78;
+const HERO_ELEVATION = THREE.MathUtils.degToRad(34);
+const FRAME_MARGIN = 1.1;
 const MODEL_URL = '/models/classic-laptop.glb';
 const HDRI_URL = '/hdri/studio.hdr';
 
@@ -45,8 +47,8 @@ document.getElementById('canvas-container').appendChild(renderer.domElement);
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 controls.dampingFactor = 0.05;
-controls.minPolarAngle = 0.24;
-controls.maxPolarAngle = Math.PI * 0.38;
+controls.minPolarAngle = 0.22;
+controls.maxPolarAngle = Math.PI * 0.44;
 controls.autoRotate = true;
 controls.autoRotateSpeed = 0.25;
 
@@ -65,6 +67,8 @@ function frameCameraToArc(root) {
     aspect: camera.aspect,
     liftY,
     fallbackRadius: SEMICIRCLE_RADIUS,
+    margin: FRAME_MARGIN,
+    elevation: HERO_ELEVATION,
   });
 
   camera.near = Math.max(0.1, pose.distance / 80);
@@ -74,8 +78,8 @@ function frameCameraToArc(root) {
   camera.lookAt(pose.target);
 
   controls.target.copy(pose.target);
-  controls.minDistance = pose.distance * 0.45;
-  controls.maxDistance = pose.distance * 2.8;
+  controls.minDistance = pose.distance * 0.16;
+  controls.maxDistance = pose.distance * 2.2;
   controls.update();
 
   framedPose.position.copy(camera.position);
@@ -116,15 +120,15 @@ function setupLighting() {
 
 function createGround() {
   const ground = new THREE.Mesh(
-    new THREE.CircleGeometry(28, 64),
+    new THREE.CircleGeometry(16.5, 64),
     new THREE.MeshStandardMaterial({
-      color: 0x0b0c10,
-      roughness: 0.88,
-      metalness: 0.12,
+      color: 0x07080a,
+      roughness: 0.92,
+      metalness: 0.08,
     })
   );
   ground.rotation.x = -Math.PI / 2;
-  ground.position.set(0, -0.01, -SEMICIRCLE_RADIUS * 0.45);
+  ground.position.set(0, -0.01, -SEMICIRCLE_RADIUS * 0.5);
   ground.receiveShadow = true;
   scene.add(ground);
 }
