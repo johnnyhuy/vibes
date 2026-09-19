@@ -21,6 +21,7 @@ export default function Hotspots({ active, onPick, anchors }: Props) {
           <button
             type="button"
             className={`hotspot ${active === spot.id ? 'active' : ''}`}
+            style={spot.id === 'controls' ? { pointerEvents: 'none' } : undefined}
             onClick={() => onPick(spot.id)}
           >
             <span className="hotspot-dot" />
