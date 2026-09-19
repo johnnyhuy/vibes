@@ -26,13 +26,15 @@ Cinder Mere already covers a **dusk basin + cart**. Brine Causeway is a **coast 
 
 **Why**: The hypothesis is that three readable height fields + one kinematic stride is enough to teach the *multi-environment chase* pattern. Scale and park accuracy are production problems, not the lesson.
 
-### 2. A procedural ungulate, not their animal
+### 2. A licensed ungulate, not their animal
 
-**Chosen**: Ashmane / 灰鬃. Boxes, a shoulder hump, ash mane tufts, sinusoidal gait. MeshPhysicalMaterial. No GLB.
+**Chosen (2026-09-19)**: Ashmane / 灰鬃 loads Rico Cilliers’ Horse Statue 01 (Poly Haven CC0). Multi-mesh photogrammetry, 2k PBR, dusk HDRI, umber retint. The playable wrap (stride, cam, loops, lobby) stays mine.
 
-**Rejected**: A photo-real bison mesh. Their runner silhouette. A Kenney toy pack.
+**Earlier (2026-09-08)**: boxes and mane tufts. That read as toys next to explode-assembly.
 
-**Why**: ADR-0004 — the code *is* the lesson. A licensed animal GLB would still read as “their bison.” Boxes stay inspectable and legally mine.
+**Rejected**: A photo-real bison mesh. Their runner silhouette. A Kenney toy pack. Scraping the advertised live.
+
+**Why**: The high-fidelity mesh pipeline is get a licensed mesh, clean it, light it. Boxes taught the stride. They failed the Model 3 / Classic Laptop bar. A Poly Haven horse is not their bison.
 
 ### 3. Invented loops and chrome
 
@@ -69,13 +71,14 @@ Cinder Mere already covers a **dusk basin + cart**. Brine Causeway is a **coast 
 
 ### Negative
 
-1. A box ungulate is not a filmed animal
+1. Rico posed the figurine collected. The stride is a bound, not hoof contact
 2. Arcade kinematics are not hoof contact
 3. Local QA only until a repo-link slot exists
 
 ## Alternatives considered
 
-- **CC0 animal GLB** — licence can be fine; the silhouette still reads as “borrowed bison.” I kept boxes.
+- **Keep the boxes** — inspectable, and they lost the quality bar.
+- **Sketchfab standing CC-BY horses** — GentryHS / kenchoo. Download API needs a token I did not have. I used the Poly Haven file I can actually vendor.
 - **One shared heightmap, three skyboxes** — cheaper, but the public hook is *three environments*, not three filters.
 - **cannon-es** — right for a later contact lesson; overkill next to ADR-0008’s marble and ADR-0018’s cart.
 
@@ -92,7 +95,9 @@ Do **not** create a Vercel project. If a slot is freed later: Root Directory = `
 
 - [Bren](https://x.com/BrenBuilds/status/2097221820743139824)
 - Advertised live — pitch / feel only; not fetched into the repo
+- [Poly Haven — Horse Statue 01](https://polyhaven.com/a/horse_statue_01)
 - [Poly Haven — Qwantani Dusk 2](https://polyhaven.com/a/qwantani_dusk_2)
+- [High-fidelity mesh pipeline](../reverse-engineering/high-fidelity-mesh-pipeline.md)
 - [25-link incident](../incidents/2026-09-08-vercel-repo-link-limit-25.md)
 
 ---

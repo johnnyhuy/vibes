@@ -1,7 +1,7 @@
 import { clampToWorld, heightAt, slopeAt, SPAWNS } from './terrain';
 import type { BiomeId, DriveInput, RunnerState } from './types';
 
-export const RIDE_HEIGHT = 0.62;
+export const RIDE_HEIGHT = 0;
 const MAX_SPEED = 13.8;
 const REVERSE = 4.2;
 const ACCEL = 13.2;
