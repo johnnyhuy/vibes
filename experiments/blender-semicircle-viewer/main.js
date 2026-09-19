@@ -1,23 +1,31 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js';
 import { collectMeshCorners, computeHorseshoePose } from './framing.js';
+import { polishLaptopMaterials, prepareLaptopTemplate } from './laptopFit.js';
 
-// Configuration
 const LAPTOP_COUNT = 51;
 const SEMICIRCLE_RADIUS = 14.0;
 const ARC_ANGLE = 180.0;
-const LAPTOP_WIDTH = 0.68;
-const LAPTOP_DEPTH = 0.58;
-const LAPTOP_THICKNESS = 0.05;
-const SCREEN_HEIGHT = 0.78;
-const SCREEN_TILT = THREE.MathUtils.degToRad(20);
+const LAPTOP_WIDTH = 0.78;
+const HERO_ELEVATION = THREE.MathUtils.degToRad(34);
+const FRAME_MARGIN = 1.1;
+const MODEL_URL = '/models/classic-laptop.glb';
+const HDRI_URL = '/hdri/studio.hdr';
 
-// Scene setup
+class MeshLoadError extends Error {
+  constructor(cause) {
+    super('Classic Laptop GLB or studio HDRI failed to load');
+    this.name = 'MeshLoadError';
+    this.cause = cause;
+  }
+}
+
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x000000);
 scene.fog = new THREE.Fog(0x000000, 80, 160);
 
-// Camera — FOV stays moderate; distance comes from orbit-safe horseshoe fit.
 const CAMERA_FOV = 40;
 const camera = new THREE.PerspectiveCamera(
   CAMERA_FOV,
@@ -26,20 +34,21 @@ const camera = new THREE.PerspectiveCamera(
   1000
 );
 
-// Renderer
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setPixelRatio(window.devicePixelRatio);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.12;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
 document.getElementById('canvas-container').appendChild(renderer.domElement);
 
-// Controls — stay above the ground plane so auto-rotate cannot graze the arc edge-on.
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 controls.dampingFactor = 0.05;
-controls.minPolarAngle = 0.24;
-controls.maxPolarAngle = Math.PI * 0.38;
+controls.minPolarAngle = 0.22;
+controls.maxPolarAngle = Math.PI * 0.44;
 controls.autoRotate = true;
 controls.autoRotateSpeed = 0.25;
 
@@ -48,14 +57,18 @@ const framedPose = {
   target: new THREE.Vector3(),
 };
 
+let liftY = 0.14;
+
 function frameCameraToArc(root) {
   const points = collectMeshCorners(root);
   const pose = computeHorseshoePose({
     points,
     vFov: THREE.MathUtils.degToRad(camera.fov),
     aspect: camera.aspect,
-    liftY: SCREEN_HEIGHT * 0.28,
+    liftY,
     fallbackRadius: SEMICIRCLE_RADIUS,
+    margin: FRAME_MARGIN,
+    elevation: HERO_ELEVATION,
   });
 
   camera.near = Math.max(0.1, pose.distance / 80);
@@ -65,8 +78,8 @@ function frameCameraToArc(root) {
   camera.lookAt(pose.target);
 
   controls.target.copy(pose.target);
-  controls.minDistance = pose.distance * 0.45;
-  controls.maxDistance = pose.distance * 2.8;
+  controls.minDistance = pose.distance * 0.16;
+  controls.maxDistance = pose.distance * 2.2;
   controls.update();
 
   framedPose.position.copy(camera.position);
@@ -78,55 +91,14 @@ function frameCameraToArc(root) {
   }
 }
 
-const shared = {
-  base: new THREE.MeshStandardMaterial({
-    color: 0xc4c4ce,
-    metalness: 0.5,
-    roughness: 0.32,
-  }),
-  keys: new THREE.MeshStandardMaterial({
-    color: 0x2a2c32,
-    metalness: 0.15,
-    roughness: 0.55,
-  }),
-  lid: new THREE.MeshStandardMaterial({
-    color: 0xb8bac4,
-    metalness: 0.55,
-    roughness: 0.3,
-  }),
-  displays: [
-    new THREE.MeshStandardMaterial({
-      color: 0x10161c,
-      emissive: 0x4a90b8,
-      emissiveIntensity: 0.85,
-      roughness: 0.2,
-      metalness: 0.04,
-    }),
-    new THREE.MeshStandardMaterial({
-      color: 0x0e141a,
-      emissive: 0x3a6ea4,
-      emissiveIntensity: 0.75,
-      roughness: 0.2,
-      metalness: 0.04,
-    }),
-    new THREE.MeshStandardMaterial({
-      color: 0x121820,
-      emissive: 0x5a88b0,
-      emissiveIntensity: 0.8,
-      roughness: 0.2,
-      metalness: 0.04,
-    }),
-  ],
-};
-
 function setupLighting() {
-  const hemi = new THREE.HemisphereLight(0xdce6f2, 0x111318, 0.7);
+  const hemi = new THREE.HemisphereLight(0xdce6f2, 0x111318, 0.28);
   scene.add(hemi);
 
-  const ambient = new THREE.AmbientLight(0xffffff, 0.32);
+  const ambient = new THREE.AmbientLight(0xffffff, 0.16);
   scene.add(ambient);
 
-  const keyLight = new THREE.DirectionalLight(0xffffff, 1.55);
+  const keyLight = new THREE.DirectionalLight(0xfff7ee, 1.55);
   keyLight.position.set(10, 24, 28);
   keyLight.castShadow = true;
   keyLight.shadow.mapSize.width = 2048;
@@ -137,62 +109,31 @@ function setupLighting() {
   keyLight.shadow.camera.bottom = -24;
   scene.add(keyLight);
 
-  const fillLight = new THREE.DirectionalLight(0x88aaff, 0.85);
+  const fillLight = new THREE.DirectionalLight(0x88aaff, 0.45);
   fillLight.position.set(-20, 16, 10);
   scene.add(fillLight);
 
-  const rimLight = new THREE.DirectionalLight(0xffffee, 1.05);
+  const rimLight = new THREE.DirectionalLight(0xffffee, 0.7);
   rimLight.position.set(6, 14, -22);
   scene.add(rimLight);
 }
 
-/**
- * Y-up laptop sitting on XZ. Default facing +Z (screen toward +Z, hinge at -Z).
- * Blender's script is Z-up on XY — do not copy those coords into Three.js.
- */
-function createLaptop(displayMaterial) {
-  const laptop = new THREE.Group();
-
-  const base = new THREE.Mesh(
-    new THREE.BoxGeometry(LAPTOP_WIDTH, LAPTOP_THICKNESS, LAPTOP_DEPTH),
-    shared.base
+function createGround() {
+  const ground = new THREE.Mesh(
+    new THREE.CircleGeometry(16.5, 64),
+    new THREE.MeshStandardMaterial({
+      color: 0x07080a,
+      roughness: 0.92,
+      metalness: 0.08,
+    })
   );
-  base.position.y = LAPTOP_THICKNESS * 0.5;
-  base.castShadow = true;
-  base.receiveShadow = true;
-  laptop.add(base);
-
-  const keys = new THREE.Mesh(
-    new THREE.BoxGeometry(LAPTOP_WIDTH * 0.78, LAPTOP_THICKNESS * 0.35, LAPTOP_DEPTH * 0.5),
-    shared.keys
-  );
-  keys.position.set(0, LAPTOP_THICKNESS + 0.002, LAPTOP_DEPTH * 0.05);
-  laptop.add(keys);
-
-  const screen = new THREE.Group();
-  const lid = new THREE.Mesh(
-    new THREE.BoxGeometry(LAPTOP_WIDTH * 0.96, SCREEN_HEIGHT, LAPTOP_THICKNESS * 0.7),
-    shared.lid
-  );
-  lid.position.y = SCREEN_HEIGHT * 0.5;
-  lid.castShadow = true;
-  screen.add(lid);
-
-  const display = new THREE.Mesh(
-    new THREE.PlaneGeometry(LAPTOP_WIDTH * 0.86, SCREEN_HEIGHT * 0.82),
-    displayMaterial
-  );
-  display.position.set(0, SCREEN_HEIGHT * 0.5, LAPTOP_THICKNESS * 0.38);
-  screen.add(display);
-
-  screen.position.set(0, LAPTOP_THICKNESS, -LAPTOP_DEPTH * 0.5);
-  screen.rotation.x = -SCREEN_TILT;
-  laptop.add(screen);
-
-  return laptop;
+  ground.rotation.x = -Math.PI / 2;
+  ground.position.set(0, -0.01, -SEMICIRCLE_RADIUS * 0.5);
+  ground.receiveShadow = true;
+  scene.add(ground);
 }
 
-function createSemicircleArray() {
+function createSemicircleArray(template) {
   const root = new THREE.Group();
   root.name = 'SemicircleArc';
   const laptops = [];
@@ -200,8 +141,8 @@ function createSemicircleArray() {
   const startAngle = -(ARC_ANGLE * Math.PI / 180) / 2;
 
   for (let i = 0; i < LAPTOP_COUNT; i += 1) {
-    const laptop = createLaptop(shared.displays[i % shared.displays.length]);
-    // Horizontal XZ semicircle, bulge at -Z, open diameter on X facing +Z / camera.
+    const laptop = template.clone(true);
+    polishLaptopMaterials(laptop, i);
     const angle = startAngle + i * angleStep;
     const x = SEMICIRCLE_RADIUS * Math.sin(angle);
     const z = -SEMICIRCLE_RADIUS * Math.cos(angle);
@@ -216,19 +157,24 @@ function createSemicircleArray() {
   return { root, laptops };
 }
 
-function createGround() {
-  const ground = new THREE.Mesh(
-    new THREE.CircleGeometry(28, 64),
-    new THREE.MeshStandardMaterial({
-      color: 0x0b0c10,
-      roughness: 0.88,
-      metalness: 0.12,
-    })
-  );
-  ground.rotation.x = -Math.PI / 2;
-  ground.position.set(0, -0.01, -SEMICIRCLE_RADIUS * 0.45);
-  ground.receiveShadow = true;
-  scene.add(ground);
+async function loadStudioRig() {
+  try {
+    const pmrem = new THREE.PMREMGenerator(renderer);
+    const hdr = await new RGBELoader().loadAsync(HDRI_URL);
+    scene.environment = pmrem.fromEquirectangular(hdr).texture;
+    hdr.dispose();
+    pmrem.dispose();
+
+    const gltf = await new GLTFLoader().loadAsync(MODEL_URL);
+    return gltf.scene;
+  } catch (cause) {
+    throw new MeshLoadError(cause);
+  }
+}
+
+function setStatus(text) {
+  const info = document.getElementById('info');
+  if (info) info.textContent = text;
 }
 
 const btnRotate = document.getElementById('btn-rotate');
@@ -269,12 +215,20 @@ function animate() {
 
 setupLighting();
 createGround();
-const { root, laptops } = createSemicircleArray();
-arcRoot = root;
-frameCameraToArc(arcRoot);
-
-console.log(`✅ Created ${laptops.length} laptops in an XZ semicircle`);
-console.log('📐 Procedural geometry — no external models loaded');
-console.log('📷 Camera framed above-front to the horseshoe (orbit-safe)');
-
 animate();
+setStatus('Loading Classic Laptop…');
+
+loadStudioRig()
+  .then((sceneGraph) => {
+    const { template, height } = prepareLaptopTemplate(sceneGraph, LAPTOP_WIDTH);
+    liftY = height * 0.28;
+    const { root, laptops } = createSemicircleArray(template);
+    arcRoot = root;
+    frameCameraToArc(arcRoot);
+    setStatus('Drag to orbit · scroll to zoom · Classic Laptop · studio HDRI');
+    console.log(`Loaded ${laptops.length} Classic Laptop clones in an XZ semicircle`);
+  })
+  .catch((error) => {
+    console.error(error);
+    setStatus('Mesh failed to load. Check the GLB path.');
+  });
