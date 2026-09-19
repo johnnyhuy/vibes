@@ -70,8 +70,8 @@ export const HOTSPOTS: Hotspot[] = [
   },
   {
     id: 'controls',
-    label: 'Cup screw',
-    copy: 'The licensed yoke screw is the mute contact. It ratchets, the cup settles a few degrees, and a short ember flashes at the joint. Oscillator click stays mute-default.',
+    label: 'Mute rocker',
+    copy: 'A small metal rocker on the licensed cup. It snaps, the yoke screw ratchets, and a short ember flashes at the contact. Oscillator click stays mute-default.',
   },
 ];
 

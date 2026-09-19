@@ -85,7 +85,7 @@ export default function App() {
           onCloseHotspot={() => setHighlight(null)}
         />
         <p className="sr-only">
-          {FINISHES.length} finishes. Mute defaults on. The cup screw is the mute contact.
+          {FINISHES.length} finishes. Mute defaults on. The cup rocker is the mute contact.
         </p>
       </div>
     </ErrorBoundary>

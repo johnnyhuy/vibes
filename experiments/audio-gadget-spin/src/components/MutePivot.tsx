@@ -2,11 +2,11 @@ import { useEffect, useLayoutEffect, useMemo, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import {
   AdditiveBlending,
-  Box3,
   CanvasTexture,
   Color,
   Quaternion,
   Vector3,
+  type Group,
   type Mesh,
   type MeshStandardMaterial,
   type Object3D,
@@ -15,17 +15,16 @@ import {
 } from 'three';
 import type { Finish } from '../finishes';
 
-const COUNT = 36;
+const COUNT = 52;
 const SCREW_LIVE = Math.PI * 0.78;
-const CUP_LIVE = 0.1;
+const ROCKER_MUTED = -0.36;
+const ROCKER_LIVE = 0.36;
 const LOCAL_Z = new Vector3(0, 0, 1);
 
 interface Props {
   origin: Vector3;
-  axis: Vector3;
   radius: number;
-  screw: Object3D;
-  cup: Object3D | null;
+  screw: Object3D | null;
   finish: Finish;
   muted: boolean;
   reducedMotion: boolean;
@@ -39,9 +38,9 @@ function emberMap(): CanvasTexture {
   const ctx = canvas.getContext('2d');
   if (!ctx) return new CanvasTexture(canvas);
   const glow = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
-  glow.addColorStop(0, 'rgba(255,236,196,1)');
-  glow.addColorStop(0.28, 'rgba(255,168,72,0.85)');
-  glow.addColorStop(0.62, 'rgba(210,72,24,0.28)');
+  glow.addColorStop(0, 'rgba(255,240,210,1)');
+  glow.addColorStop(0.22, 'rgba(255,176,78,0.9)');
+  glow.addColorStop(0.55, 'rgba(220,78,22,0.35)');
   glow.addColorStop(1, 'rgba(0,0,0,0)');
   ctx.fillStyle = glow;
   ctx.fillRect(0, 0, 64, 64);
@@ -52,15 +51,14 @@ function emberMap(): CanvasTexture {
 
 export default function MutePivot({
   origin,
-  axis,
   radius,
   screw,
-  cup,
   finish,
   muted,
   reducedMotion,
   onMute,
 }: Props) {
+  const paddle = useRef<Group>(null);
   const sparks = useRef<Points>(null);
   const lamp = useRef<PointLight>(null);
   const flash = useRef(0);
@@ -68,16 +66,14 @@ export default function MutePivot({
   const hover = useRef(false);
   const screwAngle = useRef(muted ? 0 : SCREW_LIVE);
   const screwVel = useRef(0);
-  const cupAngle = useRef(muted ? 0 : CUP_LIVE);
-  const cupVel = useRef(0);
-  const restScrew = useMemo(() => screw.quaternion.clone(), [screw]);
-  const restCup = useMemo(() => (cup ? cup.quaternion.clone() : new Quaternion()), [cup]);
-  const qSpin = useMemo(() => new Quaternion(), []);
-  const washerQuat = useMemo(
-    () => new Quaternion().setFromUnitVectors(new Vector3(0, 0, 1), axis.clone().normalize()),
-    [axis]
+  const rockerAngle = useRef(muted ? ROCKER_MUTED : ROCKER_LIVE);
+  const rockerVel = useRef(0);
+  const restScrew = useMemo(
+    () => (screw?.userData.restQuat as Quaternion | undefined)?.clone() ?? screw?.quaternion.clone() ?? new Quaternion(),
+    [screw]
   );
-  const ember = useMemo(() => new Color(finish.accent).lerp(new Color('#ff7a2a'), 0.45), [finish.accent]);
+  const qSpin = useMemo(() => new Quaternion(), []);
+  const ember = useMemo(() => new Color(finish.accent).lerp(new Color('#ff7a2a'), 0.4), [finish.accent]);
   const map = useMemo(emberMap, []);
   const positions = useMemo(() => {
     const data = new Float32Array(COUNT * 3);
@@ -88,9 +84,16 @@ export default function MutePivot({
   const velocities = useRef(new Float32Array(COUNT * 3));
   const materials = useRef<MeshStandardMaterial[]>([]);
 
+  useEffect(() => {
+    if (!screw) return;
+    return () => {
+      screw.quaternion.copy(restScrew);
+    };
+  }, [restScrew, screw]);
+
   useLayoutEffect(() => {
     const next: MeshStandardMaterial[] = [];
-    screw.traverse((object) => {
+    screw?.traverse((object) => {
       const mesh = object as Mesh;
       if (!mesh.isMesh || !mesh.material) return;
       const list = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
@@ -111,47 +114,45 @@ export default function MutePivot({
     if (reducedMotion) return;
     for (let i = 0; i < COUNT; i++) {
       const ix = i * 3;
-      positions[ix] = origin.x + (Math.random() - 0.5) * radius * 0.4;
-      positions[ix + 1] = origin.y + (Math.random() - 0.5) * radius * 0.4;
-      positions[ix + 2] = origin.z + (Math.random() - 0.5) * radius * 0.4;
-      const spray = 1.8 + Math.random() * 3.6;
-      velocities.current[ix] = axis.x * spray + (Math.random() - 0.5) * 1.9;
-      velocities.current[ix + 1] = axis.y * spray + 1.2 + Math.random() * 2.4;
-      velocities.current[ix + 2] = axis.z * spray + (Math.random() - 0.5) * 1.9;
-      lives.current[i] = 0.55 + Math.random() * 0.35;
+      positions[ix] = (Math.random() - 0.5) * radius;
+      positions[ix + 1] = (Math.random() - 0.5) * radius;
+      positions[ix + 2] = (Math.random() - 0.5) * radius;
+      velocities.current[ix] = (Math.random() - 0.5) * 2.8;
+      velocities.current[ix + 1] = 1.8 + Math.random() * 3.4;
+      velocities.current[ix + 2] = 1.2 + Math.random() * 2.4;
+      lives.current[i] = 0.75 + Math.random() * 0.4;
     }
     const attr = sparks.current?.geometry.getAttribute('position');
     if (attr) attr.needsUpdate = true;
-  }, [axis, muted, origin, positions, radius, reducedMotion]);
+  }, [muted, origin, positions, radius, reducedMotion]);
 
   useFrame((_, dt) => {
     const step = Math.min(dt, 0.032);
-    const screwTarget = muted ? 0 : SCREW_LIVE;
-    const cupTarget = muted ? 0 : CUP_LIVE;
-    const stiffness = reducedMotion ? 80 : 220;
-    const damp = reducedMotion ? 28 : 16;
+    const stiffness = reducedMotion ? 80 : 260;
+    const damp = reducedMotion ? 28 : 15;
 
-    screwVel.current += (screwTarget - screwAngle.current) * stiffness * step;
-    screwVel.current *= Math.exp(-damp * step);
-    screwAngle.current += screwVel.current * step;
-    qSpin.setFromAxisAngle(LOCAL_Z, screwAngle.current);
-    screw.quaternion.copy(restScrew).multiply(qSpin);
-
-    if (cup) {
-      cupVel.current += (cupTarget - cupAngle.current) * (stiffness * 0.55) * step;
-      cupVel.current *= Math.exp(-damp * step);
-      cupAngle.current += cupVel.current * step;
-      qSpin.setFromAxisAngle(LOCAL_Z, cupAngle.current);
-      cup.quaternion.copy(restCup).multiply(qSpin);
+    if (screw) {
+      const screwTarget = muted ? 0 : SCREW_LIVE;
+      screwVel.current += (screwTarget - screwAngle.current) * stiffness * step;
+      screwVel.current *= Math.exp(-damp * step);
+      screwAngle.current += screwVel.current * step;
+      qSpin.setFromAxisAngle(LOCAL_Z, screwAngle.current);
+      screw.quaternion.copy(restScrew).multiply(qSpin);
     }
 
-    flash.current = Math.max(0, flash.current - step * (reducedMotion ? 6 : 2.4));
-    const heat = flash.current + (hover.current ? 0.12 : 0);
+    const rockerTarget = muted ? ROCKER_MUTED : ROCKER_LIVE;
+    rockerVel.current += (rockerTarget - rockerAngle.current) * stiffness * step;
+    rockerVel.current *= Math.exp(-damp * step);
+    rockerAngle.current += rockerVel.current * step;
+    if (paddle.current) paddle.current.rotation.z = rockerAngle.current;
+
+    flash.current = Math.max(0, flash.current - step * (reducedMotion ? 6 : 1.7));
+    const heat = flash.current + (hover.current ? 0.16 : 0);
     for (const mat of materials.current) {
       mat.emissive.set(heat > 0.02 ? finish.accent : '#000000');
-      mat.emissiveIntensity = heat * 3.4;
+      mat.emissiveIntensity = heat * 3.8;
     }
-    if (lamp.current) lamp.current.intensity = flash.current * 18;
+    if (lamp.current) lamp.current.intensity = flash.current * 48;
 
     if (reducedMotion || !sparks.current) return;
     const attr = sparks.current.geometry.getAttribute('position');
@@ -163,9 +164,9 @@ export default function MutePivot({
       }
       lives.current[i] -= step;
       const ix = i * 3;
-      velocities.current[ix] *= Math.exp(-1.8 * step);
-      velocities.current[ix + 1] -= 6.4 * step;
-      velocities.current[ix + 2] *= Math.exp(-1.8 * step);
+      velocities.current[ix] *= Math.exp(-1.5 * step);
+      velocities.current[ix + 1] -= 7.4 * step;
+      velocities.current[ix + 2] *= Math.exp(-1.5 * step);
       array[ix] += velocities.current[ix] * step;
       array[ix + 1] += velocities.current[ix + 1] * step;
       array[ix + 2] += velocities.current[ix + 2] * step;
@@ -173,35 +174,56 @@ export default function MutePivot({
     attr.needsUpdate = true;
   });
 
-  const hit = Math.max(radius * 2.4, 0.07);
-
   return (
-    <group>
-      <mesh position={origin} quaternion={washerQuat}>
-        <torusGeometry args={[radius * 0.92, radius * 0.16, 14, 36]} />
+    <group position={origin} rotation={[0.05, -0.15, 0]}>
+      <pointLight color="#fff4e4" intensity={2.8} distance={0.55} decay={2} />
+      <mesh rotation={[Math.PI / 2, 0, 0]} castShadow>
+        <cylinderGeometry args={[radius * 1.4, radius * 1.5, radius * 0.32, 32]} />
         <meshPhysicalMaterial
-          color={finish.metal}
-          metalness={0.94}
-          roughness={0.14}
-          clearcoat={0.72}
-          clearcoatRoughness={0.16}
-          anisotropy={0.55}
-          envMapIntensity={1.45}
-        />
-      </mesh>
-      <mesh position={origin}>
-        <sphereGeometry args={[radius * 0.22, 16, 16]} />
-        <meshPhysicalMaterial
-          color={muted ? '#1b1c20' : finish.accent}
-          emissive={muted ? '#000000' : finish.accent}
-          emissiveIntensity={muted ? 0 : 0.85}
-          metalness={0.35}
-          roughness={0.22}
+          color="#2a2d33"
+          metalness={0.82}
+          roughness={0.3}
           clearcoat={0.4}
+          envMapIntensity={1.2}
         />
       </mesh>
+      <mesh rotation={[Math.PI / 2, 0, 0]}>
+        <torusGeometry args={[radius * 1.42, radius * 0.09, 12, 36]} />
+        <meshPhysicalMaterial
+          color="#e6e9ee"
+          metalness={0.96}
+          roughness={0.08}
+          clearcoat={0.85}
+          clearcoatRoughness={0.08}
+          envMapIntensity={1.7}
+        />
+      </mesh>
+      <group ref={paddle}>
+        <mesh castShadow position={[0, radius * 0.24, 0]} rotation={[0, 0, Math.PI / 2]}>
+          <capsuleGeometry args={[radius * 0.24, radius * 1.75, 8, 20]} />
+          <meshPhysicalMaterial
+            color="#f2f4f7"
+            metalness={0.97}
+            roughness={0.08}
+            clearcoat={0.88}
+            clearcoatRoughness={0.08}
+            anisotropy={0.75}
+            envMapIntensity={1.75}
+          />
+        </mesh>
+        <mesh position={[radius * 0.82, radius * 0.38, 0]}>
+          <sphereGeometry args={[radius * 0.18, 16, 16]} />
+          <meshPhysicalMaterial
+            color={muted ? '#14161a' : finish.accent}
+            emissive={muted ? '#000000' : finish.accent}
+            emissiveIntensity={muted ? 0 : 1.25}
+            metalness={0.28}
+            roughness={0.18}
+            clearcoat={0.55}
+          />
+        </mesh>
+      </group>
       <mesh
-        position={origin}
         onPointerOver={(event) => {
           event.stopPropagation();
           hover.current = true;
@@ -216,10 +238,10 @@ export default function MutePivot({
           onMute();
         }}
       >
-        <sphereGeometry args={[hit, 16, 16]} />
+        <sphereGeometry args={[Math.max(radius * 3.4, 0.09), 16, 16]} />
         <meshBasicMaterial transparent opacity={0} depthWrite={false} />
       </mesh>
-      <pointLight ref={lamp} position={origin} color={ember} intensity={0} distance={1.35} decay={2} />
+      <pointLight ref={lamp} color={ember} intensity={0} distance={1.7} decay={2} />
       <points ref={sparks} frustumCulled={false}>
         <bufferGeometry>
           <bufferAttribute attach="attributes-position" args={[positions, 3]} />
@@ -227,9 +249,9 @@ export default function MutePivot({
         <pointsMaterial
           map={map}
           color={ember}
-          size={0.045}
+          size={0.08}
           transparent
-          opacity={0.92}
+          opacity={0.95}
           depthWrite={false}
           blending={AdditiveBlending}
           sizeAttenuation
@@ -237,17 +259,4 @@ export default function MutePivot({
       </points>
     </group>
   );
-}
-
-export function pivotMetrics(screw: Object3D): { origin: Vector3; axis: Vector3; radius: number } {
-  const origin = new Vector3();
-  screw.updateWorldMatrix(true, false);
-  screw.getWorldPosition(origin);
-  const box = new Box3().setFromObject(screw);
-  const size = box.getSize(new Vector3());
-  const radius = Math.max(size.x, size.y, size.z) * 0.42;
-  const axis = new Vector3(0, 0, 1).applyQuaternion(screw.getWorldQuaternion(new Quaternion()));
-  if (axis.lengthSq() < 1e-6) axis.set(0, 0, 1);
-  axis.normalize();
-  return { origin, axis, radius: Math.max(radius, 0.018) };
 }

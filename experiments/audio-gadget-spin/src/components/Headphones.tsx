@@ -4,7 +4,7 @@ import { Color, Vector3, type Mesh, type MeshStandardMaterial } from 'three';
 import type { Finish, HotspotId } from '../finishes';
 import { enableShadows, findByName, fitObject, meshLabel } from '../modelFit';
 import Hotspots from './Hotspots';
-import MutePivot, { pivotMetrics } from './MutePivot';
+import MutePivot from './MutePivot';
 
 const MODEL = '/models/headphones.glb';
 
@@ -42,26 +42,28 @@ export default function Headphones({
   onMute,
 }: Props) {
   const { scene } = useGLTF(MODEL);
-  const { model, anchors, screw, cup, pivot } = useMemo(() => {
+  const { model, anchors, screw, rocker } = useMemo(() => {
     const clone = scene.clone(true);
     const box = fitObject(clone, 2.28);
     enableShadows(clone);
     const size = box.getSize(new Vector3());
     const center = box.getCenter(new Vector3());
     const screwNode = findByName(clone, 'Screw_9');
-    const cupNode = findByName(clone, 'Empty.008_6');
-    const metrics = screwNode ? pivotMetrics(screwNode) : null;
-    const contact = metrics?.origin ?? new Vector3(center.x + size.x * 0.36, center.y + size.y * 0.16, center.z);
+    if (screwNode) screwNode.userData.restQuat = screwNode.quaternion.clone();
+    const origin = new Vector3(
+      center.x + size.x * 0.31,
+      center.y + size.y * 0.05,
+      center.z + size.z * 0.48
+    );
     return {
       model: clone,
       screw: screwNode,
-      cup: cupNode,
-      pivot: metrics,
+      rocker: { origin, radius: 0.034 },
       anchors: {
         driver: [center.x + size.x * 0.42, center.y, center.z + size.z * 0.28],
         cushion: [center.x - size.x * 0.42, center.y - size.y * 0.06, center.z],
         yoke: [center.x, center.y + size.y * 0.46, center.z],
-        controls: [contact.x, contact.y + 0.08, contact.z + 0.06],
+        controls: [origin.x, origin.y + 0.2, origin.z],
       } as Record<HotspotId, [number, number, number]>,
     };
   }, [scene]);
@@ -103,19 +105,15 @@ export default function Headphones({
   return (
     <group>
       <primitive object={model} />
-      {screw && pivot ? (
-        <MutePivot
-          origin={pivot.origin}
-          axis={pivot.axis}
-          radius={pivot.radius}
-          screw={screw}
-          cup={cup}
-          finish={finish}
-          muted={muted}
-          reducedMotion={reducedMotion}
-          onMute={onMute}
-        />
-      ) : null}
+      <MutePivot
+        origin={rocker.origin}
+        radius={rocker.radius}
+        screw={screw}
+        finish={finish}
+        muted={muted}
+        reducedMotion={reducedMotion}
+        onMute={onMute}
+      />
       <Hotspots active={highlight} onPick={onHotspot} anchors={anchors} />
     </group>
   );

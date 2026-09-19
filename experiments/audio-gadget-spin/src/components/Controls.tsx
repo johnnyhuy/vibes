@@ -44,7 +44,7 @@ export default function Controls({
             type="button"
             className={`ghost compact ${muted ? 'active' : ''}`}
             onClick={onMute}
-            aria-label={muted ? 'Unmute. The cup screw is the same control.' : 'Mute. The cup screw is the same control.'}
+            aria-label={muted ? 'Unmute. The cup rocker is the same control.' : 'Mute. The cup rocker is the same control.'}
           >
             {muted ? 'Muted' : 'Sound on'}
           </button>
@@ -64,7 +64,7 @@ export default function Controls({
         <h1>Lumen Cuff</h1>
         <p className="lede">
           I built a turntable for a gadget I invented. Licensed over-ear
-          mesh, three finishes, and a cup-screw mute click. Not a brand
+          mesh, three finishes, and a cup-rocker mute click. Not a brand
           storefront. Sound stays off until you ask.
         </p>
       </header>
@@ -85,7 +85,7 @@ export default function Controls({
         <span className="sep">·</span>
         chips swap the finish
         <span className="sep">·</span>
-        {muted ? 'mute is on by default · click the cup screw' : 'oscillator clicks are live · cup screw is the mute contact'}
+        {muted ? 'mute is on by default · click the cup rocker' : 'oscillator clicks are live · cup rocker is the mute contact'}
       </p>
     </>
   );
