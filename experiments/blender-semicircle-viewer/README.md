@@ -35,13 +35,13 @@ npm run preview
 
 Output in `dist/`. Ready for static hosting.
 
-Headed local loop: `docs/previews/blender-semicircle.gif`. Full XZ horseshoe with margin. The GIF is still the old box array until I recapture it.
+Headed local loop: `docs/previews/blender-semicircle.gif`. Full XZ horseshoe with margin. I recaptured the GIF against Classic Laptop in #100.
 
 ## Deploy to Vercel
 
 Project `vibes-blender-semicircle` (`prj_PLhnoCVRKmpHc8SxyLRmcp3MFZMC`), Root `experiments/blender-semicircle-viewer`.
 
-#98 (`eb4a049e`) landed Classic Laptop GLB seats on main, but Vercel never produced a production deploy for this Root (Hobby rate limit / webhook miss). Production alias is still on #74 (`6bcd57bc` / `dpl_5N99g6F7EjvGhcHjQDMXFfN19wy9`). Preview READY exists only for the PR-branch commit (`dpl_GLexDxzacrRxaeaDv8Gqqjx9Vsjr`). This 2026-09-20 README bump is the Root-touch so `ignoreCommand` rebuilds `vibes-blender-semicircle` off current main. I am not creating a new project.
+#98 (`eb4a049e`) landed Classic Laptop GLB seats on main and #99 was the first Root-touch so ignoreCommand would rebuild this project. Neither produced a production READY (Hobby rate limit / webhook miss). A 2026-09-20 hill climb recovered the production aliases onto the READY PR-branch preview `dpl_GLexDxzacrRxaeaDv8Gqqjx9Vsjr` (Classic Laptop, `index-DAlb4omc.js`). Live [vibes-blender-semicircle.vercel.app](https://vibes-blender-semicircle.vercel.app) now serves that preview SHA. This README bump is the Root-touch so `ignoreCommand` rebuilds `vibes-blender-semicircle` off current main. I am not creating a new Vercel project (Hobby 25-link cap).
 
 ## Tech Stack
 
@@ -110,12 +110,12 @@ The first pass stacked boxes so the *array math* was inspectable. That was the r
 
 - [x] Load a licensed laptop GLB (GLTFLoader) instead of stacked boxes
 - [ ] Add click interactions (select individual laptops)
-- [ ] Recapture `docs/previews/blender-semicircle.gif` against the Classic Laptop array
+- [x] Recapture `docs/previews/blender-semicircle.gif` against the Classic Laptop array
 - [x] Horizontal XZ semicircle + orbit-safe horseshoe framing (AABB-only / look-target mismatch still cropped)
 - [ ] Post-processing (bloom, depth of field)
 
 ---
 
-**Last updated**: 2026-09-20 ~2:25am AEST (blender-semicircle-viewer-only Root-touch after #98 miss)  
+**Last updated**: 2026-09-20 ~4:30am AEST (Root-touch so production leaves #98/#99 miss after alias recovery)  
 **Author**: Johnny Huynh  
 **License**: MIT
