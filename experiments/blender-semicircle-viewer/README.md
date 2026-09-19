@@ -41,6 +41,8 @@ Headed local loop: `docs/previews/blender-semicircle.gif`. Full XZ horseshoe wit
 
 Project `vibes-blender-semicircle` (`prj_PLhnoCVRKmpHc8SxyLRmcp3MFZMC`), Root `experiments/blender-semicircle-viewer`.
 
+#98 (`eb4a049e`) landed Classic Laptop GLB seats on main, but Vercel never produced a production deploy for this Root (Hobby rate limit / webhook miss). Production alias is still on #74 (`6bcd57bc` / `dpl_5N99g6F7EjvGhcHjQDMXFfN19wy9`). Preview READY exists only for the PR-branch commit (`dpl_GLexDxzacrRxaeaDv8Gqqjx9Vsjr`). This 2026-09-20 README bump is the Root-touch so `ignoreCommand` rebuilds `vibes-blender-semicircle` off current main. I am not creating a new project.
+
 ## Tech Stack
 
 - **Three.js** `^0.160.0`. GLTFLoader + RGBELoader (vanilla, no R3F)
@@ -114,6 +116,6 @@ The first pass stacked boxes so the *array math* was inspectable. That was the r
 
 ---
 
-**Last updated**: 2026-09-19 (Classic Laptop GLB + studio HDRI, one Root)  
+**Last updated**: 2026-09-20 ~2:25am AEST (blender-semicircle-viewer-only Root-touch after #98 miss)  
 **Author**: Johnny Huynh  
 **License**: MIT
