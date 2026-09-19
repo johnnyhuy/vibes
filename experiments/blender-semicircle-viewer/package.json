@@ -6,7 +6,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test": "node --test framing.test.js"
+    "test": "node --test framing.test.js laptopFit.test.js"
   },
   "dependencies": {
     "three": "^0.160.0"
