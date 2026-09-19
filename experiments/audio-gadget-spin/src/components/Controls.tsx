@@ -40,7 +40,12 @@ export default function Controls({
               </button>
             ))}
           </div>
-          <button type="button" className={`ghost compact ${muted ? 'active' : ''}`} onClick={onMute}>
+          <button
+            type="button"
+            className={`ghost compact ${muted ? 'active' : ''}`}
+            onClick={onMute}
+            aria-label={muted ? 'Unmute. The cup screw is the same control.' : 'Mute. The cup screw is the same control.'}
+          >
             {muted ? 'Muted' : 'Sound on'}
           </button>
           <button
@@ -58,9 +63,9 @@ export default function Controls({
         <p className="kicker">環</p>
         <h1>Lumen Cuff</h1>
         <p className="lede">
-          I built a turntable for a gadget I invented — a licensed over-ear
-          mesh, three finishes, mute-default clicks. Not a brand storefront.
-          Sound stays off until you ask.
+          I built a turntable for a gadget I invented. Licensed over-ear
+          mesh, three finishes, and a cup-screw mute click. Not a brand
+          storefront. Sound stays off until you ask.
         </p>
       </header>
 
@@ -80,7 +85,7 @@ export default function Controls({
         <span className="sep">·</span>
         chips swap the finish
         <span className="sep">·</span>
-        {muted ? 'mute is on by default' : 'oscillator clicks are live'}
+        {muted ? 'mute is on by default · click the cup screw' : 'oscillator clicks are live · cup screw is the mute contact'}
       </p>
     </>
   );

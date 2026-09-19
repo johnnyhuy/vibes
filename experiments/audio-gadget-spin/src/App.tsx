@@ -63,7 +63,10 @@ export default function App() {
           finish={finish}
           highlight={highlight}
           autoSpin={spinning}
+          muted={muted}
+          reducedMotion={reducedMotion}
           onHotspot={chooseHotspot}
+          onMute={toggleMute}
           onUserOrbit={handleUserOrbit}
         />
         <Controls
@@ -82,7 +85,7 @@ export default function App() {
           onCloseHotspot={() => setHighlight(null)}
         />
         <p className="sr-only">
-          {FINISHES.length} finishes. Mute defaults on.
+          {FINISHES.length} finishes. Mute defaults on. The cup screw is the mute contact.
         </p>
       </div>
     </ErrorBoundary>

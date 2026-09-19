@@ -12,8 +12,9 @@ I studied the *pattern*. I did **not** copy their meshes, stills, chrome, or bra
 
 - **Licensed over-ear** — Spacebar’s Headphones (CC-BY-4.0) in `public/models/headphones.glb`. Finishes retint housing / foam / net / screws. Hotspots sit on the real cups and headband. See [ATTRIBUTION.md](./ATTRIBUTION.md).
 - **Studio turntable** — dark stage, Poly Haven studio HDRI on the licensed cups, slow auto-orbit. Drag overrides; spin comes back after a beat unless you hold it.
-- **Three finishes** — Studio, Midnight, Citrus. Hotspots on the driver, cushion, yoke, and edge slab.
+- **Three finishes** — Studio, Midnight, Citrus. Hotspots on the driver, cushion, yoke, and the cup screw.
 - **Mute-default audio** — Web Audio oscillators for a click / whoosh. Browsers block autoplay; the toggle starts **Muted**.
+- **Cup-screw mute click** — I used the licensed `Screw_9` at the yoke as the mute contact. HUD Mute and a click on that fastener share one action: the screw ratchets, the cup settles a few degrees of friction, and a short ember / emissive flash reads at the joint. `prefers-reduced-motion` snaps the pose and skips the spray. No new third-party assets.
 
 The Xr0ud video thumb I already had looks like a loft / architecture scroll, not a headphone. I treated the *tweet text* as the brief and ignored that still as a build spec.
 
@@ -35,7 +36,7 @@ npm run build
 npm run preview
 ```
 
-Headed local loop: `docs/previews/audio-gadget-spin.gif`. Auto-spin on the licensed cups, mute left on. The old three-frame clip was basically a still.
+Headed local loop: `docs/previews/audio-gadget-spin.gif`. Auto-spin on the licensed cups, mute left on. The cup screw is the mechanical detail on this pass. The old three-frame clip was basically a still.
 
 ## Deploy
 
@@ -53,6 +54,6 @@ I linked it `deploy: false` before quota. The 2026-09-09 Root touch poisoned sch
 
 ---
 
-**Status**: Production alias [vibes-audio-gadget-spin.vercel.app](https://vibes-audio-gadget-spin.vercel.app) — older READY still serving; waiting on PR #53 merge after post-quota preview
-**Last updated**: 2026-09-10  
+**Status**: Production alias [vibes-audio-gadget-spin.vercel.app](https://vibes-audio-gadget-spin.vercel.app). This Root-touch is the cup-screw mute click so `ignoreCommand` rebuilds `vibes-audio-gadget-spin`. No new Vercel project (Hobby 25-link cap).
+**Last updated**: 2026-09-19  
 **Built by**: Johnny Huynh

@@ -70,8 +70,8 @@ export const HOTSPOTS: Hotspot[] = [
   },
   {
     id: 'controls',
-    label: 'Cup housing',
-    copy: 'Housing and rails take the finish colour. They fire a mute-default oscillator click — not a sampled product sound.',
+    label: 'Cup screw',
+    copy: 'The licensed yoke screw is the mute contact. It ratchets, the cup settles a few degrees, and a short ember flashes at the joint. Oscillator click stays mute-default.',
   },
 ];
 

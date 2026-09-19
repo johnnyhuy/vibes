@@ -2,15 +2,19 @@ import { useLayoutEffect, useMemo } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { Color, Vector3, type Mesh, type MeshStandardMaterial } from 'three';
 import type { Finish, HotspotId } from '../finishes';
-import { enableShadows, fitObject, meshLabel } from '../modelFit';
+import { enableShadows, findByName, fitObject, meshLabel } from '../modelFit';
 import Hotspots from './Hotspots';
+import MutePivot, { pivotMetrics } from './MutePivot';
 
 const MODEL = '/models/headphones.glb';
 
 interface Props {
   finish: Finish;
   highlight: HotspotId | null;
+  muted: boolean;
+  reducedMotion: boolean;
   onHotspot: (id: HotspotId) => void;
+  onMute: () => void;
 }
 
 function roleFor(label: string): HotspotId | 'housing' | 'metal' {
@@ -29,21 +33,35 @@ function finishColor(role: ReturnType<typeof roleFor>, finish: Finish): string {
   return finish.housing;
 }
 
-export default function Headphones({ finish, highlight, onHotspot }: Props) {
+export default function Headphones({
+  finish,
+  highlight,
+  muted,
+  reducedMotion,
+  onHotspot,
+  onMute,
+}: Props) {
   const { scene } = useGLTF(MODEL);
-  const { model, anchors } = useMemo(() => {
+  const { model, anchors, screw, cup, pivot } = useMemo(() => {
     const clone = scene.clone(true);
     const box = fitObject(clone, 2.28);
     enableShadows(clone);
     const size = box.getSize(new Vector3());
     const center = box.getCenter(new Vector3());
+    const screwNode = findByName(clone, 'Screw_9');
+    const cupNode = findByName(clone, 'Empty.008_6');
+    const metrics = screwNode ? pivotMetrics(screwNode) : null;
+    const contact = metrics?.origin ?? new Vector3(center.x + size.x * 0.36, center.y + size.y * 0.16, center.z);
     return {
       model: clone,
+      screw: screwNode,
+      cup: cupNode,
+      pivot: metrics,
       anchors: {
         driver: [center.x + size.x * 0.42, center.y, center.z + size.z * 0.28],
         cushion: [center.x - size.x * 0.42, center.y - size.y * 0.06, center.z],
         yoke: [center.x, center.y + size.y * 0.46, center.z],
-        controls: [center.x + size.x * 0.36, center.y + size.y * 0.16, center.z + size.z * 0.08],
+        controls: [contact.x, contact.y + 0.08, contact.z + 0.06],
       } as Record<HotspotId, [number, number, number]>,
     };
   }, [scene]);
@@ -58,7 +76,9 @@ export default function Headphones({ finish, highlight, onHotspot }: Props) {
         const role = roleFor(meshLabel(mesh));
         const hex = finishColor(role, finish);
         if (mat.color) mat.color.lerp(new Color(hex), 0.72);
-        const lit = highlight !== null && (role === highlight || (highlight === 'controls' && role === 'housing'));
+        const lit =
+          highlight !== null &&
+          (role === highlight || (highlight === 'controls' && (role === 'housing' || role === 'metal')));
         if (mat.emissive) {
           mat.emissive.set(lit ? finish.accent : '#000000');
           mat.emissiveIntensity = lit ? 0.28 : 0;
@@ -83,6 +103,19 @@ export default function Headphones({ finish, highlight, onHotspot }: Props) {
   return (
     <group>
       <primitive object={model} />
+      {screw && pivot ? (
+        <MutePivot
+          origin={pivot.origin}
+          axis={pivot.axis}
+          radius={pivot.radius}
+          screw={screw}
+          cup={cup}
+          finish={finish}
+          muted={muted}
+          reducedMotion={reducedMotion}
+          onMute={onMute}
+        />
+      ) : null}
       <Hotspots active={highlight} onPick={onHotspot} anchors={anchors} />
     </group>
   );

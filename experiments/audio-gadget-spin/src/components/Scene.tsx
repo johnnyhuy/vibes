@@ -10,11 +10,23 @@ interface Props {
   finish: Finish;
   highlight: HotspotId | null;
   autoSpin: boolean;
+  muted: boolean;
+  reducedMotion: boolean;
   onHotspot: (id: HotspotId) => void;
+  onMute: () => void;
   onUserOrbit: () => void;
 }
 
-export default function Scene({ finish, highlight, autoSpin, onHotspot, onUserOrbit }: Props) {
+export default function Scene({
+  finish,
+  highlight,
+  autoSpin,
+  muted,
+  reducedMotion,
+  onHotspot,
+  onMute,
+  onUserOrbit,
+}: Props) {
   const resume = useRef<number>();
 
   useEffect(() => () => window.clearTimeout(resume.current), []);
@@ -35,7 +47,14 @@ export default function Scene({ finish, highlight, autoSpin, onHotspot, onUserOr
     >
       <Studio />
       <Suspense fallback={null}>
-        <Headphones finish={finish} highlight={highlight} onHotspot={onHotspot} />
+        <Headphones
+          finish={finish}
+          highlight={highlight}
+          muted={muted}
+          reducedMotion={reducedMotion}
+          onHotspot={onHotspot}
+          onMute={onMute}
+        />
       </Suspense>
       <OrbitControls
         makeDefault

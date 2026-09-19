@@ -49,3 +49,12 @@ export function meshLabel(mesh: Mesh): string {
   }
   return `${lineage.join(' ')} ${materialName}`.toLowerCase();
 }
+
+export function findByName(root: Object3D, name: string): Object3D | null {
+  const needle = name.toLowerCase();
+  let found: Object3D | null = null;
+  root.traverse((object) => {
+    if (!found && object.name.toLowerCase() === needle) found = object;
+  });
+  return found;
+}
