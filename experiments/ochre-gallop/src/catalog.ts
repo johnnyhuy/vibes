@@ -13,7 +13,7 @@ export const RUNNER = {
   name: 'Ashmane',
   nameZh: '灰鬃',
   code: 'AM-07',
-  hide: 'umber hide, ash mane, no park brand',
+  hide: 'licensed porcelain horse, umber retint, no park brand',
 } as const;
 
 export interface BiomeSpec {

@@ -8,11 +8,15 @@ I studied the **post text**, the **public card title / description**, and a feel
 
 - **An invented lobby** — two columns: geometric poster + highland tabs + rust **Open** CTA. Select, then stride. Not their yellow Play card or silk-screen toss.
 - **Three invented highlands** — Sulfur Terrace / 硫阶, Spout Basin / 喷盆, Rim Overlook / 檐望. Concentric mineral lips, a sinter bowl, a canyon shelf. Not park itineraries.
-- **Ashmane / 灰鬃** — a procedural stylized ungulate. Umber hide, ash mane, gallop gait. Not a photo-real bison brand.
+- **Ashmane / 灰鬃** — Rico Cilliers’ Horse Statue 01 (Poly Haven CC0), 2k PBR, Blender-cleaned into a multi-mesh GLB. Umber retint, dusk HDRI, bound gait. Not stacked boxes. Not a photo-real bison brand.
 - **One loop per highland** — Ribbon Cut (weave the terrace gates), Plume Break (outrun a steam front), Shelf Drift (endless overlook). Gauntlet / escape / endless *feel* only; the nouns are mine.
 - **Chase cam + kinematic stride** — WASD run, space burst, 1 / 2 / 3 switch biomes, R banks. Mute-default sinter bed (ADR-0010).
 - **Frosted 2026-09-08 HUD** — Inter, ochre accent, glass chips. Brand `vibes · ochre gallop`.
-- **Mid-hi procedural PBR** — vertex-colour terrain, physical materials, vendored Poly Haven dusk HDRI (CC0). No ripped GLB.
+- **Mid-hi PBR** — licensed hero GLB, vertex-colour terrain, physical materials, vendored Poly Haven dusk HDRI (CC0). No ripped demo mesh.
+
+## Mesh
+
+Ashmane used to be `boxGeometry`. This pass follows [the high-fidelity mesh pipeline](../../docs/reverse-engineering/high-fidelity-mesh-pipeline.md): licensed GLB, Blender clean, `useGLTF`, studio `Environment`. Source is Rico Cilliers’ Horse Statue 01 (Poly Haven CC0, 2k PBR). I split the photogrammetry islands, dropped the wooden puck and ceramic disc, grounded the hind hooves, and pointed the nose +Z. Rico posed it collected. The gait bobs the whole hero. See [ATTRIBUTION.md](./ATTRIBUTION.md) and `scripts/clean-ashmane.py`.
 
 ## Stack
 
@@ -45,10 +49,10 @@ Headed preview on `127.0.0.1:4173` after `npm run build`:
 
 - Lobby first: charcoal, invented poster, Sulfur Terrace tab, rust **Open Sulfur Terrace**. Tabs rewrite the poster and CTA.
 - Enter / Open drops into the chase. Esc / Highlands returns.
-- In-level: ochre terrace, teal pool, Ashmane. Chips still switch Spout Basin and Rim Overlook.
+- In-level: ochre terrace, teal pool, licensed Ashmane (no box stack). Chips still switch Spout Basin and Rim Overlook.
 - Thin HUD. No park lockup, no yellow Play, no third-party mode names.
 - Mute stays default. No console fatals; only benign WebGL `ReadPixels` notes.
-- Still: `docs/previews/ochre-gallop.png` (lobby).
+- Still: `docs/previews/ochre-gallop.png` (lobby). In-level Ashmane recapture is the next still if the headed preview lands.
 
 No Vercel project. No production URL.
 
@@ -65,5 +69,5 @@ Brine Causeway is a **coast highway + coupe**. Cinder Mere is a **dusk basin + k
 ---
 
 **Status**: Local-only — Hobby 25-link cap; no project  
-**Last updated**: 2026-09-08  
+**Last updated**: 2026-09-19  
 **Built by**: Johnny Huynh

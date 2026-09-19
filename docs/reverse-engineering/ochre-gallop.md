@@ -63,7 +63,7 @@ I did **not** lift a displacement map, spline, or Blender scene from their site.
 
 Signed speed, slope samples, a short burst. Gallop is four sine legs. No cannon-es (that lesson is the marble).
 
-Ashmane is boxes and a mane. Not a photographed bison.
+Ashmane started as boxes and a mane. The 2026-09-19 pass swaps in Rico Cilliers’ Horse Statue 01 (Poly Haven CC0). Still not a photographed bison.
 
 ### 3. Invented loops, not their mode list
 
@@ -142,11 +142,11 @@ Do not ship, even as “placeholder”:
 
 - @BrenBuilds inspired this study
 - I am **not** redistributing their live demo, video, or assets
-- Geometry, materials, and UI are original
+- Geometry for the highlands, materials for the terrain, and UI are original. The hero mesh is a licensed Poly Haven GLB.
 - Research and education only
 
 ---
 
 **Author**: Johnny Huynh  
 **Purpose**: Learning and education — documenting a public pattern  
-**Last updated**: 2026-09-08
+**Last updated**: 2026-09-19

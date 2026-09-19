@@ -54,6 +54,7 @@ That matches my kitchen sink:
 | `procedural-steam-atlas` | Runtime CSG primitives | Charming machine. Not a CAD scan. |
 | `explode-assembly` | David_Holiday Sketchfab Model 3 (CC-BY) | Product. The one that looks “real.” |
 | `heartwood-warden` | Procedural guardian + Kenney CC0 trees | Hero still invented; forest kitbash is *prop* tier |
+| `ochre-gallop` | Rico Cilliers Horse Statue 01 (Poly Haven CC0) | Hero is a cleaned photogrammetry GLB. The boxes lost. |
 
 If the X thumbnail is a Tesla, a character, or a product, primitives will lose. I should not “prompt harder.” I should change the source of the mesh.
 
@@ -206,4 +207,4 @@ That is the bar I want on the next “this should look like the tweet” brief. 
 
 **Author**: Johnny Huynh  
 **Purpose**: Learning and education — documenting a public pipeline so I stop confusing `bpy` with a mesh model  
-**Last updated**: 2026-09-08
+**Last updated**: 2026-09-19
