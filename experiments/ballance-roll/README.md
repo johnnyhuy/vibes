@@ -7,7 +7,7 @@ I built this after reading [@fayazara](https://x.com/fayazara/status/20969975053
 - **Haze Walk, still the same layout** — start court, left elbow, plaza, narrow beam, descending ramp, bronze hoop. I did not invent a new course.
 - **A hi-fi visual pass on that path** — Poly Haven CC0 PBR. Wooden lanterns (wood + glass) at the courts, brass diya lanterns at the hoop, marble busts on the plaza corners, monastery stone maps on the slabs. No Kenney hero. No grey Lego boxes.
 - **Dual-mesh physics** — the pretty GLB / tiled stone is *visual only*. cannon-es still sees the original boxes and cylinders. WASD, `R` reset, and materials `1` / `2` / `3` are unchanged. See [ADR-0008](../../docs/adr/0008-cannon-es-marble-controller.md).
-- **Pink Sunrise HDRI** — a local drei `<Environment background>` so the sky actually reads as Greg Zaal’s sunrise. A thin horizon veil + softer fog keep the haze mood without burying the HDRI under a lilac dome.
+- **Pink Sunrise HDRI** — a local drei `<Environment background>` so the sky actually reads as Greg Zaal’s sunrise. I dropped `FogExp2` (it tints `scene.background` to a flat mauve) and the toy cloud-puff spheres. Cloud sea under the path keeps the haze.
 - **JPEG/PNG lanterns, not WebP** — I re-packed the Poly Haven GLBs without `EXT_texture_webp` and vendored a local Draco decoder at `public/draco/` so drei/`useGLTF` does not depend on gstatic. Wood grain, brass, and marble should decode on the same path as explode-assembly.
 - **Three haze motes** — optional pickups so the run has a count that is mine, not their `0/3` chip.
 
