@@ -1,7 +1,8 @@
 import { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
+import { Environment, OrbitControls } from '@react-three/drei';
 import { ACESFilmicToneMapping, PCFSoftShadowMap } from 'three';
+import { COURT_HDRI } from '../assets';
 import type { ResolvedLook } from '../atmosphere';
 import Courtyard from './Courtyard';
 import Garden from './Garden';
@@ -27,8 +28,9 @@ export default function Scene({ look, reducedMotion }: Props) {
         gl.shadowMap.type = PCFSoftShadowMap;
       }}
     >
+      <SkyRig look={look} />
       <Suspense fallback={null}>
-        <SkyRig look={look} />
+        <Environment files={COURT_HDRI} background={false} environmentIntensity={look.envGain} />
         <Courtyard look={look} />
         <Garden look={look} reducedMotion={reducedMotion} />
       </Suspense>
