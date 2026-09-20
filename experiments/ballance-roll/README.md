@@ -4,10 +4,10 @@ I built this after reading [@fayazara](https://x.com/fayazara/status/20969975053
 
 ## What I built
 
-- **One procedural course** — *Haze Walk*. Pads, a narrow beam, a descending ramp, a bronze hoop. Boxes and cylinders. No .glb.
-- **A rolling marble** — WASD / arrows (or the on-screen pad). Camera follows. `R` puts you back on the start stone.
-- **Three feels** — wood (grippy), stone (planted), metal (slides). Keys `1` / `2` / `3`. Same course, different contact materials. See [ADR-0008](../../docs/adr/0008-cannon-es-marble-controller.md).
-- **Ocean of clouds** — pink / lavender dome, a soft sea plane, drifting puffs. Mood from the thumb, not a pixel clone.
+- **Haze Walk, still the same layout** — start court, left elbow, plaza, narrow beam, descending ramp, bronze hoop. I did not invent a new course.
+- **A hi-fi visual pass on that path** — Poly Haven CC0 PBR. Wooden lanterns (wood + glass) at the courts, brass diya lanterns at the hoop, marble busts on the plaza corners, monastery stone maps on the slabs. No Kenney hero. No grey Lego boxes.
+- **Dual-mesh physics** — the pretty GLB / tiled stone is *visual only*. cannon-es still sees the original boxes and cylinders. WASD, `R` reset, and materials `1` / `2` / `3` are unchanged. See [ADR-0008](../../docs/adr/0008-cannon-es-marble-controller.md).
+- **Pink Sunrise HDRI** — a local drei `<Environment>` so the stone and brass read as product, not a viewport. The ocean-of-clouds dome stays mine.
 - **Three haze motes** — optional pickups so the run has a count that is mine, not their `0/3` chip.
 
 You start on the first pad looking down the path. Stay on the stone. Fall into the haze and reset.
@@ -29,19 +29,27 @@ npm run dev
 npm run build
 ```
 
+To re-vendor the Poly Haven files:
+
+```bash
+node scripts/fetch-nimbus-assets.mjs
+```
+
 ## Deploy
 
-Linked Vercel project `vibes-ballance-roll` / `prj_BSAzHRX6jgMZOx10fPYUUXXrKrmt`. Dashboard **Root Directory** is `experiments/ballance-roll`. `vercel.json` carries the usual Vite fields plus `ignoreCommand`. It cannot set Root Directory. No new projects (Hobby 25-link cap).
+Linked Vercel project `vibes-ballance-roll` / `prj_BSAzHRX6jgMZOx10fPYUUXXrKrmt`. Dashboard **Root Directory** is `experiments/ballance-roll`. `vercel.json` carries the usual Vite fields plus `ignoreCommand`. It cannot set Root Directory. No new projects (Hobby 25-link cap). I am not redeploying from this pass.
 
 ## Related
 
+- [ATTRIBUTION.md](./ATTRIBUTION.md) — mesh source, licence, dual-mesh note
 - [docs/reverse-engineering/ballance-roll-threejs.md](../../docs/reverse-engineering/ballance-roll-threejs.md)
+- [docs/reverse-engineering/high-fidelity-mesh-pipeline.md](../../docs/reverse-engineering/high-fidelity-mesh-pipeline.md)
 - [docs/adr/0008-cannon-es-marble-controller.md](../../docs/adr/0008-cannon-es-marble-controller.md)
 - Sibling physics playground: [web-physics](../web-physics/) (vanilla Three + cannon-es)
 
 ---
 
-**Status**: Production had never left a READY build for this Root; Vite ^6.4.3 + this Root-touch force `ignoreCommand` to rebuild `vibes-ballance-roll`  
-**Last updated**: 2026-09-18 ~10:33am AEST (ballance-roll-only Vite security bump)  
-**Deploy**: Linked `vibes-ballance-roll` / `prj_BSAzHRX6jgMZOx10fPYUUXXrKrmt`. Root Directory `experiments/ballance-roll`. No new projects (Hobby 25-link cap).  
+**Status**: Live Root already exists; this pass is a visual dress, not a new experiment  
+**Last updated**: 2026-09-20 (hi-fi mesh pass — Poly Haven lanterns / bust / stone + Pink Sunrise HDRI)  
+**Deploy**: Linked `vibes-ballance-roll` / `prj_BSAzHRX6jgMZOx10fPYUUXXrKrmt`. Root Directory `experiments/ballance-roll`. No new projects. No redeploy spam.  
 Built by Johnny Huynh • This is my kitchen sink • Research and education only, not production code

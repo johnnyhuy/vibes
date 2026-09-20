@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { ACESFilmicToneMapping, PCFSoftShadowMap } from 'three';
 import type { MutableRefObject } from 'react';
@@ -47,22 +48,24 @@ export default function Scene({
         gl.shadowMap.type = PCFSoftShadowMap;
       }}
     >
-      <SkyAndClouds reducedMotion={reducedMotion} />
-      <PhysicsWorld>
-        <CourseMesh takenMotes={takenMotes} />
-        <Marble
-          kind={kind}
-          resetToken={resetToken}
-          state={state}
-          steer={steer}
-          reducedMotion={reducedMotion}
-          takenMotes={takenMotes}
-          onDrive={onDrive}
-          onFallen={onFallen}
-          onFinished={onFinished}
-          onMote={onMote}
-        />
-      </PhysicsWorld>
+      <Suspense fallback={null}>
+        <SkyAndClouds reducedMotion={reducedMotion} />
+        <PhysicsWorld>
+          <CourseMesh takenMotes={takenMotes} />
+          <Marble
+            kind={kind}
+            resetToken={resetToken}
+            state={state}
+            steer={steer}
+            reducedMotion={reducedMotion}
+            takenMotes={takenMotes}
+            onDrive={onDrive}
+            onFallen={onFallen}
+            onFinished={onFinished}
+            onMote={onMote}
+          />
+        </PhysicsWorld>
+      </Suspense>
     </Canvas>
   );
 }
