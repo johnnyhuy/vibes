@@ -26,7 +26,7 @@ export default function Lobby({ biome, muted, onBiome, onOpen, onMute }: Props) 
         <Poster biome={biome} />
 
         <section className="lobby-copy">
-          <p className="kicker">{BRAND.nameZh}</p>
+          <p className="kicker">{BRAND.nameLabel}</p>
           <h1>{BRAND.name}</h1>
           <p className="lobby-line">{BRAND.lobbyLine}</p>
 

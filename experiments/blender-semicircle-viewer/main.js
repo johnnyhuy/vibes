@@ -232,3 +232,5 @@ loadStudioRig()
     console.error(error);
     setStatus('Mesh failed to load. Check the GLB path.');
   });
+
+import '../shared/exhibit.css';

@@ -190,6 +190,7 @@ function updateIsolation() {
 
 function onWindowResize() {
   camera.aspect = window.innerWidth / window.innerHeight;
+  camera.zoom = .85 * Math.min(1, camera.aspect / 1.25);
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
 }
@@ -203,4 +204,7 @@ function animate() {
 }
 
 init();
+onWindowResize();
 animate();
+
+import '../../shared/exhibit.css';

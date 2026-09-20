@@ -69,20 +69,16 @@ export default function Hud({
       </nav>
 
       <header className="editorial">
-        <p className="kicker">心木守</p>
+        <p className="kicker">Woodland study</p>
         <h1>Heartwood Warden</h1>
-        <p className="lede">
-          I raised a moss-bound shrine guardian from primitives — bark plates,
-          a resin heart, lantern spirits. A mesh is only the start; the glade
-          is the experience. Walk it. Cast.
-        </p>
+        <p className="lede">Walk a guardian through the moonlit glade. Try a spell and watch its light move through the trees.</p>
       </header>
 
       <aside className="desk" aria-label="Ward casts">
         <p className="panel-kicker">Cast</p>
         <p className="panel-title">{active?.label ?? 'Still wood'}</p>
         <p className="panel-copy">
-          {active?.copy ?? 'The strip below is the ward I invented. Number keys fire it. The snippet is generated from this stance, not imported.'}
+          {active?.copy ?? 'Choose a spell below, or use its number key. Copy the current settings from the code panel.'}
         </p>
         {sourceOpen && (
           <>

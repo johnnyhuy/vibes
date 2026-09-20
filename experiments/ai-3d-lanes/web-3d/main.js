@@ -6,6 +6,7 @@ let currentScene = 'assembly';
 let assemblyParts = [];
 let cutawayParts = [];
 let raycaster, pointer;
+const clock = new THREE.Clock();
 
 const partInfo = {
   'Housing': 'Main protective enclosure housing the internal components.',
@@ -42,7 +43,9 @@ function init() {
   
   renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(window.devicePixelRatio);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.75));
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.5;
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   container.appendChild(renderer.domElement);
@@ -95,15 +98,21 @@ function init() {
   });
   
   window.addEventListener('resize', onWindowResize);
-  window.addEventListener('pointermove', onPointerMove);
-  window.addEventListener('click', onPointerClick);
+  renderer.domElement.addEventListener('pointermove', onPointerMove);
+  let down = null;
+  renderer.domElement.addEventListener('pointerdown', event => { down = [event.clientX,event.clientY]; });
+  renderer.domElement.addEventListener('pointerup', event => {
+    if(down && Math.hypot(event.clientX-down[0],event.clientY-down[1]) < 5) { onPointerMove(event); onPointerClick(); }
+    down = null;
+  });
+  onWindowResize();
 }
 
 function createAssemblyScene() {
   const colors = [
-    0x3b82f6, 0x8b5cf6, 0xec4899, 0xf59e0b,
-    0x10b981, 0x06b6d4, 0x6366f1, 0xf43f5e,
-    0x14b8a6, 0xa855f7, 0xeab308, 0x22c55e
+    0x708a85, 0xb5bebc, 0x657675, 0xe3ded0,
+    0xc1bda9, 0xc1bda9, 0x8b9994, 0x8b9994,
+    0xa9b6af, 0x344d48, 0x657675, 0xc98752
   ];
   
   const partConfigs = [
@@ -122,11 +131,24 @@ function createAssemblyScene() {
   ];
   
   partConfigs.forEach((config, i) => {
-    const geometry = new THREE.BoxGeometry(...config.geometry);
+    const [width,height,depth] = config.geometry;
+    let geometry;
+    if(config.name === 'Terminal Box') geometry = new THREE.BoxGeometry(width,height,depth);
+    else if (['Housing','Stator','Winding','Bearing Front','Bearing Rear'].includes(config.name)) {
+      const shape = new THREE.Shape();
+      const radius = width / 2;
+      shape.absarc(0,0,radius,0,Math.PI*2,false);
+      const hole = new THREE.Path();
+      hole.absarc(0,0,radius*.8,0,Math.PI*2,true);
+      shape.holes.push(hole);
+      geometry = new THREE.ExtrudeGeometry(shape,{depth:height,bevelEnabled:false,curveSegments:40});
+      geometry.translate(0,0,-height/2);
+      geometry.rotateX(Math.PI/2);
+    } else geometry = new THREE.CylinderGeometry(width/2,width/2,height,48);
     const material = new THREE.MeshStandardMaterial({
       color: colors[i % colors.length],
-      metalness: 0.6,
-      roughness: 0.3,
+      metalness: 0.35,
+      roughness: 0.45,
       emissive: colors[i % colors.length],
       emissiveIntensity: 0.1
     });
@@ -234,6 +256,10 @@ function createCutawayScene() {
 
 function showScene(sceneName) {
   currentScene = sceneName;
+  clearHighlight();
+  document.querySelector('#explode-slider').disabled = sceneName !== 'assembly';
+  document.querySelector('#explode-label').textContent = sceneName === 'assembly' ? 'Separate components' : 'Section view · drag to inspect';
+  document.querySelectorAll('.tab').forEach(tab => tab.setAttribute('aria-pressed',String(tab.dataset.scene === sceneName)));
   
   if (sceneName === 'assembly') {
     assemblyParts.forEach(part => part.visible = true);
@@ -255,6 +281,7 @@ function updateExplode(factor) {
 
 function onWindowResize() {
   camera.aspect = window.innerWidth / window.innerHeight;
+  camera.zoom = .85 * Math.min(1,camera.aspect/1.25);
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
 }
@@ -267,7 +294,7 @@ function onPointerMove(event) {
 function onPointerClick() {
   raycaster.setFromCamera(pointer, camera);
   const visibleParts = currentScene === 'assembly' ? assemblyParts : cutawayParts;
-  const intersects = raycaster.intersectObjects(visibleParts);
+  const intersects = raycaster.intersectObjects(visibleParts, false);
   
   if (intersects.length > 0) {
     const part = intersects[0].object;
@@ -316,20 +343,21 @@ function clearHighlight() {
 
 function animate() {
   requestAnimationFrame(animate);
+  const dt = Math.min(clock.getDelta(), .05);
   
   controls.update();
   
   if (currentScene === 'cutaway') {
     cutawayParts.forEach((part, i) => {
-      if (part.userData.name && part.userData.name.startsWith('Coil')) {
-        part.rotation.y += 0.005;
+      if (part.userData.name === 'Rotor Core' && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        part.rotation.y += dt * .4;
       }
     });
   }
   
   raycaster.setFromCamera(pointer, camera);
   const visibleParts = currentScene === 'assembly' ? assemblyParts : cutawayParts;
-  const intersects = raycaster.intersectObjects(visibleParts);
+  const intersects = raycaster.intersectObjects(visibleParts, false);
   
   visibleParts.forEach(part => {
     if (!part.userData.highlighted) {
@@ -343,3 +371,5 @@ function animate() {
   
   renderer.render(scene, camera);
 }
+
+import '../../shared/exhibit.css';

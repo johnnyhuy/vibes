@@ -15,13 +15,13 @@ export default function Hotspots({ active, onPick, anchors }: Props) {
           key={spot.id}
           position={anchors[spot.id]}
           center
-          distanceFactor={7.2}
+          zIndexRange={[2, 0]}
           style={{ pointerEvents: 'none' }}
         >
           <button
             type="button"
             className={`hotspot ${active === spot.id ? 'active' : ''}`}
-            style={spot.id === 'controls' ? { pointerEvents: 'none' } : undefined}
+            style={{ pointerEvents: 'auto' }}
             onClick={() => onPick(spot.id)}
           >
             <span className="hotspot-dot" />

@@ -58,11 +58,9 @@ export default function Hud({
       </nav>
 
       <header className="editorial">
-        <p className="kicker">{BRAND.placeZh}</p>
+        <p className="kicker">{BRAND.placeLabel}</p>
         <h1>{BRAND.place}</h1>
-        <p className="lede">
-          A breezy lane I invented. Folio walks the stops. Orbit inspects. Sheetdrift keeps the line in motion. Recast returns the pose.
-        </p>
+        <p className="lede">Eight small places on a breezy lane. Follow the tour, orbit a scene, or set the laundry in motion.</p>
       </header>
 
       <aside className="meter" aria-label="Current place">

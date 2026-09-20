@@ -3,13 +3,13 @@ import type { Mark } from './types';
 export const BRAND = {
   lockup: 'vibes · breakwater',
   name: 'Breakwater',
-  nameZh: '防波',
-  lede: 'A harbour walker on a dusk pier. One chassis I named. No war zone.',
+  nameLabel: 'Harbour study',
+  lede: 'Explore a mechanical walker on a dusk pier. Move between three viewpoints and change the light.',
 };
 
 export const WALKER = {
   name: 'Spile Frame',
-  nameZh: '桩架',
+  nameLabel: 'Harbour walker',
   code: 'SF-04 HARBOUR',
   mass: '4,820 t',
   plant: 'Ballast pile-ram / hook',
@@ -20,8 +20,8 @@ export const MARKS: Mark[] = [
   {
     id: 'spile',
     name: 'Spile Frame',
-    nameZh: '桩架',
-    copy: 'Harbour walker I modelled from boxes. Pile-shoes on the seaward deck.',
+    nameLabel: 'Harbour walker',
+    copy: 'A heavy harbour walker, balanced on broad feet above the seaward deck.',
     target: [0, 3.05, 1.6],
     camera: [-10.4, 5.7, 13.2],
     minDistance: 7,
@@ -30,8 +30,8 @@ export const MARKS: Mark[] = [
   {
     id: 'groyne',
     name: 'Groyne Head',
-    nameZh: '丁坝头',
-    copy: 'Tetrapod arm I laid into the swell. Concrete jacks, not a highway berm.',
+    nameLabel: 'Groyne Head',
+    copy: 'Interlocking concrete tetrapods break the incoming swell.',
     target: [-11.2, 1.15, -5.4],
     camera: [-2.4, 6.8, 8.6],
     minDistance: 8,
@@ -40,8 +40,8 @@ export const MARKS: Mark[] = [
   {
     id: 'gate',
     name: 'Tide Gate',
-    nameZh: '潮闸',
-    copy: 'Two lock towers and a sluice. A mark, not a chassis picker.',
+    nameLabel: 'Tide Gate',
+    copy: 'Twin lock towers frame the sluice at the edge of the harbour.',
     target: [7.8, 2.6, 16.4],
     camera: [-2.2, 6.2, 24.5],
     minDistance: 7,

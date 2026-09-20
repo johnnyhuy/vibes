@@ -62,11 +62,9 @@ export default function Hud({
       </nav>
 
       <header className={`editorial ${hud.driving ? 'is-live' : ''}`}>
-        <p className="kicker">盐桥</p>
+        <p className="kicker">Coastal drive</p>
         <h1>Hold the spill.</h1>
-        <p className="lede">
-          One causeway. One loop. The wedge stays on the painted line through Salt Reach.
-        </p>
+        <p className="lede">Follow the coast through Salt Reach. Accelerate, steer, and brake through the bends.</p>
         {!hud.driving && (
           <button type="button" className="cta" onClick={onStart}>
             Cut the brine
@@ -77,7 +75,7 @@ export default function Hud({
 
       {hud.driving && (
         <aside className="meter" aria-label="Pace">
-          <p className="panel-kicker">{mark.nameZh}</p>
+          <p className="panel-kicker">{mark.nameLabel}</p>
           <p className="percent">
             {mark.name}
             <span className="pace-num"> · {hud.pace}</span>

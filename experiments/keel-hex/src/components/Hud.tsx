@@ -43,7 +43,7 @@ export default function Hud({
       </nav>
 
       <header className="editorial">
-        <p className="kicker">{BRAND.nameZh}</p>
+        <p className="kicker">{BRAND.nameLabel}</p>
         <h1>{BRAND.title}</h1>
         <p className="lede">{BRAND.lede}</p>
         <button type="button" className="cta" onClick={onPlay} disabled={reducedMotion}>
@@ -60,7 +60,7 @@ export default function Hud({
         <p className="panel-title">
           {mode.index} {mode.name}
         </p>
-        <p className="panel-copy">{playing ? `${step.nameZh} · ${step.copy}` : mode.copy}</p>
+        <p className="panel-copy">{playing ? `${step.nameLabel} · ${step.copy}` : mode.copy}</p>
         <div className="modes" role="tablist" aria-label="Bench modes">
           {MODES.map((item) => (
             <button

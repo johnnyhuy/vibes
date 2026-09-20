@@ -267,7 +267,7 @@ function paintText(ctx: CanvasRenderingContext2D) {
   ctx.fillStyle = 'rgba(236, 242, 248, 0.94)';
   ctx.font = '600 42px Inter, "Segoe UI", system-ui, sans-serif';
   ctx.textAlign = 'center';
-  ctx.fillText(CARD.nameZh, W / 2, 168);
+  ctx.fillText(CARD.nameLabel, W / 2, 168);
 
   ctx.font = '640 54px Inter, "Segoe UI", system-ui, sans-serif';
   ctx.fillText(CARD.name.toUpperCase(), W / 2, H - 168);

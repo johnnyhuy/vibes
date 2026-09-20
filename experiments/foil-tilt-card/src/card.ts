@@ -1,6 +1,6 @@
 export const CARD = {
   name: 'Lumen Fox',
-  nameZh: '流光狐',
+  nameLabel: 'Foil edition / 042',
   number: 'No.042',
   serial: 'LX-042 · VIBES',
   grade: 'Nightbound',

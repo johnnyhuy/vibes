@@ -21,7 +21,7 @@ function hexToVec3(hex: string): string {
 export function buildLoomSnippet(state: LoomState): string {
   const config = {
     loom: 'nacre-loom',
-    vessel: 'Nacre Loom / 珠络',
+    vessel: 'Nacre Loom',
     recipe: state.recipeId,
     weave: state.weave,
     dyes: {
@@ -56,7 +56,7 @@ vec3 nacreFilm(vec3 p, vec3 n, vec3 v, float t) {
   return mix(film, c, smoothstep(0.42, 0.95, along) + fres * 0.35);
 }`;
 
-  return `/* Nacre Loom / 珠络 — vibes · nacre-loom */
+  return `/* Nacre Loom — vibes · nacre-loom */
 ${JSON.stringify(config, null, 2)}
 
 ${glsl}

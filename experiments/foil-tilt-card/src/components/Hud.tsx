@@ -76,13 +76,9 @@ export default function Hud({
       </nav>
 
       <header className="editorial">
-        <p className="kicker">{CARD.nameZh}</p>
+        <p className="kicker">{CARD.nameLabel}</p>
         <h1>{CARD.name}</h1>
-        <p className="lede">
-          I painted a moon-fox on four runtime canvases — night field, subject,
-          filigree, type — then stacked them with a view-tied foil. Drag to
-          tilt. No Blender, no upstream skill, no borrowed character.
-        </p>
+        <p className="lede">Tilt the card to catch its iridescent finish. Adjust the foil, separate the print layers, or turn it over.</p>
       </header>
 
       <aside className="desk">
@@ -91,8 +87,7 @@ export default function Hud({
           {CARD.name} · {CARD.number}
         </p>
         <p className="panel-copy">
-          {CARD.motto}. Serial {CARD.serial}. The rainbow is a fresnel film I
-          wrote, not a packed laser node tree.
+          {CARD.motto}. Serial {CARD.serial}. Move the card to shift the colour of its foil.
         </p>
         <div className="sliders">
           <Slider

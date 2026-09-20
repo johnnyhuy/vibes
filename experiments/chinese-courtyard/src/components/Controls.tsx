@@ -52,12 +52,9 @@ export default function Controls({
       </nav>
 
       <header className="editorial">
-        <p className="kicker">北庭</p>
+        <p className="kicker">Architecture / 02</p>
         <h1>North Court</h1>
-        <p className="lede">
-          I drew a four-sided siheyuan from primitives — halls, a moon gate,
-          a pond. Season and the sun retint the plaster. No courtyard GLB.
-        </p>
+        <p className="lede">A quiet courtyard through four seasons. Move the sun to watch light travel across the halls and moon gate.</p>
       </header>
     </>
   );

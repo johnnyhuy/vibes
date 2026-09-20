@@ -1,0 +1,40 @@
+/* A quiet exhibition frame. Individual studies retain their own light and colour. */
+html { color-scheme: dark; }
+html[data-study="architecture"] { --exhibit-heading: 'Palatino Linotype', Palatino, Georgia, serif; }
+html[data-study="engineering"] { --exhibit-heading: 'Avenir Next Condensed', 'Trebuchet MS', sans-serif; }
+html[data-study="material"] { --exhibit-heading: Didot, 'Bodoni MT', Georgia, serif; }
+html[data-study="landscape"], html[data-study="science"] { --exhibit-heading: 'Palatino Linotype', Palatino, Georgia, serif; }
+html body { font-family: 'Trebuchet MS', 'Avenir Next', sans-serif; }
+html body h1 { font-family: var(--exhibit-heading); font-weight: 400; letter-spacing: -.045em; }
+html body :is(.kicker,.panel-kicker,.brand) { font-family: 'SFMono-Regular', Consolas, monospace; font-size: 10px; line-height: 1.6; letter-spacing: .12em; text-transform: uppercase; }
+html body .kicker { margin-bottom: 10px; }
+html body :is(.topbar,.desk,.meter,.dock,.controls-panel,.sidebar) { border-radius: 4px; }
+html body :is(.editorial,.hero) .lede { max-width: 36ch; font-size: 14px; line-height: 1.65; }
+html body :is(.chips button,.ghost,.pill,.pills button,.modes button) { min-height: 36px; border-radius: 4px; padding-inline: 12px; font-size: 12px; }
+html body button { transition: background-color .15s, color .15s, border-color .15s; }
+html body button:disabled { cursor: not-allowed; opacity: .45; }
+html body :is(button,a,input,select):focus-visible { outline: 2px solid var(--accent,#b9dacd); outline-offset: 4px; }
+html body input[type="range"] { cursor: pointer; accent-color: var(--accent,#b9dacd); }
+html body :is(.caption,.panel-copy,.spec) { line-height: 1.6; }
+html body :is(.desk,.meter,.sidebar) { scrollbar-width: thin; overscroll-behavior: contain; }
+html body :is(.editorial,.hero,.header) { pointer-events: none; }
+html body :is(.editorial,.hero,.header) :is(button,a,input) { pointer-events: auto; }
+@media (max-width: 600px) {
+  html body .topbar { top: 10px; left: 12px; right: 12px; padding: 8px 10px; gap: 6px; }
+  html body .top-groups { gap: 6px; width: 100%; }
+  html body :is(.editorial,.hero) { top: 126px; left: 18px; right: 18px; max-width: none; }
+  html body :is(.editorial,.hero) h1 { font-size: 29px; max-width: 19ch; }
+  html body :is(.editorial,.hero) .lede { display: none; }
+  html body :is(.chips button,.ghost,.pill,.pills button,.modes button) { min-height: 40px; padding-inline: 10px; }
+  html body :is(.desk,.meter) { max-height: 32dvh; overflow-y: auto; bottom: max(18px,env(safe-area-inset-bottom)); }
+  html body aside.dock { max-height: 29dvh; overflow-y: auto; overscroll-behavior: contain; }
+  html body .app:has(.pad) :is(.meter,.desk) { bottom: 116px; max-height: 22dvh; }
+  html body .app:has(.cast-strip) .desk { bottom: 170px; max-height: 18dvh; }
+  html body .pad { z-index: 8; }
+  html body .pad button { min-width: 44px; min-height: 44px; touch-action: none; }
+  html body .kicker { font-size: 9px; margin-bottom: 4px; }
+  html body .topbar .stance { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,*::before,*::after { scroll-behavior: auto !important; transition-duration: 0s !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+}

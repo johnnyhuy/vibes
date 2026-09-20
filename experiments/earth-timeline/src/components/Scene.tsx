@@ -1,3 +1,5 @@
+import { useLayoutEffect as useExhibitLayout } from 'react';
+import { useThree as useExhibitThree } from '@react-three/fiber';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Stars } from '@react-three/drei';
 import Earth from './Earth';
@@ -5,6 +7,7 @@ import { TimelineData } from '../types';
 import { useEffect } from 'react';
 
 interface SceneProps {
+  night: boolean;
   currentEra: TimelineData;
   isPlaying: boolean;
   timelineValue: number;
@@ -13,32 +16,30 @@ interface SceneProps {
 }
 
 export default function Scene({
+  night,
   currentEra,
   isPlaying,
+  timelineValue,
   setTimelineValue,
   setIsPlaying,
 }: SceneProps) {
   useEffect(() => {
     if (!isPlaying) return;
+    if (timelineValue >= 100) { setIsPlaying(false); return; }
 
     const interval = setInterval(() => {
-      setTimelineValue((prev) => {
-        if (prev >= 100) {
-          setIsPlaying(false);
-          return 100;
-        }
-        return prev + 1;
-      });
+      setTimelineValue((prev) => Math.min(100, prev + 1));
     }, 110);
 
     return () => clearInterval(interval);
-  }, [isPlaying, setTimelineValue, setIsPlaying]);
+  }, [isPlaying, timelineValue, setTimelineValue, setIsPlaying]);
 
   return (
     <Canvas
       camera={{ position: [1.35, 0.18, 4.35], fov: 38 }}
       style={{ width: '100vw', height: '100vh' }}
       gl={{ antialias: true }}
+      dpr={[1, 1.75]}
     >
       <color attach="background" args={['#000000']} />
 
@@ -48,7 +49,7 @@ export default function Scene({
       <pointLight position={[-2, -1, 2]} intensity={0.35} color="#3b82f6" />
 
       <group position={[0.55, -0.08, 0]}>
-        <Earth currentEra={currentEra} />
+        <Earth currentEra={currentEra} night={night} />
       </group>
 
       <Stars
@@ -71,6 +72,17 @@ export default function Scene({
         rotateSpeed={0.45}
         target={[0.45, 0, 0]}
       />
+      <ExhibitFraming />
     </Canvas>
   );
+}
+
+// Preserve the subject's horizontal field of view on portrait screens.
+function ExhibitFraming() {
+  const { camera, size } = useExhibitThree();
+  useExhibitLayout(() => {
+    camera.zoom = .85 * Math.min(1, size.width / size.height / 1.25);
+    camera.updateProjectionMatrix();
+  }, [camera, size.width, size.height]);
+  return null;
 }

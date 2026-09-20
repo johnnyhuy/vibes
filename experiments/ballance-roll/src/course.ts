@@ -186,7 +186,7 @@ function buildHazeWalk(): Course {
 
   return {
     name: 'Haze Walk',
-    kicker: '霞',
+    kicker: 'Cloud course',
     segments,
     motes,
     props,

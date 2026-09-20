@@ -33,19 +33,15 @@ export default function Hud({ hud, muted, onSelect, onStart, onAgain, onSeat, on
       {hud.phase === 'select' ? (
         <>
           <header className="editorial">
-            <p className="kicker">月饺接力</p>
+            <p className="kicker">Table game</p>
             <h1>Moon Dumpling Relay</h1>
-            <p className="lede">
-              I seated fox, raccoon, and owl diners around a moon-gate table.
-              The plates are procedural. Chili slick panics; tea-leaf speeds.
-              No cats, no sushi brand, no borrowed restaurant.
-            </p>
+            <p className="lede">Choose a diner and catch the moving plates. Tea speeds you up; chili makes the next bite harder.</p>
           </header>
           <aside className="desk">
             <p className="panel-kicker">Seat a diner</p>
             <p className="panel-title">{selected.name}</p>
             <p className="panel-copy">
-              {selected.nameZh}. {selected.lede} Two invented guests will sit with you.
+              {selected.nameLabel}. {selected.lede} Two guests will join you.
             </p>
             <div className="chips" role="group" aria-label="Diners">
               {DINERS.map((diner) => (
@@ -75,7 +71,7 @@ export default function Hud({ hud, muted, onSelect, onStart, onAgain, onSeat, on
       {hud.phase === 'play' && hud.player ? (
         <>
           <aside className="desk slim">
-            <p className="panel-kicker">{dinerById(hud.player.dinerId).nameZh}</p>
+            <p className="panel-kicker">{dinerById(hud.player.dinerId).nameLabel}</p>
             <p className="panel-title">{hud.player.score} pts</p>
             <p className="panel-copy">
               {statusLine(hud)} · fold {hud.player.chain || '—'}

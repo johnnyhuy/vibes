@@ -72,15 +72,13 @@ export default function Hud({ hud, onMute, onTime, onReset, onPad, onBrake }: Pr
       </nav>
 
       <header className="editorial">
-        <p className="kicker">烬泽</p>
+        <p className="kicker">Driving study</p>
         <h1>Cinder Mere</h1>
-        <p className="lede">
-          A kiln cart in a dusk basin. Four marks I named. No loop, no GT.
-        </p>
+        <p className="lede">Take the cart across a dusk basin. Follow the four landmarks or find your own route.</p>
       </header>
 
       <aside className="meter" aria-label="Pace">
-        <p className="panel-kicker">{landmark.nameZh}</p>
+        <p className="panel-kicker">{landmark.nameLabel}</p>
         <p className="percent">
           {landmark.name}
           <span className="pace-num"> · {hud.pace}</span>

@@ -56,7 +56,7 @@ function HipRoof({
 }) {
   return (
     <group>
-      <mesh rotation={[0, Math.PI / 4, 0]} scale={[width / Math.max(depth, 0.01), 1, 1]} castShadow>
+      <mesh position={[0, height / 2, 0]} rotation={[0, Math.PI / 4, 0]} scale={[width / Math.max(depth, 0.01), 1, 1]} castShadow>
         <coneGeometry args={[depth * 0.72, height, 4]} />
         <meshStandardMaterial color={tile} roughness={0.62} metalness={0.06} />
       </mesh>
@@ -64,13 +64,13 @@ function HipRoof({
         <boxGeometry args={[width * 1.08, 0.07, depth * 1.08]} />
         <meshStandardMaterial color={wood} roughness={0.7} />
       </mesh>
-      <mesh position={[0, height * 0.08, 0]} castShadow>
-        <boxGeometry args={[width * 0.18, 0.08, depth * 1.02]} />
+      <mesh position={[0, height, 0]} castShadow>
+        <boxGeometry args={[width * 0.3, 0.08, 0.12]} />
         <meshStandardMaterial color={wood} roughness={0.55} metalness={0.08} />
       </mesh>
       {snow > 0.4 && (
-        <mesh position={[0, height * 0.42, 0]} rotation={[0, Math.PI / 4, 0]} scale={[width / Math.max(depth, 0.01), 1, 1]}>
-          <coneGeometry args={[depth * 0.5, height * 0.28, 4]} />
+        <mesh position={[0, height / 2 + 0.04, 0]} rotation={[0, Math.PI / 4, 0]} scale={[width / Math.max(depth, 0.01), 1, 1]}>
+          <coneGeometry args={[depth * 0.73, height, 4]} />
           <meshStandardMaterial color="#f4f7fb" roughness={0.92} />
         </mesh>
       )}
@@ -154,7 +154,7 @@ function MoonGate({ look }: { look: ResolvedLook }) {
       <mesh geometry={geometry} position={[0, 0, -0.15]} castShadow receiveShadow>
         <meshStandardMaterial color={look.plasterColor} roughness={0.88} metalness={0.02} />
       </mesh>
-      <mesh position={[-0.55, 0.98, 0]} rotation={[Math.PI / 2, 0, 0]} castShadow>
+      <mesh position={[-0.55, 0.98, 0.18]} castShadow>
         <torusGeometry args={[0.96, 0.07, 10, 36]} />
         <meshStandardMaterial color={look.woodColor} roughness={0.55} metalness={0.06} />
       </mesh>

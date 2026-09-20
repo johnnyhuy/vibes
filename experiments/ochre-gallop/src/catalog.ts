@@ -3,15 +3,15 @@ import type { BiomeId, PlayPhase } from './types';
 export const BRAND = {
   lockup: 'vibes · ochre gallop',
   name: 'Ochre Gallop',
-  nameZh: '赭奔',
+  nameLabel: 'Highland runs',
   lede: 'Three invented highlands. One ash-maned runner. Cut the ribbon, break the plume, drift the shelf.',
   lobbyLine: 'Pick a highland. Ashmane takes the first stride.',
-  stamp: 'OG · 赭奔',
+  stamp: 'OG · Highland runs',
 } as const;
 
 export const RUNNER = {
   name: 'Ashmane',
-  nameZh: '灰鬃',
+  nameLabel: 'Ashmane',
   code: 'AM-07',
   hide: 'licensed porcelain horse, umber retint, no park brand',
 } as const;
@@ -19,9 +19,9 @@ export const RUNNER = {
 export interface BiomeSpec {
   id: BiomeId;
   name: string;
-  nameZh: string;
+  nameLabel: string;
   loop: string;
-  loopZh: string;
+  loopLabel: string;
   feel: string;
   copy: string;
   hook: string;
@@ -34,9 +34,9 @@ export const BIOMES: BiomeSpec[] = [
   {
     id: 'terrace',
     name: 'Sulfur Terrace',
-    nameZh: '硫阶',
+    nameLabel: 'Sulfur Terrace',
     loop: 'Ribbon Cut',
-    loopZh: '缎切',
+    loopLabel: 'Ribbon Cut',
     feel: 'weave',
     copy: 'Concentric mineral lips. Pass the ochre gates in order. Miss a cone and the ribbon resets.',
     hook: 'Along the lips. Through the ribbon.',
@@ -47,9 +47,9 @@ export const BIOMES: BiomeSpec[] = [
   {
     id: 'basin',
     name: 'Spout Basin',
-    nameZh: '喷盆',
+    nameLabel: 'Spout Basin',
     loop: 'Plume Break',
-    loopZh: '羽突',
+    loopLabel: 'Plume Break',
     feel: 'escape',
     copy: 'A steam front walks the sinter. Reach Clear Crust before the plume takes the mane.',
     hook: 'Across the sinter. Ahead of the plume.',
@@ -60,9 +60,9 @@ export const BIOMES: BiomeSpec[] = [
   {
     id: 'rim',
     name: 'Rim Overlook',
-    nameZh: '檐望',
+    nameLabel: 'Rim Overlook',
     loop: 'Shelf Drift',
-    loopZh: '檐漂',
+    loopLabel: 'Shelf Drift',
     feel: 'endless',
     copy: 'A narrow shelf over an invented canyon. Hold the line. Distance is the score.',
     hook: 'On the shelf. Over the drop.',

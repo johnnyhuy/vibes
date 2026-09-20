@@ -37,13 +37,13 @@ export default function Hud({ mark, look, muted, onMark, onLook, onMute }: Props
       </nav>
 
       <header className="editorial">
-        <p className="kicker">{BRAND.nameZh}</p>
+        <p className="kicker">{BRAND.nameLabel}</p>
         <h1>{BRAND.name}</h1>
         <p className="lede">{BRAND.lede}</p>
       </header>
 
       <aside className="meter" aria-label="Walker">
-        <p className="panel-kicker">{WALKER.nameZh}</p>
+        <p className="panel-kicker">{WALKER.nameLabel}</p>
         <p className="percent">
           {WALKER.name}
           <span className="pace-num"> · {WALKER.code}</span>

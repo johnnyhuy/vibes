@@ -31,12 +31,21 @@ canvas {
 
 .tabs {
   position: absolute;
-  top: 20px;
+  top: 140px;
   left: 20px;
   z-index: 100;
   display: flex;
   gap: 10px;
 }
+
+.study-title { position:absolute; top:28px; left:28px; z-index:5; pointer-events:none; }
+.study-title h1 { font-size:36px; margin:8px 0; }
+.study-title > p:last-child { color:#b7c4c0; font-size:13px; }
+.tab.active { background:#49615b; border-color:#91aea3; }
+.info-panel { top:220px; border-radius:4px; }
+.info-panel h3 { color:#b2d4c5; }
+.controls { border-radius:4px; }
+@media(max-width:600px) { .study-title{left:18px;} .study-title h1{font-size:30px;} .info-panel { top:auto; bottom:140px; left:18px; right:18px; max-width:none; } }
 
 .tab {
   padding: 10px 20px;

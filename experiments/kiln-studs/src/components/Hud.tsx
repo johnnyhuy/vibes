@@ -56,13 +56,13 @@ export default function Hud({
       </nav>
 
       <header className="editorial">
-        <p className="kicker">{BRAND.nameZh}</p>
+        <p className="kicker">{BRAND.nameLabel}</p>
         <h1>{BRAND.name}</h1>
         <p className="lede">{BRAND.lede}</p>
       </header>
 
       <aside className="desk" aria-label="Build card">
-        <p className="panel-kicker">{BRAND.setNameZh}</p>
+        <p className="panel-kicker">{BRAND.setNameLabel}</p>
         <p className="panel-title">
           {BRAND.setName} · {BRAND.setNo}
         </p>
@@ -70,7 +70,7 @@ export default function Hud({
           {SET.length} marks · {STEPS.length} steps
         </p>
         <p className="panel-copy">
-          {idea.prompt} Local remap only — I did not call a model.
+          {idea.prompt} Choose a palette to recolour the set.
         </p>
         <div className="chips" aria-label="Ideas">
           {IDEAS.map((item) => (
@@ -89,7 +89,7 @@ export default function Hud({
           <span>
             {step.id} / {max}
           </span>
-          {step.nameZh} · {step.name}
+          {step.name}
         </p>
         <p className="panel-copy tight">{step.copy}</p>
         <label className="inline-slider">

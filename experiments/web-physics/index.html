@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-study="landscape" data-app="web-physics">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,13 +9,21 @@
 <body>
   <div id="app">
     <div class="controls">
-      <h1>Physics playground</h1>
-      <p class="lede">Drop rigid bodies into a black studio. Click, space, reset — that is the whole instrument.</p>
+      <p class="kicker">Motion lab / 01</p>
+      <h1>Gravity, at play.</h1>
+      <p class="lede">Drop a shape. Watch the collision. Drag to look around.</p>
       <div class="hints">
         <kbd>Click · box</kbd>
         <kbd>Space · sphere</kbd>
         <kbd>R · reset</kbd>
       </div>
+    </div>
+    <div class="physics-dock" aria-label="Simulation controls">
+      <output id="body-count" aria-label="Body count">3 / 80 bodies</output>
+      <button id="add-box">Add box</button>
+      <button id="add-sphere">Add sphere</button>
+      <button id="pause" aria-pressed="false">Pause</button>
+      <button id="reset">Reset</button>
     </div>
   </div>
   

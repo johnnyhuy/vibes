@@ -42,6 +42,7 @@ export default function V8Engine({
 }: V8EngineProps) {
   const { scene, animations } = useGLTF(MODEL);
   const crankTurns = useRef(0);
+  const lastReport = useRef(0);
 
   const model = useMemo(() => {
     const clone = scene.clone(true);
@@ -67,11 +68,14 @@ export default function V8Engine({
   useFrame((_, delta) => {
     const running = engineSpeed > 0;
     if (mixer) mixer.timeScale = running ? engineSpeed * 0.85 : 0;
-    crankTurns.current += running ? delta * engineSpeed * 2 : 0;
+    crankTurns.current += running ? Math.min(delta, .05) * engineSpeed * 2 : 0;
+    lastReport.current += delta;
+    if (lastReport.current < .1 && running) return;
+    lastReport.current = 0;
 
     setRpm(running ? Math.floor(engineSpeed * 200 + 300) : 0);
-    setStrokeCycle(CYCLES[Math.floor((crankTurns.current / (Math.PI * 2)) % 4)]);
-    setFiringIndex(Math.floor((crankTurns.current / (Math.PI / 4)) % 8));
+    setStrokeCycle(CYCLES[Math.floor((crankTurns.current / Math.PI) % 4)]);
+    setFiringIndex(Math.floor((crankTurns.current / (Math.PI / 2)) % 8));
     setPressure((1.5 + Math.sin(crankTurns.current) * 0.5).toFixed(1));
   });
 
