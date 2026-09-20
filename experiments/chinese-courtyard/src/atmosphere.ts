@@ -183,7 +183,7 @@ export function resolveLook(state: AtmosphereState): ResolvedLook {
     hemiGround: mixHex(ground, '#1a1814', 0.3),
     plasterColor: mixHex(season.plaster, '#9aa4ac', nightFactor * 0.18),
     woodColor: mixHex(season.wood, '#3a2a1c', nightFactor * 0.28),
-    roofColor: mixHex(season.roof, '#141816', nightFactor * 0.35),
+    roofColor: mixHex(mixHex(season.roof, '#d8d4cc', 0.7), '#6a6864', nightFactor * 0.32),
     ridgeColor: season.ridge,
     stoneColor: mixHex(season.stone, '#6a7074', nightFactor * 0.22),
     pavingColor: mixHex(ground, '#4a4e50', nightFactor * 0.25),

@@ -15,7 +15,7 @@ interface Props {
 export default function Scene({ look, reducedMotion }: Props) {
   return (
     <Canvas
-      camera={{ position: [11.4, 8.6, 12.2], fov: 36, near: 0.1, far: 120 }}
+      camera={{ position: [7.8, 4.6, 8.6], fov: 36, near: 0.1, far: 120 }}
       dpr={[1, 1.75]}
       shadows
       gl={{
@@ -37,11 +37,11 @@ export default function Scene({ look, reducedMotion }: Props) {
         enablePan={false}
         enableDamping
         dampingFactor={0.06}
-        minDistance={7}
+        minDistance={4}
         maxDistance={26}
         minPolarAngle={0.32}
         maxPolarAngle={Math.PI / 2.2}
-        target={[0, 0.85, 0.2]}
+        target={[0, 0.55, 0.15]}
         autoRotate={!reducedMotion}
         autoRotateSpeed={0.18}
       />
