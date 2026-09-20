@@ -1,7 +1,7 @@
 import { useLayoutEffect, useRef } from 'react';
+import { Stars } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
 import { BackSide, Color, FogExp2, ShaderMaterial } from 'three';
-import { Stars } from '@react-three/drei';
 import type { ResolvedLook } from '../atmosphere';
 
 interface Props {
