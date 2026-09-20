@@ -55,8 +55,8 @@ export default function Controls({
         <p className="kicker">北庭</p>
         <h1>North Court</h1>
         <p className="lede">
-          I drew a four-sided siheyuan from primitives — halls, a moon gate,
-          a pond. Season and the sun retint the plaster. No courtyard GLB.
+          I kept the four-sided siheyuan and dressed the toys. Licensed lanterns,
+          a tea table, stone and tile maps. Season and the sun still retint the plaster.
         </p>
       </header>
     </>

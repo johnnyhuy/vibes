@@ -34,6 +34,7 @@ export interface ResolvedLook {
   snowAmount: number;
   lanternGain: number;
   exposure: number;
+  envGain: number;
   starOpacity: number;
 }
 
@@ -194,6 +195,7 @@ export function resolveLook(state: AtmosphereState): ResolvedLook {
     snowAmount: season.snow,
     lanternGain: 0.12 + nightFactor * 1.85,
     exposure: 0.84 + dayFactor * 0.34,
+    envGain: 0.16 + dayFactor * 0.58 - season.snow * 0.06,
     starOpacity: nightFactor * 0.88,
   };
 }

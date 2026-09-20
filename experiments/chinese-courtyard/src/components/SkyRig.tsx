@@ -1,7 +1,8 @@
 import { useLayoutEffect, useRef } from 'react';
+import { Environment, Stars } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
 import { BackSide, Color, FogExp2, ShaderMaterial } from 'three';
-import { Stars } from '@react-three/drei';
+import { COURT_HDRI } from '../assets';
 import type { ResolvedLook } from '../atmosphere';
 
 interface Props {
@@ -68,6 +69,7 @@ export default function SkyRig({ look }: Props) {
   return (
     <>
       <SkyDome zenith={look.skyZenith} horizon={look.skyHorizon} />
+      <Environment files={COURT_HDRI} background={false} environmentIntensity={look.envGain} />
       <hemisphereLight color={look.hemiSky} groundColor={look.hemiGround} intensity={0.58} />
       <ambientLight color={look.ambientColor} intensity={look.ambientIntensity} />
       <directionalLight

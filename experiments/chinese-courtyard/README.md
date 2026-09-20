@@ -4,8 +4,9 @@ I built this after reading [@MrLarus](https://x.com/MrLarus/status/2096971051334
 
 ## What I built
 
-- **Four-sided siheyuan** — north hall, east and west wings, a south wall with a circular moon gate. All primitives. No .glb.
-- **Courtyard garden** — stone paving, a recessed pond, three simple koi, cone pines, bamboo clumps. Not their L-plan, not their cloud-pruned trees, not their UI.
+- **Four-sided siheyuan** — north hall, east and west wings, a south wall with a circular moon gate. Halls stay TypeScript primitives. Roofs and paving now wear Poly Haven maps.
+- **Courtyard garden** — a recessed pond, season pines, bamboo clumps, plus licensed lantern, tea table, stool, armchair, pot, and moss-rock GLBs. Not their L-plan, not their cloud-pruned trees, not their UI.
+- **Chinese Garden HDRI** — local drei `<Environment>`, season sky still owns the dome. See [ATTRIBUTION.md](./ATTRIBUTION.md).
 - **Atmosphere state** — season and day/night resolve into one `ResolvedLook`. Lights, fog, plaster, tile, water, and lanterns retint together. Same lesson as [ADR-0007](../../docs/adr/0007-scene-atmosphere-state.md). See [ADR-0009](../../docs/adr/0009-procedural-courtyard-without-blender.md) for why I skipped their Blender pipeline this pass.
 - **Pale glass chrome** — frosted white header. Branding is mine (`vibes · siheyuan` / 北庭). I did not use their Scene Study panel.
 
@@ -28,12 +29,25 @@ npm run dev
 npm run build
 ```
 
+To re-vendor the Poly Haven files:
+
+```bash
+node scripts/fetch-court-assets.mjs
+```
+
+To count dressed hi-fi slots:
+
+```bash
+node scripts/audit-hifi.mjs
+```
+
 ## Deploy
 
 Linked Vercel project `vibes-chinese-courtyard` / `prj_6eH8pYXjJzcXT5lIGfaxejO6qXAO`. Dashboard **Root Directory** is `experiments/chinese-courtyard`. `vercel.json` carries the usual Vite fields plus `ignoreCommand`. It cannot set Root Directory. No new projects (Hobby 25-link cap).
 
 ## Related
 
+- [ATTRIBUTION.md](./ATTRIBUTION.md) — mesh source, licence, HDRI
 - [docs/reverse-engineering/chinese-courtyard-threejs.md](../../docs/reverse-engineering/chinese-courtyard-threejs.md)
 - [docs/adr/0009-procedural-courtyard-without-blender.md](../../docs/adr/0009-procedural-courtyard-without-blender.md)
 - Atmosphere sibling: [japanese-tower](../japanese-tower/)
@@ -41,7 +55,7 @@ Linked Vercel project `vibes-chinese-courtyard` / `prj_6eH8pYXjJzcXT5lIGfaxejO6q
 
 ---
 
-**Status**: Production had never left a READY build for this Root; Vite ^6.4.3 + this Root-touch force `ignoreCommand` to rebuild `vibes-chinese-courtyard`  
-**Last updated**: 2026-09-18 ~6:26pm AEST (chinese-courtyard-only Vite security bump)  
+**Status**: Hi-fi dress of the existing Root. Licensed Poly Haven GLB and maps plus this Root-touch force `ignoreCommand` to rebuild `vibes-chinese-courtyard`  
+**Last updated**: 2026-09-20 (chinese-courtyard-only Poly Haven dress)  
 **Deploy**: Linked `vibes-chinese-courtyard` / `prj_6eH8pYXjJzcXT5lIGfaxejO6qXAO`. Root Directory `experiments/chinese-courtyard`. No new projects (Hobby 25-link cap).  
 Built by Johnny Huynh • This is my kitchen sink • Research and education only, not production code
