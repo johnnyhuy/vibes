@@ -60,13 +60,9 @@ export default function Controls({
       </nav>
 
       <header className="editorial">
-        <p className="kicker">環</p>
+        <p className="kicker">Studio / 01</p>
         <h1>Lumen Cuff</h1>
-        <p className="lede">
-          I built a turntable for a gadget I invented. Licensed over-ear
-          mesh, three finishes, and a cup-rocker mute click. Not a brand
-          storefront. Sound stays off until you ask.
-        </p>
+        <p className="lede">Turn the headphones in the light. Compare three finishes and select a detail to inspect it.</p>
       </header>
 
       {hotspot ? (

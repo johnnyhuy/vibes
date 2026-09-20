@@ -1,10 +1,15 @@
 import * as THREE from 'three';
 import * as CANNON from 'cannon-es';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 let scene, camera, renderer;
 let world;
 let bodies = [];
 let meshes = [];
+let controls;
+let paused = false;
+const clock = new THREE.Clock();
+const MAX_BODIES = 80;
 
 const colors = [
   0x3b82f6, 0x8b5cf6, 0xec4899, 0xf59e0b,
@@ -32,12 +37,18 @@ function init() {
   
   renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(window.devicePixelRatio);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.75));
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.4;
   container.appendChild(renderer.domElement);
+  controls = new OrbitControls(camera, renderer.domElement);
+  controls.target.set(0, 1.2, 0);
+  controls.enableDamping = true;
+  controls.minDistance = 8;
+  controls.maxDistance = 38;
+  controls.maxPolarAngle = Math.PI * .48;
   
   const hemi = new THREE.HemisphereLight(0xe8eef6, 0x111318, 0.45);
   scene.add(hemi);
@@ -69,6 +80,7 @@ function init() {
   });
   
   world.broadphase = new CANNON.SAPBroadphase(world);
+  world.allowSleep = true;
   world.defaultContactMaterial.friction = 0.3;
   world.defaultContactMaterial.restitution = 0.4;
   
@@ -80,8 +92,21 @@ function init() {
   spawnBox(2, 10, 0);
   
   window.addEventListener('resize', onWindowResize);
-  window.addEventListener('click', onClick);
+  let down = null;
+  renderer.domElement.addEventListener('pointerdown', event => { down = [event.clientX, event.clientY]; });
+  renderer.domElement.addEventListener('pointerup', event => {
+    if (down && Math.hypot(event.clientX-down[0], event.clientY-down[1]) < 5) onClick(event);
+    down = null;
+  });
   window.addEventListener('keydown', onKeyDown);
+  document.querySelector('#add-box').onclick = () => spawnBox(0, 9, 0);
+  document.querySelector('#add-sphere').onclick = () => spawnSphere(0, 9, 0);
+  document.querySelector('#reset').onclick = resetScene;
+  document.querySelector('#pause').onclick = event => {
+    paused = !paused;
+    event.currentTarget.textContent = paused ? 'Resume' : 'Pause';
+    event.currentTarget.setAttribute('aria-pressed', String(paused));
+  };
 }
 
 function createGround() {
@@ -108,7 +133,8 @@ function createWalls() {
     metalness: 0.15,
     roughness: 0.85,
     transparent: true,
-    opacity: 0.28
+    opacity: 0.06,
+    depthWrite: false
   });
   
   const walls = [
@@ -136,6 +162,7 @@ function createWalls() {
 }
 
 function spawnBox(x, y, z) {
+  makeRoom();
   const size = 0.8 + Math.random() * 0.8;
   const shape = new CANNON.Box(new CANNON.Vec3(size / 2, size / 2, size / 2));
   const body = new CANNON.Body({ mass: 5, shape });
@@ -167,6 +194,7 @@ function spawnBox(x, y, z) {
 }
 
 function spawnSphere(x, y, z) {
+  makeRoom();
   const radius = 0.4 + Math.random() * 0.5;
   const shape = new CANNON.Sphere(radius);
   const body = new CANNON.Body({ mass: 3, shape });
@@ -198,12 +226,15 @@ function spawnSphere(x, y, z) {
 }
 
 function onClick(event) {
-  const x = (Math.random() - 0.5) * 4;
-  const z = (Math.random() - 0.5) * 4;
-  spawnBox(x, 10 + Math.random() * 5, z);
+  const rect = renderer.domElement.getBoundingClientRect();
+  const ray = new THREE.Raycaster();
+  ray.setFromCamera(new THREE.Vector2((event.clientX-rect.left)/rect.width*2-1, 1-(event.clientY-rect.top)/rect.height*2), camera);
+  const hit = ray.ray.intersectPlane(new THREE.Plane(new THREE.Vector3(0,1,0),0), new THREE.Vector3());
+  if(hit) spawnBox(THREE.MathUtils.clamp(hit.x,-8,8), 9, THREE.MathUtils.clamp(hit.z,-8,8));
 }
 
 function onKeyDown(event) {
+  if (event.target.closest('input,textarea,select,button,a,[contenteditable="true"]') || event.repeat) return;
   if (event.code === 'Space') {
     event.preventDefault();
     const x = (Math.random() - 0.5) * 4;
@@ -218,6 +249,8 @@ function resetScene() {
   meshes.forEach(({ mesh, body }) => {
     scene.remove(mesh);
     world.removeBody(body);
+    mesh.geometry.dispose();
+    mesh.material.dispose();
   });
   
   bodies = [];
@@ -230,14 +263,28 @@ function resetScene() {
 
 function onWindowResize() {
   camera.aspect = window.innerWidth / window.innerHeight;
+  camera.zoom = .9 * Math.min(1, camera.aspect / 1.25);
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
+}
+
+function makeRoom() {
+  if (meshes.length < MAX_BODIES) return;
+  const {mesh,body} = meshes.shift();
+  bodies.shift();
+  scene.remove(mesh);
+  world.removeBody(body);
+  mesh.geometry.dispose();
+  mesh.material.dispose();
 }
 
 function animate() {
   requestAnimationFrame(animate);
   
-  world.step(1 / 60);
+  const delta = Math.min(clock.getDelta(), .1);
+  if (!paused && !document.hidden) world.step(1 / 60, delta, 5);
+  controls.update();
+  document.querySelector('#body-count').textContent = `${meshes.length} / ${MAX_BODIES} bodies`;
   
   meshes.forEach(({ mesh, body }) => {
     mesh.position.copy(body.position);
@@ -246,3 +293,5 @@ function animate() {
   
   renderer.render(scene, camera);
 }
+
+import '../shared/exhibit.css';

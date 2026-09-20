@@ -1,4 +1,4 @@
-import { useLayoutEffect, useMemo } from 'react';
+import { useEffect, useLayoutEffect, useMemo } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { Color, Vector3, type Mesh, type MeshStandardMaterial } from 'three';
 import type { Finish, HotspotId } from '../finishes';
@@ -44,6 +44,16 @@ export default function Headphones({
   const { scene } = useGLTF(MODEL);
   const { model, anchors, screw, rocker } = useMemo(() => {
     const clone = scene.clone(true);
+    clone.traverse(object => {
+      const mesh = object as Mesh;
+      if (!mesh.isMesh) return;
+      const materials = (Array.isArray(mesh.material) ? mesh.material : [mesh.material]).map(source => {
+        const material = source.clone() as MeshStandardMaterial;
+        material.userData.baseColor = material.color?.clone();
+        return material;
+      });
+      mesh.material = Array.isArray(mesh.material) ? materials : materials[0];
+    });
     const box = fitObject(clone, 2.28);
     enableShadows(clone);
     const size = box.getSize(new Vector3());
@@ -68,16 +78,23 @@ export default function Headphones({
     };
   }, [scene]);
 
+  useEffect(() => () => {
+    model.traverse(object => {
+      const mesh = object as Mesh;
+      if(mesh.isMesh) (Array.isArray(mesh.material) ? mesh.material : [mesh.material]).forEach(m => m.dispose());
+    });
+  }, [model]);
+
   useLayoutEffect(() => {
     model.traverse((object) => {
       const mesh = object as Mesh;
       if (!mesh.isMesh || !mesh.material) return;
       const materials = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
       const next = materials.map((source) => {
-        const mat = (source as MeshStandardMaterial).clone() as MeshStandardMaterial;
+        const mat = source as MeshStandardMaterial;
         const role = roleFor(meshLabel(mesh));
         const hex = finishColor(role, finish);
-        if (mat.color) mat.color.lerp(new Color(hex), 0.72);
+        if (mat.color) mat.color.copy(mat.userData.baseColor).lerp(new Color(hex), 0.72);
         const lit =
           highlight !== null &&
           (role === highlight || (highlight === 'controls' && (role === 'housing' || role === 'metal')));

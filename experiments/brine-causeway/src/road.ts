@@ -111,10 +111,10 @@ export function nearestMark(x: number, z: number): MarkId {
   return 'reach';
 }
 
-export const MARKS: Record<MarkId, { name: string; nameZh: string }> = {
-  reach: { name: 'Salt Reach', nameZh: '盐岸' },
-  span: { name: 'Vermilion Span', nameZh: '朱跨' },
-  cut: { name: 'Kelp Cut', nameZh: '藻口' },
+export const MARKS: Record<MarkId, { name: string; nameLabel: string }> = {
+  reach: { name: 'Salt Reach', nameLabel: 'Salt Reach' },
+  span: { name: 'Vermilion Span', nameLabel: 'Vermilion Span' },
+  cut: { name: 'Kelp Cut', nameLabel: 'Kelp Cut' },
 };
 
 export function clampWorld(x: number, z: number): { x: number; z: number } {

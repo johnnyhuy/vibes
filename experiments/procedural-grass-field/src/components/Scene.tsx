@@ -1,3 +1,5 @@
+import { useLayoutEffect as useExhibitLayout } from 'react';
+import { useThree as useExhibitThree } from '@react-three/fiber';
 import { useCallback, useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
@@ -78,6 +80,17 @@ export default function Scene({
         autoRotate={orbiting && !reducedMotion}
         autoRotateSpeed={0.22}
       />
+      <ExhibitFraming />
     </Canvas>
   );
+}
+
+// Preserve the subject's horizontal field of view on portrait screens.
+function ExhibitFraming() {
+  const { camera, size } = useExhibitThree();
+  useExhibitLayout(() => {
+    camera.zoom = .85 * Math.min(1, size.width / size.height / 1.25);
+    camera.updateProjectionMatrix();
+  }, [camera, size.width, size.height]);
+  return null;
 }

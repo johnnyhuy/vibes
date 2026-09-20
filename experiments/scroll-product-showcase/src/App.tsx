@@ -1,3 +1,5 @@
+import { useLayoutEffect as useExhibitLayout } from 'react';
+import { useThree as useExhibitThree } from '@react-three/fiber';
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { ACESFilmicToneMapping } from 'three';
@@ -45,7 +47,8 @@ export default function App() {
         style={{ position: 'fixed', inset: 0, width: '100vw', height: '100vh', pointerEvents: 'none' }}
       >
         <ProductScene />
-      </Canvas>
+        <ExhibitFraming />
+    </Canvas>
 
       <div className="frame" aria-hidden="true" />
 
@@ -67,11 +70,7 @@ export default function App() {
         </div>
 
         <Reveal className="hero" side="center">
-          <p className="lede">
-            I rebuilt the viral glass-bottle scrollytelling pattern without
-            borrowing a mesh. Dark green glass, liquid volume, type sitting
-            <em> behind</em> the bottle so transmission has something to bend.
-          </p>
+          <p className="lede">Glass, light, and a slow roll. Scroll to turn the bottle and see the lettering bend through it.</p>
           <div className="scroll-hint">Scroll — it rolls</div>
           <div className="hero-ctas">
             <a className="pill solid" href="#clean-room">Read the batch notes</a>
@@ -84,9 +83,8 @@ export default function App() {
             <p className="kicker">01 — Silhouette</p>
             <h2>On its side</h2>
             <p>
-              The himanshubuildss thumb is a wide apothecary cylinder, short neck,
-              black cap, lying down. I lathed that profile. A standing perfume
-              carafe with a brass stopper was the wrong read.
+              A broad glass body, a short neck, and a dark cap. Turn the bottle
+              to see the profile change from a clean silhouette to a ribbon of light.
             </p>
           </div>
         </Reveal>
@@ -96,10 +94,8 @@ export default function App() {
             <p className="kicker">02 — Transmission</p>
             <h2>Type through glass</h2>
             <p>
-              Outer shell: IOR 1.48, transmission 1, short green attenuation.
-              Inner volume: darker, IOR 1.39. The lime “AETHER” is a drei Text
-              in the scene, not a DOM headline — otherwise the bottle has
-              nothing to refract.
+              Light slows and bends as it enters the glass. The green liquid
+              absorbs some of it; the lettering behind the bottle reveals the distortion.
             </p>
           </div>
         </Reveal>
@@ -109,21 +105,19 @@ export default function App() {
             <p className="kicker">03 — Roll</p>
             <h2>Scroll is the long axis</h2>
             <p>
-              “Scroll — it rolls.” Progress maps to rotation around the
-              bottle’s length, damped in useFrame. Strip Lightformers give the
-              long speculars. Bidirectional. Native window scroll.
+              Your scroll turns the bottle around its length. Move back up
+              to reverse the roll and watch the studio reflections travel across the surface.
             </p>
           </div>
         </Reveal>
 
         <Reveal id="clean-room" className="feature" side="right">
           <div className="card">
-            <p className="kicker">04 — Clean-room</p>
-            <h2>Pattern, not the brand</h2>
+            <p className="kicker">04 — About the study</p>
+            <h2>A study in glass</h2>
             <p>
-              I studied the Caldera-class hero (chartreuse, black, horizontal
-              glass). I did not copy TEPHRA, the rocks, or the mesh. Aether is
-              a fictional batch. Educational only.
+              Aether is a fictional product, made to explore glass, refraction,
+              and motion on the web. The bottle is built from a revolved profile.
             </p>
           </div>
         </Reveal>
@@ -140,4 +134,14 @@ export default function App() {
       </div>
     </>
   );
+}
+
+// Preserve the subject's horizontal field of view on portrait screens.
+function ExhibitFraming() {
+  const { camera, size } = useExhibitThree();
+  useExhibitLayout(() => {
+    camera.zoom = .85 * Math.min(1, size.width / size.height / 1.25);
+    camera.updateProjectionMatrix();
+  }, [camera, size.width, size.height]);
+  return null;
 }

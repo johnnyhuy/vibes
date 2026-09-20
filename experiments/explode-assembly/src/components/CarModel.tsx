@@ -304,7 +304,9 @@ export default function CarModel({ explode, selectedPart, isolated, onSelectPart
         if (Array.isArray(child.material)) {
           child.material.forEach((mat: any) => {
             if (isSelected) {
-              mat.emissive = new THREE.Color(0x3b82f6);
+              mat.opacity = 1;
+              mat.transparent = false;
+              mat.emissive.set(0x3b82f6);
               mat.emissiveIntensity = 0.4;
             } else if (isOther && explosionAmount > 0.05) {
               mat.emissive = new THREE.Color(0x000000);
@@ -320,7 +322,9 @@ export default function CarModel({ explode, selectedPart, isolated, onSelectPart
           });
         } else {
           if (isSelected) {
-            child.material.emissive = new THREE.Color(0x3b82f6);
+            child.material.opacity = 1;
+            child.material.transparent = false;
+            child.material.emissive.set(0x3b82f6);
             child.material.emissiveIntensity = 0.4;
           } else if (isOther && explosionAmount > 0.05) {
             child.material.emissive = new THREE.Color(0x000000);
@@ -340,6 +344,7 @@ export default function CarModel({ explode, selectedPart, isolated, onSelectPart
   
   // Handle clicks
   const handleClick = (event: any) => {
+    if (event.delta > 5) return;
     event.stopPropagation();
     
     // Find which piece was clicked

@@ -13,7 +13,7 @@ body,
 }
 
 body {
-  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Trebuchet MS', 'Avenir Next', sans-serif;
   -webkit-font-smoothing: antialiased;
   overflow: hidden;
   background: #000;
@@ -302,10 +302,25 @@ body {
 }
 
 .mode {
+  border: 0;
+  cursor: pointer;
+  background: transparent;
   padding: 0.38rem 0.75rem;
   border-radius: 999px;
   font-size: 0.72rem;
   color: rgba(255, 255, 255, 0.5);
+}
+
+@media(max-width:600px) {
+  html[data-app="earth-timeline"] .hero { top: 90px; }
+  html[data-app="earth-timeline"] .hero h1 { font-size: 34px; }
+  html[data-app="earth-timeline"] .now-card { bottom: 180px; }
+  html[data-app="earth-timeline"] .timeline { left: 8%; right: 8%; bottom: 124px; }
+  html[data-app="earth-timeline"] .tick { min-width: 28px; min-height: 36px; }
+  html[data-app="earth-timeline"] .tick:nth-child(2), html[data-app="earth-timeline"] .tick:nth-child(5), html[data-app="earth-timeline"] .tick:nth-child(6) { display: none; }
+  html[data-app="earth-timeline"] .dock { flex-wrap: wrap; justify-content: center; bottom: 16px; gap: 8px; }
+  html[data-app="earth-timeline"] .modes { display: flex; }
+  html[data-app="earth-timeline"] .speed { display: none; }
 }
 
 .mode.active {

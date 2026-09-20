@@ -26,7 +26,7 @@ export default function App() {
       <header className="header">
         <p className="kicker">Study in motion</p>
         <h1>V8 · Four-Stroke</h1>
-        <p className="subtitle">Licensed V8 mesh · 1-8-4-3-6-5-7-2 · four-stroke</p>
+        <p className="subtitle">Eight cylinders · two revolutions · slow-motion study</p>
         <div className="cycle-legend" aria-hidden>
           {CYCLES.map((cycle) => (
             <span
@@ -62,7 +62,7 @@ export default function App() {
         <div className="gauge">
           <div className="gauge-value">{pressure}</div>
           <div className="gauge-label">Bar</div>
-          <div className="gauge-subtext">Chamber pressure</div>
+          <div className="gauge-subtext">Illustrative pressure</div>
         </div>
       </aside>
 

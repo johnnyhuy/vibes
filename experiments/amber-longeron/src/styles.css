@@ -4,6 +4,12 @@
   box-sizing: border-box;
 }
 
+.flight-intro {position:absolute;z-index:5;top:32px;left:32px;max-width:290px;color:#382d1e;}
+.flight-intro h1 {font-size:38px;margin:8px 0 12px;}
+.flight-intro p {font-size:14px;line-height:1.6;}
+.flight-intro button {margin-top:16px;padding:12px 18px;background:#443321;color:#fff7e8;border:0;font:inherit;cursor:pointer;}
+@media(max-width:600px){.flight-intro{top:24px;left:20px;right:20px;}.flight-intro h1{font-size:32px;}}
+
 :root {
   --ink: #3a2a1c;
   --muted: #7a6550;
@@ -21,7 +27,7 @@ body,
 }
 
 body {
-  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Trebuchet MS', 'Avenir Next', sans-serif;
   background: #e6d4b8;
   color: var(--ink);
   overflow: hidden;

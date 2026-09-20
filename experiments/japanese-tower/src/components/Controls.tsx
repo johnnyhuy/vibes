@@ -104,13 +104,9 @@ export default function Controls({
       </nav>
 
       <header className="editorial">
-        <p className="kicker">尾根</p>
+        <p className="kicker">Architecture / 01</p>
         <h1>Ridge Pagoda</h1>
-        <p className="lede">
-          I raise this keep from primitives — stone, then timber, then tile.
-          No temple GLB. No borrowed brand. You scrub the lift, then you
-          change the air until the valley disagrees with noon.
-        </p>
+        <p className="lede">Raise the tower from stone to crown. Then explore how season, weather, and daylight change its silhouette.</p>
       </header>
 
       <aside className="meter" aria-label="Lift progress">

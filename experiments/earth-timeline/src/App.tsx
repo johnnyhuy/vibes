@@ -91,7 +91,7 @@ const ticks = [
   { time: 20, label: '4.0 Ga', note: '' },
   { time: 35, label: '3.8 Ga', note: 'Oceans' },
   { time: 65, label: '2.4 Ga', note: '' },
-  { time: 80, label: '650 Ma', note: '' },
+  { time: 80, label: '600 Ma', note: '' },
   { time: 90, label: '200 Ma', note: '' },
   { time: 100, label: 'Today', note: 'Our world' },
 ];
@@ -99,6 +99,8 @@ const ticks = [
 export default function App() {
   const [timelineValue, setTimelineValue] = useState(100);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [night, setNight] = useState(false);
+  const seek = (value: number) => { setIsPlaying(false); setTimelineValue(value); };
 
   const currentEra =
     timeline.find((era, i) => {
@@ -121,8 +123,7 @@ export default function App() {
       <nav className="topbar">
         <p className="brand">earth.</p>
         <div className="nav-links">
-          <span className="nav-link active">The planet</span>
-          <span className="nav-link">Deep time</span>
+          <span className="nav-link active">A deep-time atlas</span>
         </div>
         <a
           className="nav-link ext"
@@ -130,7 +131,7 @@ export default function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Sources ↗
+          Inspiration ↗
         </a>
       </nav>
 
@@ -142,7 +143,7 @@ export default function App() {
             ← Go back in time
           </button>
           <button type="button" className="text-link" onClick={goToToday}>
-            Read the record
+            Present day
           </button>
         </div>
       </header>
@@ -156,6 +157,7 @@ export default function App() {
       </aside>
 
       <Scene
+        night={night}
         currentEra={currentEra}
         isPlaying={isPlaying}
         timelineValue={timelineValue}
@@ -174,16 +176,17 @@ export default function App() {
           min="0"
           max="100"
           value={timelineValue}
-          onChange={(e) => setTimelineValue(parseInt(e.target.value, 10))}
+          onChange={(e) => seek(parseInt(e.target.value, 10))}
         />
-        <div className="timeline-ticks" aria-hidden>
+        <div className="timeline-ticks">
           {ticks.map((tick) => (
             <button
               key={tick.time}
               type="button"
               className="tick"
               style={{ left: `${tick.time}%` }}
-              onClick={() => setTimelineValue(tick.time)}
+              onClick={() => seek(tick.time)}
+              aria-label={`Jump to ${tick.label}`}
             >
               <span className="tick-mark" />
               <span className="tick-label">{tick.label}</span>
@@ -198,16 +201,15 @@ export default function App() {
           Orbital perspective
           <span>23.4° tilt · 1 AU</span>
         </p>
-        <div className="modes" aria-hidden>
-          <span className="mode active">Natural</span>
-          <span className="mode">After dark</span>
-          <span className="mode">Blue hour</span>
+        <div className="modes" aria-label="Globe appearance">
+          <button className={`mode ${!night ? 'active' : ''}`} aria-pressed={!night} onClick={() => setNight(false)}>Daylight</button>
+          <button className={`mode ${night ? 'active' : ''}`} aria-pressed={night} onClick={() => setNight(true)}>City lights</button>
         </div>
         <div className="play-row">
-          <button type="button" className="pill glass" onClick={() => setIsPlaying(!isPlaying)}>
+          <button type="button" className="pill glass" onClick={() => { if (!isPlaying && timelineValue === 100) setTimelineValue(0); setIsPlaying(!isPlaying); }}>
             {isPlaying ? 'Pause the story' : 'Play the story'}
           </button>
-          <span className="speed">1×</span>
+          <span className="speed">Illustrative eras</span>
         </div>
       </footer>
     </div>

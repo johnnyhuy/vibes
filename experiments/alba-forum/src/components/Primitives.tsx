@@ -66,7 +66,7 @@ export function BarrelRing({
   color?: string;
 }) {
   return (
-    <mesh rotation={[0, 0, Math.PI / 2]} castShadow>
+    <mesh castShadow>
       <torusGeometry args={[radius, tube, 8, 18, Math.PI]} />
       <Stone color={color} roughness={0.78} />
     </mesh>

@@ -1,125 +1,41 @@
-import { useRef, useMemo, useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
-import { TimelineData } from '../types';
+import type { TimelineData } from '../types';
 
-interface EarthProps {
-  currentEra: TimelineData;
-}
-
-export default function Earth({ currentEra }: EarthProps) {
-  const earthRef = useRef<THREE.Mesh>(null);
-  const cloudsRef = useRef<THREE.Mesh>(null);
-  const atmosphereRef = useRef<THREE.Mesh>(null);
-
-  const earthTexture = useMemo(() => {
-    const canvas = document.createElement('canvas');
-    canvas.width = 2048;
-    canvas.height = 1024;
-    const ctx = canvas.getContext('2d')!;
-
-    const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-    gradient.addColorStop(0, '#0a4a7a');
-    gradient.addColorStop(0.5, '#1e5a8a');
-    gradient.addColorStop(1, '#0a4a7a');
-    ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    for (let i = 0; i < 400; i++) {
-      const x = Math.random() * canvas.width;
-      const y = Math.random() * canvas.height;
-      const w = 30 + Math.random() * 150;
-      const h = 30 + Math.random() * 100;
-      
-      ctx.fillStyle = Math.random() > 0.6 
-        ? `rgba(34, 89, 45, ${0.8 + Math.random() * 0.2})`
-        : `rgba(101, 85, 55, ${0.7 + Math.random() * 0.3})`;
-      
-      ctx.beginPath();
-      ctx.ellipse(x, y, w / 2, h / 2, Math.random() * Math.PI, 0, Math.PI * 2);
-      ctx.fill();
-    }
-
-    return new THREE.CanvasTexture(canvas);
-  }, []);
-
-  const cloudTexture = useMemo(() => {
-    const canvas = document.createElement('canvas');
-    canvas.width = 2048;
-    canvas.height = 1024;
-    const ctx = canvas.getContext('2d')!;
-
-    ctx.fillStyle = 'transparent';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    for (let i = 0; i < 300; i++) {
-      const x = Math.random() * canvas.width;
-      const y = Math.random() * canvas.height;
-      const r = 20 + Math.random() * 60;
-      
-      const gradient = ctx.createRadialGradient(x, y, 0, x, y, r);
-      gradient.addColorStop(0, `rgba(255, 255, 255, ${0.6 + Math.random() * 0.4})`);
-      gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
-      
-      ctx.fillStyle = gradient;
-      ctx.beginPath();
-      ctx.arc(x, y, r, 0, Math.PI * 2);
-      ctx.fill();
-    }
-
-    return new THREE.CanvasTexture(canvas);
-  }, []);
-
+export default function Earth({ currentEra, night }: { currentEra: TimelineData; night: boolean }) {
+  const surface = useRef<THREE.Mesh>(null);
+  const [maps, setMaps] = useState<THREE.Texture[]>([]);
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   useEffect(() => {
-    if (earthRef.current) {
-      earthRef.current.material.color.set(currentEra.color);
-    }
-    if (cloudsRef.current) {
-      (cloudsRef.current.material as THREE.MeshStandardMaterial).opacity = currentEra.cloudOpacity;
-    }
-    if (atmosphereRef.current) {
-      (atmosphereRef.current.material as THREE.MeshBasicMaterial).opacity = currentEra.atmosphereOpacity;
-    }
-  }, [currentEra]);
-
-  useFrame((state, delta) => {
-    if (earthRef.current) earthRef.current.rotation.y += delta * 0.1;
-    if (cloudsRef.current) cloudsRef.current.rotation.y += delta * 0.12;
+    let active = true;
+    const loader = new THREE.TextureLoader();
+    const textures = ['/textures/earth-day.jpg', '/textures/earth-night.jpg'].map(url => loader.load(url, () => {
+      if (active) setMaps([...textures]);
+    }));
+    textures.forEach(t => { t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4; });
+    return () => { active = false; textures.forEach(t => t.dispose()); };
+  }, []);
+  useFrame((_, delta) => {
+    if (surface.current && !reduced) surface.current.rotation.y += Math.min(delta, .05) * .035;
   });
-
-  return (
-    <group>
-      <mesh ref={earthRef}>
-        <sphereGeometry args={[1, 72, 72]} />
-        <meshStandardMaterial
-          map={earthTexture}
-          roughness={0.62}
-          metalness={0.04}
-          color={currentEra.color}
-        />
-      </mesh>
-
-      <mesh ref={cloudsRef}>
-        <sphereGeometry args={[1.015, 48, 48]} />
-        <meshStandardMaterial
-          map={cloudTexture}
-          transparent
-          opacity={currentEra.cloudOpacity}
-          depthWrite={false}
-          roughness={1}
-          metalness={0}
-        />
-      </mesh>
-
-      <mesh ref={atmosphereRef}>
-        <sphereGeometry args={[1.18, 48, 48]} />
-        <meshBasicMaterial
-          color="#6ea8ff"
-          transparent
-          opacity={Math.max(0.06, currentEra.atmosphereOpacity)}
-          side={THREE.BackSide}
-        />
-      </mesh>
-    </group>
-  );
+  // Modern geography is only shown for the final era. Earlier surfaces are illustrative.
+  const modern = currentEra.time === 100;
+  return <group rotation={[0,0,THREE.MathUtils.degToRad(23.4)]}>
+    <mesh ref={surface}>
+      <sphereGeometry args={[1,96,64]} />
+      <meshStandardMaterial map={modern ? maps[night ? 1 : 0] ?? null : null}
+        color={modern ? '#ffffff' : currentEra.color} roughness={.8}
+        emissive={modern && night ? '#ffffff' : currentEra.time < 35 ? '#9c3510' : '#000000'}
+        emissiveMap={modern && night ? maps[1] ?? null : null}
+        emissiveIntensity={modern && night ? .9 : .3} />
+    </mesh>
+    <mesh>
+      <sphereGeometry args={[1.035,64,48]} />
+      <shaderMaterial transparent depthWrite={false} side={THREE.BackSide}
+        uniforms={{ tint: {value: new THREE.Color('#75bded')}, strength: {value: currentEra.atmosphereOpacity * 4} }}
+        vertexShader={'varying vec3 normalView; varying vec3 positionView; void main(){vec4 p=modelViewMatrix*vec4(position,1.);normalView=normalize(normalMatrix*normal);positionView=p.xyz;gl_Position=projectionMatrix*p;}'}
+        fragmentShader={'varying vec3 normalView; varying vec3 positionView; uniform vec3 tint; uniform float strength; void main(){float rim=pow(1.-abs(dot(normalize(normalView),normalize(-positionView))),3.);gl_FragColor=vec4(tint,rim*strength);}'} />
+    </mesh>
+  </group>;
 }

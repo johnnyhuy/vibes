@@ -28,7 +28,7 @@ function IvoryArch({ active }: LandmarkProps) {
         <boxGeometry args={[6.3, 0.56, 2.35]} />
         <Stone color={chalk.stone} />
       </mesh>
-      <group position={[0, pierH - 0.15, 0]}>
+      <group position={[0, pierH - 1.85, 0]}>
         <BarrelRing radius={1.85} tube={0.28} />
       </group>
       <mesh position={[0, pierH + 1.35, 0]} castShadow>

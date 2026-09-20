@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-study="engineering" data-app="web-3d">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +8,7 @@
 </head>
 <body>
   <div id="app">
+    <header class="study-title"><p class="kicker">Assembly study / 01</p><h1>Electric, in pieces.</h1><p>Separate the motor. Select a component. See inside.</p></header>
     <nav class="tabs">
       <button class="tab active" data-scene="assembly">Assembly</button>
       <button class="tab" data-scene="cutaway">Cutaway</button>
@@ -17,7 +18,7 @@
     
     <div class="controls">
       <div class="control-group">
-        <label for="explode-slider">Explode</label>
+        <label id="explode-label" for="explode-slider">Separate components</label>
         <input type="range" id="explode-slider" min="0" max="100" value="0">
       </div>
     </div>

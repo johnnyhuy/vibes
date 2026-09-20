@@ -328,3 +328,12 @@ body,
     display: none;
   }
 }
+
+@media (max-width: 600px) {
+  .components-panel { left: 12px; right: 12px; top: auto; bottom: 112px; width: auto; max-height: 178px; transform: none; }
+  .parts-list { display: grid; grid-template-columns: 1fr 1fr; min-height: 0; }
+  .panel-heading { padding: 8px 12px 4px; }
+  .part-row { min-height: 40px; font-size: 11px; }
+  .explode-dock { bottom: 18px; width: calc(100% - 24px); min-width: 0; }
+  .plaque { left: 18px; top: 20px; }
+}

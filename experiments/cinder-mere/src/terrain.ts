@@ -9,7 +9,7 @@ export const WATER_LEVEL = 0.72;
 export interface Landmark {
   id: LandmarkId;
   name: string;
-  nameZh: string;
+  nameLabel: string;
   copy: string;
   x: number;
   z: number;
@@ -19,7 +19,7 @@ export const LANDMARKS: Landmark[] = [
   {
     id: 'wick',
     name: 'Wick Spire',
-    nameZh: '芯标',
+    nameLabel: 'Wick Spire',
     copy: 'A ridge beacon I stacked from brick drums. The wick is a warm lamp, not a radio tower.',
     x: 6.4,
     z: -41.2,
@@ -27,7 +27,7 @@ export const LANDMARKS: Landmark[] = [
   {
     id: 'jetty',
     name: 'Pewter Jetty',
-    nameZh: '锡栈',
+    nameLabel: 'Pewter Jetty',
     copy: 'A reed pier that steps into the mere. I kept it short so the water still reads.',
     x: 23.6,
     z: 3.8,
@@ -35,7 +35,7 @@ export const LANDMARKS: Landmark[] = [
   {
     id: 'kiln',
     name: 'Low Kiln',
-    nameZh: '矮窑',
+    nameLabel: 'Low Kiln',
     copy: 'A squat chimney and a brick belly. Smoke is three pale spheres. Not a factory.',
     x: -33.4,
     z: -11.2,
@@ -43,7 +43,7 @@ export const LANDMARKS: Landmark[] = [
   {
     id: 'ford',
     name: 'Flint Ford',
-    nameZh: '燧津',
+    nameLabel: 'Flint Ford',
     copy: 'Stepping stones on the southwest tongue. The Soot Runner wakes on the dry bank above them.',
     x: -22.2,
     z: 10.4,

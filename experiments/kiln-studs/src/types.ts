@@ -26,14 +26,14 @@ export interface BrickSpec {
 export interface StepInfo {
   id: number;
   name: string;
-  nameZh: string;
+  nameLabel: string;
   copy: string;
 }
 
 export interface Idea {
   id: IdeaId;
   name: string;
-  nameZh: string;
+  nameLabel: string;
   prompt: string;
   palette: Palette;
 }

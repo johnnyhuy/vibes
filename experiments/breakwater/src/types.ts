@@ -3,7 +3,7 @@ export type LookName = 'dusk' | 'glow' | 'fog';
 export interface Mark {
   id: string;
   name: string;
-  nameZh: string;
+  nameLabel: string;
   copy: string;
   target: [number, number, number];
   camera: [number, number, number];

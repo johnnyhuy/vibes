@@ -3,12 +3,12 @@ import type { BrickSpec, Idea, Look, StepInfo } from './types';
 export const BRAND = {
   lockup: 'vibes · kiln studs',
   name: 'Kiln Studs',
-  nameZh: '窑钉',
+  nameLabel: 'Brick study',
   setName: 'Ember Hare',
-  setNameZh: '烬兔',
+  setNameLabel: 'Ember Hare',
   setNo: '8',
-  motto: 'A sitting hare I named. No loop, no catalog.',
-  lede: 'A kiln-hearth hare in studs I laid. Idea to palette only. No buy link, no borrowed set.',
+  motto: '42 bricks. One small character.',
+  lede: 'Build a hare in eight steps. Change its palette, separate the bricks, and inspect how they fit.',
 };
 
 export const STUD = 0.32;
@@ -84,21 +84,21 @@ export const SET: BrickSpec[] = [
 ];
 
 export const STEPS: StepInfo[] = [
-  { id: 1, name: 'Kiln plinth', nameZh: '窑座', copy: 'Soot plate, glaze hearth, a shallow lip.' },
-  { id: 2, name: 'Haunches', nameZh: '后腿', copy: 'Two haunches, a pelvis, cream toe pads.' },
-  { id: 3, name: 'Torso', nameZh: '躯', copy: 'Belly, saddle, flanks, a raised rump.' },
-  { id: 4, name: 'Chest slip', nameZh: '陶浆胸', copy: 'Cream plates on the breast.' },
-  { id: 5, name: 'Head', nameZh: '头', copy: 'A 2×2 head, muzzle, chin, crown.' },
-  { id: 6, name: 'Ears', nameZh: '耳', copy: 'Two tall ears with ember tips.' },
-  { id: 7, name: 'Tail', nameZh: '尾', copy: 'A round puff behind the rump.' },
-  { id: 8, name: 'Marks', nameZh: '火记', copy: 'Eyes, a nose, and a small kiln pot.' },
+  { id: 1, name: 'Kiln plinth', nameLabel: 'Kiln plinth', copy: 'Soot plate, glaze hearth, a shallow lip.' },
+  { id: 2, name: 'Haunches', nameLabel: 'Haunches', copy: 'Two haunches, a pelvis, cream toe pads.' },
+  { id: 3, name: 'Torso', nameLabel: 'Torso', copy: 'Belly, saddle, flanks, a raised rump.' },
+  { id: 4, name: 'Chest slip', nameLabel: 'Chest slip', copy: 'Cream plates on the breast.' },
+  { id: 5, name: 'Head', nameLabel: 'Head', copy: 'A 2×2 head, muzzle, chin, crown.' },
+  { id: 6, name: 'Ears', nameLabel: 'Ears', copy: 'Two tall ears with ember tips.' },
+  { id: 7, name: 'Tail', nameLabel: 'Tail', copy: 'A round puff behind the rump.' },
+  { id: 8, name: 'Marks', nameLabel: 'Marks', copy: 'Eyes, a nose, and a small kiln pot.' },
 ];
 
 export const IDEAS: Idea[] = [
   {
     id: 'dusk-hare',
     name: 'Dusk hare',
-    nameZh: '昏兔',
+    nameLabel: 'Dusk hare',
     prompt: 'A sitting hare on a kiln hearth at dusk.',
     palette: {
       kiln: '#b85a32',
@@ -111,7 +111,7 @@ export const IDEAS: Idea[] = [
   {
     id: 'clay-slip',
     name: 'Clay slip',
-    nameZh: '陶浆',
+    nameLabel: 'Clay slip',
     prompt: 'Wet clay and cream slip on a potter’s bench.',
     palette: {
       kiln: '#c48a54',
@@ -124,7 +124,7 @@ export const IDEAS: Idea[] = [
   {
     id: 'pewter-ash',
     name: 'Pewter ash',
-    nameZh: '锡灰',
+    nameLabel: 'Pewter ash',
     prompt: 'Cool ash after the last firing.',
     palette: {
       kiln: '#8a7a72',

@@ -6,7 +6,7 @@ import { useFlightInput, usePrefersReducedMotion } from './hooks';
 import type { PlayState } from './types';
 
 export default function App() {
-  const [state, setState] = useState<PlayState>('flying');
+  const [state, setState] = useState<PlayState>('ready');
   const [resetToken, setResetToken] = useState(0);
   const [distance, setDistance] = useState(0);
   const [rings, setRings] = useState(0);
@@ -69,7 +69,7 @@ export default function App() {
           onCrash={onCrash}
           onHud={onHud}
         />
-        <Hud hud={hud} onReset={reset} />
+        <Hud hud={hud} onReset={reset} onStart={onStart} />
       </div>
     </ErrorBoundary>
   );

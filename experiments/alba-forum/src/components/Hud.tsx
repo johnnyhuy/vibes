@@ -44,11 +44,9 @@ export default function Hud({ stop, index, exploring, onExplore, onStep }: Props
       </nav>
 
       <header className="editorial">
-        <p className="kicker">{BRAND.placeZh}</p>
+        <p className="kicker">{BRAND.placeLabel}</p>
         <h1>{BRAND.place}</h1>
-        <p className="lede">
-          A chalk-city itinerary I invented. Scroll the avenue. Explore orbits the mesh in front of you.
-        </p>
+        <p className="lede">Ten landmarks along a chalk avenue. Move between stops, then explore each building from every angle.</p>
       </header>
 
       <aside className="meter" aria-label="Current landmark">

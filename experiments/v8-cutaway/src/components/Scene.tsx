@@ -1,3 +1,5 @@
+import { useLayoutEffect as useExhibitLayout } from 'react';
+import { useThree as useExhibitThree } from '@react-three/fiber';
 import { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { ContactShadows, Environment, OrbitControls } from '@react-three/drei';
@@ -87,6 +89,17 @@ export default function Scene({
         maxPolarAngle={Math.PI / 2.05}
         target={[0, 1.15, 0]}
       />
+      <ExhibitFraming />
     </Canvas>
   );
+}
+
+// Preserve the subject's horizontal field of view on portrait screens.
+function ExhibitFraming() {
+  const { camera, size } = useExhibitThree();
+  useExhibitLayout(() => {
+    camera.zoom = .85 * Math.min(1, size.width / size.height / 1.25);
+    camera.updateProjectionMatrix();
+  }, [camera, size.width, size.height]);
+  return null;
 }

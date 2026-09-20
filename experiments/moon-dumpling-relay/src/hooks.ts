@@ -30,6 +30,7 @@ export function useRelayInput(): MutableRefObject<InputState> {
 
   useEffect(() => {
     const down = (event: KeyboardEvent) => {
+      if ((event.target as HTMLElement)?.closest('input,textarea,select,button,a,[contenteditable="true"]')) return;
       const names = namesFor(event);
       if (names.some((name) => name === 'a' || name === 'arrowleft' || name === 'keya')) {
         event.preventDefault();
@@ -72,11 +73,14 @@ export function useRelayInput(): MutableRefObject<InputState> {
       }
     };
 
+    const blur = () => { input.current = { left: false, right: false, eat: false, dash: false, confirm: false }; };
+    window.addEventListener('blur', blur);
     window.addEventListener('keydown', down, { passive: false });
     window.addEventListener('keyup', up);
     return () => {
       window.removeEventListener('keydown', down);
       window.removeEventListener('keyup', up);
+      window.removeEventListener('blur', blur);
     };
   }, []);
 

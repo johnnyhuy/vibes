@@ -17,7 +17,7 @@ export function buildWardSnippet(state: WardSnippetState): string {
   const cast = state.lastCast ? castById(state.lastCast) : null;
   const config = {
     loom: 'heartwood-warden',
-    vessel: 'Heartwood Warden / 心木守',
+    vessel: 'Heartwood Warden',
     stance: state.stance,
     lastCast: cast
       ? {
@@ -36,7 +36,7 @@ function rootPulse(origin, t) {
   return { radius, y: 0.04, opacity: fade * 0.72 };
 }`;
 
-  return `/* Heartwood Warden / 心木守 — vibes · heartwood-warden */
+  return `/* Heartwood Warden — vibes · heartwood-warden */
 ${JSON.stringify(config, null, 2)}
 
 ${helper}

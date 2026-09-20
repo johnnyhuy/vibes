@@ -65,14 +65,14 @@ export default function Hud({ hud, onBiome, onMute, onReset, onLobby, onPad, onB
       </nav>
 
       <header className="editorial">
-        <p className="kicker">{BRAND.nameZh}</p>
+        <p className="kicker">{BRAND.nameLabel}</p>
         <h1>{BRAND.name}</h1>
         <p className="lede">{BRAND.lede}</p>
       </header>
 
       <aside className="meter" aria-label="Stride">
         <p className="panel-kicker">
-          {biome.loopZh} · {RUNNER.nameZh}
+          {biome.loopLabel} · {RUNNER.nameLabel}
         </p>
         <p className="percent">
           {biome.loop}

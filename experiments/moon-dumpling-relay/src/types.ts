@@ -12,7 +12,7 @@ export interface DinerDef {
   id: string;
   species: Species;
   name: string;
-  nameZh: string;
+  nameLabel: string;
   hue: string;
   accent: string;
   lede: string;

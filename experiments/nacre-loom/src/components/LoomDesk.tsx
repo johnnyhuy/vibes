@@ -109,13 +109,9 @@ export default function LoomDesk({
       </nav>
 
       <header className="editorial">
-        <p className="kicker">珠络</p>
+        <p className="kicker">Material study</p>
         <h1>Nacre Loom</h1>
-        <p className="lede">
-          I wove a nacreous film inside a lobed glass vessel — no generator
-          catalogue, no borrowed GLSL. The recipes are ones I mixed. Tune the
-          dyes, the swell, and the glass, then copy a snippet that is mine.
-        </p>
+        <p className="lede">Shape a glass vessel. Mix its colours, tune the iridescent film, and adjust how it catches the light.</p>
       </header>
 
       <aside className="desk" aria-label="Loom settings">

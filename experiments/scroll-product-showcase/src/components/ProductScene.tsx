@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { ContactShadows, Environment, Lightformer, Text } from '@react-three/drei';
+import { ContactShadows, Environment, Lightformer } from '@react-three/drei';
+import Lettering from './Lettering';
 import * as THREE from 'three';
 import GlassBottle from './GlassBottle';
 import { useWindowScroll } from '../hooks/useWindowScroll';
@@ -39,16 +40,14 @@ export default function ProductScene() {
       <color attach="background" args={['#030303']} />
       <ambientLight intensity={0.08} />
 
-      <Text
+      <Lettering
         position={[0, 0.08, -2.15]}
         fontSize={1.72}
         letterSpacing={-0.07}
         color="#c8ff3a"
-        anchorX="center"
-        anchorY="middle"
       >
         AETHER
-      </Text>
+      </Lettering>
 
       <group ref={roll}>
         <group rotation={[0, 0, Math.PI / 2]}>

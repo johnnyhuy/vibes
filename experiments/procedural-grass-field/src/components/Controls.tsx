@@ -82,13 +82,9 @@ export default function Controls({
       </nav>
 
       <header className="editorial">
-        <p className="kicker">青原</p>
+        <p className="kicker">Field study</p>
         <h1>Wind Lea</h1>
-        <p className="lede">
-          I grew this meadow from instanced blades and a wind shader — no turf
-          GLB, no borrowed brand. The species are ones I invented. Poke the
-          field and the blades part.
-        </p>
+        <p className="lede">A meadow in motion. Change the grass, tune the wind, and move across the field to brush the blades aside.</p>
       </header>
 
       <aside className="meter" aria-label="Field settings">

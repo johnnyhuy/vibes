@@ -4,11 +4,13 @@ import type { HudSnapshot } from '../types';
 interface Props {
   hud: HudSnapshot;
   onReset: () => void;
+  onStart: () => void;
 }
 
-export default function Hud({ hud, onReset }: Props) {
+export default function Hud({ hud, onReset, onStart }: Props) {
   return (
     <>
+      {hud.state === 'ready' && <header className="flight-intro"><p className="kicker">Flight study / 01</p><h1>Amber Longeron</h1><p>Steer between the red orbs. Use A / D, arrow keys, or swipe to change lanes.</p><button type="button" onClick={onStart}>Start flight</button></header>}
       {hud.state === 'flying' && (
         <p className="score" aria-label="Distance">
           {formatDistance(hud.distance)}

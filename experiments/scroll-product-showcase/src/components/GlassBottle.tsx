@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { Text } from '@react-three/drei';
+import Lettering from './Lettering';
 import * as THREE from 'three';
 
 function profile(points: Array<[number, number]>) {
@@ -86,26 +86,22 @@ export default function GlassBottle() {
         <meshStandardMaterial color="#070707" metalness={0.35} roughness={0.45} />
       </mesh>
 
-      <Text
+      <Lettering
         position={[0, 0.02, 0.722]}
         fontSize={0.16}
         letterSpacing={0.18}
         color="#c8ff3a"
-        anchorX="center"
-        anchorY="middle"
       >
         AETHER
-      </Text>
-      <Text
+      </Lettering>
+      <Lettering
         position={[0, -0.22, 0.722]}
         fontSize={0.045}
         letterSpacing={0.22}
         color="#c8ff3a"
-        anchorX="center"
-        anchorY="middle"
       >
         BATCH 04  ·  GLASS
-      </Text>
+      </Lettering>
     </group>
   );
 }

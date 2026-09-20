@@ -5,7 +5,7 @@ export type ViewMode = 'assembled' | 'inside' | 'exploded';
 export interface StepInfo {
   id: number;
   name: string;
-  nameZh: string;
+  nameLabel: string;
   copy: string;
 }
 

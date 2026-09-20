@@ -11,7 +11,7 @@ import { useCannonWorld } from './PhysicsWorld';
 
 const drive = new Vector3();
 const right = new Vector3();
-const look = new Vector3();
+const look = new Vector3(0, 0, 1);
 const desired = new Vector3();
 
 interface Props {
@@ -48,6 +48,7 @@ export default function Marble({
   const finishBox = finish ? segmentAabb(finish, 0.15) : null;
 
   useLayoutEffect(() => {
+    look.set(0, 0, 1);
     const body = createBallBody(kind, HAZE_WALK.start);
     bodyRef.current = body;
     world.addBody(body);
@@ -95,10 +96,6 @@ export default function Marble({
     const speed = Math.hypot(body.velocity.x, body.velocity.z);
     if (speed > 0.35) {
       look.set(-body.velocity.x, 0, -body.velocity.z).normalize();
-    } else {
-      camera.getWorldDirection(look);
-      look.y = 0;
-      look.normalize();
     }
     desired.set(
       body.position.x + look.x * 6.4,

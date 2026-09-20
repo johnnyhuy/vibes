@@ -103,10 +103,7 @@ export default function App() {
         <header className="header">
           <p className="brand">vibes · glass brain</p>
           <h1>Capability Map</h1>
-          <p className="lede">
-            An interactive map of what I practise in this kitchen sink. Every node is a live
-            micro-demo or an honest stub — not a slide. Hover to inspect, click to open.
-          </p>
+          <p className="lede">An interactive collection of material and motion studies. Select a node to explore its experiment.</p>
         </header>
 
         <LightingStrip

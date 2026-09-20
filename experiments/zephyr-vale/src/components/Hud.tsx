@@ -62,13 +62,9 @@ export default function Hud({
       </nav>
 
       <header className="editorial">
-        <p className="kicker">风笺谷</p>
+        <p className="kicker">Open landscape</p>
         <h1>Zephyr Vale</h1>
-        <p className="lede">
-          I walked a sunlit fold of hills and gathered breeze slips — folded
-          notes the wind keeps. No combat. Just a vale, a reed hat, and a
-          paper kite with a bell.
-        </p>
+        <p className="lede">Wander the sunlit hills and collect drifting notes. Follow the breeze and the sound of the bell kite.</p>
       </header>
 
       <aside className="desk" aria-label="Last breeze slip">
@@ -76,7 +72,7 @@ export default function Hud({
         <p className="panel-title">{active?.title ?? 'Unopened air'}</p>
         <p className="panel-copy">
           {active?.verse ??
-            'Walk near a drifting note to take it. The verses are mine. The vale is a wander, not a fight.'}
+            'Walk near a drifting note to collect it.'}
         </p>
       </aside>
 

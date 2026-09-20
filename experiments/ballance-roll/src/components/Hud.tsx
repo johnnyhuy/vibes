@@ -75,11 +75,7 @@ export default function Hud({ kind, hud, onKind, onReset, onPad }: Props) {
       <section className="editorial">
         <p className="kicker">{HAZE_WALK.kicker}</p>
         <h1>Nimbus Path</h1>
-        <p className="lede">
-          A course I dressed with licensed stone and lanterns, above a pale sea of cloud.{' '}
-          {feel.note}. This is my kitchen-sink marble — not Atari Ballance, and not their web
-          recreation.
-        </p>
+        <p className="lede">A narrow path above the clouds. Roll, balance, and collect three lights. Each material handles differently.</p>
       </section>
 
       <aside className="meter">
