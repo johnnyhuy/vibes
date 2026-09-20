@@ -136,7 +136,7 @@ export default function Marble({
         color={feel.color}
         roughness={feel.roughness}
         metalness={feel.metalness}
-        envMapIntensity={1.1}
+        envMapIntensity={kind === 'metal' ? 1.65 : kind === 'stone' ? 0.95 : 0.82}
       />
     </mesh>
   );

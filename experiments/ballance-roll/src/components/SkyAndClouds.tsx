@@ -1,6 +1,8 @@
 import { useLayoutEffect, useMemo, useRef } from 'react';
+import { Environment } from '@react-three/drei';
 import { useFrame, useThree } from '@react-three/fiber';
 import { BackSide, Color, FogExp2, InstancedMesh, Object3D, ShaderMaterial } from 'three';
+import { HAZE_HDRI } from '../assets';
 
 const puffDummy = new Object3D();
 
@@ -151,11 +153,12 @@ export default function SkyAndClouds({ reducedMotion }: { reducedMotion: boolean
       <SkyDome />
       <CloudSea reducedMotion={reducedMotion} />
       <CloudPuffs reducedMotion={reducedMotion} />
-      <hemisphereLight args={['#ffe8f2', '#b9a7d2', 0.72]} />
-      <ambientLight color="#f6e6f0" intensity={0.42} />
+      <Environment files={HAZE_HDRI} background={false} environmentIntensity={0.62} />
+      <hemisphereLight args={['#ffe8f2', '#b9a7d2', 0.64]} />
+      <ambientLight color="#f6e6f0" intensity={0.34} />
       <directionalLight
         color="#fff1dc"
-        intensity={1.25}
+        intensity={0.98}
         position={[16, 22, 8]}
         castShadow
         shadow-mapSize={[1024, 1024]}

@@ -47,9 +47,9 @@ camera  = follow boom               →  the path reads as a place
 
 ## Pattern Breakdown
 
-### 1. Procedural course (no GLB)
+### 1. Course layout (boxes for physics, GLB for the read)
 
-Hypothesis: **box pads + a thin beam + one pitched ramp + pillars** is enough.
+Hypothesis: **box pads + a thin beam + one pitched ramp + pillars** is enough to *play*.
 
 My course (original layout, not theirs):
 
@@ -59,7 +59,9 @@ My course (original layout, not theirs):
 - A second left onto a narrow beam
 - A landing, a descending ramp, a finish court with a bronze hoop
 
-Growth / seasons were last week. This week the second axis is **feel**.
+I later dressed that same Haze Walk with licensed Poly Haven PBR (wooden lantern, brass diya, marble bust, monastery stone maps) plus a Pink Sunrise HDRI. Collision is still the original boxes — dual-mesh, not a trimesh of their (or anyone’s) course GLB. See `experiments/ballance-roll/ATTRIBUTION.md`.
+
+Growth / seasons were last week. The second axis is still **feel**. The third is **the mesh source**, not a new Root.
 
 ### 2. Three feels, one path
 
@@ -85,7 +87,7 @@ I did **not** copy their timer / score pairing, their circular material icon, or
 | I did | I did not |
 | --- | --- |
 | Read the public X post + video thumb + public page description | Download or decompile their Workers / WebGL assets |
-| Invent Haze Walk from primitives | Copy their course, lanterns, pedestals, or marble texture |
+| Invent Haze Walk from primitives; later dress it with Poly Haven CC0 | Copy their course, lanterns, pedestals, or marble texture |
 | Write original React / R3F / cannon-es / CSS | Copy their JS, fonts, or component tree |
 | Brand as vibes · nimbus path / 霞 | Use *Ballance*, Atari marks, or their HUD |
 | Cite the post as inspiration | Claim I created the original viral clip or the 2004 game |
@@ -146,4 +148,4 @@ Parked on purpose. Pattern notes only.
 
 **Author**: Johnny Huynh  
 **Purpose**: Learning and education — documenting a public pattern  
-**Last updated**: 2026-09-08
+**Last updated**: 2026-09-20 (hi-fi dress on the same Haze Walk; collision unchanged)

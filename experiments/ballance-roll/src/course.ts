@@ -14,9 +14,14 @@ export interface CourseMote {
   position: [number, number, number];
 }
 
-export interface CourseMarker {
+export type PropKind = 'lantern' | 'diya' | 'bust';
+
+export interface CourseProp {
+  id: string;
+  kind: PropKind;
   position: [number, number, number];
   yaw: number;
+  span: number;
 }
 
 export interface Course {
@@ -24,7 +29,7 @@ export interface Course {
   kicker: string;
   segments: CourseSegment[];
   motes: CourseMote[];
-  markers: CourseMarker[];
+  props: CourseProp[];
   start: [number, number, number];
   finishId: string;
 }
@@ -41,10 +46,21 @@ function heading(yaw: number): [number, number] {
   return [Math.sin(yaw), -Math.cos(yaw)];
 }
 
+function localOffset(
+  origin: [number, number, number],
+  yaw: number,
+  offset: [number, number, number]
+): [number, number, number] {
+  const [x, y, z] = offset;
+  const c = Math.cos(yaw);
+  const s = Math.sin(yaw);
+  return [origin[0] + x * c + z * s, origin[1] + y, origin[2] - x * s + z * c];
+}
+
 function buildHazeWalk(): Course {
   const segments: CourseSegment[] = [];
   const motes: CourseMote[] = [];
-  const markers: CourseMarker[] = [];
+  const props: CourseProp[] = [];
   const cursor: Cursor = { x: 0, y: 0, z: 0, yaw: 0, along: 0 };
   let index = 0;
 
@@ -83,10 +99,22 @@ function buildHazeWalk(): Course {
     cursor.yaw += radians;
   };
 
-  add('pad', 7.2, 7.2);
+  const startPad = add('pad', 7.2, 7.2);
   const start: [number, number, number] = [0, 0.72, 1.55];
-  markers.push({ position: [-2.55, 0.24, 2.35], yaw: 0 });
-  markers.push({ position: [2.55, 0.24, 2.35], yaw: 0 });
+  props.push({
+    id: 'lantern-start-w',
+    kind: 'lantern',
+    position: localOffset(startPad.position, startPad.rotation[1], [-2.55, 0.24, 2.35]),
+    yaw: 0.18,
+    span: 1.18
+  });
+  props.push({
+    id: 'lantern-start-e',
+    kind: 'lantern',
+    position: localOffset(startPad.position, startPad.rotation[1], [2.55, 0.24, 2.35]),
+    yaw: -0.18,
+    span: 1.18
+  });
 
   add('run', 3.55, 8.2);
   add('pad', 6.2, 6.2);
@@ -97,6 +125,20 @@ function buildHazeWalk(): Course {
   motes.push({
     id: 'mote-plaza',
     position: [plaza.position[0], plaza.position[1] + 0.95, plaza.position[2]]
+  });
+  props.push({
+    id: 'bust-plaza-w',
+    kind: 'bust',
+    position: localOffset(plaza.position, plaza.rotation[1], [-2.45, 0.24, 2.2]),
+    yaw: plaza.rotation[1] + 0.55,
+    span: 1.52
+  });
+  props.push({
+    id: 'bust-plaza-e',
+    kind: 'bust',
+    position: localOffset(plaza.position, plaza.rotation[1], [2.45, 0.24, 2.2]),
+    yaw: plaza.rotation[1] - 0.55,
+    span: 1.52
   });
   turn(-Math.PI / 2);
 
@@ -113,13 +155,33 @@ function buildHazeWalk(): Course {
     id: 'mote-crown',
     position: [finish.position[0], finish.position[1] + 0.95, finish.position[2]]
   });
-  markers.push({
-    position: [finish.position[0] - 2.4, finish.position[1] + 0.24, finish.position[2] + 2.1],
-    yaw: finish.rotation[1]
+  props.push({
+    id: 'lantern-finish-w',
+    kind: 'lantern',
+    position: localOffset(finish.position, finish.rotation[1], [-2.45, 0.24, 2.15]),
+    yaw: finish.rotation[1] + 0.2,
+    span: 1.18
   });
-  markers.push({
-    position: [finish.position[0] + 2.4, finish.position[1] + 0.24, finish.position[2] + 2.1],
-    yaw: finish.rotation[1]
+  props.push({
+    id: 'lantern-finish-e',
+    kind: 'lantern',
+    position: localOffset(finish.position, finish.rotation[1], [2.45, 0.24, 2.15]),
+    yaw: finish.rotation[1] - 0.2,
+    span: 1.18
+  });
+  props.push({
+    id: 'diya-finish-w',
+    kind: 'diya',
+    position: localOffset(finish.position, finish.rotation[1], [-2.15, 0.24, -2.2]),
+    yaw: finish.rotation[1] + 0.4,
+    span: 1.28
+  });
+  props.push({
+    id: 'diya-finish-e',
+    kind: 'diya',
+    position: localOffset(finish.position, finish.rotation[1], [2.15, 0.24, -2.2]),
+    yaw: finish.rotation[1] - 0.4,
+    span: 1.28
   });
 
   return {
@@ -127,7 +189,7 @@ function buildHazeWalk(): Course {
     kicker: '霞',
     segments,
     motes,
-    markers,
+    props,
     start,
     finishId: finish.id
   };
