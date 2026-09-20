@@ -1,4 +1,11 @@
-import { Box3, MeshStandardMaterial, Vector3, type Mesh, type Object3D } from 'three';
+import {
+  Box3,
+  MeshStandardMaterial,
+  SRGBColorSpace,
+  Vector3,
+  type Mesh,
+  type Object3D
+} from 'three';
 
 const _box = new Box3();
 const _size = new Vector3();
@@ -42,11 +49,11 @@ export function dressPbr(root: Object3D, envMapIntensity = 1.2): void {
     if (!mesh.isMesh || !mesh.material) return;
     const materials = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
     const next = materials.map((source) => {
-      const mat =
-        source instanceof MeshStandardMaterial
-          ? source.clone()
-          : new MeshStandardMaterial({ color: '#c8b8a0' });
+      if (!(source instanceof MeshStandardMaterial)) return source;
+      const mat = source.clone();
       mat.envMapIntensity = envMapIntensity;
+      if (mat.map) mat.map.colorSpace = SRGBColorSpace;
+      if (mat.emissiveMap) mat.emissiveMap.colorSpace = SRGBColorSpace;
       return mat;
     });
     mesh.material = next.length === 1 ? next[0] : next;

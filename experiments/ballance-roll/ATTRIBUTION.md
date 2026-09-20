@@ -10,7 +10,7 @@ I studied the public post, the video thumb, and the live-demo *read*. I did **no
 
 ## 3D models (CC0)
 
-All from [Poly Haven](https://polyhaven.com/), [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/). 1k PBR glTF packed to Draco + WebP in `public/models/`. Credit is not required under CC0. I still name the source so the swap is inspectable.
+All from [Poly Haven](https://polyhaven.com/), [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/). 1k PBR glTF packed with Draco geometry and **JPEG / PNG** maps in `public/models/` — I dropped `EXT_texture_webp` after production still read as yellow/brown stands. Credit is not required under CC0. I still name the source so the swap is inspectable.
 
 | File | Asset | Author |
 | --- | --- | --- |
@@ -19,6 +19,12 @@ All from [Poly Haven](https://polyhaven.com/), [CC0 1.0](https://creativecommons
 | `haze-bust.glb` | [Marble Bust 01](https://polyhaven.com/a/marble_bust_01) | Rico Cilliers |
 
 The lanterns are the multi-mesh hero props (wood + glass; brass + glass + flame). The bust is photogrammetry marble on the plaza corners. I did not use Kenney, Meshy, or Tripo. I did not download Fayaz’s course meshes.
+
+Re-pack notes: `scripts/fetch-nimbus-assets.mjs` uses glTF-Transform `optimize --compress draco --texture-compress false`. `scripts/repack-haze-textures.mjs` converts an already-vendored WebP pack to JPEG (baseColor / emissive) and PNG (normal / ORM).
+
+## Draco decoder
+
+`public/draco/` is the glTF decoder from `three/examples/jsm/libs/draco/gltf` (Google Draco, Apache-2.0). drei `useGLTF` points at `/draco/` so a gstatic miss cannot leave the props as untextured blocks.
 
 ## Path maps (CC0)
 
@@ -36,7 +42,7 @@ These dress the *visual* slabs. Collision stays simple cannon-es boxes — dual-
 - **Licence**: [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/)
 - **File**: `public/hdri/pink-sunrise.hdr` (1k)
 
-Lighting only. Loaded as a local drei `<Environment>` so the stone, brass, and marble pick up a real sky instead of a grey viewport. Distinct from Ochre Gallop’s Qwantani dusk and Fairday Walk’s Kloofendal sky.
+Lighting *and* sky. Loaded as a local drei `<Environment background>` so the stone, brass, and marble pick up a real sunrise instead of a lilac viewport. A thin horizon veil keeps the haze. Distinct from Ochre Gallop’s Qwantani dusk and Fairday Walk’s Kloofendal sky.
 
 ## Code
 

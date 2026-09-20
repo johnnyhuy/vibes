@@ -7,7 +7,8 @@ I built this after reading [@fayazara](https://x.com/fayazara/status/20969975053
 - **Haze Walk, still the same layout** — start court, left elbow, plaza, narrow beam, descending ramp, bronze hoop. I did not invent a new course.
 - **A hi-fi visual pass on that path** — Poly Haven CC0 PBR. Wooden lanterns (wood + glass) at the courts, brass diya lanterns at the hoop, marble busts on the plaza corners, monastery stone maps on the slabs. No Kenney hero. No grey Lego boxes.
 - **Dual-mesh physics** — the pretty GLB / tiled stone is *visual only*. cannon-es still sees the original boxes and cylinders. WASD, `R` reset, and materials `1` / `2` / `3` are unchanged. See [ADR-0008](../../docs/adr/0008-cannon-es-marble-controller.md).
-- **Pink Sunrise HDRI** — a local drei `<Environment>` so the stone and brass read as product, not a viewport. The ocean-of-clouds dome stays mine.
+- **Pink Sunrise HDRI** — a local drei `<Environment background>` so the sky actually reads as Greg Zaal’s sunrise. I dropped `FogExp2` (it tints `scene.background` to a flat mauve) and the toy cloud-puff spheres. Cloud sea under the path keeps the haze.
+- **JPEG/PNG lanterns, not WebP** — I re-packed the Poly Haven GLBs without `EXT_texture_webp` and vendored a local Draco decoder at `public/draco/` so drei/`useGLTF` does not depend on gstatic. Wood grain, brass, and marble should decode on the same path as explode-assembly.
 - **Three haze motes** — optional pickups so the run has a count that is mine, not their `0/3` chip.
 
 You start on the first pad looking down the path. Stay on the stone. Fall into the haze and reset.
@@ -29,15 +30,21 @@ npm run dev
 npm run build
 ```
 
-To re-vendor the Poly Haven files:
+To re-vendor the Poly Haven files (Draco + original JPEG/PNG, no WebP):
 
 ```bash
 node scripts/fetch-nimbus-assets.mjs
 ```
 
+To re-pack the already-vendored GLBs off WebP:
+
+```bash
+node scripts/repack-haze-textures.mjs
+```
+
 ## Deploy
 
-Linked Vercel project `vibes-ballance-roll` / `prj_BSAzHRX6jgMZOx10fPYUUXXrKrmt`. Dashboard **Root Directory** is `experiments/ballance-roll`. `vercel.json` carries the usual Vite fields plus `ignoreCommand`. It cannot set Root Directory. No new projects (Hobby 25-link cap). I am not redeploying from this pass.
+Linked Vercel project `vibes-ballance-roll` / `prj_BSAzHRX6jgMZOx10fPYUUXXrKrmt`. Dashboard **Root Directory** is `experiments/ballance-roll`. `vercel.json` carries the usual Vite fields plus `ignoreCommand`. It cannot set Root Directory. No new projects (Hobby 25-link cap). Hobby deploy quota is holding production promote as of 2026-09-20.
 
 ## Related
 
@@ -49,7 +56,7 @@ Linked Vercel project `vibes-ballance-roll` / `prj_BSAzHRX6jgMZOx10fPYUUXXrKrmt`
 
 ---
 
-**Status**: Live Root already exists; this pass is a visual dress, not a new experiment  
-**Last updated**: 2026-09-20 (hi-fi mesh pass — Poly Haven lanterns / bust / stone + Pink Sunrise HDRI)  
-**Deploy**: Linked `vibes-ballance-roll` / `prj_BSAzHRX6jgMZOx10fPYUUXXrKrmt`. Root Directory `experiments/ballance-roll`. No new projects. No redeploy spam.  
+**Status**: Live Root already exists; this pass is a decode / sky / stone read fix, not a new experiment  
+**Last updated**: 2026-09-20 (JPEG/PNG props + local Draco + Pink Sunrise background)  
+**Deploy**: Linked `vibes-ballance-roll` / `prj_BSAzHRX6jgMZOx10fPYUUXXrKrmt`. Root Directory `experiments/ballance-roll`. No new projects. Quota hold on promote.  
 Built by Johnny Huynh • This is my kitchen sink • Research and education only, not production code

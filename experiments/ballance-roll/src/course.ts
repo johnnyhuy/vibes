@@ -106,14 +106,14 @@ function buildHazeWalk(): Course {
     kind: 'lantern',
     position: localOffset(startPad.position, startPad.rotation[1], [-2.55, 0.24, 2.35]),
     yaw: 0.18,
-    span: 1.18
+    span: 1.95
   });
   props.push({
     id: 'lantern-start-e',
     kind: 'lantern',
     position: localOffset(startPad.position, startPad.rotation[1], [2.55, 0.24, 2.35]),
     yaw: -0.18,
-    span: 1.18
+    span: 1.95
   });
 
   add('run', 3.55, 8.2);
@@ -131,14 +131,14 @@ function buildHazeWalk(): Course {
     kind: 'bust',
     position: localOffset(plaza.position, plaza.rotation[1], [-2.45, 0.24, 2.2]),
     yaw: plaza.rotation[1] + 0.55,
-    span: 1.52
+    span: 2.15
   });
   props.push({
     id: 'bust-plaza-e',
     kind: 'bust',
     position: localOffset(plaza.position, plaza.rotation[1], [2.45, 0.24, 2.2]),
     yaw: plaza.rotation[1] - 0.55,
-    span: 1.52
+    span: 2.15
   });
   turn(-Math.PI / 2);
 
@@ -160,28 +160,28 @@ function buildHazeWalk(): Course {
     kind: 'lantern',
     position: localOffset(finish.position, finish.rotation[1], [-2.45, 0.24, 2.15]),
     yaw: finish.rotation[1] + 0.2,
-    span: 1.18
+    span: 1.95
   });
   props.push({
     id: 'lantern-finish-e',
     kind: 'lantern',
     position: localOffset(finish.position, finish.rotation[1], [2.45, 0.24, 2.15]),
     yaw: finish.rotation[1] - 0.2,
-    span: 1.18
+    span: 1.95
   });
   props.push({
     id: 'diya-finish-w',
     kind: 'diya',
     position: localOffset(finish.position, finish.rotation[1], [-2.15, 0.24, -2.2]),
     yaw: finish.rotation[1] + 0.4,
-    span: 1.28
+    span: 1.72
   });
   props.push({
     id: 'diya-finish-e',
     kind: 'diya',
     position: localOffset(finish.position, finish.rotation[1], [2.15, 0.24, -2.2]),
     yaw: finish.rotation[1] - 0.4,
-    span: 1.28
+    span: 1.72
   });
 
   return {
