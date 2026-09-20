@@ -1,4 +1,3 @@
-/** Named hero slots the audit counts. A slot is dressed when its files exist and source mentions a needle. */
 export const SLOTS = [
   {
     id: 'hdri',

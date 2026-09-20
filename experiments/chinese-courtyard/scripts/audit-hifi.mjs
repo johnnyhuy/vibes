@@ -1,9 +1,5 @@
-/**
- * Frozen metric for the courtyard hi-fi climb.
- * dressed_slots = count of SLOTS whose licensed files exist and whose needles appear in src/.
- */
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
-import { extname, join, resolve } from 'node:path';
+import { basename, extname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { SLOTS } from './hifi-slots.mjs';
 
@@ -23,7 +19,7 @@ function walk(dir, acc = []) {
 
 function sourceText() {
   return walk(join(root, 'src'))
-    .filter((file) => /\.(ts|tsx|js|jsx)$/.test(file))
+    .filter((file) => /\.(ts|tsx|js|jsx)$/.test(file) && basename(file) !== 'assets.ts')
     .map((file) => readFileSync(file, 'utf8'))
     .join('\n');
 }
@@ -56,4 +52,3 @@ const out = {
 };
 
 process.stdout.write(`${JSON.stringify(out, null, 2)}\n`);
-process.exitCode = 0;

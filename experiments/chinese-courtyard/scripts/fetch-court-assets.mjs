@@ -1,7 +1,3 @@
-/**
- * Vendor Poly Haven CC0 meshes / maps for North Court.
- * Halls and season resolve stay in TypeScript. These files dress the toys.
- */
 import { execFileSync } from 'node:child_process';
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
