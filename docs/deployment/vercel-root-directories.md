@@ -18,7 +18,7 @@ If this is empty, Vercel builds the repo root. There is no root `package.json`. 
 
 See [the incident](../incidents/2026-09-08-steam-atlas-wrong-root.md).
 
-## Per-app (verified 2026-09-19 AEST, Vercel API team `johnnyhuy-dev`; audio / semicircle / glass IDs rechecked 2026-09-20 AEST)
+## Per-app (verified 2026-09-19 AEST, Vercel API team `johnnyhuy-dev`; audio / semicircle / glass / ballance-roll IDs rechecked 2026-09-20 AEST)
 
 All **25** git-linked projects are **LIVE** with latest READY production. This table is the source of truth. Do **not** treat any row here as "no project", "0 production", "link-only", or "do not promote".
 
@@ -34,7 +34,7 @@ All **25** git-linked projects are **LIVE** with latest READY production. This t
 | `vibes-scroll-product` | `prj_XLBiIlbjweejp9himT53bolPEMUW` | `experiments/scroll-product-showcase` | **LIVE** [vibes-scroll-product.vercel.app](https://vibes-scroll-product.vercel.app) `dpl_DTgSMUvDqSsWwhNz7vL3VR9MgfeY` (#63) |
 | `vibes-glass-capability-brain` | `prj_yJbQTsiB138V5jh92cwSWd8rZmij` | `experiments/glass-capability-brain` | **LIVE** [vibes-glass-capability-brain.vercel.app](https://vibes-glass-capability-brain.vercel.app) `dpl_DyQwdDkZcmcia4HAa42VaiFj9Q2w` (`6f455822`, #62 Vite bump; Pale Lift / Ember Slide / Lumen Watch) |
 | `vibes-japanese-tower` | `prj_T1KL4cJSMuY0Z6oKGnNtv8zVP0Js` | `experiments/japanese-tower` | **LIVE** [vibes-japanese-tower.vercel.app](https://vibes-japanese-tower.vercel.app) `dpl_Gap9BAXosU4jMEsQsR8c2nKyEPjg` |
-| `vibes-ballance-roll` | `prj_BSAzHRX6jgMZOx10fPYUUXXrKrmt` | `experiments/ballance-roll` | **LIVE** [vibes-ballance-roll.vercel.app](https://vibes-ballance-roll.vercel.app) `dpl_4SDB2ERjW7EiDX28PGsDQLEqCkrj` (#80) |
+| `vibes-ballance-roll` | `prj_BSAzHRX6jgMZOx10fPYUUXXrKrmt` | `experiments/ballance-roll` | **LIVE** [vibes-ballance-roll.vercel.app](https://vibes-ballance-roll.vercel.app) `dpl_2PdnQvNh1DsignKpLJwKT4cN7E4H` (`fd0b868c`, #104 Poly Haven PBR) |
 | `vibes-chinese-courtyard` | `prj_6eH8pYXjJzcXT5lIGfaxejO6qXAO` | `experiments/chinese-courtyard` | **LIVE** [vibes-chinese-courtyard.vercel.app](https://vibes-chinese-courtyard.vercel.app) `dpl_94rAqcG9q98czKhD7PUeVs6nDxCo` (#83) |
 | `vibes-audio-gadget-spin` | `prj_N57mvThg4UcU9XxLK3F5wAICz9PA` | `experiments/audio-gadget-spin` | **LIVE** [vibes-audio-gadget-spin.vercel.app](https://vibes-audio-gadget-spin.vercel.app) `dpl_2K1X2kWCXyFLaech4oxqdxzffYk1` (`e8c15a22`, #95 cup-screw mute / mute rocker) |
 | `vibes-procedural-grass-field` | `prj_iJND14XT4LtOHI2gnUR0UM8RFk9F` | `experiments/procedural-grass-field` | **LIVE** [vibes-procedural-grass-field.vercel.app](https://vibes-procedural-grass-field.vercel.app) `dpl_GyZTo3QLBdYhUdogCHwEzaz7N6CN` |
@@ -79,6 +79,10 @@ steam-atlas Root must stay `experiments/procedural-steam-atlas`. It already has 
 ## README showcase previews
 
 The root README is a visual showcase (GIFs, not an ops table). Refresh `docs/previews/<app>.gif` when an app ships or the motion clip goes stale. Stills are a fallback only. Ops status lives in [deployment notes](./). See [docs/visual-qa/README.md](../visual-qa/README.md).
+
+### Hill-climb — 2026-09-20 (docs ID sync after #104 force-promote)
+
+Docs-only. **No redeploy this docs PR. No new projects.** I synced the stale `vibes-ballance-roll` Latest READY prod ID after the #104 force-promote. Live production is `dpl_2PdnQvNh1DsignKpLJwKT4cN7E4H` (`fd0b868c`, #104 Poly Haven PBR). Alias [vibes-ballance-roll.vercel.app](https://vibes-ballance-roll.vercel.app) HTTP 200, bundle `index-B6vWL_dC.js`. I did not Root-touch any experiment README. Hobby 25-link cap still full. Keel Hex / Fairday Walk / Ochre Gallop stay local-only.
 
 ### Hill-climb — 2026-09-20 (docs ID sync only)
 
@@ -169,4 +173,4 @@ This pass added Ochre Gallop locally. **Still no project.** Hobby is at the **25
 ---
 
 **Author**: Johnny Huynh  
-**Last updated**: 2026-09-20 (Hill-climb docs ID sync only; audio / semicircle / glass LIVE dpl IDs match production)
+**Last updated**: 2026-09-20 (Hill-climb docs ID sync after #104 force-promote; ballance-roll LIVE dpl ID matches production)
