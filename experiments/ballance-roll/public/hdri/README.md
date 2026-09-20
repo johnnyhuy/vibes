@@ -5,4 +5,4 @@
 - **Licence**: [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/)
 - **File**: `pink-sunrise.hdr` (1k)
 
-Lighting only. Vendored locally so a drei / Poly Haven CDN miss cannot blank the canvas. Distinct from Ochre Gallop’s Qwantani dusk and Fairday Walk’s Kloofendal sky.
+Lighting and sky. Vendored locally so a drei / Poly Haven CDN miss cannot blank the canvas. Distinct from Ochre Gallop’s Qwantani dusk and Fairday Walk’s Kloofendal sky.

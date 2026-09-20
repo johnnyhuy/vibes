@@ -1,6 +1,6 @@
 # Models
 
-Poly Haven CC0, 1k PBR, Draco + WebP. See [ATTRIBUTION.md](../../ATTRIBUTION.md).
+Poly Haven CC0, 1k PBR, Draco + JPEG/PNG (no WebP). See [ATTRIBUTION.md](../../ATTRIBUTION.md).
 
 | File | Asset |
 | --- | --- |

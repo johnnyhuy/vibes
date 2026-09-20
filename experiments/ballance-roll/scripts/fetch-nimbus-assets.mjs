@@ -39,40 +39,42 @@ async function downloadPackage(uid, destDir) {
   return gltfPath;
 }
 
-function packGlb(gltfPath, outGlb, { simplify = 1 } = {}) {
-  const args = [
-    '--yes',
-    '@gltf-transform/cli',
-    'optimize',
-    gltfPath,
-    outGlb,
-    '--compress',
-    'draco',
-    '--texture-compress',
-    'webp',
-    '--texture-size',
-    '1024',
-    '--flatten',
-    'false',
-    '--join',
-    'false',
-    '--palette',
-    'false',
-    '--instance',
-    'false'
-  ];
-  if (simplify < 1) {
-    args.push('--simplify', 'true', '--simplify-ratio', String(simplify));
-  } else {
-    args.push('--simplify', 'false');
-  }
-  execFileSync('npx', args, { stdio: 'inherit' });
+function packGlb(gltfPath, outGlb) {
+  // JPEG/PNG from the Poly Haven package — no EXT_texture_webp.
+  // Draco stays; the app vendors the decoder at public/draco/.
+  execFileSync(
+    'npx',
+    [
+      '--yes',
+      '@gltf-transform/cli',
+      'optimize',
+      gltfPath,
+      outGlb,
+      '--compress',
+      'draco',
+      '--texture-compress',
+      'false',
+      '--texture-size',
+      '1024',
+      '--flatten',
+      'false',
+      '--join',
+      'false',
+      '--palette',
+      'false',
+      '--instance',
+      'false',
+      '--simplify',
+      'false'
+    ],
+    { stdio: 'inherit' }
+  );
 }
 
 const models = [
-  { uid: 'wooden_lantern_01', out: 'public/models/haze-lantern.glb', simplify: 0.75 },
-  { uid: 'brass_diya_lantern', out: 'public/models/haze-diya.glb', simplify: 0.8 },
-  { uid: 'marble_bust_01', out: 'public/models/haze-bust.glb', simplify: 0.7 }
+  { uid: 'wooden_lantern_01', out: 'public/models/haze-lantern.glb' },
+  { uid: 'brass_diya_lantern', out: 'public/models/haze-diya.glb' },
+  { uid: 'marble_bust_01', out: 'public/models/haze-bust.glb' }
 ];
 
 for (const job of models) {
@@ -81,7 +83,7 @@ for (const job of models) {
   const gltfPath = await downloadPackage(job.uid, scratch);
   const outGlb = resolve(root, job.out);
   mkdirSync(dirname(outGlb), { recursive: true });
-  packGlb(gltfPath, outGlb, { simplify: job.simplify });
+  packGlb(gltfPath, outGlb);
 }
 
 const hdriFiles = await fetchJson('https://api.polyhaven.com/files/pink_sunrise');

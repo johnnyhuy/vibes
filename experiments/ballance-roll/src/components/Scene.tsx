@@ -36,13 +36,13 @@ export default function Scene({
 }: Props) {
   return (
     <Canvas
-      camera={{ position: [0, 4.2, 8.4], fov: 42, near: 0.1, far: 160 }}
+      camera={{ position: [0, 3.9, 7.6], fov: 42, near: 0.1, far: 160 }}
       dpr={[1, 1.75]}
       shadows
       gl={{
         antialias: true,
         toneMapping: ACESFilmicToneMapping,
-        toneMappingExposure: 1.05
+        toneMappingExposure: 1.12
       }}
       onCreated={({ gl }) => {
         gl.shadowMap.type = PCFSoftShadowMap;

@@ -10,9 +10,12 @@ import {
   PATH_ROUGH
 } from '../assets';
 import { HAZE_WALK, type CourseProp, type CourseSegment } from '../course';
+import { DRACO_DECODER_PATH } from '../draco';
 import { dressPbr, enableShadows, fitObject } from '../modelFit';
 import { createPathBody } from '../physics';
 import { useCannonWorld } from './PhysicsWorld';
+
+const STONE_TILE_M = 3.4;
 
 function cloneMaps(
   maps: { diff: Texture; nor: Texture; rough: Texture },
@@ -42,9 +45,14 @@ function PathSlab({
 }) {
   const world = useCannonWorld();
   const tint =
-    segment.kind === 'beam' ? '#d4dde4' : segment.kind === 'finish' ? '#ead9bc' : '#ddd3c4';
+    segment.kind === 'beam' ? '#e8eef2' : segment.kind === 'finish' ? '#f4ead8' : '#f3ece3';
   const tiled = useMemo(
-    () => cloneMaps(maps, segment.size[0] / 1.35, segment.size[2] / 1.35),
+    () =>
+      cloneMaps(
+        maps,
+        Math.max(1, segment.size[0] / STONE_TILE_M),
+        Math.max(1, segment.size[2] / STONE_TILE_M)
+      ),
     [maps, segment.size]
   );
 
@@ -67,10 +75,11 @@ function PathSlab({
           color={tint}
           map={tiled.diff}
           normalMap={tiled.nor}
+          normalScale={[1.15, 1.15]}
           roughnessMap={tiled.rough}
-          roughness={0.82}
-          metalness={0.04}
-          envMapIntensity={1.05}
+          roughness={0.9}
+          metalness={0.02}
+          envMapIntensity={1.28}
         />
       </mesh>
       {segment.rails && (
@@ -99,12 +108,12 @@ function PathSlab({
         <mesh position={[0, -11, 0]} receiveShadow>
           <cylinderGeometry args={[0.4, 0.54, 22, 20]} />
           <meshStandardMaterial
-            color="#b7aea2"
+            color="#d8cfc4"
             map={tiled.diff}
             roughnessMap={tiled.rough}
-            roughness={0.9}
-            metalness={0.03}
-            envMapIntensity={0.7}
+            roughness={0.94}
+            metalness={0.02}
+            envMapIntensity={0.85}
           />
         </mesh>
       )}
@@ -113,7 +122,7 @@ function PathSlab({
 }
 
 function FittedProp({ url, span, env }: { url: string; span: number; env: number }) {
-  const { scene } = useGLTF(url);
+  const { scene } = useGLTF(url, DRACO_DECODER_PATH);
   const model = useMemo(() => {
     const clone = scene.clone(true);
     fitObject(clone, span, { ground: true });
@@ -128,16 +137,17 @@ function FittedProp({ url, span, env }: { url: string; span: number; env: number
 function CoursePropMesh({ prop }: { prop: CourseProp }) {
   const url = prop.kind === 'bust' ? HAZE_BUST : prop.kind === 'diya' ? HAZE_DIYA : HAZE_LANTERN;
   const lamp = prop.kind !== 'bust';
+  const env = prop.kind === 'bust' ? 1.85 : prop.kind === 'diya' ? 1.7 : 1.55;
 
   return (
     <group position={prop.position} rotation={[0, prop.yaw, 0]}>
-      <FittedProp url={url} span={prop.span} env={prop.kind === 'bust' ? 1.35 : 1.2} />
+      <FittedProp url={url} span={prop.span} env={env} />
       {lamp && (
         <pointLight
-          position={[0, prop.kind === 'diya' ? 0.72 : 0.62, 0]}
+          position={[0, prop.span * 0.58, 0]}
           color={prop.kind === 'diya' ? '#ffb45a' : '#ffc27a'}
-          intensity={prop.kind === 'diya' ? 1.35 : 1.05}
-          distance={6.5}
+          intensity={prop.kind === 'diya' ? 2.35 : 1.85}
+          distance={9}
         />
       )}
     </group>
@@ -201,6 +211,6 @@ export default function CourseMesh({ takenMotes }: { takenMotes: string[] }) {
   );
 }
 
-useGLTF.preload(HAZE_LANTERN);
-useGLTF.preload(HAZE_DIYA);
-useGLTF.preload(HAZE_BUST);
+useGLTF.preload(HAZE_LANTERN, DRACO_DECODER_PATH);
+useGLTF.preload(HAZE_DIYA, DRACO_DECODER_PATH);
+useGLTF.preload(HAZE_BUST, DRACO_DECODER_PATH);
